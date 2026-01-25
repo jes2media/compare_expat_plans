@@ -1,0 +1,42 @@
+---
+interface Logo {
+  name: string;
+  src?: string;
+}
+
+interface Props {
+  logos?: Logo[];
+  title?: string;
+}
+
+const {
+  title = 'Compare plans from leading providers',
+  logos = [
+    { name: 'Cigna Global' },
+    { name: 'Allianz Care' },
+    { name: 'Aetna International' },
+    { name: 'BUPA Global' },
+    { name: 'IMG Global' },
+    { name: 'GeoBlue' },
+  ]
+} = Astro.props;
+---
+
+<section class="bg-neutral-50 py-10 border-y border-neutral-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p class="text-center text-sm text-neutral-500 mb-6">{title}</p>
+    <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+      {logos.map((logo) => (
+        <div class="flex items-center justify-center">
+          {logo.src ? (
+            <img src={logo.src} alt={logo.name} class="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all" />
+          ) : (
+            <span class="text-lg font-semibold text-neutral-400 hover:text-neutral-600 transition-colors">
+              {logo.name}
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

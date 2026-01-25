@@ -1,0 +1,62 @@
+---
+interface Step {
+  number: number;
+  title: string;
+  description: string;
+  image?: string;
+}
+
+interface Props {
+  title?: string;
+  steps?: Step[];
+}
+
+const {
+  title = 'How It Works',
+  steps = [
+    {
+      number: 1,
+      title: 'Tell us about your situation',
+      description: 'Share where you live, your coverage needs, and budget.',
+      image: '/images/pages/home-step-1.png',
+    },
+    {
+      number: 2,
+      title: 'Compare your options',
+      description: 'See side-by-side comparisons of plans that fit your needs.',
+      image: '/images/pages/home-step-2.png',
+    },
+    {
+      number: 3,
+      title: 'Choose with confidence',
+      description: 'Apply directly with the provider you choose.',
+      image: '/images/pages/home-step-3.png',
+    },
+  ],
+} = Astro.props;
+---
+
+<section class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 text-center mb-12">
+      {title}
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+      {steps.map((step) => (
+        <div class="text-center">
+          {step.image ? (
+            <div class="w-20 h-20 mx-auto mb-4 rounded-xl bg-neutral-50 p-2 flex items-center justify-center">
+              <img src={step.image} alt={step.title} class="w-full h-full object-contain" loading="lazy" decoding="async" />
+            </div>
+          ) : (
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-100 text-primary-600 font-bold text-lg mb-4">
+              {step.number}
+            </div>
+          )}
+          <h3 class="text-lg font-semibold text-neutral-900 mb-2">{step.title}</h3>
+          <p class="text-neutral-600">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+interface Column {
+  key: string;
+  header: string;
+}
+
+interface Row {
+  [key: string]: string | boolean | number;
+}
+
+interface Props {
+  columns: Column[];
+  rows: Row[];
+  highlightColumn?: string;
+}
+
+const { columns, rows, highlightColumn } = Astro.props;
+
+function renderCell(value: string | boolean | number) {
+  if (typeof value === 'boolean') {
+    return value ? (
+      '<svg class="w-5 h-5 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>'
+    ) : (
+      '<svg class="w-5 h-5 text-neutral-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>'
+    );
+  }
+  return String(value);
+}
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr class="border-b-2 border-neutral-200">
+        {columns.map((col) => (
+          <th
+            class:list={[
+              'px-4 py-3 text-left text-sm font-semibold text-neutral-900',
+              highlightColumn === col.key && 'bg-primary-50'
+            ]}
+          >
+            {col.header}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-neutral-200">
+      {rows.map((row) => (
+        <tr class="hover:bg-neutral-50">
+          {columns.map((col) => (
+            <td
+              class:list={[
+                'px-4 py-3 text-sm text-neutral-600',
+                highlightColumn === col.key && 'bg-primary-50'
+              ]}
+            >
+              {typeof row[col.key] === 'boolean' ? (
+                row[col.key] ? (
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg class="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                )
+              ) : (
+                row[col.key]
+              )}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

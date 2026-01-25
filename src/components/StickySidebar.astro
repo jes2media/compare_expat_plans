@@ -1,0 +1,74 @@
+---
+import CTAButton from './CTAButton.astro';
+import Disclosure from './Disclosure.astro';
+
+interface RelatedLink {
+  title: string;
+  href: string;
+}
+
+interface Props {
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  ctaButtonHref?: string;
+  relatedLinks?: RelatedLink[];
+}
+
+const {
+  ctaTitle = 'Ready to Compare?',
+  ctaDescription = 'Find the right plan for your needs.',
+  ctaButtonText = 'Compare Plans',
+  ctaButtonHref = '/best/expat-health-insurance',
+  relatedLinks = [],
+} = Astro.props;
+---
+
+<aside class="hidden lg:block w-80 flex-shrink-0">
+  <div class="sticky top-24 space-y-6">
+    <!-- CTA Box -->
+    <div class="bg-primary-50 border border-primary-200 rounded-xl p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">{ctaTitle}</h3>
+      <p class="text-sm text-neutral-600 mb-4">{ctaDescription}</p>
+      <CTAButton href={ctaButtonHref} class="w-full">
+        {ctaButtonText}
+      </CTAButton>
+      <div class="mt-3">
+        <Disclosure />
+      </div>
+    </div>
+
+    <!-- Related Links -->
+    {relatedLinks.length > 0 && (
+      <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6">
+        <h3 class="font-semibold text-neutral-900 mb-4">Related</h3>
+        <ul class="space-y-3">
+          {relatedLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-neutral-600 hover:text-primary-600 transition-colors flex items-center gap-2"
+              >
+                <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- Secondary CTA -->
+    <div class="border border-neutral-200 rounded-xl p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Need Help Deciding?</h3>
+      <p class="text-sm text-neutral-600 mb-4">
+        See our step-by-step guide to choosing the right coverage.
+      </p>
+      <CTAButton href="/guides/international-health-insurance-vs-travel" variant="secondary" class="w-full">
+        Read the Guide
+      </CTAButton>
+    </div>
+  </div>
+</aside>

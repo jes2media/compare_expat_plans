@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTABox from './CTABox.astro';
+import AuthorBox from './AuthorBox.astro';
+import TableOfContents from './TableOfContents.astro';
+import StickySidebar from './StickySidebar.astro';
+import ContentCards from './ContentCards.astro';
+import Disclosure from './Disclosure.astro';
+
+interface TocItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
+interface RelatedLink {
+  title: string;
+  href: string;
+}
+
+interface RelatedCard {
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  headline: string;
+  subheadline?: string;
+  heroImage?: string;
+  heroBackgroundImage?: string;
+  author?: {
+    name: string;
+    bio: string;
+    image?: string;
+  };
+  tocItems?: TocItem[];
+  relatedLinks?: RelatedLink[];
+  relatedCards?: RelatedCard[];
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  ctaButtonHref?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  headline,
+  subheadline,
+  heroImage,
+  heroBackgroundImage,
+  author = {
+    name: 'John Spencer',
+    bio: 'John Spencer is the founder of Compare Expat Plans, where he focuses on helping people compare health plans for life abroad. He emphasizes clear information, neutral analysis, and practical decision support.',
+    image: '/images/john-spencer.png',
+  },
+  tocItems = [],
+  relatedLinks = [],
+  relatedCards = [
+    {
+      title: 'International vs Travel Insurance',
+      description: 'Learn the key differences and when you need each type.',
+      href: '/guides/international-health-insurance-vs-travel',
+      image: '/images/cards/travel-vs-international.png',
+    },
+    {
+      title: 'Choosing Deductibles',
+      description: 'How to pick the right deductible for your budget and needs.',
+      href: '/guides/choosing-deductibles',
+      image: '/images/cards/choosing-deductibles.png',
+    },
+    {
+      title: 'Pre-Existing Conditions',
+      description: 'What you need to know about coverage for existing health issues.',
+      href: '/guides/pre-existing-conditions',
+      image: '/images/cards/pre-existing-conditions.png',
+    },
+  ],
+  ctaTitle = 'Ready to Compare Plans?',
+  ctaDescription = 'See plans that match your needs and budget.',
+  ctaButtonText = 'Compare Plans Now',
+  ctaButtonHref = '/best/expat-health-insurance',
+} = Astro.props;
+---
+
+<Layout title={title} description={description} ogImage={ogImage} ogType="article">
+  <!-- Hero Section with Above-the-Fold CTA -->
+  <section class="relative bg-gradient-to-b from-neutral-50 to-white py-10 lg:py-14 border-b border-neutral-200 overflow-hidden">
+    {heroBackgroundImage && (
+      <div class="absolute inset-0 z-0">
+        <img
+          src={heroBackgroundImage}
+          alt=""
+          class="w-full h-full object-cover opacity-50"
+          loading="eager"
+          decoding="async"
+          aria-hidden="true"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
+      </div>
+    )}
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class:list={["grid gap-8 items-center", heroImage ? "lg:grid-cols-2" : ""]}>
+        <div class={heroImage ? "" : "max-w-3xl"}>
+          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+            {headline}
+          </h1>
+          {subheadline && (
+            <p class="text-lg text-neutral-600 mb-6">{subheadline}</p>
+          )}
+          <div class="flex flex-col sm:flex-row gap-3 mb-6">
+            <a
+              href={ctaButtonHref}
+              class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+              style="color: white;"
+            >
+              {ctaButtonText}
+            </a>
+          </div>
+          <Disclosure />
+        </div>
+        {heroImage && (
+          <div class="hidden lg:block">
+            <img
+              src={heroImage}
+              alt={headline}
+              class="w-full rounded-xl"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <!-- Main Content -->
+      <article class="flex-1 min-w-0">
+        <!-- Author Box -->
+        <div class="mb-8">
+          <AuthorBox
+            name={author.name}
+            bio={author.bio}
+            image={author.image}
+          />
+        </div>
+
+        <!-- Table of Contents (Mobile) -->
+        {tocItems.length > 0 && (
+          <div class="lg:hidden mb-8">
+            <TableOfContents items={tocItems} />
+          </div>
+        )}
+
+        <!-- Page Content Slot -->
+        <div class="prose prose-neutral max-w-none">
+          <slot />
+        </div>
+
+        <!-- Related Cards Section -->
+        {relatedCards.length > 0 && (
+          <ContentCards
+            title="Related Resources"
+            cards={relatedCards}
+          />
+        )}
+      </article>
+
+      <!-- Sticky Sidebar (Desktop) -->
+      <StickySidebar
+        ctaTitle={ctaTitle}
+        ctaDescription={ctaDescription}
+        ctaButtonText={ctaButtonText}
+        ctaButtonHref={ctaButtonHref}
+        relatedLinks={relatedLinks}
+      />
+    </div>
+  </div>
+</Layout>
+
