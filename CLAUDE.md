@@ -73,3 +73,17 @@ Country guides follow this structure:
 6. FAQs
 
 Each country page has a hero background image using flag colors at 50% opacity.
+
+## Editorial Guidelines
+
+**All content must follow `EDITORIAL.md`** — our writing style guide.
+
+Key principles:
+- Be direct, honest, and practical
+- Use "you" to address readers
+- Show trade-offs, not just benefits
+- Use specific numbers and examples
+- Avoid superlatives and hype
+- Include disclaimers where appropriate
+
+Read `EDITORIAL.md` before writing or editing any content.
