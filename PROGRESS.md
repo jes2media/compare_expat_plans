@@ -1,6 +1,6 @@
 # Progress Log & Next Steps
 
-Last updated: January 25, 2026 (evening)
+Last updated: January 26, 2026
 
 ## Completed
 
@@ -63,7 +63,7 @@ Last updated: January 25, 2026 (evening)
 - [x] `/best/budget-expat-insurance` - Budget options
 - [x] `/best/digital-nomad-insurance` - Digital nomad guide with hero background
 
-#### Comparison Pages (6 total)
+#### Comparison Pages (11 total)
 - [x] `/compare` - Comparison index
 - [x] `/compare/cigna-global-vs-allianz-care`
 - [x] `/compare/bupa-global-vs-cigna-global`
@@ -71,6 +71,11 @@ Last updated: January 25, 2026 (evening)
 - [x] `/compare/allianz-care-vs-img-global`
 - [x] `/compare/img-global-vs-cigna-global`
 - [x] `/compare/bupa-global-vs-img-global`
+- [x] `/compare/safetywing-vs-img-global` - Budget nomad comparison
+- [x] `/compare/aetna-international-vs-geoblue` - US expat comparison
+- [x] `/compare/cigna-global-vs-aetna-international` - Global vs US focus
+- [x] `/compare/axa-global-vs-allianz-care` - European insurers
+- [x] `/compare/safetywing-vs-cigna-global` - Nomad vs traditional
 
 #### Insurance-For Pages (6 total)
 - [x] `/insurance-for` - Audience index
@@ -119,13 +124,13 @@ Nothing currently in progress.
 
 ### High Priority - Content Expansion
 
-#### New Provider Comparison Pages
+#### New Provider Comparison Pages ✓ COMPLETED
 The existing comparisons only cover Cigna/Allianz/Bupa/IMG. Add comparisons with newer providers:
-- [ ] SafetyWing vs IMG Global (budget nomad comparison)
-- [ ] Aetna vs GeoBlue (US expat comparison)
-- [ ] Cigna vs Aetna International
-- [ ] AXA Global vs Allianz Care (European focus)
-- [ ] SafetyWing vs Cigna Global (nomad vs traditional)
+- [x] SafetyWing vs IMG Global (budget nomad comparison)
+- [x] Aetna vs GeoBlue (US expat comparison)
+- [x] Cigna vs Aetna International
+- [x] AXA Global vs Allianz Care (European focus)
+- [x] SafetyWing vs Cigna Global (nomad vs traditional)
 
 #### Country × Provider Pages for New Providers
 Each country only has 4 provider subpages. Add the 4 new providers (24 new pages):
