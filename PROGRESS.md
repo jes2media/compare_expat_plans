@@ -88,7 +88,7 @@ Last updated: January 26, 2026
 - [x] `/insurance-for/students`
 - [x] `/insurance-for/freelancers`
 
-#### Guides (6 total)
+#### Guides (8 total)
 - [x] `/guides` - Guide index
 - [x] `/guides/international-health-insurance-vs-travel`
 - [x] `/guides/choosing-deductibles`
@@ -96,6 +96,8 @@ Last updated: January 26, 2026
 - [x] `/guides/filing-claims`
 - [x] `/guides/coverage-limits`
 - [x] `/guides/medical-evacuation`
+- [x] `/guides/maternity-coverage-abroad`
+- [x] `/guides/mental-health-coverage`
 
 #### Country × Provider Pages (48 total)
 - [x] Spain: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
@@ -172,8 +174,8 @@ Each country now has 8 provider subpages (24 new pages added):
 - [x] Privacy policy / Terms of service
 
 #### More Guides
-- [ ] Maternity coverage abroad
-- [ ] Mental health coverage guide
+- [x] Maternity coverage abroad
+- [x] Mental health coverage guide
 - [ ] Understanding waiting periods
 - [ ] Emergency evacuation deep dive
 - [ ] Dental and vision coverage options
