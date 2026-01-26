@@ -14,6 +14,7 @@ interface Props {
   headline: string;
   subheadline?: string;
   lastUpdated: string;
+  heroBackgroundImage?: string;
   tocItems?: TocItem[];
   author?: {
     name: string;
@@ -28,6 +29,7 @@ const {
   headline,
   subheadline,
   lastUpdated,
+  heroBackgroundImage,
   tocItems = [],
   author = {
     name: 'John Spencer',
@@ -64,8 +66,21 @@ const breadcrumbSchema = {
   </Fragment>
 
   <!-- Hero Section - Clean, minimal -->
-  <section class="bg-white border-b border-neutral-100 py-12 lg:py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative bg-white border-b border-neutral-100 py-12 lg:py-16 overflow-hidden">
+    {heroBackgroundImage && (
+      <div class="absolute inset-0 z-0">
+        <img
+          src={heroBackgroundImage}
+          alt=""
+          class="w-full h-full object-cover opacity-40"
+          loading="eager"
+          decoding="async"
+          aria-hidden="true"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-white"></div>
+      </div>
+    )}
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Breadcrumb -->
       <nav class="mb-6 text-sm" aria-label="Breadcrumb">
         <ol class="flex items-center gap-2 text-neutral-500">
