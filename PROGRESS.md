@@ -1,6 +1,6 @@
 # Progress Log & Next Steps
 
-Last updated: January 25, 2026
+Last updated: January 25, 2026 (evening)
 
 ## Completed
 
@@ -45,11 +45,67 @@ Last updated: January 25, 2026
 - [x] `/countries/costa-rica/insurance` - Full guide (mandatory CAJA)
 - [x] `/countries/france/insurance` - Full guide (PUMA, VLS-TS, CSM tax)
 
+#### Provider Reviews (8 total)
+- [x] `/providers` - Provider index with card images
+- [x] `/providers/cigna-global` - Full review
+- [x] `/providers/allianz-care` - Full review
+- [x] `/providers/bupa-global` - Full review
+- [x] `/providers/img-global` - Full review
+- [x] `/providers/aetna-international` - Full review (US expat focus)
+- [x] `/providers/geoblue` - Full review (Blue Cross network)
+- [x] `/providers/axa-global` - Full review (EU regulatory benefits)
+- [x] `/providers/safetywing` - Full review (Nomad Insurance vs Remote Health)
+
+#### Best/Comparison Pages (4 total)
+- [x] `/best` - Category index
+- [x] `/best/expat-health-insurance` - Top picks for 2026
+- [x] `/best/family-health-insurance` - Family-focused plans
+- [x] `/best/budget-expat-insurance` - Budget options
+- [x] `/best/digital-nomad-insurance` - Digital nomad guide with hero background
+
+#### Comparison Pages (6 total)
+- [x] `/compare` - Comparison index
+- [x] `/compare/cigna-global-vs-allianz-care`
+- [x] `/compare/bupa-global-vs-cigna-global`
+- [x] `/compare/allianz-care-vs-bupa-global`
+- [x] `/compare/allianz-care-vs-img-global`
+- [x] `/compare/img-global-vs-cigna-global`
+- [x] `/compare/bupa-global-vs-img-global`
+
+#### Insurance-For Pages (6 total)
+- [x] `/insurance-for` - Audience index
+- [x] `/insurance-for/digital-nomads`
+- [x] `/insurance-for/retirees`
+- [x] `/insurance-for/remote-workers`
+- [x] `/insurance-for/families`
+- [x] `/insurance-for/students`
+- [x] `/insurance-for/freelancers`
+
+#### Guides (6 total)
+- [x] `/guides` - Guide index
+- [x] `/guides/international-health-insurance-vs-travel`
+- [x] `/guides/choosing-deductibles`
+- [x] `/guides/pre-existing-conditions`
+- [x] `/guides/filing-claims`
+- [x] `/guides/coverage-limits`
+- [x] `/guides/medical-evacuation`
+
+#### Country × Provider Pages (24 total)
+- [x] Spain: Cigna, Allianz, Bupa, IMG
+- [x] Portugal: Cigna, Allianz, Bupa, IMG
+- [x] Mexico: Cigna, Allianz, Bupa, IMG
+- [x] Thailand: Cigna, Allianz, Bupa, IMG
+- [x] Costa Rica: Cigna, Allianz, Bupa, IMG
+- [x] France: Cigna, Allianz, Bupa, IMG
+
 ### Images Generated
 - [x] Homepage hero background
 - [x] Homepage card images (3 cards)
 - [x] Country card images (6 scenic illustrations)
 - [x] Country hero backgrounds (Spain, Costa Rica, France - others may need)
+- [x] Provider card images (8 total - all providers)
+- [x] Best category card images (4 total)
+- [x] Digital nomad hero background
 
 ---
 
@@ -61,81 +117,89 @@ Nothing currently in progress.
 
 ## Next Steps (Suggested Priority)
 
-### High Priority - Core Content Pages
+### High Priority - Content Expansion
 
-#### Provider Reviews
-- [ ] `/providers/cigna-global` - Expand with full review content
-- [ ] `/providers` index - Add more providers:
-  - [ ] Allianz Care
-  - [ ] Aetna International
-  - [ ] BUPA Global
-  - [ ] IMG Global
-  - [ ] GeoBlue
-  - [ ] AXA Global
+#### New Provider Comparison Pages
+The existing comparisons only cover Cigna/Allianz/Bupa/IMG. Add comparisons with newer providers:
+- [ ] SafetyWing vs IMG Global (budget nomad comparison)
+- [ ] Aetna vs GeoBlue (US expat comparison)
+- [ ] Cigna vs Aetna International
+- [ ] AXA Global vs Allianz Care (European focus)
+- [ ] SafetyWing vs Cigna Global (nomad vs traditional)
 
-#### Best/Comparison Pages
-- [ ] `/best/expat-health-insurance` - Expand rankings content
-- [ ] `/best` index - Add more categories:
-  - [ ] Best for digital nomads
-  - [ ] Best for retirees
-  - [ ] Best for families
-  - [ ] Best budget options
+#### Country × Provider Pages for New Providers
+Each country only has 4 provider subpages. Add the 4 new providers (24 new pages):
+- [ ] Spain: Aetna, GeoBlue, AXA, SafetyWing
+- [ ] Portugal: Aetna, GeoBlue, AXA, SafetyWing
+- [ ] Mexico: Aetna, GeoBlue, AXA, SafetyWing
+- [ ] Thailand: Aetna, GeoBlue, AXA, SafetyWing
+- [ ] Costa Rica: Aetna, GeoBlue, AXA, SafetyWing
+- [ ] France: Aetna, GeoBlue, AXA, SafetyWing
 
-#### Comparison Pages
-- [ ] `/compare/cigna-global-vs-allianz-care` - Expand comparison
-- [ ] `/compare` index - Add more comparisons
+#### More Best-Of Pages
+- [ ] `/best/retiree-health-insurance` - Retiree-focused plans
+- [ ] `/best/us-expat-insurance` - US citizens abroad
 
-### Medium Priority - Audience & Educational Content
+### Medium Priority - New Countries
 
-#### Insurance-For Pages
-- [ ] `/insurance-for/digital-nomads` - Expand content
-- [ ] `/insurance-for` index - Add more audiences:
-  - [ ] Retirees
-  - [ ] Remote workers
-  - [ ] Families
-  - [ ] Students
+#### Popular Expat Destinations
+- [ ] Italy - Golden visa, healthcare quality
+- [ ] Germany - EU hub, strong public system
+- [ ] UK - Post-Brexit requirements
+- [ ] Netherlands - Mandatory insurance, EU base
+- [ ] UAE/Dubai - Tax-free, employer-based
+- [ ] Singapore - Expat hub, high costs
+- [ ] Japan - Aging population visa options
+- [ ] Panama - Pensionado visa, popular with retirees
+- [ ] Ecuador - Budget-friendly, coastal/mountain options
+- [ ] Vietnam - Digital nomad growth
+- [ ] Indonesia/Bali - Remote worker visas
 
-#### Guides
-- [ ] `/guides/international-health-insurance-vs-travel` - Expand
-- [ ] `/guides` index - Add more guides:
-  - [ ] How to choose a plan
-  - [ ] Understanding deductibles
-  - [ ] Pre-existing conditions guide
-  - [ ] Claims process guide
+### Lower Priority - Additional Features
 
-### Lower Priority - Expansion
-
-#### More Country Guides
-- [ ] Italy
-- [ ] Germany
-- [ ] UK
-- [ ] Panama
-- [ ] Ecuador
-- [ ] Vietnam
-- [ ] Philippines
-- [ ] Indonesia/Bali
-
-#### Additional Features
+#### Site Features
 - [ ] Search functionality
-- [ ] Newsletter signup
+- [ ] Newsletter signup integration
 - [ ] Contact page
 - [ ] About page
 - [ ] Privacy policy / Terms of service
 
+#### More Guides
+- [ ] Maternity coverage abroad
+- [ ] Mental health coverage guide
+- [ ] Understanding waiting periods
+- [ ] Emergency evacuation deep dive
+- [ ] Dental and vision coverage options
+
 ### Technical/Polish
-- [ ] Generate hero backgrounds for Portugal, Mexico, Thailand (if needed)
+- [ ] Generate hero backgrounds for Portugal, Mexico, Thailand
 - [ ] Sitemap.xml generation
 - [ ] robots.txt
-- [ ] Analytics integration
+- [ ] Analytics integration (Plausible or similar)
 - [ ] Performance audit (Lighthouse)
 - [ ] Deployment setup (Netlify/Vercel/Cloudflare Pages)
+- [ ] Structured data / JSON-LD for SEO
 
 ---
 
 ## Notes
 
+### Content Patterns
 - Country guides follow consistent structure: Overview → Healthcare System → Visa Requirements → Recommended Plans → Costs → FAQs
-- Hero backgrounds use country flag colors at 50% opacity
+- Provider reviews follow: Overview → Plans and Coverage → Pricing → Pros and Cons → Claims and Service → Who It's For → Alternatives
+- Best-of pages follow: Top Picks → Explanation → How We Evaluated → Comparison Table → Detailed Reviews → Choosing Guide → FAQs
+
+### Image Standards
+- Hero backgrounds: 16:9 ratio, abstract gradients with themed colors, suitable for text overlay
+- Card images: 4:3 ratio, minimal flat illustrations, white background, soft neutral colors with blue accents
+- All images generated via Ideogram API with sidecar JSON for reproducibility
+
+### Provider Coverage
+- 8 providers now reviewed: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+- Providers span: traditional insurers, US-focused, EU-regulated, and nomad/startup options
+- Travel medical vs health insurance distinction emphasized (especially for SafetyWing)
+
+### Editorial
 - All content should be researched for accuracy (visa requirements, costs change frequently)
-- Card images use scenic/landmark illustrations in flat design style
 - CTAs link to `/best/expat-health-insurance` as primary conversion page
+- Follow EDITORIAL.md for writing style and tone
