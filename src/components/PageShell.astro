@@ -25,6 +25,16 @@ interface RelatedCard {
   image?: string;
 }
 
+interface BreadcrumbItem {
+  name: string;
+  url?: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface Props {
   title: string;
   description?: string;
@@ -45,6 +55,8 @@ interface Props {
   ctaDescription?: string;
   ctaButtonText?: string;
   ctaButtonHref?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  faqs?: FAQItem[];
 }
 
 const {
@@ -86,10 +98,90 @@ const {
   ctaDescription = 'See plans that match your needs and budget.',
   ctaButtonText = 'Compare Plans Now',
   ctaButtonHref = '/best/expat-health-insurance',
+  breadcrumbs = [],
+  faqs = [],
 } = Astro.props;
+
+const siteUrl = "https://compareexpatplans.com";
+const currentUrl = Astro.url.pathname;
+
+// Auto-generate breadcrumbs from URL if not provided
+const autoBreadcrumbs = (): BreadcrumbItem[] => {
+  const pathSegments = currentUrl.split('/').filter(Boolean);
+  const items: BreadcrumbItem[] = [{ name: 'Home', url: '/' }];
+
+  const nameMap: Record<string, string> = {
+    'countries': 'Countries',
+    'providers': 'Providers',
+    'guides': 'Guides',
+    'best': 'Best Plans',
+    'compare': 'Compare',
+    'insurance-for': 'Insurance For',
+    'insurance': 'Insurance',
+    'spain': 'Spain',
+    'portugal': 'Portugal',
+    'mexico': 'Mexico',
+    'thailand': 'Thailand',
+    'costa-rica': 'Costa Rica',
+    'france': 'France',
+    'cigna-global': 'Cigna Global',
+    'allianz-care': 'Allianz Care',
+    'bupa-global': 'BUPA Global',
+    'img-global': 'IMG Global',
+    'aetna-international': 'Aetna International',
+    'geoblue': 'GeoBlue',
+    'axa-global': 'AXA Global',
+    'safetywing': 'SafetyWing',
+  };
+
+  let path = '';
+  for (let i = 0; i < pathSegments.length; i++) {
+    const segment = pathSegments[i];
+    path += `/${segment}`;
+    const isLast = i === pathSegments.length - 1;
+    items.push({
+      name: nameMap[segment] || segment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+      url: isLast ? undefined : path,
+    });
+  }
+  return items;
+};
+
+const finalBreadcrumbs = breadcrumbs.length > 0 ? breadcrumbs : autoBreadcrumbs();
+
+// Generate BreadcrumbList schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": finalBreadcrumbs.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    ...(item.url && { "item": `${siteUrl}${item.url}` }),
+  })),
+};
+
+// Generate FAQPage schema if FAQs provided
+const faqSchema = faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+} : null;
 ---
 
 <Layout title={title} description={description} ogImage={ogImage} ogType="article">
+  <!-- Structured Data -->
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+  </Fragment>
   <!-- Hero Section with Above-the-Fold CTA -->
   <section class="relative bg-gradient-to-b from-neutral-50 to-white py-10 lg:py-14 border-b border-neutral-200 overflow-hidden">
     {heroBackgroundImage && (

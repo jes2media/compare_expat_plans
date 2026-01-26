@@ -189,7 +189,7 @@ Each country now has 8 provider subpages (24 new pages added):
 - [x] Analytics integration (GA4 via Netlify env var)
 - [ ] Performance audit (Lighthouse)
 - [ ] Deployment setup (Netlify/Vercel/Cloudflare Pages)
-- [ ] Structured data / JSON-LD for SEO
+- [x] Structured data / JSON-LD for SEO (Organization, BreadcrumbList, FAQPage)
 
 ---
 

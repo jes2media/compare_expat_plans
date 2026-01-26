@@ -66,6 +66,36 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullOgImageUrl} />
 
+    <!-- Structured Data - Organization & WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
+          "name": siteName,
+          "url": siteUrl,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${siteUrl}/favicon.svg`
+          },
+          "description": defaultDescription
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${siteUrl}/#website`,
+          "url": siteUrl,
+          "name": siteName,
+          "publisher": {
+            "@id": `${siteUrl}/#organization`
+          }
+        }
+      ]
+    })} />
+
+    <!-- Structured Data Slot - for page-specific schemas -->
+    <slot name="structured-data" />
+
     <!-- Google Analytics 4 -->
     {GA_ID && (
       <>
