@@ -56,12 +56,14 @@ Last updated: January 26, 2026
 - [x] `/providers/axa-global` - Full review (EU regulatory benefits)
 - [x] `/providers/safetywing` - Full review (Nomad Insurance vs Remote Health)
 
-#### Best/Comparison Pages (4 total)
+#### Best/Comparison Pages (6 total)
 - [x] `/best` - Category index
 - [x] `/best/expat-health-insurance` - Top picks for 2026
 - [x] `/best/family-health-insurance` - Family-focused plans
 - [x] `/best/budget-expat-insurance` - Budget options
 - [x] `/best/digital-nomad-insurance` - Digital nomad guide with hero background
+- [x] `/best/retiree-health-insurance` - Retiree/50+ guide, Medicare alternatives
+- [x] `/best/us-expat-insurance` - US citizens abroad, integrated US coverage
 
 #### Comparison Pages (11 total)
 - [x] `/compare` - Comparison index
@@ -95,13 +97,13 @@ Last updated: January 26, 2026
 - [x] `/guides/coverage-limits`
 - [x] `/guides/medical-evacuation`
 
-#### Country × Provider Pages (24 total)
-- [x] Spain: Cigna, Allianz, Bupa, IMG
-- [x] Portugal: Cigna, Allianz, Bupa, IMG
-- [x] Mexico: Cigna, Allianz, Bupa, IMG
-- [x] Thailand: Cigna, Allianz, Bupa, IMG
-- [x] Costa Rica: Cigna, Allianz, Bupa, IMG
-- [x] France: Cigna, Allianz, Bupa, IMG
+#### Country × Provider Pages (48 total)
+- [x] Spain: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+- [x] Portugal: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+- [x] Mexico: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+- [x] Thailand: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+- [x] Costa Rica: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+- [x] France: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 
 ### Images Generated
 - [x] Homepage hero background
@@ -132,18 +134,18 @@ The existing comparisons only cover Cigna/Allianz/Bupa/IMG. Add comparisons with
 - [x] AXA Global vs Allianz Care (European focus)
 - [x] SafetyWing vs Cigna Global (nomad vs traditional)
 
-#### Country × Provider Pages for New Providers
-Each country only has 4 provider subpages. Add the 4 new providers (24 new pages):
-- [ ] Spain: Aetna, GeoBlue, AXA, SafetyWing
-- [ ] Portugal: Aetna, GeoBlue, AXA, SafetyWing
-- [ ] Mexico: Aetna, GeoBlue, AXA, SafetyWing
-- [ ] Thailand: Aetna, GeoBlue, AXA, SafetyWing
-- [ ] Costa Rica: Aetna, GeoBlue, AXA, SafetyWing
-- [ ] France: Aetna, GeoBlue, AXA, SafetyWing
+#### Country × Provider Pages for New Providers ✓ COMPLETED
+Each country now has 8 provider subpages (24 new pages added):
+- [x] Spain: Aetna, GeoBlue, AXA, SafetyWing
+- [x] Portugal: Aetna, GeoBlue, AXA, SafetyWing
+- [x] Mexico: Aetna, GeoBlue, AXA, SafetyWing
+- [x] Thailand: Aetna, GeoBlue, AXA, SafetyWing
+- [x] Costa Rica: Aetna, GeoBlue, AXA, SafetyWing
+- [x] France: Aetna, GeoBlue, AXA, SafetyWing
 
-#### More Best-Of Pages
-- [ ] `/best/retiree-health-insurance` - Retiree-focused plans
-- [ ] `/best/us-expat-insurance` - US citizens abroad
+#### More Best-Of Pages ✓ COMPLETED
+- [x] `/best/retiree-health-insurance` - Retiree-focused plans
+- [x] `/best/us-expat-insurance` - US citizens abroad
 
 ### Medium Priority - New Countries
 
