@@ -169,7 +169,7 @@ Each country now has 8 provider subpages (24 new pages added):
 - [ ] Newsletter signup integration
 - [ ] Contact page
 - [ ] About page
-- [ ] Privacy policy / Terms of service
+- [x] Privacy policy / Terms of service
 
 #### More Guides
 - [ ] Maternity coverage abroad
@@ -180,8 +180,8 @@ Each country now has 8 provider subpages (24 new pages added):
 
 ### Technical/Polish
 - [ ] Generate hero backgrounds for Portugal, Mexico, Thailand
-- [ ] Sitemap.xml generation
-- [ ] robots.txt
+- [x] Sitemap.xml generation (auto via @astrojs/sitemap)
+- [x] robots.txt
 - [ ] Analytics integration (Plausible or similar)
 - [ ] Performance audit (Lighthouse)
 - [ ] Deployment setup (Netlify/Vercel/Cloudflare Pages)
