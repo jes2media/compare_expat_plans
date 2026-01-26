@@ -183,10 +183,10 @@ Each country now has 8 provider subpages (24 new pages added):
 - [x] Dental and vision coverage options
 
 ### Technical/Polish
-- [ ] Generate hero backgrounds for Portugal, Mexico, Thailand
+- [x] Generate hero backgrounds for Portugal, Mexico, Thailand
 - [x] Sitemap.xml generation (auto via @astrojs/sitemap)
 - [x] robots.txt
-- [ ] Analytics integration (Plausible or similar)
+- [x] Analytics integration (GA4 via Netlify env var)
 - [ ] Performance audit (Lighthouse)
 - [ ] Deployment setup (Netlify/Vercel/Cloudflare Pages)
 - [ ] Structured data / JSON-LD for SEO
