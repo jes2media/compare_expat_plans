@@ -27,6 +27,9 @@ const {
 const fullTitle = `${title} | ${siteName}`;
 const fullOgImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const canonical = canonicalUrl || Astro.url.href;
+
+// Google Analytics 4 - only loads if env var is set
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -62,6 +65,21 @@ const canonical = canonicalUrl || Astro.url.href;
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullOgImageUrl} />
+
+    <!-- Google Analytics 4 -->
+    {GA_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+        <script is:inline define:vars={{ GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', GA_ID, {
+            anonymize_ip: true
+          });
+        </script>
+      </>
+    )}
 
     <!-- Fonts - preconnect and preload for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
