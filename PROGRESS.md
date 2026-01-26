@@ -171,7 +171,7 @@ Each country now has 8 provider subpages (24 new pages added):
 #### Site Features
 - [ ] Search functionality
 - [ ] Newsletter signup integration
-- [ ] Contact page
+- [x] Contact page (Netlify Forms)
 - [ ] About page
 - [x] Privacy policy / Terms of service
 
