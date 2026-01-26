@@ -192,7 +192,7 @@ Each country now has 8 provider subpages (24 new pages added):
 - [x] Sitemap.xml generation (auto via @astrojs/sitemap)
 - [x] robots.txt
 - [x] Analytics integration (GA4 via Netlify env var)
-- [ ] Performance audit (Lighthouse)
+- [x] Performance audit (Lighthouse) - Accessibility: 100, Best Practices: 100, SEO: 100, Performance: 77
 - [ ] Deployment setup (Netlify/Vercel/Cloudflare Pages)
 - [x] Structured data / JSON-LD for SEO (Organization, BreadcrumbList, FAQPage)
 
