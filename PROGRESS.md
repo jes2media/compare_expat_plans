@@ -22,6 +22,7 @@ Last updated: January 26, 2026
 - [x] AuthorBox.astro - Author bio section (John Spencer)
 - [x] TableOfContents.astro - Sticky sidebar TOC
 - [x] StickySidebar.astro - Sidebar wrapper
+- [x] ResearchReportShell.astro - Clean layout for research reports
 
 ### Site Polish
 - [x] Favicon (shield with checkmark)
@@ -108,6 +109,10 @@ Last updated: January 26, 2026
 - [x] Thailand: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 - [x] Costa Rica: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 - [x] France: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+
+#### Research Reports (1 total)
+- [x] `/research-reports` - Research reports hub/index
+- [x] `/research-reports/expat-health-insurance-requirements-by-country` - Insurance requirements by country (20 countries, downloadable CSV)
 
 ### Images Generated
 - [x] Homepage hero background

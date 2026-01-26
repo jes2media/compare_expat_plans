@@ -1,0 +1,220 @@
+---
+import ResearchReportShell from '../../components/ResearchReportShell.astro';
+import { requirementsByCountry, lastUpdated, methodology } from '../../data/research/requirementsByCountry';
+
+const tocItems = [
+  { id: 'summary', text: 'Summary', level: 2 },
+  { id: 'key-takeaways', text: 'Key Takeaways', level: 2 },
+  { id: 'country-requirements', text: 'Country Requirements Table', level: 2 },
+  { id: 'methodology', text: 'Methodology', level: 2 },
+  { id: 'download', text: 'Download Data', level: 2 },
+  { id: 'sources', text: 'Sources', level: 2 },
+  { id: 'related', text: 'Related Resources', level: 2 },
+];
+
+// Count statistics for the summary
+const requiresInsurance = requirementsByCountry.filter(c => c.insuranceRequired === 'Yes').length;
+const fullPublicAccess = requirementsByCountry.filter(c => c.publicSystemAccess === 'Full').length;
+const totalCountries = requirementsByCountry.length;
+---
+
+<ResearchReportShell
+  title="Expat Health Insurance Requirements by Country (2026)"
+  description="Research report on health insurance requirements for expat residency across 20 countries. Data on visa requirements, public healthcare access, and coverage mandates."
+  headline="Expat Health Insurance Requirements by Country"
+  subheadline="A data reference for understanding which countries require private health insurance for residency and how public healthcare access works for expats."
+  lastUpdated={lastUpdated}
+  tocItems={tocItems}
+>
+  <h2 id="summary">Summary</h2>
+  <p>
+    This report compiles health insurance requirements for expat residency across {totalCountries} popular destination countries. Use this data to understand:
+  </p>
+  <ul>
+    <li>Which countries require private health insurance for residency visas</li>
+    <li>Where expats can access public healthcare systems</li>
+    <li>Key differences in how countries handle expat health coverage</li>
+    <li>Specific requirements and exceptions by country</li>
+  </ul>
+
+  <h2 id="key-takeaways">Key Takeaways</h2>
+  <ul>
+    <li><strong>{requiresInsurance} of {totalCountries} countries</strong> require private health insurance for at least some residency visa types</li>
+    <li><strong>{fullPublicAccess} countries</strong> offer full public healthcare access to legal residents</li>
+    <li><strong>Requirements vary by visa type</strong> — retirement visas often have stricter insurance requirements than work visas</li>
+    <li><strong>EU countries</strong> generally have mandatory health coverage requirements but offer public system access</li>
+    <li><strong>"Required" doesn't always mean expensive</strong> — some countries accept affordable local insurance plans</li>
+  </ul>
+
+  <h2 id="country-requirements">Country Requirements Table</h2>
+  <p>
+    The table below shows health insurance requirements for residency and public healthcare access for expats in each country. Click column headers to sort.
+  </p>
+
+  <div class="my-8 overflow-x-auto">
+    <table class="min-w-full border border-neutral-200 rounded-lg overflow-hidden text-sm">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Country</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Insurance Required?</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Public System Access</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200 min-w-[300px]">Notes</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-200">
+        {requirementsByCountry.map((row, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+            <td class="px-4 py-3 font-medium text-neutral-900">{row.country}</td>
+            <td class="px-4 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                row.insuranceRequired === 'Yes' ? 'bg-red-100 text-red-800' : '',
+                row.insuranceRequired === 'No' ? 'bg-green-100 text-green-800' : '',
+                row.insuranceRequired === 'Depends' ? 'bg-amber-100 text-amber-800' : '',
+              ]}>
+                {row.insuranceRequired}
+              </span>
+            </td>
+            <td class="px-4 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                row.publicSystemAccess === 'Full' ? 'bg-green-100 text-green-800' : '',
+                row.publicSystemAccess === 'Limited' ? 'bg-amber-100 text-amber-800' : '',
+                row.publicSystemAccess === 'None' ? 'bg-red-100 text-red-800' : '',
+                row.publicSystemAccess === 'Depends' ? 'bg-blue-100 text-blue-800' : '',
+              ]}>
+                {row.publicSystemAccess}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-neutral-600">{row.notes}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="text-sm text-neutral-500">
+    Data current as of {lastUpdated}. Requirements may change; verify with official government sources before making decisions.
+  </p>
+
+  <h2 id="methodology">Methodology</h2>
+  <Fragment set:html={methodology.replace(/^## Methodology\n\n/, '').split('\n\n').map(p => {
+    if (p.startsWith('**')) {
+      return `<h3>${p.replace(/\*\*/g, '')}</h3>`;
+    }
+    if (p.startsWith('- ')) {
+      return `<ul>${p.split('\n').map(li => `<li>${li.replace(/^- /, '')}</li>`).join('')}</ul>`;
+    }
+    return `<p>${p}</p>`;
+  }).join('')} />
+
+  <h2 id="download">Download Data</h2>
+  <p>
+    Download the complete dataset for your own analysis or reference.
+  </p>
+
+  <div class="my-6 p-6 bg-neutral-50 border border-neutral-200 rounded-lg">
+    <div class="flex items-start gap-4">
+      <div class="p-3 bg-white rounded-lg border border-neutral-200">
+        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      </div>
+      <div class="flex-1">
+        <h3 class="font-semibold text-neutral-900 mb-1">requirements-by-country.csv</h3>
+        <p class="text-sm text-neutral-600 mb-3">
+          Contains {totalCountries} countries with columns for insurance requirements, public system access, and detailed notes.
+        </p>
+        <a
+          href="/downloads/requirements-by-country.csv"
+          download
+          class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-900 rounded-lg transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Download CSV
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="sources">Sources</h2>
+  <p>
+    This report draws from the following source categories. Specific URLs are available in our research documentation.
+  </p>
+
+  <h3>Government Immigration Sources</h3>
+  <ul>
+    <li>Official government visa and immigration portals for each country</li>
+    <li>Ministry of Foreign Affairs documentation</li>
+    <li>Immigration authority requirement listings</li>
+  </ul>
+
+  <h3>Embassy and Consulate Guidance</h3>
+  <ul>
+    <li>US Embassy pages for each destination country</li>
+    <li>UK Foreign Office travel advice</li>
+    <li>Consulate-specific visa requirement documents</li>
+  </ul>
+
+  <h3>Public Health System Portals</h3>
+  <ul>
+    <li>National health service eligibility information</li>
+    <li>Social security administration documentation</li>
+    <li>Regional health authority guidance</li>
+  </ul>
+
+  <h3>Insurance Provider Documentation</h3>
+  <ul>
+    <li>Insurer country-specific requirement guides</li>
+    <li>Policy documents referencing local regulations</li>
+    <li>Broker compliance documentation</li>
+  </ul>
+
+  <h3>International Organizations</h3>
+  <ul>
+    <li>WHO health system profiles</li>
+    <li>OECD health statistics</li>
+    <li>European Commission healthcare information</li>
+  </ul>
+
+  <h3>Additional References</h3>
+  <ul>
+    <li>Expat community forums and verified experience reports</li>
+    <li>Immigration attorney guidance (for verification)</li>
+    <li>News reporting on policy changes</li>
+  </ul>
+
+  <h2 id="related">Related Resources</h2>
+  <p>
+    For more detailed information on specific countries or insurance options:
+  </p>
+  <ul>
+    <li><a href="/countries/spain/insurance">Health Insurance for Expats in Spain</a> — Detailed guide including visa requirements and plan options</li>
+    <li><a href="/countries/portugal/insurance">Health Insurance for Expats in Portugal</a> — D7/D8 visa requirements and SNS access</li>
+    <li><a href="/compare/cigna-global-vs-allianz-care">Cigna Global vs Allianz Care</a> — Comparison of two popular international insurers</li>
+  </ul>
+
+  <!-- Single soft CTA at the end -->
+  <div class="my-12 p-6 bg-blue-50 border border-blue-100 rounded-lg">
+    <p class="text-neutral-700 mb-4">
+      Looking for health insurance that meets your destination country's requirements? Our comparison tool can help you find plans accepted for visa applications.
+    </p>
+    <a
+      href="/best/expat-health-insurance"
+      class="inline-flex items-center gap-2 text-blue-700 font-medium hover:text-blue-900"
+    >
+      Compare expat health plans
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-neutral-200">
+    <p class="text-sm text-neutral-500">
+      <strong>Disclaimer:</strong> This report is for informational purposes only. Immigration and health insurance requirements change frequently. Always verify requirements with official government sources and consult with immigration professionals before making decisions. We are not immigration attorneys or licensed insurance brokers.
+    </p>
+  </div>
+</ResearchReportShell>
