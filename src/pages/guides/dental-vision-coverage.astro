@@ -1,0 +1,378 @@
+---
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', text: 'Dental and Vision Coverage Basics', level: 2 },
+  { id: 'dental-coverage', text: 'Understanding Dental Coverage', level: 2 },
+  { id: 'vision-coverage', text: 'Understanding Vision Coverage', level: 2 },
+  { id: 'bundled-vs-standalone', text: 'Bundled vs. Standalone Plans', level: 2 },
+  { id: 'provider-comparison', text: 'Provider Comparison', level: 2 },
+  { id: 'costs-abroad', text: 'Dental and Vision Costs Abroad', level: 2 },
+  { id: 'strategies', text: 'Coverage Strategies', level: 2 },
+  { id: 'faqs', text: 'Common Questions', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Choosing Deductibles', href: '/guides/choosing-deductibles' },
+  { title: 'Coverage Limits Guide', href: '/guides/coverage-limits' },
+];
+
+const dentalColumns = [
+  { key: 'service', header: 'Service' },
+  { key: 'coverage', header: 'Typical Coverage' },
+  { key: 'waitingPeriod', header: 'Waiting Period' },
+];
+
+const dentalRows = [
+  { service: 'Routine exams', coverage: '80-100%', waitingPeriod: '0-3 months' },
+  { service: 'Cleanings', coverage: '80-100%', waitingPeriod: '0-3 months' },
+  { service: 'X-rays', coverage: '80-100%', waitingPeriod: '0-3 months' },
+  { service: 'Fillings', coverage: '70-80%', waitingPeriod: '3-6 months' },
+  { service: 'Root canals', coverage: '50-80%', waitingPeriod: '6-12 months' },
+  { service: 'Crowns', coverage: '50-70%', waitingPeriod: '6-12 months' },
+  { service: 'Orthodontics', coverage: '50% (if included)', waitingPeriod: '12-24 months' },
+  { service: 'Implants', coverage: '50% or excluded', waitingPeriod: '12-24 months' },
+];
+
+const visionColumns = [
+  { key: 'service', header: 'Service' },
+  { key: 'coverage', header: 'Typical Coverage' },
+  { key: 'frequency', header: 'Frequency Limit' },
+];
+
+const visionRows = [
+  { service: 'Eye exam', coverage: '100% (up to limit)', frequency: 'Once per year' },
+  { service: 'Glasses frames', coverage: '$100-200 allowance', frequency: 'Once per 1-2 years' },
+  { service: 'Lenses', coverage: '$100-200 allowance', frequency: 'Once per year' },
+  { service: 'Contact lenses', coverage: '$100-200 allowance', frequency: 'Once per year' },
+  { service: 'LASIK/PRK', coverage: 'Usually excluded', frequency: 'N/A' },
+  { service: 'Medical eye conditions', coverage: 'Under medical', frequency: 'As needed' },
+];
+
+const providerColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'dental', header: 'Dental' },
+  { key: 'vision', header: 'Vision' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const providerRows = [
+  { provider: 'Cigna Global', dental: 'Add-on option', vision: 'Add-on option', notes: '$1,500-3,000 annual max dental' },
+  { provider: 'Allianz Care', dental: 'Included in premium plans', vision: 'Included in premium', notes: 'Routine dental in most plans' },
+  { provider: 'BUPA Global', dental: 'Optional add-on', vision: 'Optional add-on', notes: 'Comprehensive dental options' },
+  { provider: 'Aetna International', dental: 'Included or add-on', vision: 'Included or add-on', notes: 'Varies by plan tier' },
+  { provider: 'AXA Global', dental: 'Premium plans include', vision: 'Premium plans include', notes: 'Excellence plan has full dental' },
+  { provider: 'IMG Global', dental: 'Add-on available', vision: 'Limited', notes: 'Basic dental only' },
+  { provider: 'SafetyWing Nomad', dental: 'Emergency only', vision: 'Not covered', notes: 'Travel medical—no routine' },
+  { provider: 'SafetyWing Remote', dental: 'Routine included', vision: 'Included', notes: 'Basic coverage included' },
+];
+
+const costColumns = [
+  { key: 'procedure', header: 'Procedure' },
+  { key: 'us', header: 'US Cost' },
+  { key: 'mexico', header: 'Mexico' },
+  { key: 'thailand', header: 'Thailand' },
+  { key: 'spain', header: 'Spain' },
+];
+
+const costRows = [
+  { procedure: 'Dental cleaning', us: '$100-200', mexico: '$25-50', thailand: '$20-40', spain: '$50-80' },
+  { procedure: 'Filling', us: '$150-400', mexico: '$30-80', thailand: '$20-50', spain: '$60-120' },
+  { procedure: 'Crown', us: '$1,000-3,000', mexico: '$200-500', thailand: '$150-400', spain: '$300-600' },
+  { procedure: 'Root canal', us: '$700-1,500', mexico: '$150-350', thailand: '$100-300', spain: '$200-400' },
+  { procedure: 'Implant', us: '$3,000-5,000', mexico: '$800-1,500', thailand: '$1,000-2,000', spain: '$1,000-2,000' },
+  { procedure: 'Eye exam', us: '$100-200', mexico: '$20-50', thailand: '$15-40', spain: '$40-80' },
+  { procedure: 'Glasses (complete)', us: '$200-600', mexico: '$50-150', thailand: '$30-100', spain: '$100-250' },
+];
+---
+
+<PageShell
+  title="Dental and Vision Coverage for Expats"
+  description="Guide to international dental and vision insurance. Understand coverage options, costs abroad, and strategies for getting the care you need."
+  headline="Dental and Vision Coverage for Expats"
+  subheadline="Dental and vision care are often treated differently than medical coverage. Here's how to get the right protection—and when paying out of pocket makes more sense."
+  heroBackgroundImage="/images/pages/dental-vision-hero-bg.png"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Plans"
+  ctaButtonHref="/best/expat-health-insurance"
+>
+  <h2 id="overview">Dental and Vision Coverage Basics</h2>
+  <p>
+    Dental and vision coverage in international health insurance works differently than medical coverage. It's often optional, has lower limits, and may not be worth the cost depending on where you live.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-blue-900 mb-2">The Key Question</h3>
+    <p class="text-blue-800">
+      Unlike medical emergencies that can cost hundreds of thousands, dental and vision care has predictable costs. The question isn't whether you need coverage—it's whether insurance is the most cost-effective way to pay for it in your location.
+    </p>
+  </div>
+
+  <h3>How It's Different from Medical</h3>
+  <ul>
+    <li><strong>Lower annual maximums:</strong> Often $1,000-3,000 vs. $1M+ for medical</li>
+    <li><strong>Usually optional:</strong> Add-on rather than included in base plan</li>
+    <li><strong>Predictable costs:</strong> Routine care is plannable, unlike medical emergencies</li>
+    <li><strong>Geographic price variation:</strong> Huge cost differences by country</li>
+    <li><strong>Waiting periods:</strong> Major work often has 6-12 month waits</li>
+  </ul>
+
+  <h2 id="dental-coverage">Understanding Dental Coverage</h2>
+  <p>
+    Dental coverage is typically structured in tiers:
+  </p>
+
+  <h3>Coverage Tiers</h3>
+  <ul>
+    <li><strong>Preventive (Type A):</strong> Exams, cleanings, x-rays—usually 80-100% covered</li>
+    <li><strong>Basic (Type B):</strong> Fillings, extractions, root canals—usually 70-80% covered</li>
+    <li><strong>Major (Type C):</strong> Crowns, bridges, dentures—usually 50-70% covered</li>
+    <li><strong>Orthodontics:</strong> Braces, aligners—often 50% or excluded entirely</li>
+  </ul>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={dentalColumns} rows={dentalRows} />
+  </div>
+
+  <h3>Annual Maximums</h3>
+  <p>
+    Most dental plans have annual caps on what they'll pay:
+  </p>
+  <ul>
+    <li><strong>Basic plans:</strong> $1,000-1,500 per year</li>
+    <li><strong>Mid-tier plans:</strong> $2,000-3,000 per year</li>
+    <li><strong>Premium plans:</strong> $5,000+ per year</li>
+  </ul>
+  <p>
+    This means if you need major work like multiple crowns or implants, you'll likely hit the cap and pay the rest yourself.
+  </p>
+
+  <h3>Waiting Periods</h3>
+  <p>
+    Dental waiting periods prevent people from buying coverage just before expensive procedures:
+  </p>
+  <ul>
+    <li><strong>Preventive care:</strong> Often immediate or 30-90 days</li>
+    <li><strong>Basic procedures:</strong> 3-6 months</li>
+    <li><strong>Major procedures:</strong> 6-12 months</li>
+    <li><strong>Orthodontics:</strong> 12-24 months</li>
+  </ul>
+
+  <CTABox
+    title="Need Dental Coverage?"
+    description="Compare plans with dental benefits included or available as add-ons."
+    buttonText="See Options"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="vision-coverage">Understanding Vision Coverage</h2>
+  <p>
+    Vision coverage is simpler than dental but also more limited:
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={visionColumns} rows={visionRows} />
+  </div>
+
+  <h3>What's Covered</h3>
+  <ul>
+    <li><strong>Annual eye exam:</strong> Usually fully covered up to a set amount</li>
+    <li><strong>Corrective lenses:</strong> Allowance for glasses or contacts (not both)</li>
+    <li><strong>Frames:</strong> Fixed allowance, pay difference for premium frames</li>
+  </ul>
+
+  <h3>What's Not Covered</h3>
+  <ul>
+    <li><strong>LASIK/refractive surgery:</strong> Almost always excluded</li>
+    <li><strong>Cosmetic upgrades:</strong> Designer frames beyond allowance</li>
+    <li><strong>Non-prescription sunglasses:</strong> Not covered</li>
+  </ul>
+
+  <h3>Vision vs. Medical Eye Care</h3>
+  <p>
+    Important distinction: routine vision (exams, glasses) is separate from medical eye conditions. If you develop glaucoma, cataracts, or have an eye injury, that's covered under your medical insurance, not vision benefits.
+  </p>
+
+  <h2 id="bundled-vs-standalone">Bundled vs. Standalone Plans</h2>
+
+  <h3>Bundled with Health Insurance</h3>
+  <p>
+    Many international health plans offer dental and vision as add-ons or include them in premium tiers:
+  </p>
+  <ul>
+    <li><strong>Pros:</strong> One insurer, combined billing, sometimes discounted</li>
+    <li><strong>Cons:</strong> May be basic coverage, less flexibility</li>
+  </ul>
+
+  <h3>Standalone Dental/Vision Plans</h3>
+  <p>
+    You can buy separate dental or vision insurance:
+  </p>
+  <ul>
+    <li><strong>Pros:</strong> More comprehensive options, keep if you switch health plans</li>
+    <li><strong>Cons:</strong> Additional administration, may not work internationally</li>
+  </ul>
+
+  <h3>Self-Insurance (No Coverage)</h3>
+  <p>
+    In many expat destinations, dental and vision care is so affordable that insurance doesn't make financial sense:
+  </p>
+  <ul>
+    <li><strong>Pros:</strong> No premiums, no waiting periods, pay only for what you use</li>
+    <li><strong>Cons:</strong> Large unexpected expenses possible, no negotiated rates</li>
+  </ul>
+
+  <h2 id="provider-comparison">Provider Comparison</h2>
+  <p>
+    Here's how major international insurers handle dental and vision:
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+  </div>
+
+  <h3>Provider Notes</h3>
+  <ul>
+    <li><strong>Allianz Care:</strong> One of the better options for included dental—most plans have routine coverage</li>
+    <li><strong>AXA Global:</strong> Excellence plan includes comprehensive dental with higher limits</li>
+    <li><strong>BUPA Global:</strong> Flexible dental add-ons with different coverage levels</li>
+    <li><strong>Cigna Global:</strong> Solid add-on dental, separate vision coverage available</li>
+    <li><strong>SafetyWing:</strong> Nomad Insurance is travel medical (emergency dental only), Remote Health includes routine</li>
+  </ul>
+
+  <h2 id="costs-abroad">Dental and Vision Costs Abroad</h2>
+  <p>
+    One of the biggest factors in the insurance decision is where you live. Costs vary dramatically:
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={costColumns} rows={costRows} />
+  </div>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-green-900 mb-2">The Math Often Favors Self-Pay</h3>
+    <p class="text-green-800">
+      Dental insurance add-ons often cost $300-600/year. In countries like Mexico or Thailand, that's enough to cover multiple cleanings, exams, and a filling or two. Unless you need major work, self-pay may be more economical.
+    </p>
+  </div>
+
+  <h3>Dental Tourism</h3>
+  <p>
+    Many expats strategically time dental work for when they're in affordable countries:
+  </p>
+  <ul>
+    <li><strong>Mexico:</strong> Popular with US expats, especially border cities</li>
+    <li><strong>Thailand:</strong> High-quality clinics in Bangkok, significantly cheaper</li>
+    <li><strong>Hungary/Turkey:</strong> European dental tourism hubs</li>
+    <li><strong>Costa Rica:</strong> Growing dental tourism industry</li>
+  </ul>
+
+  <CTABox
+    title="Living in an Expensive Country?"
+    description="Dental coverage makes more sense in high-cost locations. Compare plans with comprehensive dental benefits."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <h2 id="strategies">Coverage Strategies</h2>
+
+  <h3>When Dental Insurance Makes Sense</h3>
+  <ul>
+    <li>You live in a high-cost country (US, UK, Switzerland, Australia)</li>
+    <li>You have children who may need orthodontics</li>
+    <li>You have ongoing dental issues requiring regular work</li>
+    <li>Your employer subsidizes the premium</li>
+    <li>The add-on cost is minimal relative to your health plan</li>
+  </ul>
+
+  <h3>When Self-Pay Makes Sense</h3>
+  <ul>
+    <li>You live in an affordable dental care country</li>
+    <li>Your teeth are healthy and you just need routine care</li>
+    <li>You're comfortable with dental tourism for major work</li>
+    <li>The premium cost exceeds expected utilization</li>
+  </ul>
+
+  <h3>Hybrid Approach</h3>
+  <p>
+    Consider a middle ground:
+  </p>
+  <ul>
+    <li>Skip dental coverage for routine care in affordable locations</li>
+    <li>Self-insure by setting aside $500-1,000 annually for dental</li>
+    <li>Use medical insurance for dental emergencies (many plans cover accident-related dental)</li>
+    <li>Plan major work during visits to affordable countries</li>
+  </ul>
+
+  <h3>For Vision</h3>
+  <p>
+    Vision coverage is even simpler to evaluate:
+  </p>
+  <ul>
+    <li>Calculate your annual vision expenses (exam + glasses/contacts)</li>
+    <li>Compare to the vision add-on premium</li>
+    <li>Consider that glasses are extremely affordable in many countries</li>
+    <li>Online retailers offer prescription glasses for $50-100</li>
+  </ul>
+
+  <h2 id="faqs">Common Questions</h2>
+
+  <h3>Does international health insurance include dental?</h3>
+  <p>
+    Usually not in base plans. Dental is typically an optional add-on or included only in premium plan tiers. Always check the specific plan details—don't assume dental is included.
+  </p>
+
+  <h3>What about emergency dental?</h3>
+  <p>
+    Emergency dental care (accident-related damage, severe infection) is often covered under medical benefits, not dental benefits. Check your policy for "accidental dental" coverage. Travel medical insurance usually covers dental emergencies.
+  </p>
+
+  <h3>Can I use my dental insurance anywhere?</h3>
+  <p>
+    Most international dental coverage works on a reimbursement basis—you pay the dentist and submit receipts for reimbursement. Some insurers have networks in major cities, but out-of-network care is typically still covered.
+  </p>
+
+  <h3>Should I keep my home country dental plan?</h3>
+  <p>
+    Domestic dental plans rarely work internationally. If you're moving abroad permanently, you'll need international coverage or self-pay. If you return home regularly, maintaining coverage for those visits might make sense.
+  </p>
+
+  <h3>What if I need orthodontics for my child?</h3>
+  <p>
+    Orthodontics is expensive regardless of location and has the longest waiting periods (12-24 months). If you know orthodontics is likely, get coverage early. Some families opt to do braces in affordable countries instead.
+  </p>
+
+  <h3>Is LASIK ever covered?</h3>
+  <p>
+    Almost never by vision insurance. It's considered elective. However, LASIK costs vary dramatically by country—$2,000-5,000 in the US vs. $500-1,500 in Mexico or Thailand.
+  </p>
+
+  <h3>Do I need to pre-authorize dental work?</h3>
+  <p>
+    For major procedures exceeding a certain amount (often $500+), many plans require pre-authorization. This protects both you and the insurer—you'll know what's covered before committing to treatment.
+  </p>
+
+  <h3>What if I have existing dental problems?</h3>
+  <p>
+    Existing dental issues may be treated as pre-existing conditions with waiting periods. If you need work done soon, self-pay may be faster than waiting 6-12 months for coverage to kick in.
+  </p>
+
+  <CTABox
+    title="Find the Right Coverage"
+    description="Compare international health insurance plans with dental and vision options."
+    buttonText="Get Quotes"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> Dental and vision coverage varies significantly by insurer and plan. Costs shown are approximate and vary by provider, location, and specific treatment. This guide provides general information only. Always verify coverage details and costs with providers directly.
+    </p>
+  </div>
+</PageShell>
