@@ -37,7 +37,7 @@ Last updated: January 26, 2026
 #### Homepage
 - [x] `/` - Homepage with hero, card images, how it works section
 
-#### Country Guides (8 total)
+#### Country Guides (9 total)
 - [x] `/countries` - Browse countries index with scenic card images
 - [x] `/countries/spain/insurance` - Full guide + hero background
 - [x] `/countries/portugal/insurance` - Full guide (D7/D8 visa, SNS, Multicare)
@@ -47,6 +47,7 @@ Last updated: January 26, 2026
 - [x] `/countries/france/insurance` - Full guide (PUMA, VLS-TS, CSM tax)
 - [x] `/countries/italy/insurance` - Full guide (SSN, digital nomad visa, regional healthcare)
 - [x] `/countries/germany/insurance` - Full guide (GKV vs PKV, mandatory insurance)
+- [x] `/countries/uk/insurance` - Full guide (NHS, IHS, post-Brexit)
 
 #### Provider Reviews (8 total)
 - [x] `/providers` - Provider index with card images
@@ -104,7 +105,7 @@ Last updated: January 26, 2026
 - [x] `/guides/waiting-periods`
 - [x] `/guides/dental-vision-coverage`
 
-#### Country × Provider Pages (64 total)
+#### Country × Provider Pages (72 total)
 - [x] Spain: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 - [x] Portugal: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 - [x] Mexico: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
@@ -113,6 +114,7 @@ Last updated: January 26, 2026
 - [x] France: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 - [x] Italy: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 - [x] Germany: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
+- [x] UK: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
 
 #### Research Reports (1 total)
 - [x] `/research-reports` - Research reports hub/index
@@ -165,7 +167,7 @@ Each country now has 8 provider subpages (24 new pages added):
 #### Popular Expat Destinations
 - [x] Italy - SSN, digital nomad visa, regional healthcare differences
 - [x] Germany - GKV vs PKV, mandatory insurance, freelancer requirements
-- [ ] UK - Post-Brexit requirements
+- [x] UK - NHS, IHS, post-Brexit changes
 - [ ] Netherlands - Mandatory insurance, EU base
 - [ ] UAE/Dubai - Tax-free, employer-based
 - [ ] Singapore - Expat hub, high costs
