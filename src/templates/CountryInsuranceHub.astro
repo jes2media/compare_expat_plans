@@ -1,0 +1,481 @@
+---
+/**
+ * CountryInsuranceHub.astro
+ *
+ * Reusable template for country insurance hub pages.
+ * Designed for programmatic generation at scale (1000+ pages).
+ *
+ * LOCKED STRUCTURE (do not reorder):
+ * 1. HERO: H1 + subheadline + primary CTA + secondary anchor link
+ * 2. TOP META: Author box + last updated
+ * 3. TOC: Table of contents
+ * 4. H2 Quick summary
+ * 5. H2 Do you need private health insurance?
+ * 6. H2 Public vs private healthcare
+ * 7. H2 Plan options to compare
+ * 8. H2 Comparison table
+ * 9. H2 Common watch-outs
+ * 10. H2 FAQ
+ * 11. H2 Related resources
+ * 12. DISCLAIMER
+ */
+
+import Layout from '../layouts/Layout.astro';
+import CTABox from '../components/CTABox.astro';
+import CTAButton from '../components/CTAButton.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import ContentCards from '../components/ContentCards.astro';
+import Disclosure from '../components/Disclosure.astro';
+
+// Type definitions for the country data object
+export interface ProviderCard {
+  name: string;
+  bestFor: string;
+  notIdealFor: string;
+  href: string;
+}
+
+export interface ComparisonRow {
+  provider: string;
+  bestFor: string;
+  coverageStyle: string;
+  includesUS: boolean;
+  notableLimits: string;
+  learnMoreHref: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+// RelatedCard interface kept for potential future customization
+export interface RelatedCard {
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+}
+
+export interface PublicVsPrivate {
+  publicName: string;
+  publicAccess: string;
+  publicCost: string;
+  publicNotes: string;
+  privateCost: string;
+  privateNotes: string;
+}
+
+export interface CountryData {
+  // Basic info
+  slug: string;
+  name: string;
+  demonym: string; // e.g., "Spanish", "Portuguese"
+  lastUpdated: string; // ISO date string
+  heroImage: string;
+
+  // Meta
+  metaTitle: string;
+  metaDescription: string;
+
+  // Hero section
+  headline: string;
+  subheadline: string;
+
+  // Quick summary bullets (4-6)
+  summaryBullets: string[];
+
+  // Insurance requirement section
+  insuranceRequired: boolean;
+  requirementExplanation: string;
+  whoNeedsInsurance: string[];
+
+  // Public vs private
+  publicVsPrivate: PublicVsPrivate;
+
+  // Provider cards (2-4)
+  providerCards: ProviderCard[];
+
+  // Comparison table rows
+  comparisonRows: ComparisonRow[];
+
+  // Watch-outs (5-8 bullets)
+  watchOuts: string[];
+
+  // FAQs (5-8)
+  faqs: FAQItem[];
+
+  // Related cards - OPTIONAL: if not provided, uses standard cards
+  relatedCards?: RelatedCard[];
+
+  // Sidebar related links
+  sidebarLinks: { title: string; href: string }[];
+}
+
+interface Props {
+  country: CountryData;
+}
+
+const { country } = Astro.props;
+
+// Generate TOC items
+const tocItems = [
+  { id: 'quick-summary', text: 'Quick Summary', level: 2 },
+  { id: 'do-you-need-insurance', text: `Do You Need Insurance?`, level: 2 },
+  { id: 'public-vs-private', text: 'Public vs Private', level: 2 },
+  { id: 'plan-options', text: 'Plan Options', level: 2 },
+  { id: 'comparison-table', text: 'Comparison Table', level: 2 },
+  { id: 'watch-outs', text: 'Common Watch-outs', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'related', text: 'Related Resources', level: 2 },
+];
+
+// Comparison table columns
+const comparisonColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'bestFor', header: 'Best For' },
+  { key: 'coverageStyle', header: 'Coverage Style' },
+  { key: 'includesUS', header: 'Includes U.S.?' },
+  { key: 'notableLimits', header: 'Notable Limits' },
+  { key: 'learnMore', header: 'Learn More' },
+];
+
+// Transform comparison rows for the table
+const tableRows = country.comparisonRows.map(row => ({
+  provider: row.provider,
+  bestFor: row.bestFor,
+  coverageStyle: row.coverageStyle,
+  includesUS: row.includesUS,
+  notableLimits: row.notableLimits,
+  learnMore: `<a href="${row.learnMoreHref}" class="text-primary-600 hover:underline">Details →</a>`,
+}));
+
+// Author info
+const author = {
+  name: 'John Spencer',
+  bio: 'John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad.',
+  image: '/images/john-spencer.png',
+};
+
+// Standard related cards (used for all country pages unless overridden)
+const standardRelatedCards: RelatedCard[] = [
+  {
+    title: 'Best Expat Health Insurance',
+    description: 'Compare top international health plans for expats worldwide.',
+    href: '/best/expat-health-insurance',
+    image: '/images/cards/best-expat-insurance.png',
+  },
+  {
+    title: 'Insurance for Retirees',
+    description: 'Coverage guide for those retiring abroad.',
+    href: '/insurance-for/retirees',
+    image: '/images/lifestyle/retirees.png',
+  },
+  {
+    title: 'Cigna vs Allianz Care',
+    description: 'Compare two of the most popular international insurers.',
+    href: '/compare/cigna-global-vs-allianz-care',
+    image: '/images/cards/cigna-vs-allianz.png',
+  },
+];
+
+// Use custom related cards if provided, otherwise use standard
+const finalRelatedCards = country.relatedCards && country.relatedCards.length > 0
+  ? country.relatedCards
+  : standardRelatedCards;
+
+// Generate FAQ schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": country.faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+
+// Generate breadcrumb schema
+const siteUrl = "https://compareexpatplans.com";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": `${siteUrl}/countries` },
+    { "@type": "ListItem", "position": 3, "name": country.name, "item": `${siteUrl}/countries/${country.slug}` },
+    { "@type": "ListItem", "position": 4, "name": "Insurance" },
+  ],
+};
+---
+
+<Layout title={country.metaTitle} description={country.metaDescription} ogType="article">
+  <!-- Structured Data -->
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <!-- HERO SECTION (Above Fold) -->
+  <section class="relative bg-gradient-to-b from-neutral-50 to-white py-10 lg:py-14 border-b border-neutral-200 overflow-hidden">
+    {country.heroImage && (
+      <div class="absolute inset-0 z-0">
+        <img
+          src={country.heroImage}
+          alt=""
+          class="w-full h-full object-cover opacity-50"
+          loading="eager"
+          decoding="async"
+          aria-hidden="true"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
+      </div>
+    )}
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          {country.headline}
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          {country.subheadline}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href="/best/expat-health-insurance"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            Compare Plans for {country.name}
+          </a>
+          <a
+            href="#comparison-table"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            Jump to Comparison Table ↓
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <!-- Main Content -->
+      <article class="flex-1 min-w-0">
+
+        <!-- TOP META: Author Box + Last Updated -->
+        <div class="mb-8">
+          <AuthorBox
+            name={author.name}
+            bio={author.bio}
+            image={author.image}
+          />
+          <p class="text-sm text-neutral-500 mt-3">
+            Last updated: {new Date(country.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          </p>
+        </div>
+
+        <!-- TOC (Mobile) -->
+        <div class="lg:hidden mb-8">
+          <TableOfContents items={tocItems} />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="prose prose-neutral max-w-none">
+
+          <!-- H2: Quick Summary -->
+          <h2 id="quick-summary">Quick Summary: Health Insurance in {country.name}</h2>
+          <ul>
+            {country.summaryBullets.map(bullet => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+
+          <!-- H2: Do You Need Private Health Insurance -->
+          <h2 id="do-you-need-insurance">Do You Need Private Health Insurance in {country.name}?</h2>
+          <p>{country.requirementExplanation}</p>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-amber-900 mb-3">
+              {country.insuranceRequired ? 'Insurance is required for:' : 'You likely need private insurance if:'}
+            </h3>
+            <ul class="space-y-2">
+              {country.whoNeedsInsurance.map(item => (
+                <li class="flex items-start gap-2 text-amber-800">
+                  <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <CTABox
+            title={`Moving to ${country.name}?`}
+            description="Compare plans that work for your situation."
+            buttonText="See Your Options →"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
+
+          <!-- H2: Public vs Private Healthcare -->
+          <h2 id="public-vs-private">Public vs Private Healthcare in {country.name}</h2>
+
+          <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6">
+              <h3 class="text-lg font-semibold text-neutral-900 mb-3">Public Healthcare</h3>
+              <p class="text-sm font-medium text-neutral-700 mb-2">{country.publicVsPrivate.publicName}</p>
+              <ul class="space-y-2 text-sm text-neutral-600">
+                <li><strong>Access:</strong> {country.publicVsPrivate.publicAccess}</li>
+                <li><strong>Cost:</strong> {country.publicVsPrivate.publicCost}</li>
+              </ul>
+              <p class="text-sm text-neutral-600 mt-3">{country.publicVsPrivate.publicNotes}</p>
+            </div>
+            <div class="bg-primary-50 border border-primary-200 rounded-xl p-6">
+              <h3 class="text-lg font-semibold text-neutral-900 mb-3">Private Healthcare</h3>
+              <p class="text-sm font-medium text-neutral-700 mb-2">International or Local Private</p>
+              <ul class="space-y-2 text-sm text-neutral-600">
+                <li><strong>Access:</strong> Open to anyone</li>
+                <li><strong>Cost:</strong> {country.publicVsPrivate.privateCost}</li>
+              </ul>
+              <p class="text-sm text-neutral-600 mt-3">{country.publicVsPrivate.privateNotes}</p>
+            </div>
+          </div>
+
+          <!-- H2: Plan Options to Compare -->
+          <h2 id="plan-options">Plan Options to Compare</h2>
+          <p>
+            Here are the most popular insurance options for expats in {country.name}. Each has trade-offs depending on your situation.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4 my-8 not-prose">
+            {country.providerCards.map(card => (
+              <a href={card.href} class="block bg-white border border-neutral-200 rounded-lg p-5 hover:border-primary-300 hover:shadow-md transition-all">
+                <h3 class="font-semibold text-neutral-900 mb-2">{card.name}</h3>
+                <p class="text-sm text-neutral-600 mb-2">
+                  <span class="text-green-700 font-medium">Best for:</span> {card.bestFor}
+                </p>
+                <p class="text-sm text-neutral-500">
+                  <span class="text-amber-700 font-medium">Not ideal for:</span> {card.notIdealFor}
+                </p>
+              </a>
+            ))}
+          </div>
+
+          <!-- H2: Comparison Table -->
+          <h2 id="comparison-table">Comparison Table: Top Expat Health Plans for {country.name}</h2>
+          <p>
+            Compare the leading options side by side. Click "Details" to learn more about each provider.
+          </p>
+
+          <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden not-prose">
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="border-b-2 border-neutral-200">
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Provider</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Best For</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Coverage Style</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Includes U.S.?</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Notable Limits</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Learn More</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200">
+                  {country.comparisonRows.map(row => (
+                    <tr class="hover:bg-neutral-50">
+                      <td class="px-4 py-3 text-sm font-medium text-neutral-900">{row.provider}</td>
+                      <td class="px-4 py-3 text-sm text-neutral-600">{row.bestFor}</td>
+                      <td class="px-4 py-3 text-sm text-neutral-600">{row.coverageStyle}</td>
+                      <td class="px-4 py-3 text-sm text-neutral-600">
+                        {row.includesUS ? (
+                          <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : (
+                          <svg class="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        )}
+                      </td>
+                      <td class="px-4 py-3 text-sm text-neutral-600">{row.notableLimits}</td>
+                      <td class="px-4 py-3 text-sm">
+                        <a href={row.learnMoreHref} class="text-primary-600 hover:underline font-medium">Details →</a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <CTABox
+            title="Ready to Compare Quotes?"
+            description={`Find the right plan for your move to ${country.name}.`}
+            buttonText="Compare Plans Now →"
+            buttonHref="/best/expat-health-insurance"
+            showDisclosure={false}
+          />
+
+          <!-- H2: Common Watch-outs -->
+          <h2 id="watch-outs">Common Watch-outs for {country.name}</h2>
+          <p>
+            Keep these points in mind when choosing coverage:
+          </p>
+          <ul>
+            {country.watchOuts.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
+
+          <!-- H2: FAQ -->
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="space-y-6 my-8 not-prose">
+            {country.faqs.map(faq => (
+              <div class="border-b border-neutral-200 pb-6">
+                <h3 class="text-lg font-semibold text-neutral-900 mb-2">{faq.question}</h3>
+                <p class="text-neutral-600">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- H2: Related Resources -->
+          <h2 id="related">Related: Comparisons and Next Steps</h2>
+        </div>
+
+        <!-- Related Cards -->
+        <ContentCards
+          title=""
+          cards={finalRelatedCards}
+        />
+
+        <!-- DISCLAIMER -->
+        <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+          <p class="text-sm text-neutral-600">
+            <strong>Disclaimer:</strong> This guide is for informational purposes only. Healthcare policies, insurance requirements, and visa rules change. We are not insurance brokers, immigration consultants, or licensed advisors. Verify all information with official sources and insurance providers before making decisions.
+          </p>
+        </div>
+      </article>
+
+      <!-- Sticky Sidebar (Desktop) -->
+      <StickySidebar
+        ctaTitle={`Coverage for ${country.name}`}
+        ctaDescription="Compare plans that fit your needs."
+        ctaButtonText="Compare Plans →"
+        ctaButtonHref="/best/expat-health-insurance"
+        relatedLinks={country.sidebarLinks}
+      />
+    </div>
+  </div>
+</Layout>
