@@ -1,0 +1,62 @@
+---
+/**
+ * Dynamic route for programmatically generated country insurance pages.
+ *
+ * This route generates pages for countries in the data layer that
+ * DO NOT have existing handcrafted .astro pages.
+ *
+ * Existing handcrafted pages (spain, portugal, etc.) take priority
+ * over this dynamic route due to Astro's routing rules.
+ *
+ * To add a new country:
+ * 1. Add country data to src/data/countries.ts
+ * 2. Add provider mappings to src/data/countryProviderMatrix.ts
+ * 3. Run build - the page will be generated automatically
+ *
+ * To migrate a handcrafted page to the template:
+ * 1. Delete the .astro file (e.g., src/pages/countries/spain/insurance.astro)
+ * 2. Remove the slug from src/data/existingCountries.ts
+ * 3. Ensure the country exists in countries.ts and countryProviderMatrix.ts
+ */
+
+import CountryInsuranceHub from '../../../templates/CountryInsuranceHub.astro';
+import { getCountryBySlug, getAllCountrySlugs } from '../../../data/countries';
+import { buildProviderCards, buildComparisonRows, getAllMatrixCountrySlugs } from '../../../data/countryProviderMatrix';
+import { hasExistingPage } from '../../../data/existingCountries';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get all countries from the data layer
+  const countrySlugs = getAllCountrySlugs();
+  const matrixSlugs = new Set(getAllMatrixCountrySlugs());
+
+  // Filter to countries that:
+  // 1. Exist in both countries.ts AND the matrix
+  // 2. Do NOT have an existing handcrafted page
+  const newCountrySlugs = countrySlugs.filter(slug =>
+    matrixSlugs.has(slug) && !hasExistingPage(slug)
+  );
+
+  return newCountrySlugs.map(slug => {
+    const country = getCountryBySlug(slug)!;
+    const providerCards = buildProviderCards(slug);
+    const comparisonRows = buildComparisonRows(slug);
+
+    return {
+      params: { country: slug },
+      props: {
+        country,
+        providerCards,
+        comparisonRows,
+      },
+    };
+  });
+};
+
+const { country, providerCards, comparisonRows } = Astro.props;
+---
+<CountryInsuranceHub
+  country={country}
+  providerCards={providerCards}
+  comparisonRows={comparisonRows}
+/>
