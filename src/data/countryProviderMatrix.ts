@@ -2,7 +2,7 @@
  * countryProviderMatrix.ts
  *
  * Auto-generated country-provider mappings.
- * Generated: 2026-01-27T23:23:51.785Z
+ * Generated: 2026-01-27T23:30:12.852Z
  * Total entries: 183
  *
  * To regenerate: npx tsx scripts/bulk-generate/generate.ts

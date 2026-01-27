@@ -139,7 +139,7 @@ function generateCountryData(c: CountryMeta): string {
     name: c.name,
     demonym: c.demonym,
     lastUpdated: new Date().toISOString().split('T')[0],
-    heroImage: `/images/countries/${c.slug}-hero-bg.png`,
+    heroImage: '/images/countries/default-hero-bg.png',  // Universal hero for programmatic pages
 
     metaTitle: `Health Insurance for Expats in ${c.name} (2025 Guide)`,
     metaDescription: `Complete guide to expat health insurance in ${c.name}. ${c.insuranceRequired ? 'Visa requirements, ' : ''}public vs private options, provider comparison, and costs.`,
