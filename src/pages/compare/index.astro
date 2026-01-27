@@ -1,146 +1,297 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTAButton from '../../components/CTAButton.astro';
-import ContentCards from '../../components/ContentCards.astro';
 
-const comparisons = [
+// All providers for the matrix
+const providers = [
+  { name: 'Cigna', slug: 'cigna-global' },
+  { name: 'Allianz', slug: 'allianz-care' },
+  { name: 'BUPA', slug: 'bupa-global' },
+  { name: 'IMG', slug: 'img-global' },
+  { name: 'Aetna', slug: 'aetna-international' },
+  { name: 'GeoBlue', slug: 'geoblue' },
+  { name: 'AXA', slug: 'axa-global' },
+  { name: 'SafetyWing', slug: 'safetywing' },
+];
+
+// Helper to generate comparison URL (alphabetical ordering)
+function getCompareUrl(slug1: string, slug2: string): string {
+  const sorted = [slug1, slug2].sort();
+  return `/compare/${sorted[0]}-vs-${sorted[1]}`;
+}
+
+// Featured comparisons (highest intent)
+const featured = [
   {
     title: 'Cigna Global vs Allianz Care',
-    description: 'Two popular choices compared on coverage, price, and service.',
+    description: 'Most popular comparison. Premium service vs value pricing.',
     href: '/compare/cigna-global-vs-allianz-care',
-    image: '/images/compare/cigna-vs-allianz.png',
+    tag: 'Most Popular',
+  },
+  {
+    title: 'GeoBlue vs SafetyWing',
+    description: 'US expat decision: comprehensive BCBS vs budget nomad coverage.',
+    href: '/compare/geoblue-vs-safetywing',
+    tag: 'US Expats',
   },
   {
     title: 'BUPA Global vs Cigna Global',
-    description: 'Premium options for comprehensive coverage.',
+    description: 'Premium tier head-to-head. Service vs network size.',
     href: '/compare/bupa-global-vs-cigna-global',
-    image: '/images/compare/bupa-vs-cigna.png',
+    tag: 'Premium',
   },
   {
-    title: 'IMG Global vs Cigna Global',
-    description: 'Budget-friendly vs premium: which fits your needs?',
-    href: '/compare/img-global-vs-cigna-global',
-    image: '/images/compare/img-vs-cigna.png',
-  },
-  {
-    title: 'Allianz Care vs BUPA Global',
-    description: 'Mid-range flexibility vs premium inclusivity.',
-    href: '/compare/allianz-care-vs-bupa-global',
-    image: '/images/compare/allianz-vs-bupa.png',
-  },
-  {
-    title: 'Allianz Care vs IMG Global',
-    description: 'Established European insurer vs budget American provider.',
+    title: 'IMG Global vs Allianz Care',
+    description: 'Value showdown. Flexibility vs established backing.',
     href: '/compare/allianz-care-vs-img-global',
-    image: '/images/compare/allianz-vs-img.png',
+    tag: 'Value',
   },
-  {
-    title: 'BUPA Global vs IMG Global',
-    description: 'Premium comprehensive vs budget-friendly coverage.',
-    href: '/compare/bupa-global-vs-img-global',
-    image: '/images/compare/bupa-vs-img.png',
-  },
-  {
-    title: 'SafetyWing vs IMG Global',
-    description: 'Budget nomad options: travel medical vs health insurance.',
-    href: '/compare/safetywing-vs-img-global',
-    image: '/images/compare/safetywing-vs-img.png',
-  },
-  {
-    title: 'Aetna International vs GeoBlue',
-    description: 'US expat showdown: two integrated US network options.',
-    href: '/compare/aetna-international-vs-geoblue',
-    image: '/images/compare/aetna-vs-geoblue.png',
-  },
-  {
-    title: 'Cigna Global vs Aetna International',
-    description: 'Global coverage vs US integration—which matters more?',
-    href: '/compare/cigna-global-vs-aetna-international',
-    image: '/images/compare/cigna-vs-aetna.png',
-  },
-  {
-    title: 'AXA Global vs Allianz Care',
-    description: 'European insurance giants compared for EU expats.',
-    href: '/compare/axa-global-vs-allianz-care',
-    image: '/images/compare/axa-vs-allianz.png',
-  },
-  {
-    title: 'SafetyWing vs Cigna Global',
-    description: 'Startup travel insurance vs traditional health coverage.',
-    href: '/compare/safetywing-vs-cigna-global',
-    image: '/images/compare/safetywing-vs-cigna.png',
-  },
-  {
-    title: 'AXA Global vs Cigna Global',
-    description: 'EU-regulated vs US-based global insurance giants.',
-    href: '/compare/axa-global-vs-cigna-global',
-    image: '/images/compare/axa-vs-cigna.png',
-  },
-  {
-    title: 'BUPA Global vs SafetyWing',
-    description: 'Premium health insurance vs budget nomad coverage.',
-    href: '/compare/bupa-global-vs-safetywing',
-    image: '/images/compare/bupa-vs-safetywing.png',
-  },
-  {
-    title: 'GeoBlue vs Cigna Global',
-    description: 'US network showdown for American expats abroad.',
-    href: '/compare/geoblue-vs-cigna-global',
-    image: '/images/compare/geoblue-vs-cigna.png',
-  },
-  {
-    title: 'Allianz Care vs SafetyWing',
-    description: 'Traditional health insurance vs nomad travel medical.',
-    href: '/compare/allianz-care-vs-safetywing',
-    image: '/images/compare/allianz-vs-safetywing.png',
-  },
-  {
-    title: 'AXA Global vs BUPA Global',
-    description: 'Premium European insurers compared on coverage and service.',
-    href: '/compare/axa-global-vs-bupa-global',
-    image: '/images/compare/axa-vs-bupa.png',
-  },
-  {
-    title: 'Aetna International vs IMG Global',
-    description: 'Premium US-integrated coverage vs budget-friendly international insurance.',
-    href: '/compare/aetna-international-vs-img-global',
-    image: '/images/compare/aetna-vs-img.png',
-  },
-  {
-    title: 'GeoBlue vs Allianz Care',
-    description: 'US-focused BCBS network vs flexible European insurer.',
-    href: '/compare/geoblue-vs-allianz-care',
-    image: '/images/compare/geoblue-vs-allianz.png',
-  },
-  {
-    title: 'SafetyWing vs Aetna International',
-    description: 'Budget nomad travel medical vs premium US-integrated health insurance.',
-    href: '/compare/safetywing-vs-aetna-international',
-    image: '/images/compare/safetywing-vs-aetna.png',
-  },
+];
+
+// Comparisons by category
+const usExpat = [
+  { title: 'Aetna vs GeoBlue', href: '/compare/aetna-international-vs-geoblue', desc: 'CVS integration vs BCBS network' },
+  { title: 'GeoBlue vs Cigna', href: '/compare/geoblue-vs-cigna-global', desc: 'BCBS access vs global network' },
+  { title: 'GeoBlue vs SafetyWing', href: '/compare/geoblue-vs-safetywing', desc: 'Comprehensive vs budget' },
+  { title: 'Aetna vs Cigna', href: '/compare/cigna-global-vs-aetna-international', desc: 'Two premium US options' },
+  { title: 'GeoBlue vs BUPA', href: '/compare/bupa-global-vs-geoblue', desc: 'BCBS vs UK premium' },
+  { title: 'GeoBlue vs Allianz', href: '/compare/geoblue-vs-allianz-care', desc: 'US-focused vs European value' },
+  { title: 'GeoBlue vs AXA', href: '/compare/geoblue-vs-axa-global', desc: 'BCBS vs French insurer' },
+  { title: 'IMG vs GeoBlue', href: '/compare/img-global-vs-geoblue', desc: 'Flexible vs BCBS network' },
+];
+
+const premium = [
+  { title: 'BUPA vs Cigna', href: '/compare/bupa-global-vs-cigna-global', desc: 'Service excellence vs network size' },
+  { title: 'BUPA vs Aetna', href: '/compare/bupa-global-vs-aetna-international', desc: 'UK premium vs US premium' },
+  { title: 'Cigna vs Aetna', href: '/compare/cigna-global-vs-aetna-international', desc: 'Global vs US integration' },
+  { title: 'BUPA vs Allianz', href: '/compare/allianz-care-vs-bupa-global', desc: 'Premium vs mid-tier pricing' },
+  { title: 'Cigna vs Allianz', href: '/compare/cigna-global-vs-allianz-care', desc: 'Premium vs value leader' },
+  { title: 'BUPA vs AXA', href: '/compare/axa-global-vs-bupa-global', desc: 'UK vs French premium' },
+];
+
+const value = [
+  { title: 'Allianz vs IMG', href: '/compare/allianz-care-vs-img-global', desc: 'European vs US value' },
+  { title: 'Allianz vs AXA', href: '/compare/axa-global-vs-allianz-care', desc: 'German vs French insurer' },
+  { title: 'IMG vs AXA', href: '/compare/img-global-vs-axa-global', desc: 'US flexibility vs EU backing' },
+  { title: 'Allianz vs Aetna', href: '/compare/allianz-care-vs-aetna-international', desc: 'Value vs US integration' },
+  { title: 'AXA vs Aetna', href: '/compare/aetna-international-vs-axa-global', desc: 'European vs American' },
+  { title: 'IMG vs Cigna', href: '/compare/img-global-vs-cigna-global', desc: 'Budget vs premium' },
+  { title: 'AXA vs Cigna', href: '/compare/axa-global-vs-cigna-global', desc: 'French value vs US premium' },
+  { title: 'IMG vs BUPA', href: '/compare/bupa-global-vs-img-global', desc: 'Value vs premium service' },
+];
+
+const budgetVsComprehensive = [
+  { title: 'SafetyWing vs Cigna', href: '/compare/safetywing-vs-cigna-global', desc: 'Nomad budget vs full coverage' },
+  { title: 'SafetyWing vs BUPA', href: '/compare/bupa-global-vs-safetywing', desc: 'Travel medical vs premium health' },
+  { title: 'SafetyWing vs Allianz', href: '/compare/allianz-care-vs-safetywing', desc: 'Budget vs established insurer' },
+  { title: 'SafetyWing vs IMG', href: '/compare/safetywing-vs-img-global', desc: 'Two budget approaches' },
+  { title: 'SafetyWing vs Aetna', href: '/compare/safetywing-vs-aetna-international', desc: 'Nomad vs US premium' },
+  { title: 'SafetyWing vs AXA', href: '/compare/axa-global-vs-safetywing', desc: 'Travel vs health insurance' },
+  { title: 'SafetyWing vs GeoBlue', href: '/compare/geoblue-vs-safetywing', desc: 'Budget vs BCBS comprehensive' },
 ];
 ---
 
-<Layout title="Compare Insurance Plans" description="Head-to-head comparisons of international health insurance providers. See how they stack up on coverage, price, and service.">
-  <section class="bg-gradient-to-b from-neutral-50 to-white py-16 lg:py-20">
+<Layout title="Compare Insurance Plans" description="Compare all 28 international health insurance provider matchups. Find the right plan with our comparison matrix and categorized guides.">
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-neutral-50 to-white py-12 lg:py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl lg:text-5xl font-bold text-neutral-900 mb-6">
+        <h1 class="text-4xl lg:text-5xl font-bold text-neutral-900 mb-4">
           Compare Insurance Providers
         </h1>
-        <p class="text-xl text-neutral-600 mb-8">
-          See how leading international health insurance providers compare on coverage, pricing, and service.
+        <p class="text-xl text-neutral-600 mb-6">
+          28 head-to-head comparisons to help you decide. Find yours below.
         </p>
-        <CTAButton href="/compare/cigna-global-vs-allianz-care" size="lg">
-          See Popular Comparison
-        </CTAButton>
       </div>
     </div>
   </section>
 
-  <section class="py-16 lg:py-20">
+  <!-- Quick Decision Helper -->
+  <section class="py-8 bg-white border-b border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-lg font-semibold text-neutral-900 mb-4 text-center">Quick Start: What describes you?</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <a href="#us-expats" class="p-4 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors text-center">
+          <p class="font-medium text-blue-900">American abroad</p>
+          <p class="text-sm text-blue-700">Need US coverage</p>
+        </a>
+        <a href="#premium" class="p-4 bg-purple-50 border border-purple-200 rounded-lg hover:bg-purple-100 transition-colors text-center">
+          <p class="font-medium text-purple-900">Want the best</p>
+          <p class="text-sm text-purple-700">Premium options</p>
+        </a>
+        <a href="#value" class="p-4 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 transition-colors text-center">
+          <p class="font-medium text-green-900">Watching budget</p>
+          <p class="text-sm text-green-700">Value options</p>
+        </a>
+        <a href="#budget-vs-comprehensive" class="p-4 bg-amber-50 border border-amber-200 rounded-lg hover:bg-amber-100 transition-colors text-center">
+          <p class="font-medium text-amber-900">Digital nomad</p>
+          <p class="text-sm text-amber-700">Budget vs full coverage</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Comparisons -->
+  <section class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ContentCards cards={comparisons} title="Popular Comparisons" />
+      <h2 class="text-2xl font-bold text-neutral-900 mb-6">Featured Comparisons</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {featured.map((item) => (
+          <a href={item.href} class="block p-5 bg-white border border-neutral-200 rounded-xl hover:border-primary-300 hover:shadow-md transition-all group">
+            <span class="inline-block px-2 py-0.5 text-xs font-medium bg-primary-100 text-primary-800 rounded mb-2">{item.tag}</span>
+            <h3 class="font-semibold text-neutral-900 group-hover:text-primary-600 mb-1">{item.title}</h3>
+            <p class="text-sm text-neutral-600">{item.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Matrix -->
+  <section class="py-12 bg-neutral-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-2">Comparison Matrix</h2>
+      <p class="text-neutral-600 mb-6">Click any cell to see that comparison.</p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+          <thead>
+            <tr>
+              <th class="p-3 bg-neutral-100 border border-neutral-200"></th>
+              {providers.map((p) => (
+                <th class="p-2 bg-neutral-100 border border-neutral-200 text-xs font-semibold text-neutral-700 min-w-[70px]">{p.name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {providers.map((rowProvider, rowIndex) => (
+              <tr>
+                <th class="p-2 bg-neutral-100 border border-neutral-200 text-xs font-semibold text-neutral-700 text-left">{rowProvider.name}</th>
+                {providers.map((colProvider, colIndex) => {
+                  if (rowIndex === colIndex) {
+                    return <td class="p-2 border border-neutral-200 bg-neutral-50 text-center text-neutral-400">—</td>;
+                  }
+                  if (rowIndex > colIndex) {
+                    // Lower triangle - show link
+                    const url = getCompareUrl(rowProvider.slug, colProvider.slug);
+                    return (
+                      <td class="p-0 border border-neutral-200">
+                        <a href={url} class="block p-2 text-center text-xs text-primary-600 hover:bg-primary-50 hover:text-primary-800 transition-colors">
+                          Compare
+                        </a>
+                      </td>
+                    );
+                  }
+                  // Upper triangle - mirror of lower
+                  const url = getCompareUrl(rowProvider.slug, colProvider.slug);
+                  return (
+                    <td class="p-0 border border-neutral-200">
+                      <a href={url} class="block p-2 text-center text-xs text-primary-600 hover:bg-primary-50 hover:text-primary-800 transition-colors">
+                        Compare
+                      </a>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-neutral-500 mt-3 text-center">All 28 provider combinations available</p>
+    </div>
+  </section>
+
+  <!-- US Expats Section -->
+  <section id="us-expats" class="py-12 bg-white scroll-mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">For US Expats</span>
+        <h2 class="text-2xl font-bold text-neutral-900">Comparisons with US Coverage</h2>
+      </div>
+      <p class="text-neutral-600 mb-6">These insurers offer integrated US healthcare access—important if you visit home or may need US care.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {usExpat.map((item) => (
+          <a href={item.href} class="block p-4 border border-neutral-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+            <h3 class="font-medium text-neutral-900 mb-1">{item.title}</h3>
+            <p class="text-sm text-neutral-600">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Section -->
+  <section id="premium" class="py-12 bg-neutral-50 scroll-mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">Premium Tier</span>
+        <h2 class="text-2xl font-bold text-neutral-900">Top-Tier Providers</h2>
+      </div>
+      <p class="text-neutral-600 mb-6">Comparing the most comprehensive coverage options. Higher cost, better service and networks.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {premium.map((item) => (
+          <a href={item.href} class="block p-4 bg-white border border-neutral-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-all">
+            <h3 class="font-medium text-neutral-900 mb-1">{item.title}</h3>
+            <p class="text-sm text-neutral-600">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Section -->
+  <section id="value" class="py-12 bg-white scroll-mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Value Options</span>
+        <h2 class="text-2xl font-bold text-neutral-900">Best Value Comparisons</h2>
+      </div>
+      <p class="text-neutral-600 mb-6">Good coverage at competitive prices. These comparisons help you optimize cost vs coverage.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {value.map((item) => (
+          <a href={item.href} class="block p-4 border border-neutral-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-all">
+            <h3 class="font-medium text-neutral-900 mb-1">{item.title}</h3>
+            <p class="text-sm text-neutral-600">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Budget vs Comprehensive Section -->
+  <section id="budget-vs-comprehensive" class="py-12 bg-neutral-50 scroll-mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 bg-amber-100 text-amber-800 text-sm font-medium rounded-full">Budget vs Full</span>
+        <h2 class="text-2xl font-bold text-neutral-900">SafetyWing vs Comprehensive Insurance</h2>
+      </div>
+      <p class="text-neutral-600 mb-6">Understand what you give up for lower premiums. These compare travel medical insurance to full health coverage.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {budgetVsComprehensive.map((item) => (
+          <a href={item.href} class="block p-4 bg-white border border-neutral-200 rounded-lg hover:border-amber-300 hover:bg-amber-50 transition-all">
+            <h3 class="font-medium text-neutral-900 mb-1">{item.title}</h3>
+            <p class="text-sm text-neutral-600">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-12 bg-white border-t border-neutral-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-4">Not sure where to start?</h2>
+      <p class="text-neutral-600 mb-6">
+        Our provider comparison report breaks down all 8 insurers across pricing, coverage, and features.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <CTAButton href="/research-reports/international-health-insurance-provider-comparison" variant="primary">
+          See Full Provider Analysis
+        </CTAButton>
+        <CTAButton href="/best/expat-health-insurance" variant="secondary">
+          View Best Plans
+        </CTAButton>
+      </div>
     </div>
   </section>
 </Layout>
