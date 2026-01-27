@@ -1,0 +1,389 @@
+---
+import ResearchReportShell from '../../components/ResearchReportShell.astro';
+import { providers, pricingByAge, coverageLimits, bestFor, lastUpdated, methodology } from '../../data/research/providerComparison';
+
+const tocItems = [
+  { id: 'summary', text: 'Summary', level: 2 },
+  { id: 'quick-comparison', text: 'Quick Comparison', level: 2 },
+  { id: 'pricing-by-age', text: 'Pricing by Age', level: 2 },
+  { id: 'coverage-limits', text: 'Coverage Limits', level: 2 },
+  { id: 'best-for', text: 'Best For (by Provider)', level: 2 },
+  { id: 'detailed-features', text: 'Detailed Feature Comparison', level: 2 },
+  { id: 'methodology', text: 'Methodology', level: 2 },
+  { id: 'next-steps', text: 'Next Steps', level: 2 },
+];
+
+const premiumProviders = providers.filter(p => p.type === 'Premium').length;
+const budgetProviders = providers.filter(p => p.type === 'Budget' || p.type === 'Value').length;
+---
+
+<ResearchReportShell
+  title="International Health Insurance Provider Comparison Matrix (2026)"
+  description="Side-by-side comparison of 8 major international health insurance providers. Compare pricing, coverage, age limits, and features to find the right plan."
+  headline="International Health Insurance Provider Comparison"
+  subheadline="Side-by-side comparison of major providers to help you choose the right international health insurance."
+  lastUpdated={lastUpdated}
+  heroBackgroundImage="/images/research/requirements-by-country-hero-bg.png"
+  tocItems={tocItems}
+>
+  <h2 id="summary">Summary</h2>
+  <p>
+    This report compares {providers.length} major international health insurance providers across key dimensions: pricing, coverage limits, age restrictions, pre-existing condition policies, and special features. Use this data to narrow your options before requesting quotes.
+  </p>
+
+  <div class="grid md:grid-cols-4 gap-4 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 text-center">
+      <p class="text-2xl font-bold text-primary-600">{providers.length}</p>
+      <p class="text-sm text-neutral-600">Providers compared</p>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 text-center">
+      <p class="text-2xl font-bold text-primary-600">{premiumProviders}</p>
+      <p class="text-sm text-neutral-600">Premium tier</p>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 text-center">
+      <p class="text-2xl font-bold text-primary-600">{budgetProviders}</p>
+      <p class="text-sm text-neutral-600">Value/Budget tier</p>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4 text-center">
+      <p class="text-2xl font-bold text-primary-600">7</p>
+      <p class="text-sm text-neutral-600">Age brackets</p>
+    </div>
+  </div>
+
+  <h3>Key Findings</h3>
+  <ul>
+    <li><strong>Premium providers (Cigna, BUPA, Aetna)</strong> offer the most comprehensive coverage and best service, but cost 30-50% more</li>
+    <li><strong>Mid-tier providers (Allianz, GeoBlue, AXA)</strong> offer good coverage at moderate prices—often the best value</li>
+    <li><strong>Budget options (IMG, SafetyWing)</strong> work for specific situations but have significant limitations</li>
+    <li><strong>US coverage</strong> adds 30-50% to premiums; skip it if you won't need US care</li>
+    <li><strong>Age 65+</strong> is when pricing differences become most significant</li>
+  </ul>
+
+  <h2 id="quick-comparison">Quick Comparison</h2>
+  <p>
+    Overview of all providers with key features at a glance.
+  </p>
+
+  <div class="my-8 overflow-x-auto">
+    <table class="min-w-full border border-neutral-200 rounded-lg overflow-hidden text-sm">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Provider</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Tier</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Max Age</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Lifetime Renewal</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">US Coverage</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Rating</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-200">
+        {providers.map((provider, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+            <td class="px-3 py-3 font-medium text-neutral-900">
+              <a href={`/providers/${provider.slug}`} class="text-primary-600 hover:text-primary-800">{provider.name}</a>
+            </td>
+            <td class="px-3 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                provider.type === 'Premium' ? 'bg-purple-100 text-purple-800' : '',
+                provider.type === 'Mid-Premium' ? 'bg-blue-100 text-blue-800' : '',
+                provider.type === 'Value' ? 'bg-green-100 text-green-800' : '',
+                provider.type === 'Budget' ? 'bg-amber-100 text-amber-800' : '',
+              ]}>
+                {provider.type}
+              </span>
+            </td>
+            <td class="px-3 py-3">{provider.maxAge}</td>
+            <td class="px-3 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                provider.lifetimeRenewal === 'Yes' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800',
+              ]}>
+                {provider.lifetimeRenewal}
+              </span>
+            </td>
+            <td class="px-3 py-3 text-sm">{provider.usaCoverage}</td>
+            <td class="px-3 py-3 font-medium">{provider.avgRating}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="pricing-by-age">Pricing by Age</h2>
+  <p>
+    Monthly premium estimates by age bracket. Prices assume worldwide coverage excluding US (except providers where US is included by default), mid-tier plan, and $1,000-2,500 deductible.
+  </p>
+
+  <div class="my-8 overflow-x-auto">
+    <table class="min-w-full border border-neutral-200 rounded-lg overflow-hidden text-sm">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Age</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Cigna</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Allianz</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">BUPA</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">IMG</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Aetna</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">GeoBlue</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">AXA</th>
+          <th class="px-3 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">SafetyWing</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-200">
+        {pricingByAge.map((row, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+            <td class="px-3 py-3 font-medium text-neutral-900">{row.age}</td>
+            <td class="px-3 py-3">{row.cigna}</td>
+            <td class="px-3 py-3">{row.allianz}</td>
+            <td class="px-3 py-3">{row.bupa}</td>
+            <td class="px-3 py-3">{row.img}</td>
+            <td class="px-3 py-3">{row.aetna}</td>
+            <td class="px-3 py-3">{row.geoblue}</td>
+            <td class="px-3 py-3">{row.axa}</td>
+            <td class="px-3 py-3">{row.safetywing}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="text-sm text-neutral-500 italic">
+    Prices in USD/month. SafetyWing shows Nomad Insurance (travel medical) pricing. Actual quotes vary by health status, specific plan, and deductible chosen.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-blue-900 mb-3">Pricing Insight</h3>
+    <p class="text-blue-800">
+      At age 30, the difference between cheapest (SafetyWing) and most expensive (Cigna) is roughly 4x. By age 65, comprehensive insurers converge to similar pricing, while SafetyWing becomes unavailable at 70. The value gap narrows as you age.
+    </p>
+  </div>
+
+  <h2 id="coverage-limits">Coverage Limits</h2>
+  <p>
+    Maximum coverage amounts and deductible ranges by provider.
+  </p>
+
+  <div class="my-8 overflow-x-auto">
+    <table class="min-w-full border border-neutral-200 rounded-lg overflow-hidden text-sm">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Provider</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Minimum Limit</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Maximum Limit</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Deductible Range</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-200">
+        {coverageLimits.map((row, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+            <td class="px-4 py-3 font-medium text-neutral-900">{row.provider}</td>
+            <td class="px-4 py-3">{row.minimum}</td>
+            <td class="px-4 py-3">{row.maximum}</td>
+            <td class="px-4 py-3">{row.deductibleRange}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="best-for">Best For (by Provider)</h2>
+  <p>
+    Each provider has strengths and ideal use cases. Here's who each is best suited for.
+  </p>
+
+  <div class="space-y-4 my-8">
+    {bestFor.map((item) => (
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h3 class="font-semibold text-neutral-900 mb-2">
+          <a href={`/providers/${providers.find(p => p.name === item.provider)?.slug}`} class="text-primary-600 hover:text-primary-800">
+            {item.provider}
+          </a>
+        </h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p class="font-medium text-green-700 mb-1">Best for:</p>
+            <p class="text-neutral-600">{item.bestFor}</p>
+          </div>
+          <div>
+            <p class="font-medium text-amber-700 mb-1">Not ideal for:</p>
+            <p class="text-neutral-600">{item.notIdealFor}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h2 id="detailed-features">Detailed Feature Comparison</h2>
+  <p>
+    Deep dive into specific features that matter for choosing a provider.
+  </p>
+
+  <h3>Pre-existing Conditions</h3>
+  <div class="my-6 overflow-x-auto">
+    <table class="min-w-full border border-neutral-200 rounded-lg overflow-hidden text-sm">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Provider</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Approach</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-200">
+        {providers.map((provider, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+            <td class="px-4 py-3 font-medium text-neutral-900">{provider.name}</td>
+            <td class="px-4 py-3">{provider.preExisting}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Mental Health & Maternity</h3>
+  <div class="my-6 overflow-x-auto">
+    <table class="min-w-full border border-neutral-200 rounded-lg overflow-hidden text-sm">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Provider</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Mental Health</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Maternity</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-200">
+        {providers.map((provider, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+            <td class="px-4 py-3 font-medium text-neutral-900">{provider.name}</td>
+            <td class="px-4 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                provider.mentalHealth === 'Not covered' ? 'bg-red-100 text-red-800' : '',
+                provider.mentalHealth === 'Limited' ? 'bg-amber-100 text-amber-800' : '',
+                provider.mentalHealth === 'Moderate' ? 'bg-blue-100 text-blue-800' : '',
+                provider.mentalHealth === 'Better than average' ? 'bg-green-100 text-green-800' : '',
+              ]}>
+                {provider.mentalHealth}
+              </span>
+            </td>
+            <td class="px-4 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                provider.maternity === 'Not covered' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800',
+              ]}>
+                {provider.maternity}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Technology & Claims</h3>
+  <div class="my-6 overflow-x-auto">
+    <table class="min-w-full border border-neutral-200 rounded-lg overflow-hidden text-sm">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Provider</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Telemedicine</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Direct Billing</th>
+          <th class="px-4 py-3 text-left font-semibold text-neutral-900 border-b border-neutral-200">Claims Channels</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-200">
+        {providers.map((provider, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+            <td class="px-4 py-3 font-medium text-neutral-900">{provider.name}</td>
+            <td class="px-4 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                provider.telemedicine === 'Yes' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800',
+              ]}>
+                {provider.telemedicine}
+              </span>
+            </td>
+            <td class="px-4 py-3">
+              <span class:list={[
+                'inline-flex px-2 py-0.5 rounded text-xs font-medium',
+                provider.directBilling === 'Extensive' ? 'bg-green-100 text-green-800' : '',
+                provider.directBilling === 'Good' ? 'bg-blue-100 text-blue-800' : '',
+                provider.directBilling === 'Moderate' ? 'bg-amber-100 text-amber-800' : '',
+                provider.directBilling === 'Limited' ? 'bg-red-100 text-red-800' : '',
+              ]}>
+                {provider.directBilling}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-sm">{provider.claimsProcess}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="methodology">Methodology</h2>
+  <h3>Data Collection</h3>
+  <p>
+    Provider information was gathered from official insurer websites, policy documents, and verified third-party sources. Pricing represents typical ranges for healthy individuals with mid-tier coverage.
+  </p>
+
+  <h3>Pricing Methodology</h3>
+  <ul>
+    <li>Prices shown are monthly estimates in USD for worldwide coverage excluding US (except where US is included by default)</li>
+    <li>Ranges reflect different plan tiers and deductible options</li>
+    <li>All prices are for individual coverage, not family plans</li>
+    <li>Prices current as of {lastUpdated}; actual quotes may vary</li>
+  </ul>
+
+  <h3>Rating Criteria</h3>
+  <p>
+    Ratings are aggregated from multiple review platforms and weighted by recency and verification status. Factors include claims satisfaction, customer service responsiveness, and overall value perception.
+  </p>
+
+  <h3>Limitations</h3>
+  <ul>
+    <li>Prices change frequently; always get a personalized quote</li>
+    <li>Coverage details vary by specific plan; this is a general comparison</li>
+    <li>Some providers offer plans not included in this comparison</li>
+    <li>Individual circumstances significantly affect pricing and availability</li>
+  </ul>
+
+  <h2 id="next-steps">Next Steps</h2>
+  <p>
+    Now that you have a sense of how providers compare, here's how to proceed:
+  </p>
+
+  <ol class="list-decimal list-inside space-y-2 my-4">
+    <li><strong>Narrow to 2-3 providers</strong> based on your priorities (price, service, specific features)</li>
+    <li><strong>Check country-specific pages</strong> to see how each provider works in your destination</li>
+    <li><strong>Request quotes</strong> from your shortlisted providers for accurate pricing</li>
+    <li><strong>Compare the actual quotes</strong> side-by-side before deciding</li>
+  </ol>
+
+  <h3>Related Comparisons</h3>
+  <ul>
+    <li><a href="/compare/cigna-global-vs-allianz-care">Cigna Global vs Allianz Care</a> — Premium vs value comparison</li>
+    <li><a href="/compare/bupa-global-vs-cigna-global">BUPA Global vs Cigna Global</a> — Premium tier head-to-head</li>
+    <li><a href="/compare/safetywing-vs-cigna-global">SafetyWing vs Cigna Global</a> — Budget vs premium trade-offs</li>
+    <li><a href="/compare/geoblue-vs-cigna-global">GeoBlue vs Cigna Global</a> — US expat options compared</li>
+  </ul>
+
+  <div class="my-12 p-6 bg-blue-50 border border-blue-100 rounded-lg">
+    <p class="text-neutral-700 mb-4">
+      Ready to compare plans for your specific situation? Our provider pages include links to get quotes directly.
+    </p>
+    <a
+      href="/providers"
+      class="inline-flex items-center gap-2 text-blue-700 font-medium hover:text-blue-900"
+    >
+      View all providers
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-neutral-200">
+    <p class="text-sm text-neutral-500">
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and availability change frequently. Always verify information directly with insurers and get personalized quotes before making decisions. We are not licensed insurance brokers.
+    </p>
+  </div>
+</ResearchReportShell>
