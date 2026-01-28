@@ -104,26 +104,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Poland",
+        bestFor: "Residence permit compliance plus travel coverage for Poland-based remote workers",
+        notIdealFor: "Poland-only expats—Medicover/LuxMed subscriptions cost 70% less",
         countryPageHref: "/countries/poland/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "EU expats traveling frequently between Poland and Western Europe",
+        notIdealFor: "Warsaw-based expats—local subscriptions are cheaper with better clinic networks",
         countryPageHref: "/countries/poland/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions and comprehensive mental health coverage",
+        notIdealFor: "Budget expats—Polish private healthcare is already very affordable",
         countryPageHref: "/countries/poland/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Non-EU visa applicants needing residence permit-compliant coverage",
+        notIdealFor: "Long-term residents—Medicover/LuxMed have better Polish clinic networks",
         countryPageHref: "/countries/poland/insurance/img-global"
       }
     ]
@@ -133,26 +133,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Czech Republic",
+        bestFor: "Supplement to Czech comprehensive insurance for worldwide travel coverage",
+        notIdealFor: "Visa compliance—may NOT meet Czech Comprehensive Commercial Insurance requirements",
         countryPageHref: "/countries/czech-republic/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "EU expats wanting coverage beyond EHIC for Prague private clinics",
+        notIdealFor: "Non-EU visa applicants—must use Czech-approved comprehensive insurers (PVZP, Maxima)",
         countryPageHref: "/countries/czech-republic/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions and expats who qualify for public insurance but want premium options",
+        notIdealFor: "Non-EU first 5 years—Czech comprehensive insurance is mandatory",
         countryPageHref: "/countries/czech-republic/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Short-term stays and EU citizens supplementing EHIC coverage",
+        notIdealFor: "Long-term non-EU residents—does not meet Czech comprehensive insurance requirements",
         countryPageHref: "/countries/czech-republic/insurance/img-global"
       }
     ]
@@ -162,26 +162,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Hungary",
+        bestFor: "Residence permit compliance plus worldwide coverage for Budapest-based professionals",
+        notIdealFor: "Long-term Hungary residents—NEAK voluntary enrollment or local private is 60% cheaper",
         countryPageHref: "/countries/hungary/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "EU expats traveling between Hungary and Western Europe who want premium Budapest clinic access",
+        notIdealFor: "Budget expats—Hungarian private healthcare is already extremely affordable",
         countryPageHref: "/countries/hungary/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions—critical since NEAK voluntary enrollment excludes pre-existing for 6 months",
+        notIdealFor: "Healthy expats under 50—Hungary's low healthcare costs don't justify premium international plans",
         countryPageHref: "/countries/hungary/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Non-EU visa applicants needing residence permit-compliant coverage on a budget",
+        notIdealFor: "Long-term residents—NEAK voluntary enrollment offers better value for Hungary-only care",
         countryPageHref: "/countries/hungary/insurance/img-global"
       }
     ]
@@ -1177,26 +1177,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Turkey",
+        bestFor: "Meets residence permit requirements plus worldwide coverage for frequent travelers",
+        notIdealFor: "Long-term Turkey residents—local insurance costs 70% less with same hospital access",
         countryPageHref: "/countries/turkey/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Expats splitting time between Turkey and Europe",
+        notIdealFor: "Turkey-only residents—local insurers offer better value at Acibadem/Memorial",
         countryPageHref: "/countries/turkey/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions without Turkish insurer waiting periods",
+        notIdealFor: "Budget expats—Turkish healthcare is already very affordable",
         countryPageHref: "/countries/turkey/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Residence permit requirement compliance at lower international rates",
+        notIdealFor: "Long-term residents—may lack direct billing at top Istanbul hospitals",
         countryPageHref: "/countries/turkey/insurance/img-global"
       }
     ]
@@ -1235,26 +1235,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Taiwan",
+        bestFor: "Coverage during 6-month NHI waiting period plus frequent international travel",
+        notIdealFor: "Long-term Taiwan residents—NHI is excellent at $50/month; keeping international coverage is overkill",
         countryPageHref: "/countries/taiwan/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Expats splitting time between Taiwan and Europe who need worldwide coverage",
+        notIdealFor: "Taiwan-only residents—once NHI eligible, it outperforms international plans for local care",
         countryPageHref: "/countries/taiwan/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions during 6-month waiting period—NHI covers all pre-existing once enrolled",
+        notIdealFor: "Anyone past the waiting period—NHI has no pre-existing exclusions and costs 80% less",
         countryPageHref: "/countries/taiwan/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Budget coverage for 6-month waiting period before NHI enrollment",
+        notIdealFor: "Long-term residents—NHI is mandatory and superior for Taiwan-based care",
         countryPageHref: "/countries/taiwan/insurance/img-global"
       }
     ]
@@ -1264,26 +1264,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Hong Kong",
+        bestFor: "Expats planning to relocate—portable coverage that continues when leaving HK",
+        notIdealFor: "Long-term HK residents—BUPA HK or AIA offer better local hospital networks at lower cost",
         countryPageHref: "/countries/hong-kong/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Frequent travelers needing worldwide coverage beyond Hong Kong",
+        notIdealFor: "HK-only residents—local insurers have stronger private hospital relationships",
         countryPageHref: "/countries/hong-kong/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions—BUPA also operates BUPA HK locally with good conversion options",
+        notIdealFor: "Employed expats with corporate coverage—may be redundant",
         countryPageHref: "/countries/hong-kong/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Budget-conscious expats willing to manage higher out-of-pocket costs",
+        notIdealFor: "Anyone wanting comprehensive HK private hospital coverage—HK healthcare is expensive",
         countryPageHref: "/countries/hong-kong/insurance/img-global"
       }
     ]
@@ -1554,26 +1554,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in India",
+        bestFor: "Medical evacuation from smaller cities to Delhi/Mumbai and worldwide travel coverage",
+        notIdealFor: "Long-term India-only expats—local HDFC ERGO/Star Health costs 80% less",
         countryPageHref: "/countries/india/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Expats traveling frequently between India, Europe, and Asia",
+        notIdealFor: "India-only residents—local insurers have better hospital networks",
         countryPageHref: "/countries/india/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions (faster coverage than local 2-4 year waiting periods)",
+        notIdealFor: "Budget-conscious expats—Indian private healthcare is already very affordable",
         countryPageHref: "/countries/india/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Digital nomads wanting affordable international coverage with India included",
+        notIdealFor: "Long-term expats—cashless networks may be limited compared to local insurers",
         countryPageHref: "/countries/india/insurance/img-global"
       }
     ]
@@ -1902,26 +1902,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Chile",
+        bestFor: "Digital Nomad Visa compliance plus worldwide coverage for frequent travelers",
+        notIdealFor: "Employed residents—you still must pay 7% to FONASA/ISAPRE regardless",
         countryPageHref: "/countries/chile/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Patagonia and remote area residents needing strong evacuation coverage to Santiago",
+        notIdealFor: "Santiago-only expats—ISAPREs provide Clínica Alemana access at lower cost",
         countryPageHref: "/countries/chile/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions—ISAPREs can exclude or overcharge for health history",
+        notIdealFor: "Healthy young expats—ISAPRE plans are cheaper with excellent Santiago clinic access",
         countryPageHref: "/countries/chile/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Digital nomads needing affordable visa-compliant coverage before establishing residency",
+        notIdealFor: "Long-term residents—once earning income, ISAPRE/FONASA is mandatory anyway",
         countryPageHref: "/countries/chile/insurance/img-global"
       }
     ]
@@ -1931,26 +1931,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Peru",
+        bestFor: "Digital Nomad Visa compliance plus medical evacuation from Cusco/highlands to Lima",
+        notIdealFor: "Lima-only expats—local EPS (Rímac, Pacífico) offers top clinic access at 1/3 the cost",
         countryPageHref: "/countries/peru/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "High-altitude trekkers and Cusco residents needing robust evacuation coverage",
+        notIdealFor: "Budget Lima expats—local plans have better Clínica Anglo Americana rates",
         countryPageHref: "/countries/peru/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions and older expats who may be denied local EPS coverage",
+        notIdealFor: "Healthy young expats—Lima private healthcare is affordable even out-of-pocket",
         countryPageHref: "/countries/peru/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Budget Digital Nomad Visa coverage and adventure travelers with altitude coverage",
+        notIdealFor: "Long-term Lima residents—local EPS provides better clinic networks",
         countryPageHref: "/countries/peru/insurance/img-global"
       }
     ]
@@ -3207,26 +3207,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Morocco",
+        bestFor: "Medical evacuation to Europe (France/Spain) for complex cases not treatable in Morocco",
+        notIdealFor: "Budget expats in Casablanca—Moroccan private healthcare is very affordable out-of-pocket",
         countryPageHref: "/countries/morocco/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "French retirees and EU expats wanting seamless coverage between Morocco and Europe",
+        notIdealFor: "Morocco-only residents—local private insurance costs 50% less",
         countryPageHref: "/countries/morocco/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions and expats needing guaranteed access to Casablanca's top clinics",
+        notIdealFor: "Healthy expats—Moroccan healthcare costs are low enough to self-insure for routine care",
         countryPageHref: "/countries/morocco/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Budget coverage for digital nomads with evacuation to Europe included",
+        notIdealFor: "Those wanting direct billing at Moroccan clinics—may require pay-and-claim",
         countryPageHref: "/countries/morocco/insurance/img-global"
       }
     ]

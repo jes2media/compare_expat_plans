@@ -284,62 +284,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Poland (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Poland. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Poland. NFZ public healthcare, Medicover and LuxMed private options, residence permit requirements, Warsaw and Krakow coverage.",
     headline: "Poland Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Poland—understanding the NFZ system and international insurance options.",
+    subheadline: "Navigate NFZ public insurance, private medical subscriptions, and why most Warsaw expats go with Medicover or LuxMed.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Poland.",
-      "The public healthcare system (NFZ) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence Permit, EU Blue Card."
+      "Health insurance is REQUIRED for non-EU residence permits—you must show coverage for your entire stay.",
+      "NFZ (public healthcare) has notoriously long wait times—months for specialists. Most expats use private healthcare.",
+      "Private medical subscriptions (Medicover, LuxMed, Enel-Med) cost PLN 150-400/month (€35-90) and provide fast access to English-speaking doctors.",
+      "Poland is excellent value for private healthcare—specialist visits cost PLN 150-300 (€35-70) out of pocket.",
+      "EU citizens can use EHIC for public healthcare, but private subscription is recommended for practical access."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Poland requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Polish standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Non-EU citizens need health insurance for residence permit applications. Options: private Polish insurance, international insurance, or proof of NFZ coverage (if employed). EU citizens do not need insurance for residence but should have EHIC for NFZ access. In practice, most expats—including EU citizens—use private medical subscriptions because NFZ wait times are extremely long.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Non-EU visa applicants—insurance is required for residence permits",
+      "Anyone who cannot wait 3-6 months for NFZ specialist appointments",
+      "Expats who need English-speaking medical staff (limited in NFZ system)",
+      "Families with children wanting pediatric care without long waits",
+      "Those with chronic conditions requiring regular specialist access"
     ],
     publicHealthcare: {
-      name: "NFZ",
-      access: "Polish citizens, legal residents, EU citizens with EHIC",
-      cost: "€30-60/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "NFZ (Narodowy Fundusz Zdrowia)",
+      access: "Polish citizens, legal workers paying ZUS contributions, EU citizens with EHIC",
+      cost: "Employed: 9% of salary (included in ZUS contributions). Voluntary: PLN 500-700/month.",
+      notes: "NFZ provides universal coverage but is severely underfunded. Wait times for specialists can be 3-12 months. Emergency care is immediate but crowded. English is very limited in public facilities. Most expats in Poland treat NFZ as emergency backup and use private subscriptions for routine care."
     },
     privateHealthcare: {
-      cost: "€80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Medical subscriptions: PLN 150-400/month (€35-90). International: €100-200/month.",
+      notes: "Poland has an excellent private healthcare market. Medicover, LuxMed, and Enel-Med offer monthly subscriptions with fast access to specialists, modern clinics, and English-speaking staff. Most large employers provide private medical as a benefit. Out-of-pocket costs are reasonable: specialist visit PLN 150-300 (€35-70)."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Polish regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "NFZ wait times are severe. One expat reported 8-month wait for an MRI, 4 months for dermatologist. Use private healthcare for anything non-emergency.",
+      "Most private medical subscriptions are employer-provided. Self-paying individuals can buy directly from Medicover, LuxMed, or Enel-Med.",
+      "English availability in NFZ facilities is very limited, especially outside Warsaw. Private clinics in Warsaw and Krakow typically have English-speaking staff.",
+      "EU citizens with EHIC can access NFZ, but the same wait time issues apply. EHIC does not grant private care access.",
+      "Private subscriptions usually exclude dental, optical, and some specialist treatments. Check coverage details.",
+      "If employed in Poland, your employer pays ZUS which includes NFZ—you are covered but may still want private subscription."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Poland visa?",
-        answer: "Yes. Most Polish visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Do I need health insurance for a Poland residence permit?",
+        answer: "Non-EU citizens: Yes, you must show health insurance covering your entire stay. Options include private Polish insurance, international plans, or NFZ coverage (if employed). EU citizens: Not required for residence, but EHIC is recommended for NFZ access."
       },
       {
-        question: "How does Polish public healthcare work?",
-        answer: "Poland's public healthcare system (NFZ) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What are Medicover, LuxMed, and Enel-Med?",
+        answer: "These are private medical subscription services—the most common way expats access healthcare in Poland. For PLN 150-400/month (€35-90), you get fast access to GPs, specialists, diagnostics, and often English-speaking staff. Most Polish employers provide these as employee benefits."
       },
       {
-        question: "How much does health insurance cost in Poland?",
-        answer: "International health insurance typically costs €80-180/month depending on your age and coverage level. Local/public options cost €30-60/month but may have limitations for non-citizens."
+        question: "How bad are NFZ wait times really?",
+        answer: "Very long. Specialist appointments can take 3-12 months. MRIs and non-urgent diagnostics often have multi-month waits. Emergency care is immediate but crowded. This is why virtually all expats in Poland use private medical subscriptions for routine care, even if they have NFZ coverage."
       },
       {
-        question: "What's the best health insurance for expats in Poland?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Can EU citizens use public healthcare in Poland?",
+        answer: "Yes, with EHIC card you can access NFZ services. However, you face the same long wait times as Polish citizens. Most EU expats in Poland still get private medical subscriptions for practical healthcare access."
       },
       {
-        question: "Are pre-existing conditions covered in Poland?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does private healthcare cost in Poland?",
+        answer: "Very affordable by Western European standards. Medical subscriptions: PLN 150-400/month (€35-90). Out-of-pocket specialist visit: PLN 150-300 (€35-70). Private hospital stay: PLN 500-1,500/day (€115-350). Poland offers excellent value for quality private healthcare."
       }
     ],
     sidebarLinks: [
@@ -372,62 +373,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Czech Republic (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Czech Republic. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Czech Republic. Comprehensive vs travel insurance requirements, VZP public system, Prague expat clinics, and Zivnostnik (freelancer) coverage.",
     headline: "Czech Republic Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Czech Republic—understanding the VZP system and international insurance options.",
+    subheadline: "Understand the strict Comprehensive vs Travel insurance distinction, VZP public healthcare, and Prague's excellent expat medical options.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Czech Republic.",
-      "The public healthcare system (VZP) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €100-220/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Long-term Visa, Employee Card."
+      "Czech Republic has STRICT insurance requirements—non-EU residents need Comprehensive Commercial Insurance (not travel insurance) for long-term visas.",
+      "Comprehensive insurance must cover at least CZK 60,000 (€2,400) with no co-pays, deductibles, or coverage limits—only specific Czech-approved policies qualify.",
+      "After 5 years of residence, non-EU citizens can join public insurance (VZP or other funds)—this is the goal for most long-term expats.",
+      "Public healthcare is good quality and affordable (13.5% of income for self-employed), but English is limited outside Prague.",
+      "Prague has excellent English-speaking clinics (Canadian Medical, UniClinic) popular with expats—many accept both public and private insurance."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Czech Republic requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Czech standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Czech Republic has very specific insurance requirements for non-EU citizens. For long-term visas, you need Comprehensive Commercial Health Insurance (komplexní zdravotní pojištění) from a Czech-approved insurer—NOT travel insurance. Requirements: minimum CZK 60,000 coverage, no deductibles, no co-pays, no coverage exclusions. After 5 years of continuous legal residence, non-EU citizens can join the public health insurance system. EU citizens use EHIC or can join public insurance if employed.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All non-EU long-term visa applicants—Comprehensive Commercial Insurance is mandatory",
+      "Freelancers (Zivnostnik) who must arrange their own coverage",
+      "Those in the first 5 years before public insurance eligibility",
+      "Expats wanting English-speaking doctors in Prague",
+      "EU citizens not employed locally (EHIC covers emergencies, not routine care)"
     ],
     publicHealthcare: {
-      name: "VZP",
-      access: "Czech citizens, legal residents, EU citizens with EHIC",
-      cost: "€40-80/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "VZP and other public health insurance funds",
+      access: "Czech citizens, EU citizens (with employment or S1 form), non-EU citizens after 5 years residence",
+      cost: "Employed: 13.5% of salary (split employer/employee). Self-employed: 13.5% of profit (min ~CZK 2,500/month). Voluntary: ~CZK 2,500/month.",
+      notes: "Czech public healthcare is good quality—the system ranks well in EU comparisons. Wait times for specialists can be 2-4 weeks (not as bad as UK/Poland). English availability is limited outside Prague. VZP is the largest fund; others include OZP, VOZP, ZPMV. All provide similar coverage."
     },
     privateHealthcare: {
-      cost: "€100-220/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Comprehensive commercial (required for visas): CZK 15,000-35,000/year (€600-1,400). International: €150-300/month.",
+      notes: "For non-EU expats in the first 5 years, comprehensive commercial insurance is the only option. Providers include PVZP, Maxima, Slavia. Coverage is comprehensive but these plans are designed for visa compliance, not premium service. Many expats supplement with private clinics like Canadian Medical for better English support."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Czech regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Travel insurance does NOT meet Czech visa requirements. You need specific Comprehensive Commercial Insurance from Czech-approved providers.",
+      "Comprehensive insurance has strict requirements: CZK 60,000 minimum, no deductibles, no co-pays, no exclusions. Verify your policy meets these EXACTLY.",
+      "The 5-year rule: Non-EU citizens can only join public insurance after 5 years of continuous legal residence. Until then, comprehensive commercial is mandatory.",
+      "Freelancers (Zivnostnik): You must arrange your own insurance. If employed, your employer handles public insurance contributions.",
+      "English is limited in the public system outside Prague. For English-speaking care, use private clinics like Canadian Medical, UniClinic, or Medicon.",
+      "Age limits: Some comprehensive insurers restrict new applicants over 65-70. Apply before aging out."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Czech Republic visa?",
-        answer: "Yes. Most Czech visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What insurance do I need for a Czech long-term visa?",
+        answer: "Non-EU citizens need Comprehensive Commercial Health Insurance (komplexní zdravotní pojištění) from a Czech-approved insurer. Requirements: minimum CZK 60,000 coverage, no deductibles, no co-pays, no exclusions. Travel insurance does NOT qualify. Approved providers include PVZP, Maxima, and Slavia."
       },
       {
-        question: "How does Czech public healthcare work?",
-        answer: "Czech Republic's public healthcare system (VZP) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "When can I join Czech public health insurance?",
+        answer: "Non-EU citizens: After 5 years of continuous legal residence. EU citizens: Immediately if employed in Czech Republic or with S1 form. Until you qualify for public insurance, comprehensive commercial insurance is mandatory for visa renewals."
       },
       {
-        question: "How much does health insurance cost in Czech Republic?",
-        answer: "International health insurance typically costs €100-220/month depending on your age and coverage level. Local/public options cost €40-80/month but may have limitations for non-citizens."
+        question: "How good is Czech public healthcare?",
+        answer: "Good quality—Czech healthcare ranks well in EU comparisons. Wait times for specialists are typically 2-4 weeks (better than UK or Poland). Facilities are modern, especially in Prague. The main issue for expats is limited English outside of Prague—consider English-speaking private clinics."
       },
       {
-        question: "What's the best health insurance for expats in Czech Republic?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What about freelancers (Zivnostnik)?",
+        answer: "Self-employed freelancers must arrange their own insurance. If you qualify for public insurance, you pay 13.5% of your declared profit (minimum ~CZK 2,500/month). If not yet eligible (first 5 years for non-EU), you need comprehensive commercial insurance."
       },
       {
-        question: "Are pre-existing conditions covered in Czech Republic?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Where can I find English-speaking doctors in Prague?",
+        answer: "Prague has excellent expat-focused clinics: Canadian Medical Care, UniClinic, Medicon, and EUC Premium. These offer English-speaking staff and often accept both public insurance and private payment. Expect to pay CZK 1,500-3,000 (€60-120) for a consultation if paying privately."
       }
     ],
     sidebarLinks: [
@@ -460,62 +462,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Hungary (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Hungary. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Hungary. NEAK public healthcare, White Card guest worker program, Budapest private clinics, and digital nomad visa coverage.",
     headline: "Hungary Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Hungary—understanding the NEAK system and international insurance options.",
+    subheadline: "Navigate NEAK public healthcare, the White Card program, and Budapest's affordable private medical options.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Hungary.",
-      "The public healthcare system (NEAK) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €70-160/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, White Card."
+      "Health insurance is REQUIRED for Hungarian residence permits—you must show valid coverage for visa applications.",
+      "Non-EU expats can join NEAK (public insurance) voluntarily for HUF 83,000/month (~€210)—or use private insurance.",
+      "White Card holders (Guest Worker program) are automatically enrolled in public healthcare through employer contributions.",
+      "Budapest has excellent private hospitals (FirstMed, Rózsakert Medical Center) with English-speaking staff at affordable prices.",
+      "Hungary offers some of Europe's cheapest private healthcare—specialist visits cost HUF 15,000-30,000 (€38-75)."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Hungary requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Hungarian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Hungary requires health insurance for residence permit applications. Options: private insurance meeting Hungarian requirements, voluntary NEAK enrollment (HUF 83,000/month for non-EU), or automatic coverage through employment (White Card workers). EU citizens can use EHIC for necessary care but should consider local coverage for routine healthcare. Insurance must cover the entire residence permit period.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All non-EU residence permit applicants—insurance is mandatory",
+      "Digital nomads on the Hungarian Digital Nomad Visa (White Card)",
+      "Self-employed expats not automatically covered by employer contributions",
+      "Those wanting English-speaking doctors in Budapest",
+      "EU citizens staying long-term (EHIC is for temporary stays only)"
     ],
     publicHealthcare: {
-      name: "NEAK",
-      access: "Hungarian citizens, legal residents, EU citizens with EHIC",
-      cost: "€30-60/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "NEAK (Nemzeti Egészségbiztosítási Alapkezelő)",
+      access: "Hungarian citizens, EU citizens with EHIC, employed residents (through employer), voluntary enrollment for others",
+      cost: "Employed: ~19.5% of salary (employer pays most). Voluntary (non-employed non-EU): HUF 83,000/month (~€210).",
+      notes: "Hungarian public healthcare is functional but underfunded. Wait times for specialists can be 2-8 weeks. Facilities outside Budapest may be dated. English is limited in public hospitals. Many Hungarians use a mix of public and private care—public for serious issues, private for convenience."
     },
     privateHealthcare: {
-      cost: "€70-160/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local private: HUF 30,000-80,000/month (€75-200). International: €100-200/month.",
+      notes: "Budapest has excellent private healthcare at very affordable prices. FirstMed, Rózsakert Medical Center, and Medicover offer English-speaking care. Private specialist consultation: HUF 15,000-30,000 (€38-75). Hungary is popular for medical and dental tourism. Outside Budapest, private options are limited."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Hungarian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Voluntary NEAK enrollment costs HUF 83,000/month (~€210)—this may be more expensive than private insurance for younger, healthy expats.",
+      "Public healthcare quality varies significantly. Budapest hospitals are better than rural areas. English is very limited outside private clinics.",
+      "The White Card (Guest Worker) provides public healthcare through employer, but coverage ends if employment ends—have backup insurance.",
+      "Some residence permits require insurance with specific minimum coverage amounts. Verify requirements for your permit type.",
+      "Hungary is popular for dental tourism—dental costs are 50-70% less than Western Europe, but this is typically out-of-pocket, not covered by insurance.",
+      "Medical evacuation to Vienna or other EU cities is quick if needed—Hungary's central location is advantageous."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Hungary visa?",
-        answer: "Yes. Most Hungarian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What insurance do I need for a Hungarian residence permit?",
+        answer: "You need health insurance covering your entire residence permit period. Options: private insurance meeting Hungarian requirements, voluntary NEAK enrollment (HUF 83,000/month for non-EU), or coverage through employment. Verify minimum coverage requirements for your specific permit type."
       },
       {
-        question: "How does Hungarian public healthcare work?",
-        answer: "Hungary's public healthcare system (NEAK) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is the White Card (Guest Worker program)?",
+        answer: "The White Card is Hungary's guest worker permit for non-EU citizens with job offers from Hungarian companies. White Card holders are automatically enrolled in public healthcare (NEAK) through employer contributions. It is also the basis for Hungary's Digital Nomad Visa for remote workers."
       },
       {
-        question: "How much does health insurance cost in Hungary?",
-        answer: "International health insurance typically costs €70-160/month depending on your age and coverage level. Local/public options cost €30-60/month but may have limitations for non-citizens."
+        question: "Can I join Hungarian public healthcare as a non-EU citizen?",
+        answer: "Yes, through voluntary enrollment. Non-EU citizens can join NEAK by paying HUF 83,000/month (~€210). This provides access to the public healthcare system. Alternatively, you can use private insurance—which may be cheaper for younger, healthy expats."
       },
       {
-        question: "What's the best health insurance for expats in Hungary?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How affordable is private healthcare in Hungary?",
+        answer: "Very affordable by Western European standards. Private specialist consultation: HUF 15,000-30,000 (€38-75). Private hospital day: HUF 50,000-150,000 (€125-375). Dental work: 50-70% less than Western Europe. Hungary is a popular medical tourism destination for these savings."
       },
       {
-        question: "Are pre-existing conditions covered in Hungary?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Where can I find English-speaking doctors in Budapest?",
+        answer: "Budapest has several expat-friendly clinics: FirstMed (American-style clinic), Rózsakert Medical Center, Medicover, and Dr. Rose Private Hospital. These offer English-speaking staff and modern facilities. Expect to pay HUF 20,000-40,000 (€50-100) for a consultation."
       }
     ],
     sidebarLinks: [
@@ -3527,62 +3530,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Turkey (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Turkey. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Turkey. Residence permit requirements, SGK enrollment, Istanbul private hospitals, and affordable coverage options.",
     headline: "Turkey Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Turkey—understanding the SGK system and international insurance options.",
+    subheadline: "Understand residence permit insurance requirements, SGK public options, and why Turkey offers excellent healthcare value.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Turkey.",
-      "The public healthcare system (SGK) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs $80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Tourist Residence Permit, Work Permit."
+      "Health insurance is REQUIRED for Turkish residence permits—you must show valid coverage to get or renew your ikamet (residence permit).",
+      "SGK (public insurance) is available to residence permit holders after 1 year—costs around ₺2,000-4,000/month ($60-120) based on age.",
+      "Turkey is a medical tourism hub—private hospitals (Acibadem, Memorial, Florence Nightingale) offer excellent care at 50-70% less than Europe.",
+      "Private Turkish insurance is extremely affordable: ₺5,000-15,000/year ($150-450) for comprehensive coverage at top Istanbul hospitals.",
+      "Currency devaluation means healthcare is very cheap for those earning in USD/EUR—a private specialist visit costs ₺500-1,000 ($15-30)."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Turkey requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Turkish standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Turkey requires health insurance for residence permit (ikamet) applications and renewals. You must provide proof of valid insurance covering your entire permit period. Options include: private Turkish insurance, international insurance that meets Turkish standards, or SGK enrollment (after 1 year of residence). Most expats start with private insurance, then optionally switch to SGK after the first year.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All residence permit applicants—insurance is mandatory for ikamet",
+      "Digital nomads and remote workers on tourist residence permits",
+      "Retirees seeking affordable quality healthcare",
+      "Those wanting access to Istanbul's excellent private hospitals",
+      "Expats who prefer to avoid SGK bureaucracy and public hospital waits"
     ],
     publicHealthcare: {
-      name: "SGK",
-      access: "Turkish citizens, legal residents, EU citizens with EHIC",
-      cost: "$30-60/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "SGK (Sosyal Güvenlik Kurumu)",
+      access: "Available to residence permit holders after 1 year of continuous residence. Must apply and pay monthly premiums.",
+      cost: "₺2,000-4,000/month ($60-120) depending on age bracket. Under 28: lowest tier. Over 45: highest tier.",
+      notes: "SGK covers public and some private hospitals. Quality varies—Istanbul public hospitals are better than rural areas. Wait times for specialists can be long. English is limited in public facilities. Many expats use SGK as backup while maintaining private insurance for faster access."
     },
     privateHealthcare: {
-      cost: "$80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local Turkish: ₺5,000-15,000/year ($150-450). International: $100-250/month.",
+      notes: "Turkey has world-class private hospitals, especially in Istanbul. Acibadem, Memorial, Florence Nightingale, American Hospital, and Liv Hospital are JCI-accredited and popular with medical tourists. Local Turkish insurance provides excellent coverage at these hospitals. Currency devaluation makes private care extremely affordable for those earning foreign currency."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Turkish regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Insurance is MANDATORY for residence permits. Your coverage must be valid for the entire permit period or renewal will be rejected.",
+      "SGK requires 1 year of residence before you can enroll. You need private insurance for your first year.",
+      "SGK premiums are age-based and have increased significantly. For older expats, private insurance may be similar cost with better service.",
+      "Some private Turkish insurers exclude pre-existing conditions for 1-2 years. Check terms carefully.",
+      "If paying for local insurance in TRY, currency fluctuations can significantly affect your costs if you earn in USD/EUR.",
+      "Public hospital quality varies. Istanbul and Ankara have good public facilities; rural areas are less reliable."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Turkey visa?",
-        answer: "Yes. Most Turkish visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What insurance do I need for a Turkish residence permit?",
+        answer: "You need valid health insurance covering your entire residence permit period. Options: private Turkish insurance (cheapest, ₺5,000-15,000/year), international insurance meeting Turkish standards, or SGK (only after 1 year residence). Most expats use private Turkish insurance for the first year."
       },
       {
-        question: "How does Turkish public healthcare work?",
-        answer: "Turkey's public healthcare system (SGK) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How do I enroll in SGK as an expat?",
+        answer: "After 1 year of continuous residence with a valid ikamet, you can apply for SGK at your local SGK office. You will pay monthly premiums (₺2,000-4,000 depending on age). SGK covers public hospitals and some private hospitals. The process requires paperwork and patience with bureaucracy."
       },
       {
-        question: "How much does health insurance cost in Turkey?",
-        answer: "International health insurance typically costs $80-180/month depending on your age and coverage level. Local/public options cost $30-60/month but may have limitations for non-citizens."
+        question: "How good is private healthcare in Turkey?",
+        answer: "Excellent, especially in Istanbul. Turkey is a top medical tourism destination. Private hospitals like Acibadem, Memorial, and Florence Nightingale are JCI-accredited with modern facilities and many English-speaking doctors trained abroad. Costs are 50-70% less than Western Europe."
       },
       {
-        question: "What's the best health insurance for expats in Turkey?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is Turkish healthcare really that cheap?",
+        answer: "Yes, due to currency devaluation. A private specialist consultation costs ₺500-1,000 ($15-30). Private insurance covering top hospitals costs ₺5,000-15,000/year ($150-450). The same care would cost 3-5x more in Western Europe. For expats earning in USD/EUR, Turkey offers exceptional healthcare value."
       },
       {
-        question: "Are pre-existing conditions covered in Turkey?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I get SGK or private insurance?",
+        answer: "It depends. SGK: Lower cost, covers public hospitals, available after 1 year. Private: Faster access, better English support, covers top private hospitals, available immediately. Many expats maintain private insurance even after SGK eligibility for better service and no wait times."
       }
     ],
     sidebarLinks: [
@@ -3709,62 +3713,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Taiwan (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Taiwan. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Taiwan. NHI enrollment for expats, 6-month waiting period, Gold Card benefits, and top Taipei hospitals.",
     headline: "Taiwan Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Taiwan—understanding the NHI system and international insurance options.",
+    subheadline: "Navigate Taiwan's world-class NHI system, the 6-month enrollment waiting period, and when international coverage makes sense.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Taiwan.",
-      "The public healthcare system (NHI) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Gold Card, Resident Visa."
+      "Taiwan's NHI is one of the world's BEST healthcare systems—universal coverage, low costs, no pre-existing condition exclusions, and 99.9% population coverage.",
+      "Expats with an ARC (Alien Resident Certificate) MUST enroll in NHI after 6 months of continuous residence—there's no opt-out.",
+      "During the 6-month waiting period, you need private insurance. Gold Card holders can enroll in NHI immediately with no waiting period.",
+      "NHI costs just NT$1,500-2,000/month (~$45-60 USD)—employed expats pay 30% with employer covering the rest.",
+      "Taiwan has world-class hospitals (NTU, Taipei Veterans General, Chang Gung) at prices that shock Western expats—MRIs for $100, specialist visits for $15."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Taiwan requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Taiwanese standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Taiwan requires health insurance for visa applications. After obtaining an ARC (Alien Resident Certificate), you MUST enroll in NHI after 6 months of continuous residence—it's mandatory, not optional. During the waiting period, international insurance is required. Gold Card holders (for foreign professionals) can enroll in NHI immediately upon arrival. Employers are required to enroll employees in NHI from day one, bypassing the waiting period.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "New arrivals during 6-month NHI waiting period—private insurance is required",
+      "Expats who want English-speaking doctors and VIP hospital services",
+      "Those traveling frequently outside Taiwan—NHI only covers emergencies abroad with reimbursement caps",
+      "Retirees wanting international evacuation options",
+      "High-income professionals wanting private rooms and premium amenities"
     ],
     publicHealthcare: {
-      name: "NHI",
-      access: "Taiwanese citizens, legal residents",
-      cost: "$20-40/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "NHI (National Health Insurance)",
+      access: "All ARC holders after 6 months (mandatory). Gold Card holders from day one. Employees from day one via employer.",
+      cost: "Employed: ~$45-60/month (employee pays 30%, employer 60%, government 10%). Self-employed: Full premium ~$100-150/month based on income bracket.",
+      notes: "Taiwan's NHI is consistently ranked among the world's best single-payer systems. It covers virtually everything: outpatient visits ($5-15 copay), hospitalization, surgery, dental cleanings, traditional Chinese medicine, and prescription drugs. No pre-existing condition exclusions. No annual caps. Wait times are short—often same-day appointments. The downside: limited overseas coverage (emergency only with caps), crowded clinics at popular hospitals, and language barriers outside Taipei."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local supplementary plans: $30-80/month. International plans: $100-250/month.",
+      notes: "Most long-term expats use NHI for everything since it's so good. Private insurance in Taiwan is mainly used for: VIP hospital rooms, English-speaking concierge services, treatment abroad, and coverage during the 6-month waiting period. Taipei's major hospitals (NTU, Taipei Veterans General, Mackay) have international patient centers with English-speaking staff. Private clinics catering to expats exist in Taipei and Taichung."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Taiwanese regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "The 6-month NHI waiting period is strictly enforced—don't arrive without coverage for this gap.",
+      "NHI is MANDATORY after 6 months—you cannot opt for international insurance instead. You can have supplementary coverage on top of NHI.",
+      "NHI overseas coverage is limited: emergency-only and reimburses at Taiwan rates (often insufficient for US/Europe costs).",
+      "Taiwanese hospitals run on a first-come-first-served basis for many services. Popular specialists at major hospitals can have crowded waiting rooms.",
+      "Outside Taipei, English proficiency drops significantly. Consider this if living in southern Taiwan or rural areas.",
+      "Dental beyond cleanings requires extra NHI copays. Major dental work is still very affordable but not as heavily subsidized."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Taiwan visa?",
-        answer: "Yes. Most Taiwanese visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How do I enroll in Taiwan's NHI system?",
+        answer: "If employed, your employer enrolls you from day one—no waiting period. Self-employed or unemployed expats must wait 6 months of continuous residence with an ARC, then enroll at the local NHI office. Gold Card holders can enroll immediately upon receiving their ARC. Bring your ARC, passport, and local bank account details. Premiums are deducted monthly."
       },
       {
-        question: "How does Taiwanese public healthcare work?",
-        answer: "Taiwan's public healthcare system (NHI) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What does Taiwan's NHI actually cover?",
+        answer: "Almost everything: outpatient visits (NT$150-400 copay, ~$5-15), hospitalizations, surgeries, prescription drugs, lab work, imaging (MRIs, CTs), dental cleanings, traditional Chinese medicine, physical therapy, and mental health visits. No pre-existing condition exclusions. No annual caps. It does NOT cover: cosmetic procedures, some advanced cancer drugs, VIP rooms, or overseas treatment (except emergency reimbursement)."
       },
       {
-        question: "How much does health insurance cost in Taiwan?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost $20-40/month but may have limitations for non-citizens."
+        question: "Is Taiwan good for medical tourism?",
+        answer: "Yes. Taiwan is a top destination for medical tourism, especially for health checkups, dental work, cosmetic surgery, and traditional Chinese medicine. Taipei's major hospitals have international patient departments. An MRI costs ~$100-150, full health checkup packages $200-500, and dental implants $800-1,500 (vs $3,000-5,000 in the US). Quality is comparable to the US or Japan."
       },
       {
-        question: "What's the best health insurance for expats in Taiwan?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Do I need private insurance if I have NHI?",
+        answer: "For most expats, NHI alone is sufficient—it's genuinely excellent. Consider supplementary private insurance if you: frequently travel internationally (NHI overseas coverage is weak), want VIP hospital services and private rooms, prefer guaranteed English-speaking doctors, or want medical evacuation coverage. Many long-term Taiwan expats drop private insurance entirely after experiencing NHI."
       },
       {
-        question: "Are pre-existing conditions covered in Taiwan?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What's the Gold Card and how does it affect insurance?",
+        answer: "Taiwan's Employment Gold Card is a combined work permit and residence visa for foreign professionals in eligible fields (tech, finance, culture, sports, etc.). Gold Card holders can enroll in NHI immediately upon receiving their ARC—no 6-month waiting period. This is a significant benefit since you avoid needing interim private insurance. Gold Card holders pay NHI premiums based on declared income."
       }
     ],
     sidebarLinks: [
@@ -3793,65 +3798,67 @@ export const countries: Country[] = [
   {
     slug: "hong-kong",
     name: "Hong Kong",
-    demonym: "Hong Konger",
+    demonym: "Hong Kong",
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Hong Kong (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Hong Kong. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Hong Kong. HA public system wait times, private hospital costs, corporate coverage, and top insurers like BUPA HK and AIA.",
     headline: "Hong Kong Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Hong Kong—understanding the HA system and international insurance options.",
+    subheadline: "Navigate Hong Kong's world-class private hospitals, extremely long public wait times, and corporate insurance options.",
     summaryBullets: [
-      "Hong Kong does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (HA) is available to residents.",
-      "International health insurance typically costs $200-450/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Employment Visa, Investment Visa."
+      "Hong Kong does NOT require health insurance for visas, but private coverage is essential—public hospital wait times can be YEARS for non-emergency care.",
+      "Public hospitals (Hospital Authority) are cheap but overcrowded. A&E visits cost HKD $180 (~$23), but specialist wait times average 2-3 years.",
+      "Private healthcare is world-class but among Asia's most expensive—a night in a private hospital room costs HKD $4,000-12,000+ ($500-1,500+).",
+      "Most employed expats get corporate group insurance—check your benefits before buying individual coverage.",
+      "Top private hospitals: Matilda International, Hong Kong Sanatorium, Adventist, Gleneagles—expect to pay premium prices."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Hong Kong does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Hong Kong does not mandate health insurance for work visas, investment visas, or dependent visas. However, the practical reality is that most expats need private insurance due to extreme public healthcare wait times. Many employers provide group medical insurance as a standard benefit—always check your employment package first.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats without employer-provided coverage—public wait times make private insurance essential",
+      "Families with children—pediatric care and hospital deliveries in private hospitals are expensive",
+      "Anyone with chronic conditions requiring regular specialist care",
+      "Expats over 40—premiums increase significantly with age in Hong Kong's market",
+      "Self-employed professionals and entrepreneurs without corporate coverage"
     ],
     publicHealthcare: {
-      name: "HA",
-      access: "Hong Konger citizens, legal residents",
-      cost: "$15-30/visit",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Hospital Authority (HA)",
+      access: "Hong Kong ID card holders (residents). Non-residents pay significantly higher rates.",
+      cost: "Residents: HKD $180 (~$23) for A&E, HKD $50 (~$6) for general outpatient. Non-residents: Full cost recovery (thousands of HKD).",
+      notes: "Hong Kong's public hospitals provide excellent emergency care at subsidized rates. The problem is wait times: specialist appointments average 2-3 years, and 'semi-urgent' surgery waits can exceed 18 months. The system is severely overcrowded. Public hospitals include Queen Mary, Prince of Wales, and Princess Margaret—all excellent for emergencies but impractical for routine care."
     },
     privateHealthcare: {
-      cost: "$200-450/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local plans (BUPA HK, AIA): HKD $3,000-8,000/month ($400-1,000). International plans: HKD $4,000-12,000/month ($500-1,500).",
+      notes: "Hong Kong has world-class private hospitals but they're expensive by any standard. A simple consultation costs HKD $800-1,500 ($100-200). Hospital rooms run HKD $4,000-12,000+/night. Maternity packages at private hospitals cost HKD $80,000-150,000+ ($10,000-20,000+). Top hospitals: Matilda International, Hong Kong Sanatorium & Hospital, Hong Kong Adventist, Gleneagles. English is standard at all major private facilities."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Hong Konger regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Public hospital wait times are extreme—2-3 years for orthopedic specialists, 1+ years for many others. Don't rely on public care for non-emergencies.",
+      "Hong Kong insurance premiums are among Asia's highest. Expect 10-15% annual increases, especially after age 40.",
+      "Many corporate plans have lifetime and annual caps that sound high but get exhausted quickly with Hong Kong prices. Check your limits.",
+      "Pre-existing conditions are typically excluded or have long waiting periods. Some local insurers won't cover them at all.",
+      "If you have employer coverage, understand what happens when you leave—COBRA-style continuation is rare in Hong Kong.",
+      "Maternity is expensive and often requires separate riders or plans with 10-12 month waiting periods."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Hong Kong visa?",
-        answer: "No. Hong Kong does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Do I need private insurance if my employer provides coverage?",
+        answer: "Check your employer plan limits first. Many corporate plans in Hong Kong have annual caps of HKD $500,000-1,000,000—which sounds like a lot until you need surgery or extended hospitalization at private hospital rates. Consider supplementary coverage if your employer plan has low limits, excludes family members, or doesn't cover maternity/dental."
       },
       {
-        question: "How does Hong Konger public healthcare work?",
-        answer: "Hong Kong's public healthcare system (HA) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How bad are Hong Kong public hospital wait times really?",
+        answer: "Very bad for non-emergency care. Official HA statistics show median specialist wait times of 100+ weeks for orthopedics, 70+ weeks for ophthalmology, and 50+ weeks for ENT. A&E and genuine emergencies are handled promptly and competently. But routine care, elective surgery, and specialist consultations require private healthcare or extreme patience."
       },
       {
-        question: "How much does health insurance cost in Hong Kong?",
-        answer: "International health insurance typically costs $200-450/month depending on your age and coverage level. Local/public options cost $15-30/visit but may have limitations for non-citizens."
+        question: "Which local insurers are best for Hong Kong?",
+        answer: "BUPA Hong Kong, AIA, and Prudential are the major players for individual plans. BUPA is generally preferred for comprehensive coverage and pre-existing conditions (with waiting periods). AIA offers competitive rates for younger expats. Many expats also use international insurers (Cigna, Allianz) if they travel frequently or may relocate."
       },
       {
-        question: "What's the best health insurance for expats in Hong Kong?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much should I budget for maternity in Hong Kong?",
+        answer: "Private hospital deliveries in Hong Kong cost HKD $80,000-150,000+ ($10,000-20,000+) depending on the hospital and room type. Caesarean sections cost more. Most insurance plans have 10-12 month waiting periods for maternity coverage. If planning a family, get maternity coverage well in advance or budget for out-of-pocket costs. Public hospital deliveries cost a fraction but have less comfortable facilities."
       },
       {
-        question: "Are pre-existing conditions covered in Hong Kong?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What happens to my insurance when I leave Hong Kong?",
+        answer: "Local Hong Kong plans (BUPA HK, AIA) typically terminate when you leave. International plans (Cigna Global, Allianz Care) can continue worldwide. If you're planning to relocate eventually, an international plan provides continuity. Some corporate plans offer conversion to individual policies, but premiums increase significantly—ask HR about portability before you need it."
       }
     ],
     sidebarLinks: [
@@ -4672,61 +4679,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in India (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in India. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in India. Private hospital chains (Apollo, Fortis, Max), local insurers, Employment Visa requirements, and medical tourism options.",
     headline: "India Expat Health Insurance",
-    subheadline: "Find the right coverage for living in India—understanding the Ayushman Bharat system and international insurance options.",
+    subheadline: "Navigate world-class private hospitals at affordable prices—understand local insurance options and why coverage matters in India.",
     summaryBullets: [
-      "India does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Ayushman Bharat) is available to residents.",
-      "International health insurance typically costs $60-150/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Employment Visa, Business Visa."
+      "India does not require health insurance for visas, but private coverage is essential—public hospitals are overcrowded and primarily serve low-income populations.",
+      "India is a medical tourism destination—top hospitals (Apollo, Fortis, Max, Medanta) offer Western-quality care at 60-80% less than US prices.",
+      "Local Indian insurance (HDFC ERGO, ICICI Lombard, Star Health) costs ₹15,000-40,000/year ($180-480) and covers major private hospitals.",
+      "International insurance costs $80-200/month but adds worldwide coverage and medical evacuation—important given India's size and variable regional healthcare.",
+      "Healthcare quality varies dramatically: Delhi, Mumbai, Bangalore, Chennai have excellent hospitals; rural areas have limited facilities."
     ],
     insuranceRequired: false,
-    requirementExplanation: "India does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "India does not require health insurance for Employment Visas, Business Visas, or most other visa categories. However, private insurance is strongly recommended. Government hospitals are severely overcrowded and intended for low-income Indians. Expats universally use private hospitals, which require either insurance or out-of-pocket payment. The good news: India's private healthcare is excellent and affordable.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—government hospitals are not practical for foreigners",
+      "Those living outside major metros where private hospital options are limited",
+      "Anyone with chronic conditions requiring regular specialist care",
+      "Expats who travel within India (evacuation to Delhi/Mumbai may be needed from smaller cities)",
+      "Those wanting cashless treatment at private hospitals"
     ],
     publicHealthcare: {
-      name: "Ayushman Bharat",
-      access: "Indian citizens, legal residents",
-      cost: "$10-30/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Government Hospitals / Ayushman Bharat (for low-income Indians)",
+      access: "Government hospitals are technically open to all. Ayushman Bharat is for Indian citizens below poverty line only—not available to expats.",
+      cost: "Government hospitals: Nearly free but very crowded. Ayushman Bharat: N/A for expats.",
+      notes: "India's public healthcare system is designed for low-income citizens and is severely underfunded. Government hospitals have multi-hour waits, overcrowding, and limited English. Ayushman Bharat covers 500 million low-income Indians but is NOT available to expats. All expats use private healthcare."
     },
     privateHealthcare: {
-      cost: "$60-150/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local insurance: ₹15,000-40,000/year ($180-480). International: $80-200/month.",
+      notes: "India's private hospitals are world-class, especially in major metros. Apollo, Fortis, Max Healthcare, Medanta, and Narayana Health rival Western hospitals at a fraction of the cost. A specialist consultation costs ₹500-1,500 ($6-18). Many doctors trained in US/UK. English is widely spoken in private healthcare."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Indian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Government hospitals are NOT practical for expats—long waits, overcrowding, limited English. Use private healthcare.",
+      "Healthcare quality varies dramatically by region. Tier 1 cities (Delhi, Mumbai, Bangalore, Chennai, Hyderabad) have excellent hospitals. Smaller cities and rural areas have limited options.",
+      "Medical evacuation coverage is important if you live outside major metros—may need air ambulance to Delhi or Mumbai for complex care.",
+      "Local Indian insurers have 2-4 year waiting periods for pre-existing conditions. International plans may be faster.",
+      "Air pollution in Delhi and other cities can exacerbate respiratory conditions—factor this into your healthcare planning.",
+      "Traffic in major cities can add hours to hospital travel time. In emergencies, proximity matters."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a India visa?",
-        answer: "No. India does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Do I need health insurance for an India visa?",
+        answer: "No, India does not require health insurance for Employment Visas, Business Visas, or tourist visas. However, private insurance is strongly recommended because government hospitals are not practical for expats and private hospitals require payment."
       },
       {
-        question: "How does Indian public healthcare work?",
-        answer: "India's public healthcare system (Ayushman Bharat) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How good are private hospitals in India?",
+        answer: "Excellent in major cities. India is a global medical tourism destination—hospitals like Apollo, Fortis, Max, Medanta, and Narayana Health are JCI-accredited and rival Western facilities. Many doctors trained in US/UK. Care costs 60-80% less than US prices. Outside major metros, quality drops significantly."
       },
       {
-        question: "How much does health insurance cost in India?",
-        answer: "International health insurance typically costs $60-150/month depending on your age and coverage level. Local/public options cost $10-30/month but may have limitations for non-citizens."
+        question: "Should I get local Indian insurance or international?",
+        answer: "For long-term expats staying primarily in India: Local insurance (HDFC ERGO, ICICI Lombard, Star Health) offers excellent value at ₹15,000-40,000/year with cashless treatment at major hospitals. For frequent travelers or those wanting worldwide coverage and medical evacuation: International plans are worth the premium."
       },
       {
-        question: "What's the best health insurance for expats in India?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What is Ayushman Bharat?",
+        answer: "Ayushman Bharat is India's government health insurance scheme covering 500 million low-income Indians—it is NOT available to expats or foreigners. It only covers Indian citizens below the poverty line. Expats cannot access this program."
       },
       {
-        question: "Are pre-existing conditions covered in India?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does healthcare cost in India without insurance?",
+        answer: "India's private healthcare is affordable by Western standards. Private specialist consultation: ₹500-1,500 ($6-18). Hospital room: ₹3,000-15,000/day ($36-180). Major surgery at top hospitals: ₹2-10 lakh ($2,400-12,000). Still, insurance is recommended for unexpected emergencies and hospitalizations."
       }
     ],
     sidebarLinks: [
@@ -5724,62 +5733,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Chile (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Chile. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Chile. FONASA vs ISAPRE systems, mandatory 7% contribution, Clínica Alemana access, and Digital Nomad Visa requirements.",
     headline: "Chile Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Chile—understanding the FONASA system and international insurance options.",
+    subheadline: "Navigate Chile's dual FONASA/ISAPRE system, mandatory health contributions, and why Santiago's private clinics rival the best in Latin America.",
     summaryBullets: [
-      "Chile does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (FONASA) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, Subject to Contract."
+      "Chile has MANDATORY health contributions—7% of your salary goes to either FONASA (public) or an ISAPRE (private insurer). This is not optional for employed residents.",
+      "ISAPREs (private insurers like Consalud, Banmédica, Colmena) offer better service than FONASA but can be expensive—especially for women of childbearing age and older adults.",
+      "Santiago has Latin America's best private hospitals: Clínica Alemana, Clínica Las Condes, Clínica Santa María—world-class care at 30-50% of US prices.",
+      "The Digital Nomad Visa requires proof of health insurance covering your stay—international plans work, but you can switch to ISAPRE after establishing residency.",
+      "Outside Santiago, healthcare quality drops significantly. Patagonia and remote regions have limited facilities—evacuation coverage is important."
     ],
-    insuranceRequired: false,
-    requirementExplanation: "Chile does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    insuranceRequired: true,
+    requirementExplanation: "Chile's Digital Nomad Visa (Visa de Residencia Temporal para Trabajadores Remotos) requires proof of health insurance for the duration of your stay. For employed residents, health contributions are MANDATORY—7% of your income goes to FONASA or an ISAPRE. Self-employed workers must also contribute. International insurance satisfies the visa requirement, but once you have residency and income, you'll need to choose between FONASA and ISAPRE.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Digital Nomad Visa applicants—insurance proof is required for the visa application",
+      "Expats wanting access to Santiago's top private clinics without ISAPRE limitations",
+      "Anyone living outside Santiago where healthcare options are limited",
+      "Older adults—ISAPREs can be expensive or restrictive for 60+",
+      "Frequent international travelers—FONASA and ISAPREs have limited overseas coverage"
     ],
     publicHealthcare: {
-      name: "FONASA",
-      access: "Chilean citizens, legal residents",
-      cost: "$30-70/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "FONASA (Fondo Nacional de Salud)",
+      access: "All contributing residents (7% of income). Four tiers (A-D) based on income level.",
+      cost: "7% of salary (mandatory). Tier A (no income): Free. Tiers B-D: Copays of 10-20% at FONASA facilities.",
+      notes: "FONASA provides decent basic care but with long wait times, crowded facilities, and limited choice of doctors. Quality varies significantly by region—Santiago hospitals are better than rural areas. FONASA's main advantage: no exclusions for pre-existing conditions and no premium increases with age. The system struggles with specialist access and elective procedures."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "ISAPREs: 7%+ of salary (mandatory minimum, most pay more for better plans). International plans: $100-250/month.",
+      notes: "Chile's private healthcare is excellent in Santiago. Clínica Alemana is considered Latin America's best hospital. Clínica Las Condes and Clínica Santa María are also world-class. ISAPREs give you access to these facilities with lower copays than paying cash. However, ISAPREs can refuse coverage or charge higher premiums based on age, gender, and health status—unlike FONASA. English is widely available at top Santiago clinics."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Chilean regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Chile."
+      "ISAPREs can legally discriminate by age and gender. Women 20-45 pay significantly higher premiums (maternity risk). Premiums increase sharply after 60.",
+      "ISAPRE plans have coverage limits (topes) for specific procedures. Even with insurance, you may face high out-of-pocket costs for expensive treatments.",
+      "Pre-existing conditions: ISAPREs can exclude or limit coverage. FONASA accepts everyone but has worse service.",
+      "Healthcare outside Santiago is a different world. Patagonia, Atacama, and small cities have limited specialists and hospitals.",
+      "The 7% contribution is mandatory—you cannot opt out of Chilean health coverage while earning income in Chile.",
+      "Switching from ISAPRE to FONASA is easy. Switching back to ISAPRE requires medical underwriting and can be denied."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Chile visa?",
-        answer: "No. Chile does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What's the difference between FONASA and ISAPRE?",
+        answer: "FONASA is Chile's public health system—everyone pays 7% of income and gets access to public hospitals. No exclusions, no age discrimination, but long waits and crowded facilities. ISAPREs are private insurers—you pay at least 7% (usually more) and get access to private clinics with shorter waits and better service. ISAPREs can deny coverage or charge more based on health, age, and gender."
       },
       {
-        question: "How does Chilean public healthcare work?",
-        answer: "Chile's public healthcare system (FONASA) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Which ISAPRE is best for expats?",
+        answer: "The major ISAPREs are Consalud, Banmédica, Colmena, Cruz Blanca, and Vida Tres. Banmédica owns Clínica Las Condes and Clínica Santa María, so their plans often have better rates at those hospitals. Consalud has wide hospital networks. The 'best' depends on which clinics you want access to and your health profile. Compare plans carefully—premiums and coverage vary significantly."
       },
       {
-        question: "How much does health insurance cost in Chile?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost $30-70/month but may have limitations for non-citizens."
+        question: "Can I use international insurance instead of FONASA/ISAPRE?",
+        answer: "For visa purposes, yes—international insurance satisfies the Digital Nomad Visa requirement. However, if you're employed in Chile or have Chilean-source income, the 7% health contribution is mandatory. You can't opt out by having international insurance. Many expats pay into FONASA (cheapest option) and use international insurance for actual care."
       },
       {
-        question: "What's the best health insurance for expats in Chile?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How good is healthcare in Patagonia and remote areas?",
+        answer: "Limited. Patagonia (Torres del Paine area), the Atacama, Easter Island, and small towns have basic clinics only. Serious conditions require evacuation to Santiago. If you're living outside major cities, medical evacuation coverage is essential. Some ISAPREs have weak networks outside Santiago—verify coverage for your specific location."
       },
       {
-        question: "Are pre-existing conditions covered in Chile?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is Chile good for medical tourism?",
+        answer: "Yes. Santiago's top clinics offer procedures at 30-50% of US prices with comparable quality. Clínica Alemana is JCI-accredited and ranked among Latin America's best. Dental work, cosmetic surgery, and orthopedic procedures are popular. However, Chile is more expensive than other Latin American countries like Mexico or Colombia for medical tourism."
       }
     ],
     sidebarLinks: [
@@ -5812,62 +5822,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Peru (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Peru. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Peru. EsSalud enrollment, Lima's top private clinics, altitude considerations in Cusco, and Digital Nomad Visa coverage.",
     headline: "Peru Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Peru—understanding the SIS/EsSalud system and international insurance options.",
+    subheadline: "Navigate Peru's EsSalud system, Lima's excellent private clinics, and why altitude coverage matters in Cusco and the highlands.",
     summaryBullets: [
-      "Peru does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (SIS/EsSalud) is available to residents.",
-      "International health insurance typically costs $80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Visa, Investor Visa."
+      "Peru's Digital Nomad Visa requires health insurance for the full stay—international plans satisfy this requirement.",
+      "Private healthcare in Lima is excellent and affordable—Clínica Anglo Americana and Clínica Ricardo Palma rival US facilities at 20-30% of the cost.",
+      "Outside Lima, healthcare quality drops dramatically. Cusco has decent private options, but smaller cities and rural Peru have very limited facilities.",
+      "Altitude matters: Cusco sits at 3,400m (11,150ft). Some insurers exclude altitude-related conditions or have coverage limitations above certain elevations.",
+      "Local private insurance (EPS like Rímac, Pacífico) costs S/150-400/month ($40-110) and provides excellent Lima clinic access."
     ],
-    insuranceRequired: false,
-    requirementExplanation: "Peru does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    insuranceRequired: true,
+    requirementExplanation: "Peru's Digital Nomad Visa (Visa de Residencia para Trabajador Remoto) requires proof of health insurance valid for your intended stay. Coverage must include COVID-19. For employed residents, EsSalud enrollment is mandatory—9% of salary paid by employer. Self-employed expats can voluntarily join EsSalud or use private insurance (EPS). International insurance satisfies visa requirements.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Digital Nomad Visa applicants—insurance proof is mandatory for the visa",
+      "Expats living outside Lima where healthcare options are limited",
+      "Anyone spending significant time at high altitude (Cusco, Arequipa, Puno)",
+      "Retirees wanting access to Lima's excellent private clinics",
+      "Adventure travelers doing trekking, mountaineering, or jungle expeditions"
     ],
     publicHealthcare: {
-      name: "SIS/EsSalud",
-      access: "Peruvian citizens, legal residents",
-      cost: "$20-40/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "EsSalud (Seguro Social de Salud)",
+      access: "Employed workers (mandatory). Self-employed can join voluntarily.",
+      cost: "Employed: 9% of salary (paid by employer). Voluntary: S/55-100/month (~$15-27) based on income tier.",
+      notes: "EsSalud provides basic coverage but facilities are overcrowded with long wait times—sometimes months for specialists. Quality varies dramatically: Lima hospitals are acceptable, but provincial EsSalud facilities can be basic. Most expats who can afford it use private healthcare and treat EsSalud as emergency backup only. EsSalud Hospitals: Rebagliati, Almenara (Lima)."
     },
     privateHealthcare: {
-      cost: "$80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local EPS (Rímac, Pacífico, Mapfre): S/150-400/month ($40-110). International plans: $80-180/month.",
+      notes: "Lima has Latin America's most underrated private healthcare. Clínica Anglo Americana is a US-standard hospital founded by the British-American community. Clínica Ricardo Palma, Clínica Internacional, and Clínica San Pablo are also excellent. Costs are remarkably low: specialist consultations S/150-250 ($40-70), MRIs S/400-800 ($110-220). English is widely available at top Lima clinics. Cusco has decent private options (Clínica Pardo); smaller cities have very limited private care."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Peruvian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Peru."
+      "Altitude coverage: Cusco (3,400m), Lake Titicaca (3,800m), and trekking routes go to extreme elevations. Some insurers exclude altitude sickness or have elevation caps. Verify coverage if living or traveling in highlands.",
+      "Lima vs everywhere else: 80% of Peru's good healthcare is in Lima. Cusco and Arequipa have acceptable private options. Smaller cities have basic care only. Jungle regions (Iquitos, Puerto Maldonado) have very limited facilities.",
+      "Medical evacuation is essential outside Lima. Serious conditions in Cusco or rural areas require air evacuation to Lima or sometimes Miami.",
+      "Local EPS plans (Rímac, Pacífico) have excellent Lima clinic networks but limited coverage outside the capital. Check provincial network before choosing.",
+      "Adventure activities: Standard policies often exclude mountaineering above certain elevations, extreme sports, and remote area coverage. Get specific adventure coverage if needed.",
+      "The sol (PEN) fluctuates. Healthcare costs in soles can become cheaper or more expensive relative to USD over time."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Peru visa?",
-        answer: "No. Peru does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What insurance do I need for Peru's Digital Nomad Visa?",
+        answer: "Peru's Digital Nomad Visa requires health insurance valid for your intended stay, including COVID-19 coverage. International plans from major providers satisfy this requirement. You'll need to show proof during the visa application. Minimum coverage amounts aren't strictly specified, but comprehensive coverage is recommended given Peru's healthcare landscape outside Lima."
       },
       {
-        question: "How does Peruvian public healthcare work?",
-        answer: "Peru's public healthcare system (SIS/EsSalud) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does healthcare in Cusco compare to Lima?",
+        answer: "Lima has world-class private hospitals; Cusco has decent but limited options. Clínica Pardo is Cusco's best private facility—good for routine care and minor emergencies. Serious conditions require evacuation to Lima (1-hour flight). Cusco also presents altitude challenges: visitors need acclimatization time, and altitude sickness is common. If living in Cusco, ensure your insurance covers altitude-related conditions and evacuation to Lima."
       },
       {
-        question: "How much does health insurance cost in Peru?",
-        answer: "International health insurance typically costs $80-180/month depending on your age and coverage level. Local/public options cost $20-40/month but may have limitations for non-citizens."
+        question: "Should I get local EPS or international insurance?",
+        answer: "For Lima-based expats planning to stay long-term, local EPS (Rímac, Pacífico) offers excellent value: S/150-400/month gets you access to top Lima clinics. The downside: limited provincial coverage and no international coverage. For expats who travel frequently, live outside Lima, or may relocate, international insurance provides more flexibility. Many expats use local EPS for Lima care and add travel insurance for trips."
       },
       {
-        question: "What's the best health insurance for expats in Peru?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is Peru good for medical tourism?",
+        answer: "Yes, particularly for dental work, cosmetic surgery, and general procedures. Lima clinics offer US-quality care at 20-30% of US prices. Dental implants cost $600-1,200 (vs $3,000-5,000 in US). Popular procedures: dental work, plastic surgery, LASIK, and health checkups. Clínica Anglo Americana and Clínica Ricardo Palma have international patient departments with English-speaking staff."
       },
       {
-        question: "Are pre-existing conditions covered in Peru?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What about healthcare for Amazon jungle regions?",
+        answer: "Very limited. Iquitos (the largest city in the Peruvian Amazon) has basic hospitals but nothing approaching Lima standards. Serious conditions require evacuation. Jungle regions also present unique health risks: tropical diseases, limited emergency response, and remote access challenges. If living in or frequently visiting the Amazon, medical evacuation coverage is essential, and you should verify your policy covers remote jungle areas."
       }
     ],
     sidebarLinks: [
@@ -9681,60 +9692,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Morocco (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Morocco. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Morocco. AMO system, Casablanca and Rabat private clinics, French-speaking healthcare, and European evacuation options.",
     headline: "Morocco Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Morocco—understanding the AMO/RAMED system and international insurance options.",
+    subheadline: "Navigate Morocco's AMO health system, excellent French-trained doctors, and why Casablanca and Rabat offer surprising healthcare quality.",
     summaryBullets: [
-      "Morocco does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (AMO/RAMED) is available to residents.",
-      "International health insurance typically costs $60-150/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Residence Permit."
+      "Morocco does NOT strictly require health insurance for residence permits, but private coverage is strongly recommended—public hospitals are overcrowded and underfunded.",
+      "French is the language of Moroccan medicine. Most doctors trained in France—high quality care at affordable prices. English is limited outside top private clinics.",
+      "Casablanca and Rabat have excellent private hospitals: Clinique Internationale de Casablanca, Hôpital Cheikh Zaïd, Clinique Agdal—approaching European standards.",
+      "Healthcare costs are very affordable: specialist consultations MAD 300-500 (~$30-50), private hospital stays MAD 2,000-5,000/night ($200-500).",
+      "Outside major cities, healthcare is basic. Atlas Mountains, Sahara regions, and small towns have limited facilities—evacuation coverage to Casablanca or Europe is important."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Morocco does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Morocco does not strictly mandate health insurance for residence permits, though it's increasingly requested. Employed expats may be enrolled in AMO (Assurance Maladie Obligatoire) through their employer via CNSS. Self-employed and retirees typically use private insurance. European retirees often maintain home country coverage plus local supplementary plans. For long stays, private insurance is essentially necessary given public system limitations.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All expats—public healthcare is not practical for foreigners due to overcrowding and language barriers",
+      "Retirees, especially from France and other EU countries (large expat community in Marrakech)",
+      "Anyone living outside Casablanca/Rabat where private options are limited",
+      "Digital nomads and remote workers without employer coverage",
+      "Expats with chronic conditions requiring regular specialist care"
     ],
     publicHealthcare: {
-      name: "AMO/RAMED",
-      access: "Moroccan citizens, legal residents",
-      cost: "$15-35/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "AMO (Assurance Maladie Obligatoire) / CNSS / RAMED",
+      access: "AMO for formal workers (mandatory via CNSS for private sector, CNOPS for public sector). RAMED for low-income Moroccans.",
+      cost: "AMO via CNSS: ~6.37% of salary (employer + employee contributions). RAMED: Free for eligible low-income residents.",
+      notes: "Morocco's public healthcare has improved but remains underfunded. Public hospitals are overcrowded with long wait times—often hours for emergency care, weeks/months for specialists. Facilities vary dramatically: Casablanca and Rabat have better public hospitals; rural areas have basic clinics only. French is essential for navigating public healthcare. Most expats avoid public hospitals except for emergencies."
     },
     privateHealthcare: {
-      cost: "$60-150/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local private insurance: MAD 500-1,500/month ($50-150). International plans: $80-200/month.",
+      notes: "Morocco's private healthcare is a hidden gem. Casablanca has world-class facilities: Clinique Internationale de Casablanca (CIC) and Clinique Badr offer excellent care. Rabat has Hôpital Cheikh Zaïd (university-affiliated, high quality) and Clinique Agdal. Marrakech private options are more limited but improving. Many Moroccan doctors trained in France and speak fluent French—care quality is high. Private consultations cost MAD 300-500 ($30-50), significantly cheaper than Europe."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Moroccan regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "French is essential. Medical documentation, prescriptions, and most doctor consultations are in French. English-speaking doctors exist at top Casablanca clinics but aren't guaranteed elsewhere.",
+      "Outside Casablanca/Rabat, private healthcare options drop significantly. Marrakech has decent care; smaller cities have limited options. Atlas Mountain and Sahara regions require evacuation for serious conditions.",
+      "Medical evacuation to Europe (usually France or Spain) may be necessary for complex cases. Ensure your policy includes international evacuation—flights to Paris are ~3 hours.",
+      "Pharmacies are well-stocked and pharmacists are knowledgeable, but some medications available in Europe/US may not be available in Morocco.",
+      "Payment is often cash-based even at private clinics. Some international insurers don't have direct billing arrangements—you may need to pay and claim reimbursement.",
+      "Ramadan can affect healthcare access—some clinics have reduced hours, and emergency rooms may be busier during iftar time."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Morocco visa?",
-        answer: "No. Morocco does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Do I need to speak French for healthcare in Morocco?",
+        answer: "Effectively, yes. French is the language of Moroccan medicine—doctors are trained in French, medical records are in French, and prescriptions are written in French. Top private clinics in Casablanca may have some English-speaking staff, but it's not guaranteed. Arabic is also used but French dominates in healthcare settings. If you don't speak French, bring a translator or use a clinic with confirmed English support."
       },
       {
-        question: "How does Moroccan public healthcare work?",
-        answer: "Morocco's public healthcare system (AMO/RAMED) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does healthcare in Marrakech compare to Casablanca?",
+        answer: "Casablanca has Morocco's best healthcare by a significant margin—it's the commercial capital with the most advanced private hospitals. Rabat (the political capital) is second. Marrakech has decent private clinics (Clinique Internationale de Marrakech, Polyclinique du Sud) but fewer options and specialists. For routine care, Marrakech is fine. For complex conditions, specialist surgery, or serious emergencies, Casablanca is preferable."
       },
       {
-        question: "How much does health insurance cost in Morocco?",
-        answer: "International health insurance typically costs $60-150/month depending on your age and coverage level. Local/public options cost $15-35/month but may have limitations for non-citizens."
+        question: "Is Morocco good for medical tourism?",
+        answer: "Increasingly, yes. Morocco is becoming a medical tourism destination, especially for French-speaking patients from Africa and cost-conscious Europeans. Popular procedures: dental work, cosmetic surgery, fertility treatments, and general surgery. Costs are 50-70% lower than France. Clinique Internationale de Casablanca has a dedicated international patient department. Quality is good, but Morocco isn't yet at the level of established medical tourism hubs like Thailand or Turkey."
       },
       {
-        question: "What's the best health insurance for expats in Morocco?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What about healthcare for retirees in Morocco?",
+        answer: "Morocco is popular with French retirees—there's a large expat community in Marrakech, Essaouira, and Agadir. French retirees often maintain French social security coverage (which provides some reimbursement) and add local private insurance. Non-French retirees need comprehensive international coverage. Key considerations: proximity to quality care (Casablanca/Rabat preferred), evacuation coverage to Europe, and prescription medication availability."
       },
       {
-        question: "Are pre-existing conditions covered in Morocco?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do I need evacuation coverage in Morocco?",
+        answer: "Yes, especially if living outside Casablanca/Rabat. While Morocco's top private hospitals are good, they can't handle every complex case—neurosurgery, advanced cancer treatment, transplants, and some cardiac procedures may require evacuation to Europe. Morocco is only 2-3 hours from Spain and France by air, making evacuation practical. If you're in the Atlas Mountains, Sahara, or rural areas, evacuation to Casablanca is the first step for any serious condition."
       }
     ],
     sidebarLinks: [
