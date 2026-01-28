@@ -1351,26 +1351,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Cambodia",
+        bestFor: "Medical evacuation to Bangkok/Singapore—the most critical coverage in Cambodia",
+        notIdealFor: "No one—evacuation coverage is essential here regardless of budget",
         countryPageHref: "/countries/cambodia/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Expats who frequently travel to Thailand and want seamless regional coverage",
+        notIdealFor: "Those who never leave Phnom Penh—but evacuation is still needed for serious cases",
         countryPageHref: "/countries/cambodia/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Retirees with pre-existing conditions who need reliable evacuation guarantees",
+        notIdealFor: "Young healthy expats who just want evacuation—cheaper options exist",
         countryPageHref: "/countries/cambodia/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Budget-conscious expats wanting essential evacuation coverage at lower cost",
+        notIdealFor: "Those wanting direct billing at Royal Phnom Penh Hospital—verify network first",
         countryPageHref: "/countries/cambodia/insurance/img-global"
       }
     ]
@@ -1409,26 +1409,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Myanmar",
+        bestFor: "⚠️ Verify Myanmar coverage first—essential evacuation to Bangkok if policy covers Myanmar",
+        notIdealFor: "Anyone who hasn't confirmed Myanmar is covered—some insurers have added exclusions",
         countryPageHref: "/countries/myanmar/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "⚠️ Confirm coverage—may provide evacuation to Singapore if Myanmar still covered",
+        notIdealFor: "Those assuming coverage exists—verify in writing before relying on it",
         countryPageHref: "/countries/myanmar/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "⚠️ Check current policy terms—pre-existing conditions irrelevant if Myanmar excluded",
+        notIdealFor: "Anyone who hasn't contacted Bupa directly about Myanmar coverage status",
         countryPageHref: "/countries/myanmar/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "⚠️ May still cover Myanmar—verify before purchase as policies change frequently",
+        notIdealFor: "Those needing guaranteed direct billing—banking restrictions complicate payments",
         countryPageHref: "/countries/myanmar/insurance/img-global"
       }
     ]
@@ -1467,26 +1467,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in Sri Lanka",
+        bestFor: "Digital Nomad Visa compliance plus evacuation to India for complex cases",
+        notIdealFor: "Budget expats—Sri Lanka has free public healthcare and affordable private options",
         countryPageHref: "/countries/sri-lanka/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Expats wanting India coverage included—Chennai/Kerala hospitals excellent for complex care",
+        notIdealFor: "Colombo-only residents—local hospitals are good and very affordable",
         countryPageHref: "/countries/sri-lanka/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions and chronic care—medication supply chains have stabilized post-crisis",
+        notIdealFor: "Healthy expats—free public healthcare handles routine care adequately",
         countryPageHref: "/countries/sri-lanka/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Budget Digital Nomad Visa coverage meeting $50,000 minimum requirement",
+        notIdealFor: "Those with serious chronic conditions—consider more comprehensive coverage",
         countryPageHref: "/countries/sri-lanka/insurance/img-global"
       }
     ]

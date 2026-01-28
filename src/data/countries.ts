@@ -4069,61 +4069,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Cambodia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Cambodia. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Cambodia. Medical evacuation to Bangkok, Royal Phnom Penh Hospital, EB visa requirements, and why evac coverage is essential.",
     headline: "Cambodia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Cambodia—understanding the NSSF system and international insurance options.",
+    subheadline: "Navigate Cambodia's limited healthcare, the critical need for evacuation coverage to Bangkok, and the best options for Phnom Penh expats.",
     summaryBullets: [
-      "Cambodia does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (NSSF) is available to residents.",
-      "International health insurance typically costs $80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: EB Visa, Retirement Visa."
+      "Medical evacuation coverage is NON-NEGOTIABLE in Cambodia. Serious conditions require evacuation to Bangkok (1 hour flight) or Singapore—local care is limited.",
+      "Phnom Penh has Cambodia's only quality private hospitals: Royal Phnom Penh Hospital and SOS International Clinic. Outside the capital, options are very basic.",
+      "The E-class visa (business visa) is renewable indefinitely, making Cambodia popular with digital nomads and retirees—but healthcare is the main concern.",
+      "Public hospitals should be avoided except for dire emergencies. Facilities are underfunded, hygiene standards are poor, and English is limited.",
+      "Bangkok is your backup plan. Many expats cross to Thailand for anything beyond basic care—it's close, cheap, and world-class."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Cambodia does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Cambodia does not require health insurance for visas. The E-class visa (business visa) can be renewed indefinitely without insurance proof. However, given Cambodia's limited healthcare infrastructure, insurance with medical evacuation is essential—not for visa compliance, but for your safety. Many expats pay for healthcare out-of-pocket in Phnom Penh (costs are low) but rely on insurance for evacuation and serious conditions.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Everyone in Cambodia—medical evacuation is essential and expensive without coverage ($15,000-30,000 to Bangkok/Singapore)",
+      "Expats outside Phnom Penh where private healthcare doesn't exist",
+      "Retirees and anyone with chronic conditions requiring reliable care",
+      "Families with children—pediatric care is very limited",
+      "Adventure travelers exploring rural areas, Angkor region, or coastal areas"
     ],
     publicHealthcare: {
-      name: "NSSF",
-      access: "Cambodian citizens, legal residents",
-      cost: "$10-30/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Ministry of Health / NSSF (for formal workers)",
+      access: "Cambodian citizens. Expats rarely use public facilities.",
+      cost: "Very cheap (a few dollars) but quality reflects the price.",
+      notes: "Cambodia's public healthcare system is severely underfunded. Public hospitals lack equipment, trained staff, and basic supplies. Hygiene standards are poor. English is rarely spoken. Expats avoid public hospitals except in life-threatening emergencies where transport isn't possible. Calmette Hospital (French-supported) is better than most but still below international standards."
     },
     privateHealthcare: {
-      cost: "$80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Phnom Penh clinics: $30-80 consultations. International insurance: $80-180/month.",
+      notes: "Phnom Penh has acceptable private healthcare for routine care. Royal Phnom Penh Hospital is the best facility—Thai-managed, modern equipment, English-speaking staff. SOS International Clinic provides Western-standard primary care. Raffles Medical has a Phnom Penh clinic. Outside Phnom Penh, private healthcare is nearly nonexistent—Siem Reap has basic clinics, Sihanoukville has very limited options. Anything serious = Bangkok evacuation."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Cambodian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Medical evacuation is CRITICAL. Without it, you're facing $15,000-30,000+ out-of-pocket for an air ambulance to Bangkok. This is non-negotiable coverage in Cambodia.",
+      "Phnom Penh only. Cambodia's acceptable healthcare is concentrated in the capital. Siem Reap (Angkor Wat) and Sihanoukville have only basic clinics. Rural areas have almost nothing.",
+      "Bangkok is 1 hour away. Many expats don't bother with Cambodia healthcare at all—they fly to Bangkok for checkups, dental work, and any non-emergency care.",
+      "Blood supply is limited. If you have a rare blood type, register with your embassy and consider Bangkok hospitals for surgical procedures.",
+      "Pharmacies stock basics but many medications require import. If you take specialty medications, bring supplies or arrange import.",
+      "The E visa is easy but doesn't mean healthcare is. Cambodia's low barrier to entry attracts people who underestimate healthcare risks."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Cambodia visa?",
-        answer: "No. Cambodia does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Why is medical evacuation coverage so important in Cambodia?",
+        answer: "Cambodia cannot treat serious conditions. Heart attacks, strokes, major trauma, cancer, complex surgery—all require evacuation to Bangkok or Singapore. Without insurance, an air ambulance costs $15,000-30,000+. With insurance, evacuation is covered. This isn't optional coverage in Cambodia—it's the primary reason to have insurance. Even minor issues (broken bones, appendicitis) may warrant evacuation for proper treatment."
       },
       {
-        question: "How does Cambodian public healthcare work?",
-        answer: "Cambodia's public healthcare system (NSSF) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Can I just use Bangkok hospitals instead of insuring for Cambodia?",
+        answer: "Many expats do exactly this—they self-pay for minor care in Phnom Penh and fly to Bangkok for anything significant. Bumrungrad and Bangkok Hospital offer world-class care. However, you still need evacuation coverage for emergencies. You can't fly commercial with a heart attack. Insurance with medical evacuation ensures you can get to Bangkok when you can't travel yourself."
       },
       {
-        question: "How much does health insurance cost in Cambodia?",
-        answer: "International health insurance typically costs $80-180/month depending on your age and coverage level. Local/public options cost $10-30/month but may have limitations for non-citizens."
+        question: "What's healthcare like in Siem Reap (Angkor Wat area)?",
+        answer: "Limited. Siem Reap has basic private clinics (Royal Angkor International Hospital is the best option) that can handle minor injuries, infections, and routine illness. Anything requiring surgery, imaging beyond basic X-rays, or specialist care requires evacuation to Phnom Penh or Bangkok. If you're based in Siem Reap, ensure your insurance covers domestic evacuation to Phnom Penh as well as international evacuation."
       },
       {
-        question: "What's the best health insurance for expats in Cambodia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How do retirees manage healthcare in Cambodia?",
+        answer: "Cambodia's low cost of living attracts retirees, but healthcare is the main concern. Smart retirees: (1) get comprehensive insurance with evacuation, (2) stay in or near Phnom Penh, (3) use Bangkok for checkups and non-emergency care, (4) maintain relationships with doctors in their home country or Bangkok for ongoing conditions. Retirees with serious chronic conditions should carefully consider whether Cambodia is appropriate."
       },
       {
-        question: "Are pre-existing conditions covered in Cambodia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is the EB visa really indefinitely renewable?",
+        answer: "Yes. Cambodia's E-class (business) visa can be renewed indefinitely—no proof of business activity, income, or insurance required. This makes Cambodia attractive for long-term stays. However, visa ease doesn't equal healthcare quality. The low barrier to entry means many expats arrive without understanding healthcare limitations. Get insurance before you need it, not after a medical emergency."
       }
     ],
     sidebarLinks: [
@@ -4243,62 +4245,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Myanmar (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Myanmar. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Myanmar. Current situation warnings, evacuation to Bangkok/Singapore, and coverage considerations for the limited expat community.",
     headline: "Myanmar Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Myanmar—understanding the MOH system and international insurance options.",
+    subheadline: "Critical information for the few expats remaining in Myanmar—healthcare has deteriorated significantly, evacuation coverage is essential.",
     summaryBullets: [
-      "Myanmar does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (MOH) is available to residents.",
-      "International health insurance typically costs $60-150/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Business Visa, Social Visa."
+      "⚠️ IMPORTANT: Myanmar's political situation since 2021 has severely impacted healthcare. Many international staff have left. Consider this before relocating.",
+      "Medical evacuation to Bangkok or Singapore is ESSENTIAL. Myanmar's hospitals cannot handle serious conditions, and the situation has worsened since 2021.",
+      "Some international insurers have restricted or excluded Myanmar coverage. Verify your policy covers Myanmar before relying on it.",
+      "Yangon has private hospitals (Pun Hlaing, Victoria) but quality and supply chains have been affected. Outside Yangon, options are extremely limited.",
+      "Banking restrictions make payments difficult. International insurance with direct billing (where still available) is strongly preferred."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Myanmar does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Myanmar does not require health insurance for visas. However, insurance with medical evacuation is absolutely essential given the healthcare limitations. Important: verify your insurer still covers Myanmar—some have added exclusions or restrictions since 2021. The political and security situation affects healthcare access, supply chains, and evacuation logistics.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Anyone in Myanmar—evacuation coverage is critical given healthcare limitations",
+      "Expats outside Yangon where healthcare barely exists",
+      "Anyone with chronic conditions—medication supply chains are disrupted",
+      "Business travelers on short assignments",
+      "NGO and humanitarian workers (often have organizational coverage)"
     ],
     publicHealthcare: {
-      name: "MOH",
-      access: "Burmese citizens, legal residents",
-      cost: "$5-15/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists. Check current situation"
+      name: "Ministry of Health",
+      access: "Myanmar citizens. Expats do not use public facilities.",
+      cost: "Nominal fees but facilities are severely underfunded.",
+      notes: "Myanmar's public healthcare was already limited before 2021 and has deteriorated further. Public hospitals lack equipment, medications, and trained staff. Many healthcare workers have left the country or joined civil disobedience movements. Expats should not rely on public healthcare under any circumstances."
     },
     privateHealthcare: {
-      cost: "$60-150/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Yangon clinics: $30-60 consultations where available. International insurance: $80-200/month (if coverage available).",
+      notes: "Yangon's private hospitals (Pun Hlaing Siloam, Victoria Hospital, Asia Royal Hospital) continue operating but face challenges: staff shortages, supply chain issues, and banking restrictions affecting equipment/medication imports. Quality has declined from pre-2021 levels. International SOS and other medical assistance companies maintain limited presence. For anything serious, evacuation to Bangkok (1.5 hours) or Singapore is necessary."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Burmese regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "Check current situation"
+      "⚠️ VERIFY COVERAGE: Some insurers have excluded or restricted Myanmar. Check your policy carefully—don't assume coverage exists.",
+      "Banking is complicated. International transfers are restricted. Cash is king but US dollars may not be accepted everywhere. Direct billing arrangements may not work.",
+      "Security situation varies by region. Some areas are effectively inaccessible. Insurance won't help if you can't safely reach a hospital or evacuation point.",
+      "Evacuation logistics are challenging. Yangon airport operates but flight schedules are reduced. Land borders have restrictions. Plan evacuation routes in advance.",
+      "Medication supply is unreliable. If you take regular medications, bring adequate supplies. Some medications are unavailable or counterfeit.",
+      "The expat community has shrunk dramatically. Support networks and local knowledge are limited compared to pre-2021."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Myanmar visa?",
-        answer: "No. Myanmar does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Should I move to Myanmar given the current situation?",
+        answer: "This is a personal decision requiring careful consideration. Healthcare is one of many factors. The situation has significantly deteriorated since 2021: healthcare is limited, banking is restricted, and security varies by region. Most countries advise against non-essential travel. If you have specific compelling reasons (existing business, family, humanitarian work), consult with organizations experienced in the current environment."
       },
       {
-        question: "How does Burmese public healthcare work?",
-        answer: "Myanmar's public healthcare system (MOH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Will my international insurance cover Myanmar?",
+        answer: "Maybe not. Several insurers have added Myanmar exclusions or restrictions since 2021. Before traveling or relying on coverage, contact your insurer directly and get written confirmation of Myanmar coverage. Ask specifically about: general coverage, evacuation coverage, exclusions for civil unrest or political instability, and any geographic restrictions within Myanmar."
       },
       {
-        question: "How much does health insurance cost in Myanmar?",
-        answer: "International health insurance typically costs $60-150/month depending on your age and coverage level. Local/public options cost $5-15/month but may have limitations for non-citizens."
+        question: "How does medical evacuation work from Myanmar currently?",
+        answer: "Evacuation is still possible but more complicated than before. Yangon airport operates international flights, primarily to Bangkok and Singapore. Air ambulance services (International SOS, etc.) maintain limited capability. Evacuation planning should consider: current flight availability, security situation at your location, and whether you can reach Yangon safely. Having an evacuation plan before you need it is critical."
       },
       {
-        question: "What's the best health insurance for expats in Myanmar?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What if I'm already in Myanmar and need care?",
+        answer: "For routine care in Yangon, private hospitals still operate—Pun Hlaing Siloam is generally considered the best option. Bring cash (USD or local currency). For anything serious, evacuate to Bangkok if at all possible. Contact your insurance evacuation line and/or embassy immediately. If you're outside Yangon, getting to Yangon or directly to Bangkok is the priority for any significant medical need."
       },
       {
-        question: "Are pre-existing conditions covered in Myanmar?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Are NGO workers covered differently?",
+        answer: "Most international NGOs and humanitarian organizations provide comprehensive coverage including evacuation for staff. If you're working for an organization, verify your organizational coverage details. Some organizations use specialized insurers experienced with high-risk environments. Independent contractors and volunteers should verify they have personal coverage—don't assume organizational coverage extends to you."
       }
     ],
     sidebarLinks: [
@@ -4418,61 +4421,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Sri Lanka (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Sri Lanka. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Sri Lanka. Free public healthcare, Colombo private hospitals, Digital Nomad Visa, and recovery from 2022 economic crisis.",
     headline: "Sri Lanka Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Sri Lanka—understanding the State Healthcare system and international insurance options.",
+    subheadline: "Navigate Sri Lanka's surprisingly good public healthcare, Colombo's private hospitals, and post-crisis recovery for expats.",
     summaryBullets: [
-      "Sri Lanka does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (State Healthcare) is available to residents.",
-      "International health insurance typically costs $60-150/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: ETA, Residence Visa."
+      "Sri Lanka has FREE public healthcare for everyone—including foreigners. Quality is decent for a developing country, though wait times exist.",
+      "Colombo has good private hospitals: Nawaloka, Lanka Hospitals, Asiri Group—approaching regional standards at affordable prices.",
+      "The 2022 economic crisis caused medication shortages, but the healthcare system has largely recovered. Verify medication availability for chronic conditions.",
+      "English is widely spoken (British colonial legacy)—communication with doctors is easier than most Asian countries.",
+      "The Digital Nomad Visa requires health insurance, but Sri Lanka is otherwise relaxed about coverage requirements."
     ],
-    insuranceRequired: false,
-    requirementExplanation: "Sri Lanka does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    insuranceRequired: true,
+    requirementExplanation: "Sri Lanka's Digital Nomad Visa requires proof of health insurance with minimum $50,000 coverage including COVID-19. For other visa types (ETA, residence), insurance isn't strictly required but is recommended. The free public healthcare system is available to foreigners, but private insurance provides faster access and better facilities. Given the 2022 crisis recovery, insurance provides security against potential future disruptions.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Digital Nomad Visa applicants—insurance proof required for the visa",
+      "Expats wanting faster access via private hospitals",
+      "Anyone with chronic conditions requiring reliable medication supply",
+      "Travelers to remote areas where healthcare is limited",
+      "Those wanting evacuation coverage to India (Chennai/Kerala) for complex cases"
     ],
     publicHealthcare: {
-      name: "State Healthcare",
-      access: "Sri Lankan citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Free State Healthcare System",
+      access: "Everyone—Sri Lankan citizens and foreigners alike. No insurance or payment required.",
+      cost: "Free at point of service. Funded by taxes.",
+      notes: "Sri Lanka's public healthcare is surprisingly good for the region—a legacy of strong social spending. Public hospitals provide free care to anyone who walks in. Quality is acceptable for routine care and emergencies. Challenges: long wait times (hours for non-emergencies), crowded wards, and variable quality outside Colombo. The 2022 economic crisis caused temporary medication and supply shortages, but the system has largely recovered. English is commonly spoken by doctors."
     },
     privateHealthcare: {
-      cost: "$60-150/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Private consultations: LKR 2,000-5,000 (~$6-15). Hospital stays: LKR 15,000-50,000/night ($45-150). International insurance: $60-150/month.",
+      notes: "Colombo has good private hospitals. Nawaloka Hospital and Lanka Hospitals are the largest private chains—modern facilities, English-speaking staff, reasonable wait times. Asiri Group operates multiple hospitals. Private healthcare costs are very affordable by international standards. Outside Colombo, private options are limited—Kandy and Galle have some facilities, but smaller towns rely on public hospitals. For complex cases, some expats travel to Chennai or Kerala (India) where specialized care is excellent."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Sri Lankan regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Post-crisis recovery: The 2022 economic crisis caused medication shortages and affected hospital supplies. The situation has improved but verify availability of specific medications if you have chronic conditions.",
+      "Outside Colombo, options are limited. Kandy and Galle have some private healthcare; smaller towns and beach areas rely on public hospitals or require travel to Colombo.",
+      "India is the backup plan. Chennai and Kerala have excellent hospitals 1-2 hours by flight. For complex cases (cardiac surgery, cancer treatment, transplants), India may be preferable to Sri Lanka.",
+      "Currency volatility: The Sri Lankan rupee has fluctuated significantly. Healthcare costs in LKR can become more or less expensive in USD terms.",
+      "Dengue and other tropical diseases are endemic. Ensure your insurance covers tropical disease treatment without exclusions.",
+      "Adventure activities (surfing, diving, wildlife safaris) may need specific coverage. Verify your policy covers activities you plan to do."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Sri Lanka visa?",
-        answer: "No. Sri Lanka does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Can foreigners really use free public healthcare?",
+        answer: "Yes. Sri Lanka's public healthcare is free for everyone—citizens and foreigners alike. You can walk into any public hospital and receive care without payment. This includes emergency care, general consultations, and hospitalization. Quality is acceptable for routine care. The main downsides are wait times and crowded facilities. Many expats use public hospitals for emergencies and minor care, then go private for faster service or complex needs."
       },
       {
-        question: "How does Sri Lankan public healthcare work?",
-        answer: "Sri Lanka's public healthcare system (State Healthcare) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How has healthcare recovered from the 2022 economic crisis?",
+        answer: "Substantially recovered. The 2022 crisis caused acute shortages of medications, medical supplies, and fuel (affecting ambulances). By 2024-2025, the situation has stabilized: most medications are available, hospitals are functioning normally, and supply chains have recovered. However, some specialized medications may still have occasional shortages. If you have chronic conditions requiring specific medications, verify availability and consider maintaining a buffer supply."
       },
       {
-        question: "How much does health insurance cost in Sri Lanka?",
-        answer: "International health insurance typically costs $60-150/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "What's covered under the Digital Nomad Visa insurance requirement?",
+        answer: "Sri Lanka's Digital Nomad Visa requires health insurance with minimum $50,000 coverage, including COVID-19. The insurance must be valid for your intended stay. International plans from major providers satisfy this requirement. You'll need to show proof during the visa application. The visa allows stays up to 1 year (renewable) and requires proof of $2,000/month income or equivalent savings."
       },
       {
-        question: "What's the best health insurance for expats in Sri Lanka?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Should I use India for medical care instead?",
+        answer: "For routine care, Sri Lanka is fine—Colombo private hospitals are good and affordable. For complex cases (major surgery, cancer treatment, cardiac procedures, organ issues), India offers superior options. Chennai and Kerala are 1-2 hours by flight and have world-class hospitals (Apollo Chennai, Narayana Health). Many Sri Lankans themselves travel to India for complex care. If your insurance includes India coverage and evacuation, you have excellent regional options."
       },
       {
-        question: "Are pre-existing conditions covered in Sri Lanka?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How is healthcare outside Colombo?",
+        answer: "Variable. Kandy (hill country) has decent private hospitals. Galle (south coast) has some facilities. Beach towns popular with tourists (Mirissa, Unawatuna, Arugam Bay) have basic clinics only—serious issues require travel to Colombo or Galle. For surf/beach-focused expats, consider that the nearest good hospital may be 1-2 hours away. Eastern Sri Lanka has more limited options than the west coast."
       }
     ],
     sidebarLinks: [
