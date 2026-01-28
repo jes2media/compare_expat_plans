@@ -18,62 +18,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Greece (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Greece. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Greece. Digital Nomad Visa requirements, EOPYY public healthcare, private hospitals in Athens, and coverage on Greek islands.",
     headline: "Greece Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Greece—understanding the EOPYY system and international insurance options.",
+    subheadline: "Navigate EOPYY public healthcare, Digital Nomad Visa insurance requirements, and island medical evacuation coverage.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Greece.",
-      "The public healthcare system (EOPYY) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Digital Nomad Visa, Retirement Visa."
+      "Health insurance is REQUIRED for Greek visas including the Digital Nomad Visa—minimum €30,000 coverage with hospitalization and repatriation.",
+      "The public healthcare system (EOPYY) has struggled since the debt crisis—private insurance is strongly recommended for quality care.",
+      "Private healthcare in Greece is surprisingly affordable—consultations €40-80, international plans €80-200/month.",
+      "Living on Greek islands? Medical evacuation coverage is essential—serious cases require helicopter or ferry transfer to Athens.",
+      "The Digital Nomad Visa requires proof of €3,500/month income and valid health insurance for the full stay duration."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Greece requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Greek standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Greece requires health insurance for non-EU visa applicants, including the Digital Nomad Visa and D-type residence visas. Minimum requirements: €30,000 coverage including hospitalization and medical repatriation. EU citizens can use EHIC for temporary stays but need private insurance for residence permits. Insurance must be valid for the entire duration of your stay and issued by a company operating in Greece or the EU.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All non-EU visa applicants—insurance is mandatory with specific minimum coverage amounts",
+      "Digital nomads applying for the Greek Digital Nomad Visa (€3,500/month income + insurance required)",
+      "Anyone living on Greek islands where medical facilities are limited",
+      "Retirees and those with chronic conditions—EOPYY public care has significant limitations",
+      "EU citizens planning long-term residence (EHIC covers temporary stays only)"
     ],
     publicHealthcare: {
-      name: "EOPYY",
-      access: "Greek citizens, legal residents, EU citizens with EHIC",
-      cost: "€50-100/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "EOPYY (National Organization for the Provision of Health Services)",
+      access: "Greek citizens, legal residents with AMKA number, EU citizens with EHIC (temporary only)",
+      cost: "Contributions: ~€50-100/month for self-employed. Most care is free at point of service but with significant waits.",
+      notes: "The Greek healthcare system was hit hard by the 2010 debt crisis and has not fully recovered. Public hospitals, especially outside Athens, may be understaffed and have equipment shortages. English is limited outside major cities. Most expats rely on private healthcare for anything beyond emergencies."
     },
     privateHealthcare: {
-      cost: "€100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local private: €50-120/month. International plans: €80-200/month.",
+      notes: "Private healthcare in Greece is affordable by European standards. Athens has modern private hospitals (Hygeia, Mediterraneo, Athens Medical Center). Private care is significantly better than public for non-emergency treatment. On islands, private options are limited—you may need evacuation to Athens for serious care."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Greek regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Digital Nomad Visa requires €30,000 minimum coverage including hospitalization AND medical repatriation—verify your policy includes both.",
+      "Greek islands have limited medical facilities. Santorini, Mykonos, and smaller islands may only have basic clinics—serious cases require evacuation to Athens.",
+      "EOPYY public healthcare varies dramatically by location. Athens hospitals are better staffed than rural areas and islands.",
+      "EU citizens: EHIC covers emergency care during temporary stays but does NOT satisfy residence visa requirements.",
+      "Your insurance must be from a company operating in Greece or the EU. Some US-based insurers may not be accepted for visa applications.",
+      "Age limits: The Digital Nomad Visa has no upper age limit, but some insurers restrict new applicants over 65-70."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Greece visa?",
-        answer: "Yes. Most Greek visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What insurance do I need for the Greek Digital Nomad Visa?",
+        answer: "The Digital Nomad Visa requires health insurance with minimum €30,000 coverage including hospitalization and medical repatriation. The insurance must be valid for your entire stay and issued by a company operating in Greece or the EU. You also need proof of €3,500/month income (or €42,000/year in savings)."
       },
       {
-        question: "How does Greek public healthcare work?",
-        answer: "Greece's public healthcare system (EOPYY) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does Greek public healthcare compare to private?",
+        answer: "Greek public healthcare (EOPYY) has struggled since the 2010 debt crisis. Public hospitals are often underfunded and understaffed, especially outside Athens. Wait times can be long. Private healthcare offers faster, higher-quality care at reasonable prices (€40-80 per consultation). Most expats use private."
       },
       {
-        question: "How much does health insurance cost in Greece?",
-        answer: "International health insurance typically costs €100-250/month depending on your age and coverage level. Local/public options cost €50-100/month but may have limitations for non-citizens."
+        question: "Do I need special coverage for living on Greek islands?",
+        answer: "Yes. Islands like Santorini, Mykonos, and smaller islands have limited medical facilities—often just basic clinics. Serious medical issues require evacuation to Athens by helicopter or ferry. Make sure your policy includes medical evacuation. Some plans exclude remote/island evacuations."
       },
       {
-        question: "What's the best health insurance for expats in Greece?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Can EU citizens use EHIC in Greece?",
+        answer: "EU citizens can use EHIC for necessary care during temporary stays. However, EHIC does NOT satisfy visa requirements for long-term residence. If you are establishing residence in Greece (not just visiting), you will need private insurance that meets Greek residence permit requirements."
       },
       {
-        question: "Are pre-existing conditions covered in Greece?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does private health insurance cost in Greece?",
+        answer: "Greece is one of the more affordable European countries for private healthcare. Local private insurance costs €50-120/month. International plans with worldwide coverage cost €80-200/month. These rates are roughly 30-50% less than equivalent coverage in Germany or France."
       }
     ],
     sidebarLinks: [
@@ -194,60 +195,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Ireland (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Ireland. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Ireland. HSE public healthcare, Medical Card eligibility, VHI and Laya local plans, Critical Skills Permit requirements.",
     headline: "Ireland Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Ireland—understanding the HSE system and international insurance options.",
+    subheadline: "Navigate HSE public healthcare, local insurers like VHI, and why most expats get private coverage in Ireland.",
     summaryBullets: [
-      "Ireland does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (HSE) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Stamp 4, Critical Skills Permit."
+      "Ireland does not require health insurance for visas, but HSE public wait times make private coverage essential—specialist waits can exceed 12 months.",
+      "Becoming Ordinarily Resident (living in Ireland with intent to stay 1+ year) gives you access to HSE public hospitals at €80/night (capped at €800/year).",
+      "GP visits cost €50-70 without a Medical Card. Only low-income residents qualify for free GP care.",
+      "Local insurers (VHI, Laya, Irish Life Health) cost €80-200/month and cover private hospitals like the Blackrock Clinic and Beacon Hospital.",
+      "Critical Skills Employment Permit holders get immediate Ordinarily Resident status—you can access public healthcare from day one."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Ireland does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Ireland does not require health insurance for visa applications, including the Critical Skills Employment Permit or General Employment Permit. However, non-EU applicants must demonstrate they can support themselves financially. Most expats get private insurance because HSE wait times are extremely long—the public waiting list for some procedures exceeds 18 months. EU citizens can use EHIC for emergency/necessary care but should get local coverage for anything beyond basics.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Anyone who cannot wait 6-18 months for specialist appointments or procedures",
+      "Higher earners who do not qualify for Medical Card (free GP care)",
+      "Non-EU expats wanting access to private hospitals like Blackrock Clinic, Beacon, or Mater Private",
+      "Those with chronic conditions requiring regular specialist care",
+      "EU citizens planning to stay long-term (EHIC is for temporary stays only)"
     ],
     publicHealthcare: {
-      name: "HSE",
-      access: "Irish citizens, legal residents, EU citizens with EHIC",
-      cost: "€50-100/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "HSE (Health Service Executive)",
+      access: "Ordinarily Resident status (living in Ireland 1+ year). EU citizens with EHIC for emergency/necessary care.",
+      cost: "Public hospital: €80/night (max €800/year). GP visits: €50-70 unless you have a Medical Card (free for low-income). A&E: €100 unless referred by GP.",
+      notes: "Ireland has a two-tier healthcare system. Public HSE care is available but wait times are notoriously long—18+ months for some procedures. Those with private insurance often see the same consultants privately with no wait. About 46% of Irish residents have private health insurance despite public access."
     },
     privateHealthcare: {
-      cost: "€150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local (VHI, Laya, Irish Life Health): €80-200/month. International: €200-400/month.",
+      notes: "VHI is the largest insurer (~50% market share) and has strong relationships with Irish private hospitals. Irish private insurance gives access to consultants without 12-month waits. Tax relief of 20% is available on health insurance premiums, reducing effective costs."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Irish regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "HSE wait times are severe—some orthopedic procedures have 18+ month public waiting lists.",
+      "Medical Card (free GP care) is means-tested. Single person income threshold is around €184/week. Most working expats will not qualify.",
+      "Irish insurers have Lifetime Community Rating—premiums increase 2% per year for each year you are over 34 when you first take out insurance. Buy earlier to lock in lower rates.",
+      "EU citizens: EHIC covers emergency and necessary care, but planned procedures or ongoing treatment require local insurance.",
+      "Private insurance does not cover GP visits in most plans—you still pay €50-70 per visit out of pocket.",
+      "Tax relief of 20% applies to health insurance premiums—factor this into cost comparisons."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Ireland visa?",
-        answer: "No. Ireland does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Do I need health insurance for an Ireland visa?",
+        answer: "No. Ireland does not require health insurance for visa applications. However, non-EU applicants must show they can support themselves. Most expats get private insurance because HSE public wait times are extremely long."
       },
       {
-        question: "How does Irish public healthcare work?",
-        answer: "Ireland's public healthcare system (HSE) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is Ordinarily Resident status in Ireland?",
+        answer: "If you are living in Ireland and intend to stay for at least one year, you are considered Ordinarily Resident and can access HSE public healthcare. This applies regardless of nationality. Critical Skills Permit holders get this status immediately."
       },
       {
-        question: "How much does health insurance cost in Ireland?",
-        answer: "International health insurance typically costs €150-350/month depending on your age and coverage level. Local/public options cost €50-100/month but may have limitations for non-citizens."
+        question: "How much does private health insurance cost in Ireland?",
+        answer: "Local plans (VHI, Laya, Irish Life Health) cost €80-200/month depending on coverage level. International plans cost €200-400/month. Remember: you get 20% tax relief on premiums, so a €200/month plan effectively costs €160/month."
       },
       {
-        question: "What's the best health insurance for expats in Ireland?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What is Lifetime Community Rating in Ireland?",
+        answer: "Ireland has a unique system where your health insurance premium increases by 2% for every year you are over 34 when you first buy insurance. If you are 44 when you first buy, you pay a permanent 20% loading. This incentivizes buying insurance early."
       },
       {
-        question: "Are pre-existing conditions covered in Ireland?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I get VHI or international insurance?",
+        answer: "For long-term Ireland residents: VHI or Laya offer excellent access to Irish private hospitals, understand the local system, and premiums qualify for tax relief. For frequent travelers or those who may relocate: international plans offer worldwide coverage but may cost more and lack specific Irish hospital agreements."
       }
     ],
     sidebarLinks: [
@@ -632,62 +636,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Switzerland (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Switzerland. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Switzerland. Mandatory LAMal insurance, franchise system, costs by canton, and supplementary coverage options.",
     headline: "Switzerland Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Switzerland—understanding the LAMal system and international insurance options.",
+    subheadline: "Navigate mandatory LAMal insurance, the franchise system, and why Switzerland is the most expensive country for health coverage.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Switzerland.",
-      "The public healthcare system (LAMal) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs CHF 300-600/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: B Permit, C Permit."
+      "Health insurance is MANDATORY in Switzerland—you must enroll in LAMal within 3 months of arrival or face penalties and retroactive enrollment.",
+      "Basic LAMal insurance costs CHF 300-500/month depending on canton, age, and franchise (deductible). Geneva is most expensive; Appenzell is cheapest.",
+      "The franchise system: Choose a deductible from CHF 300 to 2,500/year. Higher franchise = lower monthly premiums, but you pay more out-of-pocket before coverage kicks in.",
+      "LAMal covers basic care including pre-existing conditions—insurers cannot reject you or charge more for health status.",
+      "Supplementary insurance (VVG) covers private rooms, alternative medicine, and dental—this is optional and does have medical underwriting."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Switzerland requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Swiss standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Switzerland has mandatory health insurance for all residents. You must enroll in LAMal basic insurance within 3 months of registering residence. This is strictly enforced—if you fail to enroll, authorities will assign you to an insurer and bill you retroactively with penalties. LAMal is not employer-provided (unlike most countries)—individuals choose and pay for their own insurance. The good news: LAMal insurers must accept everyone regardless of health status, and pre-existing conditions are fully covered.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "EVERYONE—LAMal is mandatory for all Swiss residents, including expats with B and C permits",
+      "Families with children—each family member needs their own policy (though children are cheaper)",
+      "Those wanting private hospital rooms or alternative medicine—add supplementary VVG insurance",
+      "Cross-border workers (frontaliers)—special rules apply; you may choose Swiss LAMal or home country coverage",
+      "Short-term residents under 3 months—may be exempt but should have travel insurance"
     ],
     publicHealthcare: {
-      name: "LAMal",
-      access: "Swiss citizens, legal residents, EU citizens with EHIC",
-      cost: "CHF 300-500/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "LAMal (Bundesgesetz über die Krankenversicherung / KVG)",
+      access: "Mandatory for all Swiss residents. Insurers must accept everyone—no health underwriting for basic coverage.",
+      cost: "CHF 300-500/month (adults). Varies significantly by canton: Geneva ~CHF 500, Appenzell ~CHF 300. Plus franchise (CHF 300-2,500/year) and 10% co-pay up to CHF 700/year.",
+      notes: "LAMal is not public healthcare—it is mandatory private insurance with regulated benefits. All insurers offer identical basic coverage; they compete on price and service. Pre-existing conditions are fully covered with no waiting periods. Healthcare quality is excellent across Switzerland."
     },
     privateHealthcare: {
-      cost: "CHF 300-600/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "LAMal basic: CHF 300-500/month. Supplementary (VVG): CHF 50-300/month additional.",
+      notes: "Supplementary insurance (VVG) covers extras: private or semi-private hospital rooms, alternative medicine (acupuncture, homeopathy), dental, glasses, and worldwide coverage. Unlike LAMal, VVG has medical underwriting—pre-existing conditions may be excluded or premiums increased. Apply for VVG when young and healthy."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Swiss regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "You MUST enroll in LAMal within 3 months of arrival. No exceptions. If you miss the deadline, you will be assigned to an insurer retroactively with penalties.",
+      "LAMal premiums vary 50%+ between cantons. If you live near a canton border, check if you can choose a cheaper canton's insurer.",
+      "The franchise (deductible) is per person per year. A family of 4 with CHF 2,500 franchises = CHF 10,000/year before insurance pays anything.",
+      "Supplementary insurance (VVG) requires medical underwriting. Apply when healthy—pre-existing conditions will be excluded.",
+      "Dental is NOT covered by LAMal except accident-related or certain diseases. Budget separately or get supplementary dental coverage.",
+      "Swiss healthcare is expensive even with insurance. Budget CHF 3,000-5,000/year for out-of-pocket costs (franchise + co-pays + dental)."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Switzerland visa?",
-        answer: "Yes. Most Swiss visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Is health insurance really mandatory in Switzerland?",
+        answer: "Yes, absolutely. All Swiss residents must have LAMal basic health insurance. This is enforced—if you do not enroll within 3 months of arrival, authorities will assign you to an insurer retroactively and you will face penalties. Unlike most countries, insurance is individual (not employer-provided) and you pay the full premium yourself."
       },
       {
-        question: "How does Swiss public healthcare work?",
-        answer: "Switzerland's public healthcare system (LAMal) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is the franchise system in Swiss health insurance?",
+        answer: "The franchise is your annual deductible. You choose between CHF 300 (lowest) and CHF 2,500 (highest). Higher franchise = lower monthly premiums, but you pay more before insurance kicks in. After the franchise, you pay 10% co-pay up to CHF 700/year. Choose based on your expected healthcare usage."
       },
       {
-        question: "How much does health insurance cost in Switzerland?",
-        answer: "International health insurance typically costs CHF 300-600/month depending on your age and coverage level. Local/public options cost CHF 300-500/month but may have limitations for non-citizens."
+        question: "Why does LAMal cost different amounts in different cantons?",
+        answer: "Healthcare costs vary significantly between cantons. Geneva has the highest costs (and premiums), while rural cantons like Appenzell are cheapest. The same insurer will charge different premiums depending on where you live. This can mean CHF 200+/month difference for identical coverage."
       },
       {
-        question: "What's the best health insurance for expats in Switzerland?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Are pre-existing conditions covered by Swiss health insurance?",
+        answer: "For LAMal basic insurance: Yes, fully. Insurers must accept everyone and cannot charge more or exclude conditions based on health status. For supplementary insurance (VVG): No, these policies have medical underwriting and can exclude pre-existing conditions. Apply for VVG when healthy."
       },
       {
-        question: "Are pre-existing conditions covered in Switzerland?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do I need supplementary insurance in Switzerland?",
+        answer: "It depends on your needs. LAMal covers all medically necessary care. Supplementary insurance (VVG) adds: private hospital rooms (vs. shared 4-bed wards), free choice of doctor/hospital across Switzerland, alternative medicine, dental, and worldwide coverage. Many expats add at least basic supplementary coverage."
       }
     ],
     sidebarLinks: [
@@ -3610,62 +3615,68 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in South Korea (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in South Korea. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in South Korea. NHIS enrollment, costs, E-2 and E-7 visa requirements, and how to supplement with private coverage.",
     headline: "South Korea Expat Health Insurance",
-    subheadline: "Find the right coverage for living in South Korea—understanding the NHIS system and international insurance options.",
+    subheadline: "Navigate Korea's mandatory NHIS system and find the right supplemental coverage for expat life in Seoul, Busan, and beyond.",
     summaryBullets: [
-      "Health insurance is required for most visa types in South Korea.",
-      "The public healthcare system (NHIS) is available to residents.",
-      "International health insurance typically costs $150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: D-10 Job Seeker, E-7 Skilled Worker."
+      "NHIS (National Health Insurance) is mandatory for all foreigners staying 6+ months—no opting out.",
+      "NHIS costs approximately ₩130,000-180,000/month ($100-140) and covers about 60-70% of medical costs.",
+      "Most expats add private insurance to cover the 30-40% copay, dental, vision, and English-speaking services.",
+      "Korean healthcare quality is excellent—the country is a top medical tourism destination.",
+      "English-speaking doctors are available in Seoul and major cities but not guaranteed elsewhere."
     ],
     insuranceRequired: true,
-    requirementExplanation: "South Korea requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Korean standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Since July 2019, all foreigners staying in South Korea for 6 months or longer must enroll in NHIS (National Health Insurance Service). This applies to E-2 English teachers, E-7 skilled workers, D-10 job seekers, and all long-term visa holders. NHIS is not optional—you'll be auto-enrolled and billed. Many expats add private insurance to supplement NHIS coverage gaps.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All visa holders staying 6+ months—NHIS enrollment is mandatory",
+      "E-2 English teachers (employer typically covers 50% of NHIS)",
+      "E-7 skilled workers and professionals",
+      "F-2/F-4/F-5/F-6 residence visa holders",
+      "Anyone wanting English-speaking doctors and private rooms",
+      "Expats needing dental, vision, or mental health coverage (limited in NHIS)"
     ],
     publicHealthcare: {
-      name: "NHIS",
-      access: "Korean citizens, legal residents",
-      cost: "$80-150/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "NHIS (National Health Insurance Service)",
+      access: "Mandatory for all residents staying 6+ months, including foreigners",
+      cost: "₩130,000-180,000/month ($100-140), or 7% of income for employees (split with employer)",
+      notes: "Covers about 60-70% of costs. You pay 30-40% copay at point of service. Excellent hospital infrastructure. Limited English support outside Seoul. Dental and vision coverage is minimal."
     },
     privateHealthcare: {
-      cost: "$150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$100-300/month for supplemental; $250-450/month for comprehensive international",
+      notes: "Local Korean insurers (Samsung, Hyundai) offer affordable supplemental plans. International insurers provide English support, coverage outside Korea, and direct billing at international clinics."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Korean regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "NHIS is mandatory—you cannot opt out, even with private insurance. Budget for both.",
+      "NHIS only covers 60-70% of costs. The 30-40% copay can add up for major procedures.",
+      "Dental coverage under NHIS is very limited—consider supplemental dental insurance.",
+      "English-speaking doctors are concentrated in Seoul. Outside major cities, language barriers exist.",
+      "Mental health coverage is limited under NHIS and Korean private plans.",
+      "If you leave Korea, NHIS coverage ends. International insurance provides continuity."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a South Korea visa?",
-        answer: "Yes. Most Korean visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Is NHIS mandatory for expats in South Korea?",
+        answer: "Yes. Since July 2019, all foreigners staying 6+ months must enroll in NHIS. This includes E-2 teachers, E-7 workers, and all long-term visa holders. You cannot opt out, even if you have private insurance. Enrollment is automatic when you register your visa."
       },
       {
-        question: "How does Korean public healthcare work?",
-        answer: "South Korea's public healthcare system (NHIS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How much does NHIS cost for expats?",
+        answer: "NHIS costs approximately ₩130,000-180,000/month ($100-140) for individuals. Employed expats pay about 3.5% of salary (employer pays the other 3.5%). Self-employed and unemployed foreigners pay based on income, assets, and age, with a minimum floor."
       },
       {
-        question: "How much does health insurance cost in South Korea?",
-        answer: "International health insurance typically costs $150-350/month depending on your age and coverage level. Local/public options cost $80-150/month but may have limitations for non-citizens."
+        question: "What does NHIS cover?",
+        answer: "NHIS covers about 60-70% of costs for doctor visits, hospital stays, surgery, prescriptions, and basic dental. You pay the remaining 30-40% as a copay. Coverage is comprehensive for medical care but limited for dental, vision, and mental health services."
       },
       {
-        question: "What's the best health insurance for expats in South Korea?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Do I need private insurance if I have NHIS?",
+        answer: "Many expats add private insurance to cover: (1) the 30-40% copay gap, (2) dental and vision care, (3) English-speaking international clinics, (4) private hospital rooms, and (5) coverage when traveling outside Korea. It's not required but highly recommended."
       },
       {
-        question: "Are pre-existing conditions covered in South Korea?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How good is Korean healthcare?",
+        answer: "Korean healthcare is excellent—world-class hospitals, advanced technology, and highly trained doctors. South Korea is a top medical tourism destination. The main challenges for expats are language barriers outside Seoul and navigating the system without Korean language skills."
+      },
+      {
+        question: "Can I see English-speaking doctors in Korea?",
+        answer: "Yes, in Seoul and major cities. International clinics like Severance International Health Care, Samsung Medical Center International, and Asan Medical Center have English-speaking staff. Outside Seoul, English support is limited—bring a Korean speaker or use translation apps."
       }
     ],
     sidebarLinks: [
@@ -3678,16 +3689,16 @@ export const countries: Country[] = [
         href: "/countries/south-korea/insurance/allianz-care"
       },
       {
+        title: "BUPA Global in South Korea",
+        href: "/countries/south-korea/insurance/bupa-global"
+      },
+      {
         title: "Insurance for Digital Nomads",
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
-      },
-      {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Insurance for Teachers Abroad",
+        href: "/insurance-for/teachers-abroad"
       }
     ]
   },
@@ -3873,61 +3884,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Philippines (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Philippines. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in the Philippines. SRRV visa, PhilHealth coverage, Metro Manila hospitals, medical evacuation to Singapore.",
     headline: "Philippines Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Philippines—understanding the PhilHealth system and international insurance options.",
+    subheadline: "Navigate PhilHealth, local HMOs, and why medical evacuation coverage is critical outside Metro Manila.",
     summaryBullets: [
-      "Philippines does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (PhilHealth) is available to residents.",
-      "International health insurance typically costs $80-200/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: SRRV, 13(a) Marriage Visa."
+      "The Philippines does not require health insurance for visas, but private coverage is essential—healthcare quality outside Metro Manila is limited.",
+      "Metro Manila has excellent private hospitals (St. Luke's, Makati Medical Center, The Medical City) at 60-80% less than US prices.",
+      "PhilHealth contributions are mandatory for workers and cover basic hospitalization—but expats need supplemental private insurance.",
+      "Medical evacuation coverage is critical. Complex cases outside Manila often require evacuation to Singapore (a $30,000+ flight).",
+      "Local HMOs (Maxicare, Intellicare, Medicard) cost ₱15,000-40,000/year ($270-720) and provide good coverage at Manila hospitals."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Philippines does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "The Philippines does not require health insurance for visa applications, including the SRRV (Special Resident Retiree's Visa) or 13(a) marriage visa. However, PhilHealth contributions are mandatory for employees. Private insurance is strongly recommended because healthcare quality varies dramatically—Metro Manila has world-class private hospitals, but provincial healthcare is often inadequate for serious conditions.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Anyone living outside Metro Manila where healthcare facilities are limited",
+      "Retirees (SRRV holders) wanting guaranteed access to top private hospitals",
+      "Expats who travel frequently and need coverage across Southeast Asia",
+      "Those with chronic conditions requiring regular specialist care",
+      "Anyone wanting medical evacuation coverage to Singapore for complex cases"
     ],
     publicHealthcare: {
-      name: "PhilHealth",
-      access: "Filipino citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "PhilHealth (Philippine Health Insurance Corporation)",
+      access: "Filipino citizens and foreign workers with PhilHealth contributions. Coverage is basic.",
+      cost: "Mandatory contributions: 5% of income (split employer/employee). Retirees: ₱4,800/year ($85).",
+      notes: "PhilHealth covers basic hospitalization at accredited hospitals but has room rate limits and coverage caps. It is not comprehensive—think of it as a discount program, not full insurance. Public hospitals are overcrowded and underfunded. Most expats in Manila go directly to private hospitals regardless of PhilHealth status."
     },
     privateHealthcare: {
-      cost: "$80-200/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local HMO: ₱15,000-40,000/year ($270-720). International: $100-250/month.",
+      notes: "Metro Manila has excellent private hospitals. St. Luke's Medical Center (BGC and Quezon City), Makati Medical Center, and The Medical City offer care comparable to Singapore at a fraction of the cost. English is universal. Outside Manila, options are limited—Cebu has decent facilities, but most provinces do not."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Filipino regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Healthcare quality drops dramatically outside Metro Manila and Cebu. If you live in Davao, Baguio, or the provinces, medical evacuation coverage is essential.",
+      "Medical evacuation to Singapore costs $30,000-50,000. Make sure your policy covers this if you live outside major cities.",
+      "Local HMOs (Maxicare, Intellicare) are excellent value but only cover the Philippines. Add international coverage if you travel.",
+      "Age limits are strict—many local HMOs will not accept new members over 60-65. Apply early.",
+      "Prescription medications may not be covered by HMOs. Budget for out-of-pocket pharmacy costs.",
+      "Traffic in Manila can add hours to hospital travel time. Consider living near a major hospital if health is a concern."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Philippines visa?",
-        answer: "No. Philippines does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Do I need health insurance for the SRRV visa?",
+        answer: "No, the SRRV (Special Resident Retiree's Visa) does not require health insurance. However, given healthcare limitations outside Manila and the age profile of SRRV holders, private insurance is strongly recommended. PhilHealth is available to SRRV holders for ₱4,800/year."
       },
       {
-        question: "How does Filipino public healthcare work?",
-        answer: "Philippines's public healthcare system (PhilHealth) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How good are hospitals in the Philippines?",
+        answer: "It depends where you are. Metro Manila has world-class private hospitals (St. Luke's BGC, Makati Medical Center, The Medical City) with US/UK-trained doctors at 60-80% less cost. Outside Manila, quality drops significantly. Cebu is decent. Most provincial hospitals are inadequate for serious conditions."
       },
       {
-        question: "How much does health insurance cost in Philippines?",
-        answer: "International health insurance typically costs $80-200/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "Should I get a local HMO or international insurance?",
+        answer: "For Manila-based expats who rarely travel: Local HMOs (Maxicare, Intellicare, Medicard) offer excellent value at ₱15,000-40,000/year. For frequent travelers or those living outside Manila: International insurance with medical evacuation is worth the premium. Many expats have both."
       },
       {
-        question: "What's the best health insurance for expats in Philippines?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What is PhilHealth and do expats need it?",
+        answer: "PhilHealth is the national health insurance—mandatory for employees (5% of salary split with employer). It provides basic hospitalization coverage with caps and limits. It is not comprehensive insurance. Most expats treat it as a supplement, not their primary coverage."
       },
       {
-        question: "Are pre-existing conditions covered in Philippines?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Why is medical evacuation important in the Philippines?",
+        answer: "Outside Metro Manila, healthcare facilities cannot handle complex cases (cardiac surgery, cancer treatment, severe trauma). Evacuation to Singapore costs $30,000-50,000. Even in Manila, some conditions are better treated in Singapore. Medical evacuation coverage is essential if you live outside Manila or have serious health conditions."
       }
     ],
     sidebarLinks: [
@@ -3960,61 +3973,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Malaysia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Malaysia. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Malaysia. MM2H visa requirements, DE Rantau digital nomad visa, world-class private hospitals at affordable prices.",
     headline: "Malaysia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Malaysia—understanding the MOH system and international insurance options.",
+    subheadline: "Access world-class private healthcare at Southeast Asian prices—understand MM2H requirements and your insurance options.",
     summaryBullets: [
-      "Malaysia does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (MOH) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: MM2H, DE Rantau."
+      "MM2H (Malaysia My Second Home) visa requires health insurance for applicants 35 and older—local Malaysian insurance from approved providers.",
+      "Malaysia is a medical tourism destination—private hospitals like Prince Court and Gleneagles offer excellent care at 50-70% less than US prices.",
+      "Private insurance costs RM200-600/month ($45-130) for comprehensive coverage at top KL hospitals.",
+      "Public healthcare is extremely cheap (RM1-5 per visit) but crowded and primarily for citizens—foreigners can use it but with longer waits.",
+      "The DE Rantau digital nomad visa does not require insurance, but coverage is strongly recommended."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Malaysia does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Malaysia does not require health insurance for most visa types, but MM2H applicants aged 35 and above must obtain medical insurance from a Malaysian insurance company. The DE Rantau (digital nomad) visa does not mandate insurance, but given Malaysia's affordable private healthcare, getting coverage makes sense. Most expats skip the public system entirely and go private—it's affordable and excellent quality.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "MM2H visa applicants aged 35+—insurance is mandatory from a Malaysian provider",
+      "Anyone wanting guaranteed access to top private hospitals (Prince Court, Gleneagles, Pantai)",
+      "Expats with chronic conditions requiring regular specialist care",
+      "Those planning to live outside Kuala Lumpur where private options are limited",
+      "Retirees wanting comprehensive coverage including medical evacuation to Singapore if needed"
     ],
     publicHealthcare: {
-      name: "MOH",
-      access: "Malaysian citizens, legal residents",
-      cost: "$20-50/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "MOH (Ministry of Health) Public Healthcare",
+      access: "Malaysian citizens pay RM1-5 per visit. Foreigners can access public hospitals but pay significantly more (still cheap by Western standards).",
+      cost: "Citizens: RM1-5 per visit. Foreigners: RM40-100+ per consultation at public hospitals.",
+      notes: "Malaysian public hospitals are functional but crowded—wait times can be hours. Most expats go private. Public hospitals are adequate for emergencies but private is preferred for everything else. English proficiency varies but is generally good in urban areas."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local private: RM200-600/month ($45-130). International plans: $150-300/month.",
+      notes: "Malaysia is a medical tourism hub—private hospitals rival Western standards at a fraction of the cost. Prince Court Medical Centre, Gleneagles, Pantai Hospital, and Sunway Medical Centre in KL offer excellent care. A private specialist consultation costs RM150-300 ($35-70). Most doctors speak English."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Malaysian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "MM2H visa applicants 35+ MUST get insurance from a Malaysian insurance company—international plans do not satisfy this requirement.",
+      "Medical costs are rising faster than inflation in Malaysia. Get insurance early to lock in premiums.",
+      "Outside Kuala Lumpur and Penang, private hospital options are limited. Medical evacuation to KL may be needed for serious conditions.",
+      "Some local Malaysian insurers have age limits (65-70) for new applicants. Apply before you hit the cutoff.",
+      "Pre-existing conditions have 12-24 month waiting periods with most Malaysian insurers.",
+      "Singapore is just across the border for the most complex cases—ensure your plan covers cross-border care if needed."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Malaysia visa?",
-        answer: "No. Malaysia does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Do I need insurance for the MM2H visa?",
+        answer: "If you are 35 or older, yes. MM2H applicants aged 35+ must obtain medical insurance from a Malaysian insurance company. Younger applicants are exempt. The insurance must be purchased from an approved Malaysian provider—international plans do not count."
       },
       {
-        question: "How does Malaysian public healthcare work?",
-        answer: "Malaysia's public healthcare system (MOH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How good is private healthcare in Malaysia?",
+        answer: "Excellent. Malaysia is a top medical tourism destination. Private hospitals like Prince Court Medical Centre (KL) are JCI-accredited and rival Western hospitals in quality—at 50-70% less cost. Most specialists trained in the UK, Australia, or US. English is widely spoken."
       },
       {
-        question: "How much does health insurance cost in Malaysia?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost $20-50/month but may have limitations for non-citizens."
+        question: "How much does private health insurance cost in Malaysia?",
+        answer: "Local Malaysian insurance costs RM200-600/month ($45-130) for comprehensive coverage including hospitalization at top private hospitals. International plans with worldwide coverage cost $150-300/month. Malaysia is one of the most affordable places in Asia for quality private healthcare."
       },
       {
-        question: "What's the best health insurance for expats in Malaysia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Should I get Malaysian or international insurance?",
+        answer: "For MM2H visa holders 35+: You MUST get Malaysian insurance. For others: Local Malaysian plans offer excellent value for in-country care. International plans make sense if you travel frequently, want Singapore coverage, or may relocate. Many expats have both—a local plan for Malaysia and a travel policy for trips."
       },
       {
-        question: "Are pre-existing conditions covered in Malaysia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Can foreigners use Malaysian public hospitals?",
+        answer: "Yes, but you pay more than citizens (still cheap by Western standards—RM40-100 per consultation). Public hospitals are crowded with long waits. Most expats go directly to private hospitals where consultations cost RM150-300 ($35-70) with minimal wait times."
       }
     ],
     sidebarLinks: [
@@ -5620,62 +5635,63 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Brazil (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Brazil. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Brazil. SUS public system, private planos de saúde, Digital Nomad Visa requirements, and costs in São Paulo and Rio.",
     headline: "Brazil Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Brazil—understanding the SUS system and international insurance options.",
+    subheadline: "Navigate SUS, local planos de saúde, and international coverage for living in Brazil.",
     summaryBullets: [
-      "Brazil does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (SUS) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: VITEM V, Digital Nomad Visa."
+      "Brazil does not require health insurance for visas, but private coverage is essential—SUS wait times can exceed months for specialists.",
+      "SUS (Sistema Único de Saúde) is free for everyone including foreigners, but quality varies dramatically by region and hospital.",
+      "Private Brazilian plans (planos de saúde) cost R$300-800/month ($60-160) and offer faster care at private hospitals.",
+      "International insurance costs $150-350/month but provides access to top hospitals like Hospital Israelita Albert Einstein and Sírio-Libanês in São Paulo.",
+      "The Digital Nomad Visa (VITEM XIV) requires proof of $1,500/month income but no mandatory insurance—though you should get it."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Brazil does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Brazil does not require health insurance for any visa type, including the Digital Nomad Visa (VITEM XIV), retirement visa (VITEM V), or investor visa. However, private coverage is strongly recommended. While SUS technically covers everyone including foreigners, the reality is overcrowded public hospitals, long wait times (sometimes months for specialist appointments), and inconsistent quality outside major cities. Most expats either get a local plano de saúde or international insurance.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Anyone wanting care at top private hospitals (Einstein, Sírio-Libanês, Copa Star)",
+      "Expats outside São Paulo or Rio where public healthcare quality drops significantly",
+      "Digital nomads who travel frequently and need multi-country coverage",
+      "Those with pre-existing conditions who cannot wait months for SUS specialist appointments",
+      "US/Canadian citizens—home coverage does not work in Brazil"
     ],
     publicHealthcare: {
-      name: "SUS",
-      access: "Brazilian citizens, legal residents",
-      cost: "Free (SUS)",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "SUS (Sistema Único de Saúde)",
+      access: "Everyone—Brazilian citizens, residents, and foreigners can use SUS for free",
+      cost: "Free (funded by taxes)",
+      notes: "SUS is a universal right in Brazil, but reality differs from policy. Major city hospitals are overcrowded. Wait times for specialists can be 3-6 months. Emergency care is available but often in chaotic conditions. Quality is significantly better in São Paulo and southern states than in northern regions. UPAs (emergency clinics) can handle minor issues quickly."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local planos: R$300-800/month ($60-160). International: $150-350/month.",
+      notes: "Local plans (Bradesco Saúde, SulAmérica, Amil, Unimed) provide access to Brazil's excellent private hospital network. International plans add worldwide coverage, medical evacuation, and typically better English support. São Paulo has world-class facilities; smaller cities may require travel for complex care."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Brazilian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Brazil."
+      "SUS wait times can be extreme—one expat reported waiting 8 months for a dermatologist appointment in Rio.",
+      "Local planos de saúde have carência (waiting periods): 24 hours for emergencies, 180 days for most procedures, 300 days for childbirth.",
+      "Private hospitals in Brazil can be expensive without insurance—Hospital Einstein charges $500+ for a basic consultation.",
+      "Medical evacuation coverage matters—if you are in the Amazon region or smaller cities, complex care requires transport to São Paulo.",
+      "US Medicare does NOT cover healthcare in Brazil. Neither does most US private insurance.",
+      "Portuguese is essential for navigating SUS. Even private hospitals outside major tourist areas may have limited English."
     ],
     faqs: [
       {
         question: "Do I need health insurance for a Brazil visa?",
-        answer: "No. Brazil does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        answer: "No. Brazil does not require health insurance for any visa type, including the Digital Nomad Visa (VITEM XIV), retirement visa, or investor visa. However, private coverage is strongly recommended given SUS limitations."
       },
       {
-        question: "How does Brazilian public healthcare work?",
-        answer: "Brazil's public healthcare system (SUS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Can foreigners use SUS for free?",
+        answer: "Yes. SUS is a constitutional right for everyone in Brazil, including tourists and undocumented immigrants. You can walk into any UPA (emergency clinic) or public hospital and receive care. The challenge is quality and wait times, not access."
       },
       {
-        question: "How much does health insurance cost in Brazil?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost Free (SUS) but may have limitations for non-citizens."
+        question: "How much does private health insurance cost in Brazil?",
+        answer: "Local planos de saúde (Bradesco, SulAmérica, Amil, Unimed) cost R$300-800/month ($60-160) depending on age, coverage area, and hospital network. International plans cost $150-350/month but include worldwide coverage and medical evacuation."
       },
       {
-        question: "What's the best health insurance for expats in Brazil?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What are the best hospitals in Brazil for expats?",
+        answer: "São Paulo: Hospital Israelita Albert Einstein (ranked best in Latin America), Hospital Sírio-Libanês, Hospital das Clínicas. Rio: Copa Star, Hospital Samaritano. These facilities rival top US hospitals and have English-speaking staff in international patient departments."
       },
       {
-        question: "Are pre-existing conditions covered in Brazil?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I get a local plano or international insurance?",
+        answer: "If staying only in Brazil long-term: a local plano offers great value and access to top private hospitals. If you travel frequently, want US coverage when visiting home, or need medical evacuation options: international insurance is worth the premium."
       }
     ],
     sidebarLinks: [
@@ -14317,64 +14333,67 @@ export const countries: Country[] = [
   {
     slug: "new-zealand",
     name: "New Zealand",
-    demonym: "New Zealander",
+    demonym: "New Zealand",
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in New Zealand (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in New Zealand. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in New Zealand. ACC accident coverage, public health system, Southern Cross, visa requirements, and costs.",
     headline: "New Zealand Expat Health Insurance",
-    subheadline: "Find the right coverage for living in New Zealand—understanding the ACC/Public Health system and international insurance options.",
+    subheadline: "Understand ACC, public healthcare access, and why private insurance still matters in New Zealand.",
     summaryBullets: [
-      "New Zealand does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (ACC/Public Health) is available to residents.",
-      "International health insurance typically costs $150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Skilled Migrant, Work to Residence."
+      "ACC (Accident Compensation Corporation) covers ALL accident injuries for everyone—tourists, residents, and workers—funded by levies.",
+      "Public healthcare is heavily subsidized but not free. GP visits cost NZ$50-90 ($30-55 USD), and wait times for elective surgery can exceed 6 months.",
+      "Student visas and some work visas REQUIRE health insurance—Immigration NZ checks this.",
+      "Southern Cross is the dominant local insurer (~65% market share). Plans start around NZ$50/month for basic coverage.",
+      "International plans ($200-400/month) are mainly valuable for medical evacuation to Australia and travel coverage."
     ],
     insuranceRequired: false,
-    requirementExplanation: "New Zealand does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "New Zealand requires health insurance for student visas and some temporary work visas. Other visa categories (Skilled Migrant, Work to Residence, Partner visas) do not require insurance, but coverage is recommended. Work visa holders with 2+ year visas become eligible for public healthcare. The unique ACC system means all accidents are already covered for everyone, so insurance is primarily for illness, elective procedures, and faster access.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Student visa holders—insurance is mandatory, check Immigration NZ requirements",
+      "Temporary work visa holders (under 2 years) who are not eligible for public healthcare",
+      "Anyone who cannot wait months for elective procedures like hip replacements or specialist consultations",
+      "Expats wanting to bypass 6-12 month public waiting lists for non-urgent surgery",
+      "Those who travel frequently between NZ and other countries"
     ],
     publicHealthcare: {
-      name: "ACC/Public Health",
-      access: "New Zealander citizens, legal residents",
-      cost: "Subsidized for residents",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Public Health System + ACC",
+      access: "Citizens, permanent residents, and work visa holders (2+ year visas) are eligible for subsidized public healthcare",
+      cost: "GP visits: NZ$50-90. Hospital care: Free for eligible residents. Prescriptions: NZ$5 per item (subsidized).",
+      notes: "New Zealand has two systems: ACC covers ALL accidents (no questions asked, even for tourists) and is funded by employer/employee levies. Public healthcare covers illness and non-accident conditions but has significant wait times for specialists and elective surgery. Quality is good but stretched—NZ has a doctor shortage, especially in rural areas."
     },
     privateHealthcare: {
-      cost: "$150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Local (Southern Cross): NZ$50-200/month. International: $200-400/month.",
+      notes: "Southern Cross dominates the NZ market and offers good value for local coverage. International plans add medical evacuation (important—complex cases may require transfer to Australia), worldwide coverage, and typically cover pre-existing conditions faster. Private hospitals are limited—most specialists work in both public and private systems."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific New Zealander regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "ACC only covers accidents—illness, chronic conditions, and elective procedures need separate insurance or public wait lists.",
+      "Public healthcare wait times can be long: 6-12 months for non-urgent specialist appointments, longer for elective surgery.",
+      "Student visa insurance requirements are specific—check Immigration NZ approved insurers list.",
+      "Southern Cross has pre-existing condition exclusions for the first 3 years. International plans vary.",
+      "NZ has limited specialist capacity—for complex conditions, medical evacuation to Australia may be necessary.",
+      "Work visa holders under 2-year visas are NOT eligible for public healthcare—insurance is essential."
     ],
     faqs: [
       {
         question: "Do I need health insurance for a New Zealand visa?",
-        answer: "No. New Zealand does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        answer: "It depends on the visa. Student visas require approved health insurance. Some temporary work visas also require coverage. Skilled Migrant and other residence visas do not require insurance, but coverage is recommended if you cannot wait for public healthcare."
       },
       {
-        question: "How does New Zealander public healthcare work?",
-        answer: "New Zealand's public healthcare system (ACC/Public Health) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What does ACC cover in New Zealand?",
+        answer: "ACC covers all accident-related injuries for everyone in New Zealand—citizens, residents, tourists, and even undocumented people. If you break your leg skiing, get injured at work, or have a car accident, ACC pays for treatment and rehabilitation. It does NOT cover illness, disease, or conditions that are not accident-related."
       },
       {
         question: "How much does health insurance cost in New Zealand?",
-        answer: "International health insurance typically costs $150-350/month depending on your age and coverage level. Local/public options cost Subsidized for residents but may have limitations for non-citizens."
+        answer: "Southern Cross (dominant local insurer) costs NZ$50-200/month ($30-120 USD) depending on age and coverage level. International plans cost $200-400/month but include worldwide coverage, medical evacuation, and often faster pre-existing condition coverage."
       },
       {
-        question: "What's the best health insurance for expats in New Zealand?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Can expats use public healthcare in New Zealand?",
+        answer: "Work visa holders with 2+ year visas, permanent residents, and citizens can access subsidized public healthcare. Shorter-term visa holders and visitors generally cannot, except for ACC accident coverage (which covers everyone) and emergency care."
       },
       {
-        question: "Are pre-existing conditions covered in New Zealand?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I get Southern Cross or international insurance?",
+        answer: "For long-term NZ residents who rarely travel: Southern Cross offers good value and is well-integrated with NZ hospitals. For those who travel frequently, want US coverage when visiting, or want medical evacuation options to Australia for complex care: international insurance is worth considering."
       }
     ],
     sidebarLinks: [
