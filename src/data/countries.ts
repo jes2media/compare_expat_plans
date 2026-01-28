@@ -1,16 +1,47 @@
 /**
  * countries.ts
  *
- * Auto-generated country data for programmatic pages.
- * Generated: 2026-01-27T23:30:12.846Z
- * Total countries: 183
+ * Country data for programmatic pages.
+ * Includes both handcrafted countries (for data lookups) and auto-generated entries.
+ * Total countries: 204 (21 handcrafted + 183 generated)
  *
- * To regenerate: npx tsx scripts/bulk-generate/generate.ts
+ * To regenerate programmatic countries: npx tsx scripts/bulk-generate/generate.ts
  */
 
 import type { Country } from './types';
 
-export const countries: Country[] = [
+// Handcrafted countries - minimal entries for data lookups (full content in .astro files)
+const handcraftedCountries: Country[] = [
+  // Europe
+  { slug: "spain", name: "Spain", demonym: "Spanish", lastUpdated: "2025-01-27", heroImage: "/images/countries/spain-hero-bg.png", metaTitle: "Health Insurance for Expats in Spain", metaDescription: "Complete guide to expat health insurance in Spain.", headline: "Spain Expat Health Insurance", subheadline: "Navigate Spanish healthcare and insurance options.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Required for non-EU visa holders.", whoNeedsInsurance: [], publicHealthcare: { name: "SNS", access: "Residents", cost: "Free/low cost", notes: "" }, privateHealthcare: { cost: "€80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "portugal", name: "Portugal", demonym: "Portuguese", lastUpdated: "2025-01-27", heroImage: "/images/countries/portugal-hero-bg.png", metaTitle: "Health Insurance for Expats in Portugal", metaDescription: "Complete guide to expat health insurance in Portugal.", headline: "Portugal Expat Health Insurance", subheadline: "Navigate Portuguese healthcare and insurance options.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Required for visa holders.", whoNeedsInsurance: [], publicHealthcare: { name: "SNS", access: "Residents", cost: "Free/low cost", notes: "" }, privateHealthcare: { cost: "€80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "france", name: "France", demonym: "French", lastUpdated: "2025-01-27", heroImage: "/images/countries/france-hero-bg.png", metaTitle: "Health Insurance for Expats in France", metaDescription: "Complete guide to expat health insurance in France.", headline: "France Expat Health Insurance", subheadline: "Navigate French healthcare and insurance options.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Required for visa holders.", whoNeedsInsurance: [], publicHealthcare: { name: "Sécurité Sociale", access: "Residents", cost: "Contributions required", notes: "" }, privateHealthcare: { cost: "€100-300/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "italy", name: "Italy", demonym: "Italian", lastUpdated: "2025-01-27", heroImage: "/images/countries/italy-hero-bg.png", metaTitle: "Health Insurance for Expats in Italy", metaDescription: "Complete guide to expat health insurance in Italy.", headline: "Italy Expat Health Insurance", subheadline: "Navigate Italian healthcare and insurance options.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Required for visa holders.", whoNeedsInsurance: [], publicHealthcare: { name: "SSN", access: "Residents", cost: "Free/low cost", notes: "" }, privateHealthcare: { cost: "€80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "germany", name: "Germany", demonym: "German", lastUpdated: "2025-01-27", heroImage: "/images/countries/germany-hero-bg.png", metaTitle: "Health Insurance for Expats in Germany", metaDescription: "Complete guide to expat health insurance in Germany.", headline: "Germany Expat Health Insurance", subheadline: "Navigate German healthcare and insurance options.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Mandatory for all residents.", whoNeedsInsurance: [], publicHealthcare: { name: "Gesetzliche Krankenversicherung", access: "All residents", cost: "~14.6% of income", notes: "" }, privateHealthcare: { cost: "€200-500/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "uk", name: "United Kingdom", demonym: "British", lastUpdated: "2025-01-27", heroImage: "/images/countries/uk-hero-bg.png", metaTitle: "Health Insurance for Expats in the UK", metaDescription: "Complete guide to expat health insurance in the UK.", headline: "UK Expat Health Insurance", subheadline: "Navigate NHS and private healthcare options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "NHS available to visa holders.", whoNeedsInsurance: [], publicHealthcare: { name: "NHS", access: "Visa holders", cost: "Free at point of use", notes: "" }, privateHealthcare: { cost: "£100-300/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "netherlands", name: "Netherlands", demonym: "Dutch", lastUpdated: "2025-01-27", heroImage: "/images/countries/netherlands-hero-bg.png", metaTitle: "Health Insurance for Expats in the Netherlands", metaDescription: "Complete guide to expat health insurance in the Netherlands.", headline: "Netherlands Expat Health Insurance", subheadline: "Navigate Dutch mandatory health insurance.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Mandatory basic insurance required.", whoNeedsInsurance: [], publicHealthcare: { name: "Basisverzekering", access: "All residents", cost: "€120-150/month", notes: "" }, privateHealthcare: { cost: "€150-300/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  // Asia
+  { slug: "thailand", name: "Thailand", demonym: "Thai", lastUpdated: "2025-01-27", heroImage: "/images/countries/thailand-hero-bg.png", metaTitle: "Health Insurance for Expats in Thailand", metaDescription: "Complete guide to expat health insurance in Thailand.", headline: "Thailand Expat Health Insurance", subheadline: "Navigate Thai healthcare and visa insurance requirements.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Required for O-A and O-X retirement visas.", whoNeedsInsurance: [], publicHealthcare: { name: "UCS", access: "Thai citizens", cost: "Free", notes: "" }, privateHealthcare: { cost: "$60-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "singapore", name: "Singapore", demonym: "Singaporean", lastUpdated: "2025-01-27", heroImage: "/images/countries/singapore-hero-bg.png", metaTitle: "Health Insurance for Expats in Singapore", metaDescription: "Complete guide to expat health insurance in Singapore.", headline: "Singapore Expat Health Insurance", subheadline: "Navigate Singapore's world-class healthcare system.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Not mandatory but recommended.", whoNeedsInsurance: [], publicHealthcare: { name: "MediShield", access: "Citizens/PRs", cost: "Varies", notes: "" }, privateHealthcare: { cost: "$200-500/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "indonesia", name: "Indonesia", demonym: "Indonesian", lastUpdated: "2025-01-27", heroImage: "/images/countries/indonesia-hero-bg.png", metaTitle: "Health Insurance for Expats in Indonesia", metaDescription: "Complete guide to expat health insurance in Indonesia.", headline: "Indonesia Expat Health Insurance", subheadline: "Navigate Indonesian healthcare and visa options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Not mandatory but essential.", whoNeedsInsurance: [], publicHealthcare: { name: "BPJS", access: "Residents", cost: "Low", notes: "" }, privateHealthcare: { cost: "$80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "vietnam", name: "Vietnam", demonym: "Vietnamese", lastUpdated: "2025-01-27", heroImage: "/images/countries/vietnam-hero-bg.png", metaTitle: "Health Insurance for Expats in Vietnam", metaDescription: "Complete guide to expat health insurance in Vietnam.", headline: "Vietnam Expat Health Insurance", subheadline: "Navigate Vietnamese healthcare options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Not mandatory but recommended.", whoNeedsInsurance: [], publicHealthcare: { name: "VSS", access: "Residents", cost: "Low", notes: "" }, privateHealthcare: { cost: "$80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "japan", name: "Japan", demonym: "Japanese", lastUpdated: "2025-01-27", heroImage: "/images/countries/japan-hero-bg.png", metaTitle: "Health Insurance for Expats in Japan", metaDescription: "Complete guide to expat health insurance in Japan.", headline: "Japan Expat Health Insurance", subheadline: "Navigate Japanese mandatory health insurance.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Mandatory NHI enrollment for residents.", whoNeedsInsurance: [], publicHealthcare: { name: "NHI", access: "All residents", cost: "~10% of income", notes: "" }, privateHealthcare: { cost: "$200-400/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  // Middle East
+  { slug: "uae", name: "United Arab Emirates", demonym: "Emirati", lastUpdated: "2025-01-27", heroImage: "/images/countries/uae-hero-bg.png", metaTitle: "Health Insurance for Expats in the UAE", metaDescription: "Complete guide to expat health insurance in the UAE.", headline: "UAE Expat Health Insurance", subheadline: "Navigate mandatory UAE health insurance.", summaryBullets: [], insuranceRequired: true, requirementExplanation: "Mandatory for all residents.", whoNeedsInsurance: [], publicHealthcare: { name: "DHA/HAAD", access: "Via insurance", cost: "Via insurance", notes: "" }, privateHealthcare: { cost: "$150-400/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  // Oceania
+  { slug: "australia", name: "Australia", demonym: "Australian", lastUpdated: "2025-01-27", heroImage: "/images/countries/australia-hero-bg.png", metaTitle: "Health Insurance for Expats in Australia", metaDescription: "Complete guide to expat health insurance in Australia.", headline: "Australia Expat Health Insurance", subheadline: "Navigate Medicare and private health options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Medicare for eligible residents.", whoNeedsInsurance: [], publicHealthcare: { name: "Medicare", access: "Citizens/PRs", cost: "Free/low cost", notes: "" }, privateHealthcare: { cost: "A$150-400/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  // Americas
+  { slug: "mexico", name: "Mexico", demonym: "Mexican", lastUpdated: "2025-01-27", heroImage: "/images/countries/mexico-hero-bg.png", metaTitle: "Health Insurance for Expats in Mexico", metaDescription: "Complete guide to expat health insurance in Mexico.", headline: "Mexico Expat Health Insurance", subheadline: "Navigate Mexican healthcare options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Not required but recommended.", whoNeedsInsurance: [], publicHealthcare: { name: "IMSS", access: "Residents", cost: "~$500/year", notes: "" }, privateHealthcare: { cost: "$80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "costa-rica", name: "Costa Rica", demonym: "Costa Rican", lastUpdated: "2025-01-27", heroImage: "/images/countries/costa-rica-hero-bg.png", metaTitle: "Health Insurance for Expats in Costa Rica", metaDescription: "Complete guide to expat health insurance in Costa Rica.", headline: "Costa Rica Expat Health Insurance", subheadline: "Navigate CAJA and private healthcare options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "CAJA enrollment for residents.", whoNeedsInsurance: [], publicHealthcare: { name: "CAJA", access: "Residents", cost: "~10% of income", notes: "" }, privateHealthcare: { cost: "$80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "panama", name: "Panama", demonym: "Panamanian", lastUpdated: "2025-01-27", heroImage: "/images/countries/panama-hero-bg.png", metaTitle: "Health Insurance for Expats in Panama", metaDescription: "Complete guide to expat health insurance in Panama.", headline: "Panama Expat Health Insurance", subheadline: "Navigate Panama healthcare and visa options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Not required for most visas.", whoNeedsInsurance: [], publicHealthcare: { name: "CSS", access: "Workers", cost: "Via employment", notes: "" }, privateHealthcare: { cost: "$80-200/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "colombia", name: "Colombia", demonym: "Colombian", lastUpdated: "2025-01-27", heroImage: "/images/countries/colombia-hero-bg.png", metaTitle: "Health Insurance for Expats in Colombia", metaDescription: "Complete guide to expat health insurance in Colombia.", headline: "Colombia Expat Health Insurance", subheadline: "Navigate EPS and private healthcare options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Not required but recommended.", whoNeedsInsurance: [], publicHealthcare: { name: "EPS", access: "Residents", cost: "~12% of income", notes: "" }, privateHealthcare: { cost: "$60-150/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "argentina", name: "Argentina", demonym: "Argentine", lastUpdated: "2025-01-27", heroImage: "/images/countries/argentina-hero-bg.png", metaTitle: "Health Insurance for Expats in Argentina", metaDescription: "Complete guide to expat health insurance in Argentina.", headline: "Argentina Expat Health Insurance", subheadline: "Navigate Argentine healthcare options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Public healthcare available to all.", whoNeedsInsurance: [], publicHealthcare: { name: "Public System", access: "Everyone", cost: "Free", notes: "" }, privateHealthcare: { cost: "$50-150/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "ecuador", name: "Ecuador", demonym: "Ecuadorian", lastUpdated: "2025-01-27", heroImage: "/images/countries/ecuador-hero-bg.png", metaTitle: "Health Insurance for Expats in Ecuador", metaDescription: "Complete guide to expat health insurance in Ecuador.", headline: "Ecuador Expat Health Insurance", subheadline: "Navigate IESS and private healthcare options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Not required but recommended.", whoNeedsInsurance: [], publicHealthcare: { name: "IESS", access: "Contributors", cost: "~9% of income", notes: "" }, privateHealthcare: { cost: "$60-150/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+  { slug: "canada", name: "Canada", demonym: "Canadian", lastUpdated: "2025-01-27", heroImage: "/images/countries/canada-hero-bg.png", metaTitle: "Health Insurance for Expats in Canada", metaDescription: "Complete guide to expat health insurance in Canada.", headline: "Canada Expat Health Insurance", subheadline: "Navigate provincial healthcare and private options.", summaryBullets: [], insuranceRequired: false, requirementExplanation: "Provincial coverage for residents.", whoNeedsInsurance: [], publicHealthcare: { name: "Provincial Plans", access: "Residents", cost: "Free", notes: "" }, privateHealthcare: { cost: "C$150-400/month", notes: "" }, watchOuts: [], faqs: [], sidebarLinks: [] },
+];
+
+// Auto-generated programmatic countries
+const programmaticCountries: Country[] = [
   {
     slug: "greece",
     name: "Greece",
@@ -5475,61 +5506,64 @@ export const countries: Country[] = [
     lastUpdated: "2026-01-27",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in China (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in China. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in China. United Family, Parkway Health, Z Visa requirements, Tier 1 vs Tier 2 cities, and navigating the language barrier.",
     headline: "China Expat Health Insurance",
-    subheadline: "Find the right coverage for living in China—understanding the Urban Employee BMI system and international insurance options.",
+    subheadline: "Navigate China's complex healthcare system, find English-speaking hospitals in Beijing and Shanghai, and understand why international coverage is essential.",
     summaryBullets: [
-      "China does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Urban Employee BMI) is available to residents.",
-      "International health insurance typically costs $150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Z Visa, R Visa."
+      "China does NOT require health insurance for Z Visa (work) applications, but most employers provide coverage—and you'll definitely need it.",
+      "International hospitals (United Family, Parkway Health) charge ¥800-2,000 ($110-280) per consultation. Local hospitals cost ¥50-300 ($7-40) but require Mandarin.",
+      "Tier 1 cities (Beijing, Shanghai, Guangzhou, Shenzhen) have excellent international clinics. Tier 2/3 cities have limited English-speaking options.",
+      "China has NO digital nomad visa. Remote workers typically use business visas (M Visa) with short stays or work through local entities.",
+      "Air quality in northern cities (Beijing, Tianjin) can trigger respiratory issues—ensure your coverage includes pollution-related conditions."
     ],
     insuranceRequired: false,
-    requirementExplanation: "China does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "China does not mandate health insurance for visa applications. However, Z Visa (work visa) holders typically receive coverage through their employer as part of social insurance (五险一金). Self-employed expats, dependents, and those without employer coverage need private insurance. The practical reality: Chinese public hospitals require Mandarin, operate on a chaotic queuing system, and are extremely crowded. International hospitals provide Western-style care but are expensive. Insurance is essential.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Dependents of working expats (S1/S2 visas)—not covered by employer plans",
+      "Self-employed, freelancers, or entrepreneurs without local employer",
+      "Anyone who needs English-speaking healthcare",
+      "Expats in Tier 2/3 cities where international hospital access is limited",
+      "Those with respiratory conditions—air pollution coverage is important",
+      "Families wanting maternity care at international hospitals (very expensive without coverage)"
     ],
     publicHealthcare: {
-      name: "Urban Employee BMI",
-      access: "Chinese citizens, legal residents",
-      cost: "$30-80/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Urban Employee Basic Medical Insurance (UEBMI) / Urban Resident Basic Medical Insurance (URBMI)",
+      access: "Employed foreigners with work permits are enrolled in social insurance including UEBMI. Self-employed and dependents generally cannot access public insurance.",
+      cost: "UEBMI: ~2% of salary (employee) + ~8% (employer). Covers 70-90% of costs at designated public hospitals.",
+      notes: "China's public healthcare is technically available to employed foreigners through social insurance, but it's impractical for most expats. Public hospitals are extremely crowded (arrive at 5am to queue for appointments), require Mandarin for all interactions, and the system is chaotic. Doctors see 50+ patients per day with 3-5 minute consultations. Quality of care is actually good at top hospitals (Peking Union, Huashan), but the experience is overwhelming without fluent Mandarin."
     },
     privateHealthcare: {
-      cost: "$150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "International hospital consultation: ¥800-2,000 ($110-280). Hospital room: ¥3,000-8,000/night ($400-1,100). International insurance: $200-500/month.",
+      notes: "International hospitals (United Family, Parkway Health, Raffles Medical) provide Western-style healthcare with English-speaking staff. These are expensive but deliver familiar, high-quality care. VIP departments at top Chinese hospitals (协和VIP, 华山VIP) offer a middle ground—Chinese doctors, shorter waits, some English support, at 30-50% of international hospital prices."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Chinese regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Language barrier is the biggest challenge. Public hospitals and most local clinics operate entirely in Mandarin. Even with insurance, you need to find English-speaking providers.",
+      "VPN required for many healthcare apps and telehealth services. WhatsApp, Google services, and many international apps are blocked.",
+      "Air pollution in Beijing and northern cities is severe in winter. Ensure your policy covers respiratory conditions without pollution exclusions.",
+      "Payment systems: Chinese hospitals often require WeChat Pay or Alipay. International hospitals accept cards, but local hospitals may not.",
+      "Medical evacuation to Hong Kong or Singapore is important if you need specialized care not available locally, or if you're in a smaller city.",
+      "China has strict rules about bringing medications. Some common Western medications are controlled substances in China—check before traveling."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a China visa?",
-        answer: "No. China does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Do I need health insurance for a China Z Visa?",
+        answer: "No, health insurance is not required for Z Visa applications. However, once employed, your employer must enroll you in social insurance which includes basic medical coverage. This covers Chinese public hospitals but not international clinics. Most expats add private insurance for access to United Family, Parkway, and other English-speaking hospitals."
       },
       {
-        question: "How does Chinese public healthcare work?",
-        answer: "China's public healthcare system (Urban Employee BMI) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What are the best hospitals for expats in China?",
+        answer: "Tier 1 cities have excellent options. Beijing: United Family (和睦家), Beijing International SOS Clinic, Raffles Medical. Shanghai: Parkway Health, United Family, Columbia Clinic. Guangzhou: United Family, Guangzhou Can-Am International Medical Center. For Tier 2 cities, options are more limited—Chengdu and Hangzhou have some international clinics, but smaller cities require travel to major metros for English-speaking care."
       },
       {
-        question: "How much does health insurance cost in China?",
-        answer: "International health insurance typically costs $150-350/month depending on your age and coverage level. Local/public options cost $30-80/month but may have limitations for non-citizens."
+        question: "How much does healthcare cost in China?",
+        answer: "Costs vary dramatically. Local public hospital: ¥50-300 ($7-40) per visit, but requires Mandarin and long waits. International clinic: ¥800-2,000 ($110-280) per consultation. Hospitalization at United Family: ¥3,000-8,000/night ($400-1,100). International insurance: $200-500/month. Local Chinese insurance through employers: essentially free (covered by social insurance contributions)."
       },
       {
-        question: "What's the best health insurance for expats in China?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Can I use public hospitals in China as a foreigner?",
+        answer: "Yes, but it's challenging. If you're employed with a work permit, you're enrolled in social insurance and can use public hospitals. The process: arrive early (6-7am), queue for registration, queue for the doctor, queue for tests, queue for pharmacy. Everything is in Mandarin. Consultations are 3-5 minutes. It works if you speak Mandarin and have a straightforward issue, but most expats find it overwhelming and use international clinics instead."
       },
       {
-        question: "Are pre-existing conditions covered in China?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is there a digital nomad visa for China?",
+        answer: "No. China does not offer a digital nomad or remote work visa. Options for remote workers: business visa (M Visa) for short stays, working through a local employer or PEO for legal work status, or frequent visa runs to Hong Kong. Working remotely on a tourist visa (L Visa) is technically illegal. This is a major limitation for location-independent workers considering China."
       }
     ],
     sidebarLinks: [
@@ -15991,6 +16025,9 @@ export const countries: Country[] = [
     ]
   }
 ];
+
+// Combined export of all countries (handcrafted + programmatic)
+export const countries: Country[] = [...handcraftedCountries, ...programmaticCountries];
 
 // Helper functions
 export function getCountryBySlug(slug: string): Country | undefined {

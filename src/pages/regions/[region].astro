@@ -1,0 +1,64 @@
+---
+/**
+ * Dynamic route for regional hub pages.
+ *
+ * Generates pages like:
+ * - /regions/southeast-asia
+ * - /regions/latin-america
+ * - /regions/western-europe
+ */
+
+import RegionalHub from '../../templates/RegionalHub.astro';
+import { regions, getAllRegionSlugs, getRegionBySlug } from '../../data/regions';
+import { getCountryBySlug } from '../../data/countries';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return regions.map(region => {
+    // Build featured country cards
+    const featuredCountries = region.featuredCountries
+      .map(slug => {
+        const country = getCountryBySlug(slug);
+        if (!country) return null;
+        return {
+          slug: country.slug,
+          name: country.name,
+          insuranceRequired: country.insuranceRequired,
+          href: `/countries/${country.slug}/insurance`,
+        };
+      })
+      .filter((c): c is NonNullable<typeof c> => c !== null);
+
+    // Build all country cards
+    const allCountries = region.countries
+      .map(slug => {
+        const country = getCountryBySlug(slug);
+        if (!country) return null;
+        return {
+          slug: country.slug,
+          name: country.name,
+          insuranceRequired: country.insuranceRequired,
+          href: `/countries/${country.slug}/insurance`,
+        };
+      })
+      .filter((c): c is NonNullable<typeof c> => c !== null)
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    return {
+      params: { region: region.slug },
+      props: {
+        region,
+        featuredCountries,
+        allCountries,
+      },
+    };
+  });
+};
+
+const { region, featuredCountries, allCountries } = Astro.props;
+---
+<RegionalHub
+  region={region}
+  featuredCountries={featuredCountries}
+  allCountries={allCountries}
+/>

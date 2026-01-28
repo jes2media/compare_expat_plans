@@ -30,6 +30,9 @@ import ComparisonTable from '../components/ComparisonTable.astro';
 import ContentCards from '../components/ContentCards.astro';
 import Disclosure from '../components/Disclosure.astro';
 
+// Import region helper
+import { getRegionForCountry } from '../data/regions';
+
 // Import types from the data layer
 import type { Country, ProviderCard, ComparisonRow, RelatedCard } from '../data/types';
 
@@ -109,6 +112,15 @@ const standardRelatedCards: RelatedCard[] = [
 const finalRelatedCards = relatedCards && relatedCards.length > 0
   ? relatedCards
   : standardRelatedCards;
+
+// Get the region for this country and build enhanced sidebar links
+const region = getRegionForCountry(country.slug);
+const sidebarLinksWithRegion = region
+  ? [
+      { title: `More in ${region.name}`, href: `/regions/${region.slug}` },
+      ...(country.sidebarLinks || [])
+    ]
+  : country.sidebarLinks || [];
 
 // Generate FAQ schema
 const faqSchema = {
@@ -397,7 +409,7 @@ const breadcrumbSchema = {
         ctaDescription="Compare plans that fit your needs."
         ctaButtonText="Compare Plans →"
         ctaButtonHref="/best/expat-health-insurance"
-        relatedLinks={country.sidebarLinks}
+        relatedLinks={sidebarLinksWithRegion}
       />
     </div>
   </div>

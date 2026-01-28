@@ -1,0 +1,579 @@
+---
+/**
+ * CountryPersonaPage.astro
+ *
+ * Template for country-persona pages like /countries/thailand/insurance/for-digital-nomads
+ * These pages help users understand insurance options for their specific situation in a specific country.
+ */
+
+import Layout from '../layouts/Layout.astro';
+import CTABox from '../components/CTABox.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import Disclosure from '../components/Disclosure.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+
+import type { Country } from '../data/types';
+import type { Persona } from '../data/personas';
+import type { CountryPersonaEntry } from '../data/countryPersonaMatrix';
+import { getProviderBySlug } from '../data/providers';
+import { getRegionForCountry } from '../data/regions';
+
+interface Props {
+  country: Country;
+  persona: Persona;
+  entry: CountryPersonaEntry;
+}
+
+const { country, persona, entry } = Astro.props;
+
+// Format country name properly
+const countryName = country.name;
+const personaName = persona.name;
+const personaSingular = persona.singular;
+
+// Get provider details for recommendations
+const recommendedProviders = entry.recommendedProviders
+  .map(slug => getProviderBySlug(slug))
+  .filter(Boolean)
+  .slice(0, 4);
+
+// Get region for country
+const region = getRegionForCountry(country.slug);
+
+// Helper function: Get country intro
+function getCountryIntro(countrySlug: string, personaSlug: string): string {
+  const intros: Record<string, Record<string, string>> = {
+    'thailand': {
+      'digital-nomads': 'one of the world\'s top destinations for digital nomads, with Chiang Mai and Bangkok offering excellent coworking infrastructure',
+      'retirees': 'a popular retirement destination with affordable living costs and world-class healthcare',
+      'default': 'a popular destination for expats with excellent healthcare and affordable costs'
+    },
+    'spain': {
+      'digital-nomads': 'increasingly popular with digital nomads, especially since introducing the Digital Nomad Visa',
+      'retirees': 'one of Europe\'s top retirement destinations with excellent weather and healthcare',
+      'default': 'a top destination for expats seeking European lifestyle and culture'
+    },
+    'portugal': {
+      'digital-nomads': 'one of Europe\'s most nomad-friendly countries with a dedicated Digital Nomad Visa and great infrastructure',
+      'retirees': 'extremely popular with retirees thanks to the NHR tax regime and favorable conditions',
+      'default': 'increasingly popular with expats for its quality of life and favorable tax treatment'
+    },
+    'mexico': {
+      'digital-nomads': 'hugely popular with North American remote workers for its time zones, affordability, and culture',
+      'retirees': 'one of the most popular retirement destinations in the world with established expat communities',
+      'default': 'a major destination for expats seeking proximity to the US with lower costs'
+    }
+  };
+  const countryIntros = intros[countrySlug] || {};
+  return countryIntros[personaSlug] || countryIntros['default'] || 'a destination attracting expats for various reasons';
+}
+
+// Helper function: Get insurance requirement summary
+function getInsuranceRequirementSummary(countrySlug: string, personaSlug: string): string {
+  const requirements: Record<string, string> = {
+    'thailand-retirees': 'O-A and O-X retirement visas require TGIA-approved insurance with specific coverage minimums.',
+    'thailand-seniors': 'Retirement visas require approved insurance. Some providers don\'t accept applicants over 70.',
+    'spain-digital-nomads': 'Digital Nomad Visa requires health insurance with full coverage in Spain.',
+    'portugal-digital-nomads': 'Digital Nomad Visa requires health insurance coverage.',
+    'uae-all': 'Health insurance is mandatory in the UAE for all residents.'
+  };
+  const key = `${countrySlug}-${personaSlug}`;
+  return requirements[key] || requirements[`${countrySlug}-all`] || 'Check specific visa requirements—some require insurance, others recommend it strongly.';
+}
+
+// Helper function: Get provider "best for" text
+function getProviderBestFor(providerSlug: string, personaSlug: string): string {
+  const mapping: Record<string, Record<string, string>> = {
+    'safetywing': {
+      'digital-nomads': 'Budget nomads, frequent travelers',
+      'students': 'Budget-conscious students',
+      'freelancers': 'Variable income, flexibility',
+      'remote-workers': 'Short-term remote stints',
+      'default': 'Budget travelers'
+    },
+    'cigna-global': {
+      'retirees': 'Comprehensive coverage, chronic conditions',
+      'families': 'Family plans, pediatric care',
+      'seniors': 'No age limits, pre-existing options',
+      'entrepreneurs': 'Executive coverage, multi-country',
+      'default': 'Comprehensive needs'
+    },
+    'allianz-care': {
+      'retirees': 'European coverage, chronic conditions',
+      'families': 'Family discounts, maternity',
+      'remote-workers': 'Stable long-term coverage',
+      'default': 'EU-focused expats'
+    },
+    'bupa-global': {
+      'seniors': 'Pre-existing handling, age 70+',
+      'families': 'Mental health parity, chronic care',
+      'retirees': 'Premium coverage, no lifetime limits',
+      'default': 'Premium comprehensive'
+    },
+    'img-global': {
+      'digital-nomads': 'Higher limits than SafetyWing',
+      'freelancers': 'Good value, flexible terms',
+      'students': 'Mid-range student coverage',
+      'default': 'Value coverage'
+    },
+    'world-nomads': {
+      'digital-nomads': 'Adventure activities, sports',
+      'students': 'Gap year, adventure travel',
+      'default': 'Adventure travelers'
+    },
+    'aetna-international': {
+      'families': 'US ties, pediatric networks',
+      'retirees': 'US coverage included',
+      'remote-workers': 'Employer coordination',
+      'default': 'US-connected expats'
+    },
+    'axa-global': {
+      'entrepreneurs': 'Business travel coverage',
+      'retirees': 'EU/Asia networks',
+      'families': 'Multi-country families',
+      'default': 'Global coverage'
+    }
+  };
+  const providerMapping = mapping[providerSlug];
+  if (!providerMapping) return 'General coverage';
+  return providerMapping[personaSlug] || providerMapping['default'] || 'General coverage';
+}
+
+// Helper function: Get provider description
+function getProviderDescription(providerSlug: string, personaSlug: string): string {
+  const descriptions: Record<string, Record<string, string>> = {
+    'safetywing': {
+      'digital-nomads': 'The go-to choice for budget-conscious nomads. Subscription-based coverage that works in 180+ countries. Not comprehensive, but affordable and flexible.',
+      'students': 'Affordable option for students on a budget. Works well for travel medical coverage but doesn\'t cover routine care or pre-existing conditions.',
+      'freelancers': 'Good value for freelancers with variable income. Pay monthly, cancel anytime. Just remember it\'s travel medical, not full health insurance.',
+      'default': 'Budget-friendly travel medical insurance with flexible subscription model.'
+    },
+    'cigna-global': {
+      'retirees': 'One of the best choices for retirees needing comprehensive coverage. Strong networks, pre-existing condition options after waiting periods, and no lifetime limits.',
+      'families': 'Excellent family coverage with pediatric care, maternity options, and dependent coverage. Higher cost but comprehensive.',
+      'seniors': 'Accepts applicants at older ages than many competitors. Chronic condition coverage and strong specialist networks.',
+      'default': 'Comprehensive international health insurance with strong global networks.'
+    },
+    'allianz-care': {
+      'retirees': 'Strong European presence with good chronic condition management. High-deductible options can reduce premiums significantly.',
+      'families': 'Family-friendly with maternity coverage options. Good value in Europe and Asia.',
+      'default': 'Solid international coverage with particularly strong European networks.'
+    },
+    'bupa-global': {
+      'seniors': 'One of the few insurers handling pre-existing conditions well. Accepts older applicants and offers lifetime coverage.',
+      'families': 'Premium family coverage with mental health parity—same coverage for mental and physical health.',
+      'retirees': 'Premium option for those wanting comprehensive coverage. Pre-existing condition handling better than most.',
+      'default': 'Premium comprehensive coverage with strong chronic condition and mental health support.'
+    },
+    'img-global': {
+      'digital-nomads': 'Step up from SafetyWing with higher limits and more comprehensive coverage. Good middle ground between travel medical and full expat insurance.',
+      'freelancers': 'Good value international coverage. 50% deductible waiver outside the US is a nice perk.',
+      'default': 'Solid mid-range international health coverage with good value.'
+    }
+  };
+  const providerDesc = descriptions[providerSlug] || {};
+  return providerDesc[personaSlug] || providerDesc['default'] || 'Consider this provider based on your specific needs and budget.';
+}
+
+// Helper function: Get healthcare advice
+function getHealthcareAdvice(personaSlug: string): string {
+  const advice: Record<string, string> = {
+    'digital-nomads': 'As a nomad, prioritize plans with telemedicine access and no fixed location requirements. You\'ll likely use local clinics for minor issues and save insurance for serious situations.',
+    'retirees': 'Access to specialists and chronic condition management should be priorities. Consider plans with strong hospital networks in your area and good customer service.',
+    'families': 'Ensure pediatric coverage is adequate, including well-child visits and vaccinations. Check which hospitals have good children\'s departments.',
+    'remote-workers': 'Stable coverage matters for longer stays. Consider whether you need to satisfy any employer requirements or coordinate with existing benefits.',
+    'students': 'Check if your university requires specific coverage. Many offer group plans that may be more affordable than individual policies.',
+    'freelancers': 'Balance cost with coverage. Higher deductibles can reduce premiums when income is variable, but make sure you can cover the deductible if needed.',
+    'seniors': 'Network quality and access to specialists matter most. Verify your conditions will be covered and understand any waiting periods for pre-existing conditions.',
+    'entrepreneurs': 'Consider coverage that works for business travel. If you have employees, group plan options may be available.'
+  };
+  return advice[personaSlug] || 'Research local healthcare options and verify insurance networks before you arrive.';
+}
+
+// Helper function: Get insurance cost range
+function getInsuranceCostRange(personaSlug: string): string {
+  const ranges: Record<string, string> = {
+    'digital-nomads': 'Travel medical: $45-100/month. Comprehensive: $150-300/month.',
+    'retirees': 'Varies by age: $150-400/month at 55-65, $300-600+ at 65+.',
+    'families': 'Family of 4: $300-600/month for comprehensive coverage.',
+    'remote-workers': '$80-200/month depending on coverage level.',
+    'students': '$45-120/month. Check for student-specific plans.',
+    'freelancers': '$50-180/month. Higher deductibles reduce costs.',
+    'seniors': '$200-600+/month at 65+. Increases with age.',
+    'entrepreneurs': '$120-350/month for individual coverage.'
+  };
+  return ranges[personaSlug] || 'Varies based on age, coverage level, and pre-existing conditions.';
+}
+
+// Helper function: Get out-of-pocket range
+function getOutOfPocketRange(countrySlug: string): string {
+  const lowCost = ['thailand', 'mexico', 'vietnam', 'indonesia', 'colombia', 'argentina', 'ecuador', 'philippines', 'malaysia'];
+  const medCost = ['spain', 'portugal', 'italy', 'costa-rica', 'panama', 'brazil', 'south-korea'];
+  if (lowCost.includes(countrySlug)) {
+    return 'Doctor visits: $20-60. Hospital stays: $50-200/night private. Very affordable for routine care.';
+  } else if (medCost.includes(countrySlug)) {
+    return 'Doctor visits: $50-100. Hospital stays: $150-400/night private. Moderate costs.';
+  }
+  return 'Doctor visits: $100-200. Hospital stays: $400-1000+/night private. Budget accordingly.';
+}
+
+// Helper function: Get persona FAQs
+function getPersonaFAQs(personaSlug: string, countryName: string): Array<{question: string; answer: string}> {
+  const faqs: Record<string, Array<{question: string; answer: string}>> = {
+    'digital-nomads': [
+      { question: `Can I get insurance while already in ${countryName}?`, answer: 'Yes. Most travel medical providers (SafetyWing, IMG, World Nomads) allow you to purchase while abroad. There may be a short waiting period (24-72 hours) before coverage starts.' },
+      { question: 'Is travel medical insurance enough?', answer: 'For healthy nomads, travel medical covers emergencies and hospitalization. It doesn\'t cover routine care, pre-existing conditions, or dental. If you have ongoing health needs, consider comprehensive coverage.' },
+      { question: 'What if I move to another country?', answer: 'Travel medical and international health plans typically cover you in 180+ countries. You don\'t need to change plans when moving. Just verify your new destination is included.' }
+    ],
+    'retirees': [
+      { question: 'Will my pre-existing conditions be covered?', answer: 'Most international plans exclude pre-existing conditions initially but may cover them after a waiting period (usually 12-24 months). Some providers like BUPA Global handle pre-existing conditions better than others.' },
+      { question: `Is there an age limit for getting insurance in ${countryName}?`, answer: 'Age limits vary by provider. Cigna Global and Allianz accept older applicants. BUPA Global and some local insurers accept applicants up to 80+. Premiums increase with age.' },
+      { question: 'Do I need insurance for my visa?', answer: `Check specific visa requirements for ${countryName}. Retirement and long-stay visas often require proof of health coverage meeting minimum requirements.` }
+    ],
+    'families': [
+      { question: 'Are children covered from birth?', answer: 'Most comprehensive plans cover newborns from birth if the mother has maternity coverage. Verify this before enrolling, especially if planning a pregnancy abroad.' },
+      { question: 'Is maternity covered?', answer: 'Maternity requires specific coverage and usually has a 10-12 month waiting period. You cannot enroll while pregnant and expect coverage. Plan ahead.' },
+      { question: 'What about vaccinations for kids?', answer: 'Most comprehensive plans cover routine childhood vaccinations. Travel medical plans typically do not. Check your policy for specifics.' }
+    ],
+    'students': [
+      { question: 'Does this meet university requirements?', answer: 'Requirements vary by institution. Some accept international plans, others require local coverage or their own group plan. Check with your university before enrolling.' },
+      { question: 'Am I covered during holidays?', answer: 'Most student plans cover you during school breaks and travel. Verify coverage for trips to other countries if you plan to travel.' }
+    ],
+    'seniors': [
+      { question: 'Will I be rejected for my age?', answer: 'Some insurers have age limits, but many major providers accept applicants 70+. Expect higher premiums and potentially more exclusions. Compare carefully.' },
+      { question: 'How much will premiums increase each year?', answer: 'Premiums typically increase 5-15% annually with age. Some plans cap increases. Budget for rising costs or consider plans with more predictable pricing.' }
+    ]
+  };
+  return faqs[personaSlug] || [
+    { question: `Do I need health insurance in ${countryName}?`, answer: 'While not always legally required, health insurance is strongly recommended. A serious illness or accident can cost tens of thousands of dollars without coverage.' },
+    { question: 'Local vs international insurance?', answer: `Local plans are often cheaper but only work in ${countryName}. International plans cost more but provide global coverage and portability if you relocate.` }
+  ];
+}
+
+// Generate TOC items
+const tocItems = [
+  { id: 'overview', text: `${personaName} in ${countryName}`, level: 2 },
+  { id: 'key-considerations', text: 'Key Considerations', level: 2 },
+  { id: 'visa-requirements', text: 'Visa & Insurance Requirements', level: 2 },
+  { id: 'recommended-plans', text: 'Recommended Plans', level: 2 },
+  { id: 'healthcare', text: 'Healthcare Access', level: 2 },
+  { id: 'costs', text: 'Expected Costs', level: 2 },
+  { id: 'faqs', text: 'Common Questions', level: 2 },
+];
+
+// Author info
+const author = {
+  name: 'John Spencer',
+  bio: 'John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad.',
+  image: '/images/john-spencer.png',
+};
+
+// Sidebar links
+const sidebarLinks = [
+  ...(region ? [{ title: `More in ${region.name}`, href: `/regions/${region.slug}` }] : []),
+  { title: `${countryName} Insurance Guide`, href: `/countries/${country.slug}/insurance` },
+  { title: `Insurance for ${personaName}`, href: persona.href },
+  { title: 'Compare All Plans', href: '/best/expat-health-insurance' },
+];
+
+// Add provider links
+recommendedProviders.slice(0, 2).forEach(p => {
+  if (p) {
+    sidebarLinks.push({
+      title: `${p.name} in ${countryName}`,
+      href: `/countries/${country.slug}/insurance/${p.slug}`
+    });
+  }
+});
+
+// Meta
+const pageTitle = `Health Insurance for ${personaName} in ${countryName} (2025 Guide)`;
+const pageDescription = `Find the best health insurance for ${personaName.toLowerCase()} living in ${countryName}. ${entry.keyConsiderations[0]}`;
+
+// Breadcrumb schema
+const siteUrl = "https://compareexpatplans.com";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": `${siteUrl}/countries` },
+    { "@type": "ListItem", "position": 3, "name": countryName, "item": `${siteUrl}/countries/${country.slug}/insurance` },
+    { "@type": "ListItem", "position": 4, "name": `For ${personaName}` },
+  ],
+};
+
+// Provider table data
+const providerColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'type', header: 'Type' },
+  { key: 'bestFor', header: 'Best For' },
+  { key: 'price', header: 'From' },
+];
+
+const providerRows = recommendedProviders.map(p => ({
+  provider: p?.name || '',
+  type: p?.type || 'International',
+  bestFor: getProviderBestFor(p?.slug || '', persona.slug),
+  price: p?.startingPrice || 'Varies',
+}));
+
+// Hero image - try country-specific, fall back to default
+const heroImage = country.heroImage || '/images/countries/default-hero-bg.png';
+
+// Pre-compute content
+const countryIntro = getCountryIntro(country.slug, persona.slug);
+const insuranceRequirementSummary = getInsuranceRequirementSummary(country.slug, persona.slug);
+const healthcareAdvice = getHealthcareAdvice(persona.slug);
+const insuranceCostRange = getInsuranceCostRange(persona.slug);
+const outOfPocketRange = getOutOfPocketRange(country.slug);
+const faqs = getPersonaFAQs(persona.slug, countryName);
+---
+
+<Layout title={pageTitle} description={pageDescription} ogType="article">
+  <!-- Structured Data -->
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- HERO SECTION -->
+  <section
+    class="relative py-10 lg:py-14 border-b border-neutral-200"
+    style={`background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.95)), url('${heroImage}'); background-size: cover; background-position: center;`}
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-primary-600 mb-2">
+          <a href={`/countries/${country.slug}/insurance`} class="hover:underline">{countryName}</a>
+          {' → '}
+          <span>For {personaName}</span>
+        </p>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          Health Insurance for {personaName} in {countryName}
+        </h1>
+
+        <p class="text-lg text-neutral-600 mb-6">
+          Everything you need to know about health coverage as a {personaSingular} living in {countryName}—visa requirements, recommended providers, and what to expect.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href="/best/expat-health-insurance"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            Compare Plans for {personaName}
+          </a>
+          <a
+            href={`/countries/${country.slug}/insurance`}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            Full {countryName} Guide
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <!-- Main Content -->
+      <article class="flex-1 min-w-0">
+
+        <!-- TOP META -->
+        <div class="mb-8">
+          <AuthorBox
+            name={author.name}
+            bio={author.bio}
+            image={author.image}
+          />
+        </div>
+
+        <!-- TOC (Mobile) -->
+        <div class="lg:hidden mb-8">
+          <TableOfContents items={tocItems} />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="prose prose-neutral max-w-none">
+
+          <h2 id="overview">{personaName} in {countryName}</h2>
+
+          <p>
+            {countryName} is {countryIntro}.
+            As a {personaSingular}, your insurance needs focus on {persona.keyNeeds.slice(0, 2).join(' and ').toLowerCase()}.
+          </p>
+
+          <p>
+            This guide covers everything you need to know about getting covered in {countryName}—from visa requirements to the best providers for your situation.
+          </p>
+
+          <!-- Key Considerations -->
+          <h2 id="key-considerations">Key Considerations for {personaName}</h2>
+
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-primary-900 mb-3">What to Know</h3>
+            <ul class="space-y-2">
+              {entry.keyConsiderations.map(consideration => (
+                <li class="flex items-start gap-2 text-primary-800">
+                  <svg class="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{consideration}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Visa Requirements -->
+          <h2 id="visa-requirements">Visa & Insurance Requirements</h2>
+
+          <p>
+            {entry.visaNotes}
+          </p>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-amber-900 mb-2">Insurance Requirement Summary</h3>
+            <p class="text-amber-800 text-sm">
+              {insuranceRequirementSummary}
+            </p>
+          </div>
+
+          <p>
+            Even if insurance isn't legally required for your visa type, having coverage protects you from potentially catastrophic medical bills.
+            A hospital stay in {countryName} can cost thousands to tens of thousands of dollars without insurance.
+          </p>
+
+          <CTABox
+            title={`Coverage for ${personaName} in ${countryName}`}
+            description="Compare plans that fit your needs and budget."
+            buttonText="Compare Plans"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
+
+          <!-- Recommended Plans -->
+          <h2 id="recommended-plans">Recommended Plans for {personaName}</h2>
+
+          <p>
+            Based on your needs as a {personaSingular}, here are the best insurance options for {countryName}:
+          </p>
+        </div>
+
+        <!-- Provider Table -->
+        <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+          <ComparisonTable columns={providerColumns} rows={providerRows} />
+        </div>
+
+        <div class="prose prose-neutral max-w-none">
+          {recommendedProviders.slice(0, 3).map((provider) => (
+            <div class="mb-6">
+              <h3>{provider?.name}</h3>
+              <p>
+                {getProviderDescription(provider?.slug || '', persona.slug)}
+              </p>
+              <p>
+                <a href={`/countries/${country.slug}/insurance/${provider?.slug}`}>
+                  {provider?.name} in {countryName} →
+                </a>
+              </p>
+            </div>
+          ))}
+
+          <!-- Healthcare Access -->
+          <h2 id="healthcare">Healthcare Access for {personaName}</h2>
+
+          <p>
+            {entry.healthcareNotes}
+          </p>
+
+          <p>
+            {healthcareAdvice}
+          </p>
+
+          <!-- Costs -->
+          <h2 id="costs">Expected Costs</h2>
+
+          <p>
+            {entry.costNotes}
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4 my-6 not-prose">
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-5">
+              <h4 class="font-semibold text-neutral-900 mb-2">Insurance Costs</h4>
+              <p class="text-sm text-neutral-600">
+                {insuranceCostRange}
+              </p>
+            </div>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-5">
+              <h4 class="font-semibold text-neutral-900 mb-2">Out-of-Pocket Care</h4>
+              <p class="text-sm text-neutral-600">
+                {outOfPocketRange}
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQs -->
+          <h2 id="faqs">Common Questions</h2>
+
+          {faqs.map(faq => (
+            <div class="mb-6">
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </div>
+          ))}
+
+          <CTABox
+            title={`Find Coverage in ${countryName}`}
+            description={`Compare the best options for ${personaName.toLowerCase()}.`}
+            buttonText="Compare Plans"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
+        </div>
+
+        <!-- Related Pages -->
+        <div class="mt-10 pt-8 border-t border-neutral-200">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-4">Related Guides</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a
+              href={`/countries/${country.slug}/insurance`}
+              class="block bg-white border border-neutral-200 rounded-lg p-4 hover:border-primary-300 hover:shadow-md transition-all"
+            >
+              <h4 class="font-semibold text-neutral-900">{countryName} Insurance Guide</h4>
+              <p class="text-sm text-primary-600 mt-1">Full overview →</p>
+            </a>
+            <a
+              href={persona.href}
+              class="block bg-white border border-neutral-200 rounded-lg p-4 hover:border-primary-300 hover:shadow-md transition-all"
+            >
+              <h4 class="font-semibold text-neutral-900">Insurance for {personaName}</h4>
+              <p class="text-sm text-primary-600 mt-1">General guide →</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+          <p class="text-sm text-neutral-600">
+            <strong>Disclaimer:</strong> This guide is for informational purposes only. Visa requirements, insurance rules, and healthcare systems change. We are not immigration consultants or insurance brokers. Verify all requirements with official sources and insurers before making decisions.
+          </p>
+        </div>
+      </article>
+
+      <!-- Sticky Sidebar (Desktop) -->
+      <StickySidebar
+        ctaTitle={`${personaName} in ${countryName}`}
+        ctaDescription="Find the right coverage for your needs."
+        ctaButtonText="Compare Plans"
+        ctaButtonHref="/best/expat-health-insurance"
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+  </div>
+</Layout>

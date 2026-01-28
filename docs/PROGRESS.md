@@ -1,19 +1,100 @@
 # Project Progress Log
 
-Last updated: January 27, 2026
+Last updated: January 28, 2026
 
 ---
 
 ## Current Status
 
-**Phase:** 2 - Country × Provider Expansion
-**Total programmatic country pages:** 183
-**Tier 1 countries refined:** 8
-**Tier 2 countries refined:** 0 (in progress)
+**Phase:** 3 - Country × Persona Expansion
+**Total pages:** 1,441
+**Country-persona pages:** 200 (25 countries × 8 personas)
 
 ---
 
 ## Completed Milestones
+
+### January 28, 2026 (Evening) - Country × Persona Pages
+
+#### Country-Persona Pages Generated (200 pages)
+- Created `countryPersonaMatrix.ts` with 25 countries × 8 personas data:
+  - Country-specific visa info for each persona type
+  - Persona-specific provider recommendations
+  - Cost estimates by persona and country cost level
+  - Healthcare access notes tailored to persona needs
+- Created `CountryPersonaPage.astro` template with:
+  - Key considerations section
+  - Visa & insurance requirements
+  - Recommended providers with persona-specific "best for" text
+  - Healthcare access advice
+  - Expected costs (insurance + out-of-pocket)
+  - Persona-specific FAQs
+- Created dynamic route `/countries/[country]/insurance/for-[persona].astro`
+- Added 21 handcrafted country entries to `countries.ts` for data lookups
+- Generated **200 country-persona pages** (25 top countries × 8 personas)
+- Example pages:
+  - `/countries/spain/insurance/for-digital-nomads`
+  - `/countries/portugal/insurance/for-retirees`
+  - `/countries/thailand/insurance/for-families`
+  - `/countries/mexico/insurance/for-freelancers`
+
+**Target Countries (25):**
+Spain, Portugal, Mexico, Thailand, Costa Rica, France, Italy, Germany, UK, UAE, Singapore, Indonesia, Vietnam, Australia, Canada, Netherlands, Panama, Colombia, Argentina, Japan, Ecuador, South Korea, Brazil, Malaysia, Philippines
+
+**Personas (8):**
+Digital Nomads, Retirees, Families, Remote Workers, Students, Freelancers, Seniors (65+), Entrepreneurs
+
+---
+
+### January 28, 2026 - Regional Hubs + Country-Provider Pages + Provider-Persona Pages + Constraint Pages + Tier 2 Refinement
+
+#### Constraint Pages Created (8 total)
+- Created 7 new constraint-based pages (handcrafted, not programmatic):
+  - **US Coverage** (`/insurance-for/us-coverage`) - Plans that include US care, cost implications, Medicare considerations
+  - **Maternity** (`/insurance-for/maternity`) - Waiting periods, coverage details, planning timeline
+  - **No Medical Underwriting** (`/insurance-for/no-medical-underwriting`) - Moratorium plans, guaranteed issue options, local alternatives
+  - **Mental Health** (`/insurance-for/mental-health`) - Therapy coverage, teletherapy, pre-existing mental health conditions
+  - **Short-term** (`/insurance-for/short-term`) - Travel medical, trip insurance, gap coverage
+  - **Dental** (`/insurance-for/dental`) - Dental add-ons, standalone plans, dental tourism
+  - **Over 70** (`/insurance-for/over-70`) - Age limits, providers accepting 70+, premium expectations
+- Pre-existing conditions page already existed
+
+#### Internal Linking Audit Completed
+- **Persona pages cross-linked:** Updated 4 pages (families, retirees, students, digital-nomads) with links to related personas
+- **Provider pages → comparisons:** Added 3 comparison links to each of 8 provider pages
+- **Country pages → regions:** Updated CountryInsuranceHub template to automatically add "More in [Region]" link to sidebar for all 183 country pages
+
+#### Provider-Persona Pages Created
+- Created `personas.ts` data file with 8 personas: digital-nomads, retirees, families, remote-workers, students, freelancers, seniors, entrepreneurs
+- Created `providerPersonaMatrix.ts` with 40 provider-persona entries (5 providers × 8 personas)
+- Created `ProviderPersonaPage.astro` template
+- Created dynamic route `/providers/[provider]/for-[persona].astro`
+- Generated **40 provider-persona pages** with ratings, benefits, drawbacks, and alternatives
+- Example pages: `/providers/cigna-global/for-digital-nomads`, `/providers/safetywing/for-students`
+
+#### Regional Hub Pages Created
+- Created `regions.ts` data file with 9 regions and country mappings
+- Created `RegionalHub.astro` template
+- Generated 9 regional hub pages + 1 index page:
+  - Southeast Asia, East Asia, Western Europe, Eastern Europe
+  - Latin America, Caribbean, Middle East, Africa, Oceania
+- Each page includes: highlights, featured countries, best for/considerations, all countries list
+
+#### Country-Provider Pages Generated
+- Created `CountryProviderPage.astro` template for programmatic generation
+- Created dynamic route `[country]/insurance/[provider].astro`
+- Generated **732 new country-provider pages** (162 programmatic countries × ~4 providers each)
+- Combined with 168 existing handcrafted pages = **1,104 total country-provider pages**
+- Site now has **1,184 total pages** (up from 452)
+
+#### Countries Refined with Detailed Content
+- **China** - Added United Family/Parkway hospital details, Z Visa specifics, Tier 1 vs Tier 2 city healthcare differences, language barrier guidance, air quality considerations, no digital nomad visa warning
+- Verified all other Tier 2 countries (India, Turkey, Poland, Czech Republic, Hungary, Taiwan, Hong Kong, Chile, Peru, Morocco) already had detailed content from previous session
+
+#### Provider Matrix Updates
+- Updated China provider recommendations with specific hospital network info (United Family, Parkway Health direct billing)
+
+---
 
 ### January 27, 2026 - Bulk Generation System & Tier 1 Refinement
 
@@ -43,22 +124,23 @@ Last updated: January 27, 2026
 
 ---
 
-## In Progress
+## Completed - Tier 2 Country Refinement
 
-### Tier 2 Country Refinement
-Countries to refine with detailed content (priority order):
-- [ ] India
-- [ ] China
-- [ ] UAE (if not already handcrafted)
-- [ ] Turkey
-- [ ] Poland
-- [ ] Czech Republic
-- [ ] Hungary
-- [ ] Taiwan
-- [ ] Hong Kong
-- [ ] Chile
-- [ ] Peru
-- [ ] Morocco
+All Tier 2 countries have been refined with detailed, researched content:
+- [x] India - Apollo/Fortis hospital chains, local HMOs (HDFC ERGO, ICICI Lombard), Employment Visa specifics
+- [x] China - United Family/Parkway hospitals, Tier 1 vs Tier 2 city differences, Z Visa, language barrier guidance
+- [x] UAE - Already handcrafted (skip list)
+- [x] Turkey - SGK public insurance, Acibadem/Memorial hospitals, residence permit requirements
+- [x] Poland - NFZ wait times, Medicover/LuxMed subscriptions, EU vs non-EU differences
+- [x] Czech Republic - Comprehensive vs Travel insurance distinction, VZP system, Prague clinics
+- [x] Hungary - NEAK public system, White Card program, Budapest private options
+- [x] Taiwan - NHI enrollment rules, 6-month waiting period, Gold Card benefits
+- [x] Hong Kong - HA public wait times, private hospital costs, corporate coverage
+- [x] Chile - FONASA/ISAPRE dual system, Clínica Alemana, Digital Nomad Visa
+- [x] Peru - EsSalud system, Lima clinics, altitude coverage considerations
+- [x] Morocco - AMO system, French-trained doctors, Casablanca/Rabat options
+
+## In Progress
 
 ---
 
@@ -95,20 +177,26 @@ These 21 countries have manually created pages with custom hero images:
 |-----------|-------|--------|
 | Handcrafted country pages | 21 | Complete |
 | Programmatic country pages | 162 | Generated (183 - 21 skip list) |
+| Handcrafted country-provider pages | 168 | Complete (21 countries × 8 providers) |
+| Programmatic country-provider pages | 648 | Generated (162 countries × 4 providers) |
+| **Country-persona pages** | **200** | **Complete (25 countries × 8 personas)** |
+| Regional hub pages | 10 | Complete (9 regions + index) |
+| Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
+| Constraint pages | 8 | Complete |
 | Provider pages | 12 | Existing |
 | Comparison pages | ~45 | Existing |
-| Country-provider pages | 0 | Not yet built |
 
-**Total pages ready:** ~240+
+**Total pages:** 1,441
 
 ---
 
 ## Next Steps
 
-1. **Tier 2 Countries** - Refine 12+ more countries with detailed content
-2. **Country-Provider Pages** - Generate /countries/[country]/insurance/[provider] pages
-3. **Regional Hub Pages** - Create pages for Southeast Asia, Latin America, Europe, etc.
-4. **Constraint Pages** - Pre-existing conditions, US coverage, maternity, age 65+
+1. **Expand Country × Persona Pages** - Add remaining ~158 countries (currently top 25) for 1,264 more pages
+2. **Tier 3 Country Refinement** - Refine remaining ~140 generic programmatic pages with detailed content
+3. **Country-Provider Content Enhancement** - Add more detailed content to high-traffic country-provider pages
+4. **Additional Constraint Pages** - Diabetes, cancer survivors, already pregnant, vision coverage
+5. **Guide Interlinking** - Cross-link guides with related content
 
 ---
 
@@ -131,4 +219,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
+- **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
+- **January 28, 2026:** Added provider-persona pages (40 pages)
 - **January 27, 2026:** Initial progress log created after Tier 1 refinement complete

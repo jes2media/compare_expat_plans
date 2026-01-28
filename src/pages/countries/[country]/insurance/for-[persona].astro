@@ -1,0 +1,70 @@
+---
+/**
+ * Dynamic route for programmatically generated country-persona pages.
+ *
+ * This route generates pages like:
+ * - /countries/spain/insurance/for-digital-nomads
+ * - /countries/portugal/insurance/for-retirees
+ * - /countries/thailand/insurance/for-families
+ *
+ * Uses data from countryPersonaMatrix.ts to generate 200 pages
+ * (25 countries × 8 personas).
+ */
+
+import CountryPersonaPage from '../../../../templates/CountryPersonaPage.astro';
+import { getCountryBySlug } from '../../../../data/countries';
+import { getPersonaBySlug } from '../../../../data/personas';
+import {
+  getCountryPersonaEntry,
+  getAllCountryPersonaPairs,
+  targetCountries
+} from '../../../../data/countryPersonaMatrix';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get all country-persona pairs from the matrix
+  const pairs = getAllCountryPersonaPairs();
+
+  // Build paths for each combination
+  const paths: Array<{
+    params: { country: string; persona: string };
+    props: {
+      country: NonNullable<ReturnType<typeof getCountryBySlug>>;
+      persona: NonNullable<ReturnType<typeof getPersonaBySlug>>;
+      entry: NonNullable<ReturnType<typeof getCountryPersonaEntry>>;
+    };
+  }> = [];
+
+  for (const { countrySlug, personaSlug } of pairs) {
+    const country = getCountryBySlug(countrySlug);
+    const persona = getPersonaBySlug(personaSlug);
+    const entry = getCountryPersonaEntry(countrySlug, personaSlug);
+
+    // Skip if any required data is missing
+    if (!country || !persona || !entry) continue;
+
+    paths.push({
+      params: {
+        country: countrySlug,
+        persona: personaSlug,
+      },
+      props: {
+        country,
+        persona,
+        entry,
+      },
+    });
+  }
+
+  return paths;
+};
+
+// Get props from getStaticPaths
+const { country, persona, entry } = Astro.props;
+---
+
+<CountryPersonaPage
+  country={country}
+  persona={persona}
+  entry={entry}
+/>

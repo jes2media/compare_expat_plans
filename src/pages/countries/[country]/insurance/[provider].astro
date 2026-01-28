@@ -1,0 +1,102 @@
+---
+/**
+ * Dynamic route for programmatically generated country-provider pages.
+ *
+ * This route generates pages like:
+ * - /countries/germany/insurance/cigna-global
+ * - /countries/poland/insurance/allianz-care
+ *
+ * Existing handcrafted pages (spain, portugal, etc.) take priority
+ * over this dynamic route due to Astro's routing rules.
+ *
+ * To add country-provider pages:
+ * 1. Ensure country exists in src/data/countries.ts
+ * 2. Ensure provider exists in src/data/providers.ts
+ * 3. Add mapping in src/data/countryProviderMatrix.ts
+ * 4. Run build - pages are generated automatically
+ */
+
+import CountryProviderPage from '../../../../templates/CountryProviderPage.astro';
+import { getCountryBySlug, getAllCountrySlugs } from '../../../../data/countries';
+import { getProviderBySlug } from '../../../../data/providers';
+import { getProvidersForCountry, getAllMatrixCountrySlugs } from '../../../../data/countryProviderMatrix';
+import { hasExistingPage } from '../../../../data/existingCountries';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get all countries from the data layer
+  const countrySlugs = getAllCountrySlugs();
+  const matrixSlugs = new Set(getAllMatrixCountrySlugs());
+
+  // Filter to countries that exist in both countries.ts AND the matrix
+  // AND do NOT have existing handcrafted pages
+  const programmaticCountrySlugs = countrySlugs.filter(slug =>
+    matrixSlugs.has(slug) && !hasExistingPage(slug)
+  );
+
+  // Build paths for each country-provider combination
+  const paths: Array<{
+    params: { country: string; provider: string };
+    props: {
+      country: NonNullable<ReturnType<typeof getCountryBySlug>>;
+      provider: NonNullable<ReturnType<typeof getProviderBySlug>>;
+      providerInCountry: NonNullable<ReturnType<typeof getProvidersForCountry>>[number];
+      alternativeProviders: Array<{
+        name: string;
+        slug: string;
+        bestFor: string;
+        href: string;
+      }>;
+    };
+  }> = [];
+
+  for (const countrySlug of programmaticCountrySlugs) {
+    const country = getCountryBySlug(countrySlug);
+    if (!country) continue;
+
+    const providersInCountry = getProvidersForCountry(countrySlug);
+    if (!providersInCountry || providersInCountry.length === 0) continue;
+
+    for (const providerInCountry of providersInCountry) {
+      const provider = getProviderBySlug(providerInCountry.providerSlug);
+      if (!provider) continue;
+
+      // Get alternative providers (all others in this country)
+      const alternativeProviders = providersInCountry
+        .filter(p => p.providerSlug !== providerInCountry.providerSlug)
+        .map(p => {
+          const prov = getProviderBySlug(p.providerSlug);
+          return {
+            name: prov?.name || p.providerSlug,
+            slug: p.providerSlug,
+            bestFor: p.bestFor,
+            href: p.countryPageHref || `/countries/${countrySlug}/insurance/${p.providerSlug}`,
+          };
+        });
+
+      paths.push({
+        params: {
+          country: countrySlug,
+          provider: providerInCountry.providerSlug,
+        },
+        props: {
+          country,
+          provider,
+          providerInCountry,
+          alternativeProviders,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { country, provider, providerInCountry, alternativeProviders } = Astro.props;
+---
+<CountryProviderPage
+  country={country}
+  provider={provider}
+  providerInCountry={providerInCountry}
+  alternativeProviders={alternativeProviders}
+/>

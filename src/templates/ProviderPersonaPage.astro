@@ -1,0 +1,344 @@
+---
+/**
+ * ProviderPersonaPage.astro
+ *
+ * Template for provider-persona pages like /providers/cigna-global/for-digital-nomads
+ * These pages help users understand if a specific provider is right for their situation.
+ */
+
+import Layout from '../layouts/Layout.astro';
+import CTABox from '../components/CTABox.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import Disclosure from '../components/Disclosure.astro';
+
+import type { Provider } from '../data/types';
+import type { Persona } from '../data/personas';
+import type { ProviderPersonaEntry } from '../data/providerPersonaMatrix';
+
+interface Props {
+  provider: Provider;
+  persona: Persona;
+  entry: ProviderPersonaEntry;
+  /** Other providers for this persona (for alternatives) */
+  alternatives: Array<{
+    name: string;
+    slug: string;
+    rating: string;
+    href: string;
+  }>;
+}
+
+const { provider, persona, entry, alternatives } = Astro.props;
+
+// Rating display
+const ratingDisplay = {
+  'excellent': { label: 'Excellent Match', color: 'green', icon: '★★★★★' },
+  'good': { label: 'Good Match', color: 'blue', icon: '★★★★☆' },
+  'fair': { label: 'Fair Match', color: 'amber', icon: '★★★☆☆' },
+  'not-recommended': { label: 'Not Recommended', color: 'red', icon: '★★☆☆☆' }
+};
+
+const rating = ratingDisplay[entry.rating];
+
+// Generate TOC items
+const tocItems = [
+  { id: 'overview', text: `${provider.name} for ${persona.name}`, level: 2 },
+  { id: 'benefits', text: 'Benefits', level: 2 },
+  { id: 'drawbacks', text: 'Drawbacks', level: 2 },
+  { id: 'recommendation', text: 'Our Recommendation', level: 2 },
+  { id: 'alternatives', text: 'Alternatives', level: 2 },
+];
+
+// Author info
+const author = {
+  name: 'John Spencer',
+  bio: 'John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad.',
+  image: '/images/john-spencer.png',
+};
+
+// Sidebar links
+const sidebarLinks = [
+  { title: `${provider.name} Review`, href: provider.href },
+  { title: `Insurance for ${persona.name}`, href: persona.href },
+  { title: 'Compare All Providers', href: '/best/expat-health-insurance' },
+];
+
+// Meta
+const pageTitle = `${provider.name} for ${persona.name}: Is It Right for You? (2025)`;
+const pageDescription = `Is ${provider.name} a good choice for ${persona.name.toLowerCase()}? ${entry.summary.slice(0, 120)}...`;
+
+// Breadcrumb schema
+const siteUrl = "https://compareexpatplans.com";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Providers", "item": `${siteUrl}/providers` },
+    { "@type": "ListItem", "position": 3, "name": provider.name, "item": `${siteUrl}${provider.href}` },
+    { "@type": "ListItem", "position": 4, "name": `For ${persona.name}` },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} ogType="article">
+  <!-- Structured Data -->
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- HERO SECTION -->
+  <section class="bg-gradient-to-b from-neutral-50 to-white py-10 lg:py-14 border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-primary-600 mb-2">
+          <a href={provider.href} class="hover:underline">{provider.name}</a>
+          {' → '}
+          <span>For {persona.name}</span>
+        </p>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          {provider.name} for {persona.name}
+        </h1>
+
+        <!-- Rating Badge -->
+        <div class="mb-6">
+          {entry.rating === 'excellent' && (
+            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800">
+              ★★★★★ Excellent Match
+            </span>
+          )}
+          {entry.rating === 'good' && (
+            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+              ★★★★☆ Good Match
+            </span>
+          )}
+          {entry.rating === 'fair' && (
+            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-amber-100 text-amber-800">
+              ★★★☆☆ Fair Match
+            </span>
+          )}
+          {entry.rating === 'not-recommended' && (
+            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-red-100 text-red-800">
+              ★★☆☆☆ Not Recommended
+            </span>
+          )}
+        </div>
+
+        <p class="text-lg text-neutral-600 mb-6">
+          {entry.summary}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href={provider.href}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            Get a {provider.name} Quote
+          </a>
+          <a
+            href={persona.href}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            All Options for {persona.name}
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <!-- Main Content -->
+      <article class="flex-1 min-w-0">
+
+        <!-- TOP META -->
+        <div class="mb-8">
+          <AuthorBox
+            name={author.name}
+            bio={author.bio}
+            image={author.image}
+          />
+        </div>
+
+        <!-- TOC (Mobile) -->
+        <div class="lg:hidden mb-8">
+          <TableOfContents items={tocItems} />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="prose prose-neutral max-w-none">
+
+          <h2 id="overview">{provider.name} for {persona.name}: Overview</h2>
+
+          <!-- Quick Stats -->
+          <div class="grid md:grid-cols-3 gap-4 my-8 not-prose">
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+              <p class="text-sm text-neutral-500 mb-1">Rating</p>
+              <p class="font-semibold text-neutral-900">{rating.label}</p>
+            </div>
+            {entry.recommendedPlan && (
+              <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+                <p class="text-sm text-neutral-500 mb-1">Recommended Plan</p>
+                <p class="font-semibold text-neutral-900">{entry.recommendedPlan}</p>
+              </div>
+            )}
+            {entry.estimatedCost && (
+              <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+                <p class="text-sm text-neutral-500 mb-1">Estimated Cost</p>
+                <p class="font-semibold text-neutral-900">{entry.estimatedCost}</p>
+              </div>
+            )}
+          </div>
+
+          <p>
+            As a {persona.singular}, you have specific insurance needs: {persona.keyNeeds.slice(0, 2).join(', ').toLowerCase()}, and more.
+            Here's how {provider.name} stacks up for your situation.
+          </p>
+
+          <!-- Benefits -->
+          <h2 id="benefits">Benefits of {provider.name} for {persona.name}</h2>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-green-900 mb-3">What Works Well</h3>
+            <ul class="space-y-2">
+              {entry.benefits.map(benefit => (
+                <li class="flex items-start gap-2 text-green-800">
+                  <svg class="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Drawbacks -->
+          <h2 id="drawbacks">Drawbacks to Consider</h2>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-amber-900 mb-3">Watch Out For</h3>
+            <ul class="space-y-2">
+              {entry.drawbacks.map(drawback => (
+                <li class="flex items-start gap-2 text-amber-800">
+                  <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <span>{drawback}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Recommendation -->
+          <h2 id="recommendation">Our Recommendation</h2>
+
+          {entry.rating === 'excellent' && (
+            <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6 not-prose">
+              <p class="text-green-800">
+                <strong class="text-green-900">Excellent choice.</strong> {provider.name} is one of the best options for {persona.name.toLowerCase()}.
+                {entry.recommendedPlan && ` We recommend the ${entry.recommendedPlan} plan.`}
+                {entry.estimatedCost && ` Expect to pay around ${entry.estimatedCost}.`}
+              </p>
+            </div>
+          )}
+
+          {entry.rating === 'good' && (
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6 not-prose">
+              <p class="text-blue-800">
+                <strong class="text-blue-900">Good option.</strong> {provider.name} works well for most {persona.name.toLowerCase()}.
+                {entry.recommendedPlan && ` Consider the ${entry.recommendedPlan} plan.`}
+                {entry.estimatedCost && ` Budget around ${entry.estimatedCost}.`}
+              </p>
+            </div>
+          )}
+
+          {entry.rating === 'fair' && (
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6 not-prose">
+              <p class="text-amber-800">
+                <strong class="text-amber-900">Consider alternatives.</strong> {provider.name} can work for {persona.name.toLowerCase()}, but there may be better options depending on your specific needs.
+                Check the alternatives below.
+              </p>
+            </div>
+          )}
+
+          {entry.rating === 'not-recommended' && (
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-6 not-prose">
+              <p class="text-red-800">
+                <strong class="text-red-900">Not recommended.</strong> {provider.name} is not the best fit for most {persona.name.toLowerCase()}.
+                We suggest looking at the alternatives below for better options suited to your needs.
+              </p>
+            </div>
+          )}
+
+          <CTABox
+            title={entry.rating === 'not-recommended' ? `Find Better Options for ${persona.name}` : `Get a ${provider.name} Quote`}
+            description={entry.rating === 'not-recommended' ? `Compare providers better suited for ${persona.name.toLowerCase()}.` : `See pricing for ${persona.name.toLowerCase()}.`}
+            buttonText={entry.rating === 'not-recommended' ? 'Compare Alternatives' : 'Get Quote'}
+            buttonHref={entry.rating === 'not-recommended' ? persona.href : provider.href}
+            variant="highlight"
+            showDisclosure={false}
+          />
+
+          <!-- Alternatives -->
+          <h2 id="alternatives">Alternatives for {persona.name}</h2>
+          <p>
+            Here's how other providers compare for {persona.name.toLowerCase()}:
+          </p>
+        </div>
+
+        <!-- Alternatives Grid -->
+        <div class="grid md:grid-cols-2 gap-4 my-8">
+          {alternatives.filter(a => a.slug !== provider.slug).slice(0, 4).map(alt => (
+            <a
+              href={alt.href}
+              class="block bg-white border border-neutral-200 rounded-lg p-5 hover:border-primary-300 hover:shadow-md transition-all"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-semibold text-neutral-900">{alt.name}</h3>
+                {alt.rating === 'excellent' && (
+                  <span class="text-xs px-2 py-1 rounded bg-green-100 text-green-800">Excellent</span>
+                )}
+                {alt.rating === 'good' && (
+                  <span class="text-xs px-2 py-1 rounded bg-blue-100 text-blue-800">Good</span>
+                )}
+                {alt.rating === 'fair' && (
+                  <span class="text-xs px-2 py-1 rounded bg-amber-100 text-amber-800">Fair</span>
+                )}
+                {alt.rating === 'not-recommended' && (
+                  <span class="text-xs px-2 py-1 rounded bg-red-100 text-red-800">Not Rec.</span>
+                )}
+              </div>
+              <p class="text-sm text-primary-600 font-medium">View details →</p>
+            </a>
+          ))}
+        </div>
+
+        <div class="prose prose-neutral max-w-none">
+          <p>
+            <a href={persona.href}>See all insurance options for {persona.name.toLowerCase()} →</a>
+          </p>
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+          <p class="text-sm text-neutral-600">
+            <strong>Disclaimer:</strong> This assessment is for informational purposes only. Coverage details, pricing, and availability change. We are not insurance brokers. Verify all information with {provider.name} before purchasing.
+          </p>
+        </div>
+      </article>
+
+      <!-- Sticky Sidebar (Desktop) -->
+      <StickySidebar
+        ctaTitle={`${provider.name} for ${persona.name}`}
+        ctaDescription="Get a personalized quote."
+        ctaButtonText="Get Quote"
+        ctaButtonHref={provider.href}
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+  </div>
+</Layout>

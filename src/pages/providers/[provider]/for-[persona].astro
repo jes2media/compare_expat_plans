@@ -1,0 +1,63 @@
+---
+/**
+ * Dynamic route for provider-persona pages
+ * Generates pages like /providers/cigna-global/for-digital-nomads
+ */
+
+import ProviderPersonaPage from '../../../templates/ProviderPersonaPage.astro';
+import { providers, getProviderBySlug } from '../../../data/providers';
+import { personas, getPersonaBySlug } from '../../../data/personas';
+import {
+  getAllProviderPersonaPairs,
+  getProviderPersonaEntry,
+  getProvidersForPersona,
+} from '../../../data/providerPersonaMatrix';
+
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const pairs = getAllProviderPersonaPairs();
+
+  return pairs.map(({ providerSlug, personaSlug }) => {
+    const provider = getProviderBySlug(providerSlug);
+    const persona = getPersonaBySlug(personaSlug);
+    const entry = getProviderPersonaEntry(providerSlug, personaSlug);
+
+    // Get alternatives (other providers for same persona)
+    const alternativeEntries = getProvidersForPersona(personaSlug)
+      .filter(e => e.providerSlug !== providerSlug);
+
+    const alternatives = alternativeEntries.map(e => {
+      const altProvider = getProviderBySlug(e.providerSlug);
+      return {
+        name: altProvider?.name || e.providerSlug,
+        slug: e.providerSlug,
+        rating: e.rating,
+        href: `/providers/${e.providerSlug}/for-${personaSlug}`,
+      };
+    });
+
+    return {
+      params: {
+        provider: providerSlug,
+        persona: personaSlug,
+      },
+      props: {
+        provider,
+        persona,
+        entry,
+        alternatives,
+      },
+    };
+  });
+};
+
+const { provider, persona, entry, alternatives } = Astro.props;
+---
+
+<ProviderPersonaPage
+  provider={provider}
+  persona={persona}
+  entry={entry}
+  alternatives={alternatives}
+/>

@@ -1,0 +1,75 @@
+---
+/**
+ * Regions index page - lists all regional hubs
+ */
+
+import Layout from '../../layouts/Layout.astro';
+import Disclosure from '../../components/Disclosure.astro';
+import { regions } from '../../data/regions';
+
+const title = "Health Insurance by Region | Compare Expat Plans";
+const description = "Find expat health insurance by region. Southeast Asia, Latin America, Europe, Middle East, and more. Compare coverage options for your destination.";
+---
+
+<Layout title={title} description={description}>
+  <!-- HERO SECTION -->
+  <section class="bg-gradient-to-b from-neutral-50 to-white py-10 lg:py-14 border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          Health Insurance by Region
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          Explore expat health insurance options by region. Each guide covers healthcare systems, visa requirements, and recommended providers for countries in that area.
+        </p>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- REGIONS GRID -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {regions.map(region => (
+        <a
+          href={`/regions/${region.slug}`}
+          class="block bg-white border border-neutral-200 rounded-xl p-6 hover:border-primary-300 hover:shadow-lg transition-all"
+        >
+          <h2 class="text-xl font-semibold text-neutral-900 mb-2">{region.name}</h2>
+          <p class="text-neutral-600 text-sm mb-4">{region.subheadline}</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-neutral-500">
+              {region.countries.length} countries
+            </span>
+            <span class="text-primary-600 font-medium text-sm">
+              View guide →
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 bg-primary-50 border border-primary-200 rounded-xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-3">Not sure where you're going?</h2>
+      <p class="text-neutral-600 mb-6 max-w-2xl mx-auto">
+        Compare the top international health insurance providers that work worldwide.
+      </p>
+      <a
+        href="/best/expat-health-insurance"
+        class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+        style="color: white;"
+      >
+        Compare Global Plans
+      </a>
+    </div>
+
+    <!-- All Countries Link -->
+    <div class="mt-8 text-center">
+      <p class="text-neutral-600">
+        Looking for a specific country?
+        <a href="/countries" class="text-primary-600 hover:underline font-medium">Browse all countries →</a>
+      </p>
+    </div>
+  </div>
+</Layout>

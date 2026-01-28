@@ -1815,26 +1815,26 @@ export const countryProviderMatrix: CountryProviderEntry[] = [
     providers: [
       {
         providerSlug: "cigna-global",
-        bestFor: "Worldwide coverage and strong customer service",
-        notIdealFor: "Budget-focused expats staying only in China",
+        bestFor: "Direct billing at United Family, Parkway Health, and top international hospitals across Tier 1 cities",
+        notIdealFor: "Employed expats with good employer coverage—may duplicate existing social insurance benefits",
         countryPageHref: "/countries/china/insurance/cigna-global"
       },
       {
         providerSlug: "allianz-care",
-        bestFor: "High-deductible savings and EU-based service",
-        notIdealFor: "Those wanting minimal out-of-pocket costs",
+        bestFor: "Expats in Tier 2/3 cities who may need evacuation to Shanghai or Beijing for complex care",
+        notIdealFor: "Those staying only in Beijing/Shanghai with employer-provided international clinic access",
         countryPageHref: "/countries/china/insurance/allianz-care"
       },
       {
         providerSlug: "bupa-global",
-        bestFor: "Pre-existing conditions and mental health coverage",
-        notIdealFor: "Those seeking the lowest premiums",
+        bestFor: "Pre-existing conditions and mental health coverage—important given China's limited English-speaking mental health resources",
+        notIdealFor: "Healthy young professionals with employer coverage and no chronic conditions",
         countryPageHref: "/countries/china/insurance/bupa-global"
       },
       {
         providerSlug: "img-global",
-        bestFor: "Budget international coverage",
-        notIdealFor: "Those wanting premium service levels",
+        bestFor: "Budget-conscious expats supplementing employer coverage or short-term business visa holders",
+        notIdealFor: "Families wanting maternity at international hospitals—United Family deliveries cost $15,000-25,000",
         countryPageHref: "/countries/china/insurance/img-global"
       }
     ]
