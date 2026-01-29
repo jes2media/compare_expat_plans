@@ -37,6 +37,13 @@ Last updated: January 29, 2026
 - **Uruguay** - Mutualista system explained, FONASA contributions, Hospital Británico, retirement-friendly healthcare
 - **Kenya** - Nairobi as East Africa hub, AMREF Flying Doctors, Aga Khan Hospital, Digital Nomad Permit, safari evacuation
 
+#### Tier 3 Country Refinement - Batch 3 (5 countries)
+- **Denmark** - CPR number registration, yellow card (sundhedskort), Group 1/2 membership choice, dental exclusion, 18-month registration requirement
+- **Finland** - Occupational healthcare (työterveys) advantage, Kela reimbursement system, terveysasema health stations, €25.60 fee caps
+- **Nepal** - Kathmandu-centric healthcare (CIWEC, Patan, Grande), altitude sickness coverage essential, helicopter evacuation for trekkers, India backup
+- **Dominican Republic** - Santo Domingo hospitals (HOMS, CEDIMAT, Hospiten), ARS local insurance system, Punta Cana tourist coverage, Miami evacuation option
+- **Bolivia** - La Paz altitude challenges (3,640m), SUS universal system, Santa Cruz as medical hub, evacuation to Chile/Brazil essential, very affordable costs
+
 ---
 
 ### January 28, 2026 (Evening) - Country × Persona Pages
@@ -169,11 +176,12 @@ All Tier 2 countries have been refined with detailed, researched content:
 
 **Batch 1 Complete (5 countries):** Austria, Belgium, Croatia, Israel, South Africa
 **Batch 2 Complete (5 countries):** Sweden, Norway, Egypt, Uruguay, Kenya
+**Batch 3 Complete (5 countries):** Denmark, Finland, Nepal, Dominican Republic, Bolivia
 
-**Remaining High Priority (~15 countries):**
-- European: Denmark, Finland, Romania
-- Asian: Cambodia (already detailed), Laos, Nepal, Sri Lanka, Bangladesh, Mongolia
-- Latin American: Bolivia, Guatemala, Dominican Republic
+**Remaining High Priority (~10 countries):**
+- European: Romania
+- Asian: Cambodia (already detailed), Laos, Sri Lanka (already detailed), Bangladesh, Mongolia
+- Latin American: Guatemala
 - Oceania: Fiji
 
 ---
@@ -252,7 +260,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1 (Austria, Belgium, Croatia, Israel, South Africa) + Batch 2 (Sweden, Norway, Egypt, Uruguay, Kenya)
+- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1 (Austria, Belgium, Croatia, Israel, South Africa) + Batch 2 (Sweden, Norway, Egypt, Uruguay, Kenya) + Batch 3 (Denmark, Finland, Nepal, Dominican Republic, Bolivia)
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
 - **January 28, 2026:** Added provider-persona pages (40 pages)

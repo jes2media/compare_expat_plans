@@ -1020,63 +1020,65 @@ const programmaticCountries: Country[] = [
     slug: "denmark",
     name: "Denmark",
     demonym: "Danish",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Denmark (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Denmark. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Denmark. CPR number, yellow card, Group 1 vs Group 2, private options, and wait times.",
     headline: "Denmark Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Denmark—understanding the Sundhedsstyrelsen system and international insurance options.",
+    subheadline: "Navigate Denmark's excellent but slow public healthcare—getting your yellow card, understanding GP gatekeeping, and whether private insurance is worth the cost.",
     summaryBullets: [
-      "Denmark does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Sundhedsstyrelsen) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, Green Card."
+      "CPR number + yellow card (sundhedskort) = your gateway to free public healthcare.",
+      "Group 1 membership (default): assigned GP who refers you to specialists. Group 2: choose any GP but pay more.",
+      "Public healthcare is excellent but SLOW—specialist wait times of 2-6 months are normal.",
+      "Private insurance (sundhedsforsikring) increasingly popular for skipping queues—many employers provide it.",
+      "One of world's highest tax rates funds comprehensive coverage—but dental is NOT included for adults."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Denmark does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Denmark doesn't require health insurance for visas—the tax-funded system covers all legal residents. You need a CPR number (personal registration) to access public healthcare. After registering at your local municipality (kommune), you'll receive a yellow card (sundhedskort) in 2-4 weeks. EU citizens can use EHIC initially. Private insurance is optional but increasingly common for avoiding wait times.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "New arrivals before CPR number arrives (2-4 week gap)—no public access without yellow card",
+      "Anyone wanting faster specialist access—public wait times can be months",
+      "Adults needing dental care—not covered by public system",
+      "Self-employed wanting comprehensive sick pay beyond public minimums",
+      "Expats who travel frequently—public system only covers Denmark"
     ],
     publicHealthcare: {
-      name: "Sundhedsstyrelsen",
-      access: "Danish citizens, legal residents, EU citizens with EHIC",
-      cost: "Included in taxes",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Regional Healthcare (5 regions)",
+      access: "Anyone with CPR number and yellow card (sundhedskort)",
+      cost: "Free (funded by ~40-55% income tax)",
+      notes: "Excellent quality but famous for wait times. GP is your gatekeeper—must refer you to specialists. Group 1 (default): assigned GP, free visits. Group 2: choose any GP but pay difference. Rigshospitalet (Copenhagen) is top hospital. Call 1813 for emergency advice. Specialist waits 2-6 months for non-urgent. Cancer and cardiac care are fast."
     },
     privateHealthcare: {
-      cost: "€150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "DKK 300-600/month employer plans, €200-400/month international",
+      notes: "Private sector growing rapidly. Aleris, Hamlet Private Hospital, Privathospitalet Danmark. Many employers offer sundhedsforsikring (health insurance) as benefit—covers private hospital access. Private gets you specialist within days vs months. Useful for orthopedics, dermatology, psychology. Copenhagen has most private options."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Danish regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "No yellow card = no public healthcare. You must wait 2-4 weeks after CPR registration. Budget for private/international coverage during gap.",
+      "Dental NOT covered for adults—budget DKK 2,000-5,000/year or get separate dental insurance.",
+      "Specialist wait times are legendary—4-6 months for non-urgent orthopedics, dermatology. Private insurance worth it if impatient.",
+      "GP gatekeeping is strict—you can't self-refer to specialists. Your læge (GP) must refer you.",
+      "Prescriptions have co-pays (DKK 0-4,000/year before full subsidy kicks in)."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Denmark visa?",
-        answer: "No. Denmark does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How do I get a yellow card (sundhedskort)?",
+        answer: "After registering at your kommune (municipality) and getting your CPR number, you'll receive a yellow card by mail in 2-4 weeks. This card is your healthcare ID—show it at all medical visits. If you move addresses, update your kommune and get a new card. Lost card? Order replacement at borger.dk."
       },
       {
-        question: "How does Danish public healthcare work?",
-        answer: "Denmark's public healthcare system (Sundhedsstyrelsen) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What's the difference between Group 1 and Group 2?",
+        answer: "Group 1 (default): You're assigned a GP (praktiserende læge) near your address. GP visits are free. You can't see specialists without GP referral. Group 2: You can see any GP but pay DKK 200-500 per visit above the reimbursement. Can also self-refer to some specialists for a fee. Most people stay in Group 1."
       },
       {
-        question: "How much does health insurance cost in Denmark?",
-        answer: "International health insurance typically costs €150-350/month depending on your age and coverage level. Local/public options cost Included in taxes but may have limitations for non-citizens."
+        question: "Is private health insurance worth it in Denmark?",
+        answer: "For skipping queues, absolutely. If your employer offers sundhedsforsikring, take it—common in corporate jobs. Self-paying DKK 300-600/month makes sense if you want guaranteed fast access to specialists. For emergencies and serious conditions, the public system is excellent. Private is mainly about convenience and wait times."
       },
       {
-        question: "What's the best health insurance for expats in Denmark?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How bad are the wait times really?",
+        answer: "Varies by condition. GP: usually within 1-2 days. Non-urgent specialists (orthopedics, dermatology): 2-6 months. Psychology/psychiatry: extremely long waits. Cancer, cardiac, emergency: fast. The udvidet frit sygehusvalg (extended free hospital choice) lets you choose private hospital if public wait exceeds 30 days for some treatments—but rules are complex."
       },
       {
-        question: "Are pre-existing conditions covered in Denmark?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Why isn't dental covered?",
+        answer: "Danish public healthcare excludes most adult dental care. Children under 18 get free dental. Adults pay out-of-pocket or get private dental insurance (tandforsikring). Budget DKK 1,500-3,000 for annual checkups and cleaning. Major work (crowns, implants) can cost DKK 10,000-30,000. Many Danes travel to Poland or Germany for cheaper dental work."
       }
     ],
     sidebarLinks: [
@@ -1106,63 +1108,65 @@ const programmaticCountries: Country[] = [
     slug: "finland",
     name: "Finland",
     demonym: "Finnish",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Finland (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Finland. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Finland. Occupational healthcare, Kela reimbursements, terveysasema, and private options.",
     headline: "Finland Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Finland—understanding the Kela system and international insurance options.",
+    subheadline: "Navigate Finland's three-tier healthcare—occupational health from employers, public health centers, and when private makes sense.",
     summaryBullets: [
-      "Finland does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Kela) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €150-320/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, Startup Permit."
+      "Employed? You get työterveys (occupational healthcare)—fast, free, and provided by your employer. This is the best tier.",
+      "Public healthcare (terveysasema) is cheap but has long wait times—weeks for GP, months for specialists.",
+      "Kela (Social Insurance) reimburses part of private healthcare costs—makes private more affordable.",
+      "Private chains (Mehiläinen, Terveystalo, Pihlajalinna) offer fast access—common employer benefit or self-pay.",
+      "Finnish personal identity code (henkilötunnus) required for all healthcare access."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Finland does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Finland doesn't require health insurance for visas—the tax-funded system covers residents. You need a Finnish personal identity code (henkilötunnus) for healthcare access. Employed expats get the best deal: mandatory occupational healthcare (työterveys) through your employer, which is fast and comprehensive. Self-employed and unemployed use public health centers (terveysasema), which have longer waits. Private insurance is optional but popular for skipping queues.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Self-employed/freelancers—no occupational healthcare, public waits are long",
+      "Those wanting faster specialist access—public wait times can be months",
+      "Anyone needing mental health care—public system has severe capacity issues",
+      "New arrivals before personal identity code—no public access without it",
+      "Expats outside Helsinki region where private options are more limited"
     ],
     publicHealthcare: {
-      name: "Kela",
-      access: "Finnish citizens, legal residents, EU citizens with EHIC",
-      cost: "Included in taxes",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Municipal Healthcare + Kela reimbursements",
+      access: "Anyone with Finnish personal identity code (henkilötunnus)",
+      cost: "€20-40 per terveysasema visit, €50-100 per hospital day (annual caps apply)",
+      notes: "Two public systems: (1) Terveysasema (municipal health centers)—GP-level care, €20-40/visit, wait times 1-4 weeks. (2) Hospital care for specialists/emergencies. Kela reimburses ~30-40% of private care costs. Quality is good when you get in—the challenge is wait times. Mental health, dermatology, orthopedics have longest waits. HUS (Helsinki University Hospital) is top facility."
     },
     privateHealthcare: {
-      cost: "€150-320/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€80-150 per visit (before Kela reimbursement), €100-250/month insurance",
+      notes: "Three big private chains: Mehiläinen, Terveystalo, Pihlajalinna—clinics nationwide, app-based booking, English available. Employer-provided private insurance is common in corporate jobs. Kela reimburses ~€20-30 per private GP visit, more for specialists. Private gets you in same-day or next-day vs weeks. Helsinki has most options; smaller cities have fewer."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Finnish regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Without henkilötunnus, no public healthcare access. Processing takes 1-4 weeks after registration. Budget for private coverage during gap.",
+      "Occupational healthcare (työterveys) is gold—if employed, your employer must provide it. Use it first; it's fast and free.",
+      "Public mental health care is severely backlogged—months of wait. Private or employer healthcare needed for timely access.",
+      "Dental is mostly out-of-pocket—public dental has year-long waits. Budget €200-500/year for private dental.",
+      "Kela card + henkilötunnus = your healthcare IDs. Keep both accessible."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Finland visa?",
-        answer: "No. Finland does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What is occupational healthcare (työterveys)?",
+        answer: "Työterveys is employer-provided healthcare—mandatory for employers to offer. It's the best tier: fast appointments (often same-day), comprehensive coverage, and free to you. Covers GP visits, specialists (often), some mental health. Your employer contracts with a private provider (Mehiläinen, Terveystalo, etc.). Use it for everything before going to public health centers."
       },
       {
-        question: "How does Finnish public healthcare work?",
-        answer: "Finland's public healthcare system (Kela) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does Kela reimbursement work?",
+        answer: "Kela (Social Insurance Institution) reimburses part of private healthcare costs. Visit a private doctor, pay full price, then claim reimbursement through Kela app or office. Get back ~€20-30 for GP, more for specialists. Not huge, but makes private more affordable. Reimbursements processed within days. Doesn't apply to occupational healthcare (that's already free)."
       },
       {
-        question: "How much does health insurance cost in Finland?",
-        answer: "International health insurance typically costs €150-320/month depending on your age and coverage level. Local/public options cost Included in taxes but may have limitations for non-citizens."
+        question: "How bad are public healthcare wait times?",
+        answer: "It varies. Terveysasema GP: 1-4 weeks typically, longer in busy areas. Specialists (public hospital): 1-6 months depending on condition. Emergency and urgent care: fast. Cancer, cardiac: prioritized. Mental health, dermatology, orthopedics: extremely long waits. The hoitotakuu (care guarantee) requires treatment within 3-6 months, but non-urgent often exceeds this."
       },
       {
-        question: "What's the best health insurance for expats in Finland?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Do I need private insurance if I have occupational healthcare?",
+        answer: "Maybe not while employed—työterveys covers most needs. But: (1) it ends when employment ends, (2) coverage scope varies by employer, (3) doesn't cover family members. If your employer offers private insurance (common), take it. International insurance adds worldwide coverage for travel. Self-employed definitely need private or international coverage."
       },
       {
-        question: "Are pre-existing conditions covered in Finland?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How do I get a Finnish personal identity code?",
+        answer: "Register at DVV (Digital and Population Data Services Agency) or local register office (maistraatti). Need: passport, residence permit, proof of address. Processing takes 1-4 weeks. Without henkilötunnus, you can only access emergency care. The code is permanent and used for everything—healthcare, banking, taxes. Keep the paper with your code safe."
       }
     ],
     sidebarLinks: [
@@ -4366,64 +4370,65 @@ const programmaticCountries: Country[] = [
     slug: "nepal",
     name: "Nepal",
     demonym: "Nepalese",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Nepal (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Nepal. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Nepal. Kathmandu hospitals, altitude sickness, helicopter evacuation, and why evacuation coverage is essential.",
     headline: "Nepal Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Nepal—understanding the State Healthcare system and international insurance options.",
+    subheadline: "Navigate Nepal's limited healthcare—Kathmandu hospitals, critical evacuation coverage for trekkers, and when to fly to India for treatment.",
     summaryBullets: [
-      "Nepal does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (State Healthcare) is available to residents.",
-      "International health insurance typically costs $50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Tourist Visa, Non-Tourist Visa."
+      "Medical evacuation coverage is ESSENTIAL—helicopter rescues from mountains are expensive ($5,000-15,000+) and common.",
+      "Kathmandu has Nepal's only quality hospitals: Grande International, Norvic, CIWEC Clinic for expats.",
+      "India (Delhi, Bangkok) is your backup for complex cases—include these in your coverage area.",
+      "Altitude sickness is a major concern for trekkers—ensure your insurance covers high-altitude emergencies.",
+      "Public hospitals are severely underfunded—private healthcare is the only realistic option for expats."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Nepal does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Nepal doesn't require health insurance for visas, but coverage with evacuation is effectively mandatory for safety. The tourist visa is easy (visa on arrival), and non-tourist visas are available for longer stays. Nepal's healthcare is limited outside Kathmandu—serious conditions require evacuation to India or Thailand. For trekkers, helicopter rescue is common and expensive. Insurance with high-altitude and evacuation coverage is not optional.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Everyone in Nepal—quality healthcare is limited and evacuation is expensive",
+      "Trekkers and mountaineers—altitude sickness, injuries require helicopter rescue",
+      "Expats outside Kathmandu—healthcare drops dramatically outside the capital",
+      "Anyone with chronic conditions—reliable care requires Kathmandu or evacuation",
+      "Long-term residents—India evacuation coverage provides safety net"
     ],
     publicHealthcare: {
-      name: "State Healthcare",
-      access: "Nepalese citizens, legal residents",
-      cost: "$5-15/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Government Hospitals (Bir Hospital, Tribhuvan University Teaching Hospital)",
+      access: "Anyone can access; very low cost",
+      cost: "Nearly free ($1-10 for basic consultations)",
+      notes: "Severely underfunded, overcrowded, basic facilities. Bir Hospital in Kathmandu is the main public facility—long waits, limited equipment, but has some capable doctors. Outside Kathmandu, public hospitals are very basic. Expats avoid public hospitals except in emergencies. English is limited outside private facilities."
     },
     privateHealthcare: {
-      cost: "$50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "Kathmandu private: $30-100 per visit. International insurance: $60-150/month.",
+      notes: "Kathmandu private hospitals: Grande International Hospital (best overall), Norvic International Hospital, Nepal Mediciti. CIWEC Clinic is the go-to for expats and trekkers—Western-trained staff, travel medicine specialists. Pokhara has some private clinics for basic care. Outside these cities, options are extremely limited. India (Delhi, Kolkata, Bangkok) handles complex cases."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Nepalese regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Altitude sickness can be fatal. If trekking, ensure insurance covers high-altitude emergencies (above 3,000m) and helicopter evacuation.",
+      "Helicopter rescue costs $5,000-15,000+ without insurance. With proper coverage, evacuations are covered. Verify altitude limits in your policy.",
+      "Kathmandu only. Nepal's quality healthcare is concentrated in the capital. Pokhara has basic private clinics. Beyond that, expect evacuation needs.",
+      "India is your backup. Delhi and Kolkata have world-class hospitals 1-2 hours by flight. For cancer, cardiac surgery, complex cases—plan for India.",
+      "Blood supply is limited and quality variable. If you have a rare blood type, register with your embassy and consider keeping Delhi hospital contacts."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Nepal visa?",
-        answer: "No. Nepal does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How important is evacuation coverage for Nepal?",
+        answer: "Extremely important—arguably the most critical coverage. Helicopter rescue from trekking areas costs $5,000-15,000+. Medical evacuation to Delhi or Bangkok for complex treatment costs $10,000-25,000+. With proper insurance, these are covered. Without insurance, you're facing massive out-of-pocket costs or dangerous delays in care."
       },
       {
-        question: "How does Nepalese public healthcare work?",
-        answer: "Nepal's public healthcare system (State Healthcare) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is CIWEC Clinic and should I use it?",
+        answer: "CIWEC (Canadian International Water and Energy Consultants) Clinic is Kathmandu's premier expat and travel medicine facility. Western-trained doctors, English-speaking staff, travel vaccinations, altitude medicine expertise. First stop for non-emergency care. They can arrange evacuations and hospital referrals. Costs more than local clinics but worth it for quality and communication."
       },
       {
-        question: "How much does health insurance cost in Nepal?",
-        answer: "International health insurance typically costs $50-120/month depending on your age and coverage level. Local/public options cost $5-15/month but may have limitations for non-citizens."
+        question: "Does insurance cover altitude sickness and trekking?",
+        answer: "Many policies have altitude limits (often 4,000-5,000m). If trekking to Everest Base Camp (5,364m) or higher, verify coverage. Some insurers exclude mountaineering entirely. SafetyWing, World Nomads, and specialized trekking policies cover high-altitude. Always verify: helicopter rescue, altitude limits, and adventure sports coverage before booking treks."
       },
       {
-        question: "What's the best health insurance for expats in Nepal?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "When should I evacuate to India instead of treating in Nepal?",
+        answer: "For: major surgery, cancer treatment, cardiac procedures, organ issues, complex trauma, serious infections. Nepal's hospitals can stabilize you and handle routine care, but complex cases do better in India. Delhi has Apollo, Fortis, Max hospitals—world-class at a fraction of Western prices. If your condition needs advanced imaging, ICU, or specialist surgery, plan for India."
       },
       {
-        question: "Are pre-existing conditions covered in Nepal?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is Nepal good for long-term expats' healthcare?",
+        answer: "For healthy people who stay near Kathmandu, yes—affordable, pleasant climate, spiritual environment. Challenges: limited specialist care, evacuation needed for serious conditions, and infrastructure issues (power, roads). Retirees with chronic conditions should carefully consider whether Nepal's healthcare limitations are acceptable. Many expats do regular health check-ups in Bangkok or India."
       }
     ],
     sidebarLinks: [
@@ -6127,65 +6132,65 @@ const programmaticCountries: Country[] = [
     slug: "bolivia",
     name: "Bolivia",
     demonym: "Bolivian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Bolivia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Bolivia. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Bolivia. SUS universal system, altitude health considerations, private hospitals in La Paz and Santa Cruz, and evacuation coverage.",
     headline: "Bolivia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Bolivia—understanding the SUS system and international insurance options.",
+    subheadline: "Navigate healthcare at 3,640 meters altitude—understanding Bolivia's SUS universal system, the best private hospitals in La Paz and Santa Cruz, and when you'll need evacuation coverage.",
     summaryBullets: [
-      "Bolivia does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (SUS) is available to residents.",
-      "International health insurance typically costs $50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Specific Purpose Visa, Residence Visa."
+      "Bolivia does not require health insurance for visas, but international coverage is essential—private healthcare quality is limited.",
+      "The Sistema Único de Salud (SUS) launched in 2019 provides free care at public facilities, but quality varies significantly.",
+      "Altitude sickness is a real concern—La Paz sits at 3,640m (11,942 ft). Ensure your plan covers altitude-related conditions.",
+      "Santa Cruz has the best private healthcare; complex cases require evacuation to Chile, Peru, or Brazil.",
+      "Healthcare costs are very low: $20-40 consultations, $100-150/day private hospital rooms."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Bolivia does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Bolivia does not require health insurance for tourist or temporary residence visas. However, international coverage with medical evacuation is essential. Bolivia has limited advanced medical facilities—serious conditions require evacuation to Chile (Santiago), Peru (Lima), or Brazil (São Paulo). La Paz's extreme altitude poses unique health risks.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Anyone living in La Paz or high-altitude areas—altitude sickness and related complications are common",
+      "Expats over 50 or with cardiac/respiratory conditions—altitude exacerbates these issues",
+      "Those needing advanced medical care—Bolivia lacks specialists and modern equipment for complex procedures",
+      "Adventure travelers—trekking, mountain climbing, and Salar de Uyuni expeditions carry risks",
+      "Anyone unwilling to use basic public healthcare facilities"
     ],
     publicHealthcare: {
-      name: "SUS",
-      access: "Bolivian citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Sistema Único de Salud (SUS)",
+      access: "All Bolivian citizens and registered residents; launched in 2019",
+      cost: "Free at public facilities",
+      notes: "SUS expanded coverage to 5 million previously uninsured Bolivians. Quality varies dramatically—urban public hospitals like Hospital de Clínicas in La Paz provide basic care, but equipment is outdated and waits are long. Workers in formal employment also have Caja Nacional de Salud (CNS) social security coverage. Most expats find public facilities inadequate."
     },
     privateHealthcare: {
-      cost: "$50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$40-100/month (local plans); $80-150/month (international)",
+      notes: "Private healthcare is affordable but limited. La Paz has Clínica del Sur and Clínica Cemes. Santa Cruz (lower altitude, larger economy) offers better options: Clínica Foianini, Hospital Universitario Japonés, and Clínica Incor for cardiac care. Even the best Bolivian hospitals cannot handle complex surgeries, transplants, or advanced cancer treatment. English-speaking doctors are rare—Spanish is essential."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Bolivian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Bolivia."
+      "Altitude health is serious: La Paz at 3,640m causes altitude sickness, especially in the first 48-72 hours. Some people cannot acclimatize and must relocate to Santa Cruz (400m) or leave Bolivia.",
+      "Medical evacuation coverage is essential, not optional. Serious trauma, cardiac events, or cancer require treatment in Chile or Brazil. A medical flight to Santiago costs $20,000-50,000.",
+      "Medication availability: Many common medications are unavailable or counterfeit. Bring sufficient supplies for chronic conditions.",
+      "Blood bank limitations: Bolivia's blood supply is limited and not always safe. International plans should include blood product coverage.",
+      "Road safety: Bolivia has dangerous mountain roads. Trauma care is limited outside major cities."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Bolivia visa?",
-        answer: "No. Bolivia does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How does altitude affect healthcare needs in Bolivia?",
+        answer: "La Paz at 3,640m is one of the world's highest cities. Altitude sickness affects most newcomers (headache, nausea, fatigue) and can be serious—high-altitude pulmonary edema (HAPE) and cerebral edema (HACE) are medical emergencies. People with heart or lung conditions may not be able to live in La Paz. Santa Cruz at 400m has no altitude issues. Ensure your insurance covers altitude-related conditions without exclusions."
       },
       {
-        question: "How does Bolivian public healthcare work?",
-        answer: "Bolivia's public healthcare system (SUS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What's the best health insurance for Bolivia expats?",
+        answer: "International plans with robust medical evacuation are essential. Cigna Global and Allianz Care offer good Latin America coverage with evacuation to Santiago or Lima. For budget coverage, IMG Global works but verify evacuation limits. Local plans (BISA Seguros, Nacional Seguros) are affordable at Bs300-600/month ($45-90) but won't cover evacuation and are paid in Bolivianos."
       },
       {
-        question: "How much does health insurance cost in Bolivia?",
-        answer: "International health insurance typically costs $50-120/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "Should I live in La Paz or Santa Cruz for health reasons?",
+        answer: "Santa Cruz is medically safer. It's at low altitude (400m), has Bolivia's best private hospitals, and is closer to Brazilian medical facilities if evacuation is needed. La Paz has decent private clinics but altitude is a constant factor. If you're over 50, have cardiac/respiratory issues, or want the best healthcare access, choose Santa Cruz."
       },
       {
-        question: "What's the best health insurance for expats in Bolivia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does private healthcare cost in Bolivia?",
+        answer: "Bolivia is one of South America's most affordable countries. Doctor consultation: $20-40 (Bs140-280). Specialist visit: $30-50. Private hospital room: $100-150/day. Emergency room: $50-100. MRI scan: $150-250. These low costs make out-of-pocket viable for routine care, but evacuation insurance remains essential for serious conditions."
       },
       {
-        question: "Are pre-existing conditions covered in Bolivia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What visa options exist for living in Bolivia?",
+        answer: "Bolivia offers Temporary Residence Visa (1-2 years, renewable) for retirees showing $300/month income, investors, or those with Bolivian family ties. There's no digital nomad visa—remote workers typically use tourist visa runs every 90 days or obtain temporary residence. Work Visa requires employer sponsorship. The Rentista visa for retirees is relatively easy to obtain."
       }
     ],
     sidebarLinks: [
@@ -6198,12 +6203,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/bolivia/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
-      },
-      {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
+      },
+      {
+        title: "Medical Evacuation Coverage",
+        href: "/insurance-for/us-coverage"
       },
       {
         title: "Best Expat Health Insurance",
@@ -6920,65 +6925,65 @@ const programmaticCountries: Country[] = [
     slug: "dominican-republic",
     name: "Dominican Republic",
     demonym: "Dominican",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Dominican Republic (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Dominican Republic. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Dominican Republic. Santo Domingo hospitals, local ARS insurance, retirement visa, and US expat healthcare.",
     headline: "Dominican Republic Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Dominican Republic—understanding the SeNaSa system and international insurance options.",
+    subheadline: "Navigate DR healthcare as a US/Canadian expat—Santo Domingo hospitals, affordable local insurance, and when to fly to Miami for treatment.",
     summaryBullets: [
-      "Dominican Republic does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (SeNaSa) is available to residents.",
-      "International health insurance typically costs $80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Visa, Retirement Visa."
+      "Santo Domingo has excellent private hospitals—HOMS, CEDIMAT, Plaza de la Salud rival US facilities at fraction of cost.",
+      "Local ARS insurance (Humano, Universal, MAPFRE) is affordable and covers private hospitals—popular with long-term expats.",
+      "Tourist areas (Punta Cana, Puerto Plata) have limited healthcare—serious cases go to Santo Domingo or Miami.",
+      "Retirement visa is straightforward—$1,500/month income proof, no health insurance requirement.",
+      "Miami is 1.5 hours away—many expats include US coverage for complex cases."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Dominican Republic does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Dominican Republic doesn't require health insurance for visas, but coverage is essential for quality care. The retirement/pensionado visa requires $1,500/month income proof but no insurance mandate. Local ARS (Administradora de Riesgos de Salud) insurance is affordable and accepted at private hospitals. Many US expats keep international coverage that includes the US for complex cases—Miami is only 1.5 hours away.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Everyone—public healthcare is not recommended for expats",
+      "US/Canadian retirees—Medicare doesn't work abroad, need local or international coverage",
+      "Residents of tourist areas (Punta Cana, Sosua, Puerto Plata)—limited local healthcare",
+      "Those wanting US hospital access for complex conditions—include US in coverage",
+      "Expats with chronic conditions requiring consistent, reliable specialist care"
     ],
     publicHealthcare: {
-      name: "SeNaSa",
-      access: "Dominican citizens, legal residents",
-      cost: "$15-35/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "SeNaSa (Public Insurance) / Public Hospitals",
+      access: "Dominican citizens and legal residents",
+      cost: "Nearly free (subsidized)",
+      notes: "Public hospitals are overcrowded and underfunded—expats avoid them. SeNaSa public insurance covers public facilities only. Quality varies widely; some public hospitals are acceptable for emergencies, but most expats use private facilities. The DR has invested in healthcare, but the gap between public and private remains large."
     },
     privateHealthcare: {
-      cost: "$80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$50-150/month local ARS, $100-250/month international",
+      notes: "Santo Domingo hospitals: HOMS (Hospital General de la Plaza de la Salud), CEDIMAT (cardiac specialty), Centro Médico UCE, Clínica Abreu. Quality approaches US standards at 30-50% of US prices. Local ARS insurers: Humano, Universal, ARS Palic, MAPFRE BHD. English available at major private hospitals. Santiago has Hospital Metropolitano de Santiago."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Dominican regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Dominican Republic."
+      "Tourist areas have very limited healthcare. Punta Cana has Hospiten (adequate for emergencies), but serious cases require Santo Domingo or evacuation.",
+      "Spanish is essential outside Santo Domingo's major private hospitals. Bring a translator or Spanish-speaking friend for care in smaller facilities.",
+      "US Medicare does NOT work in DR. US expats must get local ARS, international insurance, or pay out-of-pocket.",
+      "Miami backup makes sense. Complex cases (cancer, cardiac surgery, transplants) may do better in Miami (1.5 hour flight). Include US in coverage if budget allows.",
+      "Dengue and other tropical diseases are endemic. Ensure coverage without tropical disease exclusions."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Dominican Republic visa?",
-        answer: "No. Dominican Republic does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What is ARS insurance and should I get it?",
+        answer: "ARS (Administradora de Riesgos de Salud) is local health insurance. Major ARS companies: Humano, Universal, ARS Palic, MAPFRE BHD. Costs $50-150/month depending on coverage level. Accepted at private hospitals throughout DR. Good value for long-term residents. Limitations: typically doesn't cover pre-existing conditions initially, and no coverage outside DR. Many expats combine ARS for local care with international insurance for travel and evacuation."
       },
       {
-        question: "How does Dominican public healthcare work?",
-        answer: "Dominican Republic's public healthcare system (SeNaSa) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How good are Santo Domingo's hospitals?",
+        answer: "Very good. CEDIMAT is a world-class cardiac center. HOMS/Plaza de la Salud handles complex surgery, oncology, and has a strong ICU. Centro Médico UCE and Clínica Abreu are also excellent. US-trained doctors are common. Costs are 30-50% of US prices. For routine and moderately complex care, Santo Domingo is fully capable. For cutting-edge treatments or very rare conditions, Miami is the backup."
       },
       {
-        question: "How much does health insurance cost in Dominican Republic?",
-        answer: "International health insurance typically costs $80-180/month depending on your age and coverage level. Local/public options cost $15-35/month but may have limitations for non-citizens."
+        question: "What's healthcare like in Punta Cana?",
+        answer: "Limited but improving. Hospiten Punta Cana is the main private hospital—handles emergencies, minor surgery, routine care. For anything serious (cardiac, complex surgery, cancer), expect transfer to Santo Domingo (2-hour drive) or air evacuation to Miami. Many Punta Cana expats maintain international insurance with evacuation coverage specifically because local options are limited."
       },
       {
-        question: "What's the best health insurance for expats in Dominican Republic?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is DR good for retiree healthcare?",
+        answer: "Yes, for healthy retirees or those with manageable conditions. Santo Domingo has excellent hospitals at affordable prices. Local ARS insurance is cheap ($50-100/month). Challenges: Spanish language needed outside major hospitals, Medicare doesn't work, and complex conditions may benefit from US care. Many US retirees keep international coverage including US access, visiting Miami for annual check-ups or complex care."
       },
       {
-        question: "Are pre-existing conditions covered in Dominican Republic?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I include US coverage in my plan?",
+        answer: "If budget allows, yes—especially for those with chronic conditions or over 60. Miami is 1.5 hours away with world-class hospitals (Baptist Health, Cleveland Clinic Florida, Jackson Memorial). Including US in your coverage area adds $50-150/month but provides access to cutting-edge care. Many expats use DR for routine care and Miami for complex issues or second opinions."
       }
     ],
     sidebarLinks: [
