@@ -1,18 +1,29 @@
 # Project Progress Log
 
-Last updated: January 28, 2026
+Last updated: January 29, 2026
 
 ---
 
 ## Current Status
 
 **Phase:** 3 - Country × Persona Expansion
-**Total pages:** 1,441
+**Total pages:** 1,445
 **Country-persona pages:** 200 (25 countries × 8 personas)
+**Constraint pages:** 12 (condition-specific guides)
 
 ---
 
 ## Completed Milestones
+
+### January 29, 2026 - Additional Constraint Pages
+
+#### New Constraint Pages Created (4 pages)
+- **Diabetes** (`/insurance-for/diabetes`) - Type 1 vs Type 2 handling, provider comparison, managing diabetes abroad, medication access by country
+- **Already Pregnant** (`/insurance-for/already-pregnant`) - Why pregnancy is pre-existing, coverage options, out-of-pocket costs by country, public healthcare alternatives
+- **Cancer Survivors** (`/insurance-for/cancer-survivors`) - Remission requirements, provider comparison, improving application chances, country considerations
+- **Vision Coverage** (`/insurance-for/vision`) - Medical vs routine vision, provider options, LASIK abroad, vision costs by country
+
+---
 
 ### January 28, 2026 (Evening) - Country × Persona Pages
 
@@ -182,11 +193,11 @@ These 21 countries have manually created pages with custom hero images:
 | **Country-persona pages** | **200** | **Complete (25 countries × 8 personas)** |
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
-| Constraint pages | 8 | Complete |
+| Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 12 | Existing |
 | Comparison pages | ~45 | Existing |
 
-**Total pages:** 1,441
+**Total pages:** 1,445
 
 ---
 
@@ -195,8 +206,7 @@ These 21 countries have manually created pages with custom hero images:
 1. **Expand Country × Persona Pages** - Add remaining ~158 countries (currently top 25) for 1,264 more pages
 2. **Tier 3 Country Refinement** - Refine remaining ~140 generic programmatic pages with detailed content
 3. **Country-Provider Content Enhancement** - Add more detailed content to high-traffic country-provider pages
-4. **Additional Constraint Pages** - Diabetes, cancer survivors, already pregnant, vision coverage
-5. **Guide Interlinking** - Cross-link guides with related content
+4. **Guide Interlinking** - Cross-link guides with related content
 
 ---
 
@@ -219,6 +229,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **January 29, 2026:** Added 4 new constraint pages (diabetes, already-pregnant, cancer-survivors, vision), updated to 1,445 pages
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
 - **January 28, 2026:** Added provider-persona pages (40 pages)
