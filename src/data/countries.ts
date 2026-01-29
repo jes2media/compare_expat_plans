@@ -1284,65 +1284,65 @@ const programmaticCountries: Country[] = [
     slug: "bulgaria",
     name: "Bulgaria",
     demonym: "Bulgarian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Bulgaria (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Bulgaria. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Bulgaria. NHIF public system, Sofia private hospitals, EU healthcare rights, and affordable coverage options.",
     headline: "Bulgaria Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Bulgaria—understanding the NHIF system and international insurance options.",
+    subheadline: "Affordable healthcare in the EU—understanding Bulgaria's NHIF public system, Sofia's modern private hospitals, and your options as an EU or non-EU expat.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Bulgaria.",
-      "The public healthcare system (NHIF) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Type D Visa, Residence Permit."
+      "Health insurance required for Type D visa—minimum €30,000 coverage for Schengen compliance.",
+      "NHIF public system costs 8% of income (employer/employee split)—EU citizens can use EHIC for temporary stays.",
+      "Private consultations are remarkably affordable: BGN 50-100 (€25-50) at Acibadem City Clinic or Tokuda.",
+      "International plans cost €60-150/month; local private insurers (Bulstrad, DZI) offer plans from €30/month.",
+      "Sofia has excellent private hospitals; Black Sea coast and rural areas have limited specialist care."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Bulgaria requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Bulgarian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Non-EU citizens need health insurance for Bulgaria's Type D (long-stay) visa—minimum €30,000 coverage with no deductible for medical emergencies and repatriation. EU citizens can use their EHIC for temporary stays or register in NHIF if working/residing long-term. The Freelancer visa and Digital Nomad-style arrangements also require proof of insurance. After obtaining residence, you can enroll in NHIF (8% of income) or maintain private coverage.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Non-EU citizens applying for Type D visa or residence permit—mandatory requirement",
+      "EU citizens not yet registered in Bulgarian NHIF—EHIC only covers emergencies",
+      "Digital nomads and freelancers on self-employed visas",
+      "Retirees wanting faster access than public system wait times",
+      "Anyone living outside Sofia who may need evacuation for specialist care"
     ],
     publicHealthcare: {
-      name: "NHIF",
-      access: "Bulgarian citizens, legal residents, EU citizens with EHIC",
-      cost: "€15-40/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "NHIF (National Health Insurance Fund)",
+      access: "Bulgarian citizens, residents paying 8% contribution, EU citizens via EHIC",
+      cost: "8% of income (split employer/employee); ~BGN 30 (€15) minimum for self-employed",
+      notes: "Sofia has good public hospitals including Pirogov (emergency) and Alexandrovska University Hospital. Outside major cities, public facilities are often underfunded with older equipment. Wait times for specialists can be weeks. Most public doctors speak limited English. EU citizens can access NHIF services with EHIC for temporary stays, but long-term residents should register locally."
     },
     privateHealthcare: {
-      cost: "€50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "BGN 50-100 (€25-50)/consultation; BGN 500-1,500 (€250-750)/night hospitalization",
+      notes: "Sofia has modern private hospitals: Acibadem City Clinic (Turkish chain, excellent facilities), Tokuda Hospital, and Heart and Brain Centre. Varna and Burgas have decent private options on the Black Sea coast. Private care is remarkably affordable by Western European standards—dental tourism is popular. Many private doctors in Sofia speak excellent English."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Bulgarian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Black Sea resorts (Sunny Beach, Golden Sands) have limited healthcare—serious cases go to Varna or Burgas.",
+      "Rural and mountain areas have basic clinics only—evacuation to Sofia may be needed.",
+      "NHIF covers basics but has significant co-pays and limited specialist access—private supplement recommended.",
+      "Winter ski resorts (Bansko, Borovets) have small medical facilities—ensure mountain evacuation coverage.",
+      "Non-EU citizens must maintain valid insurance throughout residence—lapsed coverage can affect permit renewal."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Bulgaria visa?",
-        answer: "Yes. Most Bulgarian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Can EU citizens use public healthcare in Bulgaria?",
+        answer: "Yes. EU citizens can use their European Health Insurance Card (EHIC) for necessary medical care during temporary stays. For long-term residence, you should register with NHIF—either as an employed person (employer pays contributions) or voluntarily (8% of declared income, minimum BGN 30/month). EHIC covers emergencies but not routine care or pre-existing conditions."
       },
       {
-        question: "How does Bulgarian public healthcare work?",
-        answer: "Bulgaria's public healthcare system (NHIF) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What's the best private hospital in Bulgaria?",
+        answer: "Acibadem City Clinic in Sofia is generally considered the best—it's part of a Turkish hospital chain with modern equipment and English-speaking staff. Tokuda Hospital (now also Acibadem-affiliated) and Heart and Brain Centre are also excellent. For emergencies, Pirogov Hospital in Sofia is the main trauma center. Outside Sofia, options are more limited—Varna and Plovdiv have decent private facilities."
       },
       {
         question: "How much does health insurance cost in Bulgaria?",
-        answer: "International health insurance typically costs €50-120/month depending on your age and coverage level. Local/public options cost €15-40/month but may have limitations for non-citizens."
+        answer: "Very affordable compared to Western Europe. Local insurers like Bulstrad, DZI, and Euroins offer plans from €30-60/month covering private hospital access. International plans (Cigna, Allianz) cost €60-150/month but include worldwide coverage and repatriation. The NHIF public option costs 8% of income—around €50-100/month for typical expat salaries."
       },
       {
-        question: "What's the best health insurance for expats in Bulgaria?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is Bulgaria good for dental tourism?",
+        answer: "Yes, Bulgaria is a popular dental tourism destination. Dental work costs 50-70% less than Western Europe—a crown might cost €150-250 vs €500-800 in Germany. Sofia and Varna have modern dental clinics with English-speaking staff. Many European expats combine vacation with dental work. Travel insurance doesn't cover elective dental, so budget separately."
       },
       {
-        question: "Are pre-existing conditions covered in Bulgaria?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do I need evacuation coverage in Bulgaria?",
+        answer: "Recommended if living outside Sofia. While Sofia's private hospitals are good, smaller cities and resort areas have limited facilities. Ski resorts (Bansko, Borovets, Pamporovo) have basic medical posts—serious injuries require helicopter evacuation. For non-EU citizens, repatriation coverage is required for the visa anyway. EU citizens should consider it for peace of mind."
       }
     ],
     sidebarLinks: [
@@ -1372,65 +1372,65 @@ const programmaticCountries: Country[] = [
     slug: "serbia",
     name: "Serbia",
     demonym: "Serbian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Serbia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Serbia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Serbia. RFZO public system, Belgrade private hospitals, digital nomad visa, and affordable healthcare options.",
     headline: "Serbia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Serbia—understanding the RFZO system and international insurance options.",
+    subheadline: "Affordable healthcare in the Balkans—understanding Serbia's RFZO public system, Belgrade's modern private hospitals, and options for digital nomads.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Serbia.",
-      "The public healthcare system (RFZO) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, Digital Nomad Program."
+      "90-day visa-free entry for most nationalities—Temporary Residence requires health insurance proof.",
+      "RFZO public system available to residents (10.3% contribution)—but most expats prefer private care.",
+      "Private consultations are very affordable: RSD 3,000-6,000 (€25-50) at Bel Medic or Medigroup.",
+      "International plans cost €50-120/month; local insurers (Dunav, Generali) offer plans from €25/month.",
+      "Belgrade and Novi Sad have excellent private hospitals; southern Serbia has limited facilities."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Serbia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Serbian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Serbia's generous 90-day visa-free policy means many digital nomads come without formal insurance. However, Temporary Residence (for stays over 90 days) requires proof of health insurance—either RFZO enrollment or private coverage. Note: Serbia is not in the EU, so European Health Insurance Cards (EHIC) are not valid here. Private international insurance is strongly recommended for quality care access.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Anyone applying for Temporary Residence (90+ days)—mandatory requirement",
+      "Digital nomads wanting coverage during visa-free stays",
+      "Expats seeking access to Belgrade's private hospitals without out-of-pocket costs",
+      "Those traveling regionally—coverage should include Montenegro, Bosnia, Kosovo visits",
+      "Anyone living outside Belgrade who may need evacuation for specialist care"
     ],
     publicHealthcare: {
-      name: "RFZO",
-      access: "Serbian citizens, legal residents, EU citizens with EHIC",
-      cost: "€20-40/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "RFZO (Republic Health Insurance Fund)",
+      access: "Serbian citizens and residents with 10.3% salary contribution",
+      cost: "10.3% of salary; minimum ~RSD 5,000 (€40)/month for self-employed",
+      notes: "Belgrade has major public hospitals including the Clinical Center of Serbia (largest in the Balkans), VMA Military Medical Academy, and Dragiša Mišović Hospital. Quality is decent for emergencies but wait times for specialists can be weeks. Public facilities outside Belgrade vary significantly—Novi Sad and Niš have good hospitals, but smaller cities have limited capabilities. Most public doctors speak limited English."
     },
     privateHealthcare: {
-      cost: "€50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "RSD 3,000-6,000 (€25-50)/consultation; RSD 50,000-150,000 (€425-1,275)/night hospitalization",
+      notes: "Belgrade's private healthcare is excellent and affordable. Top facilities include Bel Medic (part of Acibadem), Medigroup, Euromedic, and MediVita. Novi Sad has Euromedic and Medigroup branches. Private doctors typically speak English. Dental tourism is popular—quality work at 50-70% less than Western Europe. Serbia's private sector attracts regional patients from Bosnia, Montenegro, and Kosovo."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Serbian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Serbia is NOT in the EU—EHIC cards don't work here. Don't assume EU coverage applies.",
+      "Southern Serbia (Niš and below) has limited private healthcare—evacuation to Belgrade may be needed.",
+      "Kosovo border areas have travel advisories—verify your insurance covers these regions.",
+      "Dental and cosmetic procedures aren't covered by travel insurance—budget separately if planning medical tourism.",
+      "90-day visa-free stays can complicate insurance—ensure your policy covers non-visa situations."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Serbia visa?",
-        answer: "Yes. Most Serbian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Can I stay in Serbia without health insurance?",
+        answer: "For the initial 90-day visa-free period, there's no official insurance requirement for most nationalities. However, this is risky—medical costs without insurance can be significant, and evacuation extremely expensive. For Temporary Residence (over 90 days), health insurance is mandatory. Most digital nomads choose international coverage even for short stays."
       },
       {
-        question: "How does Serbian public healthcare work?",
-        answer: "Serbia's public healthcare system (RFZO) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What's the best hospital in Belgrade?",
+        answer: "For private care, Bel Medic (Acibadem) is generally considered best—modern facilities, English-speaking staff, and a wide range of specialists. Medigroup and Euromedic are also excellent. For public emergencies, the Clinical Center of Serbia is the main referral hospital (largest in the Balkans) and VMA Military Medical Academy has a good reputation, especially for trauma."
       },
       {
-        question: "How much does health insurance cost in Serbia?",
-        answer: "International health insurance typically costs €50-120/month depending on your age and coverage level. Local/public options cost €20-40/month but may have limitations for non-citizens."
+        question: "Is Serbia good for dental tourism?",
+        answer: "Yes, Serbia (especially Belgrade) is a popular dental tourism destination. Expect to pay 50-70% less than Western Europe for high-quality work. A dental implant might cost €500-800 vs €1,500-2,500 in Germany. Clinics like Stomatoloska Poliklinika, Belgrade Dental House, and Apolonia cater to international patients with English-speaking staff. Travel insurance won't cover elective dental—budget separately."
       },
       {
-        question: "What's the best health insurance for expats in Serbia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How does the digital nomad scene affect healthcare?",
+        answer: "Belgrade has a large digital nomad community, which has increased demand for English-speaking private healthcare. Most private clinics in the city center are accustomed to foreign patients. Coworking spaces often have insurance recommendations. SafetyWing and World Nomads are popular among the community, though comprehensive international plans (Cigna, Allianz) are better for long-term stays."
       },
       {
-        question: "Are pre-existing conditions covered in Serbia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do I need evacuation coverage in Serbia?",
+        answer: "Recommended, especially if living outside Belgrade or Novi Sad. While Belgrade's private hospitals are good for most situations, complex cases (major trauma, specialized surgery, advanced cancer treatment) may require evacuation to Vienna, Budapest, or Germany. Southern Serbia near Kosovo has limited facilities—evacuation coverage is essential there."
       }
     ],
     sidebarLinks: [
@@ -1460,65 +1460,65 @@ const programmaticCountries: Country[] = [
     slug: "montenegro",
     name: "Montenegro",
     demonym: "Montenegrin",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Montenegro (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Montenegro. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Montenegro. Digital Nomad Visa, FZOM public system, coastal healthcare gaps, and Belgrade evacuation options.",
     headline: "Montenegro Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Montenegro—understanding the FZOM system and international insurance options.",
+    subheadline: "Essential coverage for this small Adriatic nation—understanding Montenegro's limited healthcare infrastructure and when you'll need evacuation to Serbia.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Montenegro.",
-      "The public healthcare system (FZOM) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €60-140/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, Digital Nomad Visa."
+      "Digital Nomad Visa requires health insurance—Temporary Residence also needs coverage proof.",
+      "FZOM public healthcare is basic—the Clinical Center of Montenegro in Podgorica is the only major facility.",
+      "Coastal areas (Kotor, Budva, Tivat) have limited healthcare—summer tourists strain local resources.",
+      "Private options are few—many expats travel to Belgrade (3 hours) for specialist care.",
+      "Uses euro despite non-EU status; international plans €60-150/month with evacuation coverage essential."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Montenegro requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Montenegrin standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Montenegro's Digital Nomad Visa (introduced 2022) requires health insurance as part of the application. Temporary Residence permits also need coverage proof. While 90-day visa-free stays don't mandate insurance, it's essential given Montenegro's limited healthcare infrastructure—the country has only 620,000 people and one major hospital. International insurance with Serbia/EU evacuation coverage is strongly recommended.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Digital Nomad Visa applicants—mandatory insurance requirement",
+      "Temporary Residence permit seekers—proof of coverage needed",
+      "Anyone living on the coast (Kotor, Budva, Tivat)—limited local facilities",
+      "Retirees choosing Montenegro—evacuation coverage critical for aging-related needs",
+      "Active travelers—hiking, watersports, and skiing create injury risks in remote areas"
     ],
     publicHealthcare: {
-      name: "FZOM",
-      access: "Montenegrin citizens, legal residents, EU citizens with EHIC",
-      cost: "€25-50/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "FZOM (Health Insurance Fund of Montenegro)",
+      access: "Montenegrin citizens and registered residents",
+      cost: "~€40-80/month contribution for self-employed; employer-based for workers",
+      notes: "The Clinical Center of Montenegro in Podgorica is the country's only tertiary hospital. Smaller general hospitals exist in Nikšić, Bijelo Polje, and coastal cities, but capabilities are limited. Wait times for specialists can be weeks. Complex cases are routinely referred to Belgrade, Serbia. Public healthcare quality is below Western European standards—most expats prefer private care or treatment abroad."
     },
     privateHealthcare: {
-      cost: "€60-140/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€30-60/consultation; €200-500/night hospitalization",
+      notes: "Private healthcare options in Montenegro are limited. Poliklinika Moja Praksa in Podgorica and a few private clinics offer outpatient services. For anything beyond basic care—surgery, cardiac treatment, cancer care—most patients travel to Belgrade (3 hours by car) where facilities like Bel Medic and Medigroup serve Montenegrin patients regularly. Tivat has Porto Montenegro's medical center for minor issues."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Montenegrin regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Montenegro has ONE major hospital—complex cases require evacuation to Belgrade or beyond.",
+      "Summer coastal crowds (Budva, Kotor, Herceg Novi) strain limited healthcare resources—expect delays June-August.",
+      "Mountain areas (Durmitor, Kolašin ski resort) have minimal facilities—helicopter evacuation may be needed.",
+      "Despite using the euro, Montenegro is not in the EU—EHIC cards don't work here.",
+      "Pre-existing conditions require careful planning—local specialists are scarce; factor in Belgrade travel costs."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Montenegro visa?",
-        answer: "Yes. Most Montenegrin visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Does Montenegro's Digital Nomad Visa require insurance?",
+        answer: "Yes. Montenegro's Digital Nomad Visa requires proof of health insurance covering your stay. International insurance from providers like Cigna, Allianz, or SafetyWing is accepted. The visa allows 2-year stays and requires proof of remote work income (approximately €1,000/month minimum). Given Montenegro's healthcare limitations, comprehensive coverage with evacuation is essential regardless of visa requirements."
       },
       {
-        question: "How does Montenegrin public healthcare work?",
-        answer: "Montenegro's public healthcare system (FZOM) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Why do people go to Belgrade for healthcare?",
+        answer: "Montenegro's small population (620,000) means limited specialist availability and no advanced medical facilities for complex procedures. Belgrade, only 3 hours away by car, has modern private hospitals (Bel Medic, Medigroup) with full specialist teams, advanced diagnostics, and surgical capabilities. Many Montenegrins routinely travel there for planned procedures—it's a well-established medical corridor."
       },
       {
-        question: "How much does health insurance cost in Montenegro?",
-        answer: "International health insurance typically costs €60-140/month depending on your age and coverage level. Local/public options cost €25-50/month but may have limitations for non-citizens."
+        question: "Is coastal healthcare adequate in Montenegro?",
+        answer: "Coastal cities (Kotor, Budva, Tivat, Herceg Novi) have basic hospitals and clinics for emergencies and minor issues. However, anything serious requires transfer to Podgorica (1-2 hours) or Belgrade (4-5 hours from coast). Summer tourist season (June-August) significantly strains coastal facilities—expect longer waits. Porto Montenegro in Tivat has a private medical center, but it's limited to outpatient care."
       },
       {
-        question: "What's the best health insurance for expats in Montenegro?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What about healthcare for skiing and mountain activities?",
+        answer: "Kolašin ski resort and the Durmitor National Park area have very basic medical facilities. Ski injuries or mountain accidents may require helicopter evacuation to Podgorica—this can cost €5,000-15,000 without insurance. Ensure your policy explicitly covers winter sports, mountain rescue, and helicopter evacuation. The nearest adequate trauma care for serious injuries is Podgorica or Belgrade."
       },
       {
-        question: "Are pre-existing conditions covered in Montenegro?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do EHIC cards work in Montenegro?",
+        answer: "No. Despite using the euro as currency, Montenegro is not an EU member (though it's a candidate country). European Health Insurance Cards are not valid here. You need separate travel or expat health insurance. This catches many European visitors off guard—don't assume EU coverage applies just because they use euros."
       }
     ],
     sidebarLinks: [
@@ -1548,63 +1548,65 @@ const programmaticCountries: Country[] = [
     slug: "albania",
     name: "Albania",
     demonym: "Albanian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Albania (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Albania. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Albania. 1-year visa-free entry, Tirana private hospitals, Albanian Riviera healthcare gaps, and evacuation options.",
     headline: "Albania Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Albania—understanding the FSDKSH system and international insurance options.",
+    subheadline: "Affordable coverage for Europe's emerging destination—understanding Tirana's growing private healthcare, coastal limitations, and when to evacuate to Greece.",
     summaryBullets: [
-      "Albania does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (FSDKSH) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, 1-Year Visa-Free."
+      "1-year visa-free entry for many nationalities—no insurance mandate, but coverage strongly recommended.",
+      "Public healthcare (FSDKSH) is underfunded—most expats use Tirana's private hospitals.",
+      "Private consultations very affordable: ALL 3,000-8,000 (€25-70) at American Hospital or Hygeia.",
+      "Albanian Riviera (Saranda, Vlorë, Himara) has basic clinics only—evacuation to Tirana or Greece essential.",
+      "International plans €40-100/month; local insurers (SIGAL, Eurosig) offer plans from €20/month."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Albania does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Albania offers generous visa-free entry—up to 1 year for citizens of the US, UK, EU, and many other countries. While there's no official insurance requirement, coverage is essential given the underfunded public healthcare system. For longer stays, Residence Permits may require proof of financial means (including healthcare access). Albania is an EU candidate country, but EHIC cards are not yet valid here.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Everyone—Albania's public healthcare is limited and expats should have private coverage",
+      "Digital nomads on extended visa-free stays—1 year without mandatory coverage is risky",
+      "Albanian Riviera residents—coastal healthcare is basic, evacuation coverage critical",
+      "Retirees attracted by low cost of living—age-related care requires Tirana or abroad",
+      "Active travelers exploring mountains and coast—rescue and evacuation coverage essential"
     ],
     publicHealthcare: {
-      name: "FSDKSH",
-      access: "Albanian citizens, legal residents, EU citizens with EHIC",
-      cost: "€15-35/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "FSDKSH (Health Insurance Fund)",
+      access: "Albanian citizens and registered residents",
+      cost: "~3.4% salary contribution; minimal fees for basic public services",
+      notes: "Albania's public healthcare is significantly underfunded. Mother Teresa University Hospital in Tirana is the largest public facility, but suffers from overcrowding, outdated equipment, and staff shortages. Outside Tirana, public hospitals in Durrës, Vlorë, and Shkodër handle basic care but lack specialists. Most Albanians with means seek private care or travel to Greece/Italy for serious conditions."
     },
     privateHealthcare: {
-      cost: "€50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "ALL 3,000-8,000 (€25-70)/consultation; ALL 30,000-100,000 (€260-870)/night hospitalization",
+      notes: "Tirana's private hospitals are modern and affordable. American Hospital is the largest private facility with English-speaking staff and international standards. Hygeia Hospital (Greek chain) offers excellent care. GloboMed and Salus Hospital are also good options. Many doctors trained in Italy, Greece, or Turkey and speak English. Outside Tirana, private options are very limited—Durrës has some clinics, but coastal and mountain areas have almost none."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Albanian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Albanian Riviera (Saranda, Ksamil, Himara, Vlorë) has only basic clinics—serious cases go to Tirana (4-6 hours) or Corfu, Greece (30-minute ferry).",
+      "Mountain areas (Albanian Alps, Theth, Valbona) have minimal healthcare—helicopter rescue may be needed.",
+      "Not in EU—EHIC cards don't work here. Don't assume European coverage applies.",
+      "Currency is lek (ALL)—ensure your policy pays in convertible currency or reimburses efficiently.",
+      "Medical evacuation to Greece or Italy is common for complex procedures—budget for this coverage."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Albania visa?",
-        answer: "No. Albania does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How long can I stay in Albania without a visa?",
+        answer: "Albania offers very generous visa-free entry—up to 1 year for citizens of the US, UK, EU, Canada, Australia, and many other countries. This makes it popular with digital nomads and extended-stay travelers. However, this long visa-free period means you're responsible for your own healthcare—there's no mandate, but 1 year without coverage is very risky."
       },
       {
-        question: "How does Albanian public healthcare work?",
-        answer: "Albania's public healthcare system (FSDKSH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What's the best hospital in Albania?",
+        answer: "American Hospital of Albania in Tirana is generally considered best—modern facilities, international standards, English-speaking staff, and a full range of specialists. Hygeia Hospital (part of a Greek healthcare chain) is also excellent. For emergencies, both have 24/7 services. Outside Tirana, healthcare quality drops significantly—plan to travel to the capital for anything beyond basic care."
       },
       {
-        question: "How much does health insurance cost in Albania?",
-        answer: "International health insurance typically costs €50-120/month depending on your age and coverage level. Local/public options cost €15-35/month but may have limitations for non-citizens."
+        question: "Is healthcare safe on the Albanian Riviera?",
+        answer: "Coastal towns like Saranda, Ksamil, and Himara have basic medical clinics for minor issues. Vlorë has a regional hospital but limited capabilities. For serious emergencies, patients are transported to Tirana (4-6 hours by road) or evacuated to Corfu, Greece (30-minute ferry from Saranda). If you're staying on the coast, evacuation coverage is essential—not optional."
       },
       {
-        question: "What's the best health insurance for expats in Albania?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How affordable is private healthcare in Albania?",
+        answer: "Very affordable compared to Western Europe. A specialist consultation at American Hospital costs €25-70. Basic hospitalization runs €260-870 per night. MRI scans cost around €100-150. Dental work is 60-70% cheaper than Western Europe. This affordability makes Albania attractive for medical tourism, particularly dental and cosmetic procedures."
       },
       {
-        question: "Are pre-existing conditions covered in Albania?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I get local or international health insurance?",
+        answer: "For short stays (a few months), international travel insurance or nomad plans (SafetyWing, World Nomads) work well. For longer stays, consider either comprehensive international coverage (Cigna, Allianz) for €40-100/month, or local Albanian insurers (SIGAL UNIQA, Eurosig) for €20-40/month. Local plans are cheaper but may have regional network limitations and language barriers for claims."
       }
     ],
     sidebarLinks: [
@@ -1634,65 +1636,65 @@ const programmaticCountries: Country[] = [
     slug: "north-macedonia",
     name: "North Macedonia",
     demonym: "Macedonian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in North Macedonia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in North Macedonia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in North Macedonia. FZOM public system, Skopje private hospitals, Lake Ohrid healthcare, and regional evacuation options.",
     headline: "North Macedonia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in North Macedonia—understanding the FZOM system and international insurance options.",
+    subheadline: "Affordable Balkan healthcare—understanding Skopje's growing private hospital scene, public system limitations, and evacuation options to Belgrade or Thessaloniki.",
     summaryBullets: [
-      "Health insurance is required for most visa types in North Macedonia.",
-      "The public healthcare system (FZOM) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €40-100/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence Permit."
+      "Temporary Residence requires health insurance proof—90-day visa-free stays have no mandate.",
+      "FZOM public healthcare is underfunded—Skopje's private hospitals offer better quality.",
+      "Private consultations affordable: MKD 1,500-3,500 (€25-55) at Sistina or Zan Mitrev Clinic.",
+      "Lake Ohrid region has basic hospitals only—complex cases evacuate to Skopje, Belgrade, or Thessaloniki.",
+      "International plans €35-90/month; evacuation coverage recommended given limited local capacity."
     ],
     insuranceRequired: true,
-    requirementExplanation: "North Macedonia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Macedonian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "North Macedonia requires health insurance for Temporary Residence Permit applications. The 90-day visa-free entry for most nationalities has no insurance mandate, but coverage is essential given public healthcare limitations. The country is an EU candidate but not yet a member—EHIC cards are not valid here. For long-term stays, private international insurance or FZOM enrollment is required.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Temporary Residence applicants—mandatory insurance proof required",
+      "Anyone staying beyond the 90-day visa-free period",
+      "Expats seeking quality private hospital access in Skopje",
+      "Lake Ohrid area residents—local facilities are very limited",
+      "Those needing potential evacuation to Serbia or Greece for specialist care"
     ],
     publicHealthcare: {
-      name: "FZOM",
-      access: "Macedonian citizens, legal residents, EU citizens with EHIC",
-      cost: "€15-30/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "FZOM (Health Insurance Fund)",
+      access: "Macedonian citizens and registered residents with contributions",
+      cost: "~7.5% of salary; minimum ~MKD 1,500 (€25)/month for voluntary enrollment",
+      notes: "City Hospital Skopje (formerly Acibadem, now public) and Mother Teresa University Hospital are the main public facilities. Public healthcare suffers from underfunding, outdated equipment in some areas, and long wait times for specialists. Regional hospitals in Bitola, Ohrid, and Tetovo handle basic care but have limited capabilities. Many public doctors speak English, especially younger ones trained abroad."
     },
     privateHealthcare: {
-      cost: "€40-100/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "MKD 1,500-3,500 (€25-55)/consultation; MKD 15,000-50,000 (€245-815)/night hospitalization",
+      notes: "Skopje has excellent private hospitals. Sistina Hospital is the largest private facility with comprehensive services. Zan Mitrev Clinic is renowned for cardiac surgery—patients come from across the Balkans. Alkaloid Hospital and Remedika are also good options. Private care in North Macedonia offers exceptional value—quality similar to Western Europe at a fraction of the cost."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Macedonian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Lake Ohrid area has limited healthcare—Ohrid City Hospital handles basics, but complex cases go to Skopje (3 hours) or Thessaloniki (2.5 hours).",
+      "Not in EU—EHIC cards don't work here. Don't assume European coverage applies.",
+      "Currency is Macedonian denar (MKD)—ensure your policy handles non-euro currency claims.",
+      "Mountain areas (Mavrovo, Pelister) have minimal facilities—ski and hiking accidents may require helicopter evacuation.",
+      "For major trauma or specialized surgery, evacuation to Belgrade or Thessaloniki is common—ensure coverage includes this."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a North Macedonia visa?",
-        answer: "Yes. Most Macedonian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Is North Macedonia's private healthcare really good value?",
+        answer: "Yes, exceptional value. Zan Mitrev Clinic in Skopje is regionally famous for cardiac surgery—patients travel from Serbia, Kosovo, and Albania for procedures at 30-50% of Western European costs. Sistina Hospital offers a full range of services at similar savings. A specialist consultation costs €25-55, MRI around €100. Quality is comparable to EU countries at significantly lower prices."
       },
       {
-        question: "How does Macedonian public healthcare work?",
-        answer: "North Macedonia's public healthcare system (FZOM) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What healthcare is available at Lake Ohrid?",
+        answer: "Ohrid has a small city hospital handling emergencies and basic care. For anything complex—serious injuries, surgery, cardiac events—patients transfer to Skopje (3-hour drive) or Thessaloniki, Greece (2.5 hours). If you're retiring to Ohrid or staying long-term, evacuation coverage is essential. Summer tourists significantly strain local facilities."
       },
       {
-        question: "How much does health insurance cost in North Macedonia?",
-        answer: "International health insurance typically costs €40-100/month depending on your age and coverage level. Local/public options cost €15-30/month but may have limitations for non-citizens."
+        question: "Can I use EHIC in North Macedonia?",
+        answer: "No. Despite being an EU candidate country, North Macedonia is not yet an EU member. European Health Insurance Cards are not valid here. You need separate travel insurance or expat health coverage. This is a common misconception—don't travel assuming EU healthcare rights apply."
       },
       {
-        question: "What's the best health insurance for expats in North Macedonia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How does evacuation work from North Macedonia?",
+        answer: "For complex cases, patients typically evacuate to Belgrade (4 hours north) or Thessaloniki (2-3 hours south), both with international-standard hospitals. Air ambulance to Sofia, Vienna, or further is possible but expensive (€10,000-30,000+). Ground ambulance to regional capitals is more common. Ensure your insurance covers cross-border evacuation—this is essential for North Macedonia."
       },
       {
-        question: "Are pre-existing conditions covered in North Macedonia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is North Macedonia good for medical tourism?",
+        answer: "Increasingly yes, particularly for cardiac procedures, dental work, and IVF. Zan Mitrev Clinic attracts regional patients for heart surgery. Dental tourism is growing—quality implants and cosmetic dentistry at 50-70% savings versus Western Europe. The combination of low costs, English-speaking medical staff, and good private hospitals makes it an emerging destination."
       }
     ],
     sidebarLinks: [

@@ -100,6 +100,13 @@ Added 10 countries to the country-persona matrix:
 - **Bahamas** - BEATS visa requires insurance, Nassau-centric care (PMH, Doctors Hospital), Out Island clinic-only healthcare, Miami evacuation critical
 - **Kuwait** - AFYA mandatory expat system (KWD 50/year), excellent MOH public hospitals, Dar Al Shifa/Al Salam private, kafala employer sponsorship, extreme heat coverage
 
+#### Tier 3 Country Refinement - Batch 8 (5 countries - Balkans)
+- **Bulgaria** - NHIF 8% contribution, EU EHIC valid, Acibadem City Clinic/Tokuda Sofia, dental tourism, Black Sea/ski area limitations
+- **Serbia** - 90-day visa-free, RFZO public (not EU-EHIC), Bel Medic/Medigroup Belgrade, digital nomad hub, Kosovo border considerations
+- **Montenegro** - Digital Nomad Visa requires insurance, FZOM limited (only one major hospital), coastal summer strain, Belgrade evacuation common
+- **Albania** - 1-year visa-free (no insurance mandate), underfunded public, American Hospital/Hygeia Tirana, Albanian Riviera healthcare gaps, Greece evacuation
+- **North Macedonia** - FZOM public, Sistina/Zan Mitrev Skopje private, Lake Ohrid limitations, medical tourism growing, Thessaloniki/Belgrade evacuation
+
 ---
 
 ### January 28, 2026 (Evening) - Country × Persona Pages
