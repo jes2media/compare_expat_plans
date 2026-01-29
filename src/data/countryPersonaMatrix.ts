@@ -20,13 +20,16 @@ export interface CountryPersonaEntry {
   costNotes: string;
 }
 
-// Top 25 countries for initial generation
+// Top 35 countries for page generation
 const targetCountries = [
   'spain', 'portugal', 'mexico', 'thailand', 'costa-rica',
   'france', 'italy', 'germany', 'uk', 'uae',
   'singapore', 'indonesia', 'vietnam', 'australia', 'canada',
   'netherlands', 'panama', 'colombia', 'argentina', 'japan',
-  'ecuador', 'south-korea', 'brazil', 'malaysia', 'philippines'
+  'ecuador', 'south-korea', 'brazil', 'malaysia', 'philippines',
+  // Batch 2: 10 additional countries
+  'new-zealand', 'ireland', 'greece', 'switzerland', 'poland',
+  'czech-republic', 'croatia', 'taiwan', 'chile', 'india'
 ];
 
 // All 8 personas
@@ -494,6 +497,187 @@ const countryData: Record<string, {
     retireeFriendly: true,
     familyFriendly: true,
     topProviders: ['cigna-global', 'allianz-care', 'pacific-cross', 'bupa-global']
+  },
+  // Batch 2: 10 additional countries
+  'new-zealand': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Working Holiday Visa for under 35 from eligible countries.',
+      'retirees': 'Investor Visa requires NZ$3M+ investment. No pension visa.',
+      'families': 'Skilled Migrant or Partner visas for families. Excellent public schools.',
+      'remote-workers': 'Visitor visa up to 9 months. No remote work visa.',
+      'students': 'Student Visa with part-time work rights.',
+      'freelancers': 'Essential Skills Visa for specialized freelancers.',
+      'seniors': 'Investor Visa only option. High financial bar.',
+      'entrepreneurs': 'Entrepreneur Work Visa requires approved business plan.'
+    },
+    healthcareHighlights: 'ACC covers accident injuries free. Public healthcare good but wait times. Southern Cross popular private option.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'southern-cross', 'allianz-care']
+  },
+  'ireland': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Stamp 0 for self-sufficient individuals.',
+      'retirees': 'Stamp 0 requires €50,000/year income. Private insurance mandatory.',
+      'families': 'Family reunification for visa holders. Excellent English schools.',
+      'remote-workers': 'Stamp 1G for spouses. Otherwise limited options.',
+      'students': 'Stamp 2 Student Visa with 20-hour work rights.',
+      'freelancers': 'Self-employed Stamp 1 difficult without Irish clients.',
+      'seniors': 'Stamp 0 requires private insurance and financial proof.',
+      'entrepreneurs': 'Start-up Entrepreneur Programme (STEP) for innovative businesses.'
+    },
+    healthcareHighlights: 'HSE public system has long waits. VHI/Laya popular private options. 20% tax relief on premiums.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'vhi', 'laya-healthcare', 'bupa-global']
+  },
+  'greece': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa requires €3,500/month income. 2-year duration.',
+      'retirees': 'Type D Visa for financially independent. Residency permit renewable.',
+      'families': 'Family members included on visas. International schools in Athens.',
+      'remote-workers': 'Digital Nomad Visa for non-Greek employers.',
+      'students': 'Student Visa for enrolled students.',
+      'freelancers': 'Digital Nomad Visa covers freelancers meeting income threshold.',
+      'seniors': 'Type D Visa popular. Low cost of living attractive.',
+      'entrepreneurs': 'Business Visa requires €60,000 investment.'
+    },
+    healthcareHighlights: 'EOPYY public system functional. Private care affordable in Athens/Thessaloniki. Island care limited.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'interamerican']
+  },
+  'switzerland': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Very restrictive immigration.',
+      'retirees': 'Residence permit for wealthy individuals in specific cantons.',
+      'families': 'Family reunification for work permit holders.',
+      'remote-workers': 'No remote work visa. Work permits for Swiss employers only.',
+      'students': 'Student permit for enrolled students.',
+      'freelancers': 'Self-employment permit requires Swiss client base.',
+      'seniors': 'Wealthy retiree permits in select cantons (Zug, Schwyz).',
+      'entrepreneurs': 'Must create jobs for Swiss residents.'
+    },
+    healthcareHighlights: 'LAMal mandatory insurance within 3 months. High quality but expensive. Franchise (deductible) affects costs.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'swica', 'css', 'helsana']
+  },
+  'poland': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Temporary residence permit for various purposes.',
+      'retirees': 'Temporary residence for financially independent.',
+      'families': 'Family reunification available. Good international schools in Warsaw.',
+      'remote-workers': 'Temporary residence possible with income proof.',
+      'students': 'Student Visa with limited work rights.',
+      'freelancers': 'Self-employment residence permit available.',
+      'seniors': 'Temporary residence with financial proof.',
+      'entrepreneurs': 'Business activity residence permit available.'
+    },
+    healthcareHighlights: 'NFZ public system has long waits. Medicover/LuxMed private subscriptions popular. Very affordable private care.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'medicover', 'luxmed']
+  },
+  'czech-republic': {
+    visaTypes: {
+      'digital-nomads': 'Zivno Visa (freelance) popular with digital nomads.',
+      'retirees': 'Long-term residence for financially independent.',
+      'families': 'Family reunification for residence holders. Good schools in Prague.',
+      'remote-workers': 'Zivno visa allows remote work with trade license.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Zivno (trade license) visa is the standard route.',
+      'seniors': 'Long-term residence with financial proof.',
+      'entrepreneurs': 'Business visa requires company establishment.'
+    },
+    healthcareHighlights: 'VZP public system for residents. Comprehensive insurance required for visa. Canadian Medical popular with expats.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'pvzp', 'uniqa']
+  },
+  'croatia': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa requires €2,539/month income. 1 year, non-renewable.',
+      'retirees': 'Temporary stay for pensioners with income proof.',
+      'families': 'Family members included on visas. Schools in Zagreb/Split.',
+      'remote-workers': 'Digital Nomad Visa for non-Croatian employers.',
+      'students': 'Student residence permit available.',
+      'freelancers': 'Digital Nomad Visa covers freelancers.',
+      'seniors': 'Temporary stay permit for retirees.',
+      'entrepreneurs': 'Business visa requires company establishment.'
+    },
+    healthcareHighlights: 'HZZO public system excludes digital nomads. Private insurance mandatory for DN visa. Zagreb has best care.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'croatia-osiguranje']
+  },
+  'taiwan': {
+    visaTypes: {
+      'digital-nomads': 'Gold Card for professionals. Employment Gold Card (3 years).',
+      'retirees': 'Resident visa for those with Taiwan connections. Limited options otherwise.',
+      'families': 'Dependent visas for Gold Card holders.',
+      'remote-workers': 'Gold Card allows remote work for foreign companies.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Gold Card for high-earning freelancers.',
+      'seniors': 'Gold Card or investment-based residence.',
+      'entrepreneurs': 'Entrepreneur visa for startup founders.'
+    },
+    healthcareHighlights: 'NHI world-class and affordable after 6-month wait. Private hospitals excellent. Very accessible.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'axa-global']
+  },
+  'chile': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa (new) for remote workers.',
+      'retirees': 'Rentista Visa with stable income proof.',
+      'families': 'Family visas included. Good international schools in Santiago.',
+      'remote-workers': 'Digital Nomad Visa for non-Chilean employers.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Rentista or Digital Nomad Visa options.',
+      'seniors': 'Rentista Visa popular with retirees.',
+      'entrepreneurs': 'Investor visa with business plan approval.'
+    },
+    healthcareHighlights: 'FONASA public or ISAPRE private. Clínica Alemana and Clínica Las Condes are top hospitals. Affordable private care.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'colmena']
+  },
+  'india': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Business or Employment visa required.',
+      'retirees': 'No retirement visa. Entry visa for Indian-origin persons.',
+      'families': 'Dependent visas for Employment visa holders.',
+      'remote-workers': 'Business visa with conditions. Gray area for remote work.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Business visa for consulting/freelance with Indian clients.',
+      'seniors': 'PIO/OCI cards for Indian-origin seniors.',
+      'entrepreneurs': 'Business visa for establishing Indian operations.'
+    },
+    healthcareHighlights: 'Apollo and Fortis hospital chains excellent. Huge gap urban vs rural. Very affordable private care in major cities.',
+    costLevel: 'low',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'hdfc-ergo']
   }
 };
 

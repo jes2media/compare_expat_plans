@@ -7,15 +7,34 @@ Last updated: January 29, 2026
 ## Current Status
 
 **Phase:** 3 - Country × Persona Expansion
-**Total pages:** 1,445
-**Country-persona pages:** 200 (25 countries × 8 personas)
+**Total pages:** 1,525
+**Country-persona pages:** 280 (35 countries × 8 personas)
 **Constraint pages:** 12 (condition-specific guides)
 
 ---
 
 ## Completed Milestones
 
-### January 29, 2026 - Additional Constraint Pages + Tier 3 Refinement (Batch 1)
+### January 29, 2026 - Country × Persona Expansion (Batch 2)
+
+#### New Country-Persona Pages (80 pages)
+Added 10 countries to the country-persona matrix:
+- **New Zealand** - ACC injury coverage, Southern Cross, high visa barriers
+- **Ireland** - HSE waits, VHI/Laya options, Stamp 0 requirements, tax relief
+- **Greece** - Digital Nomad Visa (€3,500/month), EOPYY, island limitations
+- **Switzerland** - Mandatory LAMal, canton variations, wealthy retiree options
+- **Poland** - NFZ waits, Medicover/LuxMed subscriptions, affordable private care
+- **Czech Republic** - Zivno Visa popular, VZP system, Prague expat scene
+- **Croatia** - Digital Nomad Visa (€2,539/month), HZZO exclusions
+- **Taiwan** - Gold Card program, NHI after 6 months, excellent care
+- **Chile** - FONASA/ISAPRE system, Digital Nomad Visa, Santiago hospitals
+- **India** - Apollo/Fortis networks, urban vs rural gap, affordable care
+
+**Total country-persona pages:** 280 (35 countries × 8 personas)
+
+---
+
+### January 29, 2026 - Additional Constraint Pages + Tier 3 Refinement (Batch 1-5)
 
 #### New Constraint Pages Created (4 pages)
 - **Diabetes** (`/insurance-for/diabetes`) - Type 1 vs Type 2 handling, provider comparison, managing diabetes abroad, medication access by country
@@ -229,14 +248,14 @@ These 21 countries have manually created pages with custom hero images:
 | Programmatic country pages | 162 | Generated (183 - 21 skip list) |
 | Handcrafted country-provider pages | 168 | Complete (21 countries × 8 providers) |
 | Programmatic country-provider pages | 648 | Generated (162 countries × 4 providers) |
-| **Country-persona pages** | **200** | **Complete (25 countries × 8 personas)** |
+| **Country-persona pages** | **280** | **Complete (35 countries × 8 personas)** |
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 12 | Existing |
 | Comparison pages | ~45 | Existing |
 
-**Total pages:** 1,445
+**Total pages:** 1,525
 
 ---
 
@@ -268,7 +287,8 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1-5 (21 countries: Austria, Belgium, Croatia, Israel, South Africa, Sweden, Norway, Egypt, Uruguay, Kenya, Denmark, Finland, Nepal, Dominican Republic, Bolivia, Romania, Laos, Bangladesh, Mongolia, Guatemala, Fiji)
+- **January 29, 2026:** Added 80 country-persona pages (10 new countries: New Zealand, Ireland, Greece, Switzerland, Poland, Czech Republic, Croatia, Taiwan, Chile, India), total now 280 (35 countries × 8 personas), 1,525 total pages
+- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1-5 (21 countries refined)
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
 - **January 28, 2026:** Added provider-persona pages (40 pages)
