@@ -44,6 +44,13 @@ Last updated: January 29, 2026
 - **Dominican Republic** - Santo Domingo hospitals (HOMS, CEDIMAT, Hospiten), ARS local insurance system, Punta Cana tourist coverage, Miami evacuation option
 - **Bolivia** - La Paz altitude challenges (3,640m), SUS universal system, Santa Cruz as medical hub, evacuation to Chile/Brazil essential, very affordable costs
 
+#### Tier 3 Country Refinement - Batch 4 (5 countries)
+- **Romania** - Digital Nomad Visa (€3,700/month requirement), CNAS public system, MedLife/Regina Maria private networks, dental tourism, 10% CASS contribution
+- **Laos** - Thailand evacuation essential, Vientiane-only healthcare (Alliance Medical Center), SOS International presence, basic rural healthcare
+- **Bangladesh** - Dhaka private hospitals (Apollo, Square, United), NGO/corporate expat coverage, air quality concerns, Bangkok/Singapore evacuation
+- **Mongolia** - Ulaanbaatar SOS Medica clinic, extreme climate (-40°C winters), mining industry coverage, Beijing/Seoul evacuation, severe air pollution
+- **Guatemala** - Guatemala City hospitals (Herrera Llerandi, Centro Médico), Antigua/Lake Atitlán healthcare gaps, CA-4 visa, US evacuation option
+
 ---
 
 ### January 28, 2026 (Evening) - Country × Persona Pages
@@ -177,11 +184,10 @@ All Tier 2 countries have been refined with detailed, researched content:
 **Batch 1 Complete (5 countries):** Austria, Belgium, Croatia, Israel, South Africa
 **Batch 2 Complete (5 countries):** Sweden, Norway, Egypt, Uruguay, Kenya
 **Batch 3 Complete (5 countries):** Denmark, Finland, Nepal, Dominican Republic, Bolivia
+**Batch 4 Complete (5 countries):** Romania, Laos, Bangladesh, Mongolia, Guatemala
 
-**Remaining High Priority (~10 countries):**
-- European: Romania
-- Asian: Cambodia (already detailed), Laos, Sri Lanka (already detailed), Bangladesh, Mongolia
-- Latin American: Guatemala
+**Remaining High Priority (~3 countries):**
+- Asian: Cambodia (already detailed), Sri Lanka (already detailed)
 - Oceania: Fiji
 
 ---
@@ -260,7 +266,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1 (Austria, Belgium, Croatia, Israel, South Africa) + Batch 2 (Sweden, Norway, Egypt, Uruguay, Kenya) + Batch 3 (Denmark, Finland, Nepal, Dominican Republic, Bolivia)
+- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1-4 (20 countries: Austria, Belgium, Croatia, Israel, South Africa, Sweden, Norway, Egypt, Uruguay, Kenya, Denmark, Finland, Nepal, Dominican Republic, Bolivia, Romania, Laos, Bangladesh, Mongolia, Guatemala)
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
 - **January 28, 2026:** Added provider-persona pages (40 pages)

@@ -1196,65 +1196,65 @@ const programmaticCountries: Country[] = [
     slug: "romania",
     name: "Romania",
     demonym: "Romanian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Romania (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Romania. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Romania. Digital nomad visa requirements, CNAS public system, MedLife and Regina Maria private networks, and affordable healthcare costs.",
     headline: "Romania Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Romania—understanding the CNAS system and international insurance options.",
+    subheadline: "Access excellent private healthcare at Eastern European prices—understanding Romania's CNAS system, digital nomad visa requirements, and the private hospital networks in Bucharest and Cluj.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Romania.",
-      "The public healthcare system (CNAS) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €60-140/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Long-stay Visa, Residence Permit."
+      "Non-EU expats need health insurance for residence permits—minimum €30,000 coverage required.",
+      "EU/EEA citizens can use EHIC for temporary stays or pay 10% CASS contribution for full public access.",
+      "Digital Nomad Visa requires €3,700/month income (3× average salary) plus health insurance proof.",
+      "Private healthcare is excellent and affordable: €30-50 GP visits, €50-100 specialists at MedLife/Regina Maria.",
+      "Romania is a dental tourism destination—high-quality care at 50-70% less than Western Europe."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Romania requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Romanian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Non-EU/EEA citizens need health insurance with minimum €30,000 coverage for residence permit applications. Digital Nomad Visa (launched 2022) specifically requires comprehensive health insurance valid in Romania. EU citizens can use EHIC for emergency/temporary care, or register for CNAS by paying the 10% CASS health contribution if working/self-employed.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Digital nomads—required for the Digital Nomad Visa application",
+      "Non-EU expats—mandatory for residence permits",
+      "Remote workers not paying into Romanian social security",
+      "Anyone wanting immediate access to private networks without public system waits",
+      "Retirees preferring English-speaking doctors and Western-standard facilities"
     ],
     publicHealthcare: {
-      name: "CNAS",
-      access: "Romanian citizens, legal residents, EU citizens with EHIC",
-      cost: "€20-50/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "CNAS (Casa Națională de Asigurări de Sănătate)",
+      access: "Romanian citizens, legal residents paying CASS, EU/EHIC holders",
+      cost: "10% CASS contribution on income (capped); EHIC free for EU temporary stays",
+      notes: "CNAS covers public hospitals and contracted private providers. Quality varies significantly—Bucharest university hospitals are decent, rural facilities less so. Long waits for specialists (months for non-urgent). Many doctors in public system also work private hours. Informal payments ('spaga') were common but declining. EU citizens with EHIC get emergency care only."
     },
     privateHealthcare: {
-      cost: "€60-140/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€40-100/month (local plans); €80-150/month (international)",
+      notes: "Romania has excellent private healthcare networks at affordable prices. MedLife and Regina Maria are the two largest chains with facilities nationwide. Sanador and Medicover also operate in major cities. Bucharest has the most options; Cluj-Napoca and Timișoara also have strong private sectors. Many doctors speak English, especially in private practice and younger generation. Direct billing available with major international insurers."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Romanian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Digital Nomad Visa income requirement is high: €3,700/month gross (3× Romania's average salary). Must be from non-Romanian employers.",
+      "CASS contribution is 10% of income with no upper cap—high earners may prefer private insurance instead of paying into public system.",
+      "Rural healthcare is limited. Outside major cities, private options disappear and public facilities are basic.",
+      "Some international insurers exclude Romania from 'Western Europe' coverage zones—verify your plan covers Eastern Europe specifically.",
+      "Winter driving conditions in mountain areas (Transylvania) can delay emergency evacuation."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Romania visa?",
-        answer: "Yes. Most Romanian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Romania's Digital Nomad Visa work for health insurance?",
+        answer: "Romania's Digital Nomad Visa (Nomad Visa Type D/TR) requires proof of comprehensive health insurance valid in Romania. No specific coverage amount is mandated, but policies should cover hospitalization and emergencies. The visa requires €3,700/month income from non-Romanian sources, clean criminal record, and work contract or proof of freelance income. Initial visa is 12 months, renewable."
       },
       {
-        question: "How does Romanian public healthcare work?",
-        answer: "Romania's public healthcare system (CNAS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What are the best private hospitals in Romania?",
+        answer: "Bucharest: MedLife Hyperclinic (largest private network), Regina Maria (premium chain), Sanador Hospital (full-service), Medicover. Cluj-Napoca: Regina Maria, MedLife, Polaris Medical. Timișoara: MedLife, Regina Maria. These facilities offer modern equipment, English-speaking staff, and international-standard care at €30-100 for consultations, significantly less than Western Europe."
       },
       {
-        question: "How much does health insurance cost in Romania?",
-        answer: "International health insurance typically costs €60-140/month depending on your age and coverage level. Local/public options cost €20-50/month but may have limitations for non-citizens."
+        question: "Should I use public or private healthcare in Romania?",
+        answer: "Most expats choose private healthcare for convenience, speed, and English-language service. Public healthcare (CNAS) is functional but has longer waits and variable quality. If you're employed in Romania and paying CASS contributions, you have public coverage but may still want private supplemental insurance. Self-employed or remote workers often skip CASS entirely and use private insurance."
       },
       {
-        question: "What's the best health insurance for expats in Romania?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does healthcare cost in Romania?",
+        answer: "Private out-of-pocket costs are very affordable: GP consultation €30-50, specialist €50-100, MRI €100-200, private hospital room €100-200/night, dental cleaning €30-50, dental implant €400-800. Romania is a popular dental tourism destination. Even without insurance, most routine care is affordable for Western earners."
       },
       {
-        question: "Are pre-existing conditions covered in Romania?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What insurance do EU citizens need in Romania?",
+        answer: "EU/EEA/Swiss citizens can use EHIC for temporary stays (emergency and necessary care). For long-term stays: if employed, you'll pay 10% CASS and have full public access. If not employed (retirees, remote workers for non-Romanian companies), you can voluntarily pay CASS or use private insurance. Many EU expats choose private insurance for faster access and English service."
       }
     ],
     sidebarLinks: [
@@ -1271,8 +1271,8 @@ const programmaticCountries: Country[] = [
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Eastern Europe Region",
+        href: "/regions/eastern-europe"
       },
       {
         title: "Best Expat Health Insurance",
@@ -4194,64 +4194,65 @@ const programmaticCountries: Country[] = [
     slug: "laos",
     name: "Laos",
     demonym: "Laotian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Laos (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Laos. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Laos. Limited local healthcare, Thailand evacuation essential, Vientiane clinics, and visa options for long-term stays.",
     headline: "Laos Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Laos—understanding the State Healthcare system and international insurance options.",
+    subheadline: "Navigate one of Southeast Asia's least-developed healthcare systems—understanding why Thailand evacuation coverage is essential and what care is available in Vientiane.",
     summaryBullets: [
-      "Laos does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (State Healthcare) is available to residents.",
-      "International health insurance typically costs $60-150/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Business Visa, Retirement Visa."
+      "Health insurance with Thailand evacuation is essential—Laos has very limited medical facilities.",
+      "Only Vientiane has reasonable healthcare; the rest of the country has basic provincial hospitals.",
+      "Most expats cross to Thailand (Udon Thani, Bangkok) for anything beyond basic care.",
+      "No digital nomad visa—most use tourist visa runs or business/investor visas.",
+      "Very affordable out-of-pocket for basic care: $10-30 consultations, but quality is limited."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Laos does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Laos does not require health insurance for visa applications. However, comprehensive coverage with Thailand evacuation is essential—not optional. Laos has one of Southeast Asia's least-developed healthcare systems. Serious conditions, surgeries, and complex diagnostics require evacuation to Bangkok (1-hour flight from Vientiane) or Udon Thani, Thailand (80km from Vientiane by road).",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Everyone living in Laos—local healthcare cannot handle serious conditions",
+      "Those living outside Vientiane—provincial healthcare is extremely basic",
+      "Anyone with chronic conditions requiring regular specialist care",
+      "Adventure travelers—trekking, tubing, and motorbike accidents are common",
+      "Older expats—limited cardiac and stroke care available locally"
     ],
     publicHealthcare: {
-      name: "State Healthcare",
-      access: "Laotian citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "State Healthcare System",
+      access: "Laotian citizens; very limited access for foreigners",
+      cost: "Minimal fees ($5-20) but usually paid out-of-pocket",
+      notes: "Mahosot Hospital in Vientiane is the main public referral hospital—basic by international standards with limited equipment and English. Provincial hospitals have severe shortages of equipment, medications, and trained staff. Public healthcare is essentially unavailable for expats' serious needs."
     },
     privateHealthcare: {
-      cost: "$60-150/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$50-100/month (international plans covering evacuation)",
+      notes: "Private options are very limited. Alliance International Medical Center (French-run) in Vientiane is the best facility for expats—handles routine care, minor procedures, and some emergencies. French Hospital (Clinique Française) offers reasonable outpatient care. For anything serious—surgery, cardiac care, oncology, complex diagnostics—Bangkok is the standard destination. Many expats cross to Udon Thani, Thailand (1.5-hour drive) for routine care at modern facilities."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Laotian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Medical evacuation to Thailand is not a luxury—it's essential. A medical flight to Bangkok costs $10,000-25,000. Ground ambulance to Udon Thani is cheaper but only viable for stable patients.",
+      "Outside Vientiane, healthcare is extremely basic. Luang Prabang has a small provincial hospital but limited capabilities. Remote areas have nothing.",
+      "Medications are often unavailable or counterfeit. Bring sufficient supplies for any chronic conditions and verify medications at pharmacies.",
+      "Malaria risk exists in rural and border areas. Ensure your insurance covers tropical diseases and prevention medications.",
+      "Road accidents are common—poorly maintained roads and no trauma care outside Vientiane make travel risky."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Laos visa?",
-        answer: "No. Laos does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Where do expats in Laos go for medical care?",
+        answer: "For routine care: Alliance International Medical Center or French Hospital in Vientiane. For anything serious: Thailand. Most long-term expats in Vientiane cross the Friendship Bridge to Udon Thani, Thailand (1.5-hour drive) for dental work, diagnostics, and specialist consultations. For major procedures, hospitalization, or emergencies, Bangkok's hospitals (Bumrungrad, Bangkok Hospital) are 1 hour by flight."
       },
       {
-        question: "How does Laotian public healthcare work?",
-        answer: "Laos's public healthcare system (State Healthcare) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How do I get a long-term visa for Laos?",
+        answer: "Laos has no digital nomad visa. Options: Tourist visa (30 days, extendable to 60) with border runs; Business visa (B2) requires Laotian company sponsorship; Investor visa for those establishing a business; Expert visa for skilled workers. Many expats do tourist visa runs to Thailand every 60 days. Business visa is the most common long-term option but requires local connections."
       },
       {
-        question: "How much does health insurance cost in Laos?",
-        answer: "International health insurance typically costs $60-150/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "Is Laos safe for retirees with health conditions?",
+        answer: "Laos is not ideal for retirees with significant health needs. Limited cardiac care, no oncology services, and basic emergency medicine mean any serious condition requires evacuation. If you're healthy and want a quiet, affordable lifestyle, Laos works—but have a clear evacuation plan. Living in Vientiane (close to Thailand border) is essential for medical access."
       },
       {
-        question: "What's the best health insurance for expats in Laos?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does healthcare cost in Laos?",
+        answer: "Out-of-pocket costs are low: GP consultation $10-30, specialist $20-50 (limited availability), basic blood tests $10-20, X-ray $15-30. However, low cost reflects limited capability. Quality diagnostics, surgery, and specialist care require Thailand, where costs are moderate by international standards but require proper insurance coverage."
       },
       {
-        question: "Are pre-existing conditions covered in Laos?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What insurance is best for expats in Laos?",
+        answer: "Choose plans with strong Southeast Asia coverage and easy Thailand access. Cigna Global and Allianz Care work well with direct billing at Bangkok hospitals. SafetyWing covers medical evacuation. Pacific Cross is a regional specialist familiar with Laos evacuations. Any plan must include medical evacuation—verify coverage limits are at least $100,000 for evacuation to Thailand or home country."
       }
     ],
     sidebarLinks: [
@@ -4264,16 +4265,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/laos/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Thailand Healthcare",
+        href: "/countries/thailand/insurance"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Southeast Asia Region",
+        href: "/regions/southeast-asia"
       },
       {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Medical Evacuation Coverage",
+        href: "/insurance-for/us-coverage"
       }
     ]
   },
@@ -4547,64 +4548,65 @@ const programmaticCountries: Country[] = [
     slug: "bangladesh",
     name: "Bangladesh",
     demonym: "Bangladeshi",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Bangladesh (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Bangladesh. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Bangladesh. Dhaka private hospitals, NGO/corporate coverage, evacuation to Bangkok or Singapore, and tropical disease coverage.",
     headline: "Bangladesh Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Bangladesh—understanding the DGHS system and international insurance options.",
+    subheadline: "Navigate healthcare in a developing megacity—understanding Dhaka's private hospital options, why evacuation coverage matters, and what NGO and corporate expats need to know.",
     summaryBullets: [
-      "Bangladesh does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (DGHS) is available to residents.",
-      "International health insurance typically costs $50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Business Visa."
+      "Health insurance is not required but essential—Dhaka has decent private hospitals, but complex cases need evacuation.",
+      "Most expats use private hospitals in Dhaka: Apollo, Square, United, and Labaid offer reasonable care.",
+      "Evacuation to Bangkok, Singapore, or India (Kolkata/Chennai) is standard for serious conditions.",
+      "NGO and corporate expats typically receive employer-provided coverage—verify evacuation limits.",
+      "Healthcare is very affordable: $15-40 GP visits, $30-80 specialists at top Dhaka hospitals."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Bangladesh does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Bangladesh does not require health insurance for visas. However, comprehensive international coverage with evacuation is essential. Dhaka's private hospitals handle routine care adequately, but advanced procedures, oncology, cardiac surgery, and complex trauma require evacuation to Bangkok (2.5-hour flight), Singapore, or India. Most expats are in Bangladesh for corporate roles (garment industry, finance) or NGO/development work—employer coverage is common but verify evacuation provisions.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—even with decent Dhaka hospitals, evacuation coverage is necessary",
+      "NGO workers—verify your organization's coverage includes evacuation, not just local care",
+      "Corporate expats—employer plans may have gaps; consider supplemental coverage",
+      "Anyone with chronic conditions—specialist care is limited",
+      "Expats outside Dhaka—Chittagong and other cities have much more limited healthcare"
     ],
     publicHealthcare: {
-      name: "DGHS",
-      access: "Bangladeshi citizens, legal residents",
-      cost: "$5-15/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "DGHS (Directorate General of Health Services)",
+      access: "Bangladeshi citizens; minimal foreign access",
+      cost: "Nearly free but very limited",
+      notes: "Public hospitals are overcrowded with severe resource constraints. Dhaka Medical College Hospital is the largest public facility but not recommended for expats. Government facilities lack equipment, medications, and hygiene standards. Even local Bangladeshis who can afford it use private hospitals."
     },
     privateHealthcare: {
-      cost: "$50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$40-100/month (international plans with evacuation)",
+      notes: "Dhaka has several good private hospitals by regional standards. Apollo Hospitals Dhaka (Indian chain) offers the most comprehensive care with international standards. Square Hospital is locally owned with modern facilities. United Hospital and Labaid Hospital are other top choices. English is widely spoken in medical settings. Outside Dhaka, Chittagong has limited private options (Chattagram Metropolitan Hospital). Most specialists practice in Dhaka—traveling there from other cities is common."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Bangladeshi regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Dhaka traffic is legendary—emergency response can be delayed by hours. Hospitals with helicopter access (limited) or locations with better road access matter for emergencies.",
+      "Air quality in Dhaka is among the world's worst. Respiratory conditions are common; ensure coverage for asthma and related issues.",
+      "Tropical diseases: Dengue fever is endemic; malaria risk in border areas; typhoid and waterborne diseases are common. Verify coverage for tropical illnesses.",
+      "Flooding and cyclone season (June-October) can disrupt healthcare access and evacuation options.",
+      "Blood supply safety is a concern. International plans should cover blood products or emergency evacuation for transfusion needs."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Bangladesh visa?",
-        answer: "No. Bangladesh does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What are the best hospitals for expats in Bangladesh?",
+        answer: "In Dhaka: Apollo Hospitals Dhaka (part of Indian Apollo chain, highest international standards), Square Hospital (modern local facility), United Hospital (good emergency services), Labaid Hospital (multiple branches). These hospitals have English-speaking staff, reasonable equipment, and handle most routine and moderately complex care. For major surgeries, cancer treatment, or cardiac procedures, evacuation to Bangkok or Singapore is standard."
       },
       {
-        question: "How does Bangladeshi public healthcare work?",
-        answer: "Bangladesh's public healthcare system (DGHS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Do NGO workers need their own health insurance in Bangladesh?",
+        answer: "Most NGOs (UN agencies, international organizations, major charities) provide health coverage, but quality varies significantly. Key questions: Does your coverage include medical evacuation? What's the evacuation limit ($50,000 vs $250,000 matters)? Does it cover Bangkok/Singapore or just regional evacuation to India? Many NGO plans have gaps—supplemental coverage or travel insurance with evacuation can fill them."
       },
       {
-        question: "How much does health insurance cost in Bangladesh?",
-        answer: "International health insurance typically costs $50-120/month depending on your age and coverage level. Local/public options cost $5-15/month but may have limitations for non-citizens."
+        question: "How does evacuation from Bangladesh work?",
+        answer: "Medical evacuation typically goes to Bangkok (2.5 hours by air, excellent hospitals like Bumrungrad), Singapore (4 hours, top Asian medical care), or India—Kolkata (short flight) or Chennai (Apollo headquarters). Air ambulance from Dhaka costs $15,000-40,000 depending on destination and medical needs. Commercial flight evacuation is cheaper but only for stable patients. Ensure coverage limits are at least $100,000."
       },
       {
-        question: "What's the best health insurance for expats in Bangladesh?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What visa do I need to live in Bangladesh long-term?",
+        answer: "Bangladesh has no digital nomad visa. Options: Work Permit (requires employer sponsorship, tied to specific job), Business Visa (for business activities, requires local company invitation), Investor Visa (for those establishing businesses). Most long-term expats are on employer-sponsored work permits. NGO workers often have special arrangements through their organizations. Tourist visa extensions are difficult."
       },
       {
-        question: "Are pre-existing conditions covered in Bangladesh?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does private healthcare cost in Bangladesh?",
+        answer: "Dhaka private hospitals are affordable by international standards: GP consultation BDT 1,500-4,000 ($15-40), specialist BDT 3,000-8,000 ($30-80), private hospital room BDT 8,000-20,000/day ($80-200), MRI scan BDT 10,000-20,000 ($100-200), minor surgery BDT 50,000-200,000 ($500-2,000). These costs make out-of-pocket viable for routine care, but insurance remains essential for evacuation and major procedures."
       }
     ],
     sidebarLinks: [
@@ -4617,12 +4619,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/bangladesh/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Thailand Healthcare",
+        href: "/countries/thailand/insurance"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Singapore Healthcare",
+        href: "/countries/singapore/insurance"
       },
       {
         title: "Best Expat Health Insurance",
@@ -4984,65 +4986,65 @@ const programmaticCountries: Country[] = [
     slug: "mongolia",
     name: "Mongolia",
     demonym: "Mongolian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Mongolia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Mongolia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Mongolia. Ulaanbaatar private clinics, extreme climate considerations, mining industry coverage, and evacuation to Beijing or Seoul.",
     headline: "Mongolia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Mongolia—understanding the State Healthcare system and international insurance options.",
+    subheadline: "Navigate healthcare on the steppe—understanding Ulaanbaatar's limited but improving private options, why evacuation coverage is essential, and how to handle Mongolia's extreme climate.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Mongolia.",
-      "The public healthcare system (State Healthcare) is available to residents.",
-      "International health insurance typically costs $50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Residence Permit."
+      "Health insurance with evacuation is essential—Ulaanbaatar has decent clinics, but serious cases require Beijing, Seoul, or Bangkok.",
+      "SOS Medica and Intermed are the main expat clinics in Ulaanbaatar with English-speaking doctors.",
+      "Outside Ulaanbaatar, healthcare is extremely basic—rural Mongolia and Gobi trips need evacuation coverage.",
+      "Winter air pollution in UB is among the world's worst—respiratory coverage matters.",
+      "Most expats work in mining, NGOs, or diplomacy—corporate coverage is common but verify evacuation."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Mongolia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Mongolian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Mongolia requires health insurance for work permits and long-term visas. The requirement ensures coverage during your stay, but specific minimums aren't strictly enforced. More importantly, international insurance with robust evacuation coverage is essential because Mongolia has limited advanced medical facilities. Serious trauma, cardiac events, cancer, and complex surgeries require evacuation to Beijing (2-hour flight), Seoul, or Bangkok.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Everyone—even with Ulaanbaatar's private clinics, evacuation coverage is essential for serious conditions",
+      "Mining sector workers—remote mine sites have only basic first aid; helicopter evacuation may be needed",
+      "Adventure travelers—Gobi Desert trips, horseback expeditions, and winter activities carry real risks",
+      "Those with respiratory conditions—Ulaanbaatar's winter air pollution is severe",
+      "Anyone living outside Ulaanbaatar—aimag (provincial) hospitals are basic"
     ],
     publicHealthcare: {
-      name: "State Healthcare",
-      access: "Mongolian citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "State Healthcare System",
+      access: "Mongolian citizens with social insurance; limited foreigner access",
+      cost: "Social insurance contribution if employed locally",
+      notes: "Public hospitals in Ulaanbaatar include the Third State Central Hospital and National Cancer Center—basic by international standards with limited equipment and English. Provincial (aimag) hospitals have severe resource constraints. The Soviet-era healthcare infrastructure has improved but remains inadequate for complex care. Most expats avoid public facilities entirely."
     },
     privateHealthcare: {
-      cost: "$50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$60-120/month (international plans with evacuation)",
+      notes: "Ulaanbaatar has a small but functional private healthcare sector. SOS Medica (International SOS clinic) is the primary expat facility with Western-trained staff, English service, and evacuation coordination. Intermed Hospital is a well-equipped private hospital popular with expats and middle-class Mongolians. Songdo Hospital (Korean-run) offers good surgical capabilities. These facilities handle routine care and stabilization but cannot perform complex surgeries or advanced cancer treatment."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Mongolian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Winter in Mongolia is brutal: -30°C to -40°C in Ulaanbaatar, colder in rural areas. Cold-related emergencies (frostbite, hypothermia) and the challenges of emergency response in extreme cold are real considerations.",
+      "Air pollution in Ulaanbaatar during winter (October-April) is among the world's worst—worse than Beijing. Ger district heating with coal causes PM2.5 levels 10-20× WHO limits. Respiratory conditions are common.",
+      "Outside Ulaanbaatar, healthcare essentially doesn't exist for expats. Aimag centers have basic hospitals; rural areas have nothing. Any serious illness or injury requires evacuation to UB first.",
+      "Evacuation destinations: Beijing (closest major hub, 2 hours), Seoul (excellent healthcare), Bangkok (if regional plan). Air ambulance from UB costs $25,000-60,000.",
+      "Mining sites are remote. Companies operating mines should have comprehensive medevac arrangements—verify coverage before accepting a remote posting."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Mongolia visa?",
-        answer: "Yes. Most Mongolian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What healthcare options exist in Ulaanbaatar?",
+        answer: "SOS Medica (International SOS) is the primary expat clinic with Western-trained doctors, 24/7 emergency service, and evacuation coordination. Intermed Hospital offers broader services including surgery and diagnostics. Songdo Hospital (Korean-run) has good surgical capabilities. These facilities handle routine care, minor procedures, and stabilization. For major surgery, oncology, cardiac care, or complex trauma, evacuation to Beijing, Seoul, or Bangkok is standard."
       },
       {
-        question: "How does Mongolian public healthcare work?",
-        answer: "Mongolia's public healthcare system (State Healthcare) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does evacuation from Mongolia work?",
+        answer: "Medical evacuation typically routes through Chinggis Khaan International Airport in Ulaanbaatar. Common destinations: Beijing (2 hours, closest major medical hub), Seoul (3 hours, excellent Korean hospitals), Bangkok (5 hours, regional medical tourism hub). Air ambulance costs $25,000-60,000 depending on destination and medical needs. SOS International and other providers coordinate evacuations—ensure your insurer has Mongolia experience."
       },
       {
-        question: "How much does health insurance cost in Mongolia?",
-        answer: "International health insurance typically costs $50-120/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "What visa options exist for working in Mongolia?",
+        answer: "Mongolia has no digital nomad visa. Options: Work Permit (requires employer sponsorship, most common for mining/NGO/diplomatic sectors), Business Visa (HG category, for business activities), Investor Visa (for those with investments). Tourist visas allow 30 days, extendable once. Long-term expats need work permits or business visas—the process requires local sponsorship."
       },
       {
-        question: "What's the best health insurance for expats in Mongolia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is Mongolia safe for expats with health conditions?",
+        answer: "Mongolia is challenging for those with serious health conditions. Limited specialist care, extreme climate, and air pollution make it unsuitable for people with cardiac, respiratory, or complex chronic conditions. Healthy expats do fine with proper insurance. If you have significant health needs, ensure your employer provides robust coverage with easy evacuation, or consider whether Mongolia is the right posting."
       },
       {
-        question: "Are pre-existing conditions covered in Mongolia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does private healthcare cost in Mongolia?",
+        answer: "Ulaanbaatar private costs are moderate: GP consultation MNT 100,000-200,000 ($30-60), specialist MNT 150,000-300,000 ($45-90), private hospital room MNT 300,000-600,000/day ($90-180), basic surgery MNT 2-5 million ($600-1,500). SOS Medica charges higher (international rates) for the convenience and English service. These costs make out-of-pocket viable for routine care, but evacuation insurance is essential for serious conditions."
       }
     ],
     sidebarLinks: [
@@ -5055,12 +5057,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/mongolia/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Medical Evacuation Coverage",
+        href: "/insurance-for/us-coverage"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "East Asia Region",
+        href: "/regions/east-asia"
       },
       {
         title: "Best Expat Health Insurance",
@@ -6573,65 +6575,65 @@ const programmaticCountries: Country[] = [
     slug: "guatemala",
     name: "Guatemala",
     demonym: "Guatemalan",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Guatemala (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Guatemala. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Guatemala. Guatemala City private hospitals, Antigua expat healthcare, Lake Atitlán coverage, and US evacuation options.",
     headline: "Guatemala Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Guatemala—understanding the IGSS system and international insurance options.",
+    subheadline: "Access quality private healthcare at Central American prices—understanding Guatemala City's hospitals, healthcare options in Antigua and Lake Atitlán, and when US evacuation makes sense.",
     summaryBullets: [
-      "Guatemala does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (IGSS) is available to residents.",
-      "International health insurance typically costs $70-160/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, Pensionado."
+      "Health insurance is not required but strongly recommended—Guatemala City has good private hospitals, but coverage elsewhere is limited.",
+      "Most expats live in Antigua or Lake Atitlán—both require travel to Guatemala City (45-90 min) for serious care.",
+      "Private hospitals in Guatemala City have US-trained doctors and modern facilities at affordable prices.",
+      "CA-4 visa allows 90 days; Pensionado or Rentista residency for long-term stays with $1,000/month income proof.",
+      "Healthcare costs are very affordable: $25-50 GP visits, $50-100 specialists, making out-of-pocket viable for routine care."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Guatemala does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Guatemala does not require health insurance for visas. However, comprehensive coverage is strongly recommended. Guatemala City has several good private hospitals with US-trained doctors, but outside the capital—including popular expat areas like Antigua and Lake Atitlán—healthcare is limited. For complex procedures (cardiac surgery, oncology, major trauma), evacuation to Miami or Houston (2.5-hour flight) is common.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Expats in Antigua or Lake Atitlán—local clinics are limited; Guatemala City is 45-90 minutes away",
+      "Retirees with chronic conditions—ensure access to Guatemala City specialists or US care",
+      "Digital nomads wanting routine care access without out-of-pocket hassle",
+      "Adventure travelers—volcano trekking, hiking, and travel carry risks",
+      "Anyone wanting access to US healthcare for complex conditions"
     ],
     publicHealthcare: {
-      name: "IGSS",
-      access: "Guatemalan citizens, legal residents",
-      cost: "$15-30/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "IGSS (Instituto Guatemalteco de Seguridad Social)",
+      access: "Guatemalan citizens and formal sector workers",
+      cost: "Employer/employee contributions for formal workers",
+      notes: "IGSS covers formal sector employees but is severely underfunded with long waits and limited facilities. Ministry of Health (MSPAS) operates public hospitals available to all, but these are overcrowded with resource constraints. Expats rarely use public healthcare—even middle-class Guatemalans seek private care."
     },
     privateHealthcare: {
-      cost: "$70-160/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$50-120/month (international); $30-60/month (local plans)",
+      notes: "Guatemala City has several good private hospitals: Hospital Herrera Llerandi (top choice for expats, many US-trained doctors), Centro Médico (large hospital with multiple specialties), Hospital Universitario Esperanza, and Sanatorio El Pilar. Many doctors trained in US or Mexico. Antigua has clinics like Hospital Privado Hermano Pedro for routine care but serious cases go to Guatemala City. Lake Atitlán has basic clinics in Panajachel—evacuate to Guatemala City for anything significant."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Guatemalan regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Guatemala."
+      "Antigua and Lake Atitlán are 45-90 minutes from Guatemala City hospitals. If living in these areas, know your evacuation plan for emergencies.",
+      "Altitude: Guatemala City and Antigua sit at ~1,500m (5,000 ft). Most people adjust easily, but those with heart/lung conditions should consider it.",
+      "Security: While improving, Guatemala City has high-crime areas. Private hospitals are in safer zones, but ambulance response in some neighborhoods is limited.",
+      "Volcano and adventure tourism: Climbing Acatenango/Fuego or other volcanoes carries risks. Ensure coverage for high-altitude activities and evacuation from remote areas.",
+      "US Medicare doesn't work in Guatemala. Retirees need private international coverage or plan to pay out-of-pocket."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Guatemala visa?",
-        answer: "No. Guatemala does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What are the best hospitals in Guatemala?",
+        answer: "Hospital Herrera Llerandi in Guatemala City is the top choice for expats—modern facilities, many US-trained doctors, and English-speaking staff. Centro Médico is another major private hospital with comprehensive services. Hospital Universitario Esperanza is newer with good specialists. For routine care in Antigua, Hospital Privado Hermano Pedro handles basics. Lake Atitlán has only basic clinics—serious issues require Guatemala City."
       },
       {
-        question: "How does Guatemalan public healthcare work?",
-        answer: "Guatemala's public healthcare system (IGSS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How do I get residency in Guatemala?",
+        answer: "Guatemala offers several residency options: Pensionado (retirees) requires proof of $1,000/month pension income. Rentista (investors) requires $1,000/month from investments. Temporary Residence for those with Guatemalan family ties or employment. No digital nomad visa exists—most remote workers use the CA-4 tourist visa (90 days in Guatemala, El Salvador, Honduras, Nicaragua combined) with periodic exits to Mexico or Belize to reset."
       },
       {
-        question: "How much does health insurance cost in Guatemala?",
-        answer: "International health insurance typically costs $70-160/month depending on your age and coverage level. Local/public options cost $15-30/month but may have limitations for non-citizens."
+        question: "How much does private healthcare cost in Guatemala?",
+        answer: "Guatemala City private hospital costs: GP consultation Q200-400 ($25-50), specialist Q400-800 ($50-100), private hospital room Q1,500-3,000/day ($190-380), MRI Q2,000-4,000 ($250-500), dental cleaning Q200-400 ($25-50). These prices are 50-70% less than US costs, making out-of-pocket viable for routine care. Insurance remains valuable for emergencies and potential US evacuation."
       },
       {
-        question: "What's the best health insurance for expats in Guatemala?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Should I get insurance if living in Antigua Guatemala?",
+        answer: "Yes. Antigua has clinics for routine care, but anything serious—surgery, cardiac issues, complex diagnostics—requires Guatemala City (45-60 minute drive). International insurance provides: (1) access to Guatemala City private hospitals, (2) potential US evacuation for complex cases, (3) peace of mind for emergencies when Guatemala City trip isn't feasible. Many Antigua expats maintain US-including coverage for major issues."
       },
       {
-        question: "Are pre-existing conditions covered in Guatemala?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "When would I need US evacuation from Guatemala?",
+        answer: "Guatemala City handles most medical needs adequately. US evacuation (typically to Miami or Houston, 2.5-hour flight) is for: advanced cancer treatment, complex cardiac surgery, specialized pediatric care, major trauma with neurosurgery needs, or if you simply prefer US healthcare for serious conditions. Air ambulance costs $15,000-30,000; commercial flight evacuation is cheaper for stable patients."
       }
     ],
     sidebarLinks: [
@@ -6644,12 +6646,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/guatemala/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
-      },
-      {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
+      },
+      {
+        title: "Latin America Region",
+        href: "/regions/latin-america"
       },
       {
         title: "Best Expat Health Insurance",
