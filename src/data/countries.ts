@@ -844,63 +844,65 @@ const programmaticCountries: Country[] = [
     slug: "sweden",
     name: "Sweden",
     demonym: "Swedish",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Sweden (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Sweden. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Sweden. Personnummer requirements, region-based healthcare, private options, and wait time realities.",
     headline: "Sweden Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Sweden—understanding the Försäkringskassan system and international insurance options.",
+    subheadline: "Navigate Sweden's tax-funded healthcare—getting your personnummer, understanding regional variations, and whether private insurance is worth it.",
     summaryBullets: [
-      "Sweden does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Försäkringskassan) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Residence Permit."
+      "Personnummer (personal ID) required for public healthcare—takes 2-8 weeks after registration.",
+      "Healthcare is region-based (21 regions)—quality and wait times vary significantly.",
+      "Public healthcare nearly free (SEK 1,300/year cap) but specialist waits can exceed 3 months.",
+      "Private healthcare growing (Capio, Aleris)—employer insurance increasingly common.",
+      "Work permit requires employer sponsorship; EU citizens register after 3 months."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Sweden does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Sweden doesn't require health insurance for visas—the tax-funded system covers residents. However, you need a personnummer (personal ID number) to access public healthcare. Without it, you pay full costs out-of-pocket. Work permit holders get personnummer after registration with Skatteverket (tax agency). EU citizens can use EHIC initially, then must register for long-term residence. Private insurance is optional but popular for avoiding wait times.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "New arrivals waiting for personnummer (2-8 weeks)—no public access without it",
+      "Anyone wanting faster specialist access—public wait times can exceed 90 days",
+      "Self-employed and freelancers wanting comprehensive sick pay coverage",
+      "Expats who travel frequently—public system only covers Sweden",
+      "Those wanting choice of specific doctors or private hospital rooms"
     ],
     publicHealthcare: {
-      name: "Försäkringskassan",
-      access: "Swedish citizens, legal residents, EU citizens with EHIC",
-      cost: "Included in taxes",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Regional Healthcare (21 regions)",
+      access: "Anyone with personnummer (Swedish ID number)",
+      cost: "SEK 100-400 per GP visit, SEK 1,300/year max (högkostnadsskydd)",
+      notes: "Excellent quality but famous for wait times. Vårdgaranti (care guarantee) promises specialist within 90 days—often exceeded. Each region manages own healthcare, so Stockholm differs from rural Norrland. Call 1177 for healthcare advice. Emergency care always available regardless of status. Dental separate and expensive (no cap)."
     },
     privateHealthcare: {
-      cost: "€150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "SEK 400-800/month employer plans, €200-400/month international",
+      notes: "Private sector growing fast. Capio, Aleris, Praktikertjänst operate private clinics. Many employers offer private insurance (sjukvårdsförsäkring) as benefit—very common in corporate jobs. Private gets you specialist within days vs months. Sophia Hemmet, Capio St Göran in Stockholm popular. English widely spoken everywhere."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Swedish regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "No personnummer = no public healthcare access. Budget for private coverage until ID arrives.",
+      "Dental NOT included in cost cap—budget SEK 1,500-3,000/year or get separate dental insurance.",
+      "Specialist wait times are real—90+ days common. Private insurance worth it for non-emergencies.",
+      "Swedish bureaucracy is slow but fair—personnummer takes 2-8 weeks, be patient.",
+      "Self-employed get minimal sick pay from Försäkringskassan—consider private income protection."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Sweden visa?",
-        answer: "No. Sweden does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How do I get a personnummer?",
+        answer: "Register with Skatteverket (Swedish Tax Agency) after arrival. Need: passport, work permit or EU registration, proof of address, employment contract. Processing takes 2-8 weeks. Without personnummer, you can't access public healthcare, open bank accounts, or sign phone contracts. Keep your decision letter (beslut) as temporary ID."
       },
       {
-        question: "How does Swedish public healthcare work?",
-        answer: "Sweden's public healthcare system (Försäkringskassan) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Is Swedish healthcare really free?",
+        answer: "Nearly. You pay SEK 100-400 per visit, but there's a SEK 1,300 annual cap (högkostnadsskydd)—after that, visits are free for 12 months. Prescriptions have separate cap of SEK 2,850/year. Hospital stays SEK 120/day. Dental is NOT included and can be expensive (SEK 1,000+ for basic cleaning)."
       },
       {
-        question: "How much does health insurance cost in Sweden?",
-        answer: "International health insurance typically costs €150-350/month depending on your age and coverage level. Local/public options cost Included in taxes but may have limitations for non-citizens."
+        question: "Should I get private insurance in Sweden?",
+        answer: "Depends on your situation. If your employer offers sjukvårdsförsäkring (private health insurance), take it—it's valuable for skipping wait times. Self-paying for private insurance (SEK 400-800/month) makes sense if you want guaranteed fast access to specialists. For emergencies, the public system is excellent."
       },
       {
-        question: "What's the best health insurance for expats in Sweden?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How bad are the wait times really?",
+        answer: "It varies. GP appointments within days. Specialists: 30-120+ days depending on region and specialty. Orthopedics and psychiatry have longest waits. The vårdgaranti (care guarantee) promises specialist within 90 days, but it's often exceeded. Emergency and cancer care are fast. Routine issues... bring patience."
       },
       {
-        question: "Are pre-existing conditions covered in Sweden?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What happens before I get my personnummer?",
+        answer: "You can still access emergency care—hospitals bill you directly (expensive without insurance). For non-emergencies, either wait or use private clinics (pay out-of-pocket, SEK 1,500-3,000 per visit). International insurance covers this gap. EU citizens can use EHIC for necessary care. Process typically takes 2-8 weeks."
       }
     ],
     sidebarLinks: [
@@ -930,63 +932,65 @@ const programmaticCountries: Country[] = [
     slug: "norway",
     name: "Norway",
     demonym: "Norwegian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Norway (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Norway. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Norway. Fastlege GP system, fødselsnummer requirements, private options, and costs.",
     headline: "Norway Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Norway—understanding the Helfo system and international insurance options.",
+    subheadline: "Navigate Norway's excellent public healthcare—getting a fastlege (GP), understanding the frikort system, and whether private coverage adds value.",
     summaryBullets: [
-      "Norway does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Helfo) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €180-400/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, Skilled Worker Visa."
+      "Register for a fastlege (assigned GP) after getting fødselsnummer—your gateway to public healthcare.",
+      "Frikort (free card) kicks in after NOK 3,165/year in expenses—then healthcare is free.",
+      "Skilled Worker visa requires job offer with NOK 525,900+ salary (2024 threshold).",
+      "Private healthcare (Volvat, Aleris) offers faster access—employer insurance common in corporate jobs.",
+      "World's most expensive country—budget accordingly, but healthcare is excellent."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Norway does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Norway doesn't require health insurance for visas—the tax-funded system covers all legal residents. You need either a fødselsnummer (permanent ID) or D-number (temporary ID) to access public healthcare. Work permit holders qualify after registering with UDI and the tax office. EEA citizens can use EHIC initially, then register for membership in the National Insurance Scheme (folketrygden). Private insurance is optional but popular for skipping wait times.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "New arrivals waiting for fødselsnummer/D-number (weeks of processing)",
+      "Anyone wanting faster specialist access—public waits can be months",
+      "Expats outside Oslo/Bergen where specialist care is limited",
+      "Those wanting private hospital rooms and specific doctor choice",
+      "Self-employed wanting enhanced sick pay (public pays 100% from day 17)"
     ],
     publicHealthcare: {
-      name: "Helfo",
-      access: "Norwegian citizens, legal residents, EU citizens with EHIC",
-      cost: "Included in taxes",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Helsenorge / Helfo (Norwegian Health Economics Administration)",
+      access: "All members of folketrygden (National Insurance Scheme)",
+      cost: "NOK 300-400 per GP visit, NOK 3,165/year cap (frikort), then free",
+      notes: "Excellent quality. Fastlege (assigned GP) is your first contact for all non-emergency care. GP refers to specialists. Wait times for specialists: 4-16 weeks depending on condition. Emergency (legevakt) available 24/7. Hospitals are public and excellent—Oslo University Hospital, Haukeland (Bergen). Dental only covered for children under 18."
     },
     privateHealthcare: {
-      cost: "€180-400/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "NOK 3,000-6,000/month employer plans, €250-450/month international",
+      notes: "Private sector small but growing. Volvat (nationwide), Aleris Norway, Dr. Dropin (walk-in clinics). Many employers provide private insurance (behandlingsforsikring) to skip queues. Private gets specialist within days vs months. Oslo has best options; limited outside major cities. English widely spoken in healthcare settings."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Norwegian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "D-number is temporary—fødselsnummer takes longer but is better for long-term residents.",
+      "Fastlege system means you can't just see any doctor—register first, then book through them.",
+      "Dental NOT covered for adults—budget NOK 1,500-3,000/year or get private dental insurance.",
+      "Norway is extremely expensive—a simple GP visit costs NOK 300-400 before frikort.",
+      "Outside Oslo/Bergen/Trondheim, specialist access is limited—may need to travel."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Norway visa?",
-        answer: "No. Norway does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What's the difference between fødselsnummer and D-number?",
+        answer: "Fødselsnummer is a permanent national ID for people planning to stay 6+ months. D-number is temporary, issued faster, for shorter stays or while waiting for fødselsnummer. Both give healthcare access, but fødselsnummer is needed for full banking, housing contracts, etc. Apply for fødselsnummer if staying long-term."
       },
       {
-        question: "How does Norwegian public healthcare work?",
-        answer: "Norway's public healthcare system (Helfo) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How do I get a fastlege (GP)?",
+        answer: "After registering and getting your ID number, apply for a fastlege through Helsenorge.no. You can choose any GP with capacity, or be assigned one. Changes allowed twice per year. Your fastlege handles all routine care and refers you to specialists. Without a fastlege, you use legevakt (emergency clinic) which is expensive for non-emergencies."
       },
       {
-        question: "How much does health insurance cost in Norway?",
-        answer: "International health insurance typically costs €180-400/month depending on your age and coverage level. Local/public options cost Included in taxes but may have limitations for non-citizens."
+        question: "What is frikort and how does it work?",
+        answer: "Frikort is a 'free card' issued automatically after you've paid NOK 3,165 (2024) in healthcare costs in a calendar year. After that, GP visits, specialist visits, and some treatments are free until year-end. Tracks automatically—no application needed. Resets January 1. Doesn't include dental, prescriptions above a certain threshold, or private care."
       },
       {
-        question: "What's the best health insurance for expats in Norway?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is private health insurance worth it in Norway?",
+        answer: "For skipping queues, yes. Public system is excellent for emergencies and serious conditions, but elective care (orthopedics, dermatology) can have long waits. If your employer offers behandlingsforsikring (treatment insurance), take it. Self-paying NOK 3,000-6,000/month makes sense if you want guaranteed fast specialist access."
       },
       {
-        question: "Are pre-existing conditions covered in Norway?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How expensive is healthcare without the frikort cap?",
+        answer: "GP visit: NOK 300-400. Specialist: NOK 400-600. Emergency clinic (legevakt): NOK 500-900. Hospital stay: free after frikort. Before hitting the NOK 3,165 cap, costs add up quickly. Most working expats hit the cap within a few months of regular use. Private clinics charge more—NOK 800-2,000 per consultation."
       }
     ],
     sidebarLinks: [
@@ -5947,65 +5951,65 @@ const programmaticCountries: Country[] = [
     slug: "uruguay",
     name: "Uruguay",
     demonym: "Uruguayan",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Uruguay (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Uruguay. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Uruguay. Mutualista system, FONASA contributions, private options, and why expats love Uruguayan healthcare.",
     headline: "Uruguay Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Uruguay—understanding the ASSE/Mutualistas system and international insurance options.",
+    subheadline: "Navigate Uruguay's unique mutualista system—choosing your health cooperative, understanding FONASA, and why this small country punches above its weight.",
     summaryBullets: [
-      "Uruguay does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (ASSE/Mutualistas) is available to residents.",
-      "International health insurance typically costs $100-220/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, Rentista Visa."
+      "Mutualistas are private non-profit health cooperatives—you choose one and pay monthly fees.",
+      "FONASA contributions (4.5-8% of income) fund your mutualista membership if employed.",
+      "Hospital Británico and Médica Uruguaya are top mutualistas—good care, affordable costs.",
+      "Montevideo has excellent healthcare; outside the capital, options are more limited.",
+      "Residency is straightforward—popular with retirees seeking stable, safe, healthcare-accessible country."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Uruguay does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Uruguay doesn't require health insurance for visas, but the system strongly encourages coverage. Employed residents contribute to FONASA (4.5-8% of income) which funds mutualista membership. Self-employed and retirees can join mutualistas directly ($60-120/month). ASSE provides free public healthcare but quality is lower. Most expats use mutualistas—private non-profit cooperatives that are the backbone of Uruguayan healthcare.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All residents—mutualista membership is effectively expected for quality care",
+      "Retirees—excellent mutualista options, straightforward residency process",
+      "US/Canadian citizens—Medicare doesn't cover Uruguay, need local or international coverage",
+      "Those wanting complex specialist care—Buenos Aires evacuation option valuable",
+      "Expats outside Montevideo—more limited local options, may need travel for specialists"
     ],
     publicHealthcare: {
-      name: "ASSE/Mutualistas",
-      access: "Uruguayan citizens, legal residents",
-      cost: "$40-80/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "ASSE (Administración de los Servicios de Salud del Estado)",
+      access: "All residents (free), but most choose mutualistas",
+      cost: "Free (tax-funded)",
+      notes: "ASSE is the public safety net—free but overcrowded, longer waits, and facilities less modern than mutualistas. Hospital de Clínicas (university hospital) is best public facility. Used mainly by lower-income Uruguayans. Most expats skip ASSE entirely and use mutualistas or private options."
     },
     privateHealthcare: {
-      cost: "$100-220/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$60-120/month mutualista, $100-250/month international",
+      notes: "Mutualistas are the heart of Uruguayan healthcare—private non-profits with hospitals, clinics, and doctors. Top options: Hospital Británico (highest-end), Médica Uruguaya, Casa de Galicia, Asociación Española, Blue Cross. Quality is good for most conditions. For cutting-edge treatment or complex cases, Buenos Aires (2-hour ferry/flight) is the backup plan."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Uruguayan regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Uruguay."
+      "Mutualistas have age limits for new members—some won't accept over 65 without health assessment.",
+      "Spanish language essential—English-speaking doctors exist but are not guaranteed.",
+      "Complex cases may require Buenos Aires—include Argentina in your coverage area.",
+      "Outside Montevideo, healthcare is more basic—Punta del Este has good private options, rural areas less so.",
+      "US Medicare does NOT work in Uruguay—need local mutualista or international coverage."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Uruguay visa?",
-        answer: "No. Uruguay does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What is a mutualista and how do I join?",
+        answer: "Mutualistas are private non-profit health cooperatives unique to Uruguay. You pay monthly fees ($60-120) and get access to their hospitals, clinics, doctors, and medications at reduced costs. Popular options: Hospital Británico (best facilities), Médica Uruguaya (good network), Casa de Galicia, Asociación Española. To join: visit their offices with your cédula (ID), fill out forms, sometimes health questionnaire. Employed? FONASA contributions may cover your mutualista fees."
       },
       {
-        question: "How does Uruguayan public healthcare work?",
-        answer: "Uruguay's public healthcare system (ASSE/Mutualistas) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does FONASA work for expats?",
+        answer: "FONASA (National Health Fund) collects ~4.5-8% of your salary if employed. These contributions pay for your mutualista membership and dependents. Self-employed can contribute voluntarily or pay mutualista directly. If not working, you pay mutualista fees out-of-pocket ($60-120/month). FONASA doesn't cover international insurance—that's separate."
       },
       {
-        question: "How much does health insurance cost in Uruguay?",
-        answer: "International health insurance typically costs $100-220/month depending on your age and coverage level. Local/public options cost $40-80/month but may have limitations for non-citizens."
+        question: "Is Uruguay good for retiree healthcare?",
+        answer: "Very good. Stable democracy, safe, affordable, and mutualistas accept retirees (though some have age limits/assessments). Hospital Británico has excellent cardiology and oncology. Costs are 50-70% lower than US. Challenges: Spanish needed for most medical interactions, cutting-edge treatments may require Buenos Aires, and getting to Uruguay initially requires some planning for residency."
       },
       {
-        question: "What's the best health insurance for expats in Uruguay?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Should I use a mutualista or international insurance?",
+        answer: "For Uruguay-based care, mutualistas are affordable and sufficient. International insurance adds: worldwide coverage if you travel, English-speaking assistance, evacuation to Buenos Aires or beyond for complex cases, and no age restrictions for enrollment. Many expats have both—mutualista for daily use, international for travel and catastrophic coverage."
       },
       {
-        question: "Are pre-existing conditions covered in Uruguay?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What's healthcare like in Punta del Este?",
+        answer: "Good for a resort town. Hospital Cantegril and Sanatorio Mautone provide solid care. Summer season brings additional medical staff. For routine care, you're covered. For complex conditions, you'll likely travel to Montevideo (90 minutes) or use your mutualista's main facilities there. Year-round residents should have Montevideo access in their plan."
       }
     ],
     sidebarLinks: [
@@ -9819,63 +9823,65 @@ const programmaticCountries: Country[] = [
     slug: "egypt",
     name: "Egypt",
     demonym: "Egyptian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Egypt (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Egypt. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Egypt. Private hospital options in Cairo, costs in Egyptian Pounds, and why international coverage matters.",
     headline: "Egypt Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Egypt—understanding the MOH system and international insurance options.",
+    subheadline: "Navigate Egypt's healthcare landscape—excellent private hospitals in Cairo, very affordable costs, and why coverage is essential outside the capital.",
     summaryBullets: [
-      "Egypt does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (MOH) is available to residents.",
-      "International health insurance typically costs $50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Residence Visa."
+      "Private healthcare in Cairo is excellent and affordable—top hospitals at a fraction of Western costs.",
+      "Public hospitals are severely underfunded—expats should use private facilities only.",
+      "Cairo is Egypt's medical hub—Red Sea resorts and other areas have very limited healthcare.",
+      "Currency volatility (EGP) makes costs unpredictable in dollar terms—international insurance provides stability.",
+      "Medical evacuation coverage important—complex cases may require transfer to Dubai or Europe."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Egypt does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Egypt doesn't require health insurance for visas, but private coverage is essential for quality care. Public hospitals are overcrowded and understaffed—not recommended for expats. Private hospitals in Cairo offer excellent care at low costs, but medical evacuation coverage is important for serious conditions requiring transfer abroad. Employers often provide local insurance; international coverage adds evacuation and worldwide network benefits.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Everyone—public healthcare is not a realistic option for expats",
+      "Those outside Cairo—healthcare quality drops dramatically in smaller cities",
+      "Red Sea coast residents (Hurghada, Sharm el-Sheikh)—limited local facilities",
+      "Anyone wanting English-speaking doctors and international-standard facilities",
+      "Expats with chronic conditions requiring reliable, consistent care"
     ],
     publicHealthcare: {
-      name: "MOH",
-      access: "Egyptian citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Ministry of Health and Population",
+      access: "Egyptian citizens (heavily subsidized), foreigners can access at higher rates",
+      cost: "Very low (EGP 10-100 for visits) but quality reflects price",
+      notes: "Public hospitals are severely underfunded, overcrowded, and understaffed. Equipment often outdated. Language barrier significant—Arabic only in most public facilities. Emergency care available but conditions basic. Expats should avoid public hospitals except in dire emergencies. Qasr El Eyni (Cairo University) is best public hospital but still below international standards."
     },
     privateHealthcare: {
-      cost: "$50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$30-80/month local plans, $60-150/month international",
+      notes: "Excellent private hospitals in Cairo: Dar Al Fouad, As-Salam International, Cleopatra Hospitals Group, Saudi German Hospital. Many doctors Western-trained, speak English. Costs remarkably affordable—GP visit $20-40, specialist $40-80, hospital day $150-400. Medical tourism popular for cosmetic surgery, dental, orthopedics. Outside Cairo, options limited—Alexandria has some good facilities."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Egyptian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Cairo-centric healthcare—outside the capital, quality drops significantly. Budget for Cairo travel or evacuation.",
+      "Currency volatility—Egyptian Pound fluctuates wildly. International insurance protects against devaluation.",
+      "Red Sea resort healthcare is basic—Hurghada and Sharm have clinics but serious cases go to Cairo or abroad.",
+      "Arabic language barrier—outside major private hospitals, English is limited.",
+      "Political/security situation can change—verify your insurer covers Egypt and any exclusion zones."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Egypt visa?",
-        answer: "No. Egypt does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How good are Cairo's private hospitals?",
+        answer: "Very good for most conditions. Dar Al Fouad, As-Salam International, and Cleopatra Hospitals have modern equipment, Western-trained doctors, and English-speaking staff. They handle surgery, cardiology, oncology, and maternity well. For very complex cases (advanced cancer, rare conditions), evacuation to Dubai or Europe may be recommended."
       },
       {
-        question: "How does Egyptian public healthcare work?",
-        answer: "Egypt's public healthcare system (MOH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How affordable is private healthcare in Egypt?",
+        answer: "Remarkably affordable. GP consultation: $20-40. Specialist: $40-80. MRI: $100-200. Hospital day (private room): $150-400. Maternity (private hospital): $1,500-4,000. Dental cleaning: $30-50. Costs are 70-80% lower than Western countries, making Egypt attractive for medical tourism and retirees."
       },
       {
-        question: "How much does health insurance cost in Egypt?",
-        answer: "International health insurance typically costs $50-120/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "What's healthcare like in Red Sea resorts?",
+        answer: "Limited. Hurghada and Sharm el-Sheikh have basic private clinics for minor issues—infections, minor injuries, common illnesses. Anything requiring surgery, imaging beyond X-rays, or specialist care means transfer to Cairo (1-hour flight) or evacuation abroad. If you live on the coast, medical evacuation coverage is essential, not optional."
       },
       {
-        question: "What's the best health insurance for expats in Egypt?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Do I need international insurance or is local enough?",
+        answer: "Local insurance (like Allianz Egypt, AXA Egypt) works for Cairo-based care and is affordable. International insurance adds: medical evacuation to Dubai/Europe for complex cases, worldwide network if you travel, stability against currency fluctuations, and typically better customer service in English. For long-term expats, combining local primary coverage with international catastrophic/evacuation coverage is common."
       },
       {
-        question: "Are pre-existing conditions covered in Egypt?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is Egypt good for retirees' healthcare?",
+        answer: "For cost-conscious retirees comfortable with Cairo, yes. Private healthcare is affordable and good quality. Warm climate, low cost of living, interesting culture. Challenges: language barrier outside expat bubbles, bureaucracy for visas, and healthcare quality varies hugely by location. Stick to Cairo or Alexandria for reliable healthcare access."
       }
     ],
     sidebarLinks: [
@@ -9991,63 +9997,65 @@ const programmaticCountries: Country[] = [
     slug: "kenya",
     name: "Kenya",
     demonym: "Kenyan",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Kenya (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Kenya. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Kenya. Nairobi private hospitals, NHIF/SHIF system, safari evacuation coverage, and costs.",
     headline: "Kenya Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Kenya—understanding the NHIF system and international insurance options.",
+    subheadline: "Navigate Kenya's healthcare as East Africa's medical hub—excellent private hospitals in Nairobi, the importance of evacuation coverage, and local vs international options.",
     summaryBullets: [
-      "Kenya does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (NHIF) is available to residents.",
-      "International health insurance typically costs $80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Digital Nomad Permit."
+      "Nairobi is East Africa's healthcare hub—Aga Khan Hospital and Nairobi Hospital are excellent.",
+      "AMREF Flying Doctors essential for safari/rural areas—medical evacuation can save your life.",
+      "NHIF/SHIF transitioning to new social health insurance—expats mostly use private coverage.",
+      "English is official language—no language barrier in healthcare.",
+      "Digital Nomad Permit available—work remotely while enjoying Kenya's lifestyle."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Kenya does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Kenya doesn't require health insurance for visas, but private coverage is essential for quality care. NHIF (transitioning to SHIF) is the public scheme but provides limited coverage at public facilities. Expats use private insurance—either local Kenyan insurers (Jubilee, AAR) or international plans. Nairobi has East Africa's best healthcare; outside the capital, medical evacuation coverage becomes critical.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Everyone in Kenya—private coverage is essential for quality care",
+      "Safari travelers and rural residents—AMREF Flying Doctors membership is lifesaving",
+      "Mombasa coast residents—good private options but limited compared to Nairobi",
+      "Those with chronic conditions—reliable specialist access requires coverage",
+      "Digital nomads—new permit requires proof of income but not insurance; get it anyway"
     ],
     publicHealthcare: {
-      name: "NHIF",
-      access: "Kenyan citizens, legal residents",
-      cost: "$15-35/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "NHIF/SHIF (National/Social Health Insurance Fund)",
+      access: "Kenyan citizens and legal residents",
+      cost: "KES 500-1,700/month (~$4-13) depending on income",
+      notes: "Public healthcare is underfunded. Kenyatta National Hospital (Nairobi) is the main public facility—overcrowded but has specialists. NHIF transitioning to SHIF with expanded coverage goals. Public facilities outside Nairobi are basic. Expats almost universally use private facilities and insurance—public system is a safety net, not a primary option."
     },
     privateHealthcare: {
-      cost: "$80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$50-120/month local, $100-250/month international",
+      notes: "Nairobi has excellent private hospitals: Aga Khan University Hospital (best overall), Nairobi Hospital, MP Shah, Karen Hospital. East Africa's medical hub—patients fly in from Uganda, Tanzania, Ethiopia. Local insurers: Jubilee Health, AAR, Britam, Resolution. English everywhere. Mombasa: Aga Khan Mombasa, Coast General (public). Outside major cities: very limited—evacuation coverage essential."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Kenyan regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Outside Nairobi = evacuation coverage is critical. Safari injuries, remote area emergencies require air evacuation.",
+      "AMREF Flying Doctors membership ($75-150/year) provides evacuation across East Africa—essential for safari travelers.",
+      "Mombasa healthcare is adequate but not Nairobi-level—complex cases often transferred to capital.",
+      "Traffic in Nairobi can delay ambulances—choose accommodation near major hospitals if you have health concerns.",
+      "Blood supply can be limited—if rare blood type, register with your embassy and Nairobi hospitals."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Kenya visa?",
-        answer: "No. Kenya does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How good are Nairobi's private hospitals?",
+        answer: "Excellent by regional standards. Aga Khan University Hospital is world-class—handles complex surgery, oncology, cardiology. Nairobi Hospital and MP Shah are also very good. Kenya is East Africa's medical hub—patients fly in from neighboring countries. For most conditions, you don't need to leave Kenya. Very complex cases (organ transplants, advanced cancer) may require South Africa, India, or Europe."
       },
       {
-        question: "How does Kenyan public healthcare work?",
-        answer: "Kenya's public healthcare system (NHIF) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Do I need AMREF Flying Doctors membership?",
+        answer: "If you travel outside Nairobi—absolutely yes. AMREF Flying Doctors provides air ambulance evacuation across East Africa. Safari emergencies, road accidents in rural areas, medical crises in remote locations—AMREF can mean the difference between life and death. Cost is $75-150/year depending on coverage level. Many international insurers partner with AMREF, but verify."
       },
       {
-        question: "How much does health insurance cost in Kenya?",
-        answer: "International health insurance typically costs $80-180/month depending on your age and coverage level. Local/public options cost $15-35/month but may have limitations for non-citizens."
+        question: "Should I use local or international insurance?",
+        answer: "Local insurers (Jubilee, AAR, Resolution) offer good value for Kenya-based care and understand the local hospital network. International insurers (Cigna, BUPA, Allianz) add worldwide coverage, evacuation to South Africa/Europe for complex cases, and often better customer service. Many expats combine: local for routine care, international for travel and catastrophic coverage."
       },
       {
-        question: "What's the best health insurance for expats in Kenya?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What's the Digital Nomad Permit and do I need insurance for it?",
+        answer: "Kenya's Digital Nomad Permit (2022) allows remote workers to live in Kenya for 1 year, renewable. Requirements: $24,000/year income proof, clean background check, application fee. Insurance isn't officially required, but strongly recommended. You're responsible for your own healthcare costs—without insurance, a major medical event could cost tens of thousands of dollars."
       },
       {
-        question: "Are pre-existing conditions covered in Kenya?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How is healthcare on the Kenyan coast (Mombasa)?",
+        answer: "Good but not Nairobi-level. Aga Khan Mombasa is the best facility—handles most conditions. Coast General Hospital is the main public option. For complex cases, expect transfer to Nairobi (1-hour flight). Beach resorts and Diani have basic clinics for minor issues. If you live on the coast, ensure your insurance covers Nairobi treatment and evacuation if needed."
       }
     ],
     sidebarLinks: [

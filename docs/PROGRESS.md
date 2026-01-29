@@ -30,6 +30,13 @@ Last updated: January 29, 2026
 - **Israel** - Kupat Holim system (4 HMOs), Shaban supplemental, tech industry coverage standards, work visa restrictions
 - **South Africa** - Medical aid schemes (Discovery, Bonitas), gap cover necessity, private hospital chains (Netcare, Mediclinic), load shedding impacts
 
+#### Tier 3 Country Refinement - Batch 2 (5 countries)
+- **Sweden** - Personnummer requirements, regional healthcare (21 regions), frikort cost cap system, private options (Capio, Aleris)
+- **Norway** - Fødselsnummer/D-number distinction, fastlege GP system, frikort free card, Skilled Worker visa salary threshold
+- **Egypt** - Cairo private hospitals (Dar Al Fouad, As-Salam), Red Sea healthcare limitations, currency volatility, affordable costs
+- **Uruguay** - Mutualista system explained, FONASA contributions, Hospital Británico, retirement-friendly healthcare
+- **Kenya** - Nairobi as East Africa hub, AMREF Flying Doctors, Aga Khan Hospital, Digital Nomad Permit, safari evacuation
+
 ---
 
 ### January 28, 2026 (Evening) - Country × Persona Pages
@@ -161,12 +168,12 @@ All Tier 2 countries have been refined with detailed, researched content:
 ## In Progress - Tier 3 Country Refinement
 
 **Batch 1 Complete (5 countries):** Austria, Belgium, Croatia, Israel, South Africa
+**Batch 2 Complete (5 countries):** Sweden, Norway, Egypt, Uruguay, Kenya
 
-**Remaining High Priority (~20 countries):**
-- European: Sweden, Norway, Denmark, Finland, Romania
-- Asian: Cambodia, Laos, Nepal, Sri Lanka, Bangladesh, Mongolia
-- Latin American: Uruguay, Bolivia, Guatemala, Dominican Republic
-- Middle East/Africa: Egypt, Kenya
+**Remaining High Priority (~15 countries):**
+- European: Denmark, Finland, Romania
+- Asian: Cambodia (already detailed), Laos, Nepal, Sri Lanka, Bangladesh, Mongolia
+- Latin American: Bolivia, Guatemala, Dominican Republic
 - Oceania: Fiji
 
 ---
@@ -245,7 +252,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **January 29, 2026:** Added 4 new constraint pages + Tier 3 Batch 1 refinement (Austria, Belgium, Croatia, Israel, South Africa)
+- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1 (Austria, Belgium, Croatia, Israel, South Africa) + Batch 2 (Sweden, Norway, Egypt, Uruguay, Kenya)
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
 - **January 28, 2026:** Added provider-persona pages (40 pages)
