@@ -2162,65 +2162,65 @@ const programmaticCountries: Country[] = [
     slug: "cyprus",
     name: "Cyprus",
     demonym: "Cypriot",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Cyprus (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Cyprus. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Cyprus. GESY universal healthcare, Digital Nomad Visa requirements, Category F retirement permit, and British expat healthcare options.",
     headline: "Cyprus Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Cyprus—understanding the GHS/GESY system and international insurance options.",
+    subheadline: "Access universal healthcare on this English-speaking EU island—understanding the GESY system, digital nomad visa requirements, retiree permits, and when private coverage makes sense.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Cyprus.",
-      "The public healthcare system (GHS/GESY) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €100-220/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Pink Slip, Permanent Residence."
+      "GESY (universal healthcare) launched 2019—all legal residents can access public healthcare with 2.75% income contribution.",
+      "Digital Nomad Visa requires €3,500/month income plus comprehensive health insurance.",
+      "Category F permit popular for retirees—requires proof of income and private health insurance.",
+      "English widely spoken (British legacy)—healthcare easily navigable for English speakers.",
+      "Small island—complex cases may need evacuation to Greece, Israel, or UK."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Cyprus requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Cypriot standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Non-EU citizens need health insurance for visa applications. Digital Nomad Visa requires comprehensive coverage. Category F retirement permit requires private insurance until you qualify for GESY. EU citizens can use EHIC temporarily, then register for GESY. Once enrolled in GESY, you have public healthcare access, but many expats maintain private insurance for faster access and overseas treatment options.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Digital nomads—mandatory for visa application, €3,500/month income threshold",
+      "Retirees on Category F—private insurance required initially",
+      "Those wanting faster access—GESY has growing wait times for specialists",
+      "Anyone with complex health needs—limited specialist availability on island",
+      "Non-dom tax residents wanting international coverage flexibility"
     ],
     publicHealthcare: {
-      name: "GHS/GESY",
-      access: "Cypriot citizens, legal residents, EU citizens with EHIC",
-      cost: "€40-80/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "GESY (General Healthcare System)",
+      access: "All legal residents who register and contribute 2.75% of income",
+      cost: "2.75% of income (employees); 4% (self-employed); €180 minimum for low/no income",
+      notes: "GESY launched in phases 2019-2020—major healthcare reform. Covers GP visits, specialists, hospital care, medications, and more. Register with a personal doctor (GP) who coordinates care. Nicosia General, Limassol General, and Larnaca General are main public hospitals. Quality is good but wait times for specialists have increased since GESY launched. System is still maturing."
     },
     privateHealthcare: {
-      cost: "€100-220/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€80-180/month (local plans); €120-250/month (international)",
+      notes: "Private hospitals include Aretaeio (Nicosia), Apollonion (Nicosia), Mediterranean Hospital (Limassol), and Ygia Polyclinic (Limassol). Private care offers immediate access, nicer facilities, and often the same doctors who work in public hospitals. Many doctors trained in UK or Greece. Local insurers include GAN Direct, Eurolife, and CNP Cyprialife. International plans valuable for treatment abroad."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Cypriot regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Cyprus is small (~1.2 million people)—specialist availability is limited. Complex cardiac surgery, rare cancers, organ transplants, and some pediatric specialties may require travel to Greece (Athens), Israel (Tel Aviv), or UK.",
+      "Note: This covers Republic of Cyprus only. Northern Cyprus (Turkish-controlled) has separate healthcare system and different visa rules.",
+      "GESY wait times have increased as the new system handles more demand. Private insurance provides faster access for non-emergencies.",
+      "Summer heat (35-40°C) can affect elderly expats. Ensure coverage for heat-related conditions and cardiac events.",
+      "Category F retirees: You need private insurance until you've contributed to GESY long enough. Don't assume immediate public access."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Cyprus visa?",
-        answer: "Yes. Most Cypriot visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Cyprus Digital Nomad Visa work?",
+        answer: "Cyprus's Digital Nomad Visa allows remote workers to live in Cyprus for up to 3 years (1 year + 2 renewals). Requirements: Employment with non-Cypriot company, minimum €3,500/month gross income, comprehensive health insurance covering Cyprus, clean criminal record. Apply through Civil Registry. Processing takes 4-8 weeks. Dependents can be included with additional income requirements."
       },
       {
-        question: "How does Cypriot public healthcare work?",
-        answer: "Cyprus's public healthcare system (GHS/GESY) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is GESY and how do I register?",
+        answer: "GESY (Genikó Sýstima Ygeías) is Cyprus's universal healthcare system launched in 2019. To register: Get a residence permit, register with the Health Insurance Organisation (HIO), choose a personal doctor (GP), and start paying contributions (2.75% of income for employees). Your GP coordinates all care—specialists require referral. Once registered, you can access public hospitals, contracted private providers, medications, and more."
       },
       {
-        question: "How much does health insurance cost in Cyprus?",
-        answer: "International health insurance typically costs €100-220/month depending on your age and coverage level. Local/public options cost €40-80/month but may have limitations for non-citizens."
+        question: "What is the Category F permit for retirees?",
+        answer: "Category F is Cyprus's retirement permit for non-EU citizens. Requirements: Minimum annual income of €9,568 (plus €4,613 per dependent), private health insurance, clean criminal record, proof you won't seek employment. The permit is renewable annually. Many British retirees use this route post-Brexit. You'll need private insurance until you can access GESY—usually after establishing tax residency and contributing."
       },
       {
-        question: "What's the best health insurance for expats in Cyprus?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does private healthcare cost in Cyprus?",
+        answer: "Private healthcare costs in Cyprus: GP visit €40-60, specialist €60-100, private hospital room €200-350/day, MRI €200-350, minor surgery €1,000-3,000. Costs are moderate by EU standards—cheaper than Western Europe but higher than Eastern Europe. Many doctors have both GESY and private practices, so quality is similar; the difference is wait time and facilities."
       },
       {
-        question: "Are pre-existing conditions covered in Cyprus?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is Cyprus good for British retirees?",
+        answer: "Cyprus remains popular with British retirees despite Brexit. Advantages: English widely spoken, familiar legal system (British legacy), large British community, warm climate, favorable tax (non-dom status), lower cost of living than UK. Healthcare considerations: GESY provides good coverage once enrolled, but Category F requires private insurance initially. UK state pension is paid and uprated in Cyprus. Many British retirees maintain UK-linked private insurance for treatment back home."
       }
     ],
     sidebarLinks: [
@@ -2233,16 +2233,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/cyprus/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
-      },
-      {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
       },
       {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Insurance for Digital Nomads",
+        href: "/insurance-for/digital-nomads"
+      },
+      {
+        title: "Western Europe Region",
+        href: "/regions/western-europe"
       }
     ]
   },
@@ -2250,65 +2250,65 @@ const programmaticCountries: Country[] = [
     slug: "malta",
     name: "Malta",
     demonym: "Maltese",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Malta (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Malta. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Malta. Nomad Residence Permit requirements, Mater Dei Hospital, Pink Card registration, and when you need private coverage.",
     headline: "Malta Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Malta—understanding the NHS Malta system and international insurance options.",
+    subheadline: "Navigate healthcare on this English-speaking EU island—understanding the Pink Card system, Mater Dei Hospital access, digital nomad visa requirements, and when private insurance makes sense.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Malta.",
-      "The public healthcare system (NHS Malta) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €100-240/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Nomad Residence Permit, Global Residence Programme."
+      "Health insurance is mandatory for non-EU visa applicants—Nomad Residence Permit requires comprehensive coverage.",
+      "Malta's public healthcare is good but small—Mater Dei Hospital is the main facility for the entire country.",
+      "Pink Card (healthcare entitlement card) required for public healthcare access as a resident.",
+      "English is official—all healthcare available in English, making Malta easy for expats.",
+      "Small island means limited specialists; complex cases may require evacuation to Italy or UK."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Malta requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Maltese standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Non-EU citizens need health insurance for visa applications. The Nomad Residence Permit (digital nomad visa) specifically requires comprehensive health insurance covering Malta. Global Residence Programme and Malta Retirement Programme also mandate private coverage. EU citizens can use EHIC for temporary stays, but long-term residents should register for a Pink Card or obtain private insurance.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Digital nomads—mandatory for Nomad Residence Permit application",
+      "Non-EU expats—required for all residence permit types",
+      "Those wanting faster access—public system has growing wait times",
+      "Anyone needing specialist care—Malta's small size limits specialty availability",
+      "iGaming industry workers—many employers provide coverage, but verify gaps"
     ],
     publicHealthcare: {
-      name: "NHS Malta",
-      access: "Maltese citizens, legal residents, EU citizens with EHIC",
-      cost: "€40-80/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Health Entitlement Card (Pink Card) System",
+      access: "Maltese citizens, EU residents, Pink Card holders",
+      cost: "Free with Pink Card; social security contributions for workers",
+      notes: "Mater Dei Hospital (opened 2007) is the main public hospital—modern, well-equipped, handles most care. Sir Anthony Mamo Oncology Centre for cancer. Gozo General Hospital on the sister island. Public system is good but increasingly strained by population growth. Wait times for non-urgent specialist appointments can be months. Emergency care is prompt and free."
     },
     privateHealthcare: {
-      cost: "€100-240/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€80-180/month (local plans); €120-250/month (international)",
+      notes: "Private hospitals include St James Hospital (Sliema), St Thomas Hospital, and Da Vinci Hospital. Private care offers faster access, nicer facilities, and scheduled procedures without wait lists. Many consultants work both public and private. Local insurers include Atlas Insurance, GasanMamo, and Laferla. International plans useful for evacuation coverage and treatment abroad for complex cases."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Maltese regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Malta is small (500,000 people)—limited specialists. Complex cardiac surgery, rare cancers, organ transplants, and pediatric specialties may require travel to Italy (Sicily is 1 hour by air) or UK.",
+      "iGaming industry: Malta's online gaming sector employs many expats. Company insurance varies widely—some excellent, some minimal. Verify your coverage before assuming it's adequate.",
+      "Population growth has strained healthcare. Public wait times have increased. Private insurance provides valuable queue-jumping for non-emergencies.",
+      "Gozo island has more limited healthcare than Malta. Gozo General Hospital handles basics; complex cases transfer to Mater Dei on Malta.",
+      "Summer tourist season can strain emergency services. Minor issues may wait longer June-September."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Malta visa?",
-        answer: "Yes. Most Maltese visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Malta's Nomad Residence Permit work?",
+        answer: "Malta's Nomad Residence Permit allows remote workers to live in Malta for up to 3 years. Requirements: Proof of remote work for non-Maltese employer, minimum monthly income of €2,700 (or €10,000 in savings), comprehensive health insurance valid in Malta, clean criminal record. The permit is renewable and doesn't lead to permanent residence. Apply through Identity Malta."
       },
       {
-        question: "How does Maltese public healthcare work?",
-        answer: "Malta's public healthcare system (NHS Malta) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is the Pink Card and do I need one?",
+        answer: "The Pink Card (Health Entitlement Card) gives you access to Malta's public healthcare system. EU citizens staying long-term and non-EU residents with valid permits can apply. You'll need proof of residence, ID, and social security registration if working. The card is free and entitles you to public healthcare at Mater Dei and other government facilities. Processing takes 2-4 weeks."
       },
       {
-        question: "How much does health insurance cost in Malta?",
-        answer: "International health insurance typically costs €100-240/month depending on your age and coverage level. Local/public options cost €40-80/month but may have limitations for non-citizens."
+        question: "Is Mater Dei Hospital good enough for expats?",
+        answer: "Mater Dei is a modern hospital (opened 2007) with good facilities and English-speaking staff. It handles most medical needs well—emergency care, general surgery, cardiology, oncology (at the adjacent cancer centre). Where it falls short: very specialized procedures, rare conditions, and organ transplants. For these, patients are typically sent to UK or Italy. Private insurance with evacuation coverage addresses this gap."
       },
       {
-        question: "What's the best health insurance for expats in Malta?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does private healthcare cost in Malta?",
+        answer: "Private healthcare in Malta: GP consultation €40-60, specialist €60-100, private hospital room €200-400/day, MRI €250-400, minor surgery €1,000-3,000. Costs are moderate by European standards—higher than Eastern Europe but lower than UK/Germany. Many consultants have both public and private practices, so you're often seeing the same doctors in nicer facilities."
       },
       {
-        question: "Are pre-existing conditions covered in Malta?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What insurance do iGaming workers need in Malta?",
+        answer: "Malta's iGaming industry provides most employment for expats. Company coverage varies: large operators (Betsson, Kindred, Entain) typically offer good group insurance; smaller companies may provide minimal coverage. Check what's included—many plans have gaps in mental health, dental, or specialist care. Consider supplemental international coverage if your company plan is limited, especially if you want evacuation options."
       }
     ],
     sidebarLinks: [
@@ -2325,8 +2325,8 @@ const programmaticCountries: Country[] = [
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Western Europe Region",
+        href: "/regions/western-europe"
       },
       {
         title: "Best Expat Health Insurance",
@@ -7015,65 +7015,65 @@ const programmaticCountries: Country[] = [
     slug: "jamaica",
     name: "Jamaica",
     demonym: "Jamaican",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Jamaica (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Jamaica. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Jamaica. Digital Nomad Visa requirements, Kingston private hospitals, Miami evacuation, and retirement visa healthcare options.",
     headline: "Jamaica Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Jamaica—understanding the NHF system and international insurance options.",
+    subheadline: "Navigate Caribbean healthcare in English—understanding the Digital Nomad Visa, Kingston's private hospitals, retirement options, and why Miami evacuation coverage matters.",
     summaryBullets: [
-      "Jamaica does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (NHF) is available to residents.",
-      "International health insurance typically costs $100-220/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Retirement Visa."
+      "Health insurance not required but strongly recommended—Kingston has good private hospitals, but complex cases need Miami evacuation.",
+      "Digital Nomad Visa available for remote workers earning $50,000+/year—no insurance requirement but essential to have.",
+      "Retirement Visa for those 55+ with $2,000/month income—popular with American and Canadian retirees.",
+      "Kingston has the best healthcare; tourist areas (Montego Bay, Ocho Rios) have limited facilities.",
+      "US Medicare does NOT work in Jamaica—Americans need private international coverage."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Jamaica does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Jamaica does not require health insurance for visas, including the Digital Nomad Visa. However, private coverage is essential in practice. Jamaica's public healthcare has significant limitations, and complex medical needs require evacuation to Miami (1.5-hour flight). Kingston has reasonable private hospitals, but tourist areas and rural Jamaica have very limited healthcare. US Medicare and most US insurance do not cover care in Jamaica.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—public healthcare is limited and often crowded",
+      "Digital nomads—no visa requirement but essential for practical reasons",
+      "American retirees—US Medicare doesn't work in Jamaica",
+      "Those living outside Kingston—Montego Bay and rural areas have limited healthcare",
+      "Anyone with chronic conditions—specialist care availability is limited"
     ],
     publicHealthcare: {
-      name: "NHF",
-      access: "Jamaican citizens, legal residents",
-      cost: "$15-35/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Ministry of Health / NHF",
+      access: "Jamaican citizens and residents; limited access for foreigners",
+      cost: "Low fees at public hospitals; NHF subsidizes medications",
+      notes: "University Hospital of the West Indies (UHWI) is the main teaching hospital in Kingston—handles complex cases but often crowded. Cornwall Regional Hospital serves Montego Bay area. Public hospitals are under-resourced with long waits. NHF (National Health Fund) subsidizes medications for residents. JAMDicare is a government health insurance scheme. Most expats avoid public hospitals except for emergencies."
     },
     privateHealthcare: {
-      cost: "$100-220/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$80-180/month (local plans); $120-280/month (international)",
+      notes: "Private hospitals in Kingston include Medical Associates Hospital (best equipped), Andrews Memorial Hospital, and Nuttall Memorial Hospital. Montego Bay has Hospiten Montego Bay. Private care offers reasonable quality for routine issues and minor procedures. Complex cardiac surgery, oncology, neurosurgery, and major trauma typically require Miami evacuation. Many Jamaican doctors trained in US, UK, or at UWI—English is the primary language."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Jamaican regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Jamaica."
+      "Miami evacuation is the standard for serious conditions. Kingston can handle routine care and stabilization, but cardiac surgery, cancer treatment, serious trauma, and complex cases go to Miami (1.5 hours by air ambulance). Ensure coverage includes at least $100,000 evacuation.",
+      "US Medicare does NOT cover healthcare in Jamaica. American retirees must purchase private international coverage—this is a common misconception.",
+      "Healthcare outside Kingston is very limited. Montego Bay has Hospiten, but rural Jamaica and resort areas have only basic clinics. If living on the north coast, plan for Kingston or Miami for serious care.",
+      "Hurricane season (June-November) can disrupt evacuation options. Ensure your insurer has contingency protocols for natural disaster scenarios.",
+      "Crime in certain Kingston areas can affect healthcare access. Private hospitals are in safer areas, but emergency situations in high-crime zones are more complex."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Jamaica visa?",
-        answer: "No. Jamaica does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How does Jamaica's Digital Nomad Visa work?",
+        answer: "Jamaica's Digital Nomad Visa allows remote workers to live in Jamaica while working for non-Jamaican employers. Requirements: Proof of employment or self-employment, minimum $50,000/year income, clean criminal record. Duration is 12 months, renewable. No health insurance requirement, but coverage is essential. Apply online through the Jamaica Immigration website. Processing takes 2-4 weeks. Dependents can be included."
       },
       {
-        question: "How does Jamaican public healthcare work?",
-        answer: "Jamaica's public healthcare system (NHF) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is the Retirement Visa for Jamaica?",
+        answer: "Jamaica offers a Retirement Permit for those 55+ with guaranteed income of at least $2,000/month (pension, investments, or annuity). Requirements include clean criminal record and health certificate. The permit allows you to live in Jamaica without working locally. Popular with American and Canadian retirees for the climate, English language, and proximity to US. Health insurance not required but essential—US Medicare doesn't work abroad."
       },
       {
-        question: "How much does health insurance cost in Jamaica?",
-        answer: "International health insurance typically costs $100-220/month depending on your age and coverage level. Local/public options cost $15-35/month but may have limitations for non-citizens."
+        question: "What are the best hospitals in Jamaica?",
+        answer: "For expats: Medical Associates Hospital in Kingston (best private facility, most international standards), Andrews Memorial Hospital (Kingston), Nuttall Memorial Hospital (Kingston). In Montego Bay: Hospiten Montego Bay (part of international chain). University Hospital of the West Indies (UHWI) is the main public teaching hospital—handles complex cases but crowded. For anything serious, Miami hospitals (1.5-hour flight) are the standard."
       },
       {
-        question: "What's the best health insurance for expats in Jamaica?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does private healthcare cost in Jamaica?",
+        answer: "Jamaica healthcare costs are moderate: GP consultation J$3,000-8,000 ($20-55), specialist J$5,000-15,000 ($35-100), private hospital room J$15,000-40,000/day ($100-270), emergency room J$10,000-25,000 ($65-170). These costs make out-of-pocket viable for routine care. Insurance is valuable for hospitalizations and essential for evacuation coverage."
       },
       {
-        question: "Are pre-existing conditions covered in Jamaica?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do I need evacuation coverage for Jamaica?",
+        answer: "Yes, strongly recommended. Kingston's private hospitals handle routine care and stabilization, but Jamaica lacks advanced cardiac surgery, comprehensive cancer treatment, advanced neurosurgery, and neonatal ICU capabilities. Miami is 1.5 hours by air and has world-class facilities. Air ambulance to Miami costs $15,000-30,000. Ensure your policy includes evacuation coverage of at least $100,000."
       }
     ],
     sidebarLinks: [
@@ -7086,12 +7086,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/jamaica/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
-      },
-      {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
+      },
+      {
+        title: "Caribbean Region",
+        href: "/regions/caribbean"
       },
       {
         title: "Best Expat Health Insurance",
@@ -8951,65 +8951,65 @@ const programmaticCountries: Country[] = [
     slug: "qatar",
     name: "Qatar",
     demonym: "Qatari",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Qatar (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Qatar. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Qatar. Employer-provided coverage requirements, HMC and Sidra hospitals, health card system, and what your company plan should include.",
     headline: "Qatar Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Qatar—understanding the HMC system and international insurance options.",
+    subheadline: "Navigate world-class Gulf healthcare—understanding employer-mandated coverage, Hamad Medical Corporation facilities, Sidra Medicine, and what gaps your company insurance might have.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Qatar.",
-      "The public healthcare system (HMC) is available to residents.",
-      "International health insurance typically costs $150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Visa, Family Residence Permit."
+      "Employers must provide health insurance—most expats have company-sponsored coverage.",
+      "Qatar has excellent healthcare infrastructure, significantly expanded for the 2022 World Cup.",
+      "Hamad Medical Corporation (HMC) runs public hospitals; Sidra Medicine is world-class for women/children.",
+      "Health Card required for residents—gives access to subsidized public healthcare.",
+      "No retirement visa—Qatar residency is tied to employment or family sponsorship."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Qatar requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Qatari standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Qatar mandates that employers provide health insurance for all employees. This means most expats arrive with company-sponsored coverage. The quality varies—large multinationals (QatarEnergy, Qatar Airways, banks) typically provide comprehensive international plans, while smaller companies may offer basic local coverage. Regardless of employer insurance, you should obtain a Health Card (QR 100/year for expats) for access to HMC facilities at subsidized rates.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All employees—your employer is required to provide coverage (verify adequacy)",
+      "Dependents—employer plans often include family, but verify coverage limits",
+      "Those whose company plan has gaps—many exclude dental, mental health, or home country treatment",
+      "Executives wanting premium options—upgrade from basic employer coverage",
+      "Anyone planning pregnancy—verify maternity coverage specifics"
     ],
     publicHealthcare: {
-      name: "HMC",
-      access: "Qatari citizens, legal residents",
-      cost: "$30-60/visit",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Hamad Medical Corporation (HMC)",
+      access: "Qatari citizens (free), Health Card holders (subsidized)",
+      cost: "QR 100/year for Health Card; QR 100-300 per visit for expats",
+      notes: "HMC operates most public hospitals including Hamad General (main hospital), Al Wakra Hospital, Al Khor Hospital, and specialty facilities. Quality is excellent—modern facilities, many Western-trained doctors. Sidra Medicine (opened 2018) is a world-class women's and children's hospital. Health Card registration through Primary Health Care Centers. Public system can have wait times for non-urgent specialist appointments."
     },
     privateHealthcare: {
-      cost: "$150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$120-280/month (employer plans); $200-450/month (individual international)",
+      notes: "Private hospitals include Al Ahli Hospital, Doha Clinic Hospital, Aster DM Healthcare, and Al Emadi Hospital. Private care offers faster access and more comfortable facilities. Many doctors work in both public and private sectors. Quality difference from HMC is mainly speed and amenities, not medical competence. International plans valuable for treatment abroad and repatriation coverage."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Qatari regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Verify your employer plan thoroughly. Basic company insurance may exclude: dental, optical, mental health, maternity waiting periods, home country treatment, and pre-existing conditions. Many expats discover gaps only when they need care.",
+      "Summer heat (40-50°C) is a serious health factor. Heat stroke, dehydration, and exacerbation of cardiac conditions are common June-September. Ensure coverage for heat-related emergencies.",
+      "No retirement in Qatar—residency is tied to employment or family sponsorship. When you leave your job, you lose your residence permit (and healthcare access). Plan for transitions.",
+      "Alcohol-related incidents: Qatar has strict alcohol laws. Medical treatment for alcohol-related emergencies is available but can have legal implications.",
+      "Mental health care is improving but still limited compared to Western standards. Private international plans with global mental health coverage may be valuable."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Qatar visa?",
-        answer: "Yes. Most Qatari visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Do I need my own insurance if my employer provides coverage?",
+        answer: "Possibly. Employer insurance quality varies enormously. Large employers (energy sector, Qatar Airways, banks) typically provide excellent coverage. Smaller companies may offer basic local plans with significant gaps. Review your policy carefully for: coverage limits, dental/optical inclusion, maternity terms, mental health, treatment abroad, and pre-existing condition handling. Consider supplemental coverage for gaps."
       },
       {
-        question: "How does Qatari public healthcare work?",
-        answer: "Qatar's public healthcare system (HMC) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is the Qatar Health Card and do I need one?",
+        answer: "The Health Card gives you access to HMC (public) healthcare at subsidized rates. Cost is QR 100/year for expats. Even with employer insurance, having a Health Card is useful—it provides backup access to excellent public facilities. Register at a Primary Health Care Center with your Qatar ID, passport, and residence permit. Processing takes 1-2 weeks."
       },
       {
-        question: "How much does health insurance cost in Qatar?",
-        answer: "International health insurance typically costs $150-350/month depending on your age and coverage level. Local/public options cost $30-60/visit but may have limitations for non-citizens."
+        question: "How good is healthcare in Qatar?",
+        answer: "Qatar has invested heavily in healthcare infrastructure. HMC facilities are modern and well-equipped. Sidra Medicine (women's and children's) is genuinely world-class. Many doctors trained in US, UK, or Europe. For most medical needs, Qatar's healthcare is excellent. Limitations: some rare specialties, organ transplants, and complex cases may still require travel abroad (often to US, UK, or Germany)."
       },
       {
-        question: "What's the best health insurance for expats in Qatar?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What happens to my healthcare when I leave Qatar?",
+        answer: "When your employment ends, your residence permit (and employer insurance) typically expires within 30-90 days. You'll need to arrange coverage for any gap period and your destination country. No continuation options exist—you start fresh. If leaving for health reasons, plan the transition carefully; some international plans allow continuity when moving countries."
       },
       {
-        question: "Are pre-existing conditions covered in Qatar?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How does maternity coverage work in Qatar?",
+        answer: "Most employer plans cover maternity but often with 12-month waiting periods for new employees. Sidra Medicine is excellent for childbirth—modern facilities, English-speaking staff, private rooms available. Check your plan for: waiting periods, delivery coverage limits, NICU coverage, and whether complications are included. If planning pregnancy, verify coverage before conceiving. Out-of-pocket costs at Sidra can reach QR 30,000-50,000 for delivery without insurance."
       }
     ],
     sidebarLinks: [
@@ -9022,12 +9022,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/qatar/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "UAE Healthcare",
+        href: "/countries/uae/insurance"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Middle East Region",
+        href: "/regions/middle-east"
       },
       {
         title: "Best Expat Health Insurance",
@@ -9127,65 +9127,65 @@ const programmaticCountries: Country[] = [
     slug: "bahrain",
     name: "Bahrain",
     demonym: "Bahraini",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Bahrain (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Bahrain. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Bahrain. Mandatory expat insurance since 2022, Golden Visa healthcare, Sehati system, and private hospital options.",
     headline: "Bahrain Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Bahrain—understanding the NHRA system and international insurance options.",
+    subheadline: "Navigate mandatory insurance requirements in this financial hub—understanding Sehati registration, Golden Visa benefits, and when to upgrade from employer coverage.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Bahrain.",
-      "The public healthcare system (NHRA) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Visa, Golden Visa."
+      "Mandatory health insurance for all expats since 2022—employers must provide coverage.",
+      "Sehati (Health Insurance Council) regulates expat insurance with minimum benefit requirements.",
+      "Golden Visa (10-year residence) available for investors, retirees, and professionals.",
+      "Good healthcare infrastructure—King Hamad Hospital modern, private hospitals excellent.",
+      "More liberal than Gulf neighbors—alcohol legal, cosmopolitan lifestyle, easy Saudi/UAE access."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Bahrain requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Bahraini standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Since 2022, all expat residents must have health insurance. Employers are required to provide coverage meeting Sehati (Health Insurance Council) minimum standards. The mandated essential benefits package covers basic care, but many expats supplement with enhanced coverage. Golden Visa holders must also maintain valid health insurance. Self-sponsored residents must purchase their own compliant insurance.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All expat residents—mandatory since 2022, employer must provide",
+      "Self-sponsored individuals—must purchase Sehati-compliant coverage",
+      "Golden Visa holders—insurance required for visa validity",
+      "Those wanting enhanced coverage—basic plans have limitations",
+      "Families—verify dependent coverage meets your needs"
     ],
     publicHealthcare: {
-      name: "NHRA",
-      access: "Bahraini citizens, legal residents",
-      cost: "$20-40/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Ministry of Health / NHRA",
+      access: "Bahraini citizens (free), expats with valid insurance (subsidized)",
+      cost: "BD 3-7 ($8-19) per visit with insurance; higher without",
+      notes: "Salmaniya Medical Complex is the main government hospital—large, handles most specialties. King Hamad University Hospital (opened 2012) is modern and well-equipped. Government health centers throughout the island for primary care. Quality is good for routine care. Expats with valid insurance can access government facilities at subsidized rates."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$80-200/month (local Sehati-compliant); $150-350/month (international)",
+      notes: "Private hospitals include American Mission Hospital (oldest, established 1903), Royal Bahrain Hospital, Bahrain Specialist Hospital, and Ibn Al-Nafees Hospital. Private care offers shorter waits, modern facilities, and better amenities. Many doctors trained internationally. English widely spoken. International plans useful for regional treatment (Saudi, UAE) and repatriation. Local insurers include Gulf Union, Solidarity, and Bahrain National."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Bahraini regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Employer insurance meeting Sehati minimum may have significant gaps. The mandated basic package covers essentials but often excludes: dental, optical, outpatient mental health, and has low coverage limits. Consider supplemental coverage for comprehensive protection.",
+      "Pre-existing conditions: Sehati regulations provide some protection, but waiting periods and exclusions still apply. Review your policy carefully if you have ongoing health issues.",
+      "Summer heat (40-45°C) affects health. Heat-related conditions and dehydration are common. Ensure coverage for heat emergencies.",
+      "Small island—very specialized care (organ transplants, rare conditions) may require travel to Saudi Arabia (via King Fahd Causeway), UAE, or further. International plans with regional coverage are valuable.",
+      "Golden Visa holders: Maintain continuous insurance coverage—gaps can affect your visa status."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Bahrain visa?",
-        answer: "Yes. Most Bahraini visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What is Sehati and how does it affect my insurance?",
+        answer: "Sehati is Bahrain's Health Insurance Council, established to regulate expat health insurance. Since 2022, all expat residents must have Sehati-compliant insurance. The system mandates minimum benefits including hospitalization, emergency care, and basic outpatient services. Your employer must provide compliant coverage. You can verify your insurance status through the Sehati website using your CPR number."
       },
       {
-        question: "How does Bahraini public healthcare work?",
-        answer: "Bahrain's public healthcare system (NHRA) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does Bahrain's Golden Visa work for healthcare?",
+        answer: "Bahrain's Golden Visa grants 10-year residence to investors (BD 200,000+ property), retirees (BD 2,000/month income, 25+ years), or exceptional talents. Golden Visa holders must maintain valid health insurance. You can use employer insurance, purchase individual coverage, or qualify for government healthcare if you meet certain criteria. The visa provides stability but doesn't grant automatic healthcare access—insurance is still required."
       },
       {
-        question: "How much does health insurance cost in Bahrain?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost $20-40/month but may have limitations for non-citizens."
+        question: "Should I supplement my employer insurance in Bahrain?",
+        answer: "Often yes. Sehati minimum standards ensure basic coverage, but employer plans frequently have: low outpatient limits, limited dental/optical, basic mental health coverage, and restricted provider networks. If you want comprehensive coverage, faster access to private hospitals, or treatment options outside Bahrain (Saudi, UAE, home country), supplemental or upgraded coverage is worthwhile. Review your employer plan details carefully."
       },
       {
-        question: "What's the best health insurance for expats in Bahrain?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does private healthcare cost in Bahrain?",
+        answer: "Bahrain is affordable by Gulf standards. Private costs: GP consultation BD 15-25 ($40-65), specialist BD 25-50 ($65-130), private hospital room BD 100-200/day ($265-530), MRI BD 80-150 ($210-400). Emergency care at private hospitals typically BD 50-100 ($130-265). These costs make out-of-pocket viable for routine care, but hospitalization and procedures benefit from insurance coverage."
       },
       {
-        question: "Are pre-existing conditions covered in Bahrain?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Can I access healthcare in Saudi Arabia from Bahrain?",
+        answer: "Yes, and many expats do for specialized care. The King Fahd Causeway connects Bahrain to Saudi Arabia (30 minutes to Khobar/Dammam). Saudi Arabia has excellent hospitals, and Bahrainis/residents can access private care there. Ensure your insurance covers treatment in Saudi Arabia—international plans typically do, but some local Bahraini policies are restricted to Bahrain only."
       }
     ],
     sidebarLinks: [
@@ -9198,12 +9198,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/bahrain/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "UAE Healthcare",
+        href: "/countries/uae/insurance"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Middle East Region",
+        href: "/regions/middle-east"
       },
       {
         title: "Best Expat Health Insurance",
