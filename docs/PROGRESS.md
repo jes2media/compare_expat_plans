@@ -51,6 +51,9 @@ Last updated: January 29, 2026
 - **Mongolia** - Ulaanbaatar SOS Medica clinic, extreme climate (-40°C winters), mining industry coverage, Beijing/Seoul evacuation, severe air pollution
 - **Guatemala** - Guatemala City hospitals (Herrera Llerandi, Centro Médico), Antigua/Lake Atitlán healthcare gaps, CA-4 visa, US evacuation option
 
+#### Tier 3 Country Refinement - Batch 5 (1 country)
+- **Fiji** - Digital Nomad Visa (FJD 100,000/year), Suva Private Hospital, outer island healthcare gaps, diving/decompression coverage, Australia/NZ evacuation
+
 ---
 
 ### January 28, 2026 (Evening) - Country × Persona Pages
@@ -185,10 +188,9 @@ All Tier 2 countries have been refined with detailed, researched content:
 **Batch 2 Complete (5 countries):** Sweden, Norway, Egypt, Uruguay, Kenya
 **Batch 3 Complete (5 countries):** Denmark, Finland, Nepal, Dominican Republic, Bolivia
 **Batch 4 Complete (5 countries):** Romania, Laos, Bangladesh, Mongolia, Guatemala
+**Batch 5 Complete (1 country):** Fiji
 
-**Remaining High Priority (~3 countries):**
-- Asian: Cambodia (already detailed), Sri Lanka (already detailed)
-- Oceania: Fiji
+**All high-priority Tier 3 countries complete!** Cambodia and Sri Lanka were already detailed.
 
 ---
 
@@ -266,7 +268,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1-4 (20 countries: Austria, Belgium, Croatia, Israel, South Africa, Sweden, Norway, Egypt, Uruguay, Kenya, Denmark, Finland, Nepal, Dominican Republic, Bolivia, Romania, Laos, Bangladesh, Mongolia, Guatemala)
+- **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1-5 (21 countries: Austria, Belgium, Croatia, Israel, South Africa, Sweden, Norway, Egypt, Uruguay, Kenya, Denmark, Finland, Nepal, Dominican Republic, Bolivia, Romania, Laos, Bangladesh, Mongolia, Guatemala, Fiji)
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
 - **January 28, 2026:** Added provider-persona pages (40 pages)

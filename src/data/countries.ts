@@ -14493,63 +14493,65 @@ const programmaticCountries: Country[] = [
     slug: "fiji",
     name: "Fiji",
     demonym: "Fijian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Fiji (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Fiji. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Fiji. Suva healthcare options, outer island limitations, diving coverage, Australia/NZ evacuation, and Digital Nomad Visa requirements.",
     headline: "Fiji Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Fiji—understanding the MOH system and international insurance options.",
+    subheadline: "Navigate healthcare across 330 islands—understanding Suva's hospitals, why outer island coverage matters, diving injury coverage, and evacuation to Australia or New Zealand.",
     summaryBullets: [
-      "Fiji does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (MOH) is available to residents.",
-      "International health insurance typically costs $80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Permit, Investor Permit."
+      "Health insurance with evacuation is essential—Suva has basic hospitals, but serious cases need Australia or New Zealand.",
+      "Fiji's Digital Nomad Visa requires FJD 100,000/year income (~$45,000 USD) and health insurance proof.",
+      "Suva Private Hospital and Colonial War Memorial are the main facilities; outer islands have only basic health centers.",
+      "Diving injuries are common—Suva has a decompression chamber, but ensure your policy covers diving accidents.",
+      "Cyclone season (November-April) can disrupt healthcare access and evacuation options."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Fiji does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Fiji does not require health insurance for most visas, but the Digital Nomad Visa strongly recommends comprehensive coverage. Regardless of visa type, international insurance with Australia/New Zealand evacuation is essential. Fiji has limited medical facilities—Suva handles routine care and stabilization, but cardiac surgery, oncology, major trauma, and complex procedures require evacuation to Sydney (3-hour flight), Auckland, or Brisbane.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Everyone—Fiji's healthcare cannot handle serious conditions; evacuation to Australia/NZ is standard",
+      "Digital nomads—recommended for visa application and essential for remote island living",
+      "Divers and water sports enthusiasts—diving injuries, decompression sickness, and marine injuries are common",
+      "Outer island residents—healthcare is extremely limited; inter-island evacuation to Suva, then potentially overseas",
+      "Retirees—limited cardiac, oncology, and specialist care available locally"
     ],
     publicHealthcare: {
-      name: "MOH",
-      access: "Fijian citizens, legal residents",
-      cost: "$10-25/visit",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Ministry of Health and Medical Services",
+      access: "Fijian citizens and residents; foreigners can access with fees",
+      cost: "FJD 5-20 ($2-9) per visit for basic public care",
+      notes: "Colonial War Memorial Hospital (CWMH) in Suva is the main public referral hospital—handles emergencies and basic surgeries but equipment is dated. Lautoka Hospital serves the western Viti Levu. Outer islands have health centers staffed by nurses with limited capabilities. Public healthcare is affordable but basic—long waits and limited specialist availability."
     },
     privateHealthcare: {
-      cost: "$80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$70-150/month (international plans with evacuation)",
+      notes: "Suva Private Hospital is the main private facility—modern by Fiji standards with reasonable emergency and surgical capabilities. Oceania Hospitals has facilities in Suva and Lautoka. Several private GP clinics in Suva and Nadi serve expats. English is widely spoken in medical settings. For anything complex—cardiac surgery, cancer treatment, neurosurgery—evacuation to Australia (Sydney, Brisbane) or New Zealand (Auckland) is standard practice."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Fijian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Outer island healthcare is extremely basic. If living on islands other than Viti Levu (main island), evacuation to Suva for anything beyond first aid is necessary. Inter-island flights may be needed.",
+      "Diving coverage is critical. Fiji is a world-class diving destination, and decompression sickness, barotrauma, and marine injuries occur regularly. Suva has a hyperbaric chamber, but verify your policy covers diving to your planned depths.",
+      "Cyclone season (November-April) can ground flights and disrupt evacuation. Maritime provinces may be cut off. Plan for potential delays in emergency evacuation.",
+      "Medical evacuation to Australia costs $20,000-50,000 by air ambulance. Commercial flight evacuation is cheaper but only for stable patients. Ensure coverage limits are adequate.",
+      "Tropical diseases: Dengue fever is endemic; typhoid and leptospirosis occur. Ensure coverage for tropical illnesses and have a plan for prevention."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Fiji visa?",
-        answer: "No. Fiji does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How does Fiji's Digital Nomad Visa work?",
+        answer: "Fiji's Digital Nomad Fiji (DNF) visa allows remote workers to stay up to 2 years. Requirements: Proof of income of FJD 100,000/year (~$45,000 USD) from non-Fijian sources, valid passport, clean criminal record, and health insurance is strongly recommended. The visa allows you to live and work remotely but not take local employment. Apply through Immigration Fiji—processing takes 2-4 weeks."
       },
       {
-        question: "How does Fijian public healthcare work?",
-        answer: "Fiji's public healthcare system (MOH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What healthcare is available on Fiji's outer islands?",
+        answer: "Outer islands (Yasawas, Taveuni, Vanua Levu, Kadavu, etc.) have government health centers staffed by nurses with basic supplies. No surgery, limited diagnostics, and often no doctor. Serious issues require evacuation to Suva—by boat, inter-island flight, or helicopter depending on location and urgency. If living on outer islands, comprehensive insurance with inter-island and international evacuation is essential."
       },
       {
-        question: "How much does health insurance cost in Fiji?",
-        answer: "International health insurance typically costs $80-180/month depending on your age and coverage level. Local/public options cost $10-25/visit but may have limitations for non-citizens."
+        question: "Does my insurance need to cover diving in Fiji?",
+        answer: "If you plan to dive, yes. Many standard travel and health policies exclude diving or limit coverage to shallow recreational depths (10-18m). Fiji offers advanced diving opportunities—verify your policy covers diving to planned depths and includes hyperbaric treatment. Divers Alert Network (DAN) insurance is a popular supplemental option specifically for diving injuries."
       },
       {
-        question: "What's the best health insurance for expats in Fiji?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does private healthcare cost in Fiji?",
+        answer: "Suva Private Hospital costs: GP consultation FJD 80-150 ($35-65), specialist FJD 150-300 ($65-130), emergency room FJD 200-500 ($90-220), private room FJD 400-800/day ($175-350), basic surgery FJD 5,000-15,000 ($2,200-6,500). These costs are moderate—affordable for routine care, but significant procedures add up. Insurance is valuable for emergencies and essential for evacuation."
       },
       {
-        question: "Are pre-existing conditions covered in Fiji?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What are the retirement visa options for Fiji?",
+        answer: "Fiji offers a Retirement Permit for those over 45 with guaranteed income of FJD 40,000/year (~$18,000). Investor Permit requires FJD 125,000 investment in an approved business. There's no formal pensionado program like some Latin American countries, but Fiji is relatively welcoming to retirees. Healthcare limitations should be a key consideration—ensure you have comprehensive coverage with easy evacuation to Australia/NZ."
       }
     ],
     sidebarLinks: [
@@ -14562,16 +14564,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/fiji/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Australia Healthcare",
+        href: "/countries/australia/insurance"
+      },
+      {
+        title: "Oceania Region",
+        href: "/regions/oceania"
       },
       {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
-      },
-      {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
       }
     ]
   },
