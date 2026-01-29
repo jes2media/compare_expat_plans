@@ -6,8 +6,9 @@ Last updated: January 29, 2026
 
 ## Current Status
 
-**Phase:** 3 - Country × Persona Expansion
+**Phase:** 4 - Tier 3 Country Refinement (Content Quality)
 **Total pages:** 1,605
+**Countries refined with detailed content:** 49 (8 Tier 1 + 12 Tier 2 + 29 Tier 3 across 8 batches)
 **Country-persona pages:** 360 (45 countries × 8 personas)
 **Constraint pages:** 12 (condition-specific guides)
 
@@ -235,7 +236,7 @@ All Tier 2 countries have been refined with detailed, researched content:
 - [x] Peru - EsSalud system, Lima clinics, altitude coverage considerations
 - [x] Morocco - AMO system, French-trained doctors, Casablanca/Rabat options
 
-## In Progress - Tier 3 Country Refinement
+## Tier 3 Country Refinement Progress
 
 **Batch 1 Complete (5 countries):** Austria, Belgium, Croatia, Israel, South Africa
 **Batch 2 Complete (5 countries):** Sweden, Norway, Egypt, Uruguay, Kenya
@@ -243,8 +244,17 @@ All Tier 2 countries have been refined with detailed, researched content:
 **Batch 4 Complete (5 countries):** Romania, Laos, Bangladesh, Mongolia, Guatemala
 **Batch 5 Complete (1 country):** Fiji
 **Batch 6 Complete (5 countries):** Malta, Cyprus, Qatar, Bahrain, Jamaica
+**Batch 7 Complete (5 countries):** Luxembourg, Oman, Barbados, Bahamas, Kuwait
+**Batch 8 Complete (5 countries):** Bulgaria, Serbia, Montenegro, Albania, North Macedonia
 
-**Total Tier 3 refined: 26 countries** (plus Cambodia and Sri Lanka were already detailed)
+**Total Tier 3 refined: 36 countries** (plus Cambodia and Sri Lanka were already detailed)
+
+### Countries Remaining for Refinement (~125)
+Prioritize by traffic potential and expat interest:
+- **High priority:** Slovenia, Slovakia, Lithuania, Latvia, Estonia (EU Baltics/Central Europe)
+- **Medium priority:** Tunisia, Ghana, Senegal, Rwanda (Africa growth markets)
+- **Medium priority:** Nicaragua, Honduras, Paraguay, Bolivia (Latin America gaps)
+- **Lower priority:** Central Asia, Pacific Islands, smaller Caribbean nations
 
 ---
 
@@ -296,10 +306,26 @@ These 21 countries have manually created pages with custom hero images:
 
 ## Next Steps
 
-1. **Expand Country × Persona Pages** - Add remaining ~158 countries (currently top 25) for 1,264 more pages
-2. **Tier 3 Country Refinement** - Refine remaining ~140 generic programmatic pages with detailed content
-3. **Country-Provider Content Enhancement** - Add more detailed content to high-traffic country-provider pages
-4. **Guide Interlinking** - Cross-link guides with related content
+### Immediate Priorities
+1. **Continue Tier 3 Country Refinement** - ~125 countries remaining with generic content
+   - Focus on EU countries next (Slovenia, Slovakia, Baltics)
+   - Then African growth markets and Latin America gaps
+   - Target: 5 countries per batch
+
+### Medium-term Goals
+2. **Expand Country × Persona Pages** - Add remaining ~138 countries to persona matrix
+   - Currently 45 countries × 8 personas = 360 pages
+   - Full expansion would add ~1,104 more pages (138 × 8)
+
+3. **Content Quality Audit** - Review and enhance existing handcrafted pages
+   - Update outdated visa requirements
+   - Add 2025/2026 cost data
+   - Verify hospital and provider information
+
+### Future Enhancements
+4. **Country-Provider Content Enhancement** - Add detailed content to high-traffic country-provider combinations
+5. **SEO Optimization** - Add structured data, improve meta descriptions for refined pages
+6. **Guide Interlinking** - Systematic cross-linking between related content
 
 ---
 
@@ -322,7 +348,8 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **January 29, 2026:** Added 160 country-persona pages (20 new countries in batches 2-3), total now 360 (45 countries × 8 personas), 1,605 total pages
+- **January 29, 2026 (Session 2):** Completed Tier 3 Batches 7-8 (10 countries: Luxembourg, Oman, Barbados, Bahamas, Kuwait, Bulgaria, Serbia, Montenegro, Albania, North Macedonia). Total 36 Tier 3 countries refined.
+- **January 29, 2026 (Session 1):** Added 160 country-persona pages (20 new countries in batches 2-3), total now 360 (45 countries × 8 personas), 1,605 total pages. Completed Tier 3 Batches 1-6.
 - **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1-5 (21 countries refined)
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
