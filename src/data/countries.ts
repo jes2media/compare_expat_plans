@@ -2338,65 +2338,65 @@ const programmaticCountries: Country[] = [
     slug: "luxembourg",
     name: "Luxembourg",
     demonym: "Luxembourgish",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Luxembourg (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Luxembourg. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Luxembourg. CNS mandatory enrollment, EU institution coverage, supplemental mutuelle options, and cross-border healthcare.",
     headline: "Luxembourg Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Luxembourg—understanding the CNS system and international insurance options.",
+    subheadline: "Navigate one of Europe's best healthcare systems—understanding mandatory CNS enrollment, how reimbursement works, supplemental mutuelle coverage, and cross-border options with Belgium, France, and Germany.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Luxembourg.",
-      "The public healthcare system (CNS) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €180-400/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, EU Blue Card."
+      "CNS (Caisse Nationale de Santé) enrollment is mandatory for all workers—employer/employee split contributions.",
+      "CNS reimburses 80-100% of medical costs; supplemental mutuelle covers the remainder.",
+      "~50% of Luxembourg residents are foreign—healthcare system is very expat-friendly.",
+      "Small country with excellent healthcare, but some specialists require cross-border travel to Belgium/France/Germany.",
+      "EU Blue Card and high salaries attract finance, EU institution, and Big 4 professionals."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Luxembourg requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Luxembourgish standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "All workers in Luxembourg must enroll in CNS (Caisse Nationale de Santé). Contributions are ~5.5% of salary, split between employer and employee. CNS provides comprehensive coverage but reimburses rather than direct billing—you pay upfront and get 80-100% back. Most expats add a supplemental mutuelle to cover the remaining 0-20% and extras like private rooms. Self-employed and non-workers can voluntarily join CNS or must show private coverage.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All workers—CNS enrollment is mandatory; supplemental mutuelle recommended",
+      "EU institution employees—typically have their own schemes (JSIS, RCAM); verify what's covered",
+      "Self-employed—can join CNS voluntarily or use private insurance",
+      "Those wanting private room coverage—CNS covers shared rooms only",
+      "Cross-border workers—special rules apply; may keep home country coverage"
     ],
     publicHealthcare: {
-      name: "CNS",
-      access: "Luxembourgish citizens, legal residents, EU citizens with EHIC",
-      cost: "€100-180/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "CNS (Caisse Nationale de Santé)",
+      access: "All workers (mandatory), voluntary for self-employed/non-workers",
+      cost: "~5.5% of salary (employer/employee split); minimum ~€120/month for voluntary",
+      notes: "CNS provides excellent coverage: GP visits reimbursed 80-88%, specialists 80%, hospital 100% (shared room), medications 40-100% depending on category. Reimbursement system—you pay upfront, submit to CNS, receive refund within days. Centre Hospitalier de Luxembourg (CHL) and Hôpitaux Robert Schuman are main hospitals. Quality is excellent; waits are minimal for routine care."
     },
     privateHealthcare: {
-      cost: "€180-400/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€50-150/month (supplemental mutuelle); €200-500/month (full private replacement)",
+      notes: "Most expats use CNS + supplemental mutuelle (from DKV, Foyer, LALUX). Mutuelle covers the 0-20% CNS doesn't reimburse, plus extras like private rooms, dental, and optical. Full private insurance exists but is uncommon given CNS quality. Cross-border care in Belgium (Brussels), France (Metz, Nancy), and Germany (Trier, Saarbrücken) is covered by CNS with prior authorization. Many specialists practice cross-border."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Luxembourgish regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Reimbursement system: Unlike direct billing, you pay upfront and submit to CNS for refund. Keep all receipts and tiers payant (third-party payment) forms. Refunds are fast (3-5 days) but requires cash flow management.",
+      "Private rooms not covered by CNS. If you want a private hospital room (common expectation for executives), you need mutuelle or pay €200-400/day out of pocket.",
+      "Small country means limited specialists. Rare conditions, complex oncology, or specialized pediatrics may require cross-border care (covered by CNS with authorization) or travel to larger centers.",
+      "EU institution employees: If you work for EU institutions (Commission, Parliament, EIB, etc.), you likely have JSIS or RCAM coverage, not CNS. Verify what's included and whether you need supplemental coverage.",
+      "Cross-border workers (frontaliers): Special rules apply. You may keep your home country healthcare while working in Luxembourg. Understand which system covers you."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Luxembourg visa?",
-        answer: "Yes. Most Luxembourgish visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does CNS reimbursement work?",
+        answer: "You visit the doctor, pay the full fee (typically €40-60 for GP), and receive a feuille de soins (care form). Submit this to CNS online or by mail. Reimbursement (80-100% depending on service) arrives in your bank account within 3-5 days. Some providers offer tiers payant (third-party payment) where they bill CNS directly for their portion. Pharmacies usually offer tiers payant for medications."
       },
       {
-        question: "How does Luxembourgish public healthcare work?",
-        answer: "Luxembourg's public healthcare system (CNS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Do I need a mutuelle in Luxembourg?",
+        answer: "Technically optional, but most expats have one. CNS covers 80-100% of costs, but the remaining 0-20% adds up, and CNS doesn't cover private hospital rooms, extensive dental, or optical. Mutuelle costs €50-150/month and covers: the CNS remainder (ticket modérateur), private rooms, dental/optical, alternative medicine, and sometimes worldwide coverage. Major providers: DKV, Foyer, LALUX, AXA."
       },
       {
-        question: "How much does health insurance cost in Luxembourg?",
-        answer: "International health insurance typically costs €180-400/month depending on your age and coverage level. Local/public options cost €100-180/month but may have limitations for non-citizens."
+        question: "What if I work for an EU institution in Luxembourg?",
+        answer: "EU institution employees (European Commission, Parliament, Court of Justice, EIB, etc.) typically have their own health schemes: JSIS (Joint Sickness Insurance Scheme) or RCAM. These are comprehensive but have their own rules and reimbursement rates. You're generally not in CNS. Review your scheme details carefully—some expats add private supplemental coverage for gaps, especially dental and private rooms."
       },
       {
-        question: "What's the best health insurance for expats in Luxembourg?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Can I use healthcare in Belgium, France, or Germany?",
+        answer: "Yes, and many Luxembourg residents do. CNS covers cross-border care with prior authorization (easy to obtain). Brussels hospitals (45 min drive), Metz and Nancy in France (1 hour), and Trier/Saarbrücken in Germany (30-45 min) are common destinations for specialists or procedures with shorter waits. Reimbursement is at Luxembourg CNS rates, which are generous."
       },
       {
-        question: "Are pre-existing conditions covered in Luxembourg?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does healthcare cost in Luxembourg?",
+        answer: "Before reimbursement: GP consultation €40-60, specialist €60-120, private hospital room €200-400/day, MRI €200-400. After CNS reimbursement (80-100%), out-of-pocket is minimal. With mutuelle, most routine care is effectively free. Luxembourg healthcare is expensive at sticker price but excellent value after CNS/mutuelle coverage."
       }
     ],
     sidebarLinks: [
@@ -2409,12 +2409,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/luxembourg/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Belgium Healthcare",
+        href: "/countries/belgium/insurance"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Western Europe Region",
+        href: "/regions/western-europe"
       },
       {
         title: "Best Expat Health Insurance",
@@ -7103,65 +7103,65 @@ const programmaticCountries: Country[] = [
     slug: "bahamas",
     name: "Bahamas",
     demonym: "Bahamian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Bahamas (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Bahamas. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Bahamas. BEATS visa requirements, Nassau hospital options, Out Island healthcare gaps, and Miami evacuation.",
     headline: "Bahamas Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Bahamas—understanding the PHA system and international insurance options.",
+    subheadline: "Essential coverage for these scattered Caribbean islands—understanding the BEATS digital nomad visa, Nassau healthcare options, and critical Miami evacuation coverage.",
     summaryBullets: [
-      "Bahamas does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (PHA) is available to residents.",
-      "International health insurance typically costs $150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: BEATS Program, Annual Residence Permit."
+      "The BEATS visa (1-year remote work permit) requires proof of health insurance for application.",
+      "Healthcare is concentrated in Nassau—Princess Margaret Hospital (public) and Doctors Hospital (private).",
+      "Out Islands (Family Islands) have only basic clinics—evacuation to Nassau or Miami is essential.",
+      "International plans cost $200-450/month; Miami evacuation coverage is critical (45-minute flight).",
+      "No income tax makes Bahamas popular for retirees, but healthcare costs are high."
     ],
-    insuranceRequired: false,
-    requirementExplanation: "Bahamas does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    insuranceRequired: true,
+    requirementExplanation: "The BEATS (Bahamas Extended Access Travel Stay) program—a 1-year visa for remote workers—requires proof of health insurance. Annual Residence Permits and Permanent Residence applications also benefit from showing insurance coverage. Given the archipelago's 700 islands with only 2 having proper hospitals, comprehensive coverage with evacuation provisions is essential for anyone living outside Nassau.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "BEATS visa applicants—health insurance is a mandatory requirement",
+      "Anyone living on the Out Islands (Family Islands)—only basic clinics available",
+      "Retirees choosing Bahamas for tax advantages—high-quality coverage for aging needs",
+      "Boaters and sailors—marine evacuation coverage essential for island-hopping",
+      "US citizens—Medicare and most US insurance invalid internationally"
     ],
     publicHealthcare: {
-      name: "PHA",
-      access: "Bahamian citizens, legal residents",
-      cost: "$25-50/visit",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Public Hospitals Authority (PHA)",
+      access: "All residents; Bahamians receive free basic care",
+      cost: "BSD 25-75 ($25-75) per consultation for non-Bahamians",
+      notes: "Princess Margaret Hospital (PMH) in Nassau is the main public facility with 400+ beds. Rand Memorial Hospital in Freeport (Grand Bahama) is the second largest. The Out Islands (Eleuthera, Exumas, Abaco, Long Island, etc.) have only small clinics staffed by nurses—serious cases require air evacuation to Nassau. Public hospitals have long waits and limited specialist availability."
     },
     privateHealthcare: {
-      cost: "$150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "BSD 150-300 ($150-300)/consultation; BSD 1,500-3,500/night hospitalization",
+      notes: "Doctors Hospital in Nassau is the main private facility—JCI-accredited with modern equipment and shorter waits. Walk-In Clinic Nassau handles urgent care. For major procedures (cardiac surgery, cancer treatment, transplants), patients fly to Miami—Jackson Memorial, Cleveland Clinic, and Baptist Health are 45 minutes away. Some specialists visit from Miami on rotation."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Bahamian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Bahamas."
+      "700 islands, but only Nassau and Freeport have real hospitals—Out Island residents face 1-3 hour flights to reach care.",
+      "Hurricane season (June-November) can strand you—ensure your plan covers alternative evacuation arrangements.",
+      "High cost of living extends to healthcare—expect to pay 2-3x US prices for private care.",
+      "Air ambulance from Out Islands to Nassau costs $5,000-15,000 without insurance.",
+      "Diving and water sports are common—verify your policy covers hyperbaric treatment and marine evacuations."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Bahamas visa?",
-        answer: "No. Bahamas does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Does the BEATS visa require health insurance?",
+        answer: "Yes. The BEATS (Bahamas Extended Access Travel Stay) program requires proof of health insurance as part of the application. This 1-year visa is designed for remote workers and digital nomads. The fee is $1,025 for individuals or $1,525 for families (up to 4). International coverage with evacuation provisions is accepted."
       },
       {
-        question: "How does Bahamian public healthcare work?",
-        answer: "Bahamas's public healthcare system (PHA) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What healthcare is available on the Out Islands?",
+        answer: "The Out Islands (also called Family Islands—Eleuthera, Exumas, Abaco, Long Island, Harbour Island, etc.) have only small clinics staffed primarily by nurses. Doctors visit periodically from Nassau. Any serious condition requires air evacuation to Nassau or directly to Miami. This makes medical evacuation coverage absolutely essential for Out Island residents."
       },
       {
-        question: "How much does health insurance cost in Bahamas?",
-        answer: "International health insurance typically costs $150-350/month depending on your age and coverage level. Local/public options cost $25-50/visit but may have limitations for non-citizens."
+        question: "How good is Doctors Hospital in Nassau?",
+        answer: "Doctors Hospital is JCI-accredited and the best private facility in the Bahamas. It offers surgery, maternity, cardiology, and diagnostic imaging. Wait times are much shorter than public PMH. However, for complex procedures—open heart surgery, cancer treatment, organ transplants—patients still typically fly to Miami. Many Miami-based specialists visit Doctors Hospital on a rotating basis."
       },
       {
-        question: "What's the best health insurance for expats in Bahamas?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is Miami evacuation really necessary?",
+        answer: "Yes, for anyone with serious health needs. Miami is only 45 minutes by air from Nassau. Cleveland Clinic, Jackson Memorial, and Baptist Health provide specialist care unavailable in Bahamas. Air ambulance services (like MEDJET or SkyMed) should be part of your insurance—emergency evacuation without coverage costs $20,000-50,000."
       },
       {
-        question: "Are pre-existing conditions covered in Bahamas?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What does health insurance cost for retirees in Bahamas?",
+        answer: "Retirees (55+) should budget $350-600/month for comprehensive international coverage including Miami evacuation. The Bahamas' no-income-tax status attracts wealthy retirees, but healthcare costs are high. Pre-existing conditions face 12-24 month waiting periods. Local insurers like BAF Health and Colina offer plans but may have lower coverage limits."
       }
     ],
     sidebarLinks: [
@@ -7191,65 +7191,65 @@ const programmaticCountries: Country[] = [
     slug: "barbados",
     name: "Barbados",
     demonym: "Barbadian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Barbados (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Barbados. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Barbados. Welcome Stamp visa requirements, QEH public hospital, private options, and Miami evacuation coverage.",
     headline: "Barbados Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Barbados—understanding the QEH system and international insurance options.",
+    subheadline: "Navigate healthcare on this Caribbean island—from the Welcome Stamp digital nomad visa to understanding Queen Elizabeth Hospital and Miami evacuation options.",
     summaryBullets: [
-      "Barbados does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (QEH) is available to residents.",
-      "International health insurance typically costs $120-280/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Welcome Stamp, Work Permit."
+      "The Welcome Stamp visa (12 months, $50,000+ income required) mandates health insurance coverage.",
+      "Queen Elizabeth Hospital (QEH) is the only public hospital—free for emergencies, but long waits for elective care.",
+      "Private options (Bayview Hospital, Sandy Crest) cost BBD 200-400 ($100-200) per consultation.",
+      "International plans cost $150-350/month and should include Miami evacuation for complex cases.",
+      "UK citizens have reciprocal emergency coverage; US/Canadian citizens need private insurance."
     ],
-    insuranceRequired: false,
-    requirementExplanation: "Barbados does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    insuranceRequired: true,
+    requirementExplanation: "The Barbados Welcome Stamp visa—popular with digital nomads and remote workers—requires proof of health insurance as part of the application. Work permits and investor visas also require coverage. While tourist visas don't mandate insurance, it's strongly recommended given limited local specialist capacity. UK citizens have a reciprocal healthcare agreement for emergency treatment, but it doesn't cover routine care or evacuation.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "Welcome Stamp visa holders (mandatory requirement with $50,000+ income threshold)",
+      "Work permit and investor visa applicants—insurance required",
+      "US and Canadian citizens—no reciprocal agreements, home coverage invalid",
+      "Anyone needing specialist care beyond general medicine",
+      "Divers, surfers, and water sports enthusiasts—hyperbaric chamber access requires insurance"
     ],
     publicHealthcare: {
-      name: "QEH",
-      access: "Barbadian citizens, legal residents",
-      cost: "$20-40/visit",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Queen Elizabeth Hospital (QEH)",
+      access: "All residents for emergencies, nationals for free routine care",
+      cost: "Free emergencies; BBD 50-100 ($25-50) for non-national consultations",
+      notes: "QEH in Bridgetown is the only public hospital on the island—167 beds serving 290,000 people. Emergency care is good, but elective surgeries have 3-6 month waits. Polyclinics across the island provide primary care. Specialist availability is limited—many patients fly to Miami, Trinidad, or the UK for complex cases."
     },
     privateHealthcare: {
-      cost: "$120-280/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "BBD 200-400 ($100-200)/consultation; BBD 2,000-5,000 ($1,000-2,500)/night hospitalization",
+      notes: "Bayview Hospital is the main private facility with 24/7 emergency and surgical services. Sandy Crest Medical Centre and FMH Emergency Medical Clinic offer outpatient care. For major surgery, cardiac care, or cancer treatment, most expats fly to Miami (3.5-hour flight)—Cleveland Clinic and Jackson Memorial are common destinations."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Barbadian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Barbados."
+      "Small island = limited specialists—expect to fly to Miami for cardiac surgery, cancer treatment, or complex procedures.",
+      "Hurricane season (June-November) can disrupt medical evacuations—ensure your plan covers alternative arrangements.",
+      "Hyperbaric chamber at Bayview Hospital requires insurance for diving accidents—verify scuba/freediving coverage.",
+      "Welcome Stamp requires proof of insurance at application—budget this into your annual costs.",
+      "Pre-existing conditions face standard 12-24 month waiting periods with most international insurers."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Barbados visa?",
-        answer: "No. Barbados does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Does the Welcome Stamp visa require health insurance?",
+        answer: "Yes. The Barbados Welcome Stamp—a 12-month visa for remote workers earning $50,000+ annually—requires proof of health insurance as part of the application. International coverage meeting standard requirements is accepted. The visa costs $2,000 for individuals or $3,000 for families."
       },
       {
-        question: "How does Barbadian public healthcare work?",
-        answer: "Barbados's public healthcare system (QEH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How good is Queen Elizabeth Hospital?",
+        answer: "QEH provides solid emergency care and basic surgical services. It's the only public hospital on the island with 167 beds. Emergency treatment is free for everyone, but elective surgeries have long waits. For routine care, the island's network of polyclinics (health centers) handles primary care. Complex cases—cardiac surgery, cancer treatment, transplants—require evacuation to Miami or Trinidad."
       },
       {
-        question: "How much does health insurance cost in Barbados?",
-        answer: "International health insurance typically costs $120-280/month depending on your age and coverage level. Local/public options cost $20-40/visit but may have limitations for non-citizens."
+        question: "Do UK citizens get free healthcare in Barbados?",
+        answer: "UK citizens have a reciprocal healthcare agreement covering emergency treatment at QEH. However, this doesn't cover routine care, prescriptions, or medical evacuation. UK expats staying long-term should still get comprehensive international coverage—especially given the need for Miami evacuation for specialist care."
       },
       {
-        question: "What's the best health insurance for expats in Barbados?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What's the best health insurance for digital nomads in Barbados?",
+        answer: "Welcome Stamp holders typically choose international plans from Cigna Global, Allianz Care, or SafetyWing. Key features to prioritize: Miami evacuation coverage, hurricane disruption provisions, and water sports/diving coverage. Plans cost $150-350/month depending on age and coverage level."
       },
       {
-        question: "Are pre-existing conditions covered in Barbados?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is diving covered by travel insurance in Barbados?",
+        answer: "Standard travel insurance often excludes scuba diving below 30m or recreational freediving. Barbados has excellent dive sites, so verify your policy explicitly covers diving activities. Bayview Hospital has the island's only hyperbaric chamber—ensure your plan covers decompression treatment, which can cost $3,000-5,000 per session without insurance."
       }
     ],
     sidebarLinks: [
@@ -9039,65 +9039,65 @@ const programmaticCountries: Country[] = [
     slug: "kuwait",
     name: "Kuwait",
     demonym: "Kuwaiti",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Kuwait (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Kuwait. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Kuwait. AFYA system, MOH public hospitals, private healthcare options, and international coverage requirements.",
     headline: "Kuwait Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Kuwait—understanding the MOH system and international insurance options.",
+    subheadline: "Navigate Kuwait's mandatory expat health coverage—understanding the AFYA system, excellent MOH public hospitals, and when to supplement with international plans.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Kuwait.",
-      "The public healthcare system (MOH) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Visa, Residence Visa."
+      "Mandatory health insurance through AFYA system—KWD 50 ($165) annual fee for public healthcare access.",
+      "Kuwait's MOH public hospitals are excellent—among the best in the Gulf region.",
+      "Private hospitals (Dar Al Shifa, Al Salam, Royale Hayat) cost KWD 25-60 ($80-200) per consultation.",
+      "Work visa is employer-sponsored (kafala)—employers must provide compliant health coverage.",
+      "International plans ($150-350/month) recommended for repatriation coverage and treatment abroad."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Kuwait requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Kuwaiti standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Kuwait mandates health insurance for all expats through the AFYA (formerly DHAMAN) system. The annual fee of KWD 50 ($165) provides access to government health centers and subsidized treatment at public hospitals. Employers are responsible for ensuring work visa holders have compliant coverage. While AFYA covers basic care, many expats supplement with international insurance for faster private hospital access and treatment abroad for complex conditions.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All expat residents—AFYA registration is mandatory",
+      "Work visa holders—employer must provide compliant coverage under kafala system",
+      "Expats wanting private hospital access without AFYA queues",
+      "Those needing specialist care unavailable locally (organ transplants, rare conditions)",
+      "Families with children—pediatric specialist access is limited in public system"
     ],
     publicHealthcare: {
-      name: "MOH",
-      access: "Kuwaiti citizens, legal residents",
-      cost: "$15-30/year",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Ministry of Health (MOH)",
+      access: "Kuwaiti citizens free; expats via AFYA system (KWD 50/year)",
+      cost: "KWD 1-5 ($3-16) per consultation with AFYA card; higher without",
+      notes: "Kuwait's public hospitals are modern and well-equipped—Al Sabah, Mubarak Al Kabeer, and Jahra Hospital are major facilities. Quality of care is high, but wait times can be long for non-emergency specialist appointments. Expats must register in the AFYA system and obtain a health card. Emergency care is available to everyone regardless of insurance status."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "KWD 25-60 ($80-200)/consultation; KWD 400-1,000 ($1,300-3,300)/night hospitalization",
+      notes: "Leading private hospitals include Dar Al Shifa Hospital, Al Salam International Hospital, Royale Hayat Hospital, and Hadi Hospital. These offer shorter waits, English-speaking staff, and modern facilities. For complex procedures (organ transplants, advanced cancer treatment), patients typically travel to Dubai, Germany, the UK, or the US."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Kuwaiti regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "AFYA registration is mandatory—penalties apply for non-compliance, and it's required for residence permit renewal.",
+      "Summer temperatures exceed 50°C (122°F)—heat-related illnesses are common; ensure your plan covers these.",
+      "Kafala system ties your visa to your employer—changing jobs requires new visa and insurance arrangements.",
+      "Specialist availability is limited for rare conditions—budget for treatment abroad.",
+      "Pre-existing conditions face 12-24 month waiting periods with international insurers; AFYA covers them immediately but with longer waits."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Kuwait visa?",
-        answer: "Yes. Most Kuwaiti visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What is the AFYA system in Kuwait?",
+        answer: "AFYA is Kuwait's mandatory health insurance system for expats. For KWD 50 ($165) per year, expats gain access to government health centers and subsidized treatment at MOH public hospitals. Registration is required for residence permit issuance and renewal. The card must be presented at healthcare facilities to receive subsidized rates."
       },
       {
-        question: "How does Kuwaiti public healthcare work?",
-        answer: "Kuwait's public healthcare system (MOH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How good is Kuwait's public healthcare?",
+        answer: "Kuwait's public hospitals are among the best in the Gulf region—well-funded by oil revenues with modern equipment and qualified staff. Major facilities like Al Sabah Hospital, Mubarak Al Kabeer Hospital, and Chest Diseases Hospital provide excellent care. The main drawbacks are wait times for non-emergency specialist appointments and bureaucratic processes for expats."
       },
       {
-        question: "How much does health insurance cost in Kuwait?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost $15-30/year but may have limitations for non-citizens."
+        question: "Do I need private insurance in Kuwait?",
+        answer: "The mandatory AFYA system provides basic coverage, but many expats supplement with international insurance. Reasons include: faster access to private hospitals, direct billing (no reimbursement claims), coverage for treatment abroad, medical evacuation, and access to Western-trained specialists at private facilities. Expect to pay $150-350/month for comprehensive international coverage."
       },
       {
-        question: "What's the best health insurance for expats in Kuwait?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What does employer-provided insurance cover in Kuwait?",
+        answer: "Under the kafala system, employers must provide health insurance meeting minimum MOH standards. Coverage typically includes AFYA registration, basic medical treatment, and emergency care. Quality varies significantly—some employers provide comprehensive private hospital coverage, while others offer only the mandatory minimum. Review your employment contract carefully."
       },
       {
-        question: "Are pre-existing conditions covered in Kuwait?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Can I access healthcare during Kuwait's extreme summer heat?",
+        answer: "Yes, but heat-related illnesses are common when temperatures exceed 50°C (122°F). Public and private facilities are well-equipped to handle heat stroke, dehydration, and related conditions. Ensure your insurance explicitly covers heat-related emergencies. Many expats leave Kuwait during June-August; verify your plan covers you in your destination country."
       }
     ],
     sidebarLinks: [
@@ -9110,12 +9110,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/kuwait/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
+        title: "Insurance for Remote Workers",
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Insurance for Families",
+        href: "/insurance-for/families"
       },
       {
         title: "Best Expat Health Insurance",
@@ -9215,65 +9215,65 @@ const programmaticCountries: Country[] = [
     slug: "oman",
     name: "Oman",
     demonym: "Omani",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Oman (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Oman. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Oman. Mandatory insurance requirements, MOH public system, private hospitals in Muscat, and UAE evacuation options.",
     headline: "Oman Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Oman—understanding the MOH system and international insurance options.",
+    subheadline: "Navigate Oman's mandatory health insurance requirements—understanding MOH public healthcare, Muscat's private hospital network, and UAE evacuation coverage.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Oman.",
-      "The public healthcare system (MOH) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Work Visa, Investor Residence."
+      "Health insurance is mandatory for all residents since 2016—employers must provide coverage for work visa holders.",
+      "MOH public healthcare is subsidized for residents at OMR 2-5 ($5-13) per visit, but expats typically face longer waits.",
+      "Private hospitals in Muscat (Muscat Private Hospital, Burjeel, Al Hayat) cost OMR 15-30 ($40-80) per consultation.",
+      "International plans cost $150-350/month and should include UAE evacuation for complex procedures.",
+      "Work Visa requires employer insurance; Investor Residence (OMR 50,000+ investment) needs private coverage."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Oman requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Omani standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Oman mandated health insurance for all residents in 2016, phased in over several years. Employers must provide compliant coverage for work visa holders and their families. Self-sponsored visas (Investor Residence, retirement) require proof of private health insurance meeting minimum coverage standards set by the Capital Market Authority (CMA). The insurance must cover hospitalization, outpatient care, and emergency treatment.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Work visa holders—employers legally required to provide coverage",
+      "Investor Residence holders (OMR 50,000+ business investment)—must arrange private coverage",
+      "Retirees and dependents on sponsored visas—coverage through sponsor or private plan",
+      "Those wanting access to Muscat's private hospitals without long public waits",
+      "Anyone needing potential evacuation to Dubai or Abu Dhabi for specialized care"
     ],
     publicHealthcare: {
-      name: "MOH",
-      access: "Omani citizens, legal residents",
-      cost: "$15-35/visit",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Ministry of Health (MOH)",
+      access: "Omani citizens free, residents with valid Resident Card at subsidized rates",
+      cost: "OMR 2-5 ($5-13)/visit for residents, full fees for emergency visitors",
+      notes: "Royal Hospital Muscat and Sultan Qaboos University Hospital are the main referral centers. Good primary care and emergency services, but specialist appointments often have 2-4 week waits. Outside Muscat, facilities are more limited—Salalah and Sohar have regional hospitals, but rural areas have only basic clinics."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "OMR 15-30 ($40-80)/consultation; OMR 300-600 ($780-1,560)/night hospitalization",
+      notes: "Muscat has modern private hospitals: Muscat Private Hospital, Burjeel Hospital, Al Hayat International Hospital, Starcare Hospital. Most have English and Arabic-speaking staff. For complex procedures (cardiac surgery, oncology, organ transplants), patients typically travel to Dubai or Abu Dhabi—a 4-hour drive or 1-hour flight."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Omani regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Employer-provided insurance often has coverage caps (OMR 10,000-30,000)—supplement with international coverage for major illness.",
+      "Outside Muscat, private healthcare options are very limited—ensure your plan covers medical transport to the capital.",
+      "Summer temperatures exceed 45°C—heat-related illnesses are common and should be covered.",
+      "Pre-existing conditions face 12-24 month waiting periods with most insurers.",
+      "UAE evacuation is essential—complex cases require travel to Dubai/Abu Dhabi hospitals like Cleveland Clinic Abu Dhabi."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Oman visa?",
-        answer: "Yes. Most Omani visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Is health insurance mandatory in Oman?",
+        answer: "Yes. Since 2016, all residents must have health insurance. Employers are legally required to provide coverage for work visa holders and their families. Self-sponsored residents (investors, retirees) must arrange private coverage meeting CMA minimum standards."
       },
       {
-        question: "How does Omani public healthcare work?",
-        answer: "Oman's public healthcare system (MOH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Can expats use Oman's public hospitals?",
+        answer: "Residents with a valid Resident Card can access MOH facilities at subsidized rates (OMR 2-5 per visit). However, wait times for specialists can be 2-4 weeks, and most expats prefer private hospitals for faster service and English-speaking staff. Royal Hospital Muscat is the main public referral center."
+      },
+      {
+        question: "What are the best private hospitals in Oman?",
+        answer: "Muscat has several quality private hospitals: Muscat Private Hospital (oldest and largest), Burjeel Hospital (UAE chain), Al Hayat International Hospital, and Starcare Hospital. For complex procedures like cardiac surgery or cancer treatment, most patients travel to Dubai or Abu Dhabi."
       },
       {
         question: "How much does health insurance cost in Oman?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost $15-35/visit but may have limitations for non-citizens."
+        answer: "Employer plans typically cost OMR 150-400 ($390-1,040) per year with coverage caps of OMR 10,000-30,000. Comprehensive international plans cost $150-350/month but include worldwide coverage and UAE evacuation. Private consultations run OMR 15-30 ($40-80) without insurance."
       },
       {
-        question: "What's the best health insurance for expats in Oman?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
-      },
-      {
-        question: "Are pre-existing conditions covered in Oman?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do I need evacuation coverage in Oman?",
+        answer: "Strongly recommended. While Muscat has good hospitals for routine and emergency care, complex procedures (organ transplants, advanced cancer treatment, specialized pediatric surgery) require travel to UAE. Dubai and Abu Dhabi are 4-5 hours by car or 1 hour by air—evacuation coverage ensures access to world-class facilities like Cleveland Clinic Abu Dhabi."
       }
     ],
     sidebarLinks: [
@@ -9286,7 +9286,7 @@ const programmaticCountries: Country[] = [
         href: "/countries/oman/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
+        title: "Insurance for Remote Workers",
         href: "/insurance-for/digital-nomads"
       },
       {

@@ -93,6 +93,13 @@ Added 10 countries to the country-persona matrix:
 - **Bahrain** - Mandatory Sehati insurance since 2022, Golden Visa (10 years), King Hamad Hospital, Saudi Arabia access via causeway
 - **Jamaica** - Digital Nomad Visa ($50,000/year), Retirement Visa (55+), Kingston private hospitals, Miami evacuation essential, US Medicare doesn't work
 
+#### Tier 3 Country Refinement - Batch 7 (5 countries)
+- **Luxembourg** - CNS (Caisse Nationale de Santé) mandatory enrollment, mutuelle supplements (80-100% reimbursement), cross-border healthcare (Belgium, France, Germany), EU institution considerations
+- **Oman** - Mandatory insurance since 2016, MOH public system with Resident Card access, Muscat Private Hospital/Burjeel, UAE evacuation for complex cases
+- **Barbados** - Welcome Stamp visa (12 months, $50,000+ income) requires insurance, QEH public hospital, Bayview private, Miami evacuation, diving/hyperbaric coverage
+- **Bahamas** - BEATS visa requires insurance, Nassau-centric care (PMH, Doctors Hospital), Out Island clinic-only healthcare, Miami evacuation critical
+- **Kuwait** - AFYA mandatory expat system (KWD 50/year), excellent MOH public hospitals, Dar Al Shifa/Al Salam private, kafala employer sponsorship, extreme heat coverage
+
 ---
 
 ### January 28, 2026 (Evening) - Country × Persona Pages
