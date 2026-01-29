@@ -135,65 +135,65 @@ const programmaticCountries: Country[] = [
     slug: "croatia",
     name: "Croatia",
     demonym: "Croatian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Croatia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Croatia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Croatia. Digital Nomad Visa requirements, HZZO enrollment, private options in Split and Zagreb.",
     headline: "Croatia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Croatia—understanding the HZZO system and international insurance options.",
+    subheadline: "Navigate Croatia's healthcare as a digital nomad or expat—HZZO public system, visa insurance requirements, and private options along the coast.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Croatia.",
-      "The public healthcare system (HZZO) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €80-200/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Digital Nomad Visa, Temporary Stay Permit."
+      "Digital Nomad Visa requires health insurance—international coverage accepted, €2,539/month income needed.",
+      "HZZO (public healthcare) available to residents; EU citizens can use EHIC for first year.",
+      "Croatia adopted the Euro (€) in January 2023—prices now align with EU standards.",
+      "Private clinics in Zagreb, Split, and Dubrovnik offer English-speaking care.",
+      "Medical evacuation coverage recommended—complex cases may require transfer to Zagreb or abroad."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Croatia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Croatian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Health insurance is mandatory for all visa applications in Croatia. The Digital Nomad Visa (1-year, renewable once) requires proof of international health insurance covering Croatia—no minimum coverage amount specified, but comprehensive coverage recommended. Temporary Stay Permits also require insurance. EU/EEA citizens can use EHIC initially, then must register with HZZO after establishing residency.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Digital nomads—required for the Digital Nomad Visa application",
+      "Non-EU expats on Temporary Stay Permits—insurance mandatory",
+      "Those living on islands or coastal areas—limited local healthcare",
+      "Expats wanting English-speaking doctors and shorter wait times",
+      "Anyone with conditions requiring specialist care not available locally"
     ],
     publicHealthcare: {
-      name: "HZZO",
-      access: "Croatian citizens, legal residents, EU citizens with EHIC",
-      cost: "€40-80/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "HZZO (Hrvatski zavod za zdravstveno osiguranje)",
+      access: "Croatian citizens, legal residents with work permits, EU citizens after registration",
+      cost: "~€50-100/month (15% of income for self-insured foreigners)",
+      notes: "Good basic care but long wait times for specialists (months for non-urgent). Quality varies—Zagreb has KBC Zagreb (major teaching hospital), coastal areas more limited. GP visits free with HZZO, prescriptions subsidized. Emergency care available to all regardless of insurance."
     },
     privateHealthcare: {
-      cost: "€80-200/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€60-150/month local, €100-250/month international",
+      notes: "Private clinics: Poliklinika Sunce (Zagreb), Medico (Split), Poliklinika Terme (Zagreb). Private hospitals limited—most complex cases go to public KBC hospitals. Local insurers: Croatia osiguranje, Generali, Merkur. English widely spoken in private clinics and tourist areas."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Croatian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Digital Nomad Visa holders cannot access HZZO—must maintain international insurance.",
+      "Healthcare quality drops significantly outside Zagreb and major coastal cities.",
+      "Island living (Hvar, Brač, etc.) means limited healthcare—ferry to mainland for serious issues.",
+      "Specialist wait times in public system can exceed 6 months for non-urgent cases.",
+      "Dental care relatively affordable (€50-150 for fillings) but not covered by most international plans."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Croatia visa?",
-        answer: "Yes. Most Croatian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What insurance do I need for Croatia's Digital Nomad Visa?",
+        answer: "International health insurance covering Croatia is required. No minimum coverage amount specified, but comprehensive coverage (€100,000+) recommended. SafetyWing, Cigna Global, and Allianz Care are commonly used. You'll also need proof of €2,539/month income and remote work for non-Croatian company."
       },
       {
-        question: "How does Croatian public healthcare work?",
-        answer: "Croatia's public healthcare system (HZZO) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Can Digital Nomads access Croatian public healthcare?",
+        answer: "No. Digital Nomad Visa holders are explicitly excluded from HZZO (public healthcare). You must maintain international insurance throughout your stay. EU citizens on the DN visa also cannot use EHIC in Croatia—international coverage required."
       },
       {
-        question: "How much does health insurance cost in Croatia?",
-        answer: "International health insurance typically costs €80-200/month depending on your age and coverage level. Local/public options cost €40-80/month but may have limitations for non-citizens."
+        question: "How is healthcare on Croatian islands?",
+        answer: "Limited. Most islands have only basic clinics (ambulanta) for minor issues. Anything serious requires ferry transfer to Split, Rijeka, or Zadar. Medical evacuation coverage is important if you're island-based. In summer, tourist areas have better-staffed clinics."
       },
       {
-        question: "What's the best health insurance for expats in Croatia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Is Croatia good for retirees' healthcare?",
+        answer: "Mixed. Affordable cost of living and pleasant climate, but HZZO access requires residency (not available on DN visa). Retirees need either Temporary Stay Permit with HZZO enrollment or comprehensive international coverage. Private care in Zagreb is good; coastal areas more limited for complex conditions."
       },
       {
-        question: "Are pre-existing conditions covered in Croatia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does private healthcare cost in Croatia?",
+        answer: "GP visit: €30-50. Specialist: €50-100. MRI: €200-400. Dental cleaning: €40-60. Hospital day: €150-300 private room. Significantly cheaper than Western Europe. Many expats pay out-of-pocket for routine care and keep international insurance for major issues."
       }
     ],
     sidebarLinks: [
@@ -579,65 +579,65 @@ const programmaticCountries: Country[] = [
     slug: "austria",
     name: "Austria",
     demonym: "Austrian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Austria (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Austria. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Austria. ÖGK enrollment, Red-White-Red Card requirements, private supplemental options, and costs.",
     headline: "Austria Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Austria—understanding the ÖGK system and international insurance options.",
+    subheadline: "Navigate Austria's mandatory social insurance system—understanding ÖGK enrollment, private supplements, and what expats actually need.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Austria.",
-      "The public healthcare system (ÖGK) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Red-White-Red Card, Settlement Permit."
+      "Health insurance is mandatory—employed expats auto-enroll in ÖGK (social insurance).",
+      "Self-employed pay ~7.65% of income to SVS (Sozialversicherung der Selbständigen).",
+      "EU/EEA citizens can use EHIC temporarily, then must register with Austrian social insurance.",
+      "Private supplemental insurance (Zusatzversicherung) costs €80-200/month for faster care.",
+      "Red-White-Red Card requires €2,610/month minimum income and valid health coverage."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Austria requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Austrian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Austria has mandatory health insurance (Pflichtversicherung) for all residents. Employed expats are automatically enrolled in ÖGK through their employer. Self-employed must register with SVS. Non-EU expats on visas need proof of coverage—either Austrian social insurance or equivalent international coverage. The Red-White-Red Card for skilled workers requires minimum income of €2,610/month gross and comprehensive health insurance.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Non-EU expats before visa approval—proof required for Red-White-Red Card",
+      "Self-employed and freelancers—must register with SVS within weeks of starting",
+      "Short-term workers not eligible for ÖGK—international coverage needed",
+      "Expats wanting Wahlarzt (private doctor) access without referral",
+      "Those wanting private hospital rooms (Sonderklasse) and shorter wait times"
     ],
     publicHealthcare: {
-      name: "ÖGK",
-      access: "Austrian citizens, legal residents, EU citizens with EHIC",
-      cost: "€80-150/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "ÖGK (Österreichische Gesundheitskasse)",
+      access: "All employed/self-employed residents, dependents, EU citizens after registration",
+      cost: "~7.65% of income (employee share ~3.87%, employer ~3.78%)",
+      notes: "Excellent public hospitals (AKH Vienna is Austria's largest). GP referral needed for specialists. Prescription co-pay €7 per item. Dental coverage limited—most get private dental. Wait times for elective procedures can be weeks."
     },
     privateHealthcare: {
-      cost: "€150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€80-200/month supplemental, €300-500/month comprehensive",
+      notes: "Supplemental (Zusatzversicherung) adds Sonderklasse hospital rooms, Wahlarzt access, alternative medicine. Major private insurers: UNIQA, Wiener Städtische, Merkur. Private hospitals: Privatklinik Döbling, Rudolfinerhaus (Vienna). English widely spoken in medical settings."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Austrian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "E-Card required for public healthcare—takes 2-4 weeks after registration.",
+      "Self-employed have 6-week deadline to register with SVS after starting work.",
+      "Dental coverage in ÖGK is minimal—budget for private dental or insurance.",
+      "Wahlarzt (private doctors) require upfront payment, partial reimbursement from ÖGK.",
+      "Austrian insurance often required for mortgage applications—international may not qualify."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Austria visa?",
-        answer: "Yes. Most Austrian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Do I need private insurance if I have ÖGK?",
+        answer: "ÖGK provides comprehensive coverage, but many expats add Zusatzversicherung (supplemental insurance) for Sonderklasse private hospital rooms, direct Wahlarzt access, and faster elective procedures. Cost is €80-200/month. Not essential, but common among higher earners."
       },
       {
-        question: "How does Austrian public healthcare work?",
-        answer: "Austria's public healthcare system (ÖGK) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How do I get health insurance for the Red-White-Red Card?",
+        answer: "You need proof of coverage before the visa is approved. Options: employer confirmation of future ÖGK enrollment, international health insurance meeting Austrian standards (€30,000+ coverage), or voluntary ÖGK enrollment if eligible. Your employer's HR typically handles this."
       },
       {
-        question: "How much does health insurance cost in Austria?",
-        answer: "International health insurance typically costs €150-350/month depending on your age and coverage level. Local/public options cost €80-150/month but may have limitations for non-citizens."
+        question: "What's the difference between ÖGK and SVS?",
+        answer: "ÖGK covers employed persons. SVS (Sozialversicherung der Selbständigen) covers self-employed, freelancers, and farmers. SVS contributions are ~7.65% of income with minimum/maximum thresholds. Benefits are similar but SVS has slightly different co-payment structures."
       },
       {
-        question: "What's the best health insurance for expats in Austria?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Can I see any doctor in Austria?",
+        answer: "With ÖGK, you can see any Kassenarzt (contracted doctor) directly. For specialists, you generally need a GP referral. Wahlarzt (private doctors not contracted with ÖGK) require upfront payment—ÖGK reimburses ~80% of what a Kassenarzt would cost."
       },
       {
-        question: "Are pre-existing conditions covered in Austria?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does healthcare cost in Austria?",
+        answer: "With ÖGK: GP visits free, €7 prescription co-pay, hospital €15/day (max 28 days/year). Private supplemental adds €80-200/month. Without insurance: GP visit €50-100, specialist €150-300, hospital €500-1,000/day."
       }
     ],
     sidebarLinks: [
@@ -756,65 +756,65 @@ const programmaticCountries: Country[] = [
     slug: "belgium",
     name: "Belgium",
     demonym: "Belgian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Belgium (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Belgium. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Belgium. Mutuelle enrollment, hospitalization insurance, EU worker rules, and costs for expats.",
     headline: "Belgium Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Belgium—understanding the INAMI/RIZIV system and international insurance options.",
+    subheadline: "Navigate Belgium's mutuelle system—mandatory health fund membership, hospitalization add-ons, and what expats actually pay.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Belgium.",
-      "The public healthcare system (INAMI/RIZIV) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €120-280/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: D Visa, Professional Card."
+      "Mutuelle/ziekenfonds membership is mandatory within 3 months of arrival.",
+      "Belgium uses a reimbursement system—you pay upfront, get 75% back from your mutuelle.",
+      "Hospitalization insurance (hospitalisatieverzekering) is essential—add €30-80/month.",
+      "EU workers: covered under Belgian system via employer contributions (~13% of salary).",
+      "Brussels has excellent international clinics; English widely spoken in healthcare."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Belgium requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Belgian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Belgium requires mutuelle (health insurance fund) membership for all residents. You must join within 3 months of registration at your commune. Options include public mutuelles (CM, Solidaris, Liberale) or private funds (Partena, Helan). Social security contributions (~13% employer, ~13% employee) fund the system. Non-EU visa applicants need proof of coverage for the D visa—international insurance accepted initially, but mutuelle enrollment required after residency.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All residents—mutuelle membership mandatory within 3 months",
+      "Anyone wanting single-room hospital coverage—standard only covers shared rooms",
+      "Expats concerned about high out-of-pocket costs (€10-30 per GP visit after reimbursement)",
+      "Families—pediatric dental and orthodontics poorly covered by basic insurance",
+      "Non-EU visa applicants—D visa requires proof of coverage before arrival"
     ],
     publicHealthcare: {
-      name: "INAMI/RIZIV",
-      access: "Belgian citizens, legal residents, EU citizens with EHIC",
-      cost: "€100-150/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "INAMI/RIZIV (via mutuelle)",
+      access: "All legal residents via mandatory mutuelle membership",
+      cost: "€100-150/year mutuelle fee + ~13% social security (employed)",
+      notes: "Reimbursement system: pay €25-50 for GP, get €18-40 back. Higher reimbursement for low-income (BIM status). Excellent specialists but expect 2-6 week waits. Hospitals: UZ Brussel, UZ Leuven, CHU Liège are top academic centers."
     },
     privateHealthcare: {
-      cost: "€120-280/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€30-80/month hospitalization, €150-350/month comprehensive international",
+      notes: "Hospitalization insurance (DKV, AG Insurance, AXA Belgium) is extremely common—covers private rooms, surgeon supplements. International plans (Cigna, Allianz) useful for expats needing worldwide coverage. Many EU institution employees use special schemes (JSIS, RCAM)."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Belgian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Hospital supplement fees (honoraires supplémentaires) can double your bill—hospitalization insurance essential.",
+      "3-month deadline to join mutuelle—late enrollment means backdated contributions.",
+      "Dental coverage is minimal—budget €500-1,500/year for dental or get separate coverage.",
+      "Self-employed pay full social security (~20% of income) with no employer contribution.",
+      "Some specialists charge above-tariff (non-conventionné)—not reimbursed by mutuelle."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Belgium visa?",
-        answer: "Yes. Most Belgian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What's the difference between a mutuelle and hospitalization insurance?",
+        answer: "Mutuelle (CM, Partena, etc.) is mandatory basic health insurance providing ~75% reimbursement for medical costs. Hospitalization insurance (DKV, AG) is optional but highly recommended—covers private hospital rooms and surgeon supplement fees that can add €1,000-5,000 to a hospital stay."
       },
       {
-        question: "How does Belgian public healthcare work?",
-        answer: "Belgium's public healthcare system (INAMI/RIZIV) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How much do I actually pay to see a doctor?",
+        answer: "GP visit: €25-30 upfront, ~€18-22 reimbursed = €7-10 out of pocket. Specialist: €40-80 upfront, varies by reimbursement. Emergency room: €20-50 after reimbursement. Prescriptions: small co-pay (€1-15 depending on medication category)."
       },
       {
-        question: "How much does health insurance cost in Belgium?",
-        answer: "International health insurance typically costs €120-280/month depending on your age and coverage level. Local/public options cost €100-150/month but may have limitations for non-citizens."
+        question: "Do I need international insurance if I have Belgian mutuelle?",
+        answer: "For Belgium-only coverage, mutuelle + hospitalization insurance is sufficient and often cheaper. International insurance makes sense if you travel frequently, want worldwide coverage, or prefer direct billing without reimbursement hassle. EU workers are covered in all EU countries via EHIC."
       },
       {
-        question: "What's the best health insurance for expats in Belgium?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What's the Professional Card for non-EU self-employed?",
+        answer: "Non-EU nationals wanting to work self-employed need a Professional Card (carte professionnelle). Requires business plan, proof of qualifications, and health insurance. Processing takes 2-4 months. Once approved, you register with a social security fund (caisse d'assurances sociales) and mutuelle."
       },
       {
-        question: "Are pre-existing conditions covered in Belgium?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How does healthcare work for EU institution employees?",
+        answer: "EU staff (Commission, Parliament, etc.) have their own scheme (JSIS/RCAM) and are exempt from Belgian social security. Coverage is generous but Belgium-only. Many supplement with international insurance for worldwide coverage or keep coverage from their home country for visits."
       }
     ],
     sidebarLinks: [
@@ -8592,65 +8592,65 @@ const programmaticCountries: Country[] = [
     slug: "israel",
     name: "Israel",
     demonym: "Israeli",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Israel (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Israel. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Israel. Kupat Holim enrollment, work visa requirements, private healthcare options, and costs.",
     headline: "Israel Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Israel—understanding the Kupat Holim system and international insurance options.",
+    subheadline: "Navigate Israel's world-class healthcare—choosing a Kupat Holim, supplemental coverage options, and what tech industry expats need to know.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Israel.",
-      "The public healthcare system (Kupat Holim) is available to residents.",
-      "International health insurance typically costs $200-450/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: A/1 Work Visa, B/1 Work Visa."
+      "Residents must join one of four Kupat Holim (HMOs): Clalit, Maccabi, Meuhedet, or Leumit.",
+      "National Health Insurance covers basics; most Israelis add Shaban (supplemental) insurance.",
+      "Foreign workers need employer-provided insurance or private coverage—no Kupat Holim access until permanent residency.",
+      "World-class medical technology—Israel is a medical tourism destination.",
+      "Very high cost of living; Tel Aviv among world's most expensive cities."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Israel requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Israeli standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Israel requires health insurance for all visa holders. Work visa applicants (B/1) must have employer-provided coverage. The National Health Insurance Law (1995) mandates coverage for all residents—but expats on temporary visas aren't eligible for Kupat Holim until they receive permanent residency. Most tech companies provide comprehensive private insurance. Self-employed expats need international coverage.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All work visa holders—employer insurance or private coverage required",
+      "Self-employed and freelancers—no Kupat Holim access, international insurance needed",
+      "Tech workers wanting premium hospital access (Assuta, Herzliya Medical Center)",
+      "Families—excellent pediatric care but private maternity preferred",
+      "Those wanting English-speaking doctors and US-style medical experience"
     ],
     publicHealthcare: {
-      name: "Kupat Holim",
-      access: "Israeli citizens, legal residents",
-      cost: "$100-200/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Kupat Holim (4 HMOs: Clalit, Maccabi, Meuhedet, Leumit)",
+      access: "Israeli citizens and permanent residents only",
+      cost: "~5% of income via National Insurance tax (Bituach Leumi)",
+      notes: "Choose your Kupat Holim—can switch once per year. Clalit is largest (own hospitals), Maccabi popular with English speakers. Excellent primary care, but specialist wait times 2-8 weeks. Most add Shaban (supplemental) for faster access and private hospitals."
     },
     privateHealthcare: {
-      cost: "$200-450/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$150-300/month Shaban supplement, $300-600/month international",
+      notes: "Private hospitals: Assuta (leading private chain), Herzliya Medical Center (luxury), Hadassah (semi-private, excellent). English widely spoken in medical settings. Many tech companies provide premium coverage including US/Europe treatment options. Medical tourism brings patients for fertility, cardiology, oncology."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Israeli regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Foreign workers cannot join Kupat Holim until permanent residency—rely on employer or private coverage.",
+      "Tech industry standard is comprehensive private insurance—verify your offer includes this.",
+      "Security situation affects some international insurers—verify Israel coverage isn't excluded.",
+      "Tel Aviv extremely expensive—budget $3,000-5,000/month minimum for comfortable living.",
+      "Shabbat affects healthcare access—non-emergency services limited Friday sunset to Saturday night."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Israel visa?",
-        answer: "Yes. Most Israeli visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Can expats join Kupat Holim?",
+        answer: "Only permanent residents (olim/returning residents) can join Kupat Holim. Work visa holders (B/1, A/1) must rely on employer-provided insurance or private coverage. After making Aliyah (immigrating), you can join any Kupat Holim immediately. Some employers sponsor the Aliyah process for long-term employees."
       },
       {
-        question: "How does Israeli public healthcare work?",
-        answer: "Israel's public healthcare system (Kupat Holim) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What insurance do tech workers in Israel get?",
+        answer: "Major tech companies (Google, Meta, Intel, startups) typically provide comprehensive private insurance including: private hospital access (Assuta), international coverage, dental, and sometimes US/Europe treatment options. Verify coverage details in your offer—it's a key negotiating point."
       },
       {
-        question: "How much does health insurance cost in Israel?",
-        answer: "International health insurance typically costs $200-450/month depending on your age and coverage level. Local/public options cost $100-200/month but may have limitations for non-citizens."
+        question: "What is Shaban (supplemental) insurance?",
+        answer: "Shaban is supplemental insurance offered by each Kupat Holim for ~$50-100/month. It adds: private hospital rooms, reduced wait times, second opinions abroad, experimental treatments, and better medication coverage. Most middle-class Israelis have Shaban. Expats with Kupat Holim access should add it."
       },
       {
-        question: "What's the best health insurance for expats in Israel?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How good is Israeli healthcare?",
+        answer: "Excellent. Israel has more doctors per capita than almost any country. World leaders in fertility treatments, oncology, cardiology, and medical technology. Hadassah, Sheba, and Ichilov are internationally recognized. The challenge is access—public wait times can be long without supplemental coverage."
       },
       {
-        question: "Are pre-existing conditions covered in Israel?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Do international insurers cover Israel?",
+        answer: "Most major international insurers (Cigna, Allianz, BUPA) cover Israel, but verify. Some policies exclude coverage during active conflicts or in certain regions. If you're in tech, your employer's coverage likely includes evacuation provisions. Always confirm Israel is explicitly covered before purchasing."
       }
     ],
     sidebarLinks: [
@@ -9642,63 +9642,65 @@ const programmaticCountries: Country[] = [
     slug: "south-africa",
     name: "South Africa",
     demonym: "South African",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in South Africa (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in South Africa. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in South Africa. Medical aid schemes, private hospital networks, visa requirements, and costs.",
     headline: "South Africa Expat Health Insurance",
-    subheadline: "Find the right coverage for living in South Africa—understanding the Department of Health system and international insurance options.",
+    subheadline: "Navigate South Africa's two-tier healthcare—medical aid schemes, private hospital networks, and why coverage is essential for expats.",
     summaryBullets: [
-      "South Africa does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Department of Health) is available to residents.",
-      "International health insurance typically costs $100-250/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Critical Skills Visa, Retirement Visa."
+      "Private healthcare is essential—public system severely underfunded and overcrowded.",
+      "Local medical aid (Discovery, Bonitas, Momentum) often better value than international insurance.",
+      "Private hospital chains (Netcare, Mediclinic, Life) offer world-class care in major cities.",
+      "Critical Skills Visa popular for tech, finance, healthcare professionals.",
+      "Medical evacuation coverage important—rural areas have limited facilities."
     ],
     insuranceRequired: false,
-    requirementExplanation: "South Africa does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "South Africa doesn't legally require health insurance for visas, but private coverage is effectively mandatory for quality care. The public healthcare system is severely strained—long waits, overcrowded facilities, drug shortages. Almost all expats and middle-class South Africans use private medical aid. Employers often provide medical aid as a standard benefit. Without coverage, a private hospital stay can cost R20,000-50,000+ per day ($1,100-2,700).",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Everyone—public healthcare is not a realistic option for most expats",
+      "Corporate expats—employer medical aid is standard, verify coverage before accepting offer",
+      "Retirees—Retirement Visa available, medical aid essential given age-related needs",
+      "Families—private pediatric care and maternity far superior to public",
+      "Anyone outside Johannesburg/Cape Town—medical evacuation coverage critical"
     ],
     publicHealthcare: {
-      name: "Department of Health",
-      access: "South African citizens, legal residents",
-      cost: "$20-50/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Department of Health (Public Hospitals)",
+      access: "All residents and citizens (free at point of use)",
+      cost: "Free (tax-funded)",
+      notes: "Severely underfunded. Wait times of months for elective procedures. Drug shortages common. Quality varies hugely—some teaching hospitals (Groote Schuur, Chris Hani Baragwanath) have excellent specialists, but overwhelmed. Emergency care available but expect long waits. Only use public if no other option."
     },
     privateHealthcare: {
-      cost: "$100-250/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "R3,000-8,000/month medical aid ($160-430), or $150-400/month international",
+      notes: "Private hospital chains: Netcare (largest), Mediclinic, Life Healthcare—excellent facilities in Johannesburg, Cape Town, Durban, Pretoria. Specialists readily available. Medical aid schemes: Discovery Health (most popular), Bonitas, Momentum, Medihelp. Gap cover (R200-500/month) recommended to cover specialist shortfalls."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific South African regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Load shedding (rolling blackouts) affects hospitals—private hospitals have generators, public may not.",
+      "Medical aid waiting periods: 3 months general, 12 months maternity, 12-24 months pre-existing conditions.",
+      "Gap cover essential—specialists often charge above medical aid rates (up to 500% of tariff).",
+      "Rural areas have very limited healthcare—Johannesburg, Cape Town, Durban are healthcare hubs.",
+      "Rand volatility affects costs—budget in USD/EUR and convert, not in Rand."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a South Africa visa?",
-        answer: "No. South Africa does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Should I get local medical aid or international insurance?",
+        answer: "For long-term residents, local medical aid (Discovery, Bonitas) often offers better value and easier claims at South African hospitals. International insurance makes sense if you travel frequently, want worldwide coverage, or plan to leave within 1-2 years. Many expats have both—local medical aid for SA and international for travel."
       },
       {
-        question: "How does South African public healthcare work?",
-        answer: "South Africa's public healthcare system (Department of Health) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is gap cover and do I need it?",
+        answer: "Gap cover (R200-500/month extra) pays the difference between what your medical aid covers and what specialists actually charge. Specialists in SA routinely charge 200-500% of the medical aid rate. Without gap cover, you could owe R20,000-50,000 out of pocket for surgery. Highly recommended for any comprehensive medical aid plan."
       },
       {
-        question: "How much does health insurance cost in South Africa?",
-        answer: "International health insurance typically costs $100-250/month depending on your age and coverage level. Local/public options cost $20-50/month but may have limitations for non-citizens."
+        question: "How much does private healthcare cost without insurance?",
+        answer: "Private hospital: R15,000-50,000/day ($800-2,700). Specialist consultation: R800-2,500 ($45-135). Emergency room: R3,000-10,000 ($160-540). MRI: R5,000-12,000 ($270-650). Maternity (private hospital): R50,000-150,000 ($2,700-8,100). These costs make insurance essential."
       },
       {
-        question: "What's the best health insurance for expats in South Africa?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What's the healthcare like for retirees in South Africa?",
+        answer: "Private healthcare is excellent for retirees—world-class cardiology, oncology, orthopedics in major cities. Costs lower than US/UK. The Retirement Visa requires proof of R37,000/month income (~$2,000). Medical aid premiums increase with age—budget R8,000-15,000/month ($430-810) for comprehensive coverage over 65."
       },
       {
-        question: "Are pre-existing conditions covered in South Africa?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is medical evacuation coverage necessary?",
+        answer: "Yes, especially outside major cities. Rural KwaZulu-Natal, Eastern Cape, and Limpopo have limited facilities. Evacuation to Johannesburg or Cape Town may be necessary for serious conditions. International evacuation to Europe rarely needed—SA private hospitals handle most complex cases—but include it for peace of mind."
       }
     ],
     sidebarLinks: [

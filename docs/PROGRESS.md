@@ -15,13 +15,20 @@ Last updated: January 29, 2026
 
 ## Completed Milestones
 
-### January 29, 2026 - Additional Constraint Pages
+### January 29, 2026 - Additional Constraint Pages + Tier 3 Refinement (Batch 1)
 
 #### New Constraint Pages Created (4 pages)
 - **Diabetes** (`/insurance-for/diabetes`) - Type 1 vs Type 2 handling, provider comparison, managing diabetes abroad, medication access by country
 - **Already Pregnant** (`/insurance-for/already-pregnant`) - Why pregnancy is pre-existing, coverage options, out-of-pocket costs by country, public healthcare alternatives
 - **Cancer Survivors** (`/insurance-for/cancer-survivors`) - Remission requirements, provider comparison, improving application chances, country considerations
 - **Vision Coverage** (`/insurance-for/vision`) - Medical vs routine vision, provider options, LASIK abroad, vision costs by country
+
+#### Tier 3 Country Refinement - Batch 1 (5 countries)
+- **Austria** - ÖGK mandatory enrollment, SVS for self-employed, Red-White-Red Card €2,610/month requirement, Zusatzversicherung supplemental options
+- **Belgium** - Mutuelle mandatory membership, hospitalization insurance essential, INAMI/RIZIV reimbursement system, EU institution coverage
+- **Croatia** - Digital Nomad Visa details (€2,539/month income), HZZO exclusion for DN holders, island healthcare limitations
+- **Israel** - Kupat Holim system (4 HMOs), Shaban supplemental, tech industry coverage standards, work visa restrictions
+- **South Africa** - Medical aid schemes (Discovery, Bonitas), gap cover necessity, private hospital chains (Netcare, Mediclinic), load shedding impacts
 
 ---
 
@@ -151,7 +158,16 @@ All Tier 2 countries have been refined with detailed, researched content:
 - [x] Peru - EsSalud system, Lima clinics, altitude coverage considerations
 - [x] Morocco - AMO system, French-trained doctors, Casablanca/Rabat options
 
-## In Progress
+## In Progress - Tier 3 Country Refinement
+
+**Batch 1 Complete (5 countries):** Austria, Belgium, Croatia, Israel, South Africa
+
+**Remaining High Priority (~20 countries):**
+- European: Sweden, Norway, Denmark, Finland, Romania
+- Asian: Cambodia, Laos, Nepal, Sri Lanka, Bangladesh, Mongolia
+- Latin American: Uruguay, Bolivia, Guatemala, Dominican Republic
+- Middle East/Africa: Egypt, Kenya
+- Oceania: Fiji
 
 ---
 
@@ -229,7 +245,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **January 29, 2026:** Added 4 new constraint pages (diabetes, already-pregnant, cancer-survivors, vision), updated to 1,445 pages
+- **January 29, 2026:** Added 4 new constraint pages + Tier 3 Batch 1 refinement (Austria, Belgium, Croatia, Israel, South Africa)
 - **January 28, 2026 (Evening):** Added 200 country-persona pages (25 countries × 8 personas), updated to 1,441 pages
 - **January 28, 2026:** Added constraint pages (US coverage, maternity, no underwriting, mental-health, short-term, dental, over-70)
 - **January 28, 2026:** Added provider-persona pages (40 pages)
