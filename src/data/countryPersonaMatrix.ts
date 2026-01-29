@@ -20,7 +20,7 @@ export interface CountryPersonaEntry {
   costNotes: string;
 }
 
-// Top 35 countries for page generation
+// Top 45 countries for page generation
 const targetCountries = [
   'spain', 'portugal', 'mexico', 'thailand', 'costa-rica',
   'france', 'italy', 'germany', 'uk', 'uae',
@@ -29,7 +29,10 @@ const targetCountries = [
   'ecuador', 'south-korea', 'brazil', 'malaysia', 'philippines',
   // Batch 2: 10 additional countries
   'new-zealand', 'ireland', 'greece', 'switzerland', 'poland',
-  'czech-republic', 'croatia', 'taiwan', 'chile', 'india'
+  'czech-republic', 'croatia', 'taiwan', 'chile', 'india',
+  // Batch 3: 10 more countries
+  'austria', 'belgium', 'sweden', 'norway', 'turkey',
+  'hungary', 'hong-kong', 'south-africa', 'denmark', 'peru'
 ];
 
 // All 8 personas
@@ -678,6 +681,187 @@ const countryData: Record<string, {
     retireeFriendly: false,
     familyFriendly: true,
     topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'hdfc-ergo']
+  },
+  // Batch 3: 10 more countries
+  'austria': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Red-White-Red Card for skilled workers.',
+      'retirees': 'Private residence permit requires €2,610/month income.',
+      'families': 'Family reunification for permit holders. Excellent schools.',
+      'remote-workers': 'No specific visa. Self-employment permit possible.',
+      'students': 'Student residence permit with work rights.',
+      'freelancers': 'Self-employment (Neue Selbständige) permit available.',
+      'seniors': 'Private residence permit with income/wealth proof.',
+      'entrepreneurs': 'Red-White-Red Card for business founders.'
+    },
+    healthcareHighlights: 'ÖGK mandatory enrollment for workers. SVS for self-employed. Excellent public system. Zusatzversicherung for private rooms.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'uniqa', 'wiener-staedtische']
+  },
+  'belgium': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Professional Card for self-employed.',
+      'retirees': 'Long-stay visa D for financially independent.',
+      'families': 'Family reunification available. Excellent international schools.',
+      'remote-workers': 'Professional Card if working for Belgian clients.',
+      'students': 'Student visa with limited work rights.',
+      'freelancers': 'Professional Card required for self-employment.',
+      'seniors': 'Long-stay visa with income proof.',
+      'entrepreneurs': 'Professional Card for business establishment.'
+    },
+    healthcareHighlights: 'Mutuelle membership mandatory. Hospitalization insurance essential. INAMI/RIZIV reimbursement system.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'dkv', 'ag-insurance']
+  },
+  'sweden': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Work permit requires Swedish employer.',
+      'retirees': 'Residence permit for self-sufficient with comprehensive insurance.',
+      'families': 'Family reunification for permit holders. Free public schools.',
+      'remote-workers': 'Self-employed permit difficult. Mostly for EU citizens.',
+      'students': 'Student residence permit available.',
+      'freelancers': 'Self-employment permit requires Swedish client base.',
+      'seniors': 'Residence permit with insurance and income proof.',
+      'entrepreneurs': 'Self-employment permit for business founders.'
+    },
+    healthcareHighlights: 'Personnummer required for public healthcare. Regional system (21 regions). Frikort cost cap. Private options (Capio, Aleris).',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'euro-accident']
+  },
+  'norway': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Skilled Worker visa requires NOK 479,000/year.',
+      'retirees': 'No retirement visa. Very limited non-work options.',
+      'families': 'Family immigration for permit holders.',
+      'remote-workers': 'No remote work visa. Work permit needed.',
+      'students': 'Student residence permit available.',
+      'freelancers': 'Self-employment permit very difficult.',
+      'seniors': 'No retirement pathway. Extremely limited.',
+      'entrepreneurs': 'Independent basis permit for self-employed rare.'
+    },
+    healthcareHighlights: 'D-number for short stays, Fødselsnummer for residents. Fastlege GP system. Frikort free card after limit. Excellent public care.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'vertikal-helse']
+  },
+  'turkey': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Tourist residence permit (1 year) commonly used.',
+      'retirees': 'Short-term residence permit for retirees. Easy renewal.',
+      'families': 'Family residence permit available. International schools in Istanbul.',
+      'remote-workers': 'Tourist residence permit. Gray area for remote work.',
+      'students': 'Student residence permit available.',
+      'freelancers': 'Tourist residence. Work permit if Turkish clients.',
+      'seniors': 'Short-term residence easy to obtain.',
+      'entrepreneurs': 'Work permit required for business activities.'
+    },
+    healthcareHighlights: 'SGK public insurance for residents. Acibadem/Memorial hospital chains excellent. Istanbul medical tourism hub. Very affordable.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'acibadem-sigorta']
+  },
+  'hungary': {
+    visaTypes: {
+      'digital-nomads': 'White Card digital nomad permit (new). 1 year, renewable.',
+      'retirees': 'Residence permit for pensioners with income proof.',
+      'families': 'Family reunification for permit holders. Good schools in Budapest.',
+      'remote-workers': 'White Card for remote workers earning abroad.',
+      'students': 'Student residence permit available.',
+      'freelancers': 'White Card or self-employment permit.',
+      'seniors': 'Residence permit with pension proof.',
+      'entrepreneurs': 'Business residence permit available.'
+    },
+    healthcareHighlights: 'NEAK public system for residents. White Card program ongoing. Budapest private options good. Affordable care.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'medicover', 'generali']
+  },
+  'hong-kong': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Employment visa or investment visa.',
+      'retirees': 'Capital Investment Entrant Scheme (HK$30M investment).',
+      'families': 'Dependent visas for employment visa holders.',
+      'remote-workers': 'No remote work visa. Employment visa needed.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Investment visa or establish company.',
+      'seniors': 'Capital Investment Entrant Scheme only.',
+      'entrepreneurs': 'Investment visa for business establishment.'
+    },
+    healthcareHighlights: 'HA public system long waits. Private hospitals expensive but excellent. Corporate coverage standard. Regional hub for care.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'axa-hong-kong']
+  },
+  'south-africa': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Retired Persons Visa popular.',
+      'retirees': 'Retired Persons Visa with R37,000/month income.',
+      'families': 'Relative\'s visa for family. Good international schools.',
+      'remote-workers': 'No specific visa. Critical Skills Visa for some.',
+      'students': 'Study visa for enrolled students.',
+      'freelancers': 'Business visa or Relative\'s visa if applicable.',
+      'seniors': 'Retired Persons Visa. R37,000/month pension required.',
+      'entrepreneurs': 'Business visa with R5M investment.'
+    },
+    healthcareHighlights: 'Medical aid schemes essential (Discovery, Bonitas). Gap cover recommended. Netcare/Mediclinic private chains. Public system struggling.',
+    costLevel: 'medium',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'discovery-health', 'bupa-global', 'momentum']
+  },
+  'denmark': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Work permit requires Danish employer.',
+      'retirees': 'No retirement visa. Very limited options.',
+      'families': 'Family reunification for permit holders. Excellent schools.',
+      'remote-workers': 'No remote work visa pathway.',
+      'students': 'Student residence permit with work rights.',
+      'freelancers': 'Self-employment permit difficult.',
+      'seniors': 'No retirement visa. EU freedom of movement only.',
+      'entrepreneurs': 'Start-up Denmark for innovative businesses.'
+    },
+    healthcareHighlights: 'CPR number required. Yellow card (sundhedskort) for access. Group 1 (free GP) or Group 2 (choose doctor). Dental not covered.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'dansk-sundhedssikring']
+  },
+  'peru': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa (new) for remote workers.',
+      'retirees': 'Rentista Visa with $1,000/month income proof.',
+      'families': 'Family visas included. International schools in Lima.',
+      'remote-workers': 'Digital Nomad Visa for non-Peruvian employers.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Rentista or Digital Nomad Visa.',
+      'seniors': 'Rentista Visa popular with retirees.',
+      'entrepreneurs': 'Investor visa with business plan.'
+    },
+    healthcareHighlights: 'EsSalud public system for workers. Private clinics in Lima excellent. Altitude considerations (Cusco 3,400m). Affordable private care.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'pacifico-seguros', 'rimac']
   }
 };
 
