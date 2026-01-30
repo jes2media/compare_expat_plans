@@ -6,15 +6,105 @@ Last updated: January 30, 2026
 
 ## Current Status
 
-**Phase:** 5 - Country-Persona Expansion
-**Total pages:** 1,973
+**Phase:** 6 - Programmatic Page Expansion
+**Total pages:** ~2,280
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
+**Country-provider pages:** 171 (enhanced template)
+**Condition × Country pages:** 270 (10 conditions × 27 countries)
+**Country comparison pages:** 29 (country vs country)
+**Problem/solution guides:** 6 (with hero images)
 **Constraint pages:** 12 (condition-specific guides)
 
 ---
 
 ## Completed Milestones
+
+### January 30, 2026 - Programmatic Page Expansion
+
+#### Country vs Country Comparison Pages (29 pages)
+Created comprehensive comparison pages for expats deciding between destinations:
+- Template: `CountryComparisonPage.astro`
+- Route: `/compare/countries/[slug].astro`
+- URL pattern: `/compare/countries/spain-vs-portugal`
+
+**Rich data for 25 countries including:**
+- Cost of living breakdown (rent, food, utilities, total)
+- Visa options with requirements (3 per country)
+- Climate and weather data
+- Healthcare ratings and notes
+- Expat hub cities
+- Language notes
+
+**Sections per page:**
+- Quick comparison table
+- Cost of living (color-coded by tier)
+- Healthcare systems with ratings
+- Visa options (3 per country)
+- Insurance requirements
+- Climate & weather
+- Expat life & community
+- Who should choose which (scenarios for digital nomads, retirees, families, budget-conscious)
+- 5 dynamic FAQs
+- Verdict with recommendations
+
+**Country pairs covered:**
+- Europe: Spain vs Portugal, Spain vs Italy, Spain vs France, Portugal vs Greece, Italy vs Greece, France vs Italy, Germany vs Netherlands, UK vs Ireland, Germany vs France
+- Southeast Asia: Thailand vs Vietnam, Thailand vs Indonesia, Thailand vs Malaysia, Vietnam vs Indonesia, Malaysia vs Singapore
+- Latin America: Mexico vs Costa Rica, Mexico vs Panama, Costa Rica vs Panama, Colombia vs Ecuador, Colombia vs Mexico, Argentina vs Colombia
+- Cross-region: Spain vs Mexico, Portugal vs Thailand, Spain vs Thailand, Mexico vs Thailand, Costa Rica vs Portugal
+- Business hubs: UAE vs Singapore, Singapore vs Thailand
+- Americas vs Europe: Canada vs UK, Australia vs UK
+
+#### Condition × Country Pages (270 pages)
+Created pages for expats managing health conditions abroad:
+- Template: `ConditionCountryPage.astro`
+- Data: `conditions.ts` (10 conditions)
+- Route: `/conditions/[condition]/in/[country].astro`
+- URL pattern: `/conditions/diabetes/in/thailand`
+
+**10 medical conditions:**
+- Diabetes, Hypertension, Asthma, Depression & Anxiety, Heart Disease
+- Thyroid Disorders, Arthritis, Cancer (In Remission), Severe Allergies, Kidney Disease
+
+**27 target countries across:**
+- Europe: Spain, Portugal, France, Italy, Germany, UK, Netherlands, Greece, Croatia, Poland, Czech Republic, Ireland
+- Asia: Thailand, Vietnam, Indonesia, Malaysia, Philippines, Japan, Singapore
+- Americas: Mexico, Costa Rica, Panama, Colombia, Ecuador, Argentina
+- Other: UAE, Australia, Canada
+
+**Sections per page:**
+- Healthcare quality assessment (excellent/good/adequate/limited)
+- Medication access information
+- Insurance recommendations
+- Practical tips (5 per page)
+- Finding doctors section
+- 5 dynamic FAQs
+- 3 related cards
+
+#### Enhanced CountryProviderPage Template
+Significantly enhanced programmatic country-provider pages (171 pages):
+- Added helper functions for generating rich content
+- New sections: Quick Stats, Visa & Requirements, Network & Hospitals, Pricing Guide, vs Local Options, Common Scenarios, Using Your Coverage
+- Dynamic FAQs based on country/provider combination
+
+#### Problem/Solution Guides (6 pages with hero images)
+Created editorial guides for common expat insurance problems:
+1. `/guides/switching-insurance-abroad` - How to switch insurance while living overseas
+2. `/guides/pre-existing-conditions-abroad` - Getting coverage with pre-existing conditions
+3. `/guides/insurance-claim-denied` - What to do when claims are denied
+4. `/guides/find-english-speaking-doctors-abroad` - Finding language-accessible care
+5. `/guides/emergency-medical-evacuation` - Understanding evacuation coverage
+6. `/guides/kids-health-insurance-abroad` - Family coverage considerations
+
+**Each guide includes:**
+- Custom hero image (generated via Ideogram API)
+- Comprehensive problem/solution format
+- Practical steps and recommendations
+- Provider recommendations where relevant
+- FAQs
+
+---
 
 ### January 30, 2026 - Country-Persona Expansion Batch 8 (Europe Gaps)
 
@@ -419,45 +509,61 @@ These 21 countries have manually created pages with custom hero images:
 | Programmatic country pages | 162 | Generated (183 - 21 skip list) |
 | Handcrafted country-provider pages | 168 | Complete (21 countries × 8 providers) |
 | Programmatic country-provider pages | 648 | Generated (162 countries × 4 providers) |
-| **Country-persona pages** | **728** | **In progress (91 countries × 8 personas)** |
+| **Country-persona pages** | **728** | **Complete (91 countries × 8 personas)** |
+| **Condition × Country pages** | **270** | **NEW (10 conditions × 27 countries)** |
+| **Country comparison pages** | **29** | **NEW (popular destination pairs)** |
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
+| Provider comparison pages | ~28 | Complete |
+| **Problem/solution guides** | **6** | **NEW (with hero images)** |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 12 | Existing |
-| Comparison pages | ~45 | Existing |
 
-**Total pages:** 1,973
+**Total pages:** ~2,280
 
 ---
 
 ## Next Steps
 
 ### Immediate Priorities
-1. **Continue Country-Persona Expansion** - ~92 countries remaining
+1. **More Programmatic Page Types** - Consider additional page combinations:
+   - Provider × Condition pages (how specific insurers handle specific conditions)
+   - Visa Type × Country pages (visa-specific insurance guidance)
+   - Age/Life Stage pages (seniors, young families)
+
+2. **Continue Country-Persona Expansion** - ~92 countries remaining
    - Batch 9: Middle East (Qatar, Bahrain, Kuwait, Oman, Saudi Arabia, Jordan)
    - Batch 10: Africa (Morocco, Tunisia, Ghana, Egypt, Kenya, Nigeria)
-   - Batch 11: More Asia (Maldives, Fiji, Papua New Guinea)
    - Target: 8-10 countries per batch
 
-2. **Continue Tier 3 Country Refinement** - ~110 countries remaining with generic content
+3. **Continue Tier 3 Country Refinement** - ~110 countries remaining with generic content
    - African growth markets (Tunisia, Ghana, Senegal, Rwanda, Nigeria)
    - Middle East gaps (Saudi Arabia, Jordan, Lebanon)
    - Central Asia (Kazakhstan, Uzbekistan)
 
 ### Medium-term Goals
-2. **Expand Country × Persona Pages** - Add remaining ~138 countries to persona matrix
-   - Currently 45 countries × 8 personas = 360 pages
-   - Full expansion would add ~1,104 more pages (138 × 8)
+4. **Expand Condition × Country Pages** - Add more countries to the condition matrix
+   - Currently 27 countries × 10 conditions = 270 pages
+   - Could expand to more destinations
 
-3. **Content Quality Audit** - Review and enhance existing handcrafted pages
+5. **Expand Country Comparison Pages** - Add more country pairs
+   - Currently 29 comparisons
+   - Could add more based on search demand
+
+6. **More Problem/Solution Guides** - Topics like:
+   - "What happens if I get sick abroad without insurance"
+   - "How to renew expat insurance"
+   - "Insurance when working for foreign employer"
+
+7. **Content Quality Audit** - Review and enhance existing handcrafted pages
    - Update outdated visa requirements
    - Add 2025/2026 cost data
    - Verify hospital and provider information
 
 ### Future Enhancements
-4. **Country-Provider Content Enhancement** - Add detailed content to high-traffic country-provider combinations
-5. **SEO Optimization** - Add structured data, improve meta descriptions for refined pages
-6. **Guide Interlinking** - Systematic cross-linking between related content
+8. **Internal Linking Audit** - Ensure new programmatic pages are well cross-linked
+9. **SEO Optimization** - Add structured data, improve meta descriptions
+10. **Hero Images** - Generate unique hero images for high-traffic programmatic pages
 
 ---
 
@@ -480,6 +586,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **January 30, 2026 (Programmatic Expansion):** Added 4 new programmatic page systems: (1) Country vs Country comparisons (29 pages), (2) Condition × Country pages (270 pages), (3) Enhanced CountryProviderPage template (171 pages), (4) Problem/solution guides (6 pages with hero images). Total now ~2,280 pages.
 - **January 30, 2026 (Batch 8):** Country-Persona Expansion Batch 8 (Europe Gaps: Luxembourg, Iceland, Andorra, Monaco, Liechtenstein, Cyprus, Malta, Finland, Romania, San Marino). 80 new pages, total now 728 (91 countries × 8 personas), 1,973 total pages.
 - **January 30, 2026 (Batch 7):** Country-Persona Expansion Batch 7 (Asia-Pacific). 72 new pages.
 - **January 30, 2026 (Batch 6):** Country-Persona Expansion Batch 6 (Central & South America). 56 new pages.

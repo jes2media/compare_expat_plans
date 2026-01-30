@@ -595,15 +595,22 @@ Should I build this page?
 /best/[category]/                          # e.g., /best/expat-health-insurance/
 /compare/                                  # Comparison hub
 /compare/[provider-a]-vs-[provider-b]/     # e.g., /compare/cigna-global-vs-allianz-care/
+/compare/countries/[a]-vs-[b]/             # e.g., /compare/countries/spain-vs-portugal/ (NEW)
 /countries/                                # Country hub
 /countries/[country]/insurance/            # e.g., /countries/spain/insurance/
 /countries/[country]/insurance/[provider]/ # e.g., /countries/spain/insurance/cigna-global/
+/countries/[country]/insurance/for-[persona]/ # e.g., /countries/spain/insurance/for-digital-nomads/
+/conditions/                               # Conditions hub (NEW)
+/conditions/[condition]/in/[country]/      # e.g., /conditions/diabetes/in/thailand/ (NEW)
 /providers/                                # Provider hub
 /providers/[provider]/                     # e.g., /providers/cigna-global/
-/insurance-for/                            # Persona hub
+/providers/[provider]/for-[persona]/       # e.g., /providers/cigna-global/for-digital-nomads/
+/insurance-for/                            # Persona/constraint hub
 /insurance-for/[persona]/                  # e.g., /insurance-for/digital-nomads/
 /guides/                                   # Guide hub
-/guides/[topic]/                           # e.g., /guides/choosing-deductibles/
+/guides/[topic]/                           # e.g., /guides/switching-insurance-abroad/
+/regions/                                  # Regional hub
+/regions/[region]/                         # e.g., /regions/southeast-asia/
 ```
 
 ---
