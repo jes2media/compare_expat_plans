@@ -5,17 +5,7 @@
  * Reusable template for country-provider pages.
  * E.g., /countries/germany/insurance/cigna-global
  *
- * These pages help users understand how a specific provider
- * works in a specific country context.
- *
- * STRUCTURE:
- * 1. HERO: Provider + Country headline
- * 2. Overview: Why this provider for this country
- * 3. Best For / Not Ideal For
- * 4. Key Facts table
- * 5. How to Use in This Country
- * 6. Alternatives
- * 7. CTA
+ * ENHANCED with generated content sections for richer pages.
  */
 
 import Layout from '../layouts/Layout.astro';
@@ -28,13 +18,9 @@ import Disclosure from '../components/Disclosure.astro';
 import type { Country, Provider, ProviderInCountry } from '../data/types';
 
 interface Props {
-  /** Country data */
   country: Country;
-  /** Provider data */
   provider: Provider;
-  /** Country-specific provider info */
   providerInCountry: ProviderInCountry;
-  /** Other providers available in this country (for alternatives) */
   alternativeProviders: Array<{
     name: string;
     slug: string;
@@ -45,30 +31,285 @@ interface Props {
 
 const { country, provider, providerInCountry, alternativeProviders } = Astro.props;
 
+// =====================
+// HELPER FUNCTIONS FOR GENERATED CONTENT
+// =====================
+
+/**
+ * Get quick stats for the provider in this country
+ */
+function getQuickStats(provider: Provider, country: Country): Array<{value: string; label: string}> {
+  const stats: Array<{value: string; label: string}> = [];
+
+  if (provider.type === 'international') {
+    stats.push({ value: '200+', label: 'Countries covered' });
+    stats.push({ value: '24/7', label: 'English support' });
+    if (provider.includesUS) {
+      stats.push({ value: 'Yes', label: 'US coverage available' });
+    }
+  } else if (provider.type === 'local') {
+    stats.push({ value: country.name, label: 'Coverage area' });
+    stats.push({ value: 'Local', label: 'Support language' });
+  }
+
+  // Add visa compliance stat
+  if (country.insuranceRequired) {
+    stats.push({ value: '✓', label: 'Visa compliant' });
+  }
+
+  return stats.slice(0, 4);
+}
+
+/**
+ * Get visa compliance information
+ */
+function getVisaInfo(provider: Provider, country: Country): { compliant: boolean; details: string[]; tip: string } {
+  const details: string[] = [];
+  let tip = '';
+
+  if (country.insuranceRequired) {
+    if (provider.type === 'international') {
+      details.push(`${provider.name} plans are generally accepted for ${country.name} visa applications`);
+      details.push('Coverage must be valid for the entire visa duration');
+      details.push('Request a visa compliance letter from your insurer');
+
+      if (provider.slug === 'cigna-global' || provider.slug === 'allianz-care' || provider.slug === 'bupa-global') {
+        tip = `${provider.name} provides visa compliance letters upon request. Choose a plan with outpatient coverage to meet most visa requirements.`;
+      } else {
+        tip = `Verify with the ${country.name} consulate that ${provider.name} meets their specific requirements before purchasing.`;
+      }
+    } else {
+      details.push(`${provider.name} is accepted for local insurance requirements`);
+      tip = 'Local insurers are typically accepted but may not cover you outside the country.';
+    }
+  } else {
+    details.push(`${country.name} doesn't strictly require health insurance for most visa types`);
+    details.push('However, private coverage is strongly recommended for quality care');
+    tip = 'Even without a requirement, having coverage protects you from unexpected medical costs.';
+  }
+
+  return { compliant: country.insuranceRequired, details, tip };
+}
+
+/**
+ * Get network and hospital information
+ */
+function getNetworkInfo(provider: Provider, country: Country): { description: string; features: string[]; considerations: string[] } {
+  const features: string[] = [];
+  const considerations: string[] = [];
+  let description = '';
+
+  if (provider.type === 'international') {
+    description = `${provider.name} maintains a network of hospitals and clinics in ${country.name}. Major cities typically have multiple in-network options with direct billing available.`;
+    features.push('Use online provider finder or mobile app to locate network providers');
+    features.push('Direct billing available at major network hospitals');
+    features.push('Can use any licensed provider with reimbursement option');
+    features.push('24/7 assistance line can help locate nearby care');
+
+    considerations.push('Network coverage is strongest in major cities and expat areas');
+    considerations.push('Rural areas may require travel to larger cities or reimbursement claims');
+    considerations.push('Verify specific hospitals are in-network before planned procedures');
+  } else {
+    description = `As a local provider, ${provider.name} has an extensive network within ${country.name}, often with more options than international insurers.`;
+    features.push('Extensive local hospital and clinic network');
+    features.push('Direct relationships with local providers');
+    features.push('Often includes smaller clinics not covered by international plans');
+
+    considerations.push('Coverage typically limited to within the country');
+    considerations.push('May not cover care while traveling abroad');
+  }
+
+  return { description, features, considerations };
+}
+
+/**
+ * Get pricing guidance based on country cost level
+ */
+function getPricingGuidance(provider: Provider, country: Country): { range: string; factors: string[]; savingsTips: string[] } {
+  // Determine cost level from country's privateHealthcare cost field
+  const costStr = country.privateHealthcare?.cost?.toLowerCase() || '';
+  let costLevel: 'low' | 'medium' | 'high' = 'medium';
+
+  if (costStr.includes('50') || costStr.includes('60') || costStr.includes('80')) {
+    costLevel = 'low';
+  } else if (costStr.includes('200') || costStr.includes('300') || costStr.includes('400') || costStr.includes('500')) {
+    costLevel = 'high';
+  }
+
+  let range = '';
+  const factors: string[] = [];
+  const savingsTips: string[] = [];
+
+  if (provider.type === 'international') {
+    switch(costLevel) {
+      case 'low':
+        range = '$100-200/month for comprehensive coverage';
+        savingsTips.push('Consider a higher deductible—routine care is affordable locally');
+        savingsTips.push('Pay for minor care out of pocket and use insurance for major expenses');
+        break;
+      case 'high':
+        range = '$200-400/month for comprehensive coverage';
+        savingsTips.push('Higher deductible plans can significantly reduce premiums');
+        savingsTips.push('Consider excluding US coverage if you don\'t need it (saves 30-40%)');
+        break;
+      default:
+        range = '$150-300/month for comprehensive coverage';
+        savingsTips.push('Balance deductible level with your expected usage');
+    }
+
+    factors.push('Age (premiums increase significantly after 50)');
+    factors.push('Deductible amount ($0-$5,000+ options available)');
+    factors.push('Coverage area (worldwide vs regional)');
+    factors.push('US coverage inclusion (adds 30-50% to premium)');
+    factors.push('Add-ons like dental, vision, maternity');
+  } else {
+    range = country.privateHealthcare?.cost || '$80-200/month';
+    factors.push('Age and health status');
+    factors.push('Coverage level selected');
+    factors.push('Add-on benefits');
+    savingsTips.push('Local plans often offer better value for in-country coverage');
+  }
+
+  return { range, factors, savingsTips };
+}
+
+/**
+ * Get comparison with local options
+ */
+function getLocalComparison(provider: Provider, country: Country): Array<{factor: string; international: string; local: string}> {
+  if (provider.type !== 'international') return [];
+
+  return [
+    { factor: 'Monthly Cost', international: 'Higher ($150-300+)', local: 'Lower ($60-150)' },
+    { factor: 'Coverage Area', international: 'Worldwide', local: `${country.name} only` },
+    { factor: 'Language Support', international: 'English 24/7', local: 'Often local language' },
+    { factor: 'Network Size', international: 'Good in major cities', local: 'Very extensive locally' },
+    { factor: 'If You Move Countries', international: 'Coverage continues', local: 'Must cancel and restart' },
+    { factor: 'Claims Process', international: 'International standard', local: 'Local process' },
+    { factor: 'Pre-existing Conditions', international: 'Underwriting required', local: 'Varies by insurer' },
+  ];
+}
+
+/**
+ * Get common scenarios for this provider in this country
+ */
+function getCommonScenarios(provider: Provider, country: Country): Array<{scenario: string; recommendation: string}> {
+  const scenarios: Array<{scenario: string; recommendation: string}> = [];
+
+  if (provider.type === 'international') {
+    scenarios.push({
+      scenario: 'Digital nomad staying 6-12 months',
+      recommendation: `${provider.name} works well—coverage continues if you move to another country, and meets most visa requirements.`
+    });
+    scenarios.push({
+      scenario: 'Retiree settling long-term',
+      recommendation: `Consider whether you need worldwide coverage. If staying put, a local insurer might offer better value. ${provider.name} is better if you travel frequently.`
+    });
+    scenarios.push({
+      scenario: 'Family with children',
+      recommendation: `${provider.name} offers family plans with pediatric coverage. Check maternity benefits if planning more children (usually 10-12 month waiting period).`
+    });
+    scenarios.push({
+      scenario: 'Remote worker traveling regularly',
+      recommendation: `Ideal fit—${provider.name}'s worldwide coverage means you're protected whether in ${country.name} or traveling for work.`
+    });
+  } else {
+    scenarios.push({
+      scenario: 'Long-term resident (5+ years)',
+      recommendation: `${provider.name} offers excellent value if you're committed to staying in ${country.name}. Best local network coverage.`
+    });
+    scenarios.push({
+      scenario: 'Budget-conscious expat',
+      recommendation: `Local coverage from ${provider.name} costs less than international plans while providing comprehensive in-country care.`
+    });
+  }
+
+  return scenarios;
+}
+
+/**
+ * Get FAQs for this provider in this country
+ */
+function getFAQs(provider: Provider, country: Country): Array<{question: string; answer: string}> {
+  const faqs: Array<{question: string; answer: string}> = [];
+
+  faqs.push({
+    question: `Is ${provider.name} accepted for ${country.name} visa applications?`,
+    answer: country.insuranceRequired
+      ? `${provider.name} is generally accepted for ${country.name} visa applications. Request a visa compliance letter from the insurer confirming your coverage meets requirements. Always verify with the specific consulate handling your application.`
+      : `${country.name} doesn't require health insurance for most visa types, so acceptance isn't typically an issue. However, having proof of coverage can strengthen your application.`
+  });
+
+  faqs.push({
+    question: `Can I use any hospital in ${country.name} with ${provider.name}?`,
+    answer: `You can receive care at any licensed medical facility in ${country.name}. Network hospitals offer direct billing (cashless treatment). For non-network providers, you pay upfront and submit a claim for reimbursement, typically processed within 5-15 business days.`
+  });
+
+  if (provider.type === 'international') {
+    faqs.push({
+      question: `What if I leave ${country.name}?`,
+      answer: `Your ${provider.name} coverage continues wherever you go. Simply update your residence country with the insurer. This is a major advantage over local insurance, which typically ends when you leave.`
+    });
+
+    faqs.push({
+      question: `How does ${provider.name} compare to local ${country.demonym} insurers?`,
+      answer: `${provider.name} costs more but offers worldwide coverage, English support, and portability. Local insurers cost less with more extensive in-country networks. Choose ${provider.name} if you travel frequently or might relocate; choose local if you're staying long-term and want lower costs.`
+    });
+  }
+
+  faqs.push({
+    question: `How do I find doctors and hospitals?`,
+    answer: provider.type === 'international'
+      ? `Use ${provider.name}'s online provider finder or mobile app. You can search by location, specialty, and language. The 24/7 assistance line can also help locate care anywhere in ${country.name}.`
+      : `${provider.name} provides a directory of participating providers on their website. As a local insurer, they typically have the most extensive network in ${country.name}.`
+  });
+
+  faqs.push({
+    question: `What's not covered by ${provider.name}?`,
+    answer: `Common exclusions include: pre-existing conditions (may be covered after waiting period or with loading), cosmetic procedures, experimental treatments, and injuries from extreme sports (may require add-on). Dental and vision are typically optional add-ons. Review your specific policy for complete exclusion list.`
+  });
+
+  return faqs;
+}
+
+// =====================
+// GENERATE CONTENT
+// =====================
+
+const quickStats = getQuickStats(provider, country);
+const visaInfo = getVisaInfo(provider, country);
+const networkInfo = getNetworkInfo(provider, country);
+const pricingGuidance = getPricingGuidance(provider, country);
+const localComparison = getLocalComparison(provider, country);
+const commonScenarios = getCommonScenarios(provider, country);
+const faqs = getFAQs(provider, country);
+
 // Generate TOC items
 const tocItems = [
   { id: 'overview', text: `${provider.name} in ${country.name}`, level: 2 },
   { id: 'best-for', text: 'Who It\'s Best For', level: 2 },
-  { id: 'key-facts', text: 'Key Facts', level: 2 },
-  { id: 'how-to-use', text: 'How to Use Your Coverage', level: 2 },
-  { id: 'alternatives', text: 'Alternatives to Consider', level: 2 },
+  { id: 'visa-compliance', text: 'Visa & Requirements', level: 2 },
+  { id: 'network', text: 'Network & Hospitals', level: 2 },
+  { id: 'pricing', text: 'Pricing Guide', level: 2 },
+  ...(localComparison.length > 0 ? [{ id: 'vs-local', text: 'vs Local Options', level: 2 }] : []),
+  { id: 'scenarios', text: 'Common Scenarios', level: 2 },
+  { id: 'how-to-use', text: 'Using Your Coverage', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+  { id: 'alternatives', text: 'Alternatives', level: 2 },
 ];
 
-// Author info
 const author = {
   name: 'John Spencer',
   bio: 'John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad.',
   image: '/images/john-spencer.png',
 };
 
-// Sidebar links
 const sidebarLinks = [
   { title: `Health Insurance in ${country.name}`, href: `/countries/${country.slug}/insurance` },
   { title: `${provider.name} Review`, href: provider.href },
   { title: 'Compare All Providers', href: '/best/expat-health-insurance' },
 ];
 
-// Breadcrumb schema
 const siteUrl = "https://compareexpatplans.com";
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -83,11 +324,10 @@ const breadcrumbSchema = {
 };
 
 const pageTitle = `${provider.name} Health Insurance in ${country.name} (2025 Guide)`;
-const pageDescription = `Is ${provider.name} right for expats in ${country.name}? Coverage details, costs, network info, and how it compares to alternatives.`;
+const pageDescription = `Complete guide to ${provider.name} for expats in ${country.name}. Visa compliance, network coverage, pricing, and how it compares to local options.`;
 ---
 
 <Layout title={pageTitle} description={pageDescription} ogType="article">
-  <!-- Structured Data -->
   <Fragment slot="structured-data">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
@@ -120,8 +360,21 @@ const pageDescription = `Is ${provider.name} right for expats in ${country.name}
           {provider.name} Health Insurance in {country.name}
         </h1>
         <p class="text-lg text-neutral-600 mb-6">
-          {provider.tagline}. Here's how it works for expats living in {country.name}.
+          {provider.tagline}. Here's everything you need to know about using {provider.name} as an expat in {country.name}.
         </p>
+
+        <!-- Quick Stats -->
+        {quickStats.length > 0 && (
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            {quickStats.map(stat => (
+              <div class="bg-white/80 backdrop-blur border border-neutral-200 rounded-lg p-3 text-center">
+                <p class="text-xl font-bold text-primary-600">{stat.value}</p>
+                <p class="text-xs text-neutral-600">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div class="flex flex-col sm:flex-row gap-3 mb-4">
           <a
             href={provider.href}
@@ -145,16 +398,11 @@ const pageDescription = `Is ${provider.name} right for expats in ${country.name}
   <!-- MAIN CONTENT -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
     <div class="flex gap-12">
-      <!-- Main Content -->
       <article class="flex-1 min-w-0">
 
         <!-- TOP META -->
         <div class="mb-8">
-          <AuthorBox
-            name={author.name}
-            bio={author.bio}
-            image={author.image}
-          />
+          <AuthorBox name={author.name} bio={author.bio} image={author.image} />
           <p class="text-sm text-neutral-500 mt-3">
             Last updated: {new Date(country.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           </p>
@@ -171,16 +419,16 @@ const pageDescription = `Is ${provider.name} right for expats in ${country.name}
           <!-- Overview -->
           <h2 id="overview">{provider.name} in {country.name}</h2>
           <p>
-            {provider.name} is {provider.type === 'international' ? 'an international health insurance provider' : provider.type === 'local' ? 'a local health insurance provider' : 'a public healthcare option'} that offers coverage for expats in {country.name}.
+            {provider.name} is {provider.type === 'international' ? 'a major international health insurance provider' : provider.type === 'local' ? 'a local health insurance provider' : 'a public healthcare option'} serving expats in {country.name}.
             {provider.coverageStyle.includes('comprehensive') || provider.coverageStyle.includes('premium')
-              ? ` With ${provider.coverageStyle.toLowerCase()} coverage, it's designed for expats who want thorough protection.`
-              : ` With ${provider.coverageStyle.toLowerCase()} coverage, it provides a specific type of protection.`
+              ? ` With ${provider.coverageStyle.toLowerCase()} coverage, it offers thorough protection for expats who want peace of mind.`
+              : ` With ${provider.coverageStyle.toLowerCase()} coverage, it provides targeted protection for specific needs.`
             }
           </p>
           <p>
-            {country.insuranceRequired
-              ? `${country.name} requires health insurance for most visa types. ${provider.name} is widely accepted for visa applications.`
-              : `While ${country.name} doesn't strictly require health insurance, private coverage like ${provider.name} gives you access to faster, higher-quality care.`
+            {provider.type === 'international'
+              ? `The key advantage of ${provider.name} over local ${country.demonym} insurers is portability—if you leave ${country.name}, your coverage comes with you. For expats who travel frequently or aren't certain they'll stay long-term, this flexibility is valuable.`
+              : `As a local provider, ${provider.name} often offers more extensive in-country networks and lower costs than international alternatives, making it a strong choice for expats committed to ${country.name}.`
             }
           </p>
 
@@ -198,89 +446,165 @@ const pageDescription = `Is ${provider.name} right for expats in ${country.name}
             </div>
           </div>
 
-          <!-- Key Facts -->
-          <h2 id="key-facts">Key Facts</h2>
+          <!-- Visa & Requirements -->
+          <h2 id="visa-compliance">Visa & Insurance Requirements</h2>
 
-          <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden not-prose">
-            <table class="w-full">
-              <tbody class="divide-y divide-neutral-200">
-                <tr>
-                  <td class="px-4 py-3 font-medium text-neutral-900 bg-neutral-50 w-1/3">Provider Type</td>
-                  <td class="px-4 py-3 text-neutral-600">{provider.type === 'international' ? 'International' : provider.type === 'local' ? 'Local/Regional' : 'Public'}</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3 font-medium text-neutral-900 bg-neutral-50">Coverage Style</td>
-                  <td class="px-4 py-3 text-neutral-600">{provider.coverageStyle}</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3 font-medium text-neutral-900 bg-neutral-50">Includes US Coverage</td>
-                  <td class="px-4 py-3 text-neutral-600">
-                    {provider.includesUS ? (
-                      <span class="text-green-600 font-medium">Yes (optional add-on for some plans)</span>
-                    ) : (
-                      <span class="text-neutral-500">No</span>
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3 font-medium text-neutral-900 bg-neutral-50">Notable Limitations</td>
-                  <td class="px-4 py-3 text-neutral-600">{providerInCountry.notableLimitsOverride || provider.notableLimits}</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3 font-medium text-neutral-900 bg-neutral-50">Visa Compliance ({country.name})</td>
-                  <td class="px-4 py-3 text-neutral-600">
-                    {provider.type === 'international'
-                      ? 'Generally accepted—verify with consulate for specific visa type'
-                      : provider.type === 'local'
-                        ? 'Accepted for local requirements'
-                        : 'N/A—public healthcare'
-                    }
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {visaInfo.compliant ? (
+            <div class="bg-green-50 border-l-4 border-green-500 p-4 my-6 not-prose">
+              <p class="font-medium text-green-900">
+                {country.name} requires health insurance for most visa types
+              </p>
+            </div>
+          ) : (
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-6 not-prose">
+              <p class="font-medium text-blue-900">
+                Health insurance is not mandatory but strongly recommended
+              </p>
+            </div>
+          )}
+
+          <ul>
+            {visaInfo.details.map(detail => <li>{detail}</li>)}
+          </ul>
+
+          {visaInfo.tip && (
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-5 my-6 not-prose">
+              <h4 class="font-semibold text-amber-900 mb-2">Visa Tip</h4>
+              <p class="text-amber-800 text-sm">{visaInfo.tip}</p>
+            </div>
+          )}
+
+          <!-- Network & Hospitals -->
+          <h2 id="network">Network & Hospital Coverage</h2>
+          <p>{networkInfo.description}</p>
+
+          <h3>What You Get</h3>
+          <ul>
+            {networkInfo.features.map(feature => <li>{feature}</li>)}
+          </ul>
+
+          <h3>Things to Know</h3>
+          <ul>
+            {networkInfo.considerations.map(consideration => <li>{consideration}</li>)}
+          </ul>
 
           <CTABox
-            title={`Get a ${provider.name} Quote`}
-            description={`See pricing for ${country.name}-based expats.`}
-            buttonText="Get Quote"
+            title={`Check ${provider.name}'s Network`}
+            description={`Verify coverage in your specific ${country.name} location before purchasing.`}
+            buttonText="View Provider Details"
             buttonHref={provider.href}
             variant="highlight"
             showDisclosure={false}
           />
 
-          <!-- How to Use -->
-          <h2 id="how-to-use">How to Use Your {provider.name} Coverage in {country.name}</h2>
-
-          <h3>Finding Providers</h3>
+          <!-- Pricing Guide -->
+          <h2 id="pricing">Pricing Guide for {country.name}</h2>
           <p>
-            {provider.type === 'international'
-              ? `${provider.name} has a network of hospitals and clinics in ${country.name}. Use their online provider finder or mobile app to locate network providers in your area. Major cities typically have extensive options.`
-              : provider.type === 'local'
-                ? `As a local provider, ${provider.name} has an extensive network within ${country.name}. Check their website for the full list of participating hospitals and clinics.`
-                : `Access is through public healthcare facilities in ${country.name}.`
-            }
+            <strong>Typical cost:</strong> {pricingGuidance.range}
           </p>
 
-          <h3>Direct Billing vs Reimbursement</h3>
+          <h3>Factors That Affect Your Premium</h3>
           <ul>
-            <li><strong>Network hospitals:</strong> Show your insurance card for direct billing—you pay only your deductible or copay.</li>
-            <li><strong>Out-of-network:</strong> Pay upfront and submit claims for reimbursement (typically processed within 5-15 business days).</li>
+            {pricingGuidance.factors.map(factor => <li>{factor}</li>)}
           </ul>
+
+          {pricingGuidance.savingsTips.length > 0 && (
+            <>
+              <h3>Ways to Save</h3>
+              <ul>
+                {pricingGuidance.savingsTips.map(tip => <li>{tip}</li>)}
+              </ul>
+            </>
+          )}
+
+          <!-- vs Local Options (only for international providers) -->
+          {localComparison.length > 0 && (
+            <>
+              <h2 id="vs-local">{provider.name} vs Local {country.demonym} Insurers</h2>
+              <p>
+                How does {provider.name} compare to local insurance options in {country.name}? Here's the key differences:
+              </p>
+
+              <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden not-prose">
+                <table class="w-full text-sm">
+                  <thead class="bg-neutral-50">
+                    <tr>
+                      <th class="px-4 py-3 text-left font-semibold text-neutral-900">Factor</th>
+                      <th class="px-4 py-3 text-left font-semibold text-neutral-900">{provider.name}</th>
+                      <th class="px-4 py-3 text-left font-semibold text-neutral-900">Local Insurers</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-neutral-200">
+                    {localComparison.map(row => (
+                      <tr>
+                        <td class="px-4 py-3 font-medium text-neutral-900">{row.factor}</td>
+                        <td class="px-4 py-3 text-neutral-600">{row.international}</td>
+                        <td class="px-4 py-3 text-neutral-600">{row.local}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p>
+                <strong>Bottom line:</strong> Choose {provider.name} if you travel frequently or might relocate. Choose a local insurer if you're settling in {country.name} long-term and want lower costs with the best local network.
+              </p>
+            </>
+          )}
+
+          <!-- Common Scenarios -->
+          <h2 id="scenarios">Common Scenarios</h2>
+          <p>Here's how {provider.name} works for different expat situations in {country.name}:</p>
+
+          <div class="space-y-4 my-6 not-prose">
+            {commonScenarios.map(item => (
+              <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-5">
+                <h4 class="font-semibold text-neutral-900 mb-2">{item.scenario}</h4>
+                <p class="text-neutral-600 text-sm">{item.recommendation}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- How to Use -->
+          <h2 id="how-to-use">Using Your {provider.name} Coverage in {country.name}</h2>
+
+          <h3>Getting Care</h3>
+          <ol>
+            <li><strong>Find a provider</strong> — Use the online directory or app to locate in-network hospitals and doctors</li>
+            <li><strong>Show your card</strong> — At network facilities, present your insurance card for direct billing</li>
+            <li><strong>Pay your share</strong> — Only pay your deductible or copay (if any)</li>
+          </ol>
+
+          <h3>If You Use Out-of-Network Care</h3>
+          <ol>
+            <li>Pay the provider directly</li>
+            <li>Get itemized receipts with diagnosis codes</li>
+            <li>Submit claim via app or online portal</li>
+            <li>Receive reimbursement in 5-15 business days</li>
+          </ol>
 
           <h3>Emergency Care</h3>
           <p>
-            In emergencies, go to the nearest hospital regardless of network status. Contact {provider.name} within 48 hours to coordinate coverage. Emergency care is typically covered at any facility.
+            In emergencies, go to the nearest hospital regardless of network status. Contact {provider.name} within 48 hours to coordinate coverage. Emergency care is covered at any facility.
           </p>
 
-          <h3>Claims and Support</h3>
+          <h3>Support</h3>
           <p>
             {provider.type === 'international'
-              ? `${provider.name} offers 24/7 customer support in English. Claims can be submitted via their mobile app or online portal.`
+              ? `${provider.name} offers 24/7 multilingual support. Claims can be submitted via mobile app, online portal, or email.`
               : `Contact ${provider.name} directly for claims support and questions about your coverage.`
             }
           </p>
+
+          <!-- FAQs -->
+          <h2 id="faqs">Frequently Asked Questions</h2>
+
+          {faqs.map(faq => (
+            <>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </>
+          ))}
 
           <!-- Alternatives -->
           <h2 id="alternatives">Alternatives to Consider</h2>
@@ -324,7 +648,7 @@ const pageDescription = `Is ${provider.name} right for expats in ${country.name}
       <!-- Sticky Sidebar (Desktop) -->
       <StickySidebar
         ctaTitle={`${provider.name} in ${country.name}`}
-        ctaDescription="Get a quote for your situation."
+        ctaDescription="Get a personalized quote for your situation."
         ctaButtonText="Get Quote"
         ctaButtonHref={provider.href}
         relatedLinks={sidebarLinks}
