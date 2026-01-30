@@ -1,0 +1,613 @@
+---
+/**
+ * ConditionCountryPage.astro
+ *
+ * Template for condition × country pages.
+ * E.g., /conditions/diabetes/in/thailand
+ *
+ * Helps expats with specific health conditions understand
+ * how to manage their care and find appropriate insurance abroad.
+ */
+
+import Layout from '../layouts/Layout.astro';
+import CTABox from '../components/CTABox.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import Disclosure from '../components/Disclosure.astro';
+
+import type { Country } from '../data/types';
+import type { Condition } from '../data/conditions';
+
+interface Props {
+  condition: Condition;
+  country: Country;
+}
+
+const { condition, country } = Astro.props;
+
+// =====================
+// HELPER FUNCTIONS
+// =====================
+
+/**
+ * Get healthcare quality assessment for this condition in this country
+ */
+function getHealthcareQuality(condition: Condition, country: Country): {
+  rating: 'excellent' | 'good' | 'adequate' | 'limited';
+  summary: string;
+  strengths: string[];
+  limitations: string[];
+} {
+  // Determine quality based on country's healthcare infrastructure
+  const privateHealthcareCost = country.privateHealthcare?.cost?.toLowerCase() || '';
+  const publicAccess = country.publicHealthcare?.access?.toLowerCase() || '';
+
+  // High-cost countries typically have better specialist access
+  const isHighIncome = privateHealthcareCost.includes('200') ||
+                       privateHealthcareCost.includes('300') ||
+                       privateHealthcareCost.includes('400');
+
+  // Check if country has good public healthcare
+  const hasGoodPublic = publicAccess.includes('resident') || publicAccess.includes('all');
+
+  let rating: 'excellent' | 'good' | 'adequate' | 'limited';
+  let summary: string;
+  const strengths: string[] = [];
+  const limitations: string[] = [];
+
+  if (isHighIncome && hasGoodPublic) {
+    rating = 'excellent';
+    summary = `${country.name} offers excellent healthcare for ${condition.name.toLowerCase()} management, with both public and private options available.`;
+    strengths.push('Modern medical facilities in major cities');
+    strengths.push('Specialists available for complex cases');
+    strengths.push('Quality medications readily available');
+    if (condition.type === 'chronic') {
+      strengths.push('Established chronic disease management programs');
+    }
+    limitations.push('Highest quality care concentrated in major cities');
+    limitations.push('Private care can be expensive without insurance');
+  } else if (isHighIncome || hasGoodPublic) {
+    rating = 'good';
+    summary = `${country.name} provides good healthcare options for managing ${condition.name.toLowerCase()}, though quality varies by location.`;
+    strengths.push('Adequate specialist availability in cities');
+    strengths.push('Standard medications available');
+    strengths.push('Private hospitals meet international standards');
+    limitations.push('May need to travel to major cities for specialist care');
+    limitations.push('English-speaking specialists may be limited');
+    limitations.push('Some advanced treatments may not be locally available');
+  } else {
+    rating = 'adequate';
+    summary = `Healthcare for ${condition.name.toLowerCase()} in ${country.name} is available but may require planning and flexibility.`;
+    strengths.push('Basic care available in major cities');
+    strengths.push('Lower costs for routine care');
+    strengths.push('Private hospitals in capitals offer good care');
+    limitations.push('Specialist access may be limited');
+    limitations.push('May need medical travel for complex cases');
+    limitations.push('Medication availability can be inconsistent');
+    limitations.push('English-speaking doctors harder to find');
+  }
+
+  // Add condition-specific considerations
+  if (condition.type === 'mental-health') {
+    limitations.push('Mental health services may be stigmatized or limited');
+    strengths.push('Telehealth therapy can supplement local options');
+  }
+
+  if (condition.slug === 'kidney-disease' && rating !== 'excellent') {
+    limitations.push('Dialysis center availability may be limited outside capitals');
+  }
+
+  return { rating, summary, strengths, limitations };
+}
+
+/**
+ * Get medication availability info
+ */
+function getMedicationInfo(condition: Condition, country: Country): {
+  availability: string;
+  tips: string[];
+  warnings: string[];
+} {
+  const tips: string[] = [];
+  const warnings: string[] = [];
+  let availability: string;
+
+  // Base availability on country development level
+  const privateHealthcareCost = country.privateHealthcare?.cost?.toLowerCase() || '';
+  const isHighIncome = privateHealthcareCost.includes('200') ||
+                       privateHealthcareCost.includes('300');
+
+  if (isHighIncome) {
+    availability = `Most medications for ${condition.name.toLowerCase()} are available in ${country.name}, though brand names may differ.`;
+    tips.push('Bring your prescription with generic (international) drug names');
+    tips.push('Major pharmacy chains stock common medications');
+    tips.push('Ask your doctor for equivalent local brand names');
+  } else {
+    availability = `Common medications are generally available in ${country.name}'s major cities, but specialty medications may require planning.`;
+    tips.push('Bring a 3-6 month supply when you first arrive');
+    tips.push('Research local brand equivalents before relocating');
+    tips.push('Connect with expat communities for pharmacy recommendations');
+    warnings.push('Some medications may not be available locally');
+  }
+
+  // Condition-specific tips
+  if (condition.slug === 'diabetes') {
+    tips.push('Insulin is available but brands vary—test equivalents before fully switching');
+    tips.push('CGM and pump supplies may need to be imported');
+    warnings.push('Insulin storage during travel requires planning (cold chain)');
+  }
+
+  if (condition.slug === 'depression-anxiety') {
+    tips.push('Psychiatric medications often require local psychiatrist prescription');
+    warnings.push('Some psychiatric medications may be controlled or unavailable');
+    tips.push('Bring documentation of your treatment history');
+  }
+
+  if (condition.slug === 'arthritis') {
+    warnings.push('Biologic medications may be unavailable or extremely expensive');
+    tips.push('If on biologics, research availability before committing to a destination');
+  }
+
+  tips.push('Always carry medications in original packaging with prescription');
+  tips.push('Keep a letter from your doctor explaining your condition and medications');
+
+  return { availability, tips, warnings };
+}
+
+/**
+ * Get insurance recommendations for this condition
+ */
+function getInsuranceRecommendations(condition: Condition, country: Country): {
+  overview: string;
+  mustHave: string[];
+  niceToHave: string[];
+  watchOut: string[];
+  recommendedProviders: string[];
+} {
+  const mustHave: string[] = [];
+  const niceToHave: string[] = [];
+  const watchOut: string[] = [];
+  const recommendedProviders: string[] = [];
+
+  let overview = `Finding insurance that covers ${condition.name.toLowerCase()} as a pre-existing condition requires careful research. Not all insurers will cover it, and those that do may have exclusions or waiting periods.`;
+
+  // Universal must-haves
+  mustHave.push('Coverage for pre-existing conditions (or pathway to coverage)');
+  mustHave.push('Prescription medication coverage');
+  mustHave.push('Specialist visit coverage');
+  mustHave.push('Emergency care coverage');
+
+  // Condition-specific
+  if (condition.type === 'chronic') {
+    mustHave.push('No annual limits on chronic condition management (or high limits)');
+    niceToHave.push('Chronic disease management program');
+    watchOut.push('Some plans exclude all pre-existing conditions permanently');
+    watchOut.push('Look for "moratorium" terms that may cover after 2+ claim-free years');
+  }
+
+  if (condition.type === 'mental-health') {
+    mustHave.push('Mental health coverage (not all plans include this)');
+    mustHave.push('Therapy session coverage (check annual limits)');
+    niceToHave.push('Telehealth therapy coverage');
+    niceToHave.push('Coverage for psychiatric hospitalization');
+    watchOut.push('Many plans cap mental health at $5,000-10,000/year');
+    watchOut.push('Some plans exclude mental health entirely');
+  }
+
+  if (condition.slug === 'diabetes') {
+    mustHave.push('Diabetic supplies coverage (test strips, needles)');
+    niceToHave.push('Insulin pump and CGM coverage');
+    niceToHave.push('Diabetic complication coverage');
+  }
+
+  if (condition.slug === 'heart-disease' || condition.slug === 'kidney-disease') {
+    mustHave.push('Medical evacuation coverage (high limit)');
+    niceToHave.push('Coverage for procedures and surgeries');
+    watchOut.push('Pre-existing cardiac/kidney conditions often excluded or heavily loaded');
+  }
+
+  if (condition.slug === 'cancer-survivor') {
+    mustHave.push('Cancer surveillance coverage');
+    niceToHave.push('Coverage for potential recurrence (rare but important)');
+    watchOut.push('Cancer history makes underwriting difficult—expect exclusions or high premiums');
+    watchOut.push('Some insurers decline all cancer survivors');
+  }
+
+  // Provider recommendations based on condition
+  if (condition.type === 'mental-health') {
+    recommendedProviders.push('BUPA Global (strong mental health coverage)');
+    recommendedProviders.push('Cigna Global (includes mental health benefits)');
+  } else if (condition.type === 'chronic') {
+    recommendedProviders.push('BUPA Global (good pre-existing condition handling)');
+    recommendedProviders.push('Allianz Care (moratorium underwriting option)');
+    recommendedProviders.push('Cigna Global (comprehensive chronic care)');
+  }
+
+  if (recommendedProviders.length === 0) {
+    recommendedProviders.push('BUPA Global');
+    recommendedProviders.push('Cigna Global');
+    recommendedProviders.push('Allianz Care');
+  }
+
+  return { overview, mustHave, niceToHave, watchOut, recommendedProviders };
+}
+
+/**
+ * Get practical tips for managing this condition in this country
+ */
+function getPracticalTips(condition: Condition, country: Country): string[] {
+  const tips: string[] = [];
+
+  tips.push(`Research ${condition.name.toLowerCase()} specialists in ${country.name} before you arrive`);
+  tips.push('Join expat Facebook groups and ask for doctor recommendations');
+  tips.push(`Bring complete medical records, ideally translated to ${country.demonym} or English`);
+  tips.push('Establish care with a local doctor within your first month');
+  tips.push('Keep a 3-month medication buffer in case of supply issues');
+
+  if (condition.type === 'chronic') {
+    tips.push('Set up a relationship with a specialist, not just a GP');
+    tips.push('Learn the local emergency number and nearest hospital');
+  }
+
+  if (condition.type === 'mental-health') {
+    tips.push('Consider maintaining a telehealth relationship with your home country therapist');
+    tips.push('Build a local support network—isolation worsens mental health');
+    tips.push('Research local mental health resources and crisis lines');
+  }
+
+  if (condition.slug === 'diabetes') {
+    tips.push('Learn to read food labels in the local language');
+    tips.push('Identify local foods and their carb content');
+    tips.push('Know where to find glucose tablets or emergency sugar sources');
+  }
+
+  if (condition.slug === 'allergies') {
+    tips.push('Create allergy cards in the local language');
+    tips.push('Learn to ask about ingredients at restaurants');
+    tips.push('Always carry your EpiPen and know how to direct someone to use it');
+  }
+
+  return tips;
+}
+
+/**
+ * Get FAQs for this condition in this country
+ */
+function getFAQs(condition: Condition, country: Country): Array<{question: string; answer: string}> {
+  const faqs: Array<{question: string; answer: string}> = [];
+
+  faqs.push({
+    question: `Can I get insurance for ${condition.name.toLowerCase()} in ${country.name}?`,
+    answer: `Yes, but options vary. Some international insurers will cover ${condition.name.toLowerCase()} as a pre-existing condition (often with higher premiums or waiting periods). Others may exclude it. BUPA Global, Cigna Global, and Allianz Care are known for being more accepting of pre-existing conditions. Always disclose your condition fully—non-disclosure can void your policy.`
+  });
+
+  faqs.push({
+    question: `Will my medications be available in ${country.name}?`,
+    answer: `Most common medications for ${condition.name.toLowerCase()} are available in ${country.name}, though brand names often differ. Bring your prescriptions with generic (international) drug names. For the first few months, bring a supply from your home country while you establish local care and verify medication equivalents.`
+  });
+
+  faqs.push({
+    question: `How do I find a doctor for ${condition.name.toLowerCase()} in ${country.name}?`,
+    answer: `Start with your insurance provider's network directory. Expat Facebook groups and forums are excellent for personal recommendations. International hospitals typically have English-speaking specialists. You can also ask your home country doctor for referrals to colleagues in ${country.name}.`
+  });
+
+  if (condition.type === 'chronic') {
+    faqs.push({
+      question: `What if I have an emergency related to ${condition.name.toLowerCase()}?`,
+      answer: `Know the local emergency number and location of the nearest hospital with appropriate facilities. Keep a medical information card with your condition, medications, and emergency contacts. Most international health insurance includes 24/7 emergency assistance—save this number in your phone.`
+    });
+  }
+
+  if (condition.type === 'mental-health') {
+    faqs.push({
+      question: `Can I continue therapy while living in ${country.name}?`,
+      answer: `Yes, you have options: 1) Find a local English-speaking therapist, 2) Continue with your home therapist via telehealth, or 3) Use a combination of both. Many international insurance plans now cover telehealth therapy. Expat communities can recommend local mental health professionals.`
+    });
+  }
+
+  faqs.push({
+    question: `Should I disclose my ${condition.name.toLowerCase()} when applying for insurance?`,
+    answer: `Absolutely yes. Non-disclosure is considered fraud and can result in your entire policy being voided when you need it most. Insurers can access international medical records. Full disclosure may mean higher premiums or exclusions, but you'll have clarity on what's covered and valid coverage when you need it.`
+  });
+
+  return faqs;
+}
+
+// =====================
+// GENERATE CONTENT
+// =====================
+
+const healthcareQuality = getHealthcareQuality(condition, country);
+const medicationInfo = getMedicationInfo(condition, country);
+const insuranceRecs = getInsuranceRecommendations(condition, country);
+const practicalTips = getPracticalTips(condition, country);
+const faqs = getFAQs(condition, country);
+
+const tocItems = [
+  { id: 'overview', text: `${condition.name} in ${country.name}`, level: 2 },
+  { id: 'healthcare', text: 'Healthcare Quality', level: 2 },
+  { id: 'medications', text: 'Medication Access', level: 2 },
+  { id: 'insurance', text: 'Insurance Options', level: 2 },
+  { id: 'finding-doctors', text: 'Finding Doctors', level: 2 },
+  { id: 'practical-tips', text: 'Practical Tips', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const author = {
+  name: 'John Spencer',
+  bio: 'John Spencer is the founder of Compare Expat Plans, helping expats find health coverage that works for their specific situations.',
+  image: '/images/john-spencer.png',
+};
+
+const sidebarLinks = [
+  { title: `Health Insurance in ${country.name}`, href: `/countries/${country.slug}/insurance` },
+  { title: `Pre-Existing Conditions Guide`, href: `/guides/pre-existing-conditions-abroad` },
+  { title: 'Compare Insurance Plans', href: '/best/expat-health-insurance' },
+];
+
+const pageTitle = `Managing ${condition.name} as an Expat in ${country.name} (2025 Guide)`;
+const pageDescription = `Complete guide to living with ${condition.name.toLowerCase()} in ${country.name}. Healthcare quality, medication access, insurance options, and finding specialists.`;
+
+const siteUrl = "https://compareexpatplans.com";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Conditions", "item": `${siteUrl}/conditions` },
+    { "@type": "ListItem", "position": 3, "name": condition.name, "item": `${siteUrl}/conditions/${condition.slug}` },
+    { "@type": "ListItem", "position": 4, "name": country.name },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} ogType="article">
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="relative bg-gradient-to-b from-primary-50 to-white py-10 lg:py-14 border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-primary-600 mb-2">
+          <a href={`/conditions/${condition.slug}`} class="hover:underline">{condition.name}</a>
+          {' → '}
+          <span>{country.name}</span>
+        </p>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          Managing {condition.name} as an Expat in {country.name}
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          {condition.description} Here's what you need to know about living with {condition.name.toLowerCase()} in {country.name}.
+        </p>
+
+        <!-- Healthcare Quality Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 {
+          healthcareQuality.rating === 'excellent' ? 'bg-green-100 text-green-800' :
+          healthcareQuality.rating === 'good' ? 'bg-blue-100 text-blue-800' :
+          healthcareQuality.rating === 'adequate' ? 'bg-amber-100 text-amber-800' :
+          'bg-neutral-100 text-neutral-800'
+        }">
+          <span class="font-semibold">Healthcare Quality:</span>
+          <span class="capitalize">{healthcareQuality.rating}</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href={`/countries/${country.slug}/insurance`}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            Find Insurance in {country.name}
+          </a>
+          <a
+            href="/guides/pre-existing-conditions-abroad"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            Pre-Existing Conditions Guide
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <article class="flex-1 min-w-0">
+
+        <div class="mb-8">
+          <AuthorBox name={author.name} bio={author.bio} image={author.image} />
+          <p class="text-sm text-neutral-500 mt-3">
+            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          </p>
+        </div>
+
+        <div class="lg:hidden mb-8">
+          <TableOfContents items={tocItems} />
+        </div>
+
+        <div class="prose prose-neutral max-w-none">
+
+          <!-- Overview -->
+          <h2 id="overview">{condition.name} in {country.name}</h2>
+          <p>
+            Living abroad with {condition.name.toLowerCase()} is absolutely possible with proper planning.
+            {country.name} offers {healthcareQuality.rating === 'excellent' ? 'excellent' : healthcareQuality.rating === 'good' ? 'good' : 'adequate'} healthcare options for managing this condition, though understanding the local system and securing appropriate insurance is essential.
+          </p>
+
+          <p>
+            {condition.description}
+          </p>
+
+          <h3>Key Concerns for Expats</h3>
+          <ul>
+            {condition.expatConcerns.map(concern => <li>{concern}</li>)}
+          </ul>
+
+          <!-- Healthcare Quality -->
+          <h2 id="healthcare">Healthcare Quality for {condition.name}</h2>
+          <p>{healthcareQuality.summary}</p>
+
+          <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+              <h3 class="text-lg font-semibold text-green-900 mb-3">Strengths</h3>
+              <ul class="space-y-2">
+                {healthcareQuality.strengths.map(s => (
+                  <li class="text-green-800 text-sm flex items-start gap-2">
+                    <span class="text-green-600 mt-1">✓</span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+              <h3 class="text-lg font-semibold text-amber-900 mb-3">Limitations</h3>
+              <ul class="space-y-2">
+                {healthcareQuality.limitations.map(l => (
+                  <li class="text-amber-800 text-sm flex items-start gap-2">
+                    <span class="text-amber-600 mt-1">!</span>
+                    <span>{l}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Medications -->
+          <h2 id="medications">Medication Access</h2>
+          <p>{medicationInfo.availability}</p>
+
+          <h3>Tips for Getting Your Medications</h3>
+          <ul>
+            {medicationInfo.tips.map(tip => <li>{tip}</li>)}
+          </ul>
+
+          {medicationInfo.warnings.length > 0 && (
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 my-6 not-prose">
+              <h4 class="font-semibold text-red-900 mb-2">Important Warnings</h4>
+              <ul class="space-y-1">
+                {medicationInfo.warnings.map(w => (
+                  <li class="text-red-800 text-sm">{w}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Insurance -->
+          <h2 id="insurance">Insurance Options</h2>
+          <p>{insuranceRecs.overview}</p>
+
+          <h3>Must-Have Coverage</h3>
+          <ul>
+            {insuranceRecs.mustHave.map(item => <li><strong>{item}</strong></li>)}
+          </ul>
+
+          <h3>Nice-to-Have Coverage</h3>
+          <ul>
+            {insuranceRecs.niceToHave.map(item => <li>{item}</li>)}
+          </ul>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-5 my-6 not-prose">
+            <h4 class="font-semibold text-amber-900 mb-2">Watch Out For</h4>
+            <ul class="space-y-1">
+              {insuranceRecs.watchOut.map(w => (
+                <li class="text-amber-800 text-sm">• {w}</li>
+              ))}
+            </ul>
+          </div>
+
+          <h3>Recommended Providers</h3>
+          <p>These insurers are known for better handling of pre-existing conditions:</p>
+          <ul>
+            {insuranceRecs.recommendedProviders.map(p => <li>{p}</li>)}
+          </ul>
+
+          <CTABox
+            title={`Find Insurance for ${condition.name}`}
+            description={`Compare plans that cover pre-existing conditions in ${country.name}.`}
+            buttonText="Compare Plans"
+            buttonHref={`/countries/${country.slug}/insurance`}
+            variant="highlight"
+            showDisclosure={false}
+          />
+
+          <!-- Finding Doctors -->
+          <h2 id="finding-doctors">Finding Doctors & Specialists</h2>
+          <p>
+            Finding the right healthcare providers is crucial for managing {condition.name.toLowerCase()} in {country.name}. Here's how to build your medical team:
+          </p>
+
+          <h3>Where to Search</h3>
+          <ul>
+            <li><strong>Insurance provider directory</strong> — Your insurer's network often includes English-speaking specialists</li>
+            <li><strong>Expat Facebook groups</strong> — Ask for personal recommendations from people with similar conditions</li>
+            <li><strong>International hospitals</strong> — Major cities have hospitals catering to expats with multilingual staff</li>
+            <li><strong>Your home country doctor</strong> — Ask if they know colleagues in {country.name}</li>
+            <li><strong>Embassy lists</strong> — Many embassies maintain lists of English-speaking doctors</li>
+          </ul>
+
+          <h3>Questions to Ask Potential Doctors</h3>
+          <ul>
+            <li>Do you have experience treating expat patients with {condition.name.toLowerCase()}?</li>
+            <li>What medications do you typically prescribe, and are they available locally?</li>
+            <li>Do you work with international insurance companies for direct billing?</li>
+            <li>What's your availability for urgent consultations?</li>
+            <li>Can you communicate via email or messaging between appointments?</li>
+          </ul>
+
+          <!-- Practical Tips -->
+          <h2 id="practical-tips">Practical Tips</h2>
+          <p>Based on expat experiences managing {condition.name.toLowerCase()} in {country.name}:</p>
+
+          <div class="space-y-3 my-6 not-prose">
+            {practicalTips.map((tip, i) => (
+              <div class="flex items-start gap-3 bg-neutral-50 p-4 rounded-lg">
+                <span class="flex-shrink-0 w-6 h-6 bg-primary-100 text-primary-700 rounded-full flex items-center justify-center text-sm font-medium">{i + 1}</span>
+                <p class="text-neutral-700">{tip}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- FAQs -->
+          <h2 id="faqs">Frequently Asked Questions</h2>
+
+          {faqs.map(faq => (
+            <>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </>
+          ))}
+
+          <!-- Closing CTA -->
+          <CTABox
+            title={`Ready to Move to ${country.name}?`}
+            description={`Get the right insurance coverage for ${condition.name.toLowerCase()} before you go.`}
+            buttonText={`Insurance in ${country.name}`}
+            buttonHref={`/countries/${country.slug}/insurance`}
+            showDisclosure={false}
+          />
+
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+          <p class="text-sm text-neutral-600">
+            <strong>Medical Disclaimer:</strong> This guide is for informational purposes only and does not constitute medical advice. Always consult with qualified healthcare providers about managing your condition. Healthcare availability and quality can change. Verify all information with local sources before making decisions.
+          </p>
+        </div>
+      </article>
+
+      <StickySidebar
+        ctaTitle={`${condition.name} in ${country.name}`}
+        ctaDescription="Find coverage that works for your condition."
+        ctaButtonText="Compare Insurance"
+        ctaButtonHref={`/countries/${country.slug}/insurance`}
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+  </div>
+</Layout>

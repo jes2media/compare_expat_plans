@@ -1,0 +1,77 @@
+---
+/**
+ * Dynamic route for condition × country pages.
+ *
+ * Generates pages like:
+ * - /conditions/diabetes/in/thailand
+ * - /conditions/hypertension/in/spain
+ * - /conditions/depression-anxiety/in/portugal
+ *
+ * Combines condition data with country data to create
+ * targeted guides for expats managing health conditions abroad.
+ */
+
+import ConditionCountryPage from '../../../../templates/ConditionCountryPage.astro';
+import { conditions, getConditionBySlug, getAllConditionSlugs } from '../../../../data/conditions';
+import { getCountryBySlug, getAllCountrySlugs } from '../../../../data/countries';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Target countries for condition pages (popular expat destinations)
+  const targetCountrySlugs = [
+    // Europe
+    'spain', 'portugal', 'france', 'italy', 'germany', 'uk', 'netherlands',
+    'greece', 'croatia', 'poland', 'czech-republic', 'ireland',
+    // Asia
+    'thailand', 'vietnam', 'indonesia', 'malaysia', 'philippines', 'japan', 'singapore',
+    // Americas
+    'mexico', 'costa-rica', 'panama', 'colombia', 'ecuador', 'argentina',
+    // Other
+    'uae', 'australia', 'canada'
+  ];
+
+  const allCountrySlugs = getAllCountrySlugs();
+  const conditionSlugs = getAllConditionSlugs();
+
+  // Filter to countries that exist in our data
+  const validCountrySlugs = targetCountrySlugs.filter(slug =>
+    allCountrySlugs.includes(slug)
+  );
+
+  const paths: Array<{
+    params: { condition: string; country: string };
+    props: {
+      condition: NonNullable<ReturnType<typeof getConditionBySlug>>;
+      country: NonNullable<ReturnType<typeof getCountryBySlug>>;
+    };
+  }> = [];
+
+  // Generate paths for each condition × country combination
+  for (const conditionSlug of conditionSlugs) {
+    const condition = getConditionBySlug(conditionSlug);
+    if (!condition) continue;
+
+    for (const countrySlug of validCountrySlugs) {
+      const country = getCountryBySlug(countrySlug);
+      if (!country) continue;
+
+      paths.push({
+        params: {
+          condition: conditionSlug,
+          country: countrySlug,
+        },
+        props: {
+          condition,
+          country,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { condition, country } = Astro.props;
+---
+
+<ConditionCountryPage condition={condition} country={country} />
