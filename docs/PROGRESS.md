@@ -8,13 +8,45 @@ Last updated: January 29, 2026
 
 **Phase:** 4 - Tier 3 Country Refinement (Content Quality)
 **Total pages:** 1,605
-**Countries refined with detailed content:** 49 (8 Tier 1 + 12 Tier 2 + 29 Tier 3 across 8 batches)
+**Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 360 (45 countries × 8 personas)
 **Constraint pages:** 12 (condition-specific guides)
 
 ---
 
 ## Completed Milestones
+
+### January 29, 2026 - Tier 3 Country Refinement Batch 11 (Latin America Gaps)
+
+#### Tier 3 Country Refinement - Batch 11 (5 countries)
+- **Nicaragua** - Granada/SJDS retiree havens, Hospital Vivian Pellas (Managua) only quality option, Pensionado visa ($600/month), Costa Rica/Miami evacuation essential, very low costs ($30-50 GP visits)
+- **Honduras** - Roatán/Bay Islands focus, Hospital Honduras Medical Center (San Pedro Sula), ZEDE/Próspera zones, Pensionado visa ($1,500/month), island air evacuation critical
+- **Paraguay** - Tax haven appeal (10% flat rate, no foreign income tax), SUACE easy residency, Sanatorio Migone/Sanatorio Italiano Asunción, Buenos Aires/São Paulo evacuation, very affordable
+- **El Salvador** - Bitcoin Beach/El Zonte focus, Hospital de Diagnóstico San Salvador, Bitcoin Visa (3 BTC/$100K), dollarized economy, Guatemala City/Panama evacuation
+- **Belize** - English-speaking Caribbean, QRP (Qualified Retired Persons) program, Karl Heusner Memorial Hospital Belize City, caye/island healthcare gaps, Mexico/US evacuation
+
+---
+
+### January 29, 2026 - Tier 3 Country Refinement Batch 10 (European Microstates)
+
+#### Tier 3 Country Refinement - Batch 10 (4 countries)
+- **Iceland** - Tax-funded Sjúkratryggingar Íslands with copays, Landspítali sole hospital, remote location (2-3hr to Europe), evacuation essential, extreme costs (20-40% higher premiums), no DN visa
+- **Andorra** - CASS mandatory for workers (75% coverage + mutua supplement), Passive Residence requires €600K+ and private insurance, Barcelona/Toulouse evacuation, Digital Nomad Visa available, ski coverage essential
+- **Monaco** - CCSS for workers, non-workers need private insurance for residence, Princess Grace Hospital + Nice CHU backup, ultra-high-net-worth market, no income tax but €500K+ assets required
+- **Liechtenstein** - Swiss-style mandatory OKP, Landesspital basics only, Swiss hospitals (Chur, Zürich) for complex care, extremely restrictive immigration (89 permits/year), CHF costs
+
+---
+
+### January 29, 2026 - Tier 3 Country Refinement Batch 9 (EU Central/Baltic)
+
+#### Tier 3 Country Refinement - Batch 9 (5 countries)
+- **Slovenia** - ZZZS mandatory + dopolnilno complementary insurance (€35/month), UKC Ljubljana, no digital nomad visa (unlike Croatia), self-employment (s.p.) route, Vienna/Milan evacuation for complex cases
+- **Slovakia** - Three-insurer system (VšZP, Dôvera, Union ZP), 14% income contribution, Vienna only 60km away for complex care, živnosť self-employment route, very affordable costs
+- **Lithuania** - PSD mandatory (6.98% income), Santaros Klinikos hospital, no DN visa but Startup Visa available, Northway/Kardiolita private clinics, fintech hub
+- **Latvia** - Digital Nomad Visa (€2,857/month, €42,500 insurance minimum), NVD underfunded public system, most affordable Baltic state, Veselības centrs 4/ARS private clinics, 1-year non-renewable DN visa
+- **Estonia** - Digital Nomad Visa (€3,504/month), e-Residency ≠ healthcare, Haigekassa for employed only, Confido/Medicum private clinics, Helsinki 2-hour ferry backup, most digital healthcare system
+
+---
 
 ### January 29, 2026 - Country × Persona Expansion (Batch 2 & 3)
 
@@ -246,15 +278,18 @@ All Tier 2 countries have been refined with detailed, researched content:
 **Batch 6 Complete (5 countries):** Malta, Cyprus, Qatar, Bahrain, Jamaica
 **Batch 7 Complete (5 countries):** Luxembourg, Oman, Barbados, Bahamas, Kuwait
 **Batch 8 Complete (5 countries):** Bulgaria, Serbia, Montenegro, Albania, North Macedonia
+**Batch 9 Complete (5 countries):** Slovenia, Slovakia, Lithuania, Latvia, Estonia
+**Batch 10 Complete (4 countries):** Iceland, Andorra, Monaco, Liechtenstein
+**Batch 11 Complete (5 countries):** Nicaragua, Honduras, Paraguay, El Salvador, Belize
 
-**Total Tier 3 refined: 36 countries** (plus Cambodia and Sri Lanka were already detailed)
+**Total Tier 3 refined: 50 countries** (plus Cambodia and Sri Lanka were already detailed)
 
-### Countries Remaining for Refinement (~125)
+### Countries Remaining for Refinement (~110)
 Prioritize by traffic potential and expat interest:
-- **High priority:** Slovenia, Slovakia, Lithuania, Latvia, Estonia (EU Baltics/Central Europe)
-- **Medium priority:** Tunisia, Ghana, Senegal, Rwanda (Africa growth markets)
-- **Medium priority:** Nicaragua, Honduras, Paraguay, Bolivia (Latin America gaps)
-- **Lower priority:** Central Asia, Pacific Islands, smaller Caribbean nations
+- **High priority:** Tunisia, Ghana, Senegal, Rwanda, Nigeria (Africa growth markets)
+- **Medium priority:** Saudi Arabia, Jordan, Lebanon (Middle East gaps)
+- **Medium priority:** Kazakhstan, Uzbekistan (Central Asia)
+- **Lower priority:** Pacific Islands, smaller Caribbean nations
 
 ---
 
@@ -348,6 +383,9 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **January 29, 2026 (Session 5):** Completed Tier 3 Batch 11 (5 Latin America countries: Nicaragua, Honduras, Paraguay, El Salvador, Belize). Total 50 Tier 3 countries refined, 63 countries total with detailed content.
+- **January 29, 2026 (Session 4):** Completed Tier 3 Batch 10 (4 European microstates: Iceland, Andorra, Monaco, Liechtenstein). Total 45 Tier 3 countries refined, 58 countries total with detailed content.
+- **January 29, 2026 (Session 3):** Completed Tier 3 Batch 9 (5 EU countries: Slovenia, Slovakia, Lithuania, Latvia, Estonia). Total 41 Tier 3 countries refined, 54 countries total with detailed content.
 - **January 29, 2026 (Session 2):** Completed Tier 3 Batches 7-8 (10 countries: Luxembourg, Oman, Barbados, Bahamas, Kuwait, Bulgaria, Serbia, Montenegro, Albania, North Macedonia). Total 36 Tier 3 countries refined.
 - **January 29, 2026 (Session 1):** Added 160 country-persona pages (20 new countries in batches 2-3), total now 360 (45 countries × 8 personas), 1,605 total pages. Completed Tier 3 Batches 1-6.
 - **January 29, 2026:** Added 4 constraint pages + Tier 3 Batch 1-5 (21 countries refined)

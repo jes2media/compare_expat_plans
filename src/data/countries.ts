@@ -1724,65 +1724,65 @@ const programmaticCountries: Country[] = [
     slug: "slovenia",
     name: "Slovenia",
     demonym: "Slovenian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Slovenia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Slovenia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Slovenia. ZZZS mandatory coverage, complementary insurance (dopolnilno), UKC Ljubljana, residence permits, and private options.",
     headline: "Slovenia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Slovenia—understanding the ZZZS system and international insurance options.",
+    subheadline: "Navigate healthcare in this small, high-quality EU country—understanding mandatory ZZZS enrollment, complementary insurance for copays, Ljubljana's medical facilities, and when international coverage makes sense.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Slovenia.",
-      "The public healthcare system (ZZZS) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €100-220/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence Permit, Single Permit."
+      "Health insurance is mandatory—ZZZS (compulsory) plus dopolnilno (complementary) covers copays.",
+      "UKC Ljubljana is the main teaching hospital; quality is high but specialist waits can be long.",
+      "No digital nomad visa yet—expats use self-employment permits or EU free movement.",
+      "Complementary insurance (dopolnilno zavarovanje) costs €30-40/month and almost everyone has it.",
+      "Small country (2 million)—complex cases may need Austria or Italy, both within 2-3 hours."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Slovenia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Slovenian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Slovenia has mandatory health insurance for all residents. The system has two parts: ZZZS (compulsory health insurance) covers 70-95% of costs, and complementary insurance (dopolnilno zavarovanje) covers the remaining copays. Workers are automatically enrolled through payroll; self-employed pay directly. Non-EU citizens need proof of health coverage for residence permits—international insurance accepted initially, but you'll join ZZZS once employed or registered as self-employed.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Non-EU expats—required for residence permit applications",
+      "Self-employed—must arrange ZZZS enrollment independently (about 13% of gross income)",
+      "Everyone—complementary insurance strongly recommended (copays are 10-30% without it)",
+      "Those wanting shorter waits—specialist appointments can take weeks in public system",
+      "Digital nomads—international coverage needed since no DN visa exists; can't easily join ZZZS"
     ],
     publicHealthcare: {
-      name: "ZZZS",
-      access: "Slovenian citizens, legal residents, EU citizens with EHIC",
-      cost: "€50-100/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "ZZZS (Zavod za zdravstveno zavarovanje Slovenije)",
+      access: "All legal residents, employed persons, self-employed, EU citizens registered as residents",
+      cost: "~13% of gross income (employer/employee split for employed); ~€200-400/month for self-employed",
+      notes: "ZZZS provides solid coverage but with copays of 10-30% for most services. Nearly all Slovenians add complementary insurance (dopolnilno zavarovanje) from Vzajemna, Triglav Zdravje, or Generali for €30-40/month to eliminate copays. Main hospitals: UKC Ljubljana (University Medical Centre—largest, handles complex cases), UKC Maribor (second city), and regional hospitals. English spoken at UKC Ljubljana; less common elsewhere. Wait times for non-urgent specialists can be 2-8 weeks."
     },
     privateHealthcare: {
-      cost: "€100-220/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€80-150/month (local private); €120-250/month (international)",
+      notes: "Private healthcare is limited compared to Western Europe. Medicofit and some private clinics in Ljubljana offer faster access for outpatient care. For serious conditions, you'll likely use public hospitals—even privately insured patients often end up at UKC Ljubljana for complex procedures. International insurance is more useful for evacuation coverage to Vienna or Milan and for care during travel. Triglav and Adriatic Slovenica offer local supplemental plans."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Slovenian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "No digital nomad visa: Unlike neighboring Croatia, Slovenia doesn't have a DN visa. Remote workers typically use self-employment registration (s.p. status) which requires joining ZZZS, or stay under 90 days on tourist entry.",
+      "Complementary insurance gap: ZZZS alone leaves 10-30% copays. Budget €35/month extra for dopolnilno zavarovanje—without it, a hospital stay could cost hundreds in copays.",
+      "Specialist wait times: Non-urgent orthopedics, dermatology, and ophthalmology can have 4-8 week waits. Private options limited; some expats travel to Austria for faster specialist care.",
+      "Language outside Ljubljana: English is common among younger professionals in Ljubljana but less reliable elsewhere. Bring a translator app for regional hospitals and GPs.",
+      "Small country limitations: Complex cardiac surgery, rare cancers, and pediatric specialties may require transfer to Vienna (3 hours) or Milan (4 hours). Ensure your plan covers medical evacuation."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Slovenia visa?",
-        answer: "Yes. Most Slovenian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Slovenia's two-part insurance system work?",
+        answer: "Slovenia splits health coverage into compulsory (ZZZS) and complementary (dopolnilno). ZZZS covers 70-95% of healthcare costs—you're automatically enrolled if employed. Complementary insurance covers the remaining copays and costs about €35/month from Vzajemna, Triglav Zdravje, or Generali. Without complementary coverage, you'll pay 10-30% of each medical bill out of pocket. About 95% of Slovenians have both."
       },
       {
-        question: "How does Slovenian public healthcare work?",
-        answer: "Slovenia's public healthcare system (ZZZS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Can digital nomads get health insurance in Slovenia?",
+        answer: "Slovenia doesn't have a digital nomad visa, which complicates things. Options: 1) Stay under 90 days on tourist entry with international insurance (SafetyWing, Cigna Global), 2) Register as self-employed (s.p.) which gives you residence rights and ZZZS access but means paying ~13% income in health contributions plus tax obligations, 3) Use Slovenia as a base while being tax resident elsewhere in the EU. Most nomads choose option 1 and visa-hop to Croatia or Austria."
       },
       {
-        question: "How much does health insurance cost in Slovenia?",
-        answer: "International health insurance typically costs €100-220/month depending on your age and coverage level. Local/public options cost €50-100/month but may have limitations for non-citizens."
+        question: "Is UKC Ljubljana a good hospital?",
+        answer: "UKC Ljubljana (University Medical Centre) is Slovenia's flagship hospital and teaching institution. Quality is solid for most care—emergency, general surgery, cardiology, oncology. It handles complex cases that other Slovenian hospitals can't. English is spoken by most doctors. The main drawbacks: bureaucracy, wait times for non-urgent care, and aging facilities in some departments. For serious conditions, you're in capable hands. For elective procedures, some expats prefer Vienna or Milan for newer facilities and shorter waits."
       },
       {
-        question: "What's the best health insurance for expats in Slovenia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What residence options exist for non-EU expats?",
+        answer: "Non-EU citizens can get: 1) Temporary residence permit for employment (requires job offer, employer sponsors), 2) Self-employment permit (s.p. status—need to show business plan, ~€4,200 minimum capital, takes 2-3 months), 3) Family reunification (if spouse is Slovenian/EU resident), 4) Study permit. All require health insurance proof initially. Once you have residence and are working/self-employed, you'll be enrolled in ZZZS. The self-employment route is popular with freelancers but comes with tax and social security obligations."
       },
       {
-        question: "Are pre-existing conditions covered in Slovenia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does healthcare cost in Slovenia?",
+        answer: "With ZZZS + complementary insurance: GP visit €0, specialist €0, hospital stay €0 (for covered conditions). Without complementary: GP €15-25 copay, specialist €20-40, hospital €50-100/day. Private pay (no insurance): GP €50-80, specialist €80-150, MRI €200-350, basic surgery €2,000-5,000. Dental is partially covered—cleanings and basic work included, crowns and implants mostly out-of-pocket (€300-800 for crown). Costs are moderate by EU standards—lower than Austria or Italy, similar to Czech Republic."
       }
     ],
     sidebarLinks: [
@@ -1795,12 +1795,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/slovenia/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Eastern Europe Region",
+        href: "/regions/eastern-europe"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Insurance for Freelancers",
+        href: "/insurance-for/freelancers"
       },
       {
         title: "Best Expat Health Insurance",
@@ -1812,65 +1812,65 @@ const programmaticCountries: Country[] = [
     slug: "slovakia",
     name: "Slovakia",
     demonym: "Slovak",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Slovakia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Slovakia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Slovakia. Mandatory insurance through VšZP/Dôvera/Union, Bratislava hospitals, Vienna proximity for complex care, and private options.",
     headline: "Slovakia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Slovakia—understanding the VšZP system and international insurance options.",
+    subheadline: "Navigate healthcare in this affordable EU country—understanding the three-insurer public system, Bratislava's medical facilities, and when Vienna (just 60km away) becomes your backup option.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Slovakia.",
-      "The public healthcare system (VšZP) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, National Visa."
+      "Health insurance is mandatory—choose from three public insurers: VšZP (state), Dôvera, or Union ZP.",
+      "Contributions are 14% of gross income (employer pays 10%, employee 4%)—self-employed pay full 14%.",
+      "Bratislava has decent hospitals; Vienna is only 60km away for complex or urgent specialist care.",
+      "No digital nomad visa—expats use employment, business, or family reunification permits.",
+      "Very affordable healthcare costs—private GP visits €30-50, specialists €40-80."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Slovakia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Slovak standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Slovakia has mandatory health insurance for all residents. You must register with one of three insurers: VšZP (state-owned, largest), Dôvera, or Union ZP. All three provide identical coverage mandated by law—the difference is service quality. Workers are automatically enrolled; self-employed register independently and pay 14% of declared income. Non-EU citizens need insurance proof for residence permits—international insurance works initially, but you'll join the Slovak system once you have legal residence and income.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All residents—mandatory enrollment with VšZP, Dôvera, or Union ZP",
+      "Self-employed—must register and pay 14% of income directly (minimum base applies)",
+      "Non-EU visa applicants—need coverage for residence permit applications",
+      "Those wanting shorter waits—public specialist appointments can take 2-6 weeks",
+      "Expats outside Bratislava—regional hospitals vary; private insurance provides more options"
     ],
     publicHealthcare: {
-      name: "VšZP",
-      access: "Slovak citizens, legal residents, EU citizens with EHIC",
-      cost: "€30-60/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Slovak Health Insurance (VšZP, Dôvera, Union ZP)",
+      access: "All legal residents with registered employment or self-employment; EU citizens with EHIC",
+      cost: "14% of gross income (10% employer + 4% employee); self-employed pay full 14% (min ~€80/month)",
+      notes: "All three insurers provide the same coverage—GP visits, specialists, hospital care, medications (with copays). Choose based on customer service reputation: VšZP is largest and most bureaucratic; Dôvera and Union ZP often have better service. Main hospitals in Bratislava: Univerzitná nemocnica Bratislava, Nemocnica sv. Michala. NÚDCH is the main children's hospital. Outside Bratislava, hospital quality drops significantly. English is common among younger doctors in Bratislava, less so elsewhere."
     },
     privateHealthcare: {
-      cost: "€80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€60-120/month (local supplemental); €100-200/month (international)",
+      notes: "Private clinics in Bratislava: ProCare, Medissimo, Euromedic, Mediclinic. Private care offers faster access, modern facilities, and better English. However, Slovakia's private sector is smaller than neighbors—for serious conditions, many expats prefer Vienna (60km from Bratislava). International insurance is valuable primarily for Vienna access and travel coverage. Local supplemental plans from Generali, Allianz, or Kooperativa add private room coverage and faster specialist access."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Slovak regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Vienna is your backup: Bratislava is only 60km from Vienna—closer than Košice (Slovakia's second city). Many expats get complex care in Austria. Ensure your insurance covers EU-wide or specifically Austria.",
+      "No digital nomad visa: Slovakia hasn't introduced a DN visa. Remote workers typically use business/trade license (živnosť) which requires joining Slovak insurance system and paying social contributions.",
+      "Regional quality gap: Bratislava hospitals are adequate; eastern Slovakia (Košice, Prešov) has older facilities and fewer specialists. If living outside Bratislava, international coverage with evacuation is more important.",
+      "Minimum contribution base: Self-employed pay 14% on declared income, but there's a minimum base (~€600/month in 2025). Even low earners pay at least €80-90/month for health insurance.",
+      "Language barrier: Outside Bratislava and tourist areas, English is limited. Younger doctors usually speak English; administrative staff often don't. Bring translation help for non-emergency care."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Slovakia visa?",
-        answer: "Yes. Most Slovak visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "Which Slovak health insurer should I choose?",
+        answer: "All three insurers—VšZP, Dôvera, and Union ZP—provide identical coverage mandated by law. The difference is service. VšZP is state-owned and largest but more bureaucratic. Dôvera and Union ZP are private and often have better customer service, shorter phone waits, and more helpful staff. You can switch insurers once per year (by September for January change). Most expats choose Dôvera for better English support."
       },
       {
-        question: "How does Slovak public healthcare work?",
-        answer: "Slovakia's public healthcare system (VšZP) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Can I use Vienna hospitals with Slovak insurance?",
+        answer: "With Slovak public insurance, you can get emergency care in Austria under EU rules (EHIC), but planned care requires pre-approval (S2 form) which is rarely granted. For routine access to Vienna's hospitals, you need international insurance that covers Austria or private Austrian insurance. Many Bratislava expats maintain international coverage specifically for Vienna access—it's often faster to drive 60km to Vienna than wait weeks for a Slovak specialist."
       },
       {
-        question: "How much does health insurance cost in Slovakia?",
-        answer: "International health insurance typically costs €80-180/month depending on your age and coverage level. Local/public options cost €30-60/month but may have limitations for non-citizens."
+        question: "How do I register as self-employed in Slovakia?",
+        answer: "Self-employment (živnosť) registration: 1) Register trade license at District Office (okresný úrad)—takes 3-5 days, costs €5, 2) Register with health insurer (VšZP/Dôvera/Union) within 8 days, 3) Register with Social Insurance Agency (Sociálna poisťovňa). Health contributions are 14% of declared income (minimum base ~€600/month = ~€85/month minimum). You'll also pay social insurance (~33% of income) and income tax (19-25%). Total burden is high—consider whether Slovak residence is worth it."
       },
       {
-        question: "What's the best health insurance for expats in Slovakia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What residence options exist for non-EU expats?",
+        answer: "Non-EU options: 1) Employment permit (employer sponsors, tied to job), 2) Business/trade license—živnosť for sole traders or s.r.o. company formation, 3) Family reunification (if spouse is Slovak/EU), 4) Study permit, 5) Investment (significant capital required). There's no digital nomad visa or retirement visa. The živnosť route is most common for freelancers but comes with mandatory social contributions. All permits require health insurance proof."
       },
       {
-        question: "Are pre-existing conditions covered in Slovakia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does healthcare actually cost in Slovakia?",
+        answer: "With Slovak insurance: GP visit €0 (may need small registration fee), specialists €0, hospital €0, medications €0-50% copay depending on drug. Private pay (no insurance): GP €30-50, specialist €40-80, MRI €150-250, basic surgery €1,500-4,000. Slovakia is one of the EU's most affordable countries for healthcare. Dental is partially covered—cleanings included, major work has copays. Optical not covered except for children."
       }
     ],
     sidebarLinks: [
@@ -1883,12 +1883,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/slovakia/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Eastern Europe Region",
+        href: "/regions/eastern-europe"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Insurance for Freelancers",
+        href: "/insurance-for/freelancers"
       },
       {
         title: "Best Expat Health Insurance",
@@ -1900,65 +1900,65 @@ const programmaticCountries: Country[] = [
     slug: "lithuania",
     name: "Lithuania",
     demonym: "Lithuanian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Lithuania (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Lithuania. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Lithuania. PSD mandatory insurance, Vilnius University Hospital, startup visa options, and private alternatives like Northway and Kardiolita.",
     headline: "Lithuania Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Lithuania—understanding the TLK system and international insurance options.",
+    subheadline: "Navigate healthcare in the largest Baltic state—understanding mandatory PSD contributions, Vilnius's improving medical facilities, fintech hub opportunities, and when private coverage makes sense.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Lithuania.",
-      "The public healthcare system (TLK) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €70-160/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence Permit, EU Blue Card."
+      "PSD (Privalomasis sveikatos draudimas) is mandatory—6.98% of income for employed, fixed rate for self-employed.",
+      "Vilnius has modern hospitals (Santaros Klinikos) and growing private sector (Northway, Kardiolita).",
+      "No digital nomad visa—unlike Estonia/Latvia. Startup Visa available for tech entrepreneurs.",
+      "Growing fintech/tech hub—Vilnius attracts remote workers, but legal residence requires proper visa.",
+      "Affordable costs—private GP €30-40, specialists €40-70, well below Western European prices."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Lithuania requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Lithuanian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Lithuania requires mandatory health insurance (PSD) for all residents. Employed workers pay 6.98% of gross income (withheld by employer). Self-employed pay a fixed monthly amount (~€55-70/month depending on category). Non-EU citizens need health insurance for residence permits—international insurance accepted initially, but once you have legal residence and income, you'll enter the PSD system. EU citizens with employment automatically join; those without income need private coverage or voluntary PSD enrollment.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All workers—PSD enrollment is automatic through employment",
+      "Self-employed/freelancers—must register and pay fixed PSD contribution monthly",
+      "Non-EU visa applicants—insurance required for residence permits",
+      "EU citizens without employment—need private insurance or voluntary PSD (€55/month)",
+      "Those wanting faster care—public specialist waits can be 2-8 weeks"
     ],
     publicHealthcare: {
-      name: "TLK",
-      access: "Lithuanian citizens, legal residents, EU citizens with EHIC",
-      cost: "€25-50/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "PSD (Privalomasis sveikatos draudimas) via TLK",
+      access: "All residents paying PSD contributions; EU citizens with EHIC for temporary stays",
+      cost: "6.98% of gross income (employed); ~€55-70/month fixed (self-employed); €55/month voluntary",
+      notes: "Lithuania's public healthcare has improved significantly since EU accession. Main hospitals in Vilnius: Santaros Klinikos (largest, university hospital—good for complex cases), Vilnius University Hospital, Republican Vilnius University Hospital. Kaunas has LSMU Kauno Klinikos. Public system covers GP visits, specialists, hospital care, and most medications with copays. Wait times: GPs same-day to 3 days, specialists 2-8 weeks, non-urgent surgery months. Emergency care is prompt. English increasingly common among younger doctors in Vilnius."
     },
     privateHealthcare: {
-      cost: "€70-160/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€50-100/month (local plans); €80-180/month (international)",
+      notes: "Private clinics have grown rapidly: Northway Medical (multiple locations, comprehensive), Kardiolita (cardiac specialty, also general), Gijos Klinika, Medcentras. Private care offers same-day appointments, modern facilities, and guaranteed English. Affidea provides imaging. Local insurers (Lietuvos draudimas, ERGO, Gjensidige) offer supplemental plans €30-50/month for private access. International insurance useful for travel and regional evacuation—Warsaw and Helsinki both within 1.5 hours by air."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Lithuanian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "No digital nomad visa: Unlike neighbors Estonia and Latvia, Lithuania hasn't introduced a DN visa. Remote workers must use Startup Visa (for founders), employment visa, or stay under 90 days. Working remotely on tourist status is technically illegal.",
+      "Startup Visa option: Lithuania's Startup Visa is genuinely accessible—valid for innovative businesses, 1-year initial, renewable. If you're building a tech company, this is your path. Otherwise, options are limited for non-EU remote workers.",
+      "Fintech hub reality: Vilnius has a genuine fintech cluster (Revolut, Vinted, TransferGo have operations), but employment is competitive and Lithuanian work permits require employer sponsorship.",
+      "Winter considerations: Lithuanian winters are cold (-10°C to -20°C) and dark (16+ hours). If you have seasonal affective disorder or cold-related health conditions, factor this in. Mental health coverage becomes more valuable.",
+      "Regional healthcare gap: Vilnius and Kaunas have good facilities; smaller towns have basic care only. If living outside major cities, ensure your plan covers transport to Vilnius for specialist care."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Lithuania visa?",
-        answer: "Yes. Most Lithuanian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Lithuania's PSD health insurance work?",
+        answer: "PSD (Privalomasis sveikatos draudimas = mandatory health insurance) covers all residents. Employed workers pay 6.98% of gross income, automatically withheld. Self-employed pay a fixed monthly rate (category A ~€70/month, category B ~€55/month—most freelancers are B). The system is managed through TLK (Territorial Health Insurance Funds). Once enrolled, you get a European Health Insurance Card and access to public healthcare. Coverage includes GPs, specialists, hospitals, and medications with copays."
       },
       {
-        question: "How does Lithuanian public healthcare work?",
-        answer: "Lithuania's public healthcare system (TLK) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is Lithuania's Startup Visa and who qualifies?",
+        answer: "Lithuania's Startup Visa lets non-EU founders build innovative businesses. Requirements: innovative/scalable business concept, business plan evaluation by Startup Lithuania, proof of funds (minimum ~€6,000), health insurance. The visa is initially 1 year, renewable for 2 more years, then you can apply for temporary residence. It's one of Europe's more accessible startup visas—approval rates are reasonable if your business is genuinely tech/innovation focused. Fintech, SaaS, and deep tech have good track records."
       },
       {
-        question: "How much does health insurance cost in Lithuania?",
-        answer: "International health insurance typically costs €70-160/month depending on your age and coverage level. Local/public options cost €25-50/month but may have limitations for non-citizens."
+        question: "Is Vilnius healthcare good enough for expats?",
+        answer: "Vilnius healthcare has improved substantially. Santaros Klinikos (the main university hospital) handles complex cases competently—oncology, cardiology, neurosurgery. Private clinics like Northway and Kardiolita offer excellent outpatient care with modern equipment and English-speaking staff. For routine care and most serious conditions, you'll be well-served in Vilnius. Limitations: some cutting-edge treatments, rare specialists, and transplants may require travel to Western Europe. Overall, Vilnius punches above its weight for a city its size."
       },
       {
-        question: "What's the best health insurance for expats in Lithuania?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How do I register as self-employed in Lithuania?",
+        answer: "Self-employment options: 1) Individual Activity Certificate (individuali veikla)—simplest, register online via VMI (tax authority), pay fixed PSD (~€55-70/month) plus 5-15% income tax. Good for freelancers earning under €45,000/year. 2) Small partnership (MB) or UAB (LLC) for larger operations. For individual activity: register at VMI, then Sodra (social insurance), then TLK (health insurance). Process takes 1-2 weeks. Non-EU citizens need valid residence permit first—can't register business on tourist visa."
       },
       {
-        question: "Are pre-existing conditions covered in Lithuania?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How much does private healthcare cost in Lithuania?",
+        answer: "Private costs in Lithuania: GP consultation €30-40, specialist €40-70, MRI €150-250, ultrasound €40-60, blood panel €30-50, minor surgery €500-2,000. Northway offers subscription packages (~€20-40/month) for discounted access. Dental: cleaning €40-60, filling €40-80, crown €200-400—Lithuania has growing dental tourism. These prices are roughly 30-50% of Western European equivalents. Private insurance (local) adds €30-50/month for comprehensive private access."
       }
     ],
     sidebarLinks: [
@@ -1971,12 +1971,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/lithuania/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Eastern Europe Region",
+        href: "/regions/eastern-europe"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Insurance for Entrepreneurs",
+        href: "/insurance-for/entrepreneurs"
       },
       {
         title: "Best Expat Health Insurance",
@@ -1988,65 +1988,65 @@ const programmaticCountries: Country[] = [
     slug: "latvia",
     name: "Latvia",
     demonym: "Latvian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Latvia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Latvia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Latvia. Digital Nomad Visa requirements, NVD public healthcare, Riga hospitals, and private options like Veselības centrs 4 and ARS.",
     headline: "Latvia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Latvia—understanding the NHS system and international insurance options.",
+    subheadline: "Navigate healthcare in this affordable Baltic gem—understanding the Digital Nomad Visa insurance requirements, NVD public system, Riga's private clinics, and the most budget-friendly option among Baltic states.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Latvia.",
-      "The public healthcare system (NHS) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €70-160/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence Permit, Digital Nomad Visa."
+      "Digital Nomad Visa available—requires health insurance with €42,500 coverage minimum.",
+      "NVD (National Health Service) provides tax-funded public healthcare; expats need private coverage.",
+      "Most affordable Baltic state—private GP visits €25-40, full health checkup €100-200.",
+      "Riga has good private clinics (Veselības centrs 4, ARS, Premium Medical); rest of country limited.",
+      "Public system underfunded—long waits for specialists make private insurance valuable."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Latvia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Latvian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Latvia's Digital Nomad Visa specifically requires health insurance with minimum €42,500 coverage valid for entire stay. Other residence permits also require insurance proof. Latvia's public healthcare (NVD) is tax-funded—you don't pay contributions separately, but it's available primarily to residents paying income tax. Non-EU expats on DN visas typically rely on international insurance rather than public healthcare. EU citizens can use EHIC for temporary stays.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Digital nomads—mandatory for DN Visa, minimum €42,500 coverage required",
+      "Non-EU expats—required for all residence permit types",
+      "EU citizens staying long-term—public system has long waits; private recommended",
+      "Anyone outside Riga—regional healthcare is basic; insurance provides Riga access",
+      "Those with ongoing conditions—public specialist waits can exceed 3 months"
     ],
     publicHealthcare: {
-      name: "NHS",
-      access: "Latvian citizens, legal residents, EU citizens with EHIC",
-      cost: "€25-50/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "NVD (Nacionālais veselības dienests / National Health Service)",
+      access: "Latvian citizens, registered residents paying income tax, EU citizens with EHIC",
+      cost: "Tax-funded (no separate contribution); patient copays €2-15 per visit",
+      notes: "Latvia's public healthcare is the most underfunded in the Baltics. Long wait times are common—specialists 1-3 months, non-urgent surgery 6-12 months. Riga hospitals: Pauls Stradiņš Clinical University Hospital (largest, best for complex cases), Riga East University Hospital, Children's Clinical University Hospital. Quality is acceptable for emergencies and basic care; complex cases often referred abroad or handled privately. English limited in public facilities outside Riga."
     },
     privateHealthcare: {
-      cost: "€70-160/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€40-80/month (local plans); €70-160/month (international)",
+      notes: "Private sector fills the public system gaps. Main private clinics in Riga: Veselības centrs 4 (largest private network, comprehensive), ARS (multiple locations), Premium Medical, Rīgas 1. slimnīca (private wing). Latvian private healthcare is very affordable by European standards—often 40-50% cheaper than Estonia. Local insurers (BTA, ERGO, If) offer good supplemental plans €25-40/month. International insurance useful for regional evacuation (Helsinki, Warsaw, Stockholm all within 1.5 hours by air)."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Latvian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Digital Nomad Visa specifics: Valid for 1 year (non-renewable—you must leave or change status). Requirements: remote work for non-Latvian employer, €2,857/month minimum income (2.5x Latvian average wage), health insurance with €42,500 minimum, clean criminal record. Apply through PMLP (Office of Citizenship and Migration Affairs).",
+      "Public healthcare underfunding: Latvia spends less on healthcare than Estonia or Lithuania. This means longer waits, older equipment, and fewer specialists. If you have chronic conditions or anticipate needing specialist care, private insurance is essential—not optional.",
+      "Riga-centric healthcare: Nearly all quality care is in Riga. If living in Jūrmala, Liepāja, or elsewhere, expect to travel to Riga for anything beyond basic GP care. Factor transport time into emergency planning.",
+      "Language barrier: Latvian is the primary language; Russian is widely spoken (30% of population). English is common among younger medical staff in Riga but not guaranteed elsewhere. Private clinics typically have English-speaking staff.",
+      "EU citizens limitation: Even with EHIC, you'll face the same long waits as Latvian residents. EHIC covers costs but doesn't provide queue-jumping. Private insurance strongly recommended for any EU citizen staying beyond a few months."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Latvia visa?",
-        answer: "Yes. Most Latvian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Latvia's Digital Nomad Visa work?",
+        answer: "Latvia's DN Visa lets remote workers live legally for up to 1 year. Requirements: employment or self-employment for non-Latvian company, minimum income €2,857/month (gross), health insurance covering €42,500, no criminal record, proof of accommodation. Cost is €100 application fee. Key limitation: it's non-renewable—after 1 year you must leave Latvia or switch to another visa type. Good for testing Latvia before committing to longer-term residence."
       },
       {
-        question: "How does Latvian public healthcare work?",
-        answer: "Latvia's public healthcare system (NHS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Why is Latvia the cheapest Baltic state for healthcare?",
+        answer: "Latvia has lower wages and living costs than Estonia and Lithuania, and this extends to healthcare. Private GP visit: Latvia €25-40, Estonia €40-60, Lithuania €30-40. Full health checkup: Latvia €100-200, Estonia €150-300. Dental crown: Latvia €150-300, Estonia €250-400. The tradeoff: Latvia's public system is also more underfunded, so you're more reliant on private care. For expats with insurance, Latvia offers excellent value."
       },
       {
-        question: "How much does health insurance cost in Latvia?",
-        answer: "International health insurance typically costs €70-160/month depending on your age and coverage level. Local/public options cost €25-50/month but may have limitations for non-citizens."
+        question: "Is Riga healthcare good enough for expats?",
+        answer: "Riga's private clinics (Veselības centrs 4, ARS, Premium Medical) provide good outpatient care—modern equipment, English-speaking staff, reasonable wait times. For serious conditions, Pauls Stradiņš Hospital handles complex cases competently. Limitations: some specialized treatments may require travel to Helsinki, Stockholm, or Western Europe. Riga is adequate for routine care and most serious conditions; it's not a medical destination for cutting-edge treatments."
       },
       {
-        question: "What's the best health insurance for expats in Latvia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What's the difference between NVD and private insurance?",
+        answer: "NVD (public): Tax-funded, no monthly premium, covers all basic care, but has long waits (weeks to months for specialists), older facilities, limited English. Small copays (€2-15) per visit. Private insurance: Monthly premium (€40-80 local, €70-160 international), immediate access to private clinics, modern facilities, English-speaking staff, no waits. Most expats in Latvia get private insurance—the public system waits are too long for non-emergency care."
       },
       {
-        question: "Are pre-existing conditions covered in Latvia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Can I stay longer than 1 year on the Digital Nomad Visa?",
+        answer: "No—Latvia's DN Visa is explicitly non-renewable. After 12 months, options are: 1) Leave Latvia (you can return as tourist for 90 days, or try another country's DN visa), 2) Switch to employment-based residence permit (requires Latvian employer), 3) Start a Latvian company and get business residence, 4) If you have EU citizenship, simply register as EU resident. Many nomads use Latvia's DN year as a trial before deciding on longer-term Baltics residence—Estonia and Lithuania have other advantages."
       }
     ],
     sidebarLinks: [
@@ -2059,16 +2059,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/latvia/insurance/allianz-care"
       },
       {
+        title: "Eastern Europe Region",
+        href: "/regions/eastern-europe"
+      },
+      {
         title: "Insurance for Digital Nomads",
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
-      },
-      {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Best Budget Expat Insurance",
+        href: "/best/budget-expat-insurance"
       }
     ]
   },
@@ -2076,65 +2076,65 @@ const programmaticCountries: Country[] = [
     slug: "estonia",
     name: "Estonia",
     demonym: "Estonian",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Estonia (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Estonia. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Estonia. Digital Nomad Visa, e-Residency limitations, Haigekassa public system, Confido and Medicum private clinics, and Helsinki backup option.",
     headline: "Estonia Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Estonia—understanding the Haigekassa system and international insurance options.",
+    subheadline: "Navigate healthcare in the world's most digital society—understanding the Digital Nomad Visa, why e-Residency doesn't include healthcare, Haigekassa enrollment, Tallinn's modern clinics, and Helsinki as your 2-hour backup.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Estonia.",
-      "The public healthcare system (Haigekassa) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Digital Nomad Visa, Temporary Residence Permit."
+      "Digital Nomad Visa (one of the world's first) requires health insurance—€3,504/month income minimum.",
+      "e-Residency does NOT provide healthcare or residency—it's for business only.",
+      "Haigekassa (Estonian Health Insurance Fund) covers employed residents; DN visa holders need private insurance.",
+      "Tallinn has excellent private clinics (Confido, Medicum, Quattromed); Helsinki is 2 hours by ferry for complex care.",
+      "Most digitally advanced healthcare—e-prescriptions, online records, digital ID authentication everywhere."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Estonia requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Estonian standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Estonia's Digital Nomad Visa requires comprehensive health insurance valid for your entire stay. e-Residency (Estonia's famous digital business program) does NOT include healthcare or physical residency rights—it's purely for running an Estonian company remotely. Haigekassa (public health insurance) is available to employed residents and those paying social tax; DN visa holders don't qualify and must maintain private insurance. EU citizens can use EHIC temporarily but need Haigekassa enrollment or private coverage for long-term stays.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Digital nomads—mandatory for DN Visa application and entire stay",
+      "e-Residents without physical residence—e-Residency provides no healthcare; need home country or international coverage",
+      "Non-EU expats on work permits—can access Haigekassa through employment; private insurance for the gap period",
+      "EU citizens without employment—Haigekassa requires social tax; unemployed EU citizens need private coverage",
+      "Those wanting guaranteed English—private clinics have better English than public hospitals"
     ],
     publicHealthcare: {
-      name: "Haigekassa",
-      access: "Estonian citizens, legal residents, EU citizens with EHIC",
-      cost: "€30-60/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Haigekassa (Estonian Health Insurance Fund)",
+      access: "Employed residents, self-employed paying social tax, EU citizens with EHIC (temporary)",
+      cost: "Funded through social tax (33% of gross, paid by employer); no direct premiums for covered persons",
+      notes: "Estonia's public healthcare is digitally advanced—all records electronic, e-prescriptions universal, online booking. Main hospitals in Tallinn: North Estonia Medical Centre (Põhja-Eesti Regionaalhaigla—largest, handles complex cases), East Tallinn Central Hospital, Tallinn Children's Hospital. Tartu University Hospital is the main academic center. Quality is good for the Baltics; wait times moderate (2-6 weeks for specialists). English is common among younger doctors in Tallinn. Digital systems mean your records follow you seamlessly."
     },
     privateHealthcare: {
-      cost: "€80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€60-120/month (local plans); €100-220/month (international)",
+      notes: "Private sector is well-developed: Confido (largest private, multiple clinics, comprehensive), Medicum (diagnostics focus), Quattromed (labs), Fertilitas (fertility), Elite Kliinik. Private care offers same-day appointments, modern facilities, guaranteed English. Estonian private insurance (ERGO, Salva, Compensa) costs €40-70/month for good coverage. Helsinki is 2 hours by ferry—some expats use Finland for complex procedures. International insurance valuable for Finland access and global coverage."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Estonian regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "e-Residency misconception: Estonia's e-Residency program lets you run an Estonian company remotely—it does NOT provide residency, healthcare, or the right to live in Estonia. Many people confuse this. If you're e-Resident only, you need insurance from wherever you physically live.",
+      "Digital Nomad Visa details: 1-year validity (Type C for short stay, Type D for long stay up to 1 year). Requirements: remote work for non-Estonian employer, €3,504/month income (4,520 for Type C), health insurance, no Estonian tax residency. Renewable once for another year. Apply through PPA (Police and Border Guard Board).",
+      "Social tax for Haigekassa: To access public healthcare, someone must pay social tax (33% of gross salary) on your behalf. Employed workers are covered. Self-employed pay it themselves (minimum base applies). DN visa holders don't pay Estonian social tax—hence no Haigekassa access.",
+      "Helsinki backup: Tallinn's healthcare is good but not comprehensive for rare conditions. Helsinki (2-hour ferry, 30-minute flight) has world-class facilities. If you have complex conditions, ensure your insurance covers Finland or has good evacuation terms.",
+      "Winter darkness: Estonia has extreme daylight variation—6 hours of light in December, 19 hours in June. If you have seasonal affective disorder, plan accordingly. This affects many expats' mental health; consider coverage that includes mental health services."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Estonia visa?",
-        answer: "Yes. Most Estonian visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "What's the difference between e-Residency and Digital Nomad Visa?",
+        answer: "e-Residency: Digital identity for running an Estonian company remotely. Does NOT provide residency, healthcare, or right to live in Estonia. You can be e-Resident while living anywhere. Cost: €100-120. Digital Nomad Visa: Actual visa to live in Estonia for up to 1 year. Requires health insurance, income proof (€3,504/month), remote work. Provides physical residency rights but not Haigekassa access (you're not paying social tax). Many people combine both—e-Residency for business, DN Visa for living—but they're separate things."
       },
       {
-        question: "How does Estonian public healthcare work?",
-        answer: "Estonia's public healthcare system (Haigekassa) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How do I get Haigekassa coverage as an expat?",
+        answer: "Haigekassa requires social tax payment. Options: 1) Get employed by Estonian company—employer pays social tax, you're covered from day one. 2) Register as self-employed (FIE) and pay social tax yourself (minimum ~€180/month in 2025). 3) Voluntary coverage is possible but expensive (~€200/month) and has conditions. Digital Nomad Visa holders can't easily access Haigekassa—the visa specifically exempts you from Estonian tax residency, which means no social tax, which means no Haigekassa. DN visa = private insurance required."
       },
       {
-        question: "How much does health insurance cost in Estonia?",
-        answer: "International health insurance typically costs €80-180/month depending on your age and coverage level. Local/public options cost €30-60/month but may have limitations for non-citizens."
+        question: "Is Estonia's healthcare really that digital?",
+        answer: "Yes—Estonia leads globally. All medical records are electronic and centralized (accessible via patient portal digilugu.ee). Prescriptions are 100% digital—doctor prescribes, any pharmacy dispenses using your ID. Online booking for most clinics. Digital signatures for consent forms. COVID accelerated telemedicine adoption. The benefit: no paper records to lose, any doctor can see your history, no prescription paper to carry. Works seamlessly with Estonian ID card or mobile ID. Expats can access their records online once registered."
       },
       {
-        question: "What's the best health insurance for expats in Estonia?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How does Tallinn compare to Helsinki for healthcare?",
+        answer: "Tallinn: Good private clinics (Confido, Medicum), adequate public hospitals, significantly cheaper (GP €40-60 vs Helsinki €100-150), English widely spoken in private sector. Handles routine care and most serious conditions competently. Helsinki: World-class facilities (HUS university hospital), cutting-edge treatments, extremely expensive, but accessible via 2-hour ferry or 30-minute flight. Strategy: Use Tallinn for routine care and most issues; reserve Helsinki for complex procedures, rare conditions, or second opinions. Many expats' insurance covers both."
       },
       {
-        question: "Are pre-existing conditions covered in Estonia?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Can I stay more than 1 year on the Digital Nomad Visa?",
+        answer: "The DN Visa is renewable once—maximum 2 years total. After that, options: 1) Switch to employment-based residence (requires Estonian employer), 2) Start registered business in Estonia and get startup/business residence, 3) Leave and return after the required absence period, 4) If EU citizen, simply register as EU resident (different process, more rights). Estonia is stricter than some countries about DN visa extensions—they genuinely want you to either integrate (employment, business) or move on. Plan your 2-year period as a trial for potential permanent relocation."
       }
     ],
     sidebarLinks: [
@@ -2147,16 +2147,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/estonia/insurance/allianz-care"
       },
       {
+        title: "Eastern Europe Region",
+        href: "/regions/eastern-europe"
+      },
+      {
         title: "Insurance for Digital Nomads",
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
-      },
-      {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Best Digital Nomad Insurance",
+        href: "/best/digital-nomad-insurance"
       }
     ]
   },
@@ -2428,63 +2428,65 @@ const programmaticCountries: Country[] = [
     slug: "iceland",
     name: "Iceland",
     demonym: "Icelandic",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Iceland (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Iceland. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Iceland. Sjúkratryggingar Íslands system, Landspítali hospital, EEA coverage, remote location evacuation, and expensive healthcare costs.",
     headline: "Iceland Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Iceland—understanding the Sjúkratryggingar Íslands system and international insurance options.",
+    subheadline: "Navigate healthcare on this remote North Atlantic island—understanding the tax-funded public system, Reykjavík's limited but quality hospitals, extremely high costs, and why evacuation coverage is essential.",
     summaryBullets: [
-      "Iceland does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (Sjúkratryggingar Íslands) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €200-450/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, Work Permit."
+      "Public healthcare is tax-funded for residents—but expect copays of ISK 2,000-6,000 (~€13-40) per visit.",
+      "Landspítali University Hospital in Reykjavík handles most care; complex cases may require evacuation to Copenhagen or London.",
+      "EEA member (not EU)—Nordic and EU citizens have EHIC access; others need private insurance for visa.",
+      "Extremely expensive—one of the world's highest healthcare costs. International insurance premiums reflect this.",
+      "Remote location (2-3 hour flight to Europe) makes evacuation coverage genuinely important."
     ],
-    insuranceRequired: false,
-    requirementExplanation: "Iceland does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    insuranceRequired: true,
+    requirementExplanation: "Iceland requires health insurance for residence permit applications. EEA/EU citizens can register for public healthcare after establishing legal residence and getting a kennitala (national ID). Non-EEA citizens need private insurance initially and may access public healthcare after 6 months of legal residence and employment. Given Iceland's extreme costs and remote location, international insurance with evacuation coverage is highly recommended for everyone.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Non-EEA visa applicants—required for residence permits",
+      "Everyone initially—public healthcare has 6-month wait for non-EEA residents",
+      "Those with complex conditions—Landspítali can't handle everything; evacuation to Europe may be needed",
+      "Anyone concerned about costs—even with public coverage, copays and uncovered services add up fast",
+      "Remote workers and digital nomads—no DN visa, but those staying long-term need coverage"
     ],
     publicHealthcare: {
-      name: "Sjúkratryggingar Íslands",
-      access: "Icelandic citizens, legal residents, EU citizens with EHIC",
-      cost: "Included in taxes",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Sjúkratryggingar Íslands (Icelandic Health Insurance)",
+      access: "Legal residents with kennitala; EEA citizens with EHIC for temporary stays",
+      cost: "Tax-funded; copays ISK 2,000-6,000 per visit (~€13-40); annual cap ISK 47,000 (~€310)",
+      notes: "Iceland's public system is tax-funded with patient copays. Quality is good but the system is small (population 380,000). Landspítali University Hospital in Reykjavík is the main facility—handles most specialties but not everything. Akureyri Hospital serves the north. Wait times for specialists can be 2-8 weeks. English is widely spoken. Complex procedures (specialized cancer treatment, organ transplants, some cardiac surgery) may require transfer to Copenhagen, London, or Boston."
     },
     privateHealthcare: {
-      cost: "€200-450/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€250-500/month (international plans); limited local private options",
+      notes: "Iceland has minimal private healthcare infrastructure—almost everyone uses the public system. A few private clinics in Reykjavík offer faster GP access and some specialist services (Læknavaktin, Domus Medica). International insurance is primarily valuable for: 1) covering high copays, 2) evacuation to better-equipped facilities abroad, 3) care during travel. Don't expect extensive private hospital options—they don't exist in Iceland."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Icelandic regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Remote location reality: Iceland is 2-3 hours by air from mainland Europe. For rare conditions, complex surgery, or specialist care unavailable at Landspítali, you'll need evacuation. Ensure your insurance covers medical evacuation to Scandinavia, UK, or further.",
+      "Extreme costs: Iceland is one of the world's most expensive countries. A private GP visit costs ISK 15,000-25,000 (~€100-165). Emergency room visit without insurance: ISK 30,000+ (~€200+). International insurance premiums for Iceland coverage are high—expect 20-40% more than for most European countries.",
+      "No digital nomad visa: Iceland hasn't introduced a DN visa. Remote workers typically need employment-based permits (requires Icelandic employer) or stay under 90 days on Schengen rules. Long-term remote work requires proper immigration status.",
+      "Winter challenges: Iceland has extreme daylight variation (4 hours in December, 21 hours in June) and harsh weather. If you have seasonal affective disorder, respiratory conditions affected by cold, or mobility issues on ice, plan accordingly. Mental health coverage is valuable.",
+      "Dental not covered: Public healthcare doesn't cover adult dental care. Budget separately or ensure your international plan includes dental. Icelandic dental costs are among Europe's highest."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Iceland visa?",
-        answer: "No. Iceland does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How do I access Iceland's public healthcare system?",
+        answer: "First, get a kennitala (Icelandic national ID number) through Registers Iceland. EEA citizens can then register with Sjúkratryggingar Íslands (Icelandic Health Insurance) and choose a primary care center (heilsugæslustöð). Non-EEA citizens with valid residence permits can access public healthcare after 6 months of legal residence. Until then, you'll need private insurance. Even with public coverage, expect copays for most services—Iceland's system isn't free at point of use."
       },
       {
-        question: "How does Icelandic public healthcare work?",
-        answer: "Iceland's public healthcare system (Sjúkratryggingar Íslands) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Is Landspítali hospital good enough for serious conditions?",
+        answer: "Landspítali is a competent university hospital with good general capabilities—emergency care, general surgery, cardiology, oncology basics, obstetrics. For a country of 380,000, it's well-equipped. Limitations: very specialized procedures, rare conditions, some pediatric specialties, and complex transplants may require transfer abroad. Iceland has agreements with hospitals in Copenhagen, London, and sometimes Boston for cases beyond local capabilities. If you have known complex conditions, discuss evacuation coverage with your insurer."
       },
       {
-        question: "How much does health insurance cost in Iceland?",
-        answer: "International health insurance typically costs €200-450/month depending on your age and coverage level. Local/public options cost Included in taxes but may have limitations for non-citizens."
+        question: "Can digital nomads live in Iceland?",
+        answer: "Not easily. Iceland has no digital nomad visa. Options: 1) Stay under 90 days on Schengen tourist entry (Iceland is in Schengen), 2) Get employed by an Icelandic company (they sponsor work permit), 3) Start an Icelandic business (complex, requires significant investment). Many nomads do short stints in Iceland but can't stay long-term legally without employment. Working remotely on tourist status violates visa terms. If caught, you risk deportation and Schengen-wide entry issues."
       },
       {
-        question: "What's the best health insurance for expats in Iceland?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How much does healthcare actually cost in Iceland?",
+        answer: "With public coverage: GP visit ISK 2,000-6,000 copay (~€13-40), specialist ISK 4,000-8,000 (~€26-53), hospital stay covered (small daily copay), annual cap ISK 47,000 (~€310). Without insurance: GP ISK 15,000-25,000 (~€100-165), ER visit ISK 30,000+ (~€200+), hospital day ISK 80,000-150,000 (~€530-1,000), MRI ISK 50,000-80,000 (~€330-530). Prescriptions have copays even with insurance. Iceland is genuinely one of the world's most expensive healthcare markets."
       },
       {
-        question: "Are pre-existing conditions covered in Iceland?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What residence options exist for non-EEA expats?",
+        answer: "Limited options: 1) Employment permit—requires job offer from Icelandic employer; they must prove no EEA candidate available. 2) Student permit—for enrolled students. 3) Family reunification—if spouse/partner is Icelandic or legal resident. 4) Expert/specialist permit—for highly skilled workers in shortage occupations. There's no investor visa, no retirement visa, no digital nomad visa. Iceland has restrictive immigration policies for non-EEA citizens. Most expats are there through employment or family connections."
       }
     ],
     sidebarLinks: [
@@ -2497,12 +2499,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/iceland/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Western Europe Region",
+        href: "/regions/western-europe"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Insurance for Remote Workers",
+        href: "/insurance-for/remote-workers"
       },
       {
         title: "Best Expat Health Insurance",
@@ -2514,65 +2516,65 @@ const programmaticCountries: Country[] = [
     slug: "andorra",
     name: "Andorra",
     demonym: "Andorran",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Andorra (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Andorra. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Andorra. CASS social security, passive vs active residence, tax advantages, Barcelona/Toulouse evacuation, and ski country healthcare.",
     headline: "Andorra Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Andorra—understanding the CASS system and international insurance options.",
+    subheadline: "Navigate healthcare in this Pyrenean tax haven—understanding CASS social security enrollment, passive vs active residence requirements, Barcelona as your backup hospital, and ski-related coverage considerations.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Andorra.",
-      "The public healthcare system (CASS) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €150-350/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Passive Residence, Active Residence."
+      "CASS (Caixa Andorrana de Seguretat Social) is mandatory—covers 75% of costs, supplemental insurance covers the rest.",
+      "Passive Residence requires €600,000+ deposit and private insurance; Active Residence requires CASS enrollment.",
+      "Hospital Nostra Senyora de Meritxell is the only hospital; complex cases go to Barcelona (2.5 hours) or Toulouse (2 hours).",
+      "Low tax jurisdiction—max 10% income tax, no wealth tax, no inheritance tax. Popular with retirees and remote workers.",
+      "Ski country—winter sports coverage essential; high altitude (1,000-2,900m) affects some health conditions."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Andorra requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Andorran standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Insurance requirements depend on residence type. Active Residence (working in Andorra): mandatory CASS enrollment through employer or self-employment—covers 75% of costs, most residents add supplemental insurance for the remaining 25%. Passive Residence (non-working): requires comprehensive private health insurance as condition of residency; you can't join CASS without Andorran income. Digital Nomad Residence: requires private insurance valid in Andorra.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Passive residents—mandatory private insurance required; no CASS access without Andorran income",
+      "Active residents—CASS is mandatory but covers only 75%; supplemental insurance recommended",
+      "Digital nomad visa holders—private insurance required for application",
+      "Skiers and outdoor enthusiasts—mountain rescue and ski injury coverage essential",
+      "Those with complex conditions—only one hospital; Barcelona/Toulouse evacuation may be needed"
     ],
     publicHealthcare: {
-      name: "CASS",
-      access: "Andorran citizens, legal residents, EU citizens with EHIC",
-      cost: "€80-150/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "CASS (Caixa Andorrana de Seguretat Social)",
+      access: "Active residents (employed/self-employed in Andorra); not available to passive residents",
+      cost: "~22% of salary (employer 15.5% + employee 6.5%); self-employed pay full amount on declared income",
+      notes: "CASS covers 75% of medical costs—you pay 25% unless you have supplemental insurance (mutua). Hospital Nostra Senyora de Meritxell in Escaldes-Engordany is Andorra's only hospital—small but modern, handles routine surgery, emergencies, obstetrics. Specialists visit from Spain/France. Complex cases (major trauma, cancer treatment, cardiac surgery, transplants) transfer to Barcelona or Toulouse. CASS has agreements with Spanish and French hospitals. Wait times are short due to small population (80,000)."
     },
     privateHealthcare: {
-      cost: "€150-350/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€100-200/month (supplemental to cover CASS 25%); €200-400/month (comprehensive for passive residents)",
+      notes: "Private insurance in Andorra typically means: 1) Supplemental coverage (mutua) that pays the 25% CASS doesn't cover—offered by local insurers like Assegurances Generals or Spanish insurers (Sanitas, Adeslas), or 2) Comprehensive international coverage for passive residents who can't join CASS. Many expats choose Spanish insurance that covers both Andorra and Barcelona hospitals. International insurers (Cigna, Allianz, Bupa) provide broader coverage including evacuation worldwide."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Andorran regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Passive vs Active residence: Passive Residence (for those with independent means) requires €600,000+ bank deposit or investment in Andorran property/business, plus comprehensive private insurance—no CASS access. Active Residence (for workers) gives CASS access but requires actually working in Andorra. Choose your path carefully; it affects healthcare options.",
+      "Single hospital limitation: Hospital Nostra Senyora de Meritxell is competent for routine care but limited for complex cases. Serious trauma, advanced cancer treatment, and specialized surgery typically mean transfer to Barcelona (Hospital Clínic, Vall d'Hebron) or Toulouse. Ensure your insurance covers cross-border care.",
+      "Mountain/ski coverage: Andorra is a ski destination with peaks up to 2,900m. Standard travel insurance often excludes skiing; some health policies do too. Verify your plan covers ski injuries, mountain rescue (helicopter evacuation costs €3,000-10,000), and altitude-related conditions.",
+      "Altitude considerations: Andorra la Vella sits at 1,023m; ski areas reach 2,900m. If you have heart conditions, respiratory issues, or other altitude-sensitive health problems, consult your doctor. The altitude affects medication storage, some medical conditions, and physical exertion.",
+      "Tax residence rules: To claim Andorra's tax benefits, you must spend 183+ days per year there. Health insurance often requires proof of residence. If you split time between countries, ensure your coverage is valid wherever you actually are."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Andorra visa?",
-        answer: "Yes. Most Andorran visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Andorra's Passive Residence work for retirees?",
+        answer: "Passive Residence allows non-working individuals (retirees, investors) to live in Andorra. Requirements: 1) Clean criminal record, 2) Deposit €50,000 with AFA (financial authority) plus €10,000 per dependent, 3) Investment in Andorran assets of €600,000+ (property, business shares, or bank deposit), 4) Comprehensive private health insurance, 5) Commit to residing 90+ days per year (183+ for tax residency). You cannot work in Andorra on passive residence. CASS is not available—you must maintain private coverage."
       },
       {
-        question: "How does Andorran public healthcare work?",
-        answer: "Andorra's public healthcare system (CASS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What is Andorra's Digital Nomad Visa?",
+        answer: "Andorra introduced a Digital Nomad Residence in 2022. Requirements: Proof of remote work for non-Andorran company, minimum income €40,000/year, valid health insurance covering Andorra, clean criminal record, €50,000 AFA deposit. The permit allows 2-year residence (renewable). Unlike Passive Residence, deposit requirement is lower and no €600,000 investment needed. You still can't access CASS—private insurance is mandatory. Tax benefits apply if you meet the 183-day residency threshold."
       },
       {
-        question: "How much does health insurance cost in Andorra?",
-        answer: "International health insurance typically costs €150-350/month depending on your age and coverage level. Local/public options cost €80-150/month but may have limitations for non-citizens."
+        question: "Is Andorra's hospital adequate for expats?",
+        answer: "Hospital Nostra Senyora de Meritxell handles most routine care well: emergency services, general surgery, orthopedics (lots of ski injuries), obstetrics, basic cardiology. It's modern and uncrowded. Limitations: complex cancer treatment, advanced cardiac surgery, transplants, rare conditions, and specialized pediatrics require transfer to Barcelona (2.5 hours by road) or Toulouse (2 hours). CASS has agreements with major Spanish and French hospitals. For routine healthcare, Andorra is fine; for complex needs, you're really using Barcelona with Andorran residence."
       },
       {
-        question: "What's the best health insurance for expats in Andorra?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How does CASS supplemental insurance work?",
+        answer: "CASS covers 75% of approved healthcare costs—you pay 25% out of pocket (ticket moderador). Supplemental insurance (mutua) covers this 25%. Options: 1) Andorran insurers (Assegurances Generals, AXA Andorra) offer local mutua plans €30-80/month. 2) Spanish insurers (Sanitas, Adeslas, DKV) offer plans covering both Andorra and Spain—useful for Barcelona hospital access—€50-150/month. 3) International insurers provide global coverage but are pricier. Most working expats get employer-arranged mutua or Spanish health insurance for seamless Barcelona access."
       },
       {
-        question: "Are pre-existing conditions covered in Andorra?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What are Andorra's actual tax benefits?",
+        answer: "Andorra offers: Maximum 10% income tax (compared to 40-50%+ in France/Spain), no wealth tax, no inheritance tax, 10% capital gains tax, corporate tax max 10%. VAT equivalent (IGI) is 4.5%. To qualify for tax residency: spend 183+ days per year in Andorra and establish it as your center of economic interests. Andorra is not a zero-tax jurisdiction—it's low-tax. The combination of low taxes, Pyrenean lifestyle, ski access, and Barcelona proximity makes it attractive to high earners, retirees, and remote workers willing to actually live there."
       }
     ],
     sidebarLinks: [
@@ -2585,16 +2587,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/andorra/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Western Europe Region",
+        href: "/regions/western-europe"
       },
       {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
       },
       {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Insurance for Entrepreneurs",
+        href: "/insurance-for/entrepreneurs"
       }
     ]
   },
@@ -2602,65 +2604,65 @@ const programmaticCountries: Country[] = [
     slug: "monaco",
     name: "Monaco",
     demonym: "Monégasque",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Monaco (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Monaco. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Monaco. CCSS social security, residence requirements, Princess Grace Hospital, Nice CHU backup, and ultra-high-net-worth healthcare options.",
     headline: "Monaco Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Monaco—understanding the CCSS system and international insurance options.",
+    subheadline: "Navigate healthcare in the world's wealthiest microstate—understanding CCSS social security for workers, private insurance requirements for non-workers, Princess Grace Hospital, and access to Nice's excellent medical facilities.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Monaco.",
-      "The public healthcare system (CCSS) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs €300-600/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Card."
+      "Workers must join CCSS (Monaco social security); non-working residents need comprehensive private insurance.",
+      "Princess Grace Hospital Centre is the main facility—small but excellent; complex cases use Nice CHU (30 minutes).",
+      "No income tax for residents—but residence requires substantial financial means (€500,000+ liquid assets typically).",
+      "World's wealthiest territory—healthcare expectations and costs match. Concierge medicine common.",
+      "Only 2 km²—everything is close; Nice and French Riviera hospitals are your extended medical network."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Monaco requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Monégasque standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Insurance requirements depend on status. Workers (employed or self-employed in Monaco): mandatory CCSS enrollment—employer/employee contributions fund comprehensive coverage. Non-working residents (rentiers, retirees): must show comprehensive private health insurance as condition of residence card. Monaco doesn't accept residents without either employment-based social security or private coverage demonstrating ability to cover medical costs.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "Non-working residents (rentiers, retirees)—private insurance mandatory for residence card",
+      "Workers before CCSS activates—coverage gap during initial processing",
+      "Those wanting care outside Monaco—Princess Grace is good but small; international plans access Nice, Paris, London",
+      "Ultra-high-net-worth individuals—concierge and executive health plans common in Monaco",
+      "Yacht owners and frequent travelers—Monaco residents often need global coverage"
     ],
     publicHealthcare: {
-      name: "CCSS",
-      access: "Monégasque citizens, legal residents, EU citizens with EHIC",
-      cost: "€150-300/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "CCSS (Caisse de Compensation des Services Sociaux)",
+      access: "Workers (employed or self-employed) in Monaco; not available to non-working residents",
+      cost: "~28% of salary (employer ~24% + employee ~4%); comprehensive coverage for members",
+      notes: "CCSS provides excellent coverage for workers—medical, hospital, prescriptions, dental partially. Princess Grace Hospital Centre (Centre Hospitalier Princesse Grace) is Monaco's main hospital—small (500 beds) but modern with good specialists. Monaco has agreements with French hospitals; complex cases transfer to CHU Nice (30 min), or specialists travel to Monaco. CCSS also covers treatment in France. Non-working residents cannot join CCSS—private insurance is their only option."
     },
     privateHealthcare: {
-      cost: "€300-600/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "€300-800/month (comprehensive); €500-2,000/month (executive/concierge plans)",
+      notes: "Monaco's private insurance market caters to high-net-worth individuals. Options: 1) French insurers (AXA, Allianz France, Generali)—cover Monaco and France, useful for Nice hospital access. 2) International premium insurers (Cigna Global, Bupa Global, Allianz Care)—global coverage, concierge services, executive health programs. 3) Specialty providers (April International, Henner)—popular with Monaco's expat community. Many Monaco residents choose high-end plans with global coverage, annual health checks, and direct access to top European specialists."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Monégasque regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Residence requirements: Monaco doesn't have a 'visa'—it's not in Schengen or EU. To become a resident, you apply directly to Monaco authorities. Requirements include: clean criminal record, proof of accommodation in Monaco (rental or ownership—expect €30,000+/month for a modest apartment), and financial means. Unofficially, you need €500,000+ in liquid assets and proof of stable income. Not a budget destination.",
+      "Princess Grace Hospital limitations: The hospital is excellent for a city of 40,000 but can't match major medical centers. Complex cancer treatment, transplants, rare diseases, and specialized pediatrics typically go to Nice (CHU Nice-Pasteur, Centre Antoine Lacassagne), Paris, or London. Ensure your insurance covers these without friction.",
+      "No income tax, but...: Monaco has no personal income tax for residents (except French citizens, who still pay French tax). However, cost of living is extreme—Europe's highest. Healthcare costs match. A private GP visit might cost €150-300, specialists €300-500. Budget insurance won't cut it here.",
+      "French healthcare integration: Monaco has agreements with France's social security system. CCSS members can use French hospitals. Many Monaco residents see French specialists who visit Monaco or take the 30-minute trip to Nice. Your insurance should seamlessly cover France.",
+      "Yacht and travel considerations: Many Monaco residents have yachts, travel frequently, and split time between multiple homes. Standard territorial insurance won't work. International plans with worldwide coverage, maritime coverage, and evacuation from anywhere are common choices."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Monaco visa?",
-        answer: "Yes. Most Monégasque visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How do I become a Monaco resident?",
+        answer: "Monaco residence (carte de séjour) requires: 1) Clean criminal record from home country, 2) Proof of accommodation in Monaco—lease or property ownership (minimum €30,000+/month for rental), 3) Proof of financial resources—bank statements showing substantial liquid assets (unofficially €500,000+) and stable income, 4) Health insurance—CCSS if you'll work in Monaco, comprehensive private if not. Apply at the Residents Section of Public Security (Section des Résidents). Processing takes 2-4 months. There's no visa—Monaco is outside Schengen, so you apply directly as a foreigner."
       },
       {
-        question: "How does Monégasque public healthcare work?",
-        answer: "Monaco's public healthcare system (CCSS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does Monaco's CCSS compare to private insurance?",
+        answer: "CCSS is excellent for workers—comprehensive coverage, strong French hospital integration, good prescription benefits. Limitations: only available if you work in Monaco (employment or self-employment), and some people prefer more privacy or faster access than the system provides. Non-working residents (retirees, investors) cannot join CCSS at all—private insurance is mandatory. Many workers supplement CCSS with private coverage for extras: private hospital rooms, faster specialist access, treatment abroad, dental/vision beyond CCSS limits."
       },
       {
-        question: "How much does health insurance cost in Monaco?",
-        answer: "International health insurance typically costs €300-600/month depending on your age and coverage level. Local/public options cost €150-300/month but may have limitations for non-citizens."
+        question: "Is Princess Grace Hospital good enough for serious conditions?",
+        answer: "Princess Grace Hospital Centre is a well-equipped modern facility with competent staff. For emergencies, routine surgery, cardiology, obstetrics—absolutely fine. Limitations come from scale: with 500 beds serving 40,000 people, it can't maintain specialists for every rare condition. Complex oncology, transplants, pediatric specialties, and unusual cases typically transfer to CHU Nice (30 min), Institut Paoli-Calmettes Marseille (cancer), or major Paris/London hospitals. Monaco's healthcare strategy accepts this—the principality provides excellent routine care and has pathways to top facilities when needed."
       },
       {
-        question: "What's the best health insurance for expats in Monaco?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "What insurance do Monaco's wealthy residents actually use?",
+        answer: "Monaco's affluent residents typically choose: 1) Premium international insurers (Cigna Global Platinum, Bupa Global Ultimate, Allianz Worldwide Care)—€10,000-30,000+/year for comprehensive global coverage with concierge services. 2) Executive health programs—annual comprehensive checkups at facilities like Cleveland Clinic, Mayo Clinic, or London's private hospitals. 3) French premium plans (AXA Santé, Generali France) for seamless Monaco-France coverage. Many combine these. The common thread: global coverage, no meaningful limits, direct specialist access, and discretion."
       },
       {
-        question: "Are pre-existing conditions covered in Monaco?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What are Monaco's actual tax benefits?",
+        answer: "Monaco residents pay zero personal income tax (unless they're French citizens, who remain liable for French tax). No wealth tax, no capital gains tax on most investments, no inheritance tax between direct family members. VAT is 20% (aligned with France). The catch: becoming a resident requires proving substantial financial means, and cost of living is extraordinary—smallest apartments cost €30,000+/month to rent. Monaco's tax benefits are real but only matter if you can afford Monaco's price of entry."
       }
     ],
     sidebarLinks: [
@@ -2673,16 +2675,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/monaco/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Western Europe Region",
+        href: "/regions/western-europe"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Insurance for Entrepreneurs",
+        href: "/insurance-for/entrepreneurs"
       },
       {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Insurance for Seniors",
+        href: "/insurance-for/seniors"
       }
     ]
   },
@@ -2690,65 +2692,65 @@ const programmaticCountries: Country[] = [
     slug: "liechtenstein",
     name: "Liechtenstein",
     demonym: "Liechtensteiner",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Liechtenstein (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Liechtenstein. Visa requirements, public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Liechtenstein. Mandatory OKP insurance (Swiss-style), Landesspital hospital, Swiss hospital access, restrictive immigration, and CHF costs.",
     headline: "Liechtenstein Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Liechtenstein—understanding the OKP system and international insurance options.",
+    subheadline: "Navigate healthcare in this tiny Alpine principality—understanding mandatory Swiss-style insurance (OKP), the small Landesspital, seamless access to Swiss hospitals, and one of Europe's most restrictive immigration systems.",
     summaryBullets: [
-      "Health insurance is required for most visa types in Liechtenstein.",
-      "The public healthcare system (OKP) is available to residents and may be accessible to EU citizens.",
-      "International health insurance typically costs CHF 350-700/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit."
+      "Health insurance (OKP) is mandatory—Swiss-style system with approved insurers and deductible choice (Franchise).",
+      "Landesspital in Vaduz handles basics; complex cases use Swiss hospitals (Kantonsspital Graubünden in Chur is 30 minutes).",
+      "EEA member but extremely restrictive immigration—only 89 residence permits issued annually to non-Swiss/EEA citizens.",
+      "Uses Swiss franc (CHF)—healthcare costs similar to Switzerland. Budget CHF 300-500/month for OKP premiums.",
+      "Tiny population (39,000)—everyone knows everyone. Healthcare is personalized but limited in scope."
     ],
     insuranceRequired: true,
-    requirementExplanation: "Liechtenstein requires proof of health insurance for most visa and residency applications. Coverage requirements vary by visa type, but international health insurance that meets Liechtensteiner standards is generally accepted. Check specific requirements for your visa category.",
+    requirementExplanation: "Health insurance is mandatory for all Liechtenstein residents, similar to Switzerland's system. You must purchase OKP (Obligatorische Krankenpflegeversicherung) basic insurance from an approved insurer within 3 months of establishing residence. Employers don't provide health insurance—individuals arrange and pay for their own coverage. The government publishes a list of approved insurers. International insurance doesn't satisfy the mandate; you need OKP from an approved provider. Supplemental insurance (Zusatzversicherung) is optional.",
     whoNeedsInsurance: [
-      "All visa applicants—insurance is typically required",
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers"
+      "All residents—mandatory OKP enrollment required by law",
+      "New arrivals—must arrange OKP within 3 months of residence",
+      "Those wanting private/semi-private hospital rooms—OKP covers general ward only",
+      "Anyone needing specialists—many aren't available locally; Swiss access essential",
+      "Cross-border workers—special rules if you work in Liechtenstein but live in Switzerland/Austria"
     ],
     publicHealthcare: {
-      name: "OKP",
-      access: "Liechtensteiner citizens, legal residents, EU citizens with EHIC",
-      cost: "CHF 300-500/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "OKP (Obligatorische Krankenpflegeversicherung)",
+      access: "All residents (mandatory); must purchase from approved insurer",
+      cost: "CHF 250-450/month (varies by deductible choice); plus 10% cost-sharing up to CHF 700/year",
+      notes: "OKP works like Swiss basic insurance. Choose your deductible (Franchise): CHF 0-2,500/year—higher deductible = lower premium. After deductible, you pay 10% of costs up to CHF 700/year maximum, then OKP covers 100%. Liechtenstein has one small hospital: Liechtensteinisches Landesspital in Vaduz—handles GP care, minor surgery, emergencies. Most specialist care and complex procedures happen in Switzerland: Kantonsspital Graubünden (Chur, 30 min), Universitätsspital Zürich (1.5 hours), or Austrian hospitals. OKP covers approved Swiss hospitals."
     },
     privateHealthcare: {
-      cost: "CHF 350-700/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "CHF 100-300/month (supplemental/Zusatzversicherung); CHF 500-1,000/month (comprehensive international)",
+      notes: "Supplemental insurance (Zusatzversicherung) adds: private/semi-private hospital rooms, free choice of doctor in any Swiss hospital, alternative medicine, better dental coverage. Providers include Liechtenstein-based insurers (Concordia, CSS) and Swiss insurers. International insurance (Cigna, Bupa, Allianz) provides global coverage beyond the Swiss/Liechtenstein network—useful if you travel frequently or want access to German/Austrian medical centers beyond OKP agreements."
     },
     watchOuts: [
-      "Insurance is required for visa applications—verify your policy meets requirements.",
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Liechtensteiner regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country."
+      "Immigration is extremely restrictive: Liechtenstein limits non-Swiss/EEA immigration to ~89 permits per year, allocated by lottery among qualified applicants. Even EEA citizens need to prove employment or self-sufficiency. Swiss citizens have easier access due to bilateral agreements. Getting Liechtenstein residence is genuinely difficult—most expats there work for local banks, trusts, or have family connections.",
+      "Swiss hospital dependency: Landesspital is a small facility (~70 beds) handling basic care. Anything complex—cardiac surgery, oncology, major trauma, specialized pediatrics—goes to Swiss hospitals. This works well (Chur is 30 minutes, Zürich 90 minutes), but ensure your insurance explicitly covers Swiss hospital treatment. OKP does; some international plans need verification.",
+      "CHF currency and costs: Liechtenstein uses Swiss francs. Healthcare costs match Switzerland—among world's highest. OKP premiums: CHF 300-450/month typical. Private GP visit: CHF 150-250. Specialist: CHF 200-400. This is not a budget destination.",
+      "German language: Liechtenstein's official language is German. Healthcare operates in German. English is spoken by younger professionals and in international business, but medical appointments are typically in German. Consider whether language barrier affects your healthcare comfort.",
+      "Small community dynamics: With 39,000 residents, Liechtenstein is a small community where discretion matters. Some residents prefer Swiss specialists for privacy. International insurance can facilitate treatment in Zürich, Munich, or other cities where anonymity is easier to maintain."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Liechtenstein visa?",
-        answer: "Yes. Most Liechtensteiner visa types require proof of health insurance. Requirements vary by visa category, so verify specific coverage amounts and policy requirements before applying."
+        question: "How does Liechtenstein's mandatory health insurance work?",
+        answer: "Like Switzerland, Liechtenstein requires all residents to have OKP (basic health insurance) from an approved insurer. Within 3 months of residence, you must: 1) Choose an approved insurer (Concordia, CSS, etc.), 2) Select your deductible (Franchise)—CHF 0 to 2,500 per year (higher deductible = lower monthly premium), 3) Pay your premium (CHF 250-450/month typical). OKP covers: doctor visits, hospital (general ward), prescriptions, essential treatments. After your deductible, you pay 10% of costs up to CHF 700/year, then OKP covers 100%. Dental, optical, and private rooms require supplemental insurance."
       },
       {
-        question: "How does Liechtensteiner public healthcare work?",
-        answer: "Liechtenstein's public healthcare system (OKP) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Can I actually get Liechtenstein residence?",
+        answer: "It's very difficult. Liechtenstein has Europe's most restrictive immigration. For non-EEA citizens: only ~89 residence permits are issued annually, allocated by lottery. You must demonstrate employment in Liechtenstein or substantial financial resources. For EEA citizens: easier but still requires proving employment or self-sufficiency. For Swiss citizens: bilateral agreements provide preferential treatment. Most foreigners in Liechtenstein are: employed by local financial institutions, family members of residents, or Swiss citizens who moved across the border. There's no investor visa or retirement program with easy entry."
       },
       {
-        question: "How much does health insurance cost in Liechtenstein?",
-        answer: "International health insurance typically costs CHF 350-700/month depending on your age and coverage level. Local/public options cost CHF 300-500/month but may have limitations for non-citizens."
+        question: "What can Landesspital actually handle?",
+        answer: "Liechtensteinisches Landesspital is a small but modern hospital (~70 beds) in Vaduz. It handles: GP appointments, emergency care, routine surgery, basic internal medicine, obstetrics (uncomplicated), outpatient diagnostics. Limitations: no ICU for extended care, limited specialist coverage, no complex surgery capabilities. Anything serious transfers to Switzerland—cardiac cases go to Chur or Zürich, cancer treatment to Kantonsspital Graubünden or University Hospital Zürich, major trauma often airlifted. The hospital functions as a front-line facility with excellent Swiss backup."
       },
       {
-        question: "What's the best health insurance for expats in Liechtenstein?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How do cross-border workers handle health insurance?",
+        answer: "Many people work in Liechtenstein but live in Switzerland or Austria (or vice versa). Rules: If you live in Liechtenstein and work in Liechtenstein: standard OKP requirement. If you live in Switzerland and work in Liechtenstein: can choose Swiss or Liechtenstein insurance (most choose Swiss). If you live in Austria and work in Liechtenstein: complex—generally Liechtenstein insurance for Liechtenstein-sourced income. Special forms and bilateral agreements govern this. Consult the Liechtenstein Office of Economic Affairs (Amt für Volkswirtschaft) for your specific situation."
       },
       {
-        question: "Are pre-existing conditions covered in Liechtenstein?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How does Liechtenstein compare to Switzerland for healthcare?",
+        answer: "Very similar: Same mandatory insurance model (OKP), same deductible system, same cost-sharing structure, comparable premiums. Differences: Liechtenstein is smaller with limited local facilities—you'll use Swiss hospitals more. Liechtenstein premiums are sometimes slightly lower than Swiss urban areas. Liechtenstein has no university hospital—Zürich, Bern, Basel serve this role. Practically, living in Liechtenstein means using the Swiss healthcare network with a Liechtenstein insurance card. The experience is seamless; Swiss doctors and hospitals treat Liechtenstein insurance like their own."
       }
     ],
     sidebarLinks: [
@@ -2761,12 +2763,12 @@ const programmaticCountries: Country[] = [
         href: "/countries/liechtenstein/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Western Europe Region",
+        href: "/regions/western-europe"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
+        title: "Insurance for Entrepreneurs",
+        href: "/insurance-for/entrepreneurs"
       },
       {
         title: "Best Expat Health Insurance",
@@ -6048,65 +6050,65 @@ const programmaticCountries: Country[] = [
     slug: "paraguay",
     name: "Paraguay",
     demonym: "Paraguayan",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Paraguay (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Paraguay. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Paraguay. Easiest permanent residency in South America, Asunción hospitals, very low costs, and Buenos Aires evacuation for complex care.",
     headline: "Paraguay Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Paraguay—understanding the IPS system and international insurance options.",
+    subheadline: "Navigate healthcare in South America's easiest immigration destination—understanding Asunción's improving hospitals, extremely affordable costs, the famous permanent residency program, and Buenos Aires as your backup for complex care.",
     summaryBullets: [
-      "Paraguay does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (IPS) is available to residents.",
-      "International health insurance typically costs $60-140/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, Permanent Residence."
+      "No insurance required—but recommended given public healthcare limitations outside Asunción.",
+      "Easiest permanent residency in the Americas—achievable in weeks, not years. No minimum stay requirement.",
+      "Asunción has decent private hospitals (Sanatorio Migone, Hospital Italiano); quality improving but limited specialists.",
+      "Extremely affordable—private GP $20-40, hospital day $100-250, international insurance $50-100/month.",
+      "Buenos Aires (1 hour flight) is the evacuation option for complex cases—some of South America's best hospitals."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Paraguay does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Paraguay doesn't require health insurance for visas or residency—part of what makes immigration so easy. However, given public healthcare limitations and the lack of complex care options in Asunción, international insurance with evacuation coverage is strongly recommended. Many expats get permanent residency in Paraguay specifically because it's easy, then obtain insurance separately.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—public system underfunded; private insurance essential for quality care",
+      "Retirees and those 50+—limited specialists in Asunción; Buenos Aires evacuation may be needed",
+      "Expats outside Asunción—Ciudad del Este has some private clinics; rest of country very basic",
+      "Those with complex conditions—Paraguay can't handle advanced cancer, transplants, rare diseases",
+      "Flag theory practitioners—many get PR for tax/banking reasons but live elsewhere; need coverage wherever they actually are"
     ],
     publicHealthcare: {
-      name: "IPS",
-      access: "Paraguayan citizens, legal residents",
-      cost: "$15-35/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "MSPyBS (Ministry of Health) / IPS (Social Security)",
+      access: "Paraguayan citizens; IPS for formal employees",
+      cost: "Free (MSPyBS); IPS via payroll (~9% employer + ~9% employee)",
+      notes: "Paraguay's public healthcare is underfunded with significant gaps in medications, equipment, and specialists. IPS (social security system) is better than MSPyBS general hospitals but still basic. Main public hospitals in Asunción: Hospital de Clínicas, Hospital Nacional de Itauguá. Long waits, limited English, and medication shortages are common. Expats typically use public healthcare only as a last resort."
     },
     privateHealthcare: {
-      cost: "$60-140/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$50-100/month (international); $30-70/month (local plans)",
+      notes: "Private healthcare in Asunción is improving. Top hospitals: Sanatorio Migone-Battilana (best overall), Hospital Italiano, Sanatorio San Roque, Hospital Bautista. Quality is decent for routine care and moderate emergencies—comparable to secondary cities in Argentina or Brazil. Ciudad del Este has Hospital Regional and private clinics. Costs are very low—among the cheapest in South America. For complex cases, Buenos Aires (1 hour flight, 5-6 hour drive) offers world-class care at Hospital Italiano, Hospital Alemán, or Fundación Favaloro."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Paraguayan regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Paraguay."
+      "Immigration ease vs. healthcare reality: Paraguay's famous easy residency attracts many expats, but the healthcare doesn't match the immigration convenience. Get PR for banking/passport/tax reasons if you want, but have a healthcare plan that accounts for Paraguay's limitations.",
+      "Buenos Aires dependency: For serious conditions—complex cardiac surgery, advanced oncology, transplants, specialized pediatrics—you'll evacuate to Buenos Aires. Ensure your insurance covers Argentina without issues. Flight time is 1 hour; driving is 5-6 hours via Posadas border crossing.",
+      "Specialist scarcity: Even Asunción's best hospitals have limited specialists. Some subspecialties don't exist; others have only one or two doctors in the entire country. For complex conditions, many expats schedule planned treatment in Buenos Aires or São Paulo.",
+      "Language barrier: Paraguay is bilingual (Spanish and Guaraní), but English is rare even in private hospitals. Some doctors trained abroad speak English; most staff don't. Bring a Spanish speaker or translation app for medical appointments.",
+      "No minimum stay requirement: Paraguay's PR has no minimum days requirement—you can get PR and immediately leave. Many 'permanent residents' actually live elsewhere. Your health insurance needs to cover where you actually live, not just Paraguay."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Paraguay visa?",
-        answer: "No. Paraguay does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How does Paraguay's famous easy residency work?",
+        answer: "Paraguay offers one of the world's easiest permanent residency programs. Requirements: Police background check from home country (apostilled), birth certificate (apostilled), passport, bank deposit of ~$5,500 (held briefly, then returned), medical certificate, and application forms. Process takes 3-8 weeks typically. No language test, no income requirements, no minimum stay. You receive cedula (ID card) allowing banking, business ownership, and path to citizenship after 3 years. Many use Paraguay PR for 'flag theory'—diversifying residency for banking, tax, or passport options."
       },
       {
-        question: "How does Paraguayan public healthcare work?",
-        answer: "Paraguay's public healthcare system (IPS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Is Sanatorio Migone comparable to Argentine hospitals?",
+        answer: "Sanatorio Migone-Battilana is Paraguay's best private hospital—reasonable facilities, trained doctors, and improving equipment. It handles routine care, general surgery, cardiology basics, obstetrics, and emergency care adequately. Comparison to Argentina: roughly equivalent to a good provincial Argentine hospital, but below Buenos Aires's top facilities (Hospital Italiano, Alemán, Favaloro). For everyday healthcare needs, Migone is fine. For serious or complex conditions, Buenos Aires provides meaningfully better care."
       },
       {
-        question: "How much does health insurance cost in Paraguay?",
-        answer: "International health insurance typically costs $60-140/month depending on your age and coverage level. Local/public options cost $15-35/month but may have limitations for non-citizens."
+        question: "What's the expat community like in Paraguay?",
+        answer: "Paraguay has a growing expat community, primarily in Asunción. Main groups: North American retirees (attracted by low costs and easy residency), Mennonite communities (Gran Chaco region), Brazilian business people (Ciudad del Este), and 'flag theory' practitioners (digital nomads, international entrepreneurs using Paraguay for banking/residency). The community is smaller than Ecuador or Panama but growing. Expat groups exist for healthcare recommendations, Spanish classes, and social connections."
       },
       {
-        question: "What's the best health insurance for expats in Paraguay?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How do costs in Paraguay compare to other South American countries?",
+        answer: "Paraguay is one of South America's cheapest countries for healthcare. Comparison of private GP visits: Paraguay $20-40, Argentina $40-80, Chile $50-100, Brazil $40-80. Hospital day: Paraguay $100-250, Argentina $300-600. Common surgery (appendectomy): Paraguay $2,000-4,000, Argentina $5,000-10,000. International insurance for a 40-year-old: Paraguay $60-100/month. The tradeoff: lower costs reflect simpler facilities and fewer specialists compared to Argentina, Chile, or Brazil's major cities."
       },
       {
-        question: "Are pre-existing conditions covered in Paraguay?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I get local or international health insurance in Paraguay?",
+        answer: "International insurance is strongly recommended. Reasons: 1) Covers evacuation to Buenos Aires—essential given Paraguay's limited complex care, 2) Works when traveling (important if you're a 'flag theory' resident who doesn't actually stay in Paraguay), 3) Better claims processing and English support, 4) More reliable for expensive treatments. Local insurers (ASIS, Medical) are very cheap but typically don't cover evacuation or treatment abroad. Best approach: International plan with evacuation (Cigna, Allianz, IMG), pay cash for minor Asunción care (it's so cheap insurance often doesn't make sense for small claims)."
       }
     ],
     sidebarLinks: [
@@ -6119,16 +6121,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/paraguay/insurance/allianz-care"
       },
       {
+        title: "Latin America Region",
+        href: "/regions/latin-america"
+      },
+      {
         title: "Insurance for Digital Nomads",
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
-      },
-      {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Best Budget Expat Insurance",
+        href: "/best/budget-expat-insurance"
       }
     ]
   },
@@ -6489,65 +6491,65 @@ const programmaticCountries: Country[] = [
     slug: "belize",
     name: "Belize",
     demonym: "Belizean",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Belize (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Belize. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Belize. Only English-speaking Central American country, QRP retirement program, Belize City hospitals, cayes limitations, and Mexico/Miami evacuation.",
     headline: "Belize Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Belize—understanding the MOH system and international insurance options.",
+    subheadline: "Navigate healthcare in Central America's only English-speaking nation—understanding limited mainland hospitals, the popular QRP retirement program, extreme caye/jungle healthcare gaps, and Mexico or Miami as your evacuation lifeline.",
     summaryBullets: [
-      "Belize does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (MOH) is available to residents.",
-      "International health insurance typically costs $80-180/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: QRP, Work Permit."
+      "No insurance required—but absolutely essential given extremely limited healthcare infrastructure.",
+      "Only English-speaking country in Central America—healthcare communication is easier than neighbors.",
+      "Belize City has Karl Heusner Memorial Hospital (public) and Belize Medical Associates (private)—both basic.",
+      "Cayes and jungle areas have minimal healthcare—evacuation to Belize City, Mexico, or Miami required for anything serious.",
+      "QRP (Qualified Retired Persons) program is popular but healthcare is the major drawback."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Belize does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Belize doesn't require health insurance for visas, including the popular QRP retirement program. However, given Belize's extremely limited healthcare infrastructure—especially outside Belize City—international insurance with evacuation coverage is absolutely essential. Many QRP retirees maintain US or international insurance specifically because Belize can't handle complex medical needs.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—Belize has very limited healthcare; insurance is mandatory for practical purposes",
+      "QRP retirees—despite visa being easy, healthcare is the main challenge for retirement in Belize",
+      "Caye residents (Ambergris Caye, Caye Caulker)—only basic clinics; Belize City or evacuation for serious issues",
+      "Jungle/Cayo District residents—remote areas have minimal healthcare; planning essential",
+      "Divers—hyperbaric chamber on Ambergris Caye; ensure decompression coverage"
     ],
     publicHealthcare: {
-      name: "MOH",
-      access: "Belizean citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "MOH (Ministry of Health)",
+      access: "Belizean citizens and residents",
+      cost: "Free or minimal fees at public facilities",
+      notes: "Belize's public healthcare is severely limited. Karl Heusner Memorial Hospital (KHMH) in Belize City is the main public hospital—handles emergencies and basic care but is understaffed and undersupplied. Regional hospitals in Belmopan, Orange Walk, and Dangriga are very basic. Public clinics exist in smaller towns but can only handle minor issues. English is spoken (official language), but medical capabilities are limited regardless of language. Expats typically avoid public healthcare except for emergencies."
     },
     privateHealthcare: {
-      cost: "$80-180/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$80-180/month (international); limited local options",
+      notes: "Private healthcare in Belize is limited but better than public. Belize Medical Associates (Belize City) is the main private clinic—handles outpatient care, minor surgery, diagnostics. La Loma Luz Hospital (Santa Elena/Cayo) serves the western region. Ambergris Caye has San Pedro PolyClinic II and Belize Healthcare Partners—basic care only. For anything complex, evacuation is required. Common destinations: Chetumal, Mexico (2-3 hours from Belize City); Mérida, Mexico (5 hours); Miami (2 hours flight); Guatemala City (via Flores). Costs are moderate—higher than Guatemala/Honduras but lower than Costa Rica."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Belizean regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Belize."
+      "Evacuation is your healthcare plan: For any serious condition—cardiac events, major trauma, cancer, complex surgery—you will evacuate. Belize simply doesn't have the facilities. Common evacuation routes: air ambulance to Miami (most common for serious cases), road to Chetumal, Mexico for moderate issues, or Guatemala City. Ensure your insurance covers evacuation to your preferred destination.",
+      "Caye living healthcare reality: Ambergris Caye and Caye Caulker are popular expat destinations but healthcare is minimal. San Pedro has basic clinics and a hyperbaric chamber (for divers). Serious issues require: puddle-jumper flight to Belize City (15 minutes), then ambulance to KHMH or BMA, then possibly evacuation to Mexico/Miami. In emergencies, this chain adds critical time.",
+      "QRP program popularity vs. healthcare: The QRP (Qualified Retired Persons) program attracts many US/Canadian retirees with duty-free imports and tax benefits. But: many QRP participants underestimate healthcare limitations. Some maintain US addresses for Medicare eligibility, or fly to Mexico/US for routine care. Plan your healthcare strategy before committing to QRP residency.",
+      "Hyperbaric chamber access: Belize has world-class diving (Blue Hole, barrier reef). Hyperbaric chambers exist on Ambergris Caye (San Pedro) and sometimes function in Belize City. However, availability can be inconsistent. DAN (Divers Alert Network) insurance is strongly recommended for divers—they can coordinate chamber treatment or evacuation if local options fail.",
+      "Jungle/Cayo accessibility: The Cayo District (San Ignacio, Belmopan area) attracts expats for lower costs and nature. Healthcare is very limited—La Loma Luz Hospital is the main facility. Medical emergencies may require helicopter evacuation or long drives on variable roads. If you live in remote Belize, satellite communication and evacuation plans are essential."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Belize visa?",
-        answer: "No. Belize does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How does Belize's QRP retirement program work?",
+        answer: "The QRP (Qualified Retired Persons) program lets retirees 45+ live in Belize with benefits. Requirements: $2,000/month income from pension, social security, or investments deposited to Belizean bank. Benefits: Duty-free import of personal effects, vehicle, and boat (one-time); exemption from Belize income tax on foreign earnings; permanent QRP residency. No health insurance required for the visa. Processing takes 3-6 months through the Belize Tourism Board. Popular because of English language, Caribbean lifestyle, and proximity to US. Healthcare limitation is the main drawback."
       },
       {
-        question: "How does Belizean public healthcare work?",
-        answer: "Belize's public healthcare system (MOH) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "What healthcare exists on Ambergris Caye?",
+        answer: "Limited. Ambergris Caye (San Pedro) has: San Pedro PolyClinic II (basic care, minor emergencies), Belize Healthcare Partners (expat-oriented clinic, moderate capabilities), Dr. Otto Rodriguez San Pedro PolyClinic (public, basic), and the island's hyperbaric chamber. Capabilities: minor injuries, common illnesses, stabilization, basic diagnostics. For anything requiring surgery, specialists, or advanced care: puddle-jumper to Belize City (15 min) then hospital or evacuation. Many Ambergris residents keep boats/planes ready for Chetumal, Mexico (faster than going through Belize City for some situations)."
       },
       {
-        question: "How much does health insurance cost in Belize?",
-        answer: "International health insurance typically costs $80-180/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "Should QRP retirees keep US Medicare?",
+        answer: "It's complicated. Medicare doesn't cover care outside the US (with very limited cruise ship exceptions). However: some QRP participants maintain US addresses (often with family) to preserve Medicare eligibility for when they return to the US or for planned US medical trips. Strategy depends on your situation: if you plan to return to the US for serious care, maintaining Medicare makes sense. If you commit fully to Belize/international care, Medicare is less relevant but international insurance with US coverage becomes essential. Many retirees do both: Medicare for US trips + international insurance for Belize and evacuation."
       },
       {
-        question: "What's the best health insurance for expats in Belize?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How does Chetumal, Mexico compare to Miami for evacuation?",
+        answer: "Chetumal (Mexico, 2-3 hours from Belize City by road): Hospital General de Chetumal and private clinics—significantly better than Belize, handles many conditions that Belize can't, Spanish-speaking (though many doctors know English), much cheaper than Miami. Good for: moderate emergencies, planned procedures, specialist consultations. Miami (2 hours flight): World-class facilities (Jackson Memorial, Baptist Health, Cleveland Clinic Florida)—handles everything. Good for: serious trauma, complex surgery, cancer treatment, anything requiring top-tier care. Most international insurance covers both; many expats use Chetumal for moderate issues and reserve Miami for serious conditions."
       },
       {
-        question: "Are pre-existing conditions covered in Belize?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Is Belize healthcare really that limited?",
+        answer: "Yes. Belize has ~400,000 people and healthcare infrastructure to match a small town, not a country. Karl Heusner Memorial Hospital (the main public hospital) has basic capabilities but chronic staffing and supply issues. Belize Medical Associates (main private) is more like a large clinic than a hospital. There are no MRI machines in Belize—patients go to Guatemala or Mexico for advanced imaging. Complex surgery, oncology, cardiology, and most specialties require leaving the country. English language is the advantage; facilities are the limitation. Plan accordingly."
       }
     ],
     sidebarLinks: [
@@ -6560,16 +6562,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/belize/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Latin America Region",
+        href: "/regions/latin-america"
       },
       {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
       },
       {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Medical Evacuation Guide",
+        href: "/guides/medical-evacuation"
       }
     ]
   },
@@ -6665,65 +6667,65 @@ const programmaticCountries: Country[] = [
     slug: "honduras",
     name: "Honduras",
     demonym: "Honduran",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Honduras (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Honduras. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Honduras. Tegucigalpa and San Pedro Sula hospitals, Roatán healthcare limitations, Rentista visa, and Miami evacuation for serious care.",
     headline: "Honduras Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Honduras—understanding the IHSS system and international insurance options.",
+    subheadline: "Navigate healthcare across mainland cities and Bay Islands—understanding the split between Tegucigalpa/San Pedro Sula hospitals, extremely limited Roatán options, and why evacuation coverage is non-negotiable.",
     summaryBullets: [
-      "Honduras does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (IHSS) is available to residents.",
-      "International health insurance typically costs $60-140/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, Rentista Visa."
+      "No insurance required for visas—but private coverage essential given public healthcare limitations.",
+      "Healthcare concentrated in Tegucigalpa and San Pedro Sula; Roatán has only basic clinics.",
+      "Hospital Honduras Medical Center and CEMESA are the best private facilities—reasonable quality for routine care.",
+      "Very affordable—private GP $25-50, hospital day $150-300, insurance $60-120/month.",
+      "Roatán expats and divers: evacuation to mainland or Miami (hyperbaric chamber access) is critical coverage."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Honduras does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Honduras doesn't mandate health insurance for visas. However, given the limited public healthcare and geographic challenges (especially Bay Islands), private international insurance is essential for expats. The Rentista (retirement) visa doesn't require insurance but you'll definitely want comprehensive coverage with evacuation benefits.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—public healthcare is inadequate for non-emergency care",
+      "Roatán and Bay Islands residents—extremely limited local healthcare; mainland/Miami evacuation essential",
+      "Divers—hyperbaric chamber only in Roatán (Anthony's Key) and sometimes Utila; Miami backup needed",
+      "Retirees on Rentista visa—increasing medical needs require reliable coverage",
+      "Anyone outside Tegucigalpa/San Pedro Sula—regional healthcare is very basic"
     ],
     publicHealthcare: {
-      name: "IHSS",
-      access: "Honduran citizens, legal residents",
-      cost: "$10-25/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "Secretaría de Salud / IHSS (Social Security)",
+      access: "Honduran citizens; IHSS for formal employees paying social security",
+      cost: "Free (public); IHSS via payroll deduction (~3.5% employee + 5% employer)",
+      notes: "Honduras public healthcare is underfunded with significant shortages of medications, equipment, and specialists. IHSS hospitals are somewhat better than Secretaría de Salud facilities but still basic by international standards. Main public hospitals in Tegucigalpa: Hospital Escuela, Hospital San Felipe. Public facilities have long waits and limited English. Expats should use public healthcare only for true emergencies when private options aren't available."
     },
     privateHealthcare: {
-      cost: "$60-140/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$60-120/month (international); $40-80/month (local plans)",
+      notes: "Private hospitals in Tegucigalpa: Honduras Medical Center (best overall), Hospital Centro Médico, Hospital DIME. San Pedro Sula: CEMESA (Centro Médico Sampedrano—good quality), Hospital Centro Médico. Roatán: Wood Medical Center, Cornerstone Hospital (basic only—serious cases require mainland evacuation). Quality at top mainland hospitals is reasonable for routine care and moderate emergencies. Complex cases typically evacuate to Guatemala City, San José (Costa Rica), or Miami."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Honduran regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Honduras."
+      "Roatán healthcare reality: The Bay Islands are a major expat/diver destination, but healthcare is extremely limited. Wood Medical Center and Cornerstone handle basics—stitches, simple fractures, common illnesses. Anything serious means air evacuation to San Pedro Sula (30 min flight), La Ceiba, or Miami. If you live on Roatán, evacuation coverage is absolutely essential.",
+      "Diving coverage: Roatán is a world-class dive destination. Anthony's Key Resort has a hyperbaric chamber; Utila's chamber status varies. Ensure your insurance explicitly covers decompression sickness and hyperbaric treatment. Some dive-specific insurers (DAN—Divers Alert Network) are worth considering as supplement.",
+      "Security considerations: Honduras has high crime rates in certain areas (particularly San Pedro Sula historically, parts of Tegucigalpa). This doesn't directly affect healthcare, but consider: emergency response times, safe transport to hospitals, and whether your plan covers security-related incidents.",
+      "CA-4 visa limits: Honduras is in the CA-4 (with Guatemala, El Salvador, Nicaragua)—90 days shared across all four countries. For longer stays, you need residency. Healthcare-wise, this matters because you might need treatment in Guatemala City (sometimes better for specialists than Honduras).",
+      "Specialist availability: Even the best Honduran hospitals have limited specialists. Some subspecialties require scheduled visits by doctors from Guatemala or the US. For complex conditions, planned treatment abroad is often the best option."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Honduras visa?",
-        answer: "No. Honduras does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "What healthcare exists on Roatán and the Bay Islands?",
+        answer: "Limited. Roatán has Wood Medical Center and Cornerstone Hospital—both handle minor emergencies, basic illness, and stabilization. A public clinic (Policlínico) exists but is very basic. For serious issues: air evacuation to La Ceiba (20 min) or San Pedro Sula (30 min) on mainland, or direct to Miami (2 hours). Utila and Guanaja have even less—basic clinics only. If you live on the Bay Islands, insurance with air evacuation coverage is mandatory, not optional."
       },
       {
-        question: "How does Honduran public healthcare work?",
-        answer: "Honduras's public healthcare system (IHSS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does Honduras's Rentista visa work?",
+        answer: "The Rentista (retirement/income) visa lets you live in Honduras with passive income. Requirements: Proof of $1,500/month income (pension, investments, rental income), criminal background check, basic application documents. Benefits: Permanent residency, ability to open bank accounts, vehicle import exemptions. No health insurance required for the visa itself, but you'll want coverage. Process takes 2-4 months through a Honduran attorney. Honduras is among the easier Central American countries for retirement visas."
       },
       {
-        question: "How much does health insurance cost in Honduras?",
-        answer: "International health insurance typically costs $60-140/month depending on your age and coverage level. Local/public options cost $10-25/month but may have limitations for non-citizens."
+        question: "Is Honduras Medical Center comparable to US hospitals?",
+        answer: "Honduras Medical Center (Tegucigalpa) is the country's best private hospital—modern facilities, trained doctors, reasonable equipment. It handles: general surgery, cardiology, orthopedics, obstetrics, basic oncology, emergency care. Quality is comparable to a good regional US hospital for these services. Limitations: not a trauma center, limited subspecialties, some advanced procedures unavailable. For routine care and moderate emergencies, it's adequate. For complex cases (transplants, advanced cancer, rare conditions), plan on Guatemala City or Miami."
       },
       {
-        question: "What's the best health insurance for expats in Honduras?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "Do I need dive insurance in addition to health insurance?",
+        answer: "Recommended if you dive regularly. Standard health insurance typically covers hyperbaric treatment if medically necessary, but coverage details vary. DAN (Divers Alert Network) insurance specifically covers: hyperbaric treatment worldwide, dive accident evacuation, equipment loss, trip cancellation. It's inexpensive ($40-100/year) and provides specialized coverage. Best approach: primary international health insurance (Cigna, Allianz, IMG) plus DAN supplemental for dive-specific incidents. Verify your primary plan's hyperbaric coverage before assuming you're covered."
       },
       {
-        question: "Are pre-existing conditions covered in Honduras?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "How affordable is healthcare in Honduras?",
+        answer: "Very affordable. Private hospital costs: GP consultation $25-50, specialist $50-100, ER visit $50-100 (plus treatments), hospital room $150-300/day, MRI $200-400, appendectomy $2,000-4,000, cesarean delivery $2,000-3,500. Roatán costs slightly higher (15-25%) due to isolation. Prescriptions are cheap—many medications $5-15. Honduras is among Central America's most affordable countries for healthcare, making cash-pay for minor issues often cheaper than insurance deductibles."
       }
     ],
     sidebarLinks: [
@@ -6736,16 +6738,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/honduras/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Latin America Region",
+        href: "/regions/latin-america"
       },
       {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
       },
       {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Best Budget Expat Insurance",
+        href: "/best/budget-expat-insurance"
       }
     ]
   },
@@ -6753,65 +6755,65 @@ const programmaticCountries: Country[] = [
     slug: "el-salvador",
     name: "El Salvador",
     demonym: "Salvadoran",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in El Salvador (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in El Salvador. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in El Salvador. Bitcoin-friendly country, Hospital de Diagnóstico, improving security, beach towns, and Guatemala City/Miami evacuation options.",
     headline: "El Salvador Expat Health Insurance",
-    subheadline: "Find the right coverage for living in El Salvador—understanding the ISSS system and international insurance options.",
+    subheadline: "Navigate healthcare in Central America's Bitcoin nation—understanding San Salvador's private hospitals, the improving security situation, beach town limitations, and evacuation to Guatemala City or Miami for complex care.",
     summaryBullets: [
-      "El Salvador does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (ISSS) is available to residents.",
-      "International health insurance typically costs $70-160/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Temporary Residence, Rentista Visa."
+      "No insurance required—but private coverage essential given public healthcare limitations.",
+      "Bitcoin legal tender since 2021—attracting crypto community; insurance still priced in dollars.",
+      "Hospital de Diagnóstico and Hospital de la Mujer are top San Salvador facilities—reasonable quality.",
+      "Affordable—private GP $30-50, hospital day $150-350, international insurance $60-130/month.",
+      "Guatemala City (4 hours) or Miami (2.5 hours) for complex care—El Salvador can't handle advanced cases."
     ],
     insuranceRequired: false,
-    requirementExplanation: "El Salvador does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "El Salvador doesn't mandate health insurance for visas. However, given public healthcare limitations, international insurance is strongly recommended. The country's Bitcoin adoption has attracted a new wave of digital nomads and crypto entrepreneurs—but healthcare infrastructure hasn't changed. Private insurance with evacuation coverage remains essential for anyone staying beyond a short visit.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—public system inadequate; private insurance provides access to quality care",
+      "Bitcoin/crypto community—new residents attracted by BTC legal tender still need traditional health coverage",
+      "Beach town residents (El Tunco, El Zonte)—limited local healthcare; San Salvador or evacuation for serious issues",
+      "Retirees—increasing medical needs require reliable coverage with evacuation options",
+      "Anyone with complex conditions—Guatemala City or Miami evacuation essential"
     ],
     publicHealthcare: {
-      name: "ISSS",
-      access: "Salvadoran citizens, legal residents",
-      cost: "$15-30/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "MINSAL (Ministry of Health) / ISSS (Social Security)",
+      access: "Salvadoran citizens; ISSS for formal employees",
+      cost: "Free (MINSAL); ISSS via payroll deduction (~7.5% employer + ~3% employee)",
+      notes: "El Salvador's public healthcare is underfunded with long waits, medication shortages, and limited specialists. ISSS hospitals are better than MINSAL general hospitals but still basic. Main public hospital in San Salvador: Hospital Rosales. Infrastructure has improved somewhat but doesn't meet expat expectations. English is rarely spoken. Expats typically use public healthcare only for emergencies when private options aren't accessible."
     },
     privateHealthcare: {
-      cost: "$70-160/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$60-130/month (international); $40-80/month (local plans)",
+      notes: "Private hospitals in San Salvador: Hospital de Diagnóstico (best overall—modern, trained staff), Hospital de la Mujer (women's health, obstetrics), Centro Pediátrico (pediatrics), Hospital Centro Ginecológico. Quality at top facilities is reasonable for routine care—comparable to secondary Guatemalan cities. Outside San Salvador, healthcare drops significantly; beach towns have only basic clinics. For complex care, Guatemala City (Hospital Herrera Llerandi, 4 hours by road) or Miami (2.5 hours flight) are the evacuation destinations."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Salvadoran regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in El Salvador."
+      "Security perception vs. reality: El Salvador has dramatically improved security since 2022 under President Bukele's policies. Gang violence has decreased significantly. However, insurance companies may still apply historical risk assessments. Verify your insurer's current stance on El Salvador coverage—some have lifted restrictions, others haven't updated policies.",
+      "Bitcoin adoption doesn't mean Bitcoin insurance: While El Salvador accepts Bitcoin as legal tender (and has attracted crypto nomads), health insurance is still quoted and paid in US dollars. Chivo wallet payments won't work for insurance premiums. Healthcare providers may accept BTC but pricing is in dollars.",
+      "Beach town reality: El Tunco, El Zonte (Bitcoin Beach), and other surf towns are popular but have minimal healthcare—basic clinics at most. Any significant issue means driving to San Salvador (30-90 minutes depending on location). If you live at the beach, factor in transport time for emergencies.",
+      "CA-4 limitations: El Salvador is in the CA-4 (with Guatemala, Honduras, Nicaragua)—90 days shared across all four countries. For longer stays, you need residency. Healthcare-wise, Guatemala City is sometimes better for specialists than San Salvador, so CA-4 mobility can be useful.",
+      "Volcano tourism consideration: El Salvador has active volcanoes and promotes volcano tourism. Standard travel/health insurance may exclude 'hazardous activities.' If you plan to hike Santa Ana, Izalco, or other volcanoes, verify coverage."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a El Salvador visa?",
-        answer: "No. El Salvador does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "How has El Salvador changed with Bitcoin adoption?",
+        answer: "Since becoming the first country to adopt Bitcoin as legal tender (September 2021), El Salvador has attracted crypto entrepreneurs, developers, and digital nomads. San Salvador has Bitcoin-focused co-working spaces, conferences, and a growing expat community. Bitcoin Beach (El Zonte) is a hub for crypto experimentation. However: healthcare infrastructure hasn't changed significantly, insurance is still in dollars, and you'll need traditional health coverage regardless of your crypto holdings. The Bitcoin community is real but relatively small."
       },
       {
-        question: "How does Salvadoran public healthcare work?",
-        answer: "El Salvador's public healthcare system (ISSS) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "Is El Salvador safe now?",
+        answer: "Dramatically safer than before. El Salvador had among the world's highest murder rates until 2022. President Bukele's state of exception and mass gang arrests have reduced homicides by 70%+. Most expats report feeling safe in San Salvador, beach areas, and tourist zones. Caveat: the government's approach is controversial, and the situation could change. Insurance companies may have outdated risk assessments—verify coverage terms. For healthcare, the improved security means emergency transport and hospital access are more reliable than they were historically."
       },
       {
-        question: "How much does health insurance cost in El Salvador?",
-        answer: "International health insurance typically costs $70-160/month depending on your age and coverage level. Local/public options cost $15-30/month but may have limitations for non-citizens."
+        question: "What healthcare exists in beach towns like El Zonte?",
+        answer: "Very limited. El Zonte, El Tunco, and other beach communities have basic clinics and pharmacies—adequate for minor injuries, common illnesses, and medication refills. Anything beyond basic care means driving to San Salvador (45-90 minutes depending on location). No emergency rooms, no surgery, no specialists at the beach. Some surf shops have first aid trained staff for common surf injuries. If you live at the beach long-term, international insurance with evacuation coverage is essential, and you should know the route to Hospital de Diagnóstico in San Salvador."
       },
       {
-        question: "What's the best health insurance for expats in El Salvador?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How does Hospital de Diagnóstico compare to Guatemala City hospitals?",
+        answer: "Hospital de Diagnóstico is El Salvador's best private facility—modern equipment, trained doctors (some US-educated), reasonable emergency care and surgery. It handles routine and moderate-complexity cases well. Guatemala City's top hospitals (Herrera Llerandi, Centro Médico) are larger with more specialists and subspecialties. For complex oncology, advanced cardiac procedures, or rare conditions, Guatemala City offers more options. For everyday healthcare, Hospital de Diagnóstico is adequate; for serious illness, Guatemala City (4 hours by road) or Miami provides meaningfully better care."
       },
       {
-        question: "Are pre-existing conditions covered in El Salvador?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "What residency options exist in El Salvador?",
+        answer: "Options include: 1) Temporary Residence—requires income proof ($1,000+/month), renewable annually. 2) Rentista/Pensionado—for retirees with pension income. 3) Investor Residence—for those investing in El Salvador (including Bitcoin-related businesses). 4) Naturalization—citizenship possible after 5 years residency. No specific 'digital nomad visa' yet, but the government has discussed crypto-friendly immigration. Process is relatively straightforward through a Salvadoran attorney. No health insurance requirement for residency, but coverage is strongly recommended."
       }
     ],
     sidebarLinks: [
@@ -6824,16 +6826,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/el-salvador/insurance/allianz-care"
       },
       {
+        title: "Latin America Region",
+        href: "/regions/latin-america"
+      },
+      {
         title: "Insurance for Digital Nomads",
         href: "/insurance-for/digital-nomads"
       },
       {
-        title: "Insurance for Retirees",
-        href: "/insurance-for/retirees"
-      },
-      {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Best Budget Expat Insurance",
+        href: "/best/budget-expat-insurance"
       }
     ]
   },
@@ -6841,65 +6843,65 @@ const programmaticCountries: Country[] = [
     slug: "nicaragua",
     name: "Nicaragua",
     demonym: "Nicaraguan",
-    lastUpdated: "2026-01-27",
+    lastUpdated: "2026-01-29",
     heroImage: "/images/countries/default-hero-bg.png",
     metaTitle: "Health Insurance for Expats in Nicaragua (2025 Guide)",
-    metaDescription: "Complete guide to expat health insurance in Nicaragua. public vs private options, provider comparison, and costs.",
+    metaDescription: "Complete guide to expat health insurance in Nicaragua. Hospital Vivian Pellas, retirement residency, CA-4 visa, very low costs, and Miami evacuation for serious care.",
     headline: "Nicaragua Expat Health Insurance",
-    subheadline: "Find the right coverage for living in Nicaragua—understanding the MINSA system and international insurance options.",
+    subheadline: "Navigate healthcare in Central America's most affordable country—understanding Hospital Vivian Pellas as the gold standard, limited public options, retirement residency benefits, and why evacuation coverage matters.",
     summaryBullets: [
-      "Nicaragua does not require health insurance for most visas, but coverage is recommended.",
-      "The public healthcare system (MINSA) is available to residents.",
-      "International health insurance typically costs $50-120/month.",
-      "Private healthcare offers faster access and English-speaking staff in major cities.",
-      "Popular visa options include: Residence Permit, Retirement Visa."
+      "No insurance required for visas—but private coverage is essential given limited public healthcare.",
+      "Hospital Metropolitano Vivian Pellas (Managua) is the only hospital meeting international standards.",
+      "Extremely affordable—private GP visits $20-40, hospital stays $100-300/day, insurance $50-100/month.",
+      "Popular retirement destination—Pensionado visa requires only $600/month pension income.",
+      "Miami evacuation (2.5 hours) essential for serious conditions—Managua can't handle complex cases."
     ],
     insuranceRequired: false,
-    requirementExplanation: "Nicaragua does not mandate health insurance for most visa types. However, private coverage is strongly recommended as it provides access to quality healthcare without long wait times. Expats from countries without reciprocal healthcare agreements should definitely get coverage.",
+    requirementExplanation: "Nicaragua doesn't require health insurance for visas. However, private insurance is strongly recommended—the public system (MINSA) is severely underfunded and not suitable for expats. Most expats rely entirely on private hospitals in Managua and international insurance for anything serious. The Pensionado (retirement) visa doesn't require insurance but you'll want it.",
     whoNeedsInsurance: [
-      "Expats wanting faster access to healthcare",
-      "Those preferring English-speaking medical staff",
-      "Anyone with pre-existing conditions",
-      "Digital nomads and remote workers",
-      "US/Canadian citizens (home coverage doesn't work abroad)"
+      "All expats—public healthcare is inadequate; private insurance is your only realistic option",
+      "Retirees—popular destination but medical needs increase with age",
+      "Anyone outside Managua—Granada, León, San Juan del Sur have very limited healthcare",
+      "Beach/rural dwellers—evacuation to Managua may be needed for basic emergencies",
+      "US retirees—Medicare doesn't work abroad; you need replacement coverage"
     ],
     publicHealthcare: {
-      name: "MINSA",
-      access: "Nicaraguan citizens, legal residents",
-      cost: "$10-20/month",
-      notes: "Quality and access vary by location. Wait times may exist for specialists."
+      name: "MINSA (Ministerio de Salud) / INSS (Social Security)",
+      access: "Nicaraguan citizens; INSS for formal employees",
+      cost: "Free (MINSA) or payroll deduction (INSS ~6.25%)",
+      notes: "Nicaragua's public healthcare is severely underfunded—among the poorest in Latin America. MINSA hospitals lack equipment, medications, and specialists. INSS (social security) hospitals are slightly better but still basic. Expats should not rely on public healthcare except for absolute emergencies. Managua has the best public facilities; rural areas have only basic clinics. English is rarely spoken in public facilities."
     },
     privateHealthcare: {
-      cost: "$50-120/month",
-      notes: "International plans offer worldwide coverage, English support, and direct billing at major hospitals."
+      cost: "$50-100/month (international plans); $30-60/month (local plans)",
+      notes: "Hospital Metropolitano Vivian Pellas in Managua is the country's only truly international-standard hospital—modern equipment, trained specialists, some English. Hospital Bautista is a reasonable backup. Outside Managua: Hospital Privado de Masaya, but quality drops significantly. Private costs are very low by international standards—GP visit $20-40, specialist $40-80, surgery $2,000-8,000 for procedures costing $20,000-50,000 in the US. For serious conditions, plan on Miami evacuation."
     },
     watchOuts: [
-      "Pre-existing conditions may have waiting periods (typically 6-24 months).",
-      "Check if your plan covers the specific Nicaraguan regions you'll live in.",
-      "Age limits may apply—some insurers won't cover new applicants over 65-75.",
-      "Medical evacuation coverage is important if quality care requires travel to another country.",
-      "US Medicare does NOT cover healthcare in Nicaragua."
+      "Vivian Pellas is your lifeline: This is the only hospital in Nicaragua meeting international standards. If you live in Granada, San Juan del Sur, or León, you're 45-90 minutes from quality care. If you live on the Caribbean coast (Corn Islands, Bluefields), evacuation to Managua requires a flight.",
+      "Political instability: Nicaragua has experienced political tensions and protests since 2018. Some international insurers have temporarily restricted coverage or added exclusions. Verify your insurer's current stance on Nicaragua before purchasing.",
+      "Miami evacuation reality: For complex cardiac surgery, serious trauma, advanced cancer, or specialized care, you'll evacuate to Miami (2.5 hours by air). Ensure your plan covers medical evacuation with a reputable provider (not just reimbursement).",
+      "CA-4 visa limitations: Nicaragua is part of the CA-4 agreement (with Guatemala, El Salvador, Honduras). You get 90 days shared across all four countries—not 90 days per country. For longer stays, you'll need residency.",
+      "Limited specialist availability: Even Vivian Pellas doesn't have every specialist on staff. Some specialists fly in from Costa Rica or the US for scheduled procedures. Urgent specialty care may require evacuation."
     ],
     faqs: [
       {
-        question: "Do I need health insurance for a Nicaragua visa?",
-        answer: "No. Nicaragua does not require health insurance for most visa types. However, coverage is strongly recommended as it provides access to quality healthcare and protects against unexpected medical costs."
+        question: "Is Nicaragua's Pensionado visa good for retirees?",
+        answer: "Nicaragua's Pensionado (retiree) visa is one of the easiest and cheapest in the Americas. Requirements: Proof of $600/month pension or social security income, criminal background check, basic application. Benefits: Tax exemption on foreign income, one-time duty-free import of household goods and vehicle, permanent residency status. No health insurance required for the visa—but you absolutely need private coverage. Many US retirees find Nicaragua affordable on Social Security alone."
       },
       {
-        question: "How does Nicaraguan public healthcare work?",
-        answer: "Nicaragua's public healthcare system (MINSA) provides coverage to citizens and legal residents. Access and quality vary by location. Most expats supplement with private insurance for faster care and English-speaking staff."
+        question: "How does Hospital Vivian Pellas compare to US hospitals?",
+        answer: "Hospital Metropolitano Vivian Pellas is a modern, JCI-aspirant facility in Managua with good equipment and trained doctors (many US/European-trained). It handles: general surgery, cardiology, orthopedics, obstetrics, oncology basics, emergency care. Quality is comparable to a good US regional hospital. Limitations: Not a teaching hospital, limited subspecialties, some advanced procedures require referral abroad. For routine care and emergencies, it's excellent. For complex cases (transplants, rare cancers, specialized pediatrics), you'll evacuate."
       },
       {
-        question: "How much does health insurance cost in Nicaragua?",
-        answer: "International health insurance typically costs $50-120/month depending on your age and coverage level. Local/public options cost $10-20/month but may have limitations for non-citizens."
+        question: "What healthcare exists in San Juan del Sur and Granada?",
+        answer: "These popular expat towns have basic private clinics for minor issues—GP visits, simple injuries, common illnesses. Anything serious means driving to Managua (Granada: 45 min, San Juan del Sur: 2 hours). Both towns have pharmacies with many medications available without prescription. For beach communities, some expats arrange standing relationships with Managua doctors for telemedicine consultations. Bottom line: minor issues handled locally, anything significant = Managua or Miami."
       },
       {
-        question: "What's the best health insurance for expats in Nicaragua?",
-        answer: "The best option depends on your situation. Cigna Global and Allianz Care are popular for comprehensive international coverage. Budget-conscious expats may prefer IMG Global or local options if they plan to stay long-term."
+        question: "How affordable is healthcare in Nicaragua really?",
+        answer: "Very affordable. Examples at Vivian Pellas: GP consultation $25-40, specialist $50-80, blood panel $30-50, ultrasound $40-60, MRI $200-350, ER visit $50-100 (plus treatments), cesarean delivery $2,500-4,000, knee replacement $8,000-12,000. Local clinics outside Managua charge 30-50% less. Prescriptions are extremely cheap—$5-20 for most common medications. Nicaragua is one of the cheapest places in the Americas for quality private healthcare."
       },
       {
-        question: "Are pre-existing conditions covered in Nicaragua?",
-        answer: "Most insurers have waiting periods (6-24 months) for pre-existing conditions. Some plans offer coverage after the waiting period; others may exclude specific conditions. BUPA Global is known for more flexible pre-existing condition policies."
+        question: "Should I get international or local health insurance in Nicaragua?",
+        answer: "International insurance is recommended. Reasons: 1) Covers evacuation to Miami for serious conditions—local plans usually don't, 2) Provides coverage when traveling (important given CA-4 limitations), 3) More reliable claims payment, 4) Better customer service in English. Local insurers (INISER, ASSA) are cheap but have limitations. Best approach: International plan with evacuation coverage (Cigna, IMG, Allianz) for major issues, pay cash for minor private care (it's so cheap that going through insurance isn't worth it)."
       }
     ],
     sidebarLinks: [
@@ -6912,16 +6914,16 @@ const programmaticCountries: Country[] = [
         href: "/countries/nicaragua/insurance/allianz-care"
       },
       {
-        title: "Insurance for Digital Nomads",
-        href: "/insurance-for/digital-nomads"
+        title: "Latin America Region",
+        href: "/regions/latin-america"
       },
       {
         title: "Insurance for Retirees",
         href: "/insurance-for/retirees"
       },
       {
-        title: "Best Expat Health Insurance",
-        href: "/best/expat-health-insurance"
+        title: "Best Budget Expat Insurance",
+        href: "/best/budget-expat-insurance"
       }
     ]
   },
