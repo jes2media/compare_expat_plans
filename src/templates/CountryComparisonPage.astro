@@ -1,0 +1,870 @@
+---
+/**
+ * CountryComparisonPage.astro
+ *
+ * Template for country vs country comparison pages.
+ * E.g., /compare/countries/spain-vs-portugal
+ *
+ * Helps expats decide between two destination countries by
+ * comparing healthcare, cost, visas, and insurance options.
+ */
+
+import Layout from '../layouts/Layout.astro';
+import CTABox from '../components/CTABox.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import ContentCards from '../components/ContentCards.astro';
+import Disclosure from '../components/Disclosure.astro';
+
+import type { Country } from '../data/types';
+
+interface Props {
+  countryA: Country;
+  countryB: Country;
+}
+
+const { countryA, countryB } = Astro.props;
+
+// =====================
+// COUNTRY DATA MAPS
+// =====================
+
+// Cost of living data (monthly estimates in USD)
+const costOfLivingData: Record<string, { rent: string; food: string; utilities: string; total: string; tier: 'low' | 'medium' | 'high' }> = {
+  'spain': { rent: '$600-1,200', food: '$300-500', utilities: '$100-150', total: '$1,500-2,500', tier: 'medium' },
+  'portugal': { rent: '$500-1,000', food: '$250-400', utilities: '$80-120', total: '$1,200-2,200', tier: 'medium' },
+  'france': { rent: '$800-1,800', food: '$400-600', utilities: '$120-180', total: '$2,000-3,500', tier: 'high' },
+  'italy': { rent: '$600-1,400', food: '$350-500', utilities: '$100-150', total: '$1,500-2,800', tier: 'medium' },
+  'germany': { rent: '$700-1,500', food: '$300-450', utilities: '$150-250', total: '$1,800-3,000', tier: 'high' },
+  'netherlands': { rent: '$900-1,800', food: '$350-500', utilities: '$150-200', total: '$2,000-3,200', tier: 'high' },
+  'uk': { rent: '$800-2,000', food: '$400-600', utilities: '$150-250', total: '$2,000-3,500', tier: 'high' },
+  'ireland': { rent: '$900-1,800', food: '$350-500', utilities: '$150-200', total: '$2,000-3,200', tier: 'high' },
+  'greece': { rent: '$400-900', food: '$250-400', utilities: '$80-120', total: '$1,000-1,800', tier: 'low' },
+  'croatia': { rent: '$400-900', food: '$250-400', utilities: '$80-120', total: '$1,000-1,800', tier: 'low' },
+  'thailand': { rent: '$300-800', food: '$200-400', utilities: '$50-100', total: '$800-1,500', tier: 'low' },
+  'vietnam': { rent: '$250-600', food: '$150-300', utilities: '$40-80', total: '$600-1,200', tier: 'low' },
+  'indonesia': { rent: '$300-700', food: '$200-350', utilities: '$50-100', total: '$700-1,400', tier: 'low' },
+  'malaysia': { rent: '$350-800', food: '$200-400', utilities: '$50-100', total: '$800-1,500', tier: 'low' },
+  'singapore': { rent: '$1,500-3,500', food: '$400-700', utilities: '$100-200', total: '$2,500-5,000', tier: 'high' },
+  'japan': { rent: '$600-1,500', food: '$400-600', utilities: '$100-200', total: '$1,500-3,000', tier: 'high' },
+  'mexico': { rent: '$400-900', food: '$200-400', utilities: '$50-100', total: '$800-1,600', tier: 'low' },
+  'costa-rica': { rent: '$500-1,000', food: '$300-500', utilities: '$80-150', total: '$1,200-2,200', tier: 'medium' },
+  'panama': { rent: '$600-1,200', food: '$300-500', utilities: '$100-150', total: '$1,300-2,400', tier: 'medium' },
+  'colombia': { rent: '$300-700', food: '$200-350', utilities: '$50-100', total: '$700-1,400', tier: 'low' },
+  'ecuador': { rent: '$300-700', food: '$200-350', utilities: '$50-80', total: '$700-1,300', tier: 'low' },
+  'argentina': { rent: '$300-700', food: '$200-400', utilities: '$40-80', total: '$700-1,400', tier: 'low' },
+  'uae': { rent: '$1,200-3,000', food: '$400-700', utilities: '$150-300', total: '$2,500-5,000', tier: 'high' },
+  'australia': { rent: '$1,000-2,200', food: '$400-600', utilities: '$150-250', total: '$2,200-4,000', tier: 'high' },
+  'canada': { rent: '$900-2,000', food: '$350-550', utilities: '$100-200', total: '$1,800-3,500', tier: 'high' },
+};
+
+// Visa options data
+const visaOptionsData: Record<string, Array<{ name: string; duration: string; requirements: string }>> = {
+  'spain': [
+    { name: 'Digital Nomad Visa', duration: '1-3 years', requirements: '€2,520/month income, health insurance' },
+    { name: 'Non-Lucrative Visa', duration: '1 year (renewable)', requirements: '€2,400/month passive income, no work' },
+    { name: 'Golden Visa', duration: '2 years', requirements: '€500,000 property investment' },
+  ],
+  'portugal': [
+    { name: 'D7 Passive Income Visa', duration: '2 years', requirements: '€760/month minimum income' },
+    { name: 'Digital Nomad Visa', duration: '1 year', requirements: '€3,040/month income, health insurance' },
+    { name: 'Golden Visa', duration: '2 years', requirements: '€500,000+ investment (rules changing)' },
+  ],
+  'france': [
+    { name: 'Visitor Visa (Long Stay)', duration: '1 year', requirements: 'Proof of funds, no work allowed' },
+    { name: 'Talent Passport', duration: '4 years', requirements: 'Business/investment or skills-based' },
+    { name: 'Retirement Visa', duration: '1 year', requirements: '€1,500/month income minimum' },
+  ],
+  'italy': [
+    { name: 'Elective Residence Visa', duration: '1 year', requirements: '€31,000/year passive income' },
+    { name: 'Digital Nomad Visa', duration: '1 year', requirements: '€28,000/year income (new 2024)' },
+    { name: 'Investor Visa', duration: '2 years', requirements: '€250,000+ investment' },
+  ],
+  'germany': [
+    { name: 'Freelance Visa', duration: '1-3 years', requirements: 'Client contracts, business plan' },
+    { name: 'Job Seeker Visa', duration: '6 months', requirements: 'Degree, €11,000 in bank' },
+    { name: 'EU Blue Card', duration: '4 years', requirements: 'Job offer €56,400/year minimum' },
+  ],
+  'netherlands': [
+    { name: 'DAFT (US Citizens)', duration: '2 years', requirements: '€4,500 investment, business plan' },
+    { name: 'Highly Skilled Migrant', duration: '5 years', requirements: 'Sponsored job, salary threshold' },
+    { name: 'Orientation Visa', duration: '1 year', requirements: 'Recent graduate or researcher' },
+  ],
+  'uk': [
+    { name: 'Global Talent Visa', duration: '5 years', requirements: 'Exceptional talent endorsement' },
+    { name: 'Skilled Worker Visa', duration: '5 years', requirements: 'Sponsored job, £26,200+ salary' },
+    { name: 'Innovator Visa', duration: '3 years', requirements: '£50,000 investment, endorsement' },
+  ],
+  'ireland': [
+    { name: 'Stamp 0 (Retired)', duration: '1 year', requirements: '€50,000/year income, €100k savings' },
+    { name: 'Critical Skills Permit', duration: '2 years', requirements: 'Job offer €32,000+, in-demand field' },
+    { name: 'Startup Visa', duration: '2 years', requirements: '€50,000 funding, innovative business' },
+  ],
+  'greece': [
+    { name: 'Digital Nomad Visa', duration: '1 year', requirements: '€3,500/month income, health insurance' },
+    { name: 'Golden Visa', duration: '5 years', requirements: '€250,000 property investment' },
+    { name: 'Financial Independence Visa', duration: '1 year', requirements: '€2,000/month passive income' },
+  ],
+  'croatia': [
+    { name: 'Digital Nomad Visa', duration: '1 year', requirements: '€2,539/month income, health insurance' },
+    { name: 'Temporary Stay (Business)', duration: '1 year', requirements: 'Business registration, contracts' },
+    { name: 'EU Citizen Rights', duration: 'Permanent', requirements: 'EU/EEA citizenship (Croatia joined Schengen 2023)' },
+  ],
+  'thailand': [
+    { name: 'Destination Thailand Visa (DTV)', duration: '5 years', requirements: '$500, work/digital nomad friendly' },
+    { name: 'Retirement Visa (O-A)', duration: '1 year', requirements: 'Age 50+, 800k THB in bank or income' },
+    { name: 'Elite Visa', duration: '5-20 years', requirements: '$16,000-60,000 membership fee' },
+  ],
+  'vietnam': [
+    { name: 'Business Visa', duration: '1-3 months', requirements: 'Sponsorship letter, renewable' },
+    { name: 'Temporary Residence Card', duration: '1-5 years', requirements: 'Work permit or investment' },
+    { name: 'E-Visa', duration: '90 days', requirements: '$25 online, single entry' },
+  ],
+  'indonesia': [
+    { name: 'Second Home Visa', duration: '5-10 years', requirements: '$130,000 in bank or property' },
+    { name: 'Retirement Visa (KITAS)', duration: '1 year', requirements: 'Age 55+, $1,500/month pension' },
+    { name: 'B211A (Social/Business)', duration: '60-180 days', requirements: 'Agent sponsorship, extendable' },
+  ],
+  'malaysia': [
+    { name: 'MM2H (My Second Home)', duration: '5-15 years', requirements: '$100k+ savings, monthly income' },
+    { name: 'DE Rantau (Digital Nomad)', duration: '1 year', requirements: '$24,000/year income, tech worker' },
+    { name: 'Employment Pass', duration: '2-5 years', requirements: 'Job offer, minimum salary' },
+  ],
+  'singapore': [
+    { name: 'Employment Pass', duration: '2 years', requirements: 'Job offer, $5,000/month minimum' },
+    { name: 'EntrePass', duration: '1 year', requirements: 'Startup with funding/incubator' },
+    { name: 'ONE Pass', duration: '5 years', requirements: 'Top talent, $240k+/year salary' },
+  ],
+  'mexico': [
+    { name: 'Temporary Resident Visa', duration: '1-4 years', requirements: '$2,500/month income or savings' },
+    { name: 'Permanent Resident Visa', duration: 'Indefinite', requirements: '4 years temp or family/pension' },
+    { name: 'Tourist Visa (FMM)', duration: '180 days', requirements: 'Free on arrival, not for work' },
+  ],
+  'costa-rica': [
+    { name: 'Rentista Visa', duration: '2 years', requirements: '$2,500/month stable income' },
+    { name: 'Pensionado Visa', duration: '2 years', requirements: '$1,000/month pension income' },
+    { name: 'Inversionista Visa', duration: '2 years', requirements: '$150,000 investment' },
+  ],
+  'panama': [
+    { name: 'Friendly Nations Visa', duration: 'Permanent', requirements: '$5,000 in bank, job offer or business' },
+    { name: 'Pensionado Visa', duration: 'Permanent', requirements: '$1,000/month pension (any age!)' },
+    { name: 'Self-Economic Solvency', duration: 'Permanent', requirements: '$300,000 property or bank deposit' },
+  ],
+  'colombia': [
+    { name: 'Digital Nomad Visa', duration: '2 years', requirements: '$684/month income minimum' },
+    { name: 'Retirement Visa (M)', duration: '3 years', requirements: '$684/month pension income' },
+    { name: 'Investment Visa', duration: '3 years', requirements: '100 minimum wages investment' },
+  ],
+  'ecuador': [
+    { name: 'Rentista Visa', duration: '2 years', requirements: '$1,275/month stable income' },
+    { name: 'Pensioner Visa', duration: '2 years', requirements: '$850/month pension' },
+    { name: 'Investor Visa', duration: '2 years', requirements: '$42,500 CD or property' },
+  ],
+  'argentina': [
+    { name: 'Rentista Visa', duration: '1 year', requirements: '$1,500/month provable income' },
+    { name: 'Pensioner Visa', duration: '1 year', requirements: 'Pension income proof' },
+    { name: 'Tourist Visa Extension', duration: '90+90 days', requirements: 'Border run or extension' },
+  ],
+  'uae': [
+    { name: 'Remote Work Visa', duration: '1 year', requirements: '$3,500/month income, health insurance' },
+    { name: 'Golden Visa', duration: '10 years', requirements: '$545,000 property or business' },
+    { name: 'Retirement Visa', duration: '5 years', requirements: 'Age 55+, property or savings' },
+  ],
+  'australia': [
+    { name: 'Skilled Worker Visa (189)', duration: 'Permanent', requirements: 'Points-based, in-demand skills' },
+    { name: 'Working Holiday Visa', duration: '1-3 years', requirements: 'Age 18-35, certain countries' },
+    { name: 'Investor Visa', duration: '4 years', requirements: '$1M+ investment in Australia' },
+  ],
+  'canada': [
+    { name: 'Express Entry', duration: 'Permanent', requirements: 'Points-based, skilled worker' },
+    { name: 'Startup Visa', duration: 'Permanent', requirements: 'Innovative business, VC backing' },
+    { name: 'Provincial Nominee', duration: 'Permanent', requirements: 'Provincial requirements vary' },
+  ],
+};
+
+// Climate data
+const climateData: Record<string, { type: string; summer: string; winter: string; bestTime: string }> = {
+  'spain': { type: 'Mediterranean/Continental', summer: 'Hot (75-95°F)', winter: 'Mild (40-60°F)', bestTime: 'Apr-Jun, Sep-Nov' },
+  'portugal': { type: 'Mediterranean/Oceanic', summer: 'Warm (70-85°F)', winter: 'Mild (45-60°F)', bestTime: 'Apr-Jun, Sep-Oct' },
+  'france': { type: 'Temperate/Mediterranean (south)', summer: 'Warm (70-85°F)', winter: 'Cool (35-50°F)', bestTime: 'May-Sep' },
+  'italy': { type: 'Mediterranean/Alpine (north)', summer: 'Hot (75-90°F)', winter: 'Mild-Cool (35-55°F)', bestTime: 'Apr-Jun, Sep-Oct' },
+  'germany': { type: 'Temperate/Continental', summer: 'Warm (65-80°F)', winter: 'Cold (30-40°F)', bestTime: 'May-Sep' },
+  'netherlands': { type: 'Temperate Maritime', summer: 'Mild (60-75°F)', winter: 'Cool (35-45°F)', bestTime: 'Apr-Sep' },
+  'uk': { type: 'Temperate Maritime', summer: 'Mild (60-75°F)', winter: 'Cool (35-50°F)', bestTime: 'May-Sep' },
+  'ireland': { type: 'Temperate Maritime', summer: 'Mild (55-70°F)', winter: 'Cool (35-50°F)', bestTime: 'May-Sep' },
+  'greece': { type: 'Mediterranean', summer: 'Hot (80-95°F)', winter: 'Mild (45-60°F)', bestTime: 'Apr-Jun, Sep-Nov' },
+  'croatia': { type: 'Mediterranean (coast)/Continental', summer: 'Hot (75-90°F)', winter: 'Mild-Cool (35-55°F)', bestTime: 'May-Sep' },
+  'thailand': { type: 'Tropical', summer: 'Hot (85-95°F)', winter: 'Warm (75-90°F)', bestTime: 'Nov-Feb (cool season)' },
+  'vietnam': { type: 'Tropical/Subtropical', summer: 'Hot (80-95°F)', winter: 'Varies by region', bestTime: 'Oct-Apr (depends on region)' },
+  'indonesia': { type: 'Tropical', summer: 'Hot (80-90°F)', winter: 'Hot (80-90°F)', bestTime: 'Apr-Oct (dry season)' },
+  'malaysia': { type: 'Tropical Equatorial', summer: 'Hot (85-95°F)', winter: 'Hot (80-90°F)', bestTime: 'Dec-Feb (east), Jun-Aug (west)' },
+  'singapore': { type: 'Tropical', summer: 'Hot (85-95°F)', winter: 'Hot (80-90°F)', bestTime: 'Feb-Apr (driest)' },
+  'japan': { type: 'Temperate/Subtropical', summer: 'Hot humid (80-95°F)', winter: 'Cool-Cold (30-50°F)', bestTime: 'Mar-May, Sep-Nov' },
+  'mexico': { type: 'Varies (desert to tropical)', summer: 'Hot (75-95°F)', winter: 'Mild (50-75°F)', bestTime: 'Nov-Apr (dry season)' },
+  'costa-rica': { type: 'Tropical', summer: 'Warm (75-85°F)', winter: 'Warm (70-85°F)', bestTime: 'Dec-Apr (dry season)' },
+  'panama': { type: 'Tropical', summer: 'Hot (85-95°F)', winter: 'Hot (80-90°F)', bestTime: 'Dec-Apr (dry season)' },
+  'colombia': { type: 'Varies by altitude', summer: 'Depends on city', winter: 'Consistent year-round', bestTime: 'Dec-Mar, Jul-Aug (dry)' },
+  'ecuador': { type: 'Varies by altitude', summer: 'Mild-Warm', winter: 'Mild (60-75°F highlands)', bestTime: 'Jun-Sep (coast), varies' },
+  'argentina': { type: 'Varied (temperate to subtropical)', summer: 'Hot (75-95°F)', winter: 'Cool-Cold (35-55°F)', bestTime: 'Oct-Apr' },
+  'uae': { type: 'Desert', summer: 'Very hot (95-115°F)', winter: 'Pleasant (60-80°F)', bestTime: 'Nov-Mar' },
+  'australia': { type: 'Varies (desert to temperate)', summer: 'Hot (75-100°F)', winter: 'Mild-Cool (40-65°F)', bestTime: 'Sep-Nov, Mar-May' },
+  'canada': { type: 'Continental/Varied', summer: 'Warm (65-85°F)', winter: 'Cold (5-35°F)', bestTime: 'Jun-Sep' },
+};
+
+// Expat hub cities
+const expatHubsData: Record<string, string[]> = {
+  'spain': ['Barcelona', 'Madrid', 'Valencia', 'Málaga', 'Alicante'],
+  'portugal': ['Lisbon', 'Porto', 'Algarve', 'Madeira', 'Cascais'],
+  'france': ['Paris', 'Nice', 'Lyon', 'Bordeaux', 'Montpellier'],
+  'italy': ['Rome', 'Milan', 'Florence', 'Bologna', 'Naples'],
+  'germany': ['Berlin', 'Munich', 'Frankfurt', 'Hamburg', 'Cologne'],
+  'netherlands': ['Amsterdam', 'Rotterdam', 'The Hague', 'Utrecht', 'Eindhoven'],
+  'uk': ['London', 'Manchester', 'Edinburgh', 'Bristol', 'Brighton'],
+  'ireland': ['Dublin', 'Cork', 'Galway', 'Limerick'],
+  'greece': ['Athens', 'Thessaloniki', 'Crete', 'Rhodes', 'Corfu'],
+  'croatia': ['Zagreb', 'Split', 'Dubrovnik', 'Rijeka'],
+  'thailand': ['Bangkok', 'Chiang Mai', 'Phuket', 'Pattaya', 'Koh Samui'],
+  'vietnam': ['Ho Chi Minh City', 'Hanoi', 'Da Nang', 'Hoi An', 'Nha Trang'],
+  'indonesia': ['Bali (Canggu/Ubud)', 'Jakarta', 'Yogyakarta', 'Lombok'],
+  'malaysia': ['Kuala Lumpur', 'Penang', 'Langkawi', 'Johor Bahru'],
+  'singapore': ['Singapore (city-state)'],
+  'japan': ['Tokyo', 'Osaka', 'Kyoto', 'Fukuoka', 'Okinawa'],
+  'mexico': ['Mexico City', 'Playa del Carmen', 'Puerto Vallarta', 'Mérida', 'San Miguel de Allende'],
+  'costa-rica': ['San José', 'Tamarindo', 'Jacó', 'Puerto Viejo'],
+  'panama': ['Panama City', 'Bocas del Toro', 'Boquete', 'Coronado'],
+  'colombia': ['Medellín', 'Bogotá', 'Cartagena', 'Cali', 'Santa Marta'],
+  'ecuador': ['Quito', 'Cuenca', 'Guayaquil', 'Manta'],
+  'argentina': ['Buenos Aires', 'Mendoza', 'Córdoba', 'Bariloche'],
+  'uae': ['Dubai', 'Abu Dhabi', 'Sharjah'],
+  'australia': ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Gold Coast'],
+  'canada': ['Toronto', 'Vancouver', 'Montreal', 'Calgary', 'Ottawa'],
+};
+
+// =====================
+// HELPER FUNCTIONS
+// =====================
+
+function getCostOfLiving(country: Country) {
+  return costOfLivingData[country.slug] || { rent: 'Varies', food: 'Varies', utilities: 'Varies', total: '$1,000-2,500', tier: 'medium' as const };
+}
+
+function getVisaOptions(country: Country) {
+  return visaOptionsData[country.slug] || [
+    { name: 'Tourist Visa', duration: '30-90 days', requirements: 'Passport, return ticket' },
+    { name: 'Work Visa', duration: 'Varies', requirements: 'Job offer, sponsorship' },
+  ];
+}
+
+function getClimate(country: Country) {
+  return climateData[country.slug] || { type: 'Varies', summer: 'Warm', winter: 'Cool', bestTime: 'Spring/Fall' };
+}
+
+function getExpatHubs(country: Country) {
+  return expatHubsData[country.slug] || ['Capital city', 'Major cities'];
+}
+
+function getLanguageNote(country: Country): string {
+  const languages: Record<string, string> = {
+    'spain': 'Spanish (Castilian). English common in tourist areas and among younger people.',
+    'portugal': 'Portuguese. Good English in Lisbon/tourist areas, limited in rural areas.',
+    'france': 'French. English improving but French strongly preferred.',
+    'italy': 'Italian. English limited outside major tourist centers.',
+    'germany': 'German. Excellent English proficiency, especially in cities.',
+    'netherlands': 'Dutch. Near-universal English proficiency.',
+    'uk': 'English (native).',
+    'ireland': 'English (native), Irish in some areas.',
+    'greece': 'Greek. English common in tourist areas and cities.',
+    'croatia': 'Croatian. Good English in coastal tourist areas.',
+    'thailand': 'Thai. English in tourist areas, limited elsewhere.',
+    'vietnam': 'Vietnamese. Limited English outside major cities.',
+    'indonesia': 'Bahasa Indonesia. English in Bali, limited elsewhere.',
+    'malaysia': 'Malay, English widely spoken (former British colony).',
+    'singapore': 'English (official), Mandarin, Malay, Tamil.',
+    'japan': 'Japanese. English limited, translation apps helpful.',
+    'mexico': 'Spanish. English in tourist areas, limited in most of country.',
+    'costa-rica': 'Spanish. Better English than most Latin America.',
+    'panama': 'Spanish. English common in Panama City business.',
+    'colombia': 'Spanish. English growing in Medellín/Bogotá among young professionals.',
+    'ecuador': 'Spanish. Limited English outside tourist areas.',
+    'argentina': 'Spanish (Rioplatense dialect). Limited English.',
+    'uae': 'Arabic (official), English widely used in business.',
+    'australia': 'English (native).',
+    'canada': 'English, French (Quebec). Highly multilingual.',
+  };
+  return languages[country.slug] || 'Local language. English varies by area.';
+}
+
+function getHealthcareRating(country: Country): { rating: string; notes: string } {
+  const ratings: Record<string, { rating: string; notes: string }> = {
+    'spain': { rating: 'Excellent', notes: 'Universal public healthcare, high-quality private options' },
+    'portugal': { rating: 'Very Good', notes: 'Affordable private care, improving public system' },
+    'france': { rating: 'Excellent', notes: 'World-renowned healthcare, complex insurance system' },
+    'italy': { rating: 'Very Good', notes: 'Regional variation, good in north, slower in south' },
+    'germany': { rating: 'Excellent', notes: 'Mandatory insurance, comprehensive coverage' },
+    'netherlands': { rating: 'Excellent', notes: 'Mandatory private insurance, efficient system' },
+    'uk': { rating: 'Good', notes: 'NHS free at point of use, long wait times for non-urgent' },
+    'ireland': { rating: 'Good', notes: 'Two-tier system, private recommended for faster care' },
+    'greece': { rating: 'Adequate', notes: 'Public system struggling, private recommended' },
+    'croatia': { rating: 'Good', notes: 'Decent public system, private for expats' },
+    'thailand': { rating: 'Very Good', notes: 'Excellent private hospitals, medical tourism hub' },
+    'vietnam': { rating: 'Adequate', notes: 'Good private hospitals in cities, basic elsewhere' },
+    'indonesia': { rating: 'Adequate', notes: 'Bali has good private care, variable elsewhere' },
+    'malaysia': { rating: 'Very Good', notes: 'Affordable quality care, medical tourism' },
+    'singapore': { rating: 'Excellent', notes: 'World-class but expensive without insurance' },
+    'japan': { rating: 'Excellent', notes: 'Mandatory insurance, high-tech facilities' },
+    'mexico': { rating: 'Good', notes: 'Quality private care at low cost, IMSS for residents' },
+    'costa-rica': { rating: 'Good', notes: 'CAJA public system, good private hospitals' },
+    'panama': { rating: 'Good', notes: 'Panama City has excellent private hospitals' },
+    'colombia': { rating: 'Good', notes: 'Medellín/Bogotá have quality private care' },
+    'ecuador': { rating: 'Adequate', notes: 'Cuenca popular for retirees, basic elsewhere' },
+    'argentina': { rating: 'Good', notes: 'Free public healthcare, quality private in BA' },
+    'uae': { rating: 'Excellent', notes: 'World-class private facilities, insurance required' },
+    'australia': { rating: 'Excellent', notes: 'Medicare for residents, private for faster care' },
+    'canada': { rating: 'Very Good', notes: 'Universal healthcare, some wait times' },
+  };
+  return ratings[country.slug] || { rating: 'Varies', notes: 'Research local options' };
+}
+
+function getScenarios(a: Country, b: Country): Array<{ persona: string; recommendation: string; reasoning: string }> {
+  const aCol = getCostOfLiving(a);
+  const bCol = getCostOfLiving(b);
+  const aClimate = getClimate(a);
+  const bClimate = getClimate(b);
+
+  const scenarios = [];
+
+  // Digital Nomad scenario
+  if (aCol.tier === 'low' || bCol.tier === 'low') {
+    const cheaper = aCol.tier === 'low' ? a : b;
+    const other = cheaper === a ? b : a;
+    scenarios.push({
+      persona: 'Digital Nomads',
+      recommendation: cheaper.name,
+      reasoning: `Lower cost of living (${getCostOfLiving(cheaper).total}/month) stretches your income further. ${other.name} costs more but may offer better infrastructure.`,
+    });
+  } else {
+    scenarios.push({
+      persona: 'Digital Nomads',
+      recommendation: 'Either works',
+      reasoning: `Both have similar costs. Consider visa requirements: ${a.name} ${a.insuranceRequired ? 'requires' : 'recommends'} insurance, ${b.name} ${b.insuranceRequired ? 'requires' : 'recommends'} insurance.`,
+    });
+  }
+
+  // Retirees scenario
+  const aHasRetirement = getVisaOptions(a).some(v => v.name.toLowerCase().includes('retire') || v.name.toLowerCase().includes('pension'));
+  const bHasRetirement = getVisaOptions(b).some(v => v.name.toLowerCase().includes('retire') || v.name.toLowerCase().includes('pension'));
+
+  if (aClimate.winter.includes('Mild') || aClimate.winter.includes('Warm')) {
+    scenarios.push({
+      persona: 'Retirees',
+      recommendation: a.name,
+      reasoning: `Milder winters (${aClimate.winter}), ${aHasRetirement ? 'dedicated retirement visa available' : 'various visa options'}. Healthcare: ${getHealthcareRating(a).rating}.`,
+    });
+  } else if (bClimate.winter.includes('Mild') || bClimate.winter.includes('Warm')) {
+    scenarios.push({
+      persona: 'Retirees',
+      recommendation: b.name,
+      reasoning: `Milder winters (${bClimate.winter}), ${bHasRetirement ? 'dedicated retirement visa available' : 'various visa options'}. Healthcare: ${getHealthcareRating(b).rating}.`,
+    });
+  } else {
+    scenarios.push({
+      persona: 'Retirees',
+      recommendation: 'Consider climate preferences',
+      reasoning: `${a.name} winters: ${aClimate.winter}. ${b.name} winters: ${bClimate.winter}. Both have healthcare options.`,
+    });
+  }
+
+  // Families scenario
+  const aRating = getHealthcareRating(a);
+  const bRating = getHealthcareRating(b);
+  if (aRating.rating === 'Excellent' || aRating.rating === 'Very Good') {
+    scenarios.push({
+      persona: 'Families with Children',
+      recommendation: a.name,
+      reasoning: `${aRating.rating} healthcare system. International schools available in ${getExpatHubs(a).slice(0, 2).join(', ')}.`,
+    });
+  } else if (bRating.rating === 'Excellent' || bRating.rating === 'Very Good') {
+    scenarios.push({
+      persona: 'Families with Children',
+      recommendation: b.name,
+      reasoning: `${bRating.rating} healthcare system. International schools available in ${getExpatHubs(b).slice(0, 2).join(', ')}.`,
+    });
+  }
+
+  // Budget-conscious
+  if (aCol.tier !== bCol.tier) {
+    const cheaper = aCol.tier === 'low' ? a : (bCol.tier === 'low' ? b : (aCol.tier === 'medium' ? a : b));
+    scenarios.push({
+      persona: 'Budget-Conscious Expats',
+      recommendation: cheaper.name,
+      reasoning: `Monthly costs of ${getCostOfLiving(cheaper).total} are more affordable. Healthcare and insurance still accessible.`,
+    });
+  }
+
+  return scenarios.slice(0, 4);
+}
+
+function getFAQs(a: Country, b: Country): Array<{ question: string; answer: string }> {
+  return [
+    {
+      question: `Which is cheaper to live in, ${a.name} or ${b.name}?`,
+      answer: `${a.name} costs approximately ${getCostOfLiving(a).total}/month while ${b.name} costs ${getCostOfLiving(b).total}/month. This includes rent, food, utilities, and basic expenses. Healthcare costs and insurance add ${a.privateHealthcare?.cost || '$100-300'} in ${a.name} and ${b.privateHealthcare?.cost || '$100-300'} in ${b.name}.`,
+    },
+    {
+      question: `Do I need health insurance in ${a.name} and ${b.name}?`,
+      answer: `${a.name}: ${a.insuranceRequired ? 'Yes, insurance is required for visa applications. ' : 'Not legally required but strongly recommended. '}${a.requirementExplanation || ''} ${b.name}: ${b.insuranceRequired ? 'Yes, insurance is required for visa applications. ' : 'Not legally required but strongly recommended. '}${b.requirementExplanation || ''}`,
+    },
+    {
+      question: `Which has better healthcare, ${a.name} or ${b.name}?`,
+      answer: `${a.name}: ${getHealthcareRating(a).rating} - ${getHealthcareRating(a).notes}. ${b.name}: ${getHealthcareRating(b).rating} - ${getHealthcareRating(b).notes}. Both countries have private healthcare options that accept international insurance.`,
+    },
+    {
+      question: `What visas are available for ${a.name} vs ${b.name}?`,
+      answer: `${a.name} offers: ${getVisaOptions(a).map(v => v.name).join(', ')}. ${b.name} offers: ${getVisaOptions(b).map(v => v.name).join(', ')}. Requirements and processing times vary—check official immigration websites.`,
+    },
+    {
+      question: `Where do expats live in ${a.name} and ${b.name}?`,
+      answer: `Popular expat areas in ${a.name}: ${getExpatHubs(a).join(', ')}. In ${b.name}: ${getExpatHubs(b).join(', ')}. These cities have established expat communities, international services, and English-speaking professionals.`,
+    },
+  ];
+}
+
+// =====================
+// PAGE DATA
+// =====================
+
+const costA = getCostOfLiving(countryA);
+const costB = getCostOfLiving(countryB);
+const visasA = getVisaOptions(countryA);
+const visasB = getVisaOptions(countryB);
+const climateA = getClimate(countryA);
+const climateB = getClimate(countryB);
+const hubsA = getExpatHubs(countryA);
+const hubsB = getExpatHubs(countryB);
+const healthA = getHealthcareRating(countryA);
+const healthB = getHealthcareRating(countryB);
+const scenarios = getScenarios(countryA, countryB);
+const faqs = getFAQs(countryA, countryB);
+
+const pageTitle = `${countryA.name} vs ${countryB.name}: Which Is Better for Expats?`;
+const pageDescription = `Compare ${countryA.name} and ${countryB.name} for expat life. Healthcare, cost of living, visas, insurance requirements, and which suits your lifestyle.`;
+
+const tocItems = [
+  { id: 'overview', text: 'Quick Comparison', level: 2 },
+  { id: 'cost-of-living', text: 'Cost of Living', level: 2 },
+  { id: 'healthcare', text: 'Healthcare Systems', level: 2 },
+  { id: 'visas', text: 'Visa Options', level: 2 },
+  { id: 'insurance', text: 'Insurance Requirements', level: 2 },
+  { id: 'climate', text: 'Climate & Weather', level: 2 },
+  { id: 'expat-life', text: 'Expat Life', level: 2 },
+  { id: 'scenarios', text: 'Who Should Choose Which', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+  { id: 'verdict', text: 'Our Verdict', level: 2 },
+];
+
+const author = {
+  name: 'John Spencer',
+  bio: 'John Spencer is the founder of Compare Expat Plans, helping expats find health coverage that works for their specific situations.',
+  image: '/images/john-spencer.png',
+};
+
+const sidebarLinks = [
+  { title: `Insurance in ${countryA.name}`, href: `/countries/${countryA.slug}/insurance` },
+  { title: `Insurance in ${countryB.name}`, href: `/countries/${countryB.slug}/insurance` },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Pre-Existing Conditions', href: '/guides/pre-existing-conditions-abroad' },
+];
+
+// Quick comparison table
+const quickComparisonRows = [
+  { factor: 'Monthly Cost of Living', countryA: costA.total, countryB: costB.total },
+  { factor: 'Healthcare Rating', countryA: healthA.rating, countryB: healthB.rating },
+  { factor: 'Insurance Required', countryA: countryA.insuranceRequired ? 'Yes' : 'Recommended', countryB: countryB.insuranceRequired ? 'Yes' : 'Recommended' },
+  { factor: 'Private Insurance Cost', countryA: countryA.privateHealthcare?.cost || 'Varies', countryB: countryB.privateHealthcare?.cost || 'Varies' },
+  { factor: 'Primary Language', countryA: getLanguageNote(countryA).split('.')[0], countryB: getLanguageNote(countryB).split('.')[0] },
+  { factor: 'Climate', countryA: climateA.type.split('/')[0], countryB: climateB.type.split('/')[0] },
+];
+
+// Related cards
+const relatedCards = [
+  {
+    title: `Health Insurance in ${countryA.name}`,
+    description: `Complete guide to ${countryA.demonym} healthcare and insurance.`,
+    href: `/countries/${countryA.slug}/insurance`,
+    image: countryA.heroImage || '/images/cards/health-insurance.png',
+  },
+  {
+    title: `Health Insurance in ${countryB.name}`,
+    description: `Complete guide to ${countryB.demonym} healthcare and insurance.`,
+    href: `/countries/${countryB.slug}/insurance`,
+    image: countryB.heroImage || '/images/cards/health-insurance.png',
+  },
+  {
+    title: 'Best Expat Health Insurance',
+    description: 'Compare top international insurance plans.',
+    href: '/best/expat-health-insurance',
+    image: '/images/cards/best-expat-insurance.png',
+  },
+];
+
+// Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://compareexpatplans.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://compareexpatplans.com/compare" },
+    { "@type": "ListItem", "position": 3, "name": `${countryA.name} vs ${countryB.name}` },
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} ogType="article">
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="relative bg-gradient-to-b from-primary-50 to-white py-10 lg:py-14 border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-primary-600 mb-2">
+          <a href="/compare" class="hover:underline">Compare</a>
+          {' → '}
+          <span>Countries</span>
+        </p>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          {countryA.name} vs {countryB.name}: The Complete Expat Comparison
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          Thinking about moving abroad? Here's an honest comparison of {countryA.name} and {countryB.name} covering cost of living, healthcare, visas, insurance requirements, and daily expat life.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href={`/countries/${countryA.slug}/insurance`}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            {countryA.name} Insurance Guide
+          </a>
+          <a
+            href={`/countries/${countryB.slug}/insurance`}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            {countryB.name} Insurance Guide
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <article class="flex-1 min-w-0">
+
+        <div class="mb-8">
+          <AuthorBox name={author.name} bio={author.bio} image={author.image} />
+          <p class="text-sm text-neutral-500 mt-3">
+            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          </p>
+        </div>
+
+        <div class="lg:hidden mb-8">
+          <TableOfContents items={tocItems} />
+        </div>
+
+        <div class="prose prose-neutral max-w-none">
+
+          <!-- Quick Overview -->
+          <h2 id="overview">Quick Comparison: {countryA.name} vs {countryB.name}</h2>
+          <p>
+            Here's a side-by-side look at the key factors that matter most to expats. We'll dive deeper into each below.
+          </p>
+
+          <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden not-prose">
+            <ComparisonTable
+              columns={[
+                { key: 'factor', header: 'Factor' },
+                { key: 'countryA', header: countryA.name },
+                { key: 'countryB', header: countryB.name },
+              ]}
+              rows={quickComparisonRows}
+            />
+          </div>
+
+          <!-- Cost of Living -->
+          <h2 id="cost-of-living">Cost of Living</h2>
+          <p>
+            Your budget will go further in some places than others. Here's what to expect for monthly expenses:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class={`border rounded-lg p-6 ${costA.tier === 'low' ? 'bg-green-50 border-green-200' : costA.tier === 'high' ? 'bg-amber-50 border-amber-200' : 'bg-neutral-50 border-neutral-200'}`}>
+              <h3 class="text-lg font-semibold text-neutral-900 mb-1">{countryA.name}</h3>
+              <p class={`text-2xl font-bold mb-4 ${costA.tier === 'low' ? 'text-green-700' : costA.tier === 'high' ? 'text-amber-700' : 'text-neutral-700'}`}>{costA.total}/month</p>
+              <ul class="space-y-2 text-sm text-neutral-600">
+                <li><strong>Rent (1BR):</strong> {costA.rent}</li>
+                <li><strong>Food:</strong> {costA.food}</li>
+                <li><strong>Utilities:</strong> {costA.utilities}</li>
+                <li><strong>Healthcare:</strong> {countryA.privateHealthcare?.cost || 'Varies'}</li>
+              </ul>
+            </div>
+            <div class={`border rounded-lg p-6 ${costB.tier === 'low' ? 'bg-green-50 border-green-200' : costB.tier === 'high' ? 'bg-amber-50 border-amber-200' : 'bg-neutral-50 border-neutral-200'}`}>
+              <h3 class="text-lg font-semibold text-neutral-900 mb-1">{countryB.name}</h3>
+              <p class={`text-2xl font-bold mb-4 ${costB.tier === 'low' ? 'text-green-700' : costB.tier === 'high' ? 'text-amber-700' : 'text-neutral-700'}`}>{costB.total}/month</p>
+              <ul class="space-y-2 text-sm text-neutral-600">
+                <li><strong>Rent (1BR):</strong> {costB.rent}</li>
+                <li><strong>Food:</strong> {costB.food}</li>
+                <li><strong>Utilities:</strong> {costB.utilities}</li>
+                <li><strong>Healthcare:</strong> {countryB.privateHealthcare?.cost || 'Varies'}</li>
+              </ul>
+            </div>
+          </div>
+
+          <p>
+            {costA.tier === costB.tier
+              ? `Both countries have similar cost of living. Your choice should depend more on lifestyle preferences and visa requirements.`
+              : costA.tier === 'low'
+                ? `${countryA.name} is significantly more affordable, making it attractive for digital nomads and retirees stretching their savings.`
+                : `${countryB.name} offers lower costs, which can mean more financial freedom or the ability to save while living abroad.`
+            }
+          </p>
+
+          <!-- Healthcare -->
+          <h2 id="healthcare">Healthcare Systems</h2>
+
+          <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <h3 class="text-lg font-semibold text-neutral-900">{countryA.name}</h3>
+                <span class={`text-xs font-medium px-2 py-1 rounded ${healthA.rating === 'Excellent' ? 'bg-green-100 text-green-700' : healthA.rating === 'Very Good' ? 'bg-blue-100 text-blue-700' : 'bg-neutral-100 text-neutral-700'}`}>
+                  {healthA.rating}
+                </span>
+              </div>
+              <p class="text-sm text-neutral-600 mb-4">{healthA.notes}</p>
+              <div class="border-t border-neutral-200 pt-4">
+                <p class="text-xs font-medium text-neutral-500 mb-2">Public System</p>
+                <p class="text-sm text-neutral-700"><strong>{countryA.publicHealthcare?.name}:</strong> {countryA.publicHealthcare?.access}</p>
+              </div>
+            </div>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <h3 class="text-lg font-semibold text-neutral-900">{countryB.name}</h3>
+                <span class={`text-xs font-medium px-2 py-1 rounded ${healthB.rating === 'Excellent' ? 'bg-green-100 text-green-700' : healthB.rating === 'Very Good' ? 'bg-blue-100 text-blue-700' : 'bg-neutral-100 text-neutral-700'}`}>
+                  {healthB.rating}
+                </span>
+              </div>
+              <p class="text-sm text-neutral-600 mb-4">{healthB.notes}</p>
+              <div class="border-t border-neutral-200 pt-4">
+                <p class="text-xs font-medium text-neutral-500 mb-2">Public System</p>
+                <p class="text-sm text-neutral-700"><strong>{countryB.publicHealthcare?.name}:</strong> {countryB.publicHealthcare?.access}</p>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Both countries have private healthcare options that work with international insurance plans. Most expats use private care for faster service and English-speaking doctors, even if they qualify for public healthcare.
+          </p>
+
+          <!-- Visas -->
+          <h2 id="visas">Visa Options</h2>
+          <p>
+            Your visa determines everything from how long you can stay to whether you can work. Here are the main options:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class="border border-neutral-200 rounded-lg overflow-hidden">
+              <div class="bg-neutral-100 px-4 py-3 border-b border-neutral-200">
+                <h3 class="font-semibold text-neutral-900">{countryA.name} Visas</h3>
+              </div>
+              <div class="divide-y divide-neutral-100">
+                {visasA.map(visa => (
+                  <div class="p-4">
+                    <p class="font-medium text-neutral-900">{visa.name}</p>
+                    <p class="text-sm text-neutral-500 mt-1">Duration: {visa.duration}</p>
+                    <p class="text-sm text-neutral-600 mt-1">{visa.requirements}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="border border-neutral-200 rounded-lg overflow-hidden">
+              <div class="bg-neutral-100 px-4 py-3 border-b border-neutral-200">
+                <h3 class="font-semibold text-neutral-900">{countryB.name} Visas</h3>
+              </div>
+              <div class="divide-y divide-neutral-100">
+                {visasB.map(visa => (
+                  <div class="p-4">
+                    <p class="font-medium text-neutral-900">{visa.name}</p>
+                    <p class="text-sm text-neutral-500 mt-1">Duration: {visa.duration}</p>
+                    <p class="text-sm text-neutral-600 mt-1">{visa.requirements}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Insurance Requirements -->
+          <h2 id="insurance">Insurance Requirements</h2>
+
+          <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class={`border rounded-lg p-6 ${countryA.insuranceRequired ? 'bg-amber-50 border-amber-200' : 'bg-green-50 border-green-200'}`}>
+              <h3 class="text-lg font-semibold text-neutral-900 mb-2">{countryA.name}</h3>
+              <p class={`text-sm font-medium mb-3 ${countryA.insuranceRequired ? 'text-amber-700' : 'text-green-700'}`}>
+                {countryA.insuranceRequired ? '⚠️ Insurance Required for Visas' : '✓ Insurance Recommended'}
+              </p>
+              <p class="text-sm text-neutral-600 mb-4">{countryA.requirementExplanation || 'Private health insurance recommended for all expats.'}</p>
+              <p class="text-sm text-neutral-700"><strong>Typical cost:</strong> {countryA.privateHealthcare?.cost || 'Varies by age and coverage'}</p>
+            </div>
+            <div class={`border rounded-lg p-6 ${countryB.insuranceRequired ? 'bg-amber-50 border-amber-200' : 'bg-green-50 border-green-200'}`}>
+              <h3 class="text-lg font-semibold text-neutral-900 mb-2">{countryB.name}</h3>
+              <p class={`text-sm font-medium mb-3 ${countryB.insuranceRequired ? 'text-amber-700' : 'text-green-700'}`}>
+                {countryB.insuranceRequired ? '⚠️ Insurance Required for Visas' : '✓ Insurance Recommended'}
+              </p>
+              <p class="text-sm text-neutral-600 mb-4">{countryB.requirementExplanation || 'Private health insurance recommended for all expats.'}</p>
+              <p class="text-sm text-neutral-700"><strong>Typical cost:</strong> {countryB.privateHealthcare?.cost || 'Varies by age and coverage'}</p>
+            </div>
+          </div>
+
+          <CTABox
+            title="Compare Insurance for Both Countries"
+            description="International plans work in both destinations. Get quotes to see your options."
+            buttonText="Compare Plans"
+            buttonHref="/best/expat-health-insurance"
+            showDisclosure={false}
+          />
+
+          <!-- Climate -->
+          <h2 id="climate">Climate & Weather</h2>
+          <p>
+            Weather affects everything from your wardrobe to your energy bills. Here's what to expect:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+              <h3 class="text-lg font-semibold text-neutral-900 mb-3">{countryA.name}</h3>
+              <ul class="space-y-2 text-sm text-neutral-600">
+                <li><strong>Climate type:</strong> {climateA.type}</li>
+                <li><strong>Summer:</strong> {climateA.summer}</li>
+                <li><strong>Winter:</strong> {climateA.winter}</li>
+                <li><strong>Best time to visit:</strong> {climateA.bestTime}</li>
+              </ul>
+            </div>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+              <h3 class="text-lg font-semibold text-neutral-900 mb-3">{countryB.name}</h3>
+              <ul class="space-y-2 text-sm text-neutral-600">
+                <li><strong>Climate type:</strong> {climateB.type}</li>
+                <li><strong>Summer:</strong> {climateB.summer}</li>
+                <li><strong>Winter:</strong> {climateB.winter}</li>
+                <li><strong>Best time to visit:</strong> {climateB.bestTime}</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Expat Life -->
+          <h2 id="expat-life">Expat Life & Community</h2>
+
+          <h3>{countryA.name}</h3>
+          <p>
+            <strong>Language:</strong> {getLanguageNote(countryA)}
+          </p>
+          <p>
+            <strong>Popular expat cities:</strong> {hubsA.join(', ')}. These areas have established expat communities, international schools, English-speaking services, and coworking spaces.
+          </p>
+
+          <h3>{countryB.name}</h3>
+          <p>
+            <strong>Language:</strong> {getLanguageNote(countryB)}
+          </p>
+          <p>
+            <strong>Popular expat cities:</strong> {hubsB.join(', ')}. You'll find other expats, international amenities, and communities here.
+          </p>
+
+          <!-- Scenarios -->
+          <h2 id="scenarios">Who Should Choose Which?</h2>
+          <p>
+            Different situations call for different destinations. Here's our take:
+          </p>
+
+          <div class="space-y-4 my-8 not-prose">
+            {scenarios.map(scenario => (
+              <div class="border border-neutral-200 rounded-lg p-5">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-semibold text-neutral-900">{scenario.persona}</h3>
+                  <span class="text-sm font-medium text-primary-600">{scenario.recommendation}</span>
+                </div>
+                <p class="text-sm text-neutral-600">{scenario.reasoning}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- FAQs -->
+          <h2 id="faqs">Frequently Asked Questions</h2>
+
+          <div class="space-y-6 my-8 not-prose">
+            {faqs.map(faq => (
+              <div class="border-b border-neutral-200 pb-6">
+                <h3 class="text-lg font-semibold text-neutral-900 mb-2">{faq.question}</h3>
+                <p class="text-neutral-600">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- Verdict -->
+          <h2 id="verdict">Our Verdict</h2>
+          <p>
+            There's no objectively "better" choice between {countryA.name} and {countryB.name}. The right answer depends on your priorities:
+          </p>
+          <ul>
+            <li><strong>Budget:</strong> {costA.tier === 'low' || costB.tier === 'low' ? `${costA.tier === 'low' ? countryA.name : countryB.name} is more affordable` : 'Similar costs in both'}</li>
+            <li><strong>Healthcare:</strong> {healthA.rating === 'Excellent' ? `${countryA.name} has excellent healthcare` : healthB.rating === 'Excellent' ? `${countryB.name} has excellent healthcare` : 'Both have adequate healthcare options'}</li>
+            <li><strong>Visa ease:</strong> Compare specific visa requirements based on your nationality and situation</li>
+            <li><strong>Climate:</strong> {climateA.type} vs {climateB.type}—personal preference matters</li>
+          </ul>
+          <p>
+            <strong>Our recommendation:</strong> Visit both places before committing if possible. Short-term stays reveal things research can't—the pace of life, the culture, and whether you actually enjoy being there.
+          </p>
+          <p>
+            Whichever you choose, get health insurance sorted early. International plans work in both countries, so you can even switch destinations later without changing coverage.
+          </p>
+
+          <!-- Closing CTA -->
+          <CTABox
+            title="Ready to Make Your Move?"
+            description={`Compare insurance plans that work in both ${countryA.name} and ${countryB.name}.`}
+            buttonText="Compare Insurance Plans"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
+
+        </div>
+
+        <!-- Related Cards -->
+        <ContentCards
+          title="Related Resources"
+          cards={relatedCards}
+        />
+
+        <!-- Disclaimer -->
+        <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+          <p class="text-sm text-neutral-600">
+            <strong>Disclaimer:</strong> Costs, visa requirements, and policies change frequently. This comparison uses estimates and may not reflect current conditions. Always verify information with official government sources and consult immigration professionals before making decisions.
+          </p>
+        </div>
+      </article>
+
+      <StickySidebar
+        ctaTitle={`${countryA.name} vs ${countryB.name}`}
+        ctaDescription="Find insurance that works in either destination."
+        ctaButtonText="Compare Plans"
+        ctaButtonHref="/best/expat-health-insurance"
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+  </div>
+</Layout>

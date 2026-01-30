@@ -1,0 +1,93 @@
+---
+/**
+ * Dynamic route for country comparison pages.
+ *
+ * Generates pages like:
+ * - /compare/countries/spain-vs-portugal
+ * - /compare/countries/thailand-vs-vietnam
+ * - /compare/countries/mexico-vs-costa-rica
+ *
+ * Helps expats decide between two destination countries.
+ */
+
+import CountryComparisonPage from '../../../templates/CountryComparisonPage.astro';
+import { getCountryBySlug } from '../../../data/countries';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Define strategic country pairs that expats commonly compare
+  const countryPairs = [
+    // Europe - Mediterranean
+    ['spain', 'portugal'],
+    ['spain', 'italy'],
+    ['spain', 'france'],
+    ['portugal', 'greece'],
+    ['italy', 'greece'],
+    ['france', 'italy'],
+
+    // Europe - Northern/Central
+    ['germany', 'netherlands'],
+    ['uk', 'ireland'],
+    ['germany', 'france'],
+
+    // Southeast Asia
+    ['thailand', 'vietnam'],
+    ['thailand', 'indonesia'],
+    ['thailand', 'malaysia'],
+    ['vietnam', 'indonesia'],
+    ['malaysia', 'singapore'],
+
+    // Latin America
+    ['mexico', 'costa-rica'],
+    ['mexico', 'panama'],
+    ['costa-rica', 'panama'],
+    ['colombia', 'ecuador'],
+    ['colombia', 'mexico'],
+    ['argentina', 'colombia'],
+
+    // Cross-region popular comparisons
+    ['spain', 'mexico'],
+    ['portugal', 'thailand'],
+    ['spain', 'thailand'],
+    ['mexico', 'thailand'],
+    ['costa-rica', 'portugal'],
+
+    // Business/expat hubs
+    ['uae', 'singapore'],
+    ['singapore', 'thailand'],
+
+    // Americas vs Europe
+    ['canada', 'uk'],
+    ['australia', 'uk'],
+  ];
+
+  const paths: Array<{
+    params: { slug: string };
+    props: {
+      countryA: NonNullable<ReturnType<typeof getCountryBySlug>>;
+      countryB: NonNullable<ReturnType<typeof getCountryBySlug>>;
+    };
+  }> = [];
+
+  for (const [slugA, slugB] of countryPairs) {
+    const countryA = getCountryBySlug(slugA);
+    const countryB = getCountryBySlug(slugB);
+
+    if (!countryA || !countryB) continue;
+
+    // Create the comparison slug (alphabetically ordered for consistency)
+    const slug = `${slugA}-vs-${slugB}`;
+
+    paths.push({
+      params: { slug },
+      props: { countryA, countryB },
+    });
+  }
+
+  return paths;
+};
+
+const { countryA, countryB } = Astro.props;
+---
+
+<CountryComparisonPage countryA={countryA} countryB={countryB} />
