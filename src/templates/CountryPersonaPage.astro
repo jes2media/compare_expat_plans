@@ -252,6 +252,214 @@ function getPersonaFAQs(personaSlug: string, countryName: string): Array<{questi
   ];
 }
 
+// Helper function: Get day-to-day healthcare reality
+function getDayToDayReality(countrySlug: string, personaSlug: string, countryName: string): string[] {
+  const lowCostCountries = ['thailand', 'mexico', 'vietnam', 'indonesia', 'colombia', 'argentina', 'ecuador', 'philippines', 'malaysia', 'india', 'peru', 'bulgaria', 'serbia', 'albania', 'dominican-republic', 'belize'];
+  const medCostCountries = ['spain', 'portugal', 'italy', 'costa-rica', 'panama', 'brazil', 'south-korea', 'czech-republic', 'croatia', 'hungary', 'poland', 'greece', 'taiwan', 'chile', 'curacao', 'jamaica'];
+  const highCostCountries = ['france', 'germany', 'uk', 'uae', 'singapore', 'australia', 'canada', 'japan', 'switzerland', 'netherlands', 'ireland', 'sweden', 'norway', 'denmark', 'hong-kong', 'cayman-islands', 'bermuda', 'bahamas', 'barbados'];
+
+  const isLowCost = lowCostCountries.includes(countrySlug);
+  const isHighCost = highCostCountries.includes(countrySlug);
+
+  const baseReality: string[] = [];
+
+  // Cost-based paragraphs
+  if (isLowCost) {
+    baseReality.push(`In ${countryName}, routine healthcare is affordable enough that many expats pay out of pocket for minor issues. A typical doctor visit at a private clinic runs $20-60, and even specialist consultations rarely exceed $100. This means you can realistically use insurance primarily for emergencies and major procedures while handling everyday healthcare with cash.`);
+    baseReality.push(`Pharmacies in ${countryName} often sell medications without prescriptions that would require one back home. Common antibiotics, pain relievers, and other medications are available over the counter at a fraction of US or European prices. This can be convenient, but consult a doctor for anything serious.`);
+  } else if (isHighCost) {
+    baseReality.push(`Healthcare costs in ${countryName} are significant—comparable to or higher than what you'd pay in the US or Western Europe. A routine doctor visit can cost $100-200, specialist appointments $200-400, and hospital stays can quickly reach thousands per night. Comprehensive insurance isn't optional here; it's essential.`);
+    baseReality.push(`The upside of higher costs is generally excellent quality. Hospitals are well-equipped, English is commonly spoken in medical settings, and you can expect standards similar to what you'd find in major Western cities. But budget accordingly—even with insurance, deductibles and co-pays add up.`);
+  } else {
+    baseReality.push(`${countryName} offers a middle ground on healthcare costs. Doctor visits typically run $50-100, hospital stays $150-400 per night at private facilities. This is affordable enough that minor issues won't break the bank, but a serious illness or injury without insurance could still cost you thousands.`);
+    baseReality.push(`Quality of care in ${countryName} is generally good in major cities, though it can vary in rural areas. Private hospitals typically offer shorter wait times and more English-speaking staff, while public options may be cheaper but involve longer waits.`);
+  }
+
+  // Persona-specific paragraphs
+  const personaParagraphs: Record<string, string> = {
+    'digital-nomads': `As a nomad, you'll likely rely on telemedicine for minor issues and local clinics for anything that needs in-person attention. Build relationships with a local clinic or doctor early—having someone who knows your history makes healthcare abroad much smoother. Many nomads keep a basic medical kit with common medications rather than visiting a doctor for every minor ailment.`,
+    'retirees': `For retirees, establishing a relationship with a local primary care physician is crucial. You'll want someone who can manage ongoing conditions, coordinate with specialists, and understand your medical history. Ask other expats for recommendations—word of mouth is often the best way to find English-speaking doctors who work well with internationals.`,
+    'families': `With children, you'll need to know where the nearest pediatric care is available. In ${countryName}, private hospitals typically have pediatric departments, but quality varies. Establish a relationship with a pediatrician early, ensure your children's vaccination records are translated and accessible, and know the fastest route to emergency care from your home.`,
+    'remote-workers': `Remote workers often have the flexibility to schedule medical appointments during work breaks. Take advantage of this—don't let work deadlines cause you to postpone healthcare. Many clinics in expat-friendly areas offer evening or weekend hours specifically for working professionals.`,
+    'students': `Student health services at your university are usually your first stop for minor issues. They're often free or low-cost and understand the specific needs of international students. For anything beyond their scope, they can refer you to appropriate specialists. Keep your insurance card and university health center information easily accessible.`,
+    'freelancers': `As a freelancer, sick days directly impact your income. This makes preventive care especially important—regular checkups, staying on top of vaccinations, and addressing health issues early before they become bigger problems. Consider this when choosing your insurance: a plan that covers routine care might pay for itself by keeping you healthy and productive.`,
+    'seniors': `Managing medications abroad requires planning. Before you move, get a detailed letter from your doctor listing all your medications with generic names (brand names vary by country). Some medications may not be available in ${countryName}, requiring alternatives or international shipping. Research pharmacy options and medication availability before you arrive.`,
+    'entrepreneurs': `Running a business while managing your health abroad requires efficiency. Consider executive health plans that include annual comprehensive checkups—catching issues early is both good for your health and your business continuity. Many international plans offer priority appointments and dedicated support lines that minimize time away from work.`
+  };
+
+  if (personaParagraphs[personaSlug]) {
+    baseReality.push(personaParagraphs[personaSlug]);
+  }
+
+  return baseReality;
+}
+
+// Helper function: Get common mistakes
+function getCommonMistakes(personaSlug: string, countryName: string): Array<{mistake: string; reality: string}> {
+  const commonMistakes: Record<string, Array<{mistake: string; reality: string}>> = {
+    'digital-nomads': [
+      { mistake: 'Relying solely on travel insurance for long stays', reality: 'Travel insurance is designed for trips, not living abroad. After 3-6 months, you need proper international health insurance. Travel policies may also deny claims if they determine you\'re "residing" rather than "traveling."' },
+      { mistake: 'Assuming you can buy insurance after getting sick', reality: 'Insurance doesn\'t work retroactively. Pre-existing conditions are excluded, and you can\'t buy coverage for an injury that already happened. Get insured before you need it.' },
+      { mistake: 'Choosing the cheapest plan without reading exclusions', reality: 'A $40/month plan that excludes most things isn\'t actually saving you money. Read what\'s covered. Mental health, adventure sports, and chronic conditions are commonly excluded in budget plans.' }
+    ],
+    'retirees': [
+      { mistake: 'Assuming Medicare works internationally', reality: 'Medicare doesn\'t cover you outside the US except in very limited border-crossing emergencies. You need separate international coverage.' },
+      { mistake: 'Waiting until health issues arise to get coverage', reality: 'Pre-existing conditions are much harder to cover once you have them. Get comprehensive insurance while you\'re still healthy—it\'s both easier and cheaper.' },
+      { mistake: 'Not budgeting for premium increases', reality: 'Premiums increase every year as you age. A plan that costs $300/month at 60 might cost $600/month at 70. Factor this into your long-term retirement budget.' }
+    ],
+    'families': [
+      { mistake: 'Assuming maternity coverage is automatic', reality: 'Maternity coverage must be specifically included and has waiting periods (usually 10-12 months). You cannot get pregnant and then buy coverage. Plan pregnancies around your insurance timeline.' },
+      { mistake: 'Not verifying pediatric coverage specifics', reality: 'Not all plans cover well-child visits, vaccinations, or routine pediatric care. These aren\'t emergencies, so travel medical plans typically exclude them. Verify before enrolling.' },
+      { mistake: 'Forgetting to cover all family members', reality: 'Each person needs to be specifically listed on the policy. Newborns need to be added within a specific window (usually 30 days). Don\'t assume coverage extends automatically.' }
+    ],
+    'students': [
+      { mistake: 'Relying on parents\' insurance internationally', reality: 'Many domestic insurance plans have limited or no international coverage. Even if covered, the network and claims process may be impractical from abroad. Get dedicated international coverage.' },
+      { mistake: 'Choosing insurance without checking university requirements', reality: 'Many universities have specific insurance requirements. Buying the wrong plan means paying twice—once for the plan that doesn\'t qualify and again for compliant coverage.' },
+      { mistake: 'Ignoring mental health coverage', reality: 'Studying abroad is stressful. Mental health issues are common among international students. Ensure your plan covers counseling and psychiatric care—many basic plans don\'t.' }
+    ],
+    'seniors': [
+      { mistake: 'Assuming all providers accept older applicants', reality: 'Many insurers have age limits (65, 70, or 75). Others accept older applicants but at very high premiums or with significant exclusions. Research age policies before applying.' },
+      { mistake: 'Not disclosing pre-existing conditions', reality: 'Failing to disclose conditions can void your entire policy when you need it most. Be honest on applications—there are providers who work with pre-existing conditions.' },
+      { mistake: 'Choosing high deductibles to save on premiums', reality: 'A $5,000 deductible might save $100/month but costs you $5,000 before insurance pays anything. At senior ages, you\'re more likely to use healthcare. Balance premium savings against likely usage.' }
+    ],
+    'freelancers': [
+      { mistake: 'Going uninsured to save money', reality: 'One emergency room visit can cost more than years of insurance premiums. The math almost never works in favor of going uninsured, especially abroad where you can\'t fall back on family support.' },
+      { mistake: 'Letting coverage lapse during slow income periods', reality: 'Insurance gaps are dangerous. If you get sick while uninsured, it becomes a pre-existing condition when you re-enroll. Maintain continuous coverage even during lean months.' },
+      { mistake: 'Not claiming tax deductions', reality: 'In many countries, self-employed individuals can deduct health insurance premiums. Check local tax laws—this effectively reduces your insurance cost.' }
+    ],
+    'remote-workers': [
+      { mistake: 'Assuming employer insurance covers you abroad', reality: 'Most employer health plans have limited or no international coverage. Some may cover emergencies but not routine care. Verify exactly what your employer plan covers before relying on it.' },
+      { mistake: 'Not coordinating with employer benefits', reality: 'If your employer offers a health stipend or international coverage option, use it. Don\'t pay out of pocket for something your employer would cover.' },
+      { mistake: 'Ignoring visa insurance requirements', reality: `${countryName} may require specific insurance for your visa. Employer coverage or travel insurance may not meet visa requirements. Verify before applying.` }
+    ],
+    'entrepreneurs': [
+      { mistake: 'Prioritizing business insurance over personal health insurance', reality: 'Your business depends on your health. A serious illness without coverage can bankrupt both you and your business. Health insurance is a business expense, not a personal luxury.' },
+      { mistake: 'Not considering key person coverage', reality: 'If you\'re essential to your business, consider coverage that includes business interruption or key person elements. Your health directly affects business continuity.' },
+      { mistake: 'Forgetting coverage during business travel', reality: 'If your base plan covers only your residence country, business trips may leave you exposed. Ensure your plan covers you during travel to other countries.' }
+    ]
+  };
+
+  return commonMistakes[personaSlug] || [
+    { mistake: 'Waiting until arrival to think about insurance', reality: 'Research and purchase insurance before you leave. Some plans have waiting periods, and buying coverage is easier before you\'re already abroad.' },
+    { mistake: 'Not understanding what\'s excluded', reality: 'Every insurance plan has exclusions. Read the policy document, not just the marketing materials. Common exclusions include pre-existing conditions, mental health, dental, and high-risk activities.' },
+    { mistake: 'Assuming all international insurance is the same', reality: 'Coverage varies dramatically between providers. A comprehensive plan from one insurer may cost twice as much as a basic plan from another—but also covers twice as much. Compare carefully.' }
+  ];
+}
+
+// Helper function: Get before you go checklist
+function getBeforeYouGoChecklist(personaSlug: string, countryName: string): string[] {
+  const baseChecklist = [
+    `Research visa insurance requirements for ${countryName} and ensure your plan meets them`,
+    'Get copies of all medical records, prescriptions, and vaccination history',
+    'Have prescriptions written with generic drug names (brand names vary by country)',
+    'Research hospitals and clinics near where you\'ll be living',
+    'Download your insurance provider\'s app and save emergency contact numbers',
+    'Understand how to file a claim and what documentation you\'ll need',
+    'Set up a way to pay for medical care upfront if your plan uses reimbursement'
+  ];
+
+  const personaSpecific: Record<string, string[]> = {
+    'digital-nomads': [
+      'Verify your plan covers all countries you might visit, not just your primary destination',
+      'Check if your plan has a "home country" exclusion that limits coverage there',
+      'Save digital copies of your insurance card and policy documents in cloud storage'
+    ],
+    'retirees': [
+      'Get a comprehensive health screening before departure while still on your home country insurance',
+      'Establish a 90-day supply of all medications and research availability abroad',
+      'Identify English-speaking doctors and specialists in your destination city'
+    ],
+    'families': [
+      'Update all family members\' vaccinations per destination country requirements',
+      'Research pediatricians and family doctors in your destination area',
+      'Pack a family first-aid kit with children\'s medications and know local equivalents'
+    ],
+    'students': [
+      'Verify your plan meets university insurance requirements before enrollment deadlines',
+      'Locate your university health center and understand what services they provide',
+      'Get any required vaccinations for university enrollment'
+    ],
+    'seniors': [
+      'Get a detailed letter from your doctor explaining all conditions and medications',
+      'Research whether your medications are available and legal in your destination',
+      'Identify specialists for any ongoing conditions in your destination city'
+    ],
+    'freelancers': [
+      'Set up insurance as a business expense if tax-deductible in your situation',
+      'Ensure continuous coverage—gaps can turn future issues into pre-existing conditions',
+      'Budget for insurance as a non-negotiable monthly expense'
+    ],
+    'remote-workers': [
+      'Clarify with your employer what international coverage they provide, if any',
+      'Understand if you need to supplement employer coverage with additional insurance',
+      'Verify your insurance meets any visa requirements for remote work'
+    ],
+    'entrepreneurs': [
+      'Consider plans that cover you during business travel to other countries',
+      'Research whether you can cover employees on a group plan in your destination',
+      'Set up insurance billing through your business if tax-advantageous'
+    ]
+  };
+
+  return [...baseChecklist, ...(personaSpecific[personaSlug] || [])];
+}
+
+// Helper function: Get insurance buying tips
+function getInsuranceBuyingTips(personaSlug: string): string[] {
+  const baseTips = [
+    'Get quotes from at least 3 providers before deciding—prices vary significantly for similar coverage',
+    'Read the policy document (not just the brochure) to understand exclusions',
+    'Check provider reviews from actual expats, not just star ratings',
+    'Verify the claims process: how long does reimbursement take? Is direct billing available?',
+    'Understand the difference between travel medical insurance and international health insurance'
+  ];
+
+  const personaTips: Record<string, string[]> = {
+    'digital-nomads': [
+      'Consider monthly payment plans if you want flexibility to change or cancel',
+      'Verify there\'s no "home country" restriction that limits coverage in your passport country',
+      'Look for plans with telemedicine—essential when you\'re in remote areas or new cities'
+    ],
+    'retirees': [
+      'Ask about pre-existing condition coverage: waiting periods, moratorium vs. full medical underwriting',
+      'Verify there\'s no maximum age for renewal—you don\'t want to be dropped at 75',
+      'Consider the insurer\'s financial stability—you want them around for the long term'
+    ],
+    'families': [
+      'Compare family vs. individual pricing—sometimes separate policies are cheaper',
+      'Verify maternity coverage terms if more children are possible',
+      'Check pediatric coverage for well-child visits, vaccinations, and routine care'
+    ],
+    'students': [
+      'Check if your university offers a group plan—often cheaper than individual coverage',
+      'Verify mental health coverage, including counseling and psychiatric care',
+      'Look for plans specifically designed for students—they often have better pricing'
+    ],
+    'seniors': [
+      'Don\'t just compare premiums—compare what\'s actually covered for your conditions',
+      'Ask about premium increase caps or lifetime rate guarantees',
+      'Consider plans with care coordination services for managing complex health needs'
+    ],
+    'freelancers': [
+      'Look for monthly payment options that don\'t penalize you vs. annual payments',
+      'Consider higher deductibles to reduce premiums—but ensure you can cover the deductible',
+      'Check if premiums are tax-deductible as a business expense in your situation'
+    ],
+    'remote-workers': [
+      'Coordinate with any employer coverage to avoid paying for duplicate protection',
+      'Verify coverage meets visa requirements—employer plans often don\'t',
+      'Consider plans that include coverage for trips back to your home country'
+    ],
+    'entrepreneurs': [
+      'Look into group plans if you have employees—may offer better rates than individual coverage',
+      'Consider executive health plans that include comprehensive annual checkups',
+      'Factor insurance into your business budget as a operational cost, not personal expense'
+    ]
+  };
+
+  return [...baseTips, ...(personaTips[personaSlug] || [])];
+}
+
 // Generate TOC items
 const tocItems = [
   { id: 'overview', text: `${personaName} in ${countryName}`, level: 2 },
@@ -259,7 +467,11 @@ const tocItems = [
   { id: 'visa-requirements', text: 'Visa & Insurance Requirements', level: 2 },
   { id: 'recommended-plans', text: 'Recommended Plans', level: 2 },
   { id: 'healthcare', text: 'Healthcare Access', level: 2 },
+  { id: 'day-to-day', text: 'Day-to-Day Healthcare Reality', level: 2 },
+  { id: 'buying-tips', text: 'Insurance Buying Tips', level: 2 },
+  { id: 'mistakes', text: 'Common Mistakes to Avoid', level: 2 },
   { id: 'costs', text: 'Expected Costs', level: 2 },
+  { id: 'checklist', text: 'Before You Go', level: 2 },
   { id: 'faqs', text: 'Common Questions', level: 2 },
 ];
 
@@ -330,6 +542,10 @@ const healthcareAdvice = getHealthcareAdvice(persona.slug);
 const insuranceCostRange = getInsuranceCostRange(persona.slug);
 const outOfPocketRange = getOutOfPocketRange(country.slug);
 const faqs = getPersonaFAQs(persona.slug, countryName);
+const dayToDayReality = getDayToDayReality(country.slug, persona.slug, countryName);
+const commonMistakes = getCommonMistakes(persona.slug, countryName);
+const beforeYouGoChecklist = getBeforeYouGoChecklist(persona.slug, countryName);
+const buyingTips = getInsuranceBuyingTips(persona.slug);
 ---
 
 <Layout title={pageTitle} description={pageDescription} ogType="article">
@@ -495,6 +711,40 @@ const faqs = getPersonaFAQs(persona.slug, countryName);
             {healthcareAdvice}
           </p>
 
+          <!-- Day-to-Day Healthcare Reality -->
+          <h2 id="day-to-day">Day-to-Day Healthcare Reality</h2>
+
+          {dayToDayReality.map(paragraph => (
+            <p>{paragraph}</p>
+          ))}
+
+          <!-- Insurance Buying Tips -->
+          <h2 id="buying-tips">Insurance Buying Tips for {personaName}</h2>
+
+          <p>
+            Finding the right insurance takes research. Here's what to focus on as a {personaSingular} looking for coverage in {countryName}:
+          </p>
+
+          <ul>
+            {buyingTips.map(tip => (
+              <li>{tip}</li>
+            ))}
+          </ul>
+
+          <!-- Common Mistakes -->
+          <h2 id="mistakes">Common Mistakes to Avoid</h2>
+
+          <p>
+            We've seen these mistakes repeatedly from {personaName.toLowerCase()} getting insurance abroad. Learn from others' experiences:
+          </p>
+
+          {commonMistakes.map(item => (
+            <div class="bg-red-50 border-l-4 border-red-400 p-4 my-4 not-prose">
+              <p class="font-semibold text-red-800 mb-1">{item.mistake}</p>
+              <p class="text-red-700 text-sm">{item.reality}</p>
+            </div>
+          ))}
+
           <!-- Costs -->
           <h2 id="costs">Expected Costs</h2>
 
@@ -516,6 +766,34 @@ const faqs = getPersonaFAQs(persona.slug, countryName);
               </p>
             </div>
           </div>
+
+          <!-- Before You Go Checklist -->
+          <h2 id="checklist">Before You Go: {personaName} Checklist</h2>
+
+          <p>
+            Don't wait until you arrive in {countryName} to sort out healthcare. Complete these steps before you leave:
+          </p>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-green-900 mb-4">Pre-Departure Checklist</h3>
+            <ul class="space-y-3">
+              {beforeYouGoChecklist.map(item => (
+                <li class="flex items-start gap-3 text-green-800">
+                  <span class="w-5 h-5 rounded border-2 border-green-400 flex-shrink-0 mt-0.5"></span>
+                  <span class="text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <CTABox
+            title="Ready to Get Covered?"
+            description={`Compare plans suited for ${personaName.toLowerCase()} in ${countryName}.`}
+            buttonText="Compare Plans Now"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
 
           <!-- FAQs -->
           <h2 id="faqs">Common Questions</h2>

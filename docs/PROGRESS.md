@@ -1,20 +1,111 @@
 # Project Progress Log
 
-Last updated: January 29, 2026
+Last updated: January 30, 2026
 
 ---
 
 ## Current Status
 
-**Phase:** 4 - Tier 3 Country Refinement (Content Quality)
-**Total pages:** 1,605
+**Phase:** 5 - Country-Persona Expansion
+**Total pages:** 1,973
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
-**Country-persona pages:** 360 (45 countries × 8 personas)
+**Country-persona pages:** 728 (91 countries × 8 personas)
 **Constraint pages:** 12 (condition-specific guides)
 
 ---
 
 ## Completed Milestones
+
+### January 30, 2026 - Country-Persona Expansion Batch 8 (Europe Gaps)
+
+#### Country-Persona Pages Added (80 pages)
+Added 10 European countries to the country-persona matrix (Batch 8):
+- **Luxembourg** - CNS mandatory, €2,500+/month for non-EU, CHL hospital, Belgium/Germany nearby
+- **Iceland** - Sjúkratryggingar tax-funded, Landspítali only hospital, 20-40% higher premiums
+- **Andorra** - Digital Nomad Visa €40k/year, CASS 75% coverage, ski injury coverage essential
+- **Monaco** - CCSS for workers, €500k+ assets for residence, Princess Grace Hospital
+- **Liechtenstein** - Swiss OKP mandatory, only 89 permits/year, CHF costs highest in world
+- **Cyprus** - Digital Nomad Visa €3,500/month, GESY universal 2019, non-dom tax attractive
+- **Malta** - Nomad Residence €2,700/month, English-speaking, Mater Dei Hospital
+- **Finland** - Kela public healthcare, Nordic model, Startup Permit for entrepreneurs
+- **Romania** - Digital Nomad Visa €3,700/month, 1% micro-company tax, very affordable private
+- **San Marino** - ISS covers residents, Italian healthcare ties, Rimini 15 minutes
+
+**Total country-persona pages:** 728 (91 countries × 8 personas)
+
+---
+
+### January 30, 2026 - Country-Persona Expansion Batch 7 (Asia-Pacific)
+
+#### Country-Persona Pages Added (72 pages)
+Added 9 Asia-Pacific countries to the country-persona matrix (Batch 7):
+- **Cambodia** - E-visa easy, ER Visa 55+, Royal Phnom Penh Hospital, Bangkok evacuation
+- **Laos** - Tourist extensions, Vientiane Alliance/French Hospital only, Thailand evacuation essential
+- **Myanmar** - Political situation affects options, Pun Hlaing/Asia Royal Yangon, verify coverage
+- **Nepal** - 150-day/year limit, Residential visa 60+, Norvic/Grande Kathmandu, altitude considerations
+- **Sri Lanka** - Digital Nomad Visa 2024, SRV $15k/year, Asiri/Nawaloka Colombo, economic recovery
+- **Bangladesh** - Business visa required, Square/United/Apollo Dhaka, India evacuation
+- **Pakistan** - Major city hospitals good (Aga Khan, Shaukat Khanum), UAE evacuation
+- **Mongolia** - 30-day visa-free, SOS Medica Ulaanbaatar only, extreme climate (-40°C), Seoul evacuation
+- **Brunei** - Oil wealth, 90-day visa-free, RIPAS Hospital, Singapore evacuation
+
+**Total country-persona pages:** 648 (81 countries × 8 personas)
+
+---
+
+### January 30, 2026 - Country-Persona Expansion Batch 6 (Central & South America)
+
+#### Country-Persona Pages Added (56 pages)
+Added 7 Central & South America countries to the country-persona matrix (Batch 6):
+- **Nicaragua** - Pensionado $600/month (lowest threshold), Hospital Vivian Pellas only quality option, Granada/SJDS clinics basic
+- **Honduras** - Pensionado $1,500/month, Roatán/Bay Islands focus, ZEDE/Próspera zones, island evacuation critical
+- **El Salvador** - Bitcoin Visa (3 BTC/$100k), dollarized economy, Hospital de Diagnóstico San Salvador
+- **Guatemala** - CA-4 visa mobility, Herrera Llerandi/Centro Médico hospitals, Antigua/Atitlán limited care
+- **Uruguay** - Mutualista system, Hospital Británico/Italiano, FONASA contributions, most developed in region
+- **Paraguay** - SUACE easy residency, 10% flat tax haven, Sanatorio Migone/Italiano Asunción, Buenos Aires evacuation
+- **Bolivia** - SUS universal coverage, La Paz altitude (3,640m) consideration, Santa Cruz better facilities
+
+**Total country-persona pages:** 576 (72 countries × 8 personas)
+
+---
+
+### January 30, 2026 - Country-Persona Expansion Batch 5 (Caribbean)
+
+#### Country-Persona Pages Added (80 pages)
+Added 10 Caribbean countries to the country-persona matrix (Batch 5):
+- **Jamaica** - DN Visa $50k/year, Retirement Visa 55+, Kingston hospitals, Miami evacuation
+- **Barbados** - Welcome Stamp visa $50k income, QEH/Bayview hospitals, diving coverage
+- **Bahamas** - BEATS visa requires insurance, Nassau-centric care, Out Island gaps
+- **Dominican Republic** - Pensionado $1,500/month, HOMS/CEDIMAT hospitals, Punta Cana clinics
+- **Belize** - QRP program 45+ ($2k/month), KHMH Belize City, cayes/jungle gaps
+- **Trinidad & Tobago** - Oil/gas funded healthcare, Port of Spain hospitals, self-sufficient
+- **Cayman Islands** - Global Citizen $100k/year, Health City (JCI-accredited), best Caribbean healthcare
+- **Aruba** - One Happy Workation visa, AZV insurance, Oduber Hospital, Dutch standards
+- **Curaçao** - @HOME program, CMC hospital, SVB insurance, Dutch ties
+- **Bermuda** - Work from Bermuda (insurance required), KEMH hospital, expensive, US evacuation
+
+**Total country-persona pages:** 520 (65 countries × 8 personas)
+
+---
+
+### January 30, 2026 - Country-Persona Expansion Batch 4 (Balkans & Baltics)
+
+#### Country-Persona Pages Added (80 pages)
+Added 10 countries to the country-persona matrix (Batch 4):
+- **Estonia** - DN Visa €3,504/month, Haigekassa employed-only, e-Residency ≠ healthcare, Confido/Medicum private, Helsinki ferry backup
+- **Latvia** - DN Visa €2,857/month (€42,500 insurance min), NVD underfunded, most affordable Baltic, 1-year non-renewable
+- **Lithuania** - No DN visa (Startup Visa alternative), PSD 6.98%, Santaros Klinikos, Northway/Kardiolita private, fintech hub
+- **Bulgaria** - NHIF 8%, EU EHIC valid, Acibadem/Tokuda Sofia, dental tourism hub, 10% flat tax
+- **Serbia** - 90-day visa-free, RFZO (no EHIC), Bel Medic/Medigroup Belgrade, digital nomad hub
+- **Montenegro** - DN Visa requires insurance, FZOM limited, coastal summer strain, Belgrade evacuation
+- **Albania** - 1-year visa-free (no insurance mandate), American Hospital/Hygeia Tirana, Greece evacuation
+- **North Macedonia** - FZOM public, Sistina/Zan Mitrev Skopje, Lake Ohrid limitations, Thessaloniki evacuation
+- **Slovenia** - ZZZS mandatory + dopolnilno €35/month, UKC Ljubljana, no DN visa, s.p. self-employment route
+- **Slovakia** - 3-insurer system (VšZP, Dôvera, Union ZP), 14% contribution, Vienna 60km, živnosť route
+
+**Total country-persona pages:** 440 (55 countries × 8 personas)
+
+---
 
 ### January 29, 2026 - Tier 3 Country Refinement Batch 11 (Latin America Gaps)
 
@@ -328,24 +419,30 @@ These 21 countries have manually created pages with custom hero images:
 | Programmatic country pages | 162 | Generated (183 - 21 skip list) |
 | Handcrafted country-provider pages | 168 | Complete (21 countries × 8 providers) |
 | Programmatic country-provider pages | 648 | Generated (162 countries × 4 providers) |
-| **Country-persona pages** | **360** | **Complete (45 countries × 8 personas)** |
+| **Country-persona pages** | **728** | **In progress (91 countries × 8 personas)** |
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 12 | Existing |
 | Comparison pages | ~45 | Existing |
 
-**Total pages:** 1,605
+**Total pages:** 1,973
 
 ---
 
 ## Next Steps
 
 ### Immediate Priorities
-1. **Continue Tier 3 Country Refinement** - ~125 countries remaining with generic content
-   - Focus on EU countries next (Slovenia, Slovakia, Baltics)
-   - Then African growth markets and Latin America gaps
-   - Target: 5 countries per batch
+1. **Continue Country-Persona Expansion** - ~92 countries remaining
+   - Batch 9: Middle East (Qatar, Bahrain, Kuwait, Oman, Saudi Arabia, Jordan)
+   - Batch 10: Africa (Morocco, Tunisia, Ghana, Egypt, Kenya, Nigeria)
+   - Batch 11: More Asia (Maldives, Fiji, Papua New Guinea)
+   - Target: 8-10 countries per batch
+
+2. **Continue Tier 3 Country Refinement** - ~110 countries remaining with generic content
+   - African growth markets (Tunisia, Ghana, Senegal, Rwanda, Nigeria)
+   - Middle East gaps (Saudi Arabia, Jordan, Lebanon)
+   - Central Asia (Kazakhstan, Uzbekistan)
 
 ### Medium-term Goals
 2. **Expand Country × Persona Pages** - Add remaining ~138 countries to persona matrix
@@ -383,6 +480,11 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **January 30, 2026 (Batch 8):** Country-Persona Expansion Batch 8 (Europe Gaps: Luxembourg, Iceland, Andorra, Monaco, Liechtenstein, Cyprus, Malta, Finland, Romania, San Marino). 80 new pages, total now 728 (91 countries × 8 personas), 1,973 total pages.
+- **January 30, 2026 (Batch 7):** Country-Persona Expansion Batch 7 (Asia-Pacific). 72 new pages.
+- **January 30, 2026 (Batch 6):** Country-Persona Expansion Batch 6 (Central & South America). 56 new pages.
+- **January 30, 2026 (Batch 5):** Country-Persona Expansion Batch 5 (Caribbean). 80 new pages.
+- **January 30, 2026 (Batch 4):** Country-Persona Expansion Batch 4 (Balkans & Baltics). 80 new pages.
 - **January 29, 2026 (Session 5):** Completed Tier 3 Batch 11 (5 Latin America countries: Nicaragua, Honduras, Paraguay, El Salvador, Belize). Total 50 Tier 3 countries refined, 63 countries total with detailed content.
 - **January 29, 2026 (Session 4):** Completed Tier 3 Batch 10 (4 European microstates: Iceland, Andorra, Monaco, Liechtenstein). Total 45 Tier 3 countries refined, 58 countries total with detailed content.
 - **January 29, 2026 (Session 3):** Completed Tier 3 Batch 9 (5 EU countries: Slovenia, Slovakia, Lithuania, Latvia, Estonia). Total 41 Tier 3 countries refined, 54 countries total with detailed content.

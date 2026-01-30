@@ -20,7 +20,7 @@ export interface CountryPersonaEntry {
   costNotes: string;
 }
 
-// Top 45 countries for page generation
+// Top 91 countries for page generation
 const targetCountries = [
   'spain', 'portugal', 'mexico', 'thailand', 'costa-rica',
   'france', 'italy', 'germany', 'uk', 'uae',
@@ -32,7 +32,19 @@ const targetCountries = [
   'czech-republic', 'croatia', 'taiwan', 'chile', 'india',
   // Batch 3: 10 more countries
   'austria', 'belgium', 'sweden', 'norway', 'turkey',
-  'hungary', 'hong-kong', 'south-africa', 'denmark', 'peru'
+  'hungary', 'hong-kong', 'south-africa', 'denmark', 'peru',
+  // Batch 4: Balkans & Baltics (10 countries)
+  'estonia', 'latvia', 'lithuania', 'bulgaria', 'serbia',
+  'montenegro', 'albania', 'north-macedonia', 'slovenia', 'slovakia',
+  // Batch 5: Caribbean (10 countries)
+  'jamaica', 'barbados', 'bahamas', 'dominican-republic', 'belize',
+  'trinidad-tobago', 'cayman-islands', 'aruba', 'curacao', 'bermuda',
+  // Batch 6: Central & South America (7 countries)
+  'nicaragua', 'honduras', 'el-salvador', 'guatemala', 'uruguay', 'paraguay', 'bolivia',
+  // Batch 7: Asia-Pacific (9 countries)
+  'cambodia', 'laos', 'myanmar', 'nepal', 'sri-lanka', 'bangladesh', 'pakistan', 'mongolia', 'brunei',
+  // Batch 8: Europe Gaps (10 countries)
+  'luxembourg', 'iceland', 'andorra', 'monaco', 'liechtenstein', 'cyprus', 'malta', 'finland', 'romania', 'san-marino'
 ];
 
 // All 8 personas
@@ -862,6 +874,839 @@ const countryData: Record<string, {
     retireeFriendly: true,
     familyFriendly: true,
     topProviders: ['cigna-global', 'bupa-global', 'pacifico-seguros', 'rimac']
+  },
+  // Batch 4: Balkans & Baltics
+  'estonia': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa requires €3,504/month income. 1-year stay, can apply remotely.',
+      'retirees': 'No retirement visa. D-visa for temporary stay with financial proof.',
+      'families': 'Family reunification for residence permit holders. Estonian schools free.',
+      'remote-workers': 'Digital Nomad Visa designed for remote workers with non-Estonian employers.',
+      'students': 'Student residence permit. Work 20 hours/week allowed.',
+      'freelancers': 'e-Residency for business, but doesn\'t grant healthcare. Self-employment residence possible.',
+      'seniors': 'No retirement pathway. D-visa with sufficient funds only option.',
+      'entrepreneurs': 'Startup Visa for founders. e-Residency for digital business management.'
+    },
+    healthcareHighlights: 'Haigekassa covers employed residents only. e-Residency doesn\'t include healthcare. Confido and Medicum are top private clinics. Helsinki 2-hour ferry for complex care.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'img-global']
+  },
+  'latvia': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa requires €2,857/month income and €42,500 minimum insurance. 1-year, non-renewable.',
+      'retirees': 'Temporary residence permit with financial self-sufficiency proof.',
+      'families': 'Family reunification available. Latvian schools free for residents.',
+      'remote-workers': 'Digital Nomad Visa for remote workers. Strict insurance requirements.',
+      'students': 'Student residence permit with limited work rights.',
+      'freelancers': 'Self-employment residence permit possible with business plan.',
+      'seniors': 'Temporary residence with pension/savings proof. Limited options.',
+      'entrepreneurs': 'Startup Visa available. Company registration straightforward.'
+    },
+    healthcareHighlights: 'NVD public system underfunded with long waits. Veselības centrs 4 and ARS are leading private clinics. Most affordable Baltic state for healthcare.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'img-global', 'bupa-global']
+  },
+  'lithuania': {
+    visaTypes: {
+      'digital-nomads': 'No dedicated Digital Nomad Visa. Startup Visa alternative for tech workers.',
+      'retirees': 'Temporary residence for financially independent. Must show income source.',
+      'families': 'Family reunification for permit holders. Good schools in Vilnius.',
+      'remote-workers': 'No specific visa. Temporary residence with income proof possible.',
+      'students': 'Student residence permit. Universities affordable.',
+      'freelancers': 'Self-employment (individual activity certificate) possible.',
+      'seniors': 'Temporary residence with pension proof. No dedicated pathway.',
+      'entrepreneurs': 'Startup Visa popular for tech founders. Fintech hub status.'
+    },
+    healthcareHighlights: 'PSD mandatory (6.98% of income for self-employed). Santaros Klinikos main public hospital. Northway and Kardiolita top private clinics.',
+    costLevel: 'low',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'img-global']
+  },
+  'bulgaria': {
+    visaTypes: {
+      'digital-nomads': 'No Digital Nomad Visa. Type D visa for long stays. Freelance permit possible.',
+      'retirees': 'Type D visa for pensioners. €500/month income often sufficient.',
+      'families': 'Family reunification available. International schools in Sofia.',
+      'remote-workers': 'Freelance permit or Type D visa. Gray area for remote work.',
+      'students': 'Student visa for enrolled students. Very affordable universities.',
+      'freelancers': 'Freelance permit (свободна практика) registration required.',
+      'seniors': 'Type D visa popular with budget retirees. Low cost of living.',
+      'entrepreneurs': 'Business visa for company establishment. 10% flat tax attractive.'
+    },
+    healthcareHighlights: 'NHIF covers residents (8% contribution). EU EHIC valid. Acibadem City Clinic and Tokuda Sofia are top private hospitals. Dental tourism hub.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'img-global']
+  },
+  'serbia': {
+    visaTypes: {
+      'digital-nomads': 'No Digital Nomad Visa but 90-day visa-free for most nationalities. Temp residence possible.',
+      'retirees': 'Temporary residence for pensioners with income proof.',
+      'families': 'Family reunification available. International schools in Belgrade.',
+      'remote-workers': 'Temporary residence permit. 90-day visa-free stays common.',
+      'students': 'Student residence permit. Very affordable universities.',
+      'freelancers': 'Temporary residence as freelancer possible. Low tax rates.',
+      'seniors': 'Temporary residence with pension proof.',
+      'entrepreneurs': 'Business residence for company founders. Attractive tax environment.'
+    },
+    healthcareHighlights: 'RFZO public system (not EU, no EHIC). Bel Medic and Medigroup are leading Belgrade private options. Growing digital nomad hub.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'img-global', 'bupa-global']
+  },
+  'montenegro': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa requires health insurance proof. 2-year permit available.',
+      'retirees': 'Temporary residence for pensioners. Affordable requirements.',
+      'families': 'Family reunification available. Limited international school options.',
+      'remote-workers': 'Digital Nomad Visa covers remote workers.',
+      'students': 'Student residence permit for enrolled students.',
+      'freelancers': 'Temporary residence as self-employed possible.',
+      'seniors': 'Temporary residence with pension proof.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'FZOM public system limited—only one major hospital (Clinical Center Montenegro). Coastal summer strain on healthcare. Belgrade evacuation common for complex cases.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'allianz-care', 'img-global', 'bupa-global']
+  },
+  'albania': {
+    visaTypes: {
+      'digital-nomads': 'No Digital Nomad Visa but 1-year visa-free stay for most nationalities. No insurance mandate.',
+      'retirees': 'Residence permit for pensioners. Low requirements.',
+      'families': 'Family reunification available. International schools in Tirana.',
+      'remote-workers': '1-year visa-free makes it easy for remote workers.',
+      'students': 'Student residence permit available.',
+      'freelancers': 'Residence permit for self-employed. Low bureaucracy.',
+      'seniors': 'Residence permit with pension proof. Very affordable.',
+      'entrepreneurs': 'Business visa for company founders.'
+    },
+    healthcareHighlights: 'Public system underfunded. American Hospital and Hygeia Hospital Tirana are the main private options. Albanian Riviera has limited healthcare. Greece evacuation for serious cases.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'img-global', 'bupa-global']
+  },
+  'north-macedonia': {
+    visaTypes: {
+      'digital-nomads': 'No Digital Nomad Visa. Temporary residence permit possible.',
+      'retirees': 'Temporary residence for pensioners with income proof.',
+      'families': 'Family reunification available. Schools in Skopje.',
+      'remote-workers': 'Temporary residence permit. Visa-free 90 days for most.',
+      'students': 'Student residence for enrolled students.',
+      'freelancers': 'Self-employment registration possible.',
+      'seniors': 'Temporary residence with pension proof.',
+      'entrepreneurs': 'Business residence for company founders.'
+    },
+    healthcareHighlights: 'FZOM public healthcare. Sistina and Zan Mitrev hospitals in Skopje are top private options. Lake Ohrid area has limited care. Thessaloniki or Belgrade evacuation for complex cases.',
+    costLevel: 'low',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'img-global', 'bupa-global']
+  },
+  'slovenia': {
+    visaTypes: {
+      'digital-nomads': 'No Digital Nomad Visa (unlike neighboring Croatia). Self-employment (s.p.) route available.',
+      'retirees': 'Temporary residence for financially independent. Requires comprehensive insurance.',
+      'families': 'Family reunification for permit holders. Excellent schools.',
+      'remote-workers': 'Self-employment permit (s.p.) is the main route for remote workers.',
+      'students': 'Student residence permit. Affordable universities.',
+      'freelancers': 'Self-employment (s.p. - samostojni podjetnik) the standard route.',
+      'seniors': 'Temporary residence with financial proof and insurance.',
+      'entrepreneurs': 'Business establishment straightforward. EU market access.'
+    },
+    healthcareHighlights: 'ZZZS mandatory + dopolnilno complementary insurance (~€35/month) recommended for full coverage. UKC Ljubljana is the main hospital. Vienna or Milan evacuation for complex cases.',
+    costLevel: 'medium',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'triglav', 'generali-slovenia']
+  },
+  'slovakia': {
+    visaTypes: {
+      'digital-nomads': 'No Digital Nomad Visa. Živnosť (trade license) self-employment route popular.',
+      'retirees': 'Temporary residence for pensioners. Must show sufficient income.',
+      'families': 'Family reunification for permit holders. Good schools in Bratislava.',
+      'remote-workers': 'Živnosť self-employment permit is the main route.',
+      'students': 'Student residence permit. Some programs in English.',
+      'freelancers': 'Živnosť (trade license) the standard route. 14% health insurance contribution.',
+      'seniors': 'Temporary residence with pension proof.',
+      'entrepreneurs': 'Company establishment straightforward.'
+    },
+    healthcareHighlights: 'Three-insurer system (VšZP, Dôvera, Union ZP). 14% income contribution for self-employed. Vienna only 60km away for complex care. Very affordable private care.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'union-zp', 'dovera']
+  },
+  // Batch 5: Caribbean
+  'jamaica': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa requires $50,000/year income. 1 year, renewable.',
+      'retirees': 'Retirement Visa for 55+ with income proof. Popular retirement destination.',
+      'families': 'Dependent visas available. International schools in Kingston.',
+      'remote-workers': 'Digital Nomad Visa covers remote workers meeting income threshold.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Digital Nomad Visa works for freelancers with $50k income.',
+      'seniors': 'Retirement Visa at 55+. Jamaica marketed to retirees.',
+      'entrepreneurs': 'Business visa for establishing Jamaican operations.'
+    },
+    healthcareHighlights: 'Private hospitals in Kingston (Medical Associates, Andrews Memorial). Public system (NHF) has long waits. Miami evacuation essential for complex cases—only 1.5 hours by air.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'sagicor']
+  },
+  'barbados': {
+    visaTypes: {
+      'digital-nomads': 'Welcome Stamp Visa requires $50,000/year income. 12 months stay.',
+      'retirees': 'Special Entry Permit for retirees with income proof.',
+      'families': 'Welcome Stamp includes dependents. Good schools available.',
+      'remote-workers': 'Welcome Stamp designed for remote workers. Insurance required.',
+      'students': 'Student permit for enrolled students.',
+      'freelancers': 'Welcome Stamp covers freelancers meeting income requirement.',
+      'seniors': 'Special Entry Permit for retirees.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'Queen Elizabeth Hospital (public) is the main facility. Bayview Hospital (private) for faster care. Limited specialist availability—Miami evacuation for complex cases. Diving/hyperbaric coverage important.',
+    costLevel: 'high',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'sagicor']
+  },
+  'bahamas': {
+    visaTypes: {
+      'digital-nomads': 'BEATS (Bahamas Extended Access Travel Stay) requires insurance. 1 year.',
+      'retirees': 'Annual Residence Permit with financial proof.',
+      'families': 'BEATS includes dependents. International schools in Nassau.',
+      'remote-workers': 'BEATS program for remote workers. Insurance mandatory.',
+      'students': 'Student permit for enrolled students.',
+      'freelancers': 'BEATS covers freelancers. Insurance required.',
+      'seniors': 'Annual Residence Permit. Retiree-friendly.',
+      'entrepreneurs': 'Investor permit for business establishment.'
+    },
+    healthcareHighlights: 'Nassau has Princess Margaret Hospital (public) and Doctors Hospital (private). Out Islands have clinic-only healthcare—air evacuation to Nassau or Miami critical. Miami only 30 minutes by air from Nassau.',
+    costLevel: 'high',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'dominican-republic': {
+    visaTypes: {
+      'digital-nomads': 'No dedicated nomad visa. Tourist visa 30 days, extendable.',
+      'retirees': 'Pensionado Visa with $1,500/month pension.',
+      'families': 'Residency visas include dependents. Bilingual schools available.',
+      'remote-workers': 'Tourist visa extensions or temporary residency.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Rentista visa with income proof.',
+      'seniors': 'Pensionado popular for retirees. Low cost of living.',
+      'entrepreneurs': 'Investor visa for business establishment.'
+    },
+    healthcareHighlights: 'Santo Domingo has excellent private hospitals (HOMS, CEDIMAT, Hospiten). Punta Cana has tourist-focused clinics. Outside major cities, care is basic. Miami evacuation option for complex cases.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'belize': {
+    visaTypes: {
+      'digital-nomads': 'No dedicated nomad visa. Tourist visa 30 days, extendable to 6 months.',
+      'retirees': 'QRP (Qualified Retired Persons) program at 45+ with $2,000/month income.',
+      'families': 'QRP includes dependents. Limited school options.',
+      'remote-workers': 'Tourist visa extensions. No specific remote work visa.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Tourist visa extensions. Self-employment permit possible.',
+      'seniors': 'QRP popular with retirees. Tax-free income benefits.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'Only English-speaking Central American country. Karl Heusner Memorial Hospital (Belize City) is main facility. Cayes and jungle have minimal healthcare. Mexico (Chetumal) or Miami evacuation essential.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'img-global', 'bupa-global', 'allianz-care']
+  },
+  'trinidad-tobago': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Business visa or work permit required for long stays.',
+      'retirees': 'Retiree permit with pension/income proof.',
+      'families': 'Dependent visas available. Good schools in Port of Spain.',
+      'remote-workers': 'No specific visa. Work permit if employed by local entity.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Self-employment permit possible but complex.',
+      'seniors': 'Retiree permit available.',
+      'entrepreneurs': 'Investor/business visa for company establishment.'
+    },
+    healthcareHighlights: 'Oil & gas wealth funds decent public healthcare. Private options in Port of Spain (St. Clair Medical, Medical Associates). Tobago has limited facilities. More self-sufficient than most Caribbean islands.',
+    costLevel: 'medium',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'sagicor', 'guardian-life']
+  },
+  'cayman-islands': {
+    visaTypes: {
+      'digital-nomads': 'Global Citizen Concierge Program requires $100,000/year income. 2 years.',
+      'retirees': 'Certificate of Permanent Residence with significant investment.',
+      'families': 'Global Citizen includes dependents. Top international schools.',
+      'remote-workers': 'Global Citizen Program for remote workers. High income threshold.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Global Citizen for high-earning freelancers.',
+      'seniors': 'Person of Independent Means permit.',
+      'entrepreneurs': 'Business visa for company establishment. Tax haven status.'
+    },
+    healthcareHighlights: 'Health City Cayman Islands is Caribbean\'s most advanced hospital (JCI-accredited, cardiac surgery). George Town has good private clinics. Better healthcare than most Caribbean destinations. Miami backup still available.',
+    costLevel: 'high',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'aetna-international']
+  },
+  'aruba': {
+    visaTypes: {
+      'digital-nomads': 'One Happy Workation visa. 90 days, renewable.',
+      'retirees': 'Temporary residence for financially independent.',
+      'families': 'Dependent permits available. Dutch education system.',
+      'remote-workers': 'One Happy Workation for remote workers.',
+      'students': 'Student permit for enrolled students.',
+      'freelancers': 'One Happy Workation covers freelancers.',
+      'seniors': 'Temporary residence with financial proof.',
+      'entrepreneurs': 'Business permit for company establishment.'
+    },
+    healthcareHighlights: 'AZV (public insurance) covers residents. Dr. Horacio E. Oduber Hospital is main facility. Good for island healthcare but complex cases go to Colombia, Curaçao, or Netherlands. Dutch healthcare standards.',
+    costLevel: 'high',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'curacao': {
+    visaTypes: {
+      'digital-nomads': '@HOME in Curaçao program for remote workers. 6 months, renewable.',
+      'retirees': 'Residence permit for financially independent.',
+      'families': 'Dependent permits available. Dutch and international schools.',
+      'remote-workers': '@HOME program designed for remote workers.',
+      'students': 'Student permit for enrolled students.',
+      'freelancers': '@HOME covers freelancers.',
+      'seniors': 'Residence permit with pension/savings proof.',
+      'entrepreneurs': 'Investor permit for business establishment.'
+    },
+    healthcareHighlights: 'Curaçao Medical Center (CMC) is the main hospital—better equipped than most Caribbean islands. SVB public insurance for residents. Complex cases may evacuate to Colombia or Netherlands. Dutch healthcare ties.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'bermuda': {
+    visaTypes: {
+      'digital-nomads': 'Work from Bermuda certificate. 1 year, renewable. Insurance required.',
+      'retirees': 'Residential Certificate (expensive—annual fees $30k+).',
+      'families': 'Work permit dependents. Excellent private schools.',
+      'remote-workers': 'Work from Bermuda program. Must have health insurance.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Work from Bermuda covers freelancers.',
+      'seniors': 'Residential Certificate for wealthy retirees only.',
+      'entrepreneurs': 'Business permits for established businesses.'
+    },
+    healthcareHighlights: 'King Edward VII Memorial Hospital is the main facility. Healthcare is expensive but British-standard quality. Complex cases evacuate to US East Coast (Boston, NYC). Health insurance mandatory for all residents and visitors.',
+    costLevel: 'high',
+    nomadFriendly: true,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'colonial-bermuda']
+  },
+  // Batch 6: Central & South America
+  'nicaragua': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. 90-day tourist visa, extendable. Easy residency process.',
+      'retirees': 'Pensionado Visa requires $600/month pension. Very low threshold.',
+      'families': 'Dependent visas available. Limited international school options.',
+      'remote-workers': 'Tourist visa extensions. No specific remote work visa.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Rentista visa with income proof possible.',
+      'seniors': 'Pensionado at $600/month is one of lowest requirements in world.',
+      'entrepreneurs': 'Investor visa for business establishment.'
+    },
+    healthcareHighlights: 'Hospital Vivian Pellas in Managua is the only quality private option. Granada and San Juan del Sur have basic clinics only. Costa Rica or Miami evacuation essential for serious cases. Very affordable care ($30-50 GP visits).',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'img-global', 'bupa-global', 'allianz-care']
+  },
+  'honduras': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. 90-day tourist visa. Próspera/ZEDE zones offer alternatives.',
+      'retirees': 'Pensionado Visa requires $1,500/month pension.',
+      'families': 'Dependent visas available. International schools in Tegucigalpa/San Pedro Sula.',
+      'remote-workers': 'Tourist visa extensions. ZEDE zones (Próspera) offer special status.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Rentista visa possible with income proof.',
+      'seniors': 'Pensionado visa available. Roatán popular with retirees.',
+      'entrepreneurs': 'ZEDE/Próspera zones offer business-friendly environment.'
+    },
+    healthcareHighlights: 'Hospital Honduras Medical Center in San Pedro Sula is best mainland option. Roatán/Bay Islands have limited facilities—air evacuation to mainland or Miami critical. Very affordable but quality varies significantly.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'img-global', 'bupa-global', 'allianz-care']
+  },
+  'el-salvador': {
+    visaTypes: {
+      'digital-nomads': 'Bitcoin Visa requires 3 BTC or $100k USD. Unique crypto-friendly option.',
+      'retirees': 'Pensionado requires $1,000/month pension.',
+      'families': 'Dependent visas available. International schools in San Salvador.',
+      'remote-workers': 'Bitcoin Visa for crypto holders. Tourist extensions otherwise.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Bitcoin Visa or Rentista options.',
+      'seniors': 'Pensionado visa available. Dollarized economy simplifies finances.',
+      'entrepreneurs': 'Bitcoin Beach/El Zonte crypto ecosystem. Business-friendly.'
+    },
+    healthcareHighlights: 'Hospital de Diagnóstico in San Salvador is top private option. Dollarized economy (USD) simplifies payments. Beach areas have limited care. Guatemala City or Panama evacuation for complex cases.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'img-global', 'bupa-global', 'allianz-care']
+  },
+  'guatemala': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. CA-4 allows 90 days, extendable. Easy residency process.',
+      'retirees': 'Pensionado requires $1,000/month pension.',
+      'families': 'Dependent visas available. Good international schools in Guatemala City/Antigua.',
+      'remote-workers': 'Tourist visa extensions. CA-4 mobility with neighbors.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Rentista visa with income proof.',
+      'seniors': 'Pensionado visa available.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'Guatemala City has good private hospitals (Herrera Llerandi, Centro Médico). Antigua and Lake Atitlán have limited facilities—Guatemala City or US evacuation for serious cases. Affordable private care in the capital.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'img-global', 'bupa-global', 'allianz-care']
+  },
+  'uruguay': {
+    visaTypes: {
+      'digital-nomads': 'No dedicated nomad visa. Easy residency process with income proof.',
+      'retirees': 'Retirement residency with pension proof. Straightforward process.',
+      'families': 'Family residency available. Good public and private schools.',
+      'remote-workers': 'Residency permit with income documentation.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Residency with proof of income/savings.',
+      'seniors': 'Retirement-friendly. Good healthcare system.',
+      'entrepreneurs': 'Business visa for company establishment. Tech-friendly environment.'
+    },
+    healthcareHighlights: 'Mutualista system provides good coverage for residents. Hospital Británico and Hospital Italiano are top private options. FONASA contributions required. More developed healthcare than most of Latin America.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'blue-cross-uruguay']
+  },
+  'paraguay': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. SUACE system makes residency very easy.',
+      'retirees': 'Retirement residency straightforward. No minimum income requirement.',
+      'families': 'Family residency included. Schools in Asunción.',
+      'remote-workers': 'Easy residency via SUACE. No specific remote work visa needed.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'SUACE residency works for freelancers.',
+      'seniors': 'Easy residency process. Low cost of living.',
+      'entrepreneurs': 'Tax haven appeal: 10% flat tax, no foreign income tax.'
+    },
+    healthcareHighlights: 'Sanatorio Migone and Sanatorio Italiano in Asunción are best options. Healthcare limited outside capital. Buenos Aires or São Paulo evacuation for complex cases. Very affordable but quality varies.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'img-global', 'bupa-global', 'allianz-care']
+  },
+  'bolivia': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. 90-day tourist visa. Specific Purpose Visa for longer stays.',
+      'retirees': 'Retirement visa with pension proof. Low requirements.',
+      'families': 'Dependent visas available. International schools in La Paz/Santa Cruz.',
+      'remote-workers': 'Specific Purpose Visa possible. Tourist extensions common.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Specific Purpose Visa with income documentation.',
+      'seniors': 'Retirement visa available. Very low cost of living.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'La Paz altitude (3,640m) is a major health consideration. SUS provides universal coverage. Santa Cruz has better facilities at lower altitude. Evacuation to Chile or Brazil essential for complex cases. Very affordable.',
+    costLevel: 'low',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'img-global', 'bupa-global', 'allianz-care']
+  },
+  // Batch 7: Asia-Pacific
+  'cambodia': {
+    visaTypes: {
+      'digital-nomads': 'E-visa or visa on arrival. Easy extensions. Digital Nomad Visa announced but not yet implemented.',
+      'retirees': 'ER (Retirement) Visa for 55+ with $50k+ in savings.',
+      'families': 'Dependent visas available. International schools in Phnom Penh/Siem Reap.',
+      'remote-workers': 'Business visa (E-class) easy to obtain and extend.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Business visa works for freelancers. Very relaxed enforcement.',
+      'seniors': 'ER Visa for 55+. Very affordable retirement destination.',
+      'entrepreneurs': 'Business visa straightforward. 100% foreign ownership allowed in most sectors.'
+    },
+    healthcareHighlights: 'Royal Phnom Penh Hospital and Sen Sok International best options. Siem Reap has basic facilities only. Bangkok evacuation (1 hour flight) essential for serious cases. Very affordable but quality limited.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'laos': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Tourist visa 30 days, extendable. Business visa possible.',
+      'retirees': 'No retirement visa. Business or investor visa required for long stays.',
+      'families': 'Dependent visas available. Very limited international school options.',
+      'remote-workers': 'Tourist visa extensions or business visa.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Business visa possible but requirements unclear.',
+      'seniors': 'No retirement pathway. Tourist extensions common.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'Vientiane has Alliance International Medical Center and French Hospital. Very limited elsewhere. Thailand evacuation (Udon Thani 1 hour, Bangkok 1.5 hours) essential for anything serious. Very affordable but basic.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: false,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'bupa-global', 'img-global', 'allianz-care']
+  },
+  'myanmar': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Tourist visa 28 days. Political situation affects options.',
+      'retirees': 'No retirement visa. Business visa only practical long-term option.',
+      'families': 'Dependent visas limited. International schools in Yangon only.',
+      'remote-workers': 'Business visa. Political/sanctions situation complicates matters.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Business visa with local sponsor.',
+      'seniors': 'No retirement visa. Limited options.',
+      'entrepreneurs': 'Business visa possible but foreign investment restricted in many sectors.'
+    },
+    healthcareHighlights: 'Yangon has Pun Hlaing International Hospital and Asia Royal Hospital. Quality varies significantly. Political instability affects healthcare access. Bangkok or Singapore evacuation essential. Verify insurance covers Myanmar given political situation.',
+    costLevel: 'low',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'bupa-global', 'img-global', 'allianz-care']
+  },
+  'nepal': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Tourist visa 150 days/year max. Business visa alternative.',
+      'retirees': 'Residential visa for 60+ requires property ownership or $20k/year income.',
+      'families': 'Dependent visas available. International schools in Kathmandu.',
+      'remote-workers': 'Tourist visa with extensions. 150-day annual limit.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Tourist visa extensions. Business visa for longer stays.',
+      'seniors': 'Residential visa option for 60+.',
+      'entrepreneurs': 'Business/investor visa for company establishment.'
+    },
+    healthcareHighlights: 'Kathmandu has Norvic Hospital and Grande International. Quality decent but limited specialists. Altitude (1,400m Kathmandu, much higher trekking areas) is consideration. India or Thailand evacuation for complex cases. Very affordable.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'img-global', 'allianz-care']
+  },
+  'sri-lanka': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa announced 2024. ETA for short visits. Residence visa for longer stays.',
+      'retirees': 'Residence visa (SRV) for retirees with $15k/year income.',
+      'families': 'Dependent visas available. International schools in Colombo.',
+      'remote-workers': 'Digital Nomad Visa or residence visa options.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Digital Nomad Visa or residence visa.',
+      'seniors': 'SRV residence visa for retirees.',
+      'entrepreneurs': 'Investor visa for business establishment.'
+    },
+    healthcareHighlights: 'Colombo has good private hospitals (Asiri, Nawaloka, Lanka Hospitals). Economic crisis (2022) affected healthcare temporarily but recovering. Quality care available in Colombo at affordable prices. India or Singapore evacuation for complex cases.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'bangladesh': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Tourist visa 30-90 days. Business visa for longer stays.',
+      'retirees': 'No retirement visa. Investor visa only practical long-term option.',
+      'families': 'Dependent visas available. International schools in Dhaka.',
+      'remote-workers': 'Business visa required for extended stays.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Business visa with local engagement.',
+      'seniors': 'No retirement pathway.',
+      'entrepreneurs': 'Business/investor visa for company establishment.'
+    },
+    healthcareHighlights: 'Dhaka has Square Hospital, United Hospital, and Apollo. Quality improving but inconsistent. Outside Dhaka very limited. India (Kolkata 1.5 hours) or Thailand evacuation for complex cases. Very affordable.',
+    costLevel: 'low',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'bupa-global', 'img-global', 'allianz-care']
+  },
+  'pakistan': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Tourist visa or business visa. E-visa available for many nationalities.',
+      'retirees': 'No retirement visa. Extended tourist or family visas only options.',
+      'families': 'Family visas available. International schools in major cities.',
+      'remote-workers': 'Business visa for extended stays.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Business visa with local ties.',
+      'seniors': 'No retirement pathway. Family visa if applicable.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'Karachi (Aga Khan), Lahore (Shaukat Khanum), Islamabad (Shifa) have good hospitals. Quality care available in major cities. Rural areas very limited. UAE or Thailand evacuation for complex cases. Affordable.',
+    costLevel: 'low',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'mongolia': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. 30-day visa-free for many nationalities. Extensions possible.',
+      'retirees': 'No retirement visa. Investor or employment visa for long stays.',
+      'families': 'Dependent visas available. International schools in Ulaanbaatar only.',
+      'remote-workers': 'Tourist visa extensions. No specific remote work pathway.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Tourist extensions or business visa.',
+      'seniors': 'No retirement pathway.',
+      'entrepreneurs': 'Business visa for company establishment.'
+    },
+    healthcareHighlights: 'Ulaanbaatar has SOS Medica and Intermed Hospital. Outside the capital, healthcare is extremely limited. Extreme climate (-40°C winters) is health factor. Seoul or Beijing evacuation for serious cases. Affordable but basic.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: false,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'bupa-global', 'img-global', 'allianz-care']
+  },
+  'brunei': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. 90-day visa-free for many nationalities.',
+      'retirees': 'No retirement visa. Employment or investor visa only.',
+      'families': 'Dependent visas for work permit holders. Good international schools.',
+      'remote-workers': 'No specific visa. Usually requires employment by local entity.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Very difficult without local employment.',
+      'seniors': 'No retirement pathway.',
+      'entrepreneurs': 'Business visa possible but requirements strict.'
+    },
+    healthcareHighlights: 'RIPAS Hospital is main government facility. Jerudong Park Medical Centre is private option. Oil wealth funds decent healthcare. Singapore evacuation (2 hour flight) for complex cases. Free healthcare for citizens, expats need insurance.',
+    costLevel: 'medium',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'aetna-international']
+  },
+  // Batch 8: Europe Gaps
+  'luxembourg': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. EU free movement for EU citizens. Non-EU need work permits.',
+      'retirees': 'EU citizens free. Non-EU need proof of resources (€2,500/month+) and insurance.',
+      'families': 'Family reunification for permit holders. Excellent international schools.',
+      'remote-workers': 'EU citizens free. Non-EU need authorization—employer must sponsor.',
+      'students': 'Student visa for enrolled students. Many English programs.',
+      'freelancers': 'Self-employed authorization possible. High barriers for non-EU.',
+      'seniors': 'EU citizens free. Non-EU need substantial resources.',
+      'entrepreneurs': 'Business visa requires significant investment and job creation.'
+    },
+    healthcareHighlights: 'CNS (Caisse Nationale de Santé) mandatory for workers—covers 80-100% of costs. High salaries fund excellent healthcare. Centre Hospitalier de Luxembourg main facility. Belgium/Germany/France nearby for specialized care.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'dkv-luxembourg']
+  },
+  'iceland': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Schengen 90 days. Long-term residence difficult.',
+      'retirees': 'EEA citizens can stay. Non-EEA very limited options.',
+      'families': 'Family reunification for permit holders. Excellent schools.',
+      'remote-workers': 'EEA free movement. Non-EEA need employer sponsorship.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Self-employment permit possible but difficult.',
+      'seniors': 'EEA citizens can stay. Non-EEA very limited.',
+      'entrepreneurs': 'Business visa requires substantial investment.'
+    },
+    healthcareHighlights: 'Sjúkratryggingar Íslands (Icelandic Health Insurance) tax-funded with copays. Landspítali is the only major hospital. Remote location (2-3 hours to Europe) makes evacuation planning essential. Extreme costs—premiums 20-40% higher than European average.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'img-global']
+  },
+  'andorra': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa available. Requires €40k+/year income. Minimum 90 days stay.',
+      'retirees': 'Passive Residence requires €600k+ financial investment and private insurance.',
+      'families': 'Family permits for residence holders. French and Spanish schools.',
+      'remote-workers': 'Digital Nomad Visa for remote workers meeting income threshold.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Self-employed residence possible with business plan.',
+      'seniors': 'Passive Residence requires substantial assets.',
+      'entrepreneurs': 'Active Residence for business owners. 10% max income tax attractive.'
+    },
+    healthcareHighlights: 'CASS mandatory for workers (covers 75%, need mutua supplement for rest). Passive residents need private insurance. Hospital Nostra Senyora de Meritxell main facility. Barcelona (2.5 hours) or Toulouse evacuation for complex cases. Ski injury coverage essential.',
+    costLevel: 'high',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'dkv-andorra']
+  },
+  'monaco': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Residence requires substantial assets (€500k+).',
+      'retirees': 'Residence for wealthy retirees. Must demonstrate significant assets.',
+      'families': 'Family permits for residence holders. Excellent international schools.',
+      'remote-workers': 'No specific visa. Residence based on employment or wealth.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Self-employed residence possible with substantial income.',
+      'seniors': 'Residence for wealthy seniors. No income tax but high cost of living.',
+      'entrepreneurs': 'Business residence requires significant investment and job creation.'
+    },
+    healthcareHighlights: 'CCSS (Caisses Sociales de Monaco) for workers. Non-workers need private insurance for residence. Princess Grace Hospital main facility. Nice CHU 20 minutes away for complex cases. Ultra-high-net-worth market—expect premium pricing.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'bupa-global', 'allianz-care', 'axa-monaco']
+  },
+  'liechtenstein': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Extremely restrictive—only 89 residence permits per year.',
+      'retirees': 'Residence nearly impossible without employment or family ties.',
+      'families': 'Family reunification very limited. Excellent schools if you get in.',
+      'remote-workers': 'Requires employer sponsorship. Very few permits available.',
+      'students': 'Student visa possible for enrolled students.',
+      'freelancers': 'Self-employment residence extremely difficult to obtain.',
+      'seniors': 'Residence nearly impossible for retirees.',
+      'entrepreneurs': 'Business residence possible but highly competitive.'
+    },
+    healthcareHighlights: 'Swiss-style mandatory OKP health insurance. Landesspital handles basics only. Swiss hospitals (Chur, Zürich) for anything complex. CHF costs—among the most expensive in the world. Insurance mandatory for all residents.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: false,
+    topProviders: ['cigna-global', 'bupa-global', 'css-liechtenstein', 'swica']
+  },
+  'cyprus': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa for non-EU. Requires €3,500/month income. 1 year, renewable.',
+      'retirees': 'Category F permit for retirees with €9,568+/year income (single).',
+      'families': 'Family permits available. Good international schools in Nicosia/Limassol.',
+      'remote-workers': 'Digital Nomad Visa for remote workers meeting income threshold.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Self-employed registration possible. EU citizens straightforward.',
+      'seniors': 'Category F for retirees. Non-dom tax status attractive.',
+      'entrepreneurs': 'Business visa with company establishment. Favorable corporate tax.'
+    },
+    healthcareHighlights: 'GESY (GHS) universal healthcare launched 2019—covers residents and workers. Private hospitals in Limassol/Nicosia good quality. UK/Greece evacuation for complex cases. Affordable by EU standards.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'img-global']
+  },
+  'malta': {
+    visaTypes: {
+      'digital-nomads': 'Nomad Residence Permit requires €2,700/month income. 1 year, renewable.',
+      'retirees': 'Global Residence Programme for non-EU. Malta Retirement Programme for EU.',
+      'families': 'Family permits available. English-speaking schools.',
+      'remote-workers': 'Nomad Residence Permit for remote workers.',
+      'students': 'Student visa for enrolled students. English programs.',
+      'freelancers': 'Self-employed registration. Freelancer-friendly environment.',
+      'seniors': 'Retirement programmes available. 15% flat tax on remitted income.',
+      'entrepreneurs': 'Business visa. Attractive tax regime for holding companies.'
+    },
+    healthcareHighlights: 'Entitlement Card for residents gives access to public healthcare. Mater Dei Hospital main facility. English-speaking medical staff. Sicily (ferry) or UK evacuation for complex cases. EU member state.',
+    costLevel: 'medium',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'img-global']
+  },
+  'finland': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. EU free movement. Non-EU need work permits.',
+      'retirees': 'EU citizens can stay. Non-EU need proof of funds and insurance.',
+      'families': 'Family reunification for permit holders. Excellent free education.',
+      'remote-workers': 'EU free movement. Non-EU need employer sponsorship.',
+      'students': 'Student residence permit. Tuition-free for EU students.',
+      'freelancers': 'Self-employed residence permit possible with business plan.',
+      'seniors': 'EU citizens can stay. Non-EU need substantial resources.',
+      'entrepreneurs': 'Startup Permit for innovative businesses.'
+    },
+    healthcareHighlights: 'Kela provides public healthcare for residents—mostly tax-funded with small copays. Excellent quality. HUS (Helsinki University Hospital) top facility. Private options (Mehiläinen, Terveystalo) for faster access. Nordic healthcare model.',
+    costLevel: 'high',
+    nomadFriendly: false,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'if-insurance']
+  },
+  'romania': {
+    visaTypes: {
+      'digital-nomads': 'Digital Nomad Visa requires €3,700/month income. 1 year permit.',
+      'retirees': 'Long-stay visa for retirees with income proof.',
+      'families': 'Family reunification available. International schools in Bucharest.',
+      'remote-workers': 'Digital Nomad Visa for remote workers meeting income threshold.',
+      'students': 'Student visa for enrolled students.',
+      'freelancers': 'Freelancer visa (PFA registration) available.',
+      'seniors': 'Long-stay visa with pension proof.',
+      'entrepreneurs': 'Business visa for company establishment. 1% micro-company tax.'
+    },
+    healthcareHighlights: 'CNAS public insurance covers workers. Private hospitals in Bucharest excellent (Regina Maria, MedLife, Sanador). Very affordable private care. EU member—EHIC valid for visitors.',
+    costLevel: 'low',
+    nomadFriendly: true,
+    retireeFriendly: true,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'img-global']
+  },
+  'san-marino': {
+    visaTypes: {
+      'digital-nomads': 'No digital nomad visa. Residence very difficult—need employment or property.',
+      'retirees': 'Elective residence possible but very limited spots.',
+      'families': 'Family permits for residence holders. Italian schools nearby.',
+      'remote-workers': 'No specific visa. Residence requires local ties.',
+      'students': 'Student visa limited. Most study in Italy.',
+      'freelancers': 'Self-employment residence difficult to obtain.',
+      'seniors': 'Elective residence possible but highly competitive.',
+      'entrepreneurs': 'Business residence with investment and job creation.'
+    },
+    healthcareHighlights: 'ISS (Istituto Sicurezza Sociale) covers residents. Hospital di Stato main facility. Close ties with Italian healthcare—Rimini Hospital 15 minutes away. Bologna major hospitals 1 hour. Small scale but good quality.',
+    costLevel: 'medium',
+    nomadFriendly: false,
+    retireeFriendly: false,
+    familyFriendly: true,
+    topProviders: ['cigna-global', 'allianz-care', 'bupa-global', 'img-global']
   }
 };
 
