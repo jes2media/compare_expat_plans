@@ -1,0 +1,1138 @@
+---
+/**
+ * ProviderConditionPage.astro
+ *
+ * Template for provider × condition pages showing how specific insurers
+ * handle coverage for particular medical conditions.
+ *
+ * Example: /providers/cigna-global/coverage/diabetes
+ */
+
+import Layout from '../layouts/Layout.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import ContentCards from '../components/ContentCards.astro';
+import Disclosure from '../components/Disclosure.astro';
+import type { Provider } from '../data/types';
+import type { Condition } from '../data/conditions';
+
+interface Props {
+  provider: Provider;
+  condition: Condition;
+}
+
+const { provider, condition } = Astro.props;
+
+// Provider-specific coverage data for conditions
+interface ProviderCoverageData {
+  approach: string;
+  coverageRating: 'excellent' | 'good' | 'moderate' | 'limited';
+  waitingPeriod: string;
+  preExistingPolicy: string;
+  whatsCovered: string[];
+  whatsLimited: string[];
+  whatsExcluded: string[];
+  estimatedCost: string;
+  bestFor: string;
+  notIdealFor: string;
+  // Extended data for richer content
+  underwritingType: 'moratorium' | 'full-medical' | 'both' | 'none';
+  claimsProcess: string;
+  networkStrength: 'excellent' | 'good' | 'moderate' | 'limited';
+  specialistAccess: string;
+  medicationCoverage: string;
+  emergencyCoverage: string;
+  telehealth: boolean;
+  directBilling: boolean;
+}
+
+// Coverage data by provider and condition type
+const providerCoverageMap: Record<string, Record<string, ProviderCoverageData>> = {
+  'cigna-global': {
+    'chronic': {
+      approach: 'Cigna Global offers comprehensive coverage for pre-existing chronic conditions with their Healthier Lifestyle plans. They use a moratorium underwriting approach, meaning conditions that have been symptom-free and treatment-free for 2 years can be covered.',
+      coverageRating: 'excellent',
+      waitingPeriod: '24 months moratorium for pre-existing conditions, or immediate coverage with medical underwriting',
+      preExistingPolicy: 'Two options: (1) Moratorium - conditions covered after 24 months symptom-free, or (2) Full Medical Underwriting - conditions reviewed individually and may be covered immediately, excluded, or have a premium loading.',
+      whatsCovered: [
+        'Specialist consultations and ongoing care',
+        'Prescription medications including maintenance drugs',
+        'Diagnostic tests and monitoring',
+        'Hospital admissions related to the condition',
+        'Emergency care without question'
+      ],
+      whatsLimited: [
+        'Brand-name medications may require prior authorization',
+        'Experimental treatments require case-by-case approval',
+        'Some annual limits on outpatient prescriptions'
+      ],
+      whatsExcluded: [
+        'Complications directly related to pre-existing conditions during moratorium period',
+        'Treatment outside of network without prior approval',
+        'Non-medically necessary treatments'
+      ],
+      estimatedCost: '$3,500 - $8,000/year depending on age, plan level, and deductible',
+      bestFor: 'Expats who want comprehensive worldwide coverage and are willing to pay a premium for quality and certainty.',
+      notIdealFor: 'Budget-conscious expats or those who only need regional coverage.',
+      underwritingType: 'both',
+      claimsProcess: 'Submit claims online or via mobile app. Direct billing available at network hospitals. Reimbursement typically within 5-10 business days for out-of-network claims.',
+      networkStrength: 'excellent',
+      specialistAccess: 'Direct access to specialists without referral on most plans. Global network includes major hospitals in 200+ countries.',
+      medicationCoverage: 'Comprehensive formulary covering most chronic condition medications. Brand-name drugs covered with prior authorization. 90-day supplies available.',
+      emergencyCoverage: 'Full emergency coverage worldwide with no pre-authorization required. 24/7 emergency helpline with multilingual support.',
+      telehealth: true,
+      directBilling: true
+    },
+    'mental-health': {
+      approach: 'Cigna Global provides strong mental health coverage, recognizing the importance of psychological wellbeing for expats. Their plans include therapy, psychiatric care, and crisis support.',
+      coverageRating: 'excellent',
+      waitingPeriod: '24 months moratorium for pre-existing mental health conditions',
+      preExistingPolicy: 'Mental health conditions treated like other pre-existing conditions - covered after 24-month moratorium or with full medical underwriting.',
+      whatsCovered: [
+        'Outpatient therapy and counseling',
+        'Psychiatric consultations',
+        'Psychiatric medications',
+        'Inpatient psychiatric care',
+        'Crisis intervention'
+      ],
+      whatsLimited: [
+        'Annual session limits vary by plan (typically 20-30 sessions)',
+        'Telehealth therapy may have separate limits',
+        'Some plans cap outpatient mental health at a specific amount'
+      ],
+      whatsExcluded: [
+        'Couples or family therapy (usually)',
+        'Treatment for addiction may have separate limits',
+        'Non-licensed counselors'
+      ],
+      estimatedCost: '$3,500 - $8,000/year depending on age and plan level',
+      bestFor: 'Expats who prioritize mental health support and want a provider with robust psychological coverage.',
+      notIdealFor: 'Those who only need occasional mental health support and prefer to pay out-of-pocket.',
+      underwritingType: 'both',
+      claimsProcess: 'Submit claims online or via mobile app. Most mental health providers can be paid directly through the network.',
+      networkStrength: 'excellent',
+      specialistAccess: 'Access to psychiatrists and licensed therapists worldwide. Can search provider directory by specialty and language.',
+      medicationCoverage: 'Psychiatric medications covered under prescription benefit. Prior authorization may be required for certain medications.',
+      emergencyCoverage: 'Crisis intervention and emergency psychiatric care covered without pre-authorization.',
+      telehealth: true,
+      directBilling: true
+    }
+  },
+  'allianz-care': {
+    'chronic': {
+      approach: 'Allianz Care offers tiered plans with pre-existing condition coverage available on their higher-tier options. They emphasize value with high-deductible options that reduce premiums while maintaining comprehensive coverage.',
+      coverageRating: 'good',
+      waitingPeriod: '24 months for moratorium underwriting; immediate coverage possible with full medical underwriting',
+      preExistingPolicy: 'Moratorium underwriting standard, with full medical underwriting available. Pre-existing conditions may be excluded or loaded depending on severity.',
+      whatsCovered: [
+        'Ongoing specialist care',
+        'Prescription medications',
+        'Diagnostic monitoring',
+        'Hospitalization',
+        'Emergency treatment'
+      ],
+      whatsLimited: [
+        'Outpatient coverage may have sub-limits',
+        'Some medications require formulary adherence',
+        'Annual benefit maximums on certain plan levels'
+      ],
+      whatsExcluded: [
+        'Treatment during moratorium period for excluded conditions',
+        'Experimental or unproven treatments',
+        'Cosmetic or elective procedures'
+      ],
+      estimatedCost: '$2,500 - $6,500/year depending on deductible and plan choice',
+      bestFor: 'Cost-conscious expats who want solid international coverage with the option to reduce premiums through higher deductibles.',
+      notIdealFor: 'Those who prefer predictable costs without large deductibles.',
+      underwritingType: 'both',
+      claimsProcess: 'Submit claims via online portal or mobile app. Direct billing at network hospitals. Reimbursement typically within 7-14 business days.',
+      networkStrength: 'good',
+      specialistAccess: 'Good network in Europe, adequate elsewhere. May need referral from GP depending on plan level.',
+      medicationCoverage: 'Standard formulary coverage. High-deductible plans may require you to meet deductible before medication coverage kicks in.',
+      emergencyCoverage: 'Full emergency coverage worldwide. 24/7 assistance line available.',
+      telehealth: true,
+      directBilling: true
+    },
+    'mental-health': {
+      approach: 'Allianz Care includes mental health coverage on most plans, though with clearer limits than some competitors. Their approach focuses on providing access while managing costs.',
+      coverageRating: 'good',
+      waitingPeriod: '24 months moratorium for pre-existing mental health conditions',
+      preExistingPolicy: 'Pre-existing mental health conditions subject to standard moratorium or underwriting.',
+      whatsCovered: [
+        'Outpatient psychotherapy',
+        'Psychiatric consultations',
+        'Psychiatric medications',
+        'Inpatient mental health care'
+      ],
+      whatsLimited: [
+        'Typically 20 outpatient sessions per year',
+        'Inpatient limited to 30 days per year on some plans',
+        'May require referral from GP'
+      ],
+      whatsExcluded: [
+        'Addiction treatment beyond initial assessment',
+        'Non-licensed practitioners',
+        'Alternative therapies (art therapy, etc.)'
+      ],
+      estimatedCost: '$2,500 - $6,500/year',
+      bestFor: 'Expats who need mental health support but are comfortable with session limits.',
+      notIdealFor: 'Those requiring intensive or long-term therapy.',
+      underwritingType: 'both',
+      claimsProcess: 'Standard claims process via portal. Mental health claims reviewed by clinical team.',
+      networkStrength: 'good',
+      specialistAccess: 'Access to psychiatrists and therapists in major cities. Provider directory available online.',
+      medicationCoverage: 'Psychiatric medications covered after any applicable deductible.',
+      emergencyCoverage: 'Psychiatric emergencies covered. Contact assistance line for guidance.',
+      telehealth: true,
+      directBilling: true
+    }
+  },
+  'bupa-global': {
+    'chronic': {
+      approach: 'BUPA Global is known for premium, comprehensive coverage. They offer full medical underwriting which can result in immediate coverage for pre-existing conditions, though sometimes with exclusions or loadings.',
+      coverageRating: 'excellent',
+      waitingPeriod: 'No automatic waiting period - coverage determined at underwriting',
+      preExistingPolicy: 'Full medical underwriting. Each condition is assessed individually. BUPA may offer immediate coverage, exclude the condition, or add a premium loading. They\'re known for being more willing to cover conditions than budget insurers.',
+      whatsCovered: [
+        'Comprehensive specialist care',
+        'All medically necessary medications',
+        'Advanced diagnostics and monitoring',
+        'Worldwide hospital coverage',
+        'Second opinions and specialist referrals'
+      ],
+      whatsLimited: [
+        'Some annual limits apply on lower-tier plans',
+        'Prior authorization needed for high-cost treatments',
+        'Network preferences may apply'
+      ],
+      whatsExcluded: [
+        'Specifically excluded conditions from underwriting',
+        'Experimental treatments',
+        'Non-medically necessary care'
+      ],
+      estimatedCost: '$5,000 - $12,000/year - premium pricing for premium coverage',
+      bestFor: 'Expats who want the best coverage available and are willing to pay for peace of mind.',
+      notIdealFor: 'Budget-conscious expats or those with very complex medical histories who may face exclusions.',
+      underwritingType: 'full-medical',
+      claimsProcess: 'Premium claims experience. Dedicated claims team, fast processing (often 3-5 days). Concierge service available on higher-tier plans.',
+      networkStrength: 'excellent',
+      specialistAccess: 'Direct access to top specialists worldwide. No referral needed. Can arrange appointments through concierge service.',
+      medicationCoverage: 'Comprehensive medication coverage including brand-name drugs. No formulary restrictions on most plans.',
+      emergencyCoverage: 'Full worldwide emergency coverage. 24/7 multilingual helpline with medical professionals on staff.',
+      telehealth: true,
+      directBilling: true
+    },
+    'mental-health': {
+      approach: 'BUPA Global has historically been an industry leader in mental health coverage, offering generous limits and comprehensive care. They understand the psychological challenges of expat life.',
+      coverageRating: 'excellent',
+      waitingPeriod: 'Determined at underwriting',
+      preExistingPolicy: 'Pre-existing mental health conditions reviewed during medical underwriting. BUPA is generally more accommodating than many competitors.',
+      whatsCovered: [
+        'Extensive outpatient therapy',
+        'Psychiatric care and medications',
+        'Inpatient psychiatric treatment',
+        'Crisis support and intervention',
+        'Telehealth mental health services'
+      ],
+      whatsLimited: [
+        'Even generous plans have annual session limits (often 30+)',
+        'May require clinical referral for extended treatment',
+        'Some services may need pre-authorization'
+      ],
+      whatsExcluded: [
+        'Conditions specifically excluded at underwriting',
+        'Court-ordered treatment',
+        'Custodial care'
+      ],
+      estimatedCost: '$5,000 - $12,000/year',
+      bestFor: 'Expats prioritizing mental health support who want generous, flexible coverage.',
+      notIdealFor: 'Those seeking budget-friendly options.',
+      underwritingType: 'full-medical',
+      claimsProcess: 'Streamlined mental health claims. Can arrange direct payment to therapists in many locations.',
+      networkStrength: 'excellent',
+      specialistAccess: 'Extensive network of psychiatrists, psychologists, and licensed therapists worldwide. Multilingual options available.',
+      medicationCoverage: 'Full psychiatric medication coverage without prior authorization for most medications.',
+      emergencyCoverage: 'Mental health crisis line available 24/7. Emergency psychiatric care fully covered.',
+      telehealth: true,
+      directBilling: true
+    }
+  },
+  'img-global': {
+    'chronic': {
+      approach: 'IMG Global offers budget-friendly international coverage with a standard 12-month pre-existing condition exclusion. After this period, conditions can be covered if you remain continuously enrolled.',
+      coverageRating: 'moderate',
+      waitingPeriod: '12 months for all pre-existing conditions',
+      preExistingPolicy: 'Automatic 12-month exclusion for any condition that existed before enrollment. No underwriting option to waive this. Coverage begins after 12 months of continuous enrollment.',
+      whatsCovered: [
+        'Specialist care after waiting period',
+        'Prescription medications',
+        'Hospitalization',
+        'Emergency care (covered immediately)',
+        'Diagnostic testing'
+      ],
+      whatsLimited: [
+        'Lower annual maximums than premium providers',
+        'Network may be smaller in some regions',
+        'Some medications may not be covered'
+      ],
+      whatsExcluded: [
+        'All pre-existing conditions for first 12 months',
+        'US coverage typically excluded or limited',
+        'Experimental treatments'
+      ],
+      estimatedCost: '$1,500 - $4,000/year - budget-friendly pricing',
+      bestFor: 'Healthy expats seeking affordable coverage, or those willing to wait 12 months for pre-existing condition coverage.',
+      notIdealFor: 'Expats who need immediate coverage for existing conditions.',
+      underwritingType: 'moratorium',
+      claimsProcess: 'Online claims submission. Standard processing time of 10-14 business days. May need to pay upfront and seek reimbursement.',
+      networkStrength: 'moderate',
+      specialistAccess: 'Specialist access available but network is smaller than premium providers. May need to travel for certain specialists.',
+      medicationCoverage: 'Standard formulary. Some specialty medications may not be covered. Generic preference.',
+      emergencyCoverage: 'Emergency care covered immediately regardless of pre-existing condition status.',
+      telehealth: true,
+      directBilling: true
+    },
+    'mental-health': {
+      approach: 'IMG Global includes basic mental health coverage, though with more significant limits than premium providers. Pre-existing mental health conditions face the same 12-month exclusion.',
+      coverageRating: 'limited',
+      waitingPeriod: '12 months for pre-existing mental health conditions',
+      preExistingPolicy: 'Standard 12-month exclusion applies to mental health conditions.',
+      whatsCovered: [
+        'Outpatient therapy (limited sessions)',
+        'Psychiatric consultations',
+        'Crisis intervention',
+        'Psychiatric medications'
+      ],
+      whatsLimited: [
+        'Often limited to 10-15 sessions per year',
+        'Inpatient mental health may be limited',
+        'Lower dollar limits for mental health'
+      ],
+      whatsExcluded: [
+        'Pre-existing mental health for 12 months',
+        'Extended residential treatment',
+        'Alternative therapies'
+      ],
+      estimatedCost: '$1,500 - $4,000/year',
+      bestFor: 'Those with minimal mental health needs or willing to supplement with out-of-pocket care.',
+      notIdealFor: 'Expats requiring extensive mental health support.',
+      underwritingType: 'moratorium',
+      claimsProcess: 'Standard claims process. Mental health claims subject to same policies as physical health.',
+      networkStrength: 'limited',
+      specialistAccess: 'Limited mental health provider network. May need to find providers outside network and seek reimbursement.',
+      medicationCoverage: 'Basic psychiatric medication coverage with session and dollar limits.',
+      emergencyCoverage: 'Psychiatric emergencies covered. Crisis line available.',
+      telehealth: true,
+      directBilling: false
+    }
+  },
+  'axa-global': {
+    'chronic': {
+      approach: 'AXA Global Healthcare offers comprehensive international coverage with flexible plan options. They provide both moratorium and full medical underwriting paths for pre-existing conditions.',
+      coverageRating: 'good',
+      waitingPeriod: '24 months moratorium or immediate with full medical underwriting',
+      preExistingPolicy: 'Choice of moratorium (24-month waiting period) or full medical underwriting. Underwriting may result in coverage, exclusion, or premium loading.',
+      whatsCovered: [
+        'Specialist consultations',
+        'Prescription medications',
+        'Hospital and surgical care',
+        'Diagnostic services',
+        'Emergency treatment worldwide'
+      ],
+      whatsLimited: [
+        'Some plans have outpatient sub-limits',
+        'Prior authorization for expensive treatments',
+        'Network variations by region'
+      ],
+      whatsExcluded: [
+        'Conditions excluded at underwriting',
+        'Experimental treatments',
+        'Non-emergency treatment in excluded regions'
+      ],
+      estimatedCost: '$3,000 - $7,000/year',
+      bestFor: 'Expats wanting flexible international coverage with a strong European network.',
+      notIdealFor: 'Those needing strong coverage in Asia or the Americas.',
+      underwritingType: 'both',
+      claimsProcess: 'Online claims portal with mobile app. Processing typically 7-10 business days. Direct billing in Europe is strong.',
+      networkStrength: 'good',
+      specialistAccess: 'Strong European network. Adequate coverage elsewhere. May need referral depending on plan.',
+      medicationCoverage: 'Standard formulary coverage. Brand-name may require prior authorization.',
+      emergencyCoverage: '24/7 emergency line. Full emergency coverage worldwide.',
+      telehealth: true,
+      directBilling: true
+    },
+    'mental-health': {
+      approach: 'AXA Global includes mental health coverage with reasonable limits. They\'ve improved their mental health offerings in recent years to match market expectations.',
+      coverageRating: 'good',
+      waitingPeriod: '24 months moratorium for pre-existing conditions',
+      preExistingPolicy: 'Mental health conditions treated like other pre-existing conditions under their standard policies.',
+      whatsCovered: [
+        'Outpatient therapy and counseling',
+        'Psychiatric care',
+        'Psychiatric medications',
+        'Inpatient treatment'
+      ],
+      whatsLimited: [
+        'Session limits typically 20-25 per year',
+        'Inpatient days limited',
+        'May require pre-authorization'
+      ],
+      whatsExcluded: [
+        'Pre-existing conditions during moratorium',
+        'Non-licensed providers',
+        'Some alternative therapies'
+      ],
+      estimatedCost: '$3,000 - $7,000/year',
+      bestFor: 'Expats needing balanced mental health coverage without premium pricing.',
+      notIdealFor: 'Those requiring intensive mental health support.',
+      underwritingType: 'both',
+      claimsProcess: 'Standard claims process for mental health services.',
+      networkStrength: 'good',
+      specialistAccess: 'Good network of mental health providers in Europe. More limited elsewhere.',
+      medicationCoverage: 'Psychiatric medications covered under prescription benefit.',
+      emergencyCoverage: 'Psychiatric emergencies covered.',
+      telehealth: true,
+      directBilling: true
+    }
+  },
+  'safetywing': {
+    'chronic': {
+      approach: 'SafetyWing is travel medical insurance designed for digital nomads, not true health insurance. They exclude all pre-existing conditions entirely, making them unsuitable for ongoing chronic condition management.',
+      coverageRating: 'limited',
+      waitingPeriod: 'Not applicable - pre-existing conditions are excluded',
+      preExistingPolicy: 'Complete exclusion of all pre-existing conditions. This is travel medical insurance, not health insurance.',
+      whatsCovered: [
+        'Emergency acute care',
+        'Accidents and injuries',
+        'New illnesses',
+        'Emergency evacuation',
+        'Limited outpatient care for new conditions'
+      ],
+      whatsLimited: [
+        'Outpatient coverage is minimal',
+        'Prescription coverage is emergency-only',
+        'Hospital coverage has daily limits'
+      ],
+      whatsExcluded: [
+        'All pre-existing conditions - no exceptions',
+        'Ongoing chronic disease management',
+        'Routine medications',
+        'Preventive care',
+        'Specialist follow-ups for existing conditions'
+      ],
+      estimatedCost: '$40 - $80/month ($480 - $960/year) - very affordable',
+      bestFor: 'Healthy digital nomads without pre-existing conditions who need basic emergency coverage.',
+      notIdealFor: 'Anyone with existing chronic conditions - this is not the right product.',
+      underwritingType: 'none',
+      claimsProcess: 'Simple online claims process for covered emergencies. No coverage for pre-existing condition claims.',
+      networkStrength: 'limited',
+      specialistAccess: 'No specialist network for chronic conditions. Emergency care only.',
+      medicationCoverage: 'Emergency medications only. No coverage for ongoing prescriptions or maintenance medications.',
+      emergencyCoverage: 'Emergency care for new conditions covered. Pre-existing condition emergencies are NOT covered.',
+      telehealth: false,
+      directBilling: false
+    },
+    'mental-health': {
+      approach: 'SafetyWing provides minimal mental health coverage, limited to acute crisis situations. It\'s not designed for ongoing mental health support.',
+      coverageRating: 'limited',
+      waitingPeriod: 'Not applicable',
+      preExistingPolicy: 'Pre-existing mental health conditions completely excluded.',
+      whatsCovered: [
+        'Acute psychiatric emergencies',
+        'Crisis stabilization',
+        'Limited emergency care'
+      ],
+      whatsLimited: [
+        'Very limited coverage overall',
+        'No therapy coverage',
+        'Minimal medication coverage'
+      ],
+      whatsExcluded: [
+        'Pre-existing mental health conditions',
+        'Ongoing therapy',
+        'Non-emergency psychiatric care',
+        'Medications for existing conditions'
+      ],
+      estimatedCost: '$40 - $80/month',
+      bestFor: 'Healthy nomads without mental health needs who want basic emergency coverage.',
+      notIdealFor: 'Anyone with mental health conditions or who values psychological support.',
+      underwritingType: 'none',
+      claimsProcess: 'Limited claims process for acute emergencies only.',
+      networkStrength: 'limited',
+      specialistAccess: 'No mental health specialist network. Emergency psychiatric care only.',
+      medicationCoverage: 'No coverage for psychiatric medications except acute emergency situations.',
+      emergencyCoverage: 'Acute psychiatric emergencies only. Ongoing mental health care not covered.',
+      telehealth: false,
+      directBilling: false
+    }
+  },
+  'world-nomads': {
+    'chronic': {
+      approach: 'World Nomads is trip-based travel insurance, not annual health insurance. They do not cover pre-existing conditions and are designed for healthy travelers on defined trips.',
+      coverageRating: 'limited',
+      waitingPeriod: 'Not applicable - pre-existing conditions excluded',
+      preExistingPolicy: 'All pre-existing conditions are excluded. This is travel insurance for trips, not health insurance.',
+      whatsCovered: [
+        'Emergency medical care during trips',
+        'Accident treatment',
+        'Emergency evacuation',
+        'Trip-related injuries'
+      ],
+      whatsLimited: [
+        'Coverage is trip-based, not annual',
+        'Medical coverage has low limits',
+        'No ongoing care coverage'
+      ],
+      whatsExcluded: [
+        'All pre-existing conditions',
+        'Chronic disease management',
+        'Routine medications',
+        'Follow-up care',
+        'Non-emergency treatment'
+      ],
+      estimatedCost: 'Varies by trip length - typically $50-200 per trip',
+      bestFor: 'Healthy travelers taking specific trips who want adventure activity coverage.',
+      notIdealFor: 'Long-term expats or anyone with chronic conditions.',
+      underwritingType: 'none',
+      claimsProcess: 'Trip-based claims only. Submit documentation for trip-related emergencies.',
+      networkStrength: 'limited',
+      specialistAccess: 'No specialist network. Emergency treatment only.',
+      medicationCoverage: 'Emergency medications only during covered trips.',
+      emergencyCoverage: 'Trip emergencies covered for new conditions. Pre-existing not covered.',
+      telehealth: false,
+      directBilling: false
+    },
+    'mental-health': {
+      approach: 'World Nomads provides very limited mental health coverage, focused only on emergency situations during trips.',
+      coverageRating: 'limited',
+      waitingPeriod: 'Not applicable',
+      preExistingPolicy: 'Pre-existing mental health conditions excluded.',
+      whatsCovered: [
+        'Emergency psychiatric care',
+        'Crisis situations only'
+      ],
+      whatsLimited: [
+        'Very minimal mental health coverage',
+        'Emergency-only focus'
+      ],
+      whatsExcluded: [
+        'All pre-existing mental health',
+        'Therapy',
+        'Psychiatric medications',
+        'Non-emergency care'
+      ],
+      estimatedCost: 'Varies by trip',
+      bestFor: 'Healthy travelers without mental health needs.',
+      notIdealFor: 'Anyone with mental health conditions.',
+      underwritingType: 'none',
+      claimsProcess: 'Emergency claims only during covered trips.',
+      networkStrength: 'limited',
+      specialistAccess: 'No mental health network. Emergency care only.',
+      medicationCoverage: 'No psychiatric medication coverage.',
+      emergencyCoverage: 'Emergency psychiatric care during trips only.',
+      telehealth: false,
+      directBilling: false
+    }
+  },
+  'now-health': {
+    'chronic': {
+      approach: 'Now Health International offers modular plans where you can customize coverage. Their core plans are basic, but add-ons can provide comprehensive chronic condition coverage.',
+      coverageRating: 'good',
+      waitingPeriod: '24 months moratorium or full medical underwriting',
+      preExistingPolicy: 'Standard moratorium underwriting with option for full medical underwriting. Modular design means you can choose your level of chronic condition coverage.',
+      whatsCovered: [
+        'Specialist care',
+        'Prescription medications',
+        'Hospital treatment',
+        'Diagnostic services',
+        'Emergency care'
+      ],
+      whatsLimited: [
+        'Core plan coverage is basic',
+        'Need to add modules for comprehensive coverage',
+        'Some features cost extra'
+      ],
+      whatsExcluded: [
+        'Pre-existing conditions during moratorium',
+        'Services not included in your chosen modules',
+        'Experimental treatments'
+      ],
+      estimatedCost: '$2,000 - $6,000/year depending on modules selected',
+      bestFor: 'Expats who want to customize their coverage and pay only for what they need.',
+      notIdealFor: 'Those who prefer simple, all-inclusive plans.',
+      underwritingType: 'both',
+      claimsProcess: 'Online portal for claims. Direct billing at network facilities. Processing time varies by claim type.',
+      networkStrength: 'good',
+      specialistAccess: 'Specialist access depends on modules selected. Core plan has limited specialist coverage.',
+      medicationCoverage: 'Prescription module required for full medication coverage. Core plan has basic medication benefit.',
+      emergencyCoverage: 'Emergency care included in all plans. 24/7 assistance available.',
+      telehealth: true,
+      directBilling: true
+    },
+    'mental-health': {
+      approach: 'Now Health includes mental health coverage, typically requiring their enhanced modules for comprehensive psychological support.',
+      coverageRating: 'moderate',
+      waitingPeriod: '24 months for pre-existing conditions',
+      preExistingPolicy: 'Standard moratorium applies to mental health conditions.',
+      whatsCovered: [
+        'Outpatient therapy',
+        'Psychiatric consultations',
+        'Psychiatric medications',
+        'Inpatient care (with enhanced modules)'
+      ],
+      whatsLimited: [
+        'Session limits apply',
+        'Enhanced modules needed for full coverage',
+        'May have sub-limits'
+      ],
+      whatsExcluded: [
+        'Pre-existing mental health during moratorium',
+        'Services not in selected modules'
+      ],
+      estimatedCost: '$2,000 - $6,000/year',
+      bestFor: 'Those who want to customize their mental health coverage level.',
+      notIdealFor: 'Expats wanting comprehensive mental health without complexity.',
+      underwritingType: 'both',
+      claimsProcess: 'Mental health claims processed through standard portal. May require documentation.',
+      networkStrength: 'moderate',
+      specialistAccess: 'Mental health specialist access depends on selected modules.',
+      medicationCoverage: 'Psychiatric medications covered with appropriate modules.',
+      emergencyCoverage: 'Psychiatric emergencies covered.',
+      telehealth: true,
+      directBilling: true
+    }
+  }
+};
+
+// Get coverage data for this provider and condition
+function getCoverageData(): ProviderCoverageData {
+  const providerData = providerCoverageMap[provider.slug];
+  if (!providerData) {
+    // Default data for providers not in the map
+    return getDefaultCoverageData();
+  }
+
+  // Map condition type to coverage data type
+  const coverageType = condition.type === 'mental-health' ? 'mental-health' : 'chronic';
+  return providerData[coverageType] || getDefaultCoverageData();
+}
+
+function getDefaultCoverageData(): ProviderCoverageData {
+  return {
+    approach: `${provider.name} offers coverage for ${condition.name.toLowerCase()} as part of their international health insurance plans. Specific coverage details depend on your plan level and underwriting outcome.`,
+    coverageRating: 'moderate',
+    waitingPeriod: 'Varies by plan and underwriting',
+    preExistingPolicy: 'Contact the provider for specific pre-existing condition policies.',
+    whatsCovered: [
+      'Specialist consultations',
+      'Prescription medications',
+      'Hospital treatment',
+      'Emergency care'
+    ],
+    whatsLimited: [
+      'Coverage limits vary by plan',
+      'Some treatments may require pre-authorization'
+    ],
+    whatsExcluded: [
+      'Check with provider for specific exclusions'
+    ],
+    estimatedCost: 'Contact provider for quote',
+    bestFor: 'Expats seeking international health coverage.',
+    notIdealFor: 'Those with very specific requirements should compare options.',
+    underwritingType: 'both',
+    claimsProcess: 'Standard claims process via online portal or mobile app. Check with provider for specific timelines.',
+    networkStrength: 'moderate',
+    specialistAccess: 'Specialist access varies by region. Check provider directory for availability in your destination.',
+    medicationCoverage: 'Prescription medications covered according to plan formulary. Check for specific medication coverage.',
+    emergencyCoverage: 'Emergency care covered worldwide. Contact 24/7 helpline for assistance.',
+    telehealth: true,
+    directBilling: true
+  };
+}
+
+const coverage = getCoverageData();
+
+// Rating badge color
+function getRatingColor(rating: string): string {
+  switch (rating) {
+    case 'excellent': return 'bg-green-100 text-green-800';
+    case 'good': return 'bg-blue-100 text-blue-800';
+    case 'moderate': return 'bg-yellow-100 text-yellow-800';
+    case 'limited': return 'bg-red-100 text-red-800';
+    default: return 'bg-gray-100 text-gray-800';
+  }
+}
+
+// Generate FAQs
+function getFAQs(): Array<{ question: string; answer: string }> {
+  return [
+    {
+      question: `Does ${provider.name} cover ${condition.name.toLowerCase()} as a pre-existing condition?`,
+      answer: coverage.preExistingPolicy
+    },
+    {
+      question: `How long do I have to wait for ${condition.name.toLowerCase()} coverage with ${provider.name}?`,
+      answer: coverage.waitingPeriod
+    },
+    {
+      question: `What medications are covered for ${condition.name.toLowerCase()}?`,
+      answer: `${provider.name} typically covers prescription medications for ${condition.name.toLowerCase()}, including maintenance medications after any applicable waiting period. Specific formulary details and whether brand-name vs generic is covered depends on your plan level.`
+    },
+    {
+      question: `Can I see a specialist for ${condition.name.toLowerCase()} with ${provider.name}?`,
+      answer: `Yes, ${provider.name} covers specialist consultations for ${condition.name.toLowerCase()}. Depending on your plan, you may need a referral from a general practitioner first, or you may have direct access to specialists.`
+    },
+    {
+      question: `Is ${provider.name} a good choice if I have ${condition.name.toLowerCase()}?`,
+      answer: `${coverage.bestFor} However, ${coverage.notIdealFor}`
+    }
+  ];
+}
+
+const faqs = getFAQs();
+
+// Related cards
+const relatedCards = [
+  {
+    title: `${provider.name} Review`,
+    description: `Full review of ${provider.name} coverage, pricing, and who it's best for.`,
+    href: provider.href,
+    image: provider.logo,
+  },
+  {
+    title: 'Pre-Existing Conditions Guide',
+    description: 'How to get coverage for chronic conditions when moving abroad.',
+    href: '/guides/pre-existing-conditions-abroad',
+    image: '/images/guides/pre-existing-conditions-hero.png',
+  },
+  {
+    title: 'Find English-Speaking Doctors',
+    description: 'How to find doctors who speak your language anywhere in the world.',
+    href: '/guides/find-english-speaking-doctors-abroad',
+    image: '/images/guides/english-speaking-doctors-hero.png',
+  },
+];
+
+// Sidebar links
+const sidebarLinks = [
+  { title: `${provider.name} Full Review`, href: provider.href },
+  { title: 'Pre-Existing Conditions Guide', href: '/guides/pre-existing-conditions-abroad' },
+  { title: 'Compare Insurance Providers', href: '/best/expat-health-insurance' },
+  { title: 'How to Switch Insurance Abroad', href: '/guides/switching-insurance-abroad' },
+];
+
+// SEO
+const title = `${provider.name} Coverage for ${condition.name} | Expat Insurance`;
+const description = `How ${provider.name} covers ${condition.name.toLowerCase()} for expats. Waiting periods, coverage limits, costs, and whether it's right for your situation.`;
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-primary-50 to-white py-10 lg:py-14 border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-4">
+          {provider.logo && (
+            <img src={provider.logo} alt={provider.name} class="h-10 w-auto" />
+          )}
+          <span class={`px-3 py-1 rounded-full text-sm font-medium ${getRatingColor(coverage.coverageRating)}`}>
+            {coverage.coverageRating.charAt(0).toUpperCase() + coverage.coverageRating.slice(1)} Coverage
+          </span>
+        </div>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          {provider.name} Coverage for {condition.name}
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          {coverage.approach}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href={provider.href}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            View {provider.name} Plans
+          </a>
+          <a
+            href="/guides/pre-existing-conditions-abroad"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            Pre-Existing Conditions Guide
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <article class="flex-1 min-w-0 prose prose-neutral max-w-none">
+
+        <!-- Overview Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+          <p class="text-neutral-700 mb-4">
+            If you have {condition.name.toLowerCase()} and are considering {provider.name} for your expat health insurance,
+            you're looking at one of the {coverage.coverageRating === 'excellent' ? 'strongest' : coverage.coverageRating === 'good' ? 'solid' : coverage.coverageRating === 'moderate' ? 'moderate' : 'more limited'} options on the market for this condition.
+            Understanding exactly what's covered—and what's not—can save you thousands of dollars and significant stress down the road.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            {provider.name} {coverage.underwritingType === 'both' ? 'offers two underwriting paths: moratorium and full medical underwriting' : coverage.underwritingType === 'moratorium' ? 'uses moratorium underwriting' : coverage.underwritingType === 'full-medical' ? 'uses full medical underwriting' : 'has specific policies'} for pre-existing conditions like {condition.name.toLowerCase()}.
+            This guide breaks down exactly how {provider.name} handles {condition.name.toLowerCase()} coverage, what you can expect to pay, and whether it's the right choice for your situation.
+          </p>
+        </section>
+
+        <!-- Quick Summary Table -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage at a Glance</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse bg-white rounded-lg overflow-hidden border border-neutral-200">
+              <tbody>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700 w-1/3">Coverage Rating</td>
+                  <td class="px-4 py-3">
+                    <span class={`px-2 py-1 rounded text-sm font-medium ${getRatingColor(coverage.coverageRating)}`}>
+                      {coverage.coverageRating.charAt(0).toUpperCase() + coverage.coverageRating.slice(1)}
+                    </span>
+                  </td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Waiting Period</td>
+                  <td class="px-4 py-3 text-neutral-700">{coverage.waitingPeriod}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Estimated Annual Cost</td>
+                  <td class="px-4 py-3 text-neutral-700">{coverage.estimatedCost}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Network Strength</td>
+                  <td class="px-4 py-3 text-neutral-700 capitalize">{coverage.networkStrength}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Direct Billing</td>
+                  <td class="px-4 py-3 text-neutral-700">{coverage.directBilling ? 'Yes, at network hospitals' : 'Limited or not available'}</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Telehealth</td>
+                  <td class="px-4 py-3 text-neutral-700">{coverage.telehealth ? 'Yes, included' : 'Not available'}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Pre-Existing Condition Policy -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pre-Existing Condition Policy</h2>
+          <p class="text-neutral-700 mb-4">
+            How {provider.name} handles pre-existing {condition.name.toLowerCase()} is crucial to understand before you sign up.
+            The wrong choice here could leave you paying out-of-pocket for all your {condition.name.toLowerCase()}-related care.
+          </p>
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-5 mb-4">
+            <p class="text-neutral-800">{coverage.preExistingPolicy}</p>
+          </div>
+          <p class="text-neutral-700">
+            {coverage.underwritingType === 'both' ?
+              `With ${provider.name}, you can choose between moratorium underwriting (simpler but requires a waiting period) or full medical underwriting (more complex but potentially immediate coverage). Most expats with well-controlled ${condition.name.toLowerCase()} opt for full medical underwriting to avoid the waiting period.` :
+              coverage.underwritingType === 'none' ?
+              `Be aware that ${provider.name} does not cover pre-existing conditions at all. If you have ${condition.name.toLowerCase()}, this provider is only suitable for covering new, unrelated conditions.` :
+              `The ${coverage.underwritingType === 'moratorium' ? 'moratorium' : 'full medical underwriting'} approach means your coverage path is straightforward, though you should understand the implications before enrolling.`
+            }
+          </p>
+        </section>
+
+        <!-- What's Covered / Limited / Excluded -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Breakdown</h2>
+          <p class="text-neutral-700 mb-6">
+            Understanding the three tiers of coverage—what's fully covered, what has limits, and what's excluded entirely—helps you plan your healthcare budget and avoid surprises.
+          </p>
+
+          <div class="space-y-6">
+            <!-- What's Covered -->
+            <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+              <h3 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Fully Covered
+              </h3>
+              <ul class="space-y-2">
+                {coverage.whatsCovered.map((item) => (
+                  <li class="text-neutral-700 flex items-start gap-2">
+                    <span class="text-green-600 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- What's Limited -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+              <h3 class="font-semibold text-yellow-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Coverage Limits Apply
+              </h3>
+              <ul class="space-y-2">
+                {coverage.whatsLimited.map((item) => (
+                  <li class="text-neutral-700 flex items-start gap-2">
+                    <span class="text-yellow-600 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- What's Excluded -->
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+              <h3 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Not Covered
+              </h3>
+              <ul class="space-y-2">
+                {coverage.whatsExcluded.map((item) => (
+                  <li class="text-neutral-700 flex items-start gap-2">
+                    <span class="text-red-600 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Specialist Access & Network -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Specialist Access & Network</h2>
+          <p class="text-neutral-700 mb-4">
+            For {condition.name.toLowerCase()}, having reliable access to specialists is essential.
+            {provider.name}'s network strength is rated as <strong>{coverage.networkStrength}</strong>, which affects how easily you can find qualified doctors.
+          </p>
+          <p class="text-neutral-700 mb-4">{coverage.specialistAccess}</p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-6">
+            <div class="bg-white border border-neutral-200 rounded-lg p-4">
+              <h4 class="font-semibold text-neutral-900 mb-2">Direct Billing</h4>
+              <p class="text-sm text-neutral-600">
+                {coverage.directBilling ?
+                  'Available at network hospitals. You won\'t need to pay upfront and file for reimbursement—the hospital bills the insurer directly.' :
+                  'Limited availability. You may need to pay upfront and submit claims for reimbursement.'
+                }
+              </p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-lg p-4">
+              <h4 class="font-semibold text-neutral-900 mb-2">Telehealth</h4>
+              <p class="text-sm text-neutral-600">
+                {coverage.telehealth ?
+                  'Virtual consultations included. Useful for routine follow-ups and prescription renewals when traveling.' :
+                  'Not included in standard plans. You\'ll need in-person visits for all consultations.'
+                }
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Medications -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Medication Coverage</h2>
+          <p class="text-neutral-700 mb-4">
+            Ongoing medication is often the biggest expense for {condition.name.toLowerCase()} management.
+            Here's how {provider.name} handles prescription coverage.
+          </p>
+          <p class="text-neutral-700 mb-4">{coverage.medicationCoverage}</p>
+
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-5">
+            <h4 class="font-semibold text-neutral-900 mb-3">Tips for Medication Coverage</h4>
+            <ul class="space-y-2 text-sm text-neutral-700">
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600 mt-1">→</span>
+                Request a copy of the formulary before enrolling to verify your specific medications are covered
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600 mt-1">→</span>
+                Ask about prior authorization requirements for any medications you take regularly
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600 mt-1">→</span>
+                Check if mail-order pharmacy options are available for better pricing on maintenance medications
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600 mt-1">→</span>
+                Understand the difference between generic and brand-name coverage in your plan
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Claims Process -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Process</h2>
+          <p class="text-neutral-700 mb-4">
+            How you get reimbursed—or avoid upfront payment altogether—matters when you're managing an ongoing condition.
+            A smooth claims process reduces stress and ensures you're not out-of-pocket for long periods.
+          </p>
+          <p class="text-neutral-700 mb-4">{coverage.claimsProcess}</p>
+
+          <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden">
+            <div class="px-4 py-3 bg-neutral-50 border-b border-neutral-200">
+              <h4 class="font-semibold text-neutral-900">How to File a Claim</h4>
+            </div>
+            <ol class="divide-y divide-neutral-200">
+              <li class="px-4 py-3 flex gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-medium">1</span>
+                <span class="text-neutral-700">Keep all receipts, prescriptions, and medical reports from your visit</span>
+              </li>
+              <li class="px-4 py-3 flex gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-medium">2</span>
+                <span class="text-neutral-700">Log into the {provider.name} member portal or mobile app</span>
+              </li>
+              <li class="px-4 py-3 flex gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-medium">3</span>
+                <span class="text-neutral-700">Upload documentation and complete the claim form with diagnosis codes</span>
+              </li>
+              <li class="px-4 py-3 flex gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-medium">4</span>
+                <span class="text-neutral-700">Track your claim status online and receive payment to your bank account</span>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Living with Condition Abroad -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Managing {condition.name} as an Expat</h2>
+          <p class="text-neutral-700 mb-4">
+            Beyond insurance coverage, successfully managing {condition.name.toLowerCase()} abroad requires planning.
+            Here's what expats with this condition typically need to consider.
+          </p>
+
+          <h3 class="text-lg font-semibold text-neutral-900 mt-6 mb-3">Key Concerns for Expats</h3>
+          <ul class="space-y-2 mb-6">
+            {condition.expatConcerns.map((concern) => (
+              <li class="text-neutral-700 flex items-start gap-2">
+                <span class="text-neutral-400 mt-1">•</span>
+                {concern}
+              </li>
+            ))}
+          </ul>
+
+          <h3 class="text-lg font-semibold text-neutral-900 mt-6 mb-3">What to Look For in Coverage</h3>
+          <p class="text-neutral-700 mb-3">
+            When evaluating {provider.name} or any insurer for {condition.name.toLowerCase()} coverage, prioritize these factors:
+          </p>
+          <ul class="space-y-2 mb-6">
+            {condition.insuranceConsiderations.map((consideration) => (
+              <li class="text-neutral-700 flex items-start gap-2">
+                <span class="text-neutral-400 mt-1">•</span>
+                {consideration}
+              </li>
+            ))}
+          </ul>
+
+          <h3 class="text-lg font-semibold text-neutral-900 mt-6 mb-3">Ongoing Management Needs</h3>
+          <p class="text-neutral-700 mb-3">
+            Budget and plan for these regular requirements:
+          </p>
+          <ul class="space-y-2">
+            {condition.managementNeeds.map((need) => (
+              <li class="text-neutral-700 flex items-start gap-2">
+                <span class="text-neutral-400 mt-1">•</span>
+                {need}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Who This Is For -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Is {provider.name} Right for You?</h2>
+          <p class="text-neutral-700 mb-6">
+            No insurer is perfect for everyone. Here's an honest assessment of who should—and shouldn't—consider {provider.name} for {condition.name.toLowerCase()} coverage.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-5">
+              <h3 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                </svg>
+                Best For
+              </h3>
+              <p class="text-neutral-700">{coverage.bestFor}</p>
+            </div>
+            <div class="bg-red-50 border border-red-200 rounded-lg p-5">
+              <h3 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5" />
+                </svg>
+                Not Ideal For
+              </h3>
+              <p class="text-neutral-700">{coverage.notIdealFor}</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQs -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-white border border-neutral-200 rounded-lg">
+                <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-neutral-900">
+                  {faq.question}
+                  <svg class="w-5 h-5 text-neutral-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-5 pb-5 text-neutral-700">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Bottom Line -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">The Bottom Line</h2>
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+            <p class="text-neutral-700 mb-4">
+              {provider.name} offers <strong>{coverage.coverageRating}</strong> coverage for {condition.name.toLowerCase()}.
+              {coverage.coverageRating === 'excellent' ?
+                `It's one of the strongest options available for expats with this condition, though you'll pay a premium for that quality.` :
+                coverage.coverageRating === 'good' ?
+                `It's a solid choice that balances coverage quality with cost, suitable for most expats with well-managed ${condition.name.toLowerCase()}.` :
+                coverage.coverageRating === 'moderate' ?
+                `It provides basic coverage but may have gaps. Consider whether the limitations align with your specific needs.` :
+                `It has significant limitations for ${condition.name.toLowerCase()} coverage. Most expats with this condition should consider other options.`
+              }
+            </p>
+            <p class="text-neutral-700">
+              Before enrolling, request a detailed quote that accounts for your {condition.name.toLowerCase()} history.
+              Compare at least 2-3 providers to ensure you're getting the best combination of coverage and value for your specific situation.
+            </p>
+          </div>
+        </section>
+
+      </article>
+
+      <StickySidebar
+        ctaTitle={`${condition.name} Coverage`}
+        ctaDescription={`Compare ${provider.name} with other providers for ${condition.name.toLowerCase()} coverage.`}
+        ctaButtonText="Compare All Providers"
+        ctaButtonHref="/best/expat-health-insurance"
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+
+    <!-- Related Content -->
+    <section class="mt-16 border-t border-neutral-200 pt-12">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-6">Related Resources</h2>
+      <ContentCards cards={relatedCards} columns={3} />
+    </section>
+  </div>
+</Layout>

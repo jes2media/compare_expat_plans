@@ -1,0 +1,52 @@
+---
+/**
+ * Dynamic route for provider × condition pages.
+ *
+ * Generates pages like:
+ * - /providers/cigna-global/coverage/diabetes
+ * - /providers/bupa-global/coverage/depression-anxiety
+ * - /providers/allianz-care/coverage/heart-disease
+ *
+ * Shows how specific insurers handle coverage for particular medical conditions.
+ */
+
+import ProviderConditionPage from '../../../../templates/ProviderConditionPage.astro';
+import { getProviderBySlug, getInternationalProviders } from '../../../../data/providers';
+import { getConditionBySlug, conditions } from '../../../../data/conditions';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get international providers (most relevant for expats with conditions)
+  const internationalProviders = getInternationalProviders();
+
+  const paths: Array<{
+    params: { provider: string; condition: string };
+    props: {
+      provider: NonNullable<ReturnType<typeof getProviderBySlug>>;
+      condition: NonNullable<ReturnType<typeof getConditionBySlug>>;
+    };
+  }> = [];
+
+  // Generate pages for each international provider × condition combination
+  for (const provider of internationalProviders) {
+    for (const condition of conditions) {
+      paths.push({
+        params: {
+          provider: provider.slug,
+          condition: condition.slug,
+        },
+        props: {
+          provider,
+          condition,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { provider, condition } = Astro.props;
+---
+
+<ProviderConditionPage provider={provider} condition={condition} />
