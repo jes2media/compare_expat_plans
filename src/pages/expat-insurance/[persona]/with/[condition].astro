@@ -1,0 +1,49 @@
+---
+/**
+ * Dynamic route for persona × condition pages.
+ *
+ * Generates pages like:
+ * - /expat-insurance/retirees/with/diabetes
+ * - /expat-insurance/digital-nomads/with/mental-health
+ * - /expat-insurance/families/with/pregnancy-maternity
+ *
+ * Shows insurance guidance for specific audiences with specific conditions.
+ */
+
+import PersonaConditionPage from '../../../../templates/PersonaConditionPage.astro';
+import { personas, getPersonaBySlug } from '../../../../data/personas';
+import { conditions, getConditionBySlug } from '../../../../data/conditions';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths: Array<{
+    params: { persona: string; condition: string };
+    props: {
+      persona: NonNullable<ReturnType<typeof getPersonaBySlug>>;
+      condition: NonNullable<ReturnType<typeof getConditionBySlug>>;
+    };
+  }> = [];
+
+  // Generate pages for each persona × condition combination
+  for (const persona of personas) {
+    for (const condition of conditions) {
+      paths.push({
+        params: {
+          persona: persona.slug,
+          condition: condition.slug,
+        },
+        props: {
+          persona,
+          condition,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { persona, condition } = Astro.props;
+---
+
+<PersonaConditionPage persona={persona} condition={condition} />

@@ -1,0 +1,676 @@
+---
+/**
+ * PersonaConditionPage.astro
+ *
+ * Template for persona × condition pages showing insurance guidance
+ * for specific audience types with specific medical conditions.
+ *
+ * Example: /expat-insurance/retirees/with/diabetes
+ */
+
+import Layout from '../layouts/Layout.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import ContentCards from '../components/ContentCards.astro';
+import Disclosure from '../components/Disclosure.astro';
+import type { Persona } from '../data/personas';
+import type { Condition } from '../data/conditions';
+
+interface Props {
+  persona: Persona;
+  condition: Condition;
+}
+
+const { persona, condition } = Astro.props;
+
+// Persona-specific condition considerations
+interface PersonaConditionData {
+  urgency: 'critical' | 'high' | 'moderate';
+  keyConsiderations: string[];
+  coveragePriorities: string[];
+  commonMistakes: string[];
+  recommendedProviders: Array<{ name: string; why: string; href: string }>;
+  budgetRange: { low: string; mid: string; high: string };
+  waitingPeriodStrategy: string;
+  tipsForApplying: string[];
+}
+
+function getPersonaConditionData(): PersonaConditionData {
+  // Determine urgency based on persona and condition
+  let urgency: PersonaConditionData['urgency'] = 'moderate';
+
+  if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    urgency = 'critical'; // Older adults need comprehensive coverage
+  } else if (persona.slug === 'families' && ['pregnancy-maternity', 'mental-health'].includes(condition.slug)) {
+    urgency = 'critical';
+  } else if (condition.slug === 'cancer' || condition.slug === 'heart-disease') {
+    urgency = 'high';
+  } else if (persona.slug === 'digital-nomads' || persona.slug === 'students') {
+    urgency = 'moderate'; // Usually younger, healthier
+  }
+
+  // Key considerations vary by persona
+  const keyConsiderationsMap: Record<string, string[]> = {
+    'digital-nomads': [
+      `Managing ${condition.name.toLowerCase()} while moving between countries requires portable coverage`,
+      'Many budget nomad insurance plans exclude pre-existing conditions entirely',
+      'Telehealth access is essential for routine management when traveling',
+      'You need coverage that works across multiple countries, not just one',
+      'Consider whether you can get medications easily in your destination countries'
+    ],
+    'retirees': [
+      `${condition.name} coverage becomes more expensive with age—apply as early as possible`,
+      'Full medical underwriting often gets better results than moratorium for known conditions',
+      'Ensure coverage includes specialist consultations and ongoing monitoring',
+      'Medical evacuation coverage is critical if you\'re in a country with limited care',
+      'Consider plans with chronic condition management programs'
+    ],
+    'seniors': [
+      `Finding coverage for ${condition.name.toLowerCase()} after 65 is harder but not impossible`,
+      'Some providers have age limits for new applicants—check before applying',
+      'Higher premiums are unavoidable, but comprehensive coverage is worth it',
+      'Pre-existing condition coverage is your top priority—don\'t compromise on this',
+      'Include medical evacuation to your home country in case of serious complications'
+    ],
+    'families': [
+      `Ensure all family members are covered for ${condition.name.toLowerCase()}-related care`,
+      'Family plans often provide better value than individual policies',
+      'Check pediatric specialist coverage if children have this condition',
+      'Mental health support for family members dealing with chronic conditions matters',
+      'Consider the impact on children\'s schooling and activities'
+    ],
+    'students': [
+      `University health services may have limited ${condition.name.toLowerCase()} support`,
+      'Student insurance plans often have lower coverage limits—check if they\'re adequate',
+      'Ensure coverage during holidays and breaks when you might travel',
+      'Mental health support is often limited on student plans',
+      'Parents\' insurance may not cover you abroad—verify before assuming'
+    ],
+    'remote-workers': [
+      `Your employer\'s insurance may not cover ${condition.name.toLowerCase()} treatment abroad`,
+      'Check if employer coverage extends to your destination country',
+      'Consider supplemental expat coverage to fill gaps',
+      'Work-related stress can exacerbate chronic conditions—ensure mental health coverage',
+      'Telehealth options help maintain care continuity across time zones'
+    ],
+    'freelancers': [
+      `Without employer coverage, you\'re fully responsible for ${condition.name.toLowerCase()} insurance`,
+      'Variable income makes annual premium payments challenging—look for monthly options',
+      'Higher deductible plans can reduce premiums when cash flow is tight',
+      'Consider whether premiums are tax-deductible in your situation',
+      'Don\'t let cost concerns lead you to skip essential coverage'
+    ],
+    'entrepreneurs': [
+      `Business demands can make managing ${condition.name.toLowerCase()} more challenging`,
+      'Consider key person insurance if your health affects business continuity',
+      'Group plans may be available if you have employees',
+      'International coverage supports business travel without gaps',
+      'Stress management is essential—ensure mental health coverage'
+    ]
+  };
+  const keyConsiderations = keyConsiderationsMap[persona.slug] || [
+    `Managing ${condition.name.toLowerCase()} abroad requires proper insurance planning`,
+    'Pre-existing condition coverage is essential',
+    'Compare multiple providers before committing'
+  ];
+
+  // Coverage priorities
+  const basePriorities = [
+    'Pre-existing condition coverage (moratorium or full underwriting)',
+    'Specialist consultations and ongoing care',
+    'Prescription medication coverage',
+    'Emergency and hospital care',
+    'Medical evacuation to home country'
+  ];
+
+  // Add condition-specific priorities
+  const conditionPriorities: Record<string, string[]> = {
+    'diabetes': ['Blood glucose monitoring supplies', 'Insulin and diabetes medications', 'Endocrinologist access', 'Diabetic complication coverage'],
+    'heart-disease': ['Cardiologist access', 'Cardiac medications', 'Emergency cardiac care', 'Rehabilitation coverage'],
+    'cancer': ['Oncologist access', 'Chemotherapy and radiation', 'Surgical coverage', 'Follow-up care and monitoring'],
+    'mental-health': ['Psychiatrist and therapist access', 'Psychiatric medications', 'Inpatient mental health care', 'Crisis support services'],
+    'depression-anxiety': ['Therapy sessions (adequate annual limit)', 'Psychiatric medications', 'Telehealth mental health', 'Crisis intervention'],
+    'pregnancy-maternity': ['Prenatal care', 'Delivery and hospital stay', 'Newborn coverage', 'Complications coverage'],
+    'asthma-respiratory': ['Pulmonologist access', 'Inhalers and medications', 'Emergency respiratory care', 'Air quality considerations'],
+    'arthritis': ['Rheumatologist access', 'Medications including biologics', 'Physical therapy', 'Joint replacement coverage'],
+    'high-blood-pressure': ['Regular monitoring', 'Hypertension medications', 'Cardiologist access', 'Stroke coverage'],
+    'autoimmune': ['Specialist access (varies by condition)', 'Immunosuppressant medications', 'Regular monitoring', 'Flare-up treatment']
+  };
+
+  const coveragePriorities = [
+    ...(conditionPriorities[condition.slug] || []),
+    ...basePriorities
+  ];
+
+  // Common mistakes
+  const commonMistakes = [
+    `Assuming travel insurance covers ${condition.name.toLowerCase()}—it almost never does`,
+    'Not disclosing your condition on the application (leads to denied claims)',
+    'Choosing the cheapest plan without checking condition coverage',
+    'Waiting until you\'re already abroad to get insurance',
+    'Not understanding the difference between moratorium and full medical underwriting',
+    'Forgetting to check if your medications are available in your destination country'
+  ];
+
+  // Recommended providers based on persona and condition
+  let recommendedProviders: PersonaConditionData['recommendedProviders'] = [];
+
+  if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    recommendedProviders = [
+      { name: 'BUPA Global', why: 'Best for pre-existing conditions, high age limits, excellent chronic care', href: '/providers/bupa-global' },
+      { name: 'Cigna Global', why: 'Comprehensive coverage, accepts older applicants, strong specialist network', href: '/providers/cigna-global' },
+      { name: 'Allianz Care', why: 'Good value for comprehensive coverage, flexible underwriting options', href: '/providers/allianz-care' }
+    ];
+  } else if (persona.slug === 'digital-nomads') {
+    recommendedProviders = [
+      { name: 'Cigna Global', why: 'Worldwide coverage, portable across countries, good chronic condition options', href: '/providers/cigna-global' },
+      { name: 'Allianz Care', why: 'Flexible plans, good for mobile lifestyles, reasonable premiums', href: '/providers/allianz-care' },
+      { name: 'IMG Global', why: 'More affordable option with decent condition coverage', href: '/providers/img-global' }
+    ];
+  } else if (persona.slug === 'families') {
+    recommendedProviders = [
+      { name: 'Cigna Global', why: 'Excellent family plans, comprehensive pediatric care, good condition coverage', href: '/providers/cigna-global' },
+      { name: 'BUPA Global', why: 'Strong family coverage including maternity, handles pre-existing conditions well', href: '/providers/bupa-global' },
+      { name: 'Allianz Care', why: 'Good value family plans, flexible coverage options', href: '/providers/allianz-care' }
+    ];
+  } else if (persona.slug === 'students') {
+    recommendedProviders = [
+      { name: 'IMG Global', why: 'Affordable student-friendly plans, meets university requirements', href: '/providers/img-global' },
+      { name: 'Allianz Care', why: 'Good balance of coverage and cost for students', href: '/providers/allianz-care' },
+      { name: 'Cigna Global', why: 'Comprehensive if budget allows, best for serious conditions', href: '/providers/cigna-global' }
+    ];
+  } else {
+    recommendedProviders = [
+      { name: 'Cigna Global', why: 'Comprehensive worldwide coverage, strong for pre-existing conditions', href: '/providers/cigna-global' },
+      { name: 'BUPA Global', why: 'Excellent for chronic conditions, flexible underwriting', href: '/providers/bupa-global' },
+      { name: 'Allianz Care', why: 'Good balance of coverage and cost', href: '/providers/allianz-care' }
+    ];
+  }
+
+  // Budget range varies by persona
+  let budgetRange: PersonaConditionData['budgetRange'];
+  if (persona.slug === 'seniors' || persona.slug === 'retirees') {
+    budgetRange = { low: '$350/mo', mid: '$500/mo', high: '$800+/mo' };
+  } else if (persona.slug === 'students') {
+    budgetRange = { low: '$100/mo', mid: '$180/mo', high: '$300/mo' };
+  } else if (persona.slug === 'digital-nomads' || persona.slug === 'freelancers') {
+    budgetRange = { low: '$150/mo', mid: '$280/mo', high: '$450/mo' };
+  } else if (persona.slug === 'families') {
+    budgetRange = { low: '$400/mo', mid: '$650/mo', high: '$1000+/mo' };
+  } else {
+    budgetRange = { low: '$180/mo', mid: '$320/mo', high: '$500/mo' };
+  }
+
+  // Waiting period strategy
+  const waitingPeriodStrategy = persona.slug === 'retirees' || persona.slug === 'seniors'
+    ? `For ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()}, we recommend full medical underwriting over moratorium. Yes, it's more paperwork, but you'll know exactly what's covered from day one. With moratorium, you'd wait 24 months for condition coverage—too risky at this life stage.`
+    : persona.slug === 'digital-nomads' || persona.slug === 'freelancers'
+    ? `Consider moratorium underwriting if your ${condition.name.toLowerCase()} is well-controlled and you can manage 24 months without claims for this condition. It's simpler and often cheaper. But if you need treatment soon, full medical underwriting gives certainty upfront.`
+    : `Your best approach depends on how well-controlled your ${condition.name.toLowerCase()} is. Moratorium underwriting is simpler but requires a 24-month waiting period. Full medical underwriting takes more effort but can provide immediate coverage if approved.`;
+
+  // Tips for applying
+  const tipsForApplying = [
+    'Gather all medical records before starting applications',
+    'Be completely honest—undisclosed conditions lead to denied claims',
+    'Apply to multiple insurers to compare offers',
+    'Ask about premium loading vs. exclusions—sometimes paying more is better than having no coverage',
+    'Get everything in writing before you pay',
+    'Consider using an insurance broker who specializes in expat coverage'
+  ];
+
+  return {
+    urgency,
+    keyConsiderations,
+    coveragePriorities,
+    commonMistakes,
+    recommendedProviders,
+    budgetRange,
+    waitingPeriodStrategy,
+    tipsForApplying
+  };
+}
+
+const data = getPersonaConditionData();
+
+// Generate prose content
+function getOverviewProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `If you're a ${persona.singular} with ${condition.name.toLowerCase()} planning to live abroad, getting the right health insurance is ${data.urgency === 'critical' ? 'absolutely critical' : data.urgency === 'high' ? 'a top priority' : 'essential'}. The wrong coverage—or no coverage—could leave you paying thousands out-of-pocket or unable to access the care you need.`
+  );
+
+  paragraphs.push(
+    `The good news: international health insurance for ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()} exists, and several providers specifically accommodate pre-existing conditions. The challenge is navigating your options and understanding what's actually covered versus what's excluded.`
+  );
+
+  paragraphs.push(
+    `This guide covers everything ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()} need to know: which insurers offer the best coverage, how underwriting works, what to expect on costs, and how to avoid the mistakes that leave people uninsured when they need care most.`
+  );
+
+  return paragraphs;
+}
+
+function getUnderwritingProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `Understanding how insurers handle ${condition.name.toLowerCase()} is the key to getting covered. There are two main approaches: moratorium underwriting and full medical underwriting. Each has trade-offs, and the right choice depends on your situation.`
+  );
+
+  paragraphs.push(
+    `With moratorium underwriting, you don't need to disclose your medical history upfront. Instead, any condition you've had treatment for in the past 5 years is excluded for the first 24 months. After that, if you've been symptom-free and treatment-free, it becomes covered. This is simpler but means no ${condition.name.toLowerCase()} coverage for two years.`
+  );
+
+  paragraphs.push(
+    `Full medical underwriting requires disclosing your complete medical history. The insurer reviews everything and makes a decision: cover the condition normally, cover it with a higher premium (loading), or exclude it. This takes more effort but gives you certainty about what's covered from day one.`
+  );
+
+  paragraphs.push(data.waitingPeriodStrategy);
+
+  return paragraphs;
+}
+
+function getCostProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `Let's be realistic about costs: ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()} pay more for international health insurance than healthy applicants. How much more depends on your age, the severity of your condition, and which provider you choose.`
+  );
+
+  paragraphs.push(
+    `Budget ${data.budgetRange.low} to ${data.budgetRange.high} per month for comprehensive coverage. The lower end typically means higher deductibles or some coverage limitations. The higher end gets you lower deductibles and more comprehensive care. A mid-range plan around ${data.budgetRange.mid} often hits the sweet spot for most ${persona.name.toLowerCase()}.`
+  );
+
+  paragraphs.push(
+    `Don't let sticker shock push you toward inadequate coverage. A $50/month plan that excludes your ${condition.name.toLowerCase()} isn't actually saving you money—it's leaving you exposed to the exact costs you're trying to protect against.`
+  );
+
+  return paragraphs;
+}
+
+const overviewProse = getOverviewProse();
+const underwritingProse = getUnderwritingProse();
+const costProse = getCostProse();
+
+// Helper for urgency colors
+function getUrgencyColor(urgency: string): string {
+  switch (urgency) {
+    case 'critical': return 'bg-red-100 text-red-800';
+    case 'high': return 'bg-orange-100 text-orange-800';
+    case 'moderate': return 'bg-yellow-100 text-yellow-800';
+    default: return 'bg-neutral-100 text-neutral-800';
+  }
+}
+
+// FAQs
+function getFAQs(): Array<{ question: string; answer: string }> {
+  return [
+    {
+      question: `Can ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()} get expat health insurance?`,
+      answer: `Yes, several international health insurers cover ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()}. The key is choosing a provider that offers pre-existing condition coverage through either moratorium or full medical underwriting. Expect to pay higher premiums than someone without this condition.`
+    },
+    {
+      question: `How much does expat insurance cost for ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()}?`,
+      answer: `Expect to budget ${data.budgetRange.low} to ${data.budgetRange.high} per month for comprehensive coverage. Costs vary based on age, condition severity, and coverage level. A mid-range plan around ${data.budgetRange.mid} provides good value for most people.`
+    },
+    {
+      question: `Will my ${condition.name.toLowerCase()} be covered immediately?`,
+      answer: `It depends on the underwriting type. With full medical underwriting, approved conditions can be covered from day one. With moratorium underwriting, pre-existing conditions aren't covered for the first 24 months. We generally recommend full medical underwriting for known conditions.`
+    },
+    {
+      question: `What if my ${condition.name.toLowerCase()} insurance application is denied?`,
+      answer: `Don't give up after one rejection. Different insurers have different risk appetites. Apply to multiple providers, consider brokers who specialize in hard-to-insure cases, and explore whether condition exclusions with otherwise comprehensive coverage might work for your situation.`
+    },
+    {
+      question: `Should I use a broker for ${condition.name.toLowerCase()} expat insurance?`,
+      answer: `For pre-existing conditions, a broker can be very helpful. They know which insurers are most likely to accept your condition, can present your case effectively, and often get better terms than applying directly. Good brokers don't cost you extra—they're paid by the insurers.`
+    },
+  ];
+}
+
+const faqs = getFAQs();
+
+// Sidebar links
+const sidebarLinks = [
+  { title: `${persona.name} Insurance Guide`, href: persona.href },
+  { title: `${condition.name} Coverage Guide`, href: `/conditions/${condition.slug}` },
+  { title: 'Pre-Existing Conditions Guide', href: '/guides/pre-existing-conditions-abroad' },
+  { title: 'Compare All Providers', href: '/best/expat-health-insurance' },
+];
+
+// Related cards
+const relatedCards = [
+  {
+    title: `${persona.name} Insurance Guide`,
+    description: `Complete guide to health insurance for ${persona.name.toLowerCase()} abroad.`,
+    href: persona.href,
+    image: '/images/guides/pre-existing-conditions-hero.png',
+  },
+  {
+    title: `${condition.name} Coverage Guide`,
+    description: `How to get coverage for ${condition.name.toLowerCase()} when living abroad.`,
+    href: `/conditions/${condition.slug}`,
+    image: '/images/guides/pre-existing-conditions-hero.png',
+  },
+  {
+    title: 'Pre-Existing Conditions Guide',
+    description: 'Everything you need to know about pre-existing condition coverage abroad.',
+    href: '/guides/pre-existing-conditions-abroad',
+    image: '/images/guides/pre-existing-conditions-hero.png',
+  },
+];
+
+// SEO
+const title = `Expat Insurance for ${persona.name} with ${condition.name} | Coverage Guide`;
+const description = `Health insurance guide for ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()} moving abroad. Providers, costs, underwriting options, and how to get covered.`;
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative py-10 lg:py-14 border-b border-neutral-200 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img
+        src="/images/pages/digital-nomad-hero-bg.png"
+        alt=""
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/80"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-4">
+          <span class={`px-3 py-1 rounded-full text-sm font-medium ${getUrgencyColor(data.urgency)}`}>
+            {data.urgency === 'critical' ? 'Critical Priority' : data.urgency === 'high' ? 'High Priority' : 'Important'}
+          </span>
+        </div>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          Expat Insurance for {persona.name} with {condition.name}
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          How to get international health insurance coverage for {condition.name.toLowerCase()} as a {persona.singular} living abroad. Providers, costs, and what to watch out for.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href="/best/expat-health-insurance"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            Compare Providers
+          </a>
+          <a
+            href="/guides/pre-existing-conditions-abroad"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            Pre-Existing Conditions Guide
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <article class="flex-1 min-w-0 prose prose-neutral max-w-none">
+
+        <!-- Overview Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+          {overviewProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+        </section>
+
+        <!-- Key Considerations -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Key Considerations for {persona.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            {persona.name} face specific challenges when seeking {condition.name.toLowerCase()} coverage abroad. Understanding these upfront helps you ask the right questions and avoid common pitfalls.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            These aren't theoretical concerns—they're the real issues {persona.name.toLowerCase()} with {condition.name.toLowerCase()} encounter when trying to get and use international health insurance.
+          </p>
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+            <ul class="space-y-3">
+              {data.keyConsiderations.map((consideration) => (
+                <li class="flex items-start gap-3 text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {consideration}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- Coverage Priorities -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Priorities for {condition.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            Not all insurance coverage is equal when it comes to {condition.name.toLowerCase()}. Here's what to prioritize when comparing plans—in roughly the order of importance.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            When an insurer says they "cover" your condition, dig into the details. Are there sub-limits? Which treatments are included? Is there a cap on medications? The specifics matter more than the headline.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            {data.coveragePriorities.slice(0, 8).map((priority, index) => (
+              <div class="flex items-start gap-3 bg-white border border-neutral-200 rounded-lg p-4">
+                <span class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-medium flex-shrink-0">
+                  {index + 1}
+                </span>
+                <span class="text-neutral-700 text-sm">{priority}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Underwriting Options -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Understanding Underwriting Options</h2>
+          {underwritingProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-6">
+            <div class="bg-white border border-neutral-200 rounded-lg p-5">
+              <h3 class="font-semibold text-neutral-900 mb-2">Moratorium Underwriting</h3>
+              <ul class="text-sm text-neutral-600 space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600">+</span>
+                  No medical disclosure required upfront
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600">+</span>
+                  Faster application process
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-600">−</span>
+                  24-month waiting period for pre-existing conditions
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-600">−</span>
+                  Uncertainty about what's actually covered
+                </li>
+              </ul>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-lg p-5">
+              <h3 class="font-semibold text-neutral-900 mb-2">Full Medical Underwriting</h3>
+              <ul class="text-sm text-neutral-600 space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600">+</span>
+                  Know exactly what's covered from day one
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600">+</span>
+                  Immediate coverage if approved
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-600">−</span>
+                  Full medical history disclosure required
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-600">−</span>
+                  May result in exclusions or premium loading
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recommended Providers -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Providers</h2>
+          <p class="text-neutral-700 mb-4">
+            These providers have the best track record for covering {persona.name.toLowerCase()} with {condition.name.toLowerCase()}. Each has different strengths, so the best choice depends on your specific situation.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            We recommend getting quotes from at least two or three providers. Underwriting decisions vary, and one insurer might offer better terms than another for your particular case.
+          </p>
+          <div class="space-y-4">
+            {data.recommendedProviders.map((provider, index) => (
+              <a href={provider.href} class="block bg-white border border-neutral-200 rounded-lg p-5 hover:border-primary-300 hover:shadow-sm transition-all">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="w-8 h-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-medium">{index + 1}</span>
+                  <h3 class="font-semibold text-neutral-900">{provider.name}</h3>
+                </div>
+                <p class="text-neutral-600 ml-11">{provider.why}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <!-- Cost Estimates -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Cost Estimates</h2>
+          {costProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+
+          <div class="grid sm:grid-cols-3 gap-4 mt-6">
+            <div class="bg-white border border-neutral-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Budget</p>
+              <p class="text-2xl font-bold text-neutral-900">{data.budgetRange.low}</p>
+              <p class="text-xs text-neutral-500 mt-1">Higher deductibles</p>
+            </div>
+            <div class="bg-primary-50 border border-primary-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Recommended</p>
+              <p class="text-2xl font-bold text-primary-700">{data.budgetRange.mid}</p>
+              <p class="text-xs text-neutral-500 mt-1">Balanced coverage</p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Comprehensive</p>
+              <p class="text-2xl font-bold text-neutral-900">{data.budgetRange.high}</p>
+              <p class="text-xs text-neutral-500 mt-1">Maximum protection</p>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-500 mt-4">
+            Estimates based on typical {persona.name.toLowerCase()} profiles. Actual costs depend on age, country of residence, and condition severity.
+          </p>
+        </section>
+
+        <!-- Common Mistakes -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+          <p class="text-neutral-700 mb-4">
+            We've seen {persona.name.toLowerCase()} with {condition.name.toLowerCase()} make these mistakes repeatedly. Each one can leave you without coverage when you need it most or paying far more than necessary.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            The stakes are high here. A denied claim for a major {condition.name.toLowerCase()}-related treatment could cost tens of thousands of dollars. Getting it right upfront is worth the extra effort.
+          </p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <ul class="space-y-3">
+              {data.commonMistakes.map((mistake) => (
+                <li class="flex items-start gap-3 text-neutral-700">
+                  <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  {mistake}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- Tips for Applying -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Tips for Applying</h2>
+          <p class="text-neutral-700 mb-4">
+            Getting approved for {condition.name.toLowerCase()} coverage isn't just about finding the right insurer—it's also about presenting your case effectively. These tips can improve your chances of getting good terms.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            Think of the application process as making a case for why you're a reasonable risk. The more organized and transparent you are, the better your chances of a favorable outcome.
+          </p>
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <ul class="space-y-3">
+              {data.tipsForApplying.map((tip) => (
+                <li class="flex items-start gap-3 text-neutral-700">
+                  <svg class="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- FAQs -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-white border border-neutral-200 rounded-lg">
+                <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-neutral-900">
+                  {faq.question}
+                  <svg class="w-5 h-5 text-neutral-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-5 pb-5 text-neutral-700">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Bottom Line -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">The Bottom Line</h2>
+          <p class="text-neutral-700 mb-4">
+            {persona.name} with {condition.name.toLowerCase()} can absolutely get quality international health insurance—it just requires more research and often higher premiums than those without pre-existing conditions.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            The key is being proactive: apply before you move, be completely honest on applications, and compare multiple providers. Don't let the complexity push you toward inadequate coverage or, worse, no coverage at all.
+          </p>
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+            <p class="text-neutral-700 mb-4">
+              <strong>Our recommendation:</strong> Start with {data.recommendedProviders[0].name} as your primary option—they have the strongest track record for {condition.name.toLowerCase()} coverage for {persona.name.toLowerCase()}. Get quotes from {data.recommendedProviders[1].name} and {data.recommendedProviders[2].name} as well to compare.
+            </p>
+            <p class="text-neutral-700">
+              Budget around {data.budgetRange.mid}/month for solid coverage. Apply at least 2-3 months before your move to allow time for underwriting and any back-and-forth on medical documentation.
+            </p>
+          </div>
+        </section>
+
+      </article>
+
+      <StickySidebar
+        ctaTitle={`${persona.name} with ${condition.name}`}
+        ctaDescription={`Compare insurance options for ${persona.name.toLowerCase()} with ${condition.name.toLowerCase()}.`}
+        ctaButtonText="Compare Providers"
+        ctaButtonHref="/best/expat-health-insurance"
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+
+    <!-- Related Content -->
+    <section class="mt-16 border-t border-neutral-200 pt-12">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-6">Related Resources</h2>
+      <ContentCards cards={relatedCards} columns={3} />
+    </section>
+  </div>
+</Layout>
