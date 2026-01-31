@@ -1,0 +1,895 @@
+---
+/**
+ * PersonaCountryPage.astro
+ *
+ * Template for persona × country pages showing insurance guidance
+ * for specific audience types in specific countries.
+ *
+ * Example: /insurance-for/digital-nomads/in/spain
+ */
+
+import Layout from '../layouts/Layout.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import ContentCards from '../components/ContentCards.astro';
+import Disclosure from '../components/Disclosure.astro';
+import type { Country } from '../data/types';
+import type { Persona } from '../data/personas';
+
+interface Props {
+  persona: Persona;
+  country: Country;
+}
+
+const { persona, country } = Astro.props;
+
+// Country-specific data for personas
+interface PersonaCountryData {
+  visaOptions: Array<{ name: string; duration: string; insuranceRequired: boolean; notes: string }>;
+  monthlyBudget: { low: string; mid: string; high: string };
+  popularAreas: string[];
+  challenges: string[];
+  advantages: string[];
+  insuranceTips: string[];
+  localResources: Array<{ name: string; description: string }>;
+}
+
+// Generate persona-specific content based on country data
+function getPersonaCountryData(): PersonaCountryData {
+  const isEU = ['spain', 'portugal', 'france', 'italy', 'germany', 'netherlands', 'greece', 'ireland', 'austria', 'belgium', 'croatia', 'czech-republic', 'denmark', 'estonia', 'finland', 'hungary', 'latvia', 'lithuania', 'luxembourg', 'malta', 'poland', 'romania', 'slovakia', 'slovenia', 'sweden', 'cyprus', 'bulgaria'].includes(country.slug);
+  const isAsia = ['thailand', 'vietnam', 'indonesia', 'malaysia', 'singapore', 'japan', 'south-korea', 'philippines', 'cambodia', 'taiwan'].includes(country.slug);
+  const isLatAm = ['mexico', 'costa-rica', 'panama', 'colombia', 'ecuador', 'argentina', 'brazil', 'chile', 'peru', 'uruguay'].includes(country.slug);
+
+  // Visa options vary by persona and country
+  const visaOptions: PersonaCountryData['visaOptions'] = [];
+
+  if (persona.slug === 'digital-nomads') {
+    if (country.slug === 'spain') {
+      visaOptions.push({ name: 'Digital Nomad Visa', duration: '1-3 years', insuranceRequired: true, notes: 'Requires €2,520/month income. Health insurance mandatory.' });
+      visaOptions.push({ name: 'Non-Lucrative Visa', duration: '1 year, renewable', insuranceRequired: true, notes: 'For those not working in Spain. €28,800/year minimum.' });
+    } else if (country.slug === 'portugal') {
+      visaOptions.push({ name: 'Digital Nomad Visa (D8)', duration: '1-2 years', insuranceRequired: true, notes: 'Requires €3,040/month income. Full health insurance required.' });
+      visaOptions.push({ name: 'D7 Passive Income Visa', duration: '2 years', insuranceRequired: true, notes: 'For remote workers with passive income.' });
+    } else if (country.slug === 'thailand') {
+      visaOptions.push({ name: 'Long-Term Resident (LTR) Visa', duration: '10 years', insuranceRequired: true, notes: 'Requires $80,000/year income or $1M in assets.' });
+      visaOptions.push({ name: 'Tourist Visa Extensions', duration: '60-90 days', insuranceRequired: false, notes: 'Many nomads do visa runs, but technically not legal for working.' });
+    } else if (country.slug === 'mexico') {
+      visaOptions.push({ name: 'Temporary Resident Visa', duration: '1-4 years', insuranceRequired: false, notes: 'Requires proof of income ~$2,500/month. No insurance required but recommended.' });
+      visaOptions.push({ name: 'Tourist Visa (FMM)', duration: '180 days', insuranceRequired: false, notes: 'Free, no income proof needed. Popular but technically for tourism only.' });
+    } else if (isEU) {
+      visaOptions.push({ name: 'Digital Nomad Visa', duration: '1-2 years', insuranceRequired: true, notes: `Most EU countries now offer digital nomad visas. Insurance typically required.` });
+      visaOptions.push({ name: 'Freelance/Self-Employment Visa', duration: 'Varies', insuranceRequired: true, notes: 'For those establishing freelance business locally.' });
+    } else if (isAsia) {
+      visaOptions.push({ name: 'Tourist Visa', duration: '30-90 days', insuranceRequired: false, notes: 'Many nomads use tourist visas but this limits legal stay.' });
+      visaOptions.push({ name: 'Special Visa Programs', duration: 'Varies', insuranceRequired: true, notes: 'Check for specific digital nomad or work visa programs.' });
+    } else {
+      visaOptions.push({ name: 'Tourist Visa', duration: 'Varies', insuranceRequired: false, notes: 'Check specific requirements for your nationality.' });
+      visaOptions.push({ name: 'Residence Visa', duration: 'Varies', insuranceRequired: true, notes: 'Long-term options typically require insurance.' });
+    }
+  } else if (persona.slug === 'retirees') {
+    if (country.slug === 'portugal') {
+      visaOptions.push({ name: 'D7 Retirement Visa', duration: '2 years', insuranceRequired: true, notes: 'Requires ~€760/month pension. Popular with retirees.' });
+    } else if (country.slug === 'spain') {
+      visaOptions.push({ name: 'Non-Lucrative Visa', duration: '1 year', insuranceRequired: true, notes: 'Requires ~€2,400/month income. No work allowed.' });
+    } else if (country.slug === 'mexico') {
+      visaOptions.push({ name: 'Temporary Resident Visa', duration: '1-4 years', insuranceRequired: false, notes: 'Requires ~$2,500/month income or $100k in investments.' });
+    } else if (country.slug === 'panama') {
+      visaOptions.push({ name: 'Pensionado Visa', duration: 'Permanent', insuranceRequired: false, notes: 'Only $1,000/month pension required. Great discounts.' });
+    } else if (country.slug === 'costa-rica') {
+      visaOptions.push({ name: 'Pensionado Visa', duration: '2 years', insuranceRequired: false, notes: 'Requires $1,000/month pension. CAJA enrollment required.' });
+    } else if (country.slug === 'thailand') {
+      visaOptions.push({ name: 'O-A Retirement Visa', duration: '1 year', insuranceRequired: true, notes: 'Age 50+. Requires insurance with specific coverage amounts.' });
+    } else {
+      visaOptions.push({ name: 'Retirement/Pensioner Visa', duration: 'Varies', insuranceRequired: true, notes: 'Check specific requirements for retirement visas.' });
+    }
+  } else if (persona.slug === 'families') {
+    visaOptions.push({ name: 'Family Residence Visa', duration: 'Varies', insuranceRequired: true, notes: 'Dependent visas usually available. All family members need coverage.' });
+    visaOptions.push({ name: 'Work Visa with Dependents', duration: 'Varies', insuranceRequired: true, notes: 'If one spouse works, family can often join as dependents.' });
+  } else if (persona.slug === 'students') {
+    visaOptions.push({ name: 'Student Visa', duration: 'Duration of studies', insuranceRequired: true, notes: 'Usually requires university enrollment proof and health insurance.' });
+  } else {
+    visaOptions.push({ name: 'Work/Residence Visa', duration: 'Varies', insuranceRequired: true, notes: 'Check specific requirements for your situation.' });
+  }
+
+  // Budget estimates vary by country
+  let monthlyBudget: PersonaCountryData['monthlyBudget'];
+  if (['thailand', 'vietnam', 'indonesia', 'mexico', 'colombia', 'ecuador', 'argentina'].includes(country.slug)) {
+    monthlyBudget = { low: '$1,000-1,500', mid: '$1,500-2,500', high: '$2,500-4,000' };
+  } else if (['portugal', 'spain', 'costa-rica', 'panama', 'malaysia', 'greece'].includes(country.slug)) {
+    monthlyBudget = { low: '$1,500-2,000', mid: '$2,000-3,500', high: '$3,500-5,000' };
+  } else if (['germany', 'netherlands', 'france', 'uk', 'japan', 'australia', 'canada'].includes(country.slug)) {
+    monthlyBudget = { low: '$2,500-3,500', mid: '$3,500-5,000', high: '$5,000-8,000' };
+  } else if (['singapore', 'uae'].includes(country.slug)) {
+    monthlyBudget = { low: '$3,000-4,000', mid: '$4,000-6,000', high: '$6,000-10,000' };
+  } else {
+    monthlyBudget = { low: '$1,500-2,500', mid: '$2,500-4,000', high: '$4,000-6,000' };
+  }
+
+  // Popular areas vary by country
+  const popularAreasMap: Record<string, string[]> = {
+    'spain': ['Barcelona', 'Madrid', 'Valencia', 'Malaga', 'Seville'],
+    'portugal': ['Lisbon', 'Porto', 'Algarve', 'Madeira', 'Cascais'],
+    'thailand': ['Bangkok', 'Chiang Mai', 'Phuket', 'Koh Samui', 'Pattaya'],
+    'mexico': ['Mexico City', 'Playa del Carmen', 'Puerto Vallarta', 'San Miguel de Allende', 'Merida'],
+    'costa-rica': ['San Jose', 'Tamarindo', 'Jaco', 'Arenal', 'Puerto Viejo'],
+    'colombia': ['Medellin', 'Bogota', 'Cartagena', 'Santa Marta', 'Cali'],
+    'vietnam': ['Ho Chi Minh City', 'Hanoi', 'Da Nang', 'Hoi An', 'Nha Trang'],
+    'indonesia': ['Bali', 'Jakarta', 'Yogyakarta', 'Lombok', 'Surabaya'],
+    'germany': ['Berlin', 'Munich', 'Hamburg', 'Frankfurt', 'Cologne'],
+    'france': ['Paris', 'Lyon', 'Nice', 'Bordeaux', 'Toulouse'],
+    'italy': ['Rome', 'Milan', 'Florence', 'Naples', 'Bologna'],
+    'greece': ['Athens', 'Thessaloniki', 'Crete', 'Rhodes', 'Corfu'],
+  };
+  const popularAreas = popularAreasMap[country.slug] || ['Capital city', 'Major urban areas', 'Coastal regions'];
+
+  // Persona-specific challenges
+  const challengesMap: Record<string, string[]> = {
+    'digital-nomads': [
+      `Visa regulations in ${country.name} may not be designed for remote workers`,
+      'Finding reliable high-speed internet outside major cities',
+      'Time zone differences with clients/employers',
+      'Building a social network while moving frequently',
+      'Tax implications of working remotely'
+    ],
+    'retirees': [
+      'Managing healthcare for age-related conditions abroad',
+      'Distance from family and grandchildren',
+      'Language barriers in medical settings',
+      'Finding English-speaking doctors',
+      'Currency fluctuations affecting fixed pension income'
+    ],
+    'families': [
+      'Finding quality international schools',
+      'Ensuring children adapt to new culture',
+      'Healthcare coverage for all family members',
+      'Childcare and family support networks',
+      'Maintaining connections with extended family'
+    ],
+    'students': [
+      'Managing limited budget while abroad',
+      'Navigating university healthcare requirements',
+      'Coverage during breaks and travel',
+      'Mental health support in new environment',
+      'Balancing studies with cultural integration'
+    ],
+    'remote-workers': [
+      'Ensuring employer insurance covers you abroad',
+      'Meeting visa requirements for legal work',
+      'Tax obligations in multiple jurisdictions',
+      'Maintaining work-life balance in new time zone',
+      'Finding suitable workspace'
+    ],
+    'freelancers': [
+      'No employer-sponsored coverage available',
+      'Variable income affecting insurance affordability',
+      'Proving income for visa applications',
+      'Managing taxes across borders',
+      'Building client base internationally'
+    ],
+    'seniors': [
+      'Finding coverage with no age restrictions',
+      'Managing pre-existing conditions abroad',
+      'Higher insurance premiums due to age',
+      'Access to specialists and quality care',
+      'Medical evacuation considerations'
+    ],
+    'entrepreneurs': [
+      'Business banking and legal structure',
+      'Covering yourself and employees',
+      'Visa options for business owners',
+      'Building local business network',
+      'Navigating local regulations'
+    ]
+  };
+  const challenges = challengesMap[persona.slug] || ['Check specific requirements for your situation'];
+
+  // Persona-specific advantages
+  const advantagesMap: Record<string, string[]> = {
+    'digital-nomads': [
+      `${country.name} has a growing community of remote workers`,
+      'Good coworking spaces in major cities',
+      'Relatively affordable cost of living compared to income',
+      'Opportunity to experience new culture',
+      'Potential tax advantages with proper planning'
+    ],
+    'retirees': [
+      `${country.name} offers good value for retirement funds`,
+      'Quality healthcare available at reasonable cost',
+      'Slower pace of life and good weather',
+      'Established expat retirement communities',
+      'Lower overall cost of living'
+    ],
+    'families': [
+      `${country.name} is family-friendly with good schools`,
+      'Children can become multilingual',
+      'Cultural enrichment opportunities',
+      'Often safer than perceived',
+      'Strong sense of community'
+    ],
+    'students': [
+      'Affordable education compared to US/UK',
+      'Cultural immersion opportunity',
+      'Build international network',
+      'Language learning environment',
+      'Life-changing experience'
+    ],
+    'remote-workers': [
+      'Work-life balance improvements',
+      'Lower cost of living',
+      'New experiences while maintaining career',
+      'Escape office politics',
+      'Personal growth opportunities'
+    ],
+    'freelancers': [
+      'Lower cost of living stretches income',
+      'Global client base potential',
+      'Lifestyle flexibility',
+      'Networking with international freelancers',
+      'Tax planning opportunities'
+    ],
+    'seniors': [
+      'Retirement funds go further',
+      'Quality healthcare at lower cost',
+      'Active expat senior community',
+      'New adventures and experiences',
+      'Improved quality of life'
+    ],
+    'entrepreneurs': [
+      'Lower operating costs',
+      'Access to new markets',
+      'Favorable business environment',
+      'International networking',
+      'Quality of life benefits'
+    ]
+  };
+  const advantages = advantagesMap[persona.slug] || ['Check specific benefits for your situation'];
+
+  // Insurance tips vary by persona
+  const insuranceTipsMap: Record<string, string[]> = {
+    'digital-nomads': [
+      'Choose a plan with worldwide coverage (not just single-country)',
+      'Ensure coverage doesn\'t require a fixed address',
+      'Consider plans with monthly payment options for flexibility',
+      'Verify telehealth/virtual consultation coverage',
+      'Check if the policy is accepted for visa applications'
+    ],
+    'retirees': [
+      'Look for plans with no upper age limit or high limits (75+, 80+)',
+      'Prioritize coverage for pre-existing conditions',
+      'Ensure comprehensive prescription drug coverage',
+      'Include medical evacuation to home country',
+      'Consider plans with chronic condition management'
+    ],
+    'families': [
+      'Get family plans rather than individual policies',
+      'Verify pediatric care and well-child visits are covered',
+      'Check maternity coverage if planning more children',
+      'Ensure all dependents are covered equally',
+      'Look for plans covering vaccinations and school requirements'
+    ],
+    'students': [
+      'Check if your university requires specific coverage',
+      'Look for student-specific plans with lower rates',
+      'Ensure coverage during holidays and breaks',
+      'Verify mental health coverage is adequate',
+      'Consider plans covering travel home during emergencies'
+    ],
+    'remote-workers': [
+      'Check if employer insurance extends abroad (often limited)',
+      'Get coverage that satisfies visa requirements',
+      'Consider topping up employer coverage with expat plan',
+      'Ensure coverage certificate available for visa applications',
+      'Verify coverage in your specific destination'
+    ],
+    'freelancers': [
+      'Individual plans are available without employer sponsorship',
+      'Look for flexible payment options (monthly vs annual)',
+      'Consider higher deductibles to reduce premiums',
+      'Ensure portability if you change countries',
+      'Check if premiums are tax-deductible in your situation'
+    ],
+    'seniors': [
+      'Apply early - many plans have lower age limits for new applicants',
+      'Be thorough and honest on medical underwriting',
+      'Consider plans with moratorium underwriting for pre-existing conditions',
+      'Budget for higher premiums due to age',
+      'Prioritize comprehensive coverage over lowest cost'
+    ],
+    'entrepreneurs': [
+      'Consider group plans if you have employees',
+      'Look for multi-country coverage for business travel',
+      'Separate personal and business insurance needs',
+      'Consider key person insurance for your business',
+      'Ensure coverage supports frequent travel'
+    ]
+  };
+  const insuranceTips = insuranceTipsMap[persona.slug] || ['Consult with an insurance broker for personalized advice'];
+
+  // Local resources
+  const localResources: PersonaCountryData['localResources'] = [
+    { name: `${country.name} Expat Community`, description: `Connect with other ${persona.name.toLowerCase()} living in ${country.name}` },
+    { name: 'Local Insurance Brokers', description: 'Brokers familiar with expat insurance requirements' },
+    { name: 'Embassy/Consulate', description: 'Official visa and residency information' },
+  ];
+
+  return {
+    visaOptions,
+    monthlyBudget,
+    popularAreas,
+    challenges,
+    advantages,
+    insuranceTips,
+    localResources
+  };
+}
+
+const data = getPersonaCountryData();
+
+// Recommended providers based on persona
+function getRecommendedProviders(): Array<{ name: string; why: string; href: string }> {
+  if (persona.slug === 'digital-nomads') {
+    return [
+      { name: 'SafetyWing', why: 'Affordable, designed for nomads, monthly payments', href: '/providers/safetywing' },
+      { name: 'Cigna Global', why: 'Comprehensive worldwide coverage, strong network', href: '/providers/cigna-global' },
+      { name: 'IMG Global', why: 'Budget-friendly with good international coverage', href: '/providers/img-global' },
+    ];
+  } else if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    return [
+      { name: 'BUPA Global', why: 'Excellent for pre-existing conditions, high age limits', href: '/providers/bupa-global' },
+      { name: 'Cigna Global', why: 'Comprehensive coverage, accepts older applicants', href: '/providers/cigna-global' },
+      { name: 'Allianz Care', why: 'Good value with chronic condition coverage', href: '/providers/allianz-care' },
+    ];
+  } else if (persona.slug === 'families') {
+    return [
+      { name: 'Cigna Global', why: 'Excellent family plans with pediatric coverage', href: '/providers/cigna-global' },
+      { name: 'BUPA Global', why: 'Comprehensive family coverage including maternity', href: '/providers/bupa-global' },
+      { name: 'Allianz Care', why: 'Good value family plans with flexibility', href: '/providers/allianz-care' },
+    ];
+  } else if (persona.slug === 'students') {
+    return [
+      { name: 'IMG Global', why: 'Affordable student-friendly options', href: '/providers/img-global' },
+      { name: 'SafetyWing', why: 'Budget-friendly for young, healthy students', href: '/providers/safetywing' },
+      { name: 'Allianz Care', why: 'Meets most university requirements', href: '/providers/allianz-care' },
+    ];
+  } else {
+    return [
+      { name: 'Cigna Global', why: 'Comprehensive international coverage', href: '/providers/cigna-global' },
+      { name: 'Allianz Care', why: 'Flexible plans with good value', href: '/providers/allianz-care' },
+      { name: 'BUPA Global', why: 'Premium coverage for peace of mind', href: '/providers/bupa-global' },
+    ];
+  }
+}
+
+const recommendedProviders = getRecommendedProviders();
+
+// Generate prose content for healthcare system section
+function getHealthcareSystemProse(): string[] {
+  const paragraphs: string[] = [];
+
+  if (country.publicHealthcare) {
+    paragraphs.push(
+      `${country.name}'s public healthcare system, ${country.publicHealthcare.name}, provides coverage to ${country.publicHealthcare.access.toLowerCase()}. For ${persona.name.toLowerCase()}, understanding how this system works is important even if you plan to use private insurance, as it affects the overall healthcare landscape and your options in emergencies.`
+    );
+  }
+
+  paragraphs.push(
+    `Most ${persona.name.toLowerCase()} in ${country.name} opt for private health insurance rather than relying solely on public healthcare. Private insurance provides faster access to specialists, English-speaking doctors, and modern facilities. It also ensures you're not dependent on eligibility rules that may change or exclude non-residents.`
+  );
+
+  if (country.privateHealthcare) {
+    paragraphs.push(
+      `Private healthcare costs in ${country.name} typically run ${country.privateHealthcare.cost}. This is often comparable to or less than what you'd pay in the US or UK, while still providing excellent care. Many expats find the quality-to-cost ratio very favorable compared to their home countries.`
+    );
+  }
+
+  return paragraphs;
+}
+
+// Generate prose for insurance selection
+function getInsuranceSelectionProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `Choosing the right health insurance as a ${persona.singular} in ${country.name} requires balancing coverage, cost, and your specific situation. Don't just look at the monthly premium—consider deductibles, coverage limits, network quality, and how the insurer handles claims. A cheap plan that denies claims or has poor customer service isn't actually saving you money.`
+  );
+
+  if (persona.slug === 'digital-nomads' || persona.slug === 'remote-workers') {
+    paragraphs.push(
+      `As someone who may travel or relocate, portability matters. Some insurance plans lock you into a single country or charge extra for coverage elsewhere. Look for plans with worldwide coverage or at least regional flexibility. Also verify that the policy doesn't require a fixed address—some traditional expat plans assume you're staying put.`
+    );
+  } else if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    paragraphs.push(
+      `At this stage of life, pre-existing condition coverage is likely your biggest concern. Be completely honest on applications—insurers can and do deny claims for undisclosed conditions. Look for plans with moratorium underwriting (conditions covered after a waiting period) or full medical underwriting (conditions evaluated upfront). The latter is often better if you want certainty.`
+    );
+  } else if (persona.slug === 'families') {
+    paragraphs.push(
+      `Family coverage requires thinking about everyone's needs. Children need pediatric care and vaccinations. If you're planning more children, maternity coverage has waiting periods—usually 10-12 months. Mental health coverage for teens is often overlooked but increasingly important. Make sure all family members are covered equally, not just the primary policyholder.`
+    );
+  } else {
+    paragraphs.push(
+      `Consider what you actually need versus what's nice to have. A higher deductible plan can significantly reduce premiums if you're generally healthy and just want catastrophic coverage. But if you have ongoing healthcare needs, a lower deductible with better outpatient coverage may be more cost-effective over the year.`
+    );
+  }
+
+  paragraphs.push(
+    `Don't overlook the claims process. Ask how claims are submitted, how long reimbursement takes, and whether direct billing is available at hospitals in ${country.name}. An insurer with a poor claims experience can turn a medical issue into a financial and administrative nightmare.`
+  );
+
+  return paragraphs;
+}
+
+// Generate prose for cost of living context
+function getCostOfLivingProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `Your total cost of living in ${country.name} will depend significantly on where you choose to live and your lifestyle expectations. The capital and tourist areas are typically more expensive, while secondary cities and rural areas offer better value. Many ${persona.name.toLowerCase()} find that moving slightly outside the most popular areas can cut costs by 20-30% without sacrificing quality of life.`
+  );
+
+  paragraphs.push(
+    `Health insurance should be factored into your monthly budget from the start—it's not an optional expense when living abroad. Budget $100-300/month for decent international coverage, more if you're older or have pre-existing conditions. This is usually a small fraction of your total budget but provides enormous peace of mind and financial protection.`
+  );
+
+  return paragraphs;
+}
+
+// Generate prose for the location section
+function getLocationProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `Where you base yourself in ${country.name} affects not just your cost of living but also your healthcare access. Major cities have the best hospitals, most English-speaking doctors, and widest range of specialists. If you have ongoing medical needs, being within reasonable distance of quality healthcare facilities should factor into your location decision.`
+  );
+
+  paragraphs.push(
+    `That said, many ${persona.name.toLowerCase()} prioritize lifestyle over healthcare proximity, especially if they're healthy. Smaller towns and beach communities offer a more relaxed pace, stronger sense of community, and lower costs. Just make sure your insurance includes coverage for medical evacuation if you're in a remote area—getting to a major hospital quickly can matter in emergencies.`
+  );
+
+  return paragraphs;
+}
+
+const healthcareProse = getHealthcareSystemProse();
+const insuranceSelectionProse = getInsuranceSelectionProse();
+const costProse = getCostOfLivingProse();
+const locationProse = getLocationProse();
+
+// FAQs
+function getFAQs(): Array<{ question: string; answer: string }> {
+  return [
+    {
+      question: `Do I need health insurance as a ${persona.singular} in ${country.name}?`,
+      answer: country.insuranceRequired
+        ? `Yes, ${country.name} requires health insurance for most visa types. ${country.requirementExplanation || 'Check specific requirements for your visa category.'}`
+        : `While not always legally required, health insurance is strongly recommended for ${persona.name.toLowerCase()} in ${country.name}. ${country.requirementExplanation || 'Quality medical care abroad can be expensive without coverage.'}`
+    },
+    {
+      question: `What type of insurance is best for ${persona.name.toLowerCase()} in ${country.name}?`,
+      answer: `For ${persona.name.toLowerCase()} in ${country.name}, we recommend international health insurance with ${persona.keyNeeds.slice(0, 2).join(' and ').toLowerCase()}. Local insurance may be cheaper but often has limitations for non-citizens.`
+    },
+    {
+      question: `How much does health insurance cost for ${persona.name.toLowerCase()} in ${country.name}?`,
+      answer: `Health insurance for ${persona.name.toLowerCase()} in ${country.name} typically ranges from $80-400/month depending on age, coverage level, and pre-existing conditions. Budget plans start around $50/month while comprehensive coverage can exceed $500/month for older applicants.`
+    },
+    {
+      question: `Can I use ${country.name}'s public healthcare system?`,
+      answer: country.publicHealthcare
+        ? `${country.name}'s public healthcare (${country.publicHealthcare.name}) is available to ${country.publicHealthcare.access}. ${country.publicHealthcare.notes || ''} Most expats supplement with private insurance for better access and shorter wait times.`
+        : `Check local requirements for public healthcare access. Most ${persona.name.toLowerCase()} rely on private international insurance for comprehensive coverage.`
+    },
+    {
+      question: `What visa do ${persona.name.toLowerCase()} typically use in ${country.name}?`,
+      answer: data.visaOptions.length > 0
+        ? `Common visa options for ${persona.name.toLowerCase()} in ${country.name} include: ${data.visaOptions.map(v => v.name).join(', ')}. ${data.visaOptions[0].notes}`
+        : `Visa options vary. Check the ${country.name} embassy for current requirements for ${persona.name.toLowerCase()}.`
+    },
+  ];
+}
+
+const faqs = getFAQs();
+
+// Sidebar links
+const sidebarLinks = [
+  { title: `${persona.name} Insurance Guide`, href: persona.href },
+  { title: `Health Insurance in ${country.name}`, href: `/countries/${country.slug}/insurance` },
+  { title: 'Compare All Providers', href: '/best/expat-health-insurance' },
+  { title: 'Pre-Existing Conditions Guide', href: '/guides/pre-existing-conditions-abroad' },
+];
+
+// Related cards
+const relatedCards = [
+  {
+    title: `${persona.name} Insurance Guide`,
+    description: `Complete guide to health insurance for ${persona.name.toLowerCase()} abroad.`,
+    href: persona.href,
+    image: '/images/guides/pre-existing-conditions-hero.png',
+  },
+  {
+    title: `Health Insurance in ${country.name}`,
+    description: `Compare all insurance options for expats in ${country.name}.`,
+    href: `/countries/${country.slug}/insurance`,
+    image: country.heroImage || '/images/countries/default-hero-bg.png',
+  },
+  {
+    title: 'Find English-Speaking Doctors',
+    description: 'How to find doctors who speak your language abroad.',
+    href: '/guides/find-english-speaking-doctors-abroad',
+    image: '/images/guides/english-speaking-doctors-hero.png',
+  },
+];
+
+// SEO
+const title = `Health Insurance for ${persona.name} in ${country.name} | Expat Guide`;
+const description = `Health insurance guide for ${persona.name.toLowerCase()} moving to ${country.name}. Visa requirements, costs, recommended providers, and tips.`;
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-primary-50 to-white py-10 lg:py-14 border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-primary-600 mb-2">
+          <a href={persona.href} class="hover:underline">{persona.name}</a>
+          {' → '}
+          <a href={`/countries/${country.slug}/insurance`} class="hover:underline">{country.name}</a>
+        </p>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          Health Insurance for {persona.name} in {country.name}
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          {persona.description} Here's everything you need to know about getting the right health insurance coverage in {country.name}.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href={`/countries/${country.slug}/insurance`}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            Compare Insurance in {country.name}
+          </a>
+          <a
+            href={persona.href}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            {persona.name} Guide
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <article class="flex-1 min-w-0 prose prose-neutral max-w-none">
+
+        <!-- Overview -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+          <p class="text-neutral-700 mb-4">
+            {country.name} has become an increasingly popular destination for {persona.name.toLowerCase()}.
+            {country.insuranceRequired
+              ? `Health insurance is required for most visa types in ${country.name}, so understanding your options is essential before you move.`
+              : `While health insurance isn't always mandatory in ${country.name}, it's strongly recommended for ${persona.name.toLowerCase()} to ensure access to quality healthcare.`
+            }
+          </p>
+          <p class="text-neutral-700 mb-4">
+            This guide covers visa options, insurance requirements, costs, and practical tips specifically for {persona.name.toLowerCase()} planning to live in {country.name}.
+            Whether you're planning a short stay or a long-term move, getting the right health insurance is crucial for protecting yourself financially and ensuring access to quality care.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            The healthcare landscape for expats in {country.name} has evolved significantly in recent years.
+            More providers now offer plans tailored to {persona.name.toLowerCase()}, with flexible terms and coverage that matches how people actually live and work abroad.
+            Understanding these options—and their limitations—is the first step to making an informed decision.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            We've researched the insurance market, visa requirements, and real experiences of {persona.name.toLowerCase()} in {country.name} to create this guide.
+            Our goal is to give you practical, honest information so you can choose the right coverage for your situation—not just sell you the most expensive plan.
+          </p>
+        </section>
+
+        <!-- Quick Facts Table -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Facts</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse bg-white rounded-lg overflow-hidden border border-neutral-200">
+              <tbody>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700 w-1/3">Insurance Required</td>
+                  <td class="px-4 py-3 text-neutral-700">{country.insuranceRequired ? 'Yes, for most visas' : 'Not mandatory, but recommended'}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Monthly Budget ({persona.singular})</td>
+                  <td class="px-4 py-3 text-neutral-700">{data.monthlyBudget.low} (basic) to {data.monthlyBudget.high} (comfortable)</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Popular Areas</td>
+                  <td class="px-4 py-3 text-neutral-700">{data.popularAreas.slice(0, 3).join(', ')}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Public Healthcare</td>
+                  <td class="px-4 py-3 text-neutral-700">{country.publicHealthcare?.name || 'Varies'} - {country.publicHealthcare?.access || 'Check local requirements'}</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Private Insurance Cost</td>
+                  <td class="px-4 py-3 text-neutral-700">{country.privateHealthcare?.cost || '$80-300/month'}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Healthcare System -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in {country.name}</h2>
+          {healthcareProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+          <p class="text-neutral-700 mb-4">
+            Emergency care is generally available to everyone regardless of insurance status, but you'll want coverage for the costs.
+            Hospital stays, surgeries, and specialist treatments can quickly run into thousands of dollars without insurance.
+            Even routine care adds up over time—doctor visits, prescriptions, lab tests, and preventive screenings.
+          </p>
+        </section>
+
+        <!-- Visa Options -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Options for {persona.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            Understanding visa requirements is the first step to planning your move.
+            Different visas have different insurance requirements, income thresholds, and renewal processes.
+            Choosing the right visa affects not just your legal status but also your long-term options for staying in {country.name}.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            Many {persona.name.toLowerCase()} start with a tourist visa or visa-free entry while they explore.
+            This is fine for a trial period, but if you plan to stay longer, you'll need a proper residence visa.
+            Working on a tourist visa is illegal in most countries, even if you're working remotely for a foreign company—though enforcement varies.
+          </p>
+          <div class="space-y-4">
+            {data.visaOptions.map((visa) => (
+              <div class="bg-white border border-neutral-200 rounded-lg p-5">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-semibold text-neutral-900">{visa.name}</h3>
+                  <span class={`px-2 py-1 rounded text-xs font-medium ${visa.insuranceRequired ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                    {visa.insuranceRequired ? 'Insurance Required' : 'Insurance Optional'}
+                  </span>
+                </div>
+                <p class="text-sm text-neutral-500 mb-2">Duration: {visa.duration}</p>
+                <p class="text-neutral-700">{visa.notes}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Recommended Providers -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+          <p class="text-neutral-700 mb-4">
+            Based on the specific needs of {persona.name.toLowerCase()}, these providers offer the best combination of coverage, flexibility, and value for living in {country.name}.
+            We've evaluated them on premium costs, coverage quality, claims experience, and how well they serve {persona.name.toLowerCase()} specifically.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            Keep in mind that the "best" provider depends on your individual circumstances.
+            Someone with pre-existing conditions has different needs than someone who's young and healthy.
+            Age, family status, and how long you plan to stay all affect which provider makes the most sense.
+          </p>
+          <div class="grid sm:grid-cols-3 gap-4">
+            {recommendedProviders.map((provider, index) => (
+              <a href={provider.href} class="block bg-white border border-neutral-200 rounded-lg p-5 hover:border-primary-300 hover:shadow-sm transition-all">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-medium">{index + 1}</span>
+                  <h3 class="font-semibold text-neutral-900">{provider.name}</h3>
+                </div>
+                <p class="text-sm text-neutral-600">{provider.why}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <!-- Choosing Insurance Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">How to Choose the Right Insurance</h2>
+          {insuranceSelectionProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+        </section>
+
+        <!-- Insurance Tips -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Tips for {persona.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            {persona.name} have specific insurance needs that generic advice doesn't always address.
+            Based on what works for {persona.name.toLowerCase()} in {country.name}, here are the key factors to prioritize when evaluating plans.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            These aren't just theoretical considerations—they're based on the actual experiences of {persona.name.toLowerCase()} who've dealt with claims, renewals, and the day-to-day reality of using insurance abroad.
+            Getting these details right upfront saves significant headaches later.
+          </p>
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+            <ul class="space-y-3">
+              {data.insuranceTips.map((tip) => (
+                <li class="flex items-start gap-3 text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- Advantages & Challenges -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Living in {country.name} as a {persona.singular}</h2>
+          <p class="text-neutral-700 mb-4">
+            Every destination has trade-offs. Here's an honest look at what {persona.name.toLowerCase()} can expect in {country.name}.
+            Being realistic about both the positives and negatives helps you make a better decision and set appropriate expectations.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            The advantages below reflect what actually draws {persona.name.toLowerCase()} to {country.name}—not tourist brochure highlights, but the real reasons people stay long-term.
+            Similarly, the challenges are the issues that catch people off guard if they don't plan for them.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            Neither list should be disqualifying on its own. Most {persona.name.toLowerCase()} find the advantages outweigh the challenges, especially once they've adapted to local life.
+            But going in with open eyes helps you prepare for the adjustment period and build the support systems you'll need.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-5">
+              <h3 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Advantages
+              </h3>
+              <ul class="space-y-2">
+                {data.advantages.slice(0, 4).map((item) => (
+                  <li class="text-neutral-700 text-sm flex items-start gap-2">
+                    <span class="text-green-600 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-5">
+              <h3 class="font-semibold text-amber-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Challenges
+              </h3>
+              <ul class="space-y-2">
+                {data.challenges.slice(0, 4).map((item) => (
+                  <li class="text-neutral-700 text-sm flex items-start gap-2">
+                    <span class="text-amber-600 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cost of Living -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Cost of Living</h2>
+          <p class="text-neutral-700 mb-4">
+            Budget expectations for {persona.name.toLowerCase()} in {country.name} vary based on lifestyle and location.
+            Here's a realistic breakdown based on what {persona.name.toLowerCase()} actually spend, not best-case scenarios.
+          </p>
+          {costProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="bg-white border border-neutral-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Budget</p>
+              <p class="text-2xl font-bold text-neutral-900">{data.monthlyBudget.low}</p>
+              <p class="text-xs text-neutral-500 mt-1">per month</p>
+            </div>
+            <div class="bg-primary-50 border border-primary-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Comfortable</p>
+              <p class="text-2xl font-bold text-primary-700">{data.monthlyBudget.mid}</p>
+              <p class="text-xs text-neutral-500 mt-1">per month</p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Premium</p>
+              <p class="text-2xl font-bold text-neutral-900">{data.monthlyBudget.high}</p>
+              <p class="text-xs text-neutral-500 mt-1">per month</p>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-500 mt-4">
+            These estimates include housing, food, transportation, entertainment, and health insurance.
+            Actual costs vary significantly by city and lifestyle.
+          </p>
+        </section>
+
+        <!-- Popular Areas -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Popular Areas for {persona.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            Where you live in {country.name} affects healthcare access, cost of living, and community.
+            These areas are popular with {persona.name.toLowerCase()} for good reasons—established expat communities, reliable infrastructure, and accessible services.
+          </p>
+          {locationProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+          <p class="text-neutral-700 mb-4">
+            Don't limit yourself to the most popular areas, though. Many {persona.name.toLowerCase()} find hidden gems—smaller towns or neighborhoods that offer better value and a more authentic experience.
+            Visit before committing to a long-term lease, and consider starting in a popular area while you explore alternatives.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {data.popularAreas.map((area) => (
+              <span class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-lg text-sm">
+                {area}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQs -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-white border border-neutral-200 rounded-lg">
+                <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-neutral-900">
+                  {faq.question}
+                  <svg class="w-5 h-5 text-neutral-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-5 pb-5 text-neutral-700">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Bottom Line -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">The Bottom Line</h2>
+          <p class="text-neutral-700 mb-4">
+            Choosing to live in {country.name} as a {persona.singular} is a significant decision that requires careful planning.
+            Health insurance is a crucial piece of that plan—not just to satisfy visa requirements, but to ensure you can access quality healthcare when you need it.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            The insurance market for {persona.name.toLowerCase()} has matured considerably. You have real options now, from budget-friendly plans to comprehensive coverage that rivals what you'd get at home.
+            The key is matching your coverage to your actual needs, not just picking the cheapest option or the most expensive one.
+          </p>
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+            <p class="text-neutral-700 mb-4">
+              {country.name} is a {data.advantages.length > 3 ? 'great' : 'viable'} destination for {persona.name.toLowerCase()}.
+              {country.insuranceRequired
+                ? `Since health insurance is required for most visas, make sure you choose a plan that meets visa requirements while also providing comprehensive coverage.`
+                : `While insurance isn't mandatory, investing in quality coverage protects you from potentially high medical costs and gives you peace of mind.`
+              }
+            </p>
+            <p class="text-neutral-700 mb-4">
+              We recommend comparing at least 2-3 providers before committing.
+              Consider your specific needs—{persona.keyNeeds.slice(0, 2).join(' and ').toLowerCase()}—when evaluating plans.
+            </p>
+            <p class="text-neutral-700">
+              Start your research now, even if your move is months away. Some insurers have waiting periods for certain coverages, and getting approved can take time.
+              The earlier you have coverage sorted, the less stress you'll have as your move date approaches.
+            </p>
+          </div>
+        </section>
+
+      </article>
+
+      <StickySidebar
+        ctaTitle={`${persona.name} in ${country.name}`}
+        ctaDescription={`Compare insurance options for ${persona.name.toLowerCase()} in ${country.name}.`}
+        ctaButtonText="Compare Plans"
+        ctaButtonHref={`/countries/${country.slug}/insurance`}
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+
+    <!-- Related Content -->
+    <section class="mt-16 border-t border-neutral-200 pt-12">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-6">Related Resources</h2>
+      <ContentCards cards={relatedCards} columns={3} />
+    </section>
+  </div>
+</Layout>

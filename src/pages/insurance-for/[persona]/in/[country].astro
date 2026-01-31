@@ -1,0 +1,74 @@
+---
+/**
+ * Dynamic route for persona × country pages.
+ *
+ * Generates pages like:
+ * - /insurance-for/digital-nomads/in/spain
+ * - /insurance-for/retirees/in/portugal
+ * - /insurance-for/families/in/mexico
+ *
+ * Provides persona-specific insurance guidance for each country.
+ */
+
+import PersonaCountryPage from '../../../../templates/PersonaCountryPage.astro';
+import { personas, getPersonaBySlug } from '../../../../data/personas';
+import { getCountryBySlug } from '../../../../data/countries';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Target countries - focusing on top expat destinations
+  const targetCountrySlugs = [
+    // Europe - Mediterranean
+    'spain', 'portugal', 'france', 'italy', 'greece',
+    // Europe - Northern/Central
+    'germany', 'netherlands', 'uk', 'ireland', 'austria',
+    // Europe - Eastern/Balkan
+    'croatia', 'czech-republic', 'estonia', 'hungary', 'poland', 'slovenia',
+    // Southeast Asia
+    'thailand', 'vietnam', 'indonesia', 'malaysia', 'singapore', 'philippines', 'cambodia',
+    // East Asia
+    'japan', 'south-korea', 'taiwan',
+    // Middle East
+    'uae',
+    // Latin America
+    'mexico', 'costa-rica', 'panama', 'colombia', 'ecuador', 'argentina', 'brazil', 'chile', 'peru', 'uruguay',
+    // Central America & Caribbean
+    'belize', 'nicaragua', 'dominican-republic',
+    // North America & Oceania
+    'canada', 'australia', 'new-zealand',
+  ];
+
+  const paths: Array<{
+    params: { persona: string; country: string };
+    props: {
+      persona: NonNullable<ReturnType<typeof getPersonaBySlug>>;
+      country: NonNullable<ReturnType<typeof getCountryBySlug>>;
+    };
+  }> = [];
+
+  // Generate pages for each persona × target country combination
+  for (const persona of personas) {
+    for (const countrySlug of targetCountrySlugs) {
+      const country = getCountryBySlug(countrySlug);
+      if (!country) continue;
+
+      paths.push({
+        params: {
+          persona: persona.slug,
+          country: countrySlug,
+        },
+        props: {
+          persona,
+          country,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { persona, country } = Astro.props;
+---
+
+<PersonaCountryPage persona={persona} country={country} />
