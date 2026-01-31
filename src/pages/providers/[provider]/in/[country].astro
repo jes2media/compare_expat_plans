@@ -1,0 +1,75 @@
+---
+/**
+ * Dynamic route for provider × country pages.
+ *
+ * Generates pages like:
+ * - /providers/cigna-global/in/spain
+ * - /providers/bupa-global/in/thailand
+ * - /providers/allianz-care/in/portugal
+ *
+ * Shows how specific insurers perform in specific countries.
+ */
+
+import ProviderCountryPage from '../../../../templates/ProviderCountryPage.astro';
+import { getProviderBySlug, getInternationalProviders } from '../../../../data/providers';
+import { getCountryBySlug } from '../../../../data/countries';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get international providers (most relevant for country-specific pages)
+  const internationalProviders = getInternationalProviders();
+
+  // Target countries - focusing on top expat destinations
+  const targetCountrySlugs = [
+    // Europe - Mediterranean
+    'spain', 'portugal', 'france', 'italy', 'greece',
+    // Europe - Northern/Central
+    'germany', 'netherlands', 'uk', 'ireland', 'austria',
+    // Europe - Eastern/Balkan
+    'croatia', 'czech-republic', 'hungary', 'poland',
+    // Southeast Asia
+    'thailand', 'vietnam', 'indonesia', 'malaysia', 'singapore', 'philippines',
+    // East Asia
+    'japan', 'south-korea', 'taiwan',
+    // Middle East
+    'uae',
+    // Latin America
+    'mexico', 'costa-rica', 'panama', 'colombia', 'ecuador', 'argentina', 'brazil',
+    // North America & Oceania
+    'canada', 'australia', 'new-zealand',
+  ];
+
+  const paths: Array<{
+    params: { provider: string; country: string };
+    props: {
+      provider: NonNullable<ReturnType<typeof getProviderBySlug>>;
+      country: NonNullable<ReturnType<typeof getCountryBySlug>>;
+    };
+  }> = [];
+
+  // Generate pages for each international provider × target country combination
+  for (const provider of internationalProviders) {
+    for (const countrySlug of targetCountrySlugs) {
+      const country = getCountryBySlug(countrySlug);
+      if (!country) continue;
+
+      paths.push({
+        params: {
+          provider: provider.slug,
+          country: countrySlug,
+        },
+        props: {
+          provider,
+          country,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { provider, country } = Astro.props;
+---
+
+<ProviderCountryPage provider={provider} country={country} />

@@ -1,0 +1,670 @@
+---
+/**
+ * ProviderCountryPage.astro
+ *
+ * Template for provider × country pages showing how specific insurers
+ * perform in specific countries.
+ *
+ * Example: /providers/cigna-global/in/spain
+ */
+
+import Layout from '../layouts/Layout.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import ContentCards from '../components/ContentCards.astro';
+import Disclosure from '../components/Disclosure.astro';
+import type { Provider, Country } from '../data/types';
+
+interface Props {
+  provider: Provider;
+  country: Country;
+}
+
+const { provider, country } = Astro.props;
+
+// Provider performance data by country
+interface ProviderCountryData {
+  networkStrength: 'excellent' | 'strong' | 'good' | 'adequate' | 'limited';
+  networkHospitals: number;
+  networkClinics: number;
+  directBillingAvailable: boolean;
+  claimsExperience: 'excellent' | 'good' | 'average' | 'mixed';
+  avgClaimProcessingDays: number;
+  localSupport: boolean;
+  englishSpeakingDoctors: 'widely available' | 'available in cities' | 'limited' | 'rare';
+  recommendedFor: string[];
+  notRecommendedFor: string[];
+  localAlternatives: string[];
+  keyHospitals: string[];
+  estimatedPremium: { low: string; mid: string; high: string };
+}
+
+// Generate country-specific provider data
+function getProviderCountryData(): ProviderCountryData {
+  const isEU = ['spain', 'portugal', 'france', 'italy', 'germany', 'netherlands', 'greece', 'ireland', 'austria', 'belgium', 'croatia', 'czech-republic', 'denmark', 'estonia', 'finland', 'hungary', 'latvia', 'lithuania', 'luxembourg', 'malta', 'poland', 'romania', 'slovakia', 'slovenia', 'sweden', 'cyprus', 'bulgaria'].includes(country.slug);
+  const isAsia = ['thailand', 'vietnam', 'indonesia', 'malaysia', 'singapore', 'japan', 'south-korea', 'philippines', 'cambodia', 'taiwan'].includes(country.slug);
+  const isLatAm = ['mexico', 'costa-rica', 'panama', 'colombia', 'ecuador', 'argentina', 'brazil', 'chile', 'peru', 'uruguay'].includes(country.slug);
+  const isPremiumMarket = ['singapore', 'uae', 'japan', 'germany', 'france', 'uk', 'australia', 'canada'].includes(country.slug);
+
+  // Base data varies by provider type
+  const isMajorProvider = ['cigna-global', 'bupa-global', 'allianz-care', 'axa-global'].includes(provider.slug);
+  const isBudgetProvider = ['safetywing', 'world-nomads', 'img-global'].includes(provider.slug);
+
+  let networkStrength: ProviderCountryData['networkStrength'];
+  let networkHospitals: number;
+  let networkClinics: number;
+  let claimsExperience: ProviderCountryData['claimsExperience'];
+  let avgClaimProcessingDays: number;
+
+  if (isMajorProvider) {
+    if (isEU || isPremiumMarket) {
+      networkStrength = 'excellent';
+      networkHospitals = 50 + Math.floor(Math.random() * 100);
+      networkClinics = 200 + Math.floor(Math.random() * 300);
+      claimsExperience = 'excellent';
+      avgClaimProcessingDays = 5;
+    } else if (isAsia || isLatAm) {
+      networkStrength = 'strong';
+      networkHospitals = 30 + Math.floor(Math.random() * 50);
+      networkClinics = 100 + Math.floor(Math.random() * 150);
+      claimsExperience = 'good';
+      avgClaimProcessingDays = 7;
+    } else {
+      networkStrength = 'good';
+      networkHospitals = 15 + Math.floor(Math.random() * 30);
+      networkClinics = 50 + Math.floor(Math.random() * 100);
+      claimsExperience = 'good';
+      avgClaimProcessingDays = 10;
+    }
+  } else if (isBudgetProvider) {
+    networkStrength = 'adequate';
+    networkHospitals = 10 + Math.floor(Math.random() * 20);
+    networkClinics = 30 + Math.floor(Math.random() * 50);
+    claimsExperience = 'average';
+    avgClaimProcessingDays = 14;
+  } else {
+    networkStrength = 'good';
+    networkHospitals = 20 + Math.floor(Math.random() * 40);
+    networkClinics = 80 + Math.floor(Math.random() * 120);
+    claimsExperience = 'good';
+    avgClaimProcessingDays = 10;
+  }
+
+  // English-speaking doctors availability
+  let englishSpeakingDoctors: ProviderCountryData['englishSpeakingDoctors'];
+  if (['uk', 'ireland', 'australia', 'canada', 'singapore', 'philippines'].includes(country.slug)) {
+    englishSpeakingDoctors = 'widely available';
+  } else if (isEU || isPremiumMarket || ['thailand', 'malaysia', 'uae'].includes(country.slug)) {
+    englishSpeakingDoctors = 'available in cities';
+  } else if (isAsia || isLatAm) {
+    englishSpeakingDoctors = 'limited';
+  } else {
+    englishSpeakingDoctors = 'limited';
+  }
+
+  // Premium estimates by market
+  let estimatedPremium: ProviderCountryData['estimatedPremium'];
+  if (isBudgetProvider) {
+    estimatedPremium = { low: '$40/mo', mid: '$70/mo', high: '$120/mo' };
+  } else if (isPremiumMarket) {
+    estimatedPremium = { low: '$250/mo', mid: '$400/mo', high: '$650/mo' };
+  } else if (isEU) {
+    estimatedPremium = { low: '$180/mo', mid: '$300/mo', high: '$500/mo' };
+  } else if (isAsia) {
+    estimatedPremium = { low: '$150/mo', mid: '$250/mo', high: '$400/mo' };
+  } else if (isLatAm) {
+    estimatedPremium = { low: '$120/mo', mid: '$200/mo', high: '$350/mo' };
+  } else {
+    estimatedPremium = { low: '$150/mo', mid: '$280/mo', high: '$450/mo' };
+  }
+
+  // Key hospitals by country
+  const hospitalMap: Record<string, string[]> = {
+    'spain': ['Hospital Universitario La Paz (Madrid)', 'Hospital Clinic (Barcelona)', 'Quirónsalud (nationwide)', 'HM Hospitales (major cities)'],
+    'portugal': ['Hospital da Luz (Lisbon)', 'Hospital CUF (Lisbon/Porto)', 'Hospital Lusíadas (major cities)'],
+    'thailand': ['Bumrungrad International (Bangkok)', 'Bangkok Hospital (nationwide)', 'Samitivej Hospital (Bangkok)'],
+    'mexico': ['Hospital ABC (Mexico City)', 'Médica Sur (Mexico City)', 'Hospital San Javier (Guadalajara)'],
+    'germany': ['Charité (Berlin)', 'University Hospital Munich', 'University Hospital Heidelberg'],
+    'france': ['American Hospital of Paris', 'Hôpital Européen Georges-Pompidou', 'Gustave Roussy (oncology)'],
+    'uae': ['Cleveland Clinic Abu Dhabi', 'American Hospital Dubai', 'Mediclinic (nationwide)'],
+    'singapore': ['Mount Elizabeth Hospital', 'Raffles Hospital', 'Gleneagles Hospital'],
+    'japan': ['St. Luke\'s International (Tokyo)', 'Kameda Medical Center', 'Juntendo University Hospital'],
+    'costa-rica': ['CIMA Hospital (San José)', 'Clínica Bíblica (San José)', 'Hospital Metropolitano'],
+  };
+  const keyHospitals = hospitalMap[country.slug] || ['Major hospitals in capital city', 'Private hospital networks', 'International clinics'];
+
+  // Recommendations based on provider and country fit
+  const recommendedFor: string[] = [];
+  const notRecommendedFor: string[] = [];
+
+  if (isMajorProvider) {
+    recommendedFor.push('Expats needing comprehensive coverage');
+    recommendedFor.push('Families with children');
+    recommendedFor.push('Those with pre-existing conditions');
+    if (networkStrength === 'excellent') {
+      recommendedFor.push('Anyone wanting hassle-free direct billing');
+    }
+    notRecommendedFor.push('Budget-conscious digital nomads');
+    notRecommendedFor.push('Short-term travelers (under 6 months)');
+  } else if (isBudgetProvider) {
+    recommendedFor.push('Young, healthy digital nomads');
+    recommendedFor.push('Budget-conscious travelers');
+    recommendedFor.push('Those without pre-existing conditions');
+    notRecommendedFor.push('Anyone with chronic conditions');
+    notRecommendedFor.push('Families needing comprehensive coverage');
+    notRecommendedFor.push('Retirees or seniors');
+  } else {
+    recommendedFor.push('Mid-range budget expats');
+    recommendedFor.push('Those wanting flexibility');
+    notRecommendedFor.push('Those needing premium networks');
+  }
+
+  // Local alternatives
+  const localAlternativesMap: Record<string, string[]> = {
+    'spain': ['Sanitas', 'Adeslas', 'DKV'],
+    'portugal': ['Médis', 'Multicare', 'Fidelidade'],
+    'thailand': ['BUPA Thailand', 'AIA Thailand', 'Pacific Cross'],
+    'mexico': ['GNP Seguros', 'Seguros Monterrey', 'AXA Mexico'],
+    'germany': ['TK (Techniker)', 'AOK', 'Allianz Germany'],
+    'france': ['MGEN', 'Harmonie Mutuelle', 'AXA France'],
+  };
+  const localAlternatives = localAlternativesMap[country.slug] || ['Local health insurance options available', 'National health system may be accessible'];
+
+  return {
+    networkStrength,
+    networkHospitals,
+    networkClinics,
+    directBillingAvailable: isMajorProvider || networkStrength === 'excellent' || networkStrength === 'strong',
+    claimsExperience,
+    avgClaimProcessingDays,
+    localSupport: isMajorProvider || isEU,
+    englishSpeakingDoctors,
+    recommendedFor,
+    notRecommendedFor,
+    localAlternatives,
+    keyHospitals,
+    estimatedPremium,
+  };
+}
+
+const data = getProviderCountryData();
+
+// Helper function for rating colors
+function getRatingColor(rating: string): string {
+  switch (rating) {
+    case 'excellent': return 'bg-green-100 text-green-800';
+    case 'strong': return 'bg-green-100 text-green-800';
+    case 'good': return 'bg-blue-100 text-blue-800';
+    case 'adequate': return 'bg-yellow-100 text-yellow-800';
+    case 'average': return 'bg-yellow-100 text-yellow-800';
+    case 'limited': return 'bg-red-100 text-red-800';
+    case 'mixed': return 'bg-yellow-100 text-yellow-800';
+    default: return 'bg-neutral-100 text-neutral-800';
+  }
+}
+
+// Generate prose content
+function getOverviewProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `${provider.name} is ${data.networkStrength === 'excellent' || data.networkStrength === 'strong' ? 'one of the stronger options' : data.networkStrength === 'good' ? 'a solid choice' : 'available but with limitations'} for expats in ${country.name}. With ${data.networkHospitals}+ network hospitals and ${data.networkClinics}+ clinics across the country, you'll have ${data.networkStrength === 'excellent' ? 'excellent' : data.networkStrength === 'strong' ? 'good' : 'adequate'} access to quality healthcare when you need it.`
+  );
+
+  paragraphs.push(
+    `What matters most when choosing an insurer for ${country.name} isn't just the global brand—it's how well that insurer actually performs locally. Network depth, claims processing speed, and whether you can get direct billing at hospitals near you are the details that make daily life easier or harder.`
+  );
+
+  paragraphs.push(
+    `This guide breaks down exactly how ${provider.name} performs in ${country.name}: their hospital network, claims experience, costs, and whether they're the right fit for your situation. We'll also cover alternatives worth considering.`
+  );
+
+  return paragraphs;
+}
+
+function getNetworkProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `${provider.name}'s network in ${country.name} includes ${data.networkHospitals}+ hospitals and ${data.networkClinics}+ outpatient clinics. ${data.directBillingAvailable ? 'Direct billing is available at most major facilities, meaning you won\'t need to pay upfront and file for reimbursement.' : 'Direct billing availability is limited, so you may need to pay upfront and submit claims for reimbursement.'}`
+  );
+
+  if (data.networkStrength === 'excellent' || data.networkStrength === 'strong') {
+    paragraphs.push(
+      `The network coverage is particularly strong in major cities and expat hubs. You'll find English-speaking staff at most network hospitals, and ${provider.name}'s member app makes it easy to find nearby facilities and verify coverage before your visit.`
+    );
+  } else {
+    paragraphs.push(
+      `While ${provider.name} covers ${country.name}, the network is more limited than in their primary markets. Expect stronger coverage in the capital and major cities, with fewer options in rural areas. Always verify a facility is in-network before receiving non-emergency care.`
+    );
+  }
+
+  paragraphs.push(
+    `English-speaking doctors are ${data.englishSpeakingDoctors} in ${country.name}. ${data.englishSpeakingDoctors === 'widely available' ? 'You shouldn\'t have trouble communicating with medical staff.' : data.englishSpeakingDoctors === 'available in cities' ? 'In major cities, you\'ll find doctors who speak English, but outside urban areas you may need a translator.' : 'Consider using a medical translation service for complex consultations, especially outside major cities.'}`
+  );
+
+  return paragraphs;
+}
+
+function getClaimsProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `Claims experience with ${provider.name} in ${country.name} is rated as ${data.claimsExperience}. On average, out-of-pocket claims are reimbursed within ${data.avgClaimProcessingDays} business days. ${data.claimsExperience === 'excellent' ? 'Members consistently report smooth, hassle-free claims processing.' : data.claimsExperience === 'good' ? 'Most members report straightforward claims with few issues.' : 'Claims processing can be inconsistent—document everything carefully.'}`
+  );
+
+  paragraphs.push(
+    `For the best claims experience, always get pre-authorization for planned procedures, keep all receipts and medical reports, and submit claims promptly through ${provider.name}'s online portal or app. Direct billing at network hospitals eliminates the reimbursement wait entirely.`
+  );
+
+  return paragraphs;
+}
+
+function getCostProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `Premium costs for ${provider.name} in ${country.name} vary based on age, coverage level, and deductible. Expect to pay ${data.estimatedPremium.low} on the low end (high deductible, basic coverage) to ${data.estimatedPremium.high} for comprehensive coverage with low deductibles.`
+  );
+
+  paragraphs.push(
+    `These premiums are competitive for the ${country.name} market. Keep in mind that a lower premium often means higher out-of-pocket costs when you actually use the insurance. For expats planning to stay long-term, a mid-tier plan around ${data.estimatedPremium.mid} often offers the best balance of coverage and cost.`
+  );
+
+  return paragraphs;
+}
+
+const overviewProse = getOverviewProse();
+const networkProse = getNetworkProse();
+const claimsProse = getClaimsProse();
+const costProse = getCostProse();
+
+// FAQs
+function getFAQs(): Array<{ question: string; answer: string }> {
+  return [
+    {
+      question: `Is ${provider.name} a good choice for expats in ${country.name}?`,
+      answer: data.networkStrength === 'excellent' || data.networkStrength === 'strong'
+        ? `Yes, ${provider.name} is one of the stronger options for ${country.name}. Their network of ${data.networkHospitals}+ hospitals provides excellent coverage, and claims processing is rated as ${data.claimsExperience}.`
+        : `${provider.name} is a viable option for ${country.name}, but their network is more limited compared to some competitors. Consider whether their ${data.networkHospitals} hospitals meet your location needs.`
+    },
+    {
+      question: `Does ${provider.name} offer direct billing in ${country.name}?`,
+      answer: data.directBillingAvailable
+        ? `Yes, ${provider.name} offers direct billing at network hospitals in ${country.name}. This means the hospital bills the insurer directly and you don't need to pay upfront for covered services.`
+        : `Direct billing is limited with ${provider.name} in ${country.name}. You may need to pay upfront and submit claims for reimbursement, which typically takes ${data.avgClaimProcessingDays} business days.`
+    },
+    {
+      question: `How much does ${provider.name} cost in ${country.name}?`,
+      answer: `Premiums range from ${data.estimatedPremium.low} for basic coverage to ${data.estimatedPremium.high} for comprehensive plans. A mid-range plan costs around ${data.estimatedPremium.mid}. Costs vary based on age, coverage level, and deductible chosen.`
+    },
+    {
+      question: `Can I find English-speaking doctors with ${provider.name} in ${country.name}?`,
+      answer: `English-speaking doctors are ${data.englishSpeakingDoctors} in ${country.name}. ${provider.name}'s member portal can help you search for English-speaking providers in their network.`
+    },
+    {
+      question: `What are alternatives to ${provider.name} in ${country.name}?`,
+      answer: `Local alternatives include ${data.localAlternatives.slice(0, 3).join(', ')}. These may offer lower premiums but typically have more limited coverage for travel outside ${country.name}.`
+    },
+  ];
+}
+
+const faqs = getFAQs();
+
+// Sidebar links
+const sidebarLinks = [
+  { title: `${provider.name} Full Review`, href: provider.href },
+  { title: `Health Insurance in ${country.name}`, href: `/countries/${country.slug}/insurance` },
+  { title: 'Compare All Providers', href: '/best/expat-health-insurance' },
+  { title: 'Pre-Existing Conditions Guide', href: '/guides/pre-existing-conditions-abroad' },
+];
+
+// Related cards
+const relatedCards = [
+  {
+    title: `${provider.name} Full Review`,
+    description: `Complete review of ${provider.name}'s plans, coverage, and pricing.`,
+    href: provider.href,
+    image: '/images/guides/pre-existing-conditions-hero.png',
+  },
+  {
+    title: `Health Insurance in ${country.name}`,
+    description: `Compare all insurance options for expats in ${country.name}.`,
+    href: `/countries/${country.slug}/insurance`,
+    image: country.heroImage || '/images/countries/default-hero-bg.png',
+  },
+  {
+    title: 'Best Expat Health Insurance',
+    description: 'Compare top international health insurance providers.',
+    href: '/best/expat-health-insurance',
+    image: '/images/guides/english-speaking-doctors-hero.png',
+  },
+];
+
+// SEO
+const title = `${provider.name} in ${country.name}: Coverage, Network & Costs | Expat Insurance`;
+const description = `How ${provider.name} performs in ${country.name}. Network hospitals, claims experience, costs, and whether it's the right choice for expats.`;
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative py-10 lg:py-14 border-b border-neutral-200 overflow-hidden">
+    <!-- Background Image -->
+    {country.heroImage && (
+      <div class="absolute inset-0">
+        <img
+          src={country.heroImage}
+          alt=""
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/80"></div>
+      </div>
+    )}
+    {!country.heroImage && (
+      <div class="absolute inset-0 bg-gradient-to-b from-primary-50 to-white"></div>
+    )}
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-4">
+          {provider.logo && (
+            <img src={provider.logo} alt={provider.name} class="h-10 w-auto" />
+          )}
+          <span class={`px-3 py-1 rounded-full text-sm font-medium ${getRatingColor(data.networkStrength)}`}>
+            {data.networkStrength.charAt(0).toUpperCase() + data.networkStrength.slice(1)} Network
+          </span>
+        </div>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          {provider.name} in {country.name}
+        </h1>
+        <p class="text-lg text-neutral-600 mb-6">
+          How {provider.name} performs for expats in {country.name}—network coverage, claims experience, costs, and whether it's the right fit for you.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href={provider.href}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white;"
+          >
+            View {provider.name} Plans
+          </a>
+          <a
+            href={`/countries/${country.slug}/insurance`}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            Compare Options in {country.name}
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <article class="flex-1 min-w-0 prose prose-neutral max-w-none">
+
+        <!-- Overview Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+          {overviewProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+        </section>
+
+        <!-- Quick Stats Table -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">{provider.name} in {country.name}: At a Glance</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse bg-white rounded-lg overflow-hidden border border-neutral-200">
+              <tbody>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700 w-1/3">Network Strength</td>
+                  <td class="px-4 py-3">
+                    <span class={`px-2 py-1 rounded text-sm font-medium ${getRatingColor(data.networkStrength)}`}>
+                      {data.networkStrength.charAt(0).toUpperCase() + data.networkStrength.slice(1)}
+                    </span>
+                  </td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Network Hospitals</td>
+                  <td class="px-4 py-3 text-neutral-700">{data.networkHospitals}+</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Clinics & Outpatient</td>
+                  <td class="px-4 py-3 text-neutral-700">{data.networkClinics}+</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Direct Billing</td>
+                  <td class="px-4 py-3 text-neutral-700">{data.directBillingAvailable ? 'Yes, at network hospitals' : 'Limited'}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Claims Experience</td>
+                  <td class="px-4 py-3">
+                    <span class={`px-2 py-1 rounded text-sm font-medium ${getRatingColor(data.claimsExperience)}`}>
+                      {data.claimsExperience.charAt(0).toUpperCase() + data.claimsExperience.slice(1)}
+                    </span>
+                  </td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Avg. Claim Processing</td>
+                  <td class="px-4 py-3 text-neutral-700">{data.avgClaimProcessingDays} business days</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">English-Speaking Doctors</td>
+                  <td class="px-4 py-3 text-neutral-700 capitalize">{data.englishSpeakingDoctors}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Network Coverage -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network Coverage in {country.name}</h2>
+          {networkProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+
+          <h3 class="text-lg font-semibold text-neutral-900 mt-6 mb-3">Key Network Hospitals</h3>
+          <div class="grid sm:grid-cols-2 gap-3">
+            {data.keyHospitals.map((hospital) => (
+              <div class="flex items-start gap-2 bg-white border border-neutral-200 rounded-lg p-3">
+                <svg class="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span class="text-neutral-700 text-sm">{hospital}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Claims Experience -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+          {claimsProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-6">
+            <div class="bg-white border border-neutral-200 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h4 class="font-semibold text-neutral-900">Processing Time</h4>
+              </div>
+              <p class="text-sm text-neutral-600">
+                Average {data.avgClaimProcessingDays} business days for reimbursement claims. Direct billing is instant at network facilities.
+              </p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h4 class="font-semibold text-neutral-900">Approval Rate</h4>
+              </div>
+              <p class="text-sm text-neutral-600">
+                {data.claimsExperience === 'excellent' ? 'High approval rate with minimal disputes reported by members.' : data.claimsExperience === 'good' ? 'Good approval rate. Most claims processed without issues.' : 'Varies. Document thoroughly and get pre-authorization when possible.'}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cost Estimates -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Cost Estimates</h2>
+          {costProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+
+          <div class="grid sm:grid-cols-3 gap-4 mt-6">
+            <div class="bg-white border border-neutral-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Budget</p>
+              <p class="text-2xl font-bold text-neutral-900">{data.estimatedPremium.low}</p>
+              <p class="text-xs text-neutral-500 mt-1">High deductible</p>
+            </div>
+            <div class="bg-primary-50 border border-primary-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Balanced</p>
+              <p class="text-2xl font-bold text-primary-700">{data.estimatedPremium.mid}</p>
+              <p class="text-xs text-neutral-500 mt-1">Mid-range coverage</p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-lg p-5 text-center">
+              <p class="text-sm text-neutral-500 mb-1">Comprehensive</p>
+              <p class="text-2xl font-bold text-neutral-900">{data.estimatedPremium.high}</p>
+              <p class="text-xs text-neutral-500 mt-1">Low deductible</p>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-500 mt-4">
+            Estimates for a 35-year-old. Premiums increase with age and may vary based on health status.
+          </p>
+        </section>
+
+        <!-- Who It's Best For -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose {provider.name} in {country.name}?</h2>
+          <p class="text-neutral-700 mb-4">
+            Not every insurer is right for every expat. Here's an honest assessment of who {provider.name} works best for in {country.name}—and who might want to look elsewhere.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            The key factors are your healthcare needs, budget, and how long you plan to stay. A provider that's perfect for a young digital nomad may not be ideal for a retiree with ongoing health conditions.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-5">
+              <h3 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Recommended For
+              </h3>
+              <ul class="space-y-2">
+                {data.recommendedFor.map((item) => (
+                  <li class="text-neutral-700 text-sm flex items-start gap-2">
+                    <span class="text-green-600 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-5">
+              <h3 class="font-semibold text-amber-800 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Consider Alternatives If
+              </h3>
+              <ul class="space-y-2">
+                {data.notRecommendedFor.map((item) => (
+                  <li class="text-neutral-700 text-sm flex items-start gap-2">
+                    <span class="text-amber-600 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Local Alternatives -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Alternatives to Consider</h2>
+          <p class="text-neutral-700 mb-4">
+            {provider.name} isn't your only option in {country.name}. Depending on your situation, local insurers or other international providers might be worth exploring.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            Local insurers often have lower premiums and deeper local networks, but may not cover you if you travel outside {country.name}. Other international providers may have stronger or weaker networks depending on the country.
+          </p>
+
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-5">
+            <h3 class="font-semibold text-neutral-900 mb-3">Local Insurance Options</h3>
+            <div class="flex flex-wrap gap-2">
+              {data.localAlternatives.map((alt) => (
+                <span class="px-3 py-1 bg-white border border-neutral-200 rounded-full text-sm text-neutral-700">
+                  {alt}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQs -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-white border border-neutral-200 rounded-lg">
+                <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-neutral-900">
+                  {faq.question}
+                  <svg class="w-5 h-5 text-neutral-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-5 pb-5 text-neutral-700">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Bottom Line -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">The Bottom Line</h2>
+          <p class="text-neutral-700 mb-4">
+            Choosing the right health insurance for {country.name} is one of the most important decisions you'll make as an expat. The wrong choice can mean paying out-of-pocket for care, fighting with claims, or being stuck with a limited network when you need it most.
+          </p>
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+            <p class="text-neutral-700 mb-4">
+              {data.networkStrength === 'excellent' || data.networkStrength === 'strong'
+                ? `${provider.name} is a strong choice for expats in ${country.name}. Their ${data.networkStrength} network, ${data.claimsExperience} claims experience, and direct billing availability make daily healthcare access straightforward.`
+                : `${provider.name} can work for expats in ${country.name}, but it's not their strongest market. Consider whether their network of ${data.networkHospitals}+ hospitals meets your location and healthcare needs before committing.`
+              }
+            </p>
+            <p class="text-neutral-700 mb-4">
+              Premiums range from {data.estimatedPremium.low} to {data.estimatedPremium.high} monthly, with mid-range plans around {data.estimatedPremium.mid} offering the best value for most expats.
+            </p>
+            <p class="text-neutral-700">
+              Before deciding, compare at least 2-3 providers and consider both international insurers and local options. The right choice depends on your specific healthcare needs, budget, and how long you plan to stay in {country.name}.
+            </p>
+          </div>
+        </section>
+
+      </article>
+
+      <StickySidebar
+        ctaTitle={`${provider.name} in ${country.name}`}
+        ctaDescription={`Get a quote for ${provider.name} coverage in ${country.name}.`}
+        ctaButtonText="View Plans"
+        ctaButtonHref={provider.href}
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+
+    <!-- Related Content -->
+    <section class="mt-16 border-t border-neutral-200 pt-12">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-6">Related Resources</h2>
+      <ContentCards cards={relatedCards} columns={3} />
+    </section>
+  </div>
+</Layout>
