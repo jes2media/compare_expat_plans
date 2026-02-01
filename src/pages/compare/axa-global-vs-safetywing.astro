@@ -4,19 +4,24 @@ import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'product-difference', text: 'Understanding What You\'re Buying', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'key-differences', text: 'Key Differences', level: 2 },
+  { id: 'pricing', text: 'Pricing Analysis', level: 2 },
+  { id: 'financial-backing', text: 'Financial Stability', level: 2 },
+  { id: 'claims-process', text: 'Claims Experience', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'AXA Global Review', href: '/providers/axa-global' },
   { title: 'SafetyWing Review', href: '/providers/safetywing' },
-  { title: 'Best Budget Expat Insurance', href: '/best/budget-expat-insurance' },
   { title: 'Best Digital Nomad Insurance', href: '/best/digital-nomad-insurance' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
 ];
 
 const coverageColumns = [
@@ -26,192 +31,456 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Insurance Type', axa: 'Health insurance', safetywing: 'Travel medical' },
-  { feature: 'Inpatient Care', axa: true, safetywing: 'Limited ($250K max)' },
-  { feature: 'Outpatient Care', axa: true, safetywing: 'Emergency only' },
-  { feature: 'Mental Health', axa: 'Limited', safetywing: 'Not covered' },
-  { feature: 'Maternity', axa: '10-12 mo wait', safetywing: 'Not covered' },
+  { feature: 'Product Type', axa: 'Health Insurance', safetywing: 'Travel Medical Insurance' },
+  { feature: 'Inpatient Care', axa: 'Full coverage', safetywing: 'Up to $250K total' },
+  { feature: 'Outpatient Care', axa: 'Full coverage', safetywing: 'Emergency only' },
+  { feature: 'Mental Health', axa: 'Varies by plan', safetywing: 'Not covered' },
+  { feature: 'Maternity', axa: '10-12 month wait', safetywing: 'Not covered' },
   { feature: 'Pre-existing Conditions', axa: 'Moratorium/underwriting', safetywing: 'Not covered' },
-  { feature: 'Routine Care', axa: true, safetywing: 'Not covered' },
+  { feature: 'Routine Care', axa: 'Covered', safetywing: 'Not covered' },
   { feature: 'Chronic Conditions', axa: 'Covered', safetywing: 'Not covered' },
-  { feature: 'Maximum Coverage', axa: '€3M+', safetywing: '$250K' },
+  { feature: 'Prescription Drugs', axa: 'Covered', safetywing: 'Emergency only' },
+  { feature: 'Maximum Coverage', axa: '€3M+ / Unlimited', safetywing: '$250,000 total' },
+];
+
+const limitColumns = [
+  { key: 'category', header: 'Coverage Category' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'safetywing', header: 'SafetyWing' },
+];
+
+const limitRows = [
+  { category: 'Overall Maximum', axa: '€3M - Unlimited', safetywing: '$250,000' },
+  { category: 'Hospital Stay', axa: 'Plan maximum', safetywing: '$250K (shared limit)' },
+  { category: 'Surgery', axa: 'Plan maximum', safetywing: '$250K (shared limit)' },
+  { category: 'Outpatient', axa: 'Reasonable & customary', safetywing: '$3,000/injury or illness' },
+  { category: 'Emergency Room', axa: 'Full coverage', safetywing: '$250 deductible applies' },
+  { category: 'Medical Evacuation', axa: 'Unlimited most plans', safetywing: '$100,000' },
 ];
 
 const pricingColumns = [
-  { key: 'age', header: 'Age' },
-  { key: 'axa', header: 'AXA Global' },
+  { key: 'profile', header: 'Profile' },
+  { key: 'axa', header: 'AXA Global (no US)' },
   { key: 'safetywing', header: 'SafetyWing Nomad' },
+  { key: 'savings', header: 'SafetyWing Savings' },
 ];
 
 const pricingRows = [
-  { age: '30', axa: '$140-220/mo', safetywing: '$45-70/mo' },
-  { age: '40', axa: '$190-300/mo', safetywing: '$65-95/mo' },
-  { age: '50', axa: '$260-400/mo', safetywing: '$95-140/mo' },
-  { age: '60', axa: '$380-580/mo', safetywing: '$150-210/mo' },
+  { profile: '25-year-old', axa: '$120-180/mo', safetywing: '$42/mo', savings: '$78-138/mo' },
+  { profile: '35-year-old', axa: '$160-240/mo', safetywing: '$56/mo', savings: '$104-184/mo' },
+  { profile: '45-year-old', axa: '$220-340/mo', safetywing: '$85/mo', savings: '$135-255/mo' },
+  { profile: '55-year-old', axa: '$320-480/mo', safetywing: '$130/mo', savings: '$190-350/mo' },
+  { profile: 'Couple (30s)', axa: '$300-450/mo', safetywing: '$100/mo', savings: '$200-350/mo' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'safetywing', header: 'SafetyWing' },
+];
+
+const claimsRows = [
+  { aspect: 'Claims Submission', axa: 'App, online, email', safetywing: 'Online portal' },
+  { aspect: 'Processing Time', axa: '7-14 business days', safetywing: '5-10 business days' },
+  { aspect: 'Direct Billing', axa: 'Available globally', safetywing: 'Very limited' },
+  { aspect: 'Customer Support', axa: '24/7, 20+ languages', safetywing: 'Business hours, English' },
+  { aspect: 'Case Management', axa: 'Dedicated support', safetywing: 'Basic support' },
+  { aspect: 'Claim Disputes', axa: 'EU regulatory recourse', safetywing: 'Limited options' },
+];
+
+const financialColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'safetywing', header: 'SafetyWing' },
+];
+
+const financialRows = [
+  { aspect: 'Parent Company', axa: 'AXA Group (€99B revenue)', safetywing: 'SafetyWing (startup)' },
+  { aspect: 'Founded', axa: '1816', safetywing: '2017' },
+  { aspect: 'Regulatory Oversight', axa: 'EU Solvency II', safetywing: 'US state insurance' },
+  { aspect: 'Claims-Paying History', axa: '200+ years', safetywing: '7 years' },
+  { aspect: 'Financial Rating', axa: 'A+ (S&P)', safetywing: 'Not rated' },
 ];
 ---
 
 <PageShell
-  title="AXA Global vs SafetyWing"
-  description="Compare AXA Global and SafetyWing insurance. Comprehensive international health insurance vs budget travel medical coverage."
+  title="AXA Global vs SafetyWing: Health Insurance vs Travel Medical Compared"
+  description="Compare AXA Global comprehensive health insurance with SafetyWing travel medical. Understand the product difference before choosing based on price."
   headline="AXA Global vs SafetyWing"
-  subheadline="Established global health insurance vs budget nomad coverage. Understanding what you're buying."
+  subheadline="Comprehensive health insurance vs budget travel medical. Different products for different needs—price isn't the only factor."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Compare Options"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">Make Your Choice in 60 Seconds</h3>
+
+    <p class="mb-4"><strong>Question 1: Do you have any health conditions?</strong></p>
+    <ul class="mb-4">
+      <li><strong>Yes, any ongoing condition →</strong> SafetyWing won't cover it. <strong>Choose AXA</strong></li>
+      <li><strong>No, completely healthy →</strong> Continue to Question 2</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 2: Will you need routine care (checkups, prescriptions)?</strong></p>
+    <ul class="mb-4">
+      <li><strong>Yes →</strong> SafetyWing doesn't cover routine care. <strong>Choose AXA</strong></li>
+      <li><strong>No, only emergency coverage needed →</strong> Continue to Question 3</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 3: How long are you staying abroad?</strong></p>
+    <ul>
+      <li><strong>Permanently/long-term →</strong> You need real health insurance. <strong>Choose AXA</strong></li>
+      <li><strong>Short-term travel/nomading →</strong> SafetyWing may work for you</li>
+    </ul>
+  </div>
+
   <p>
-    AXA Global and SafetyWing are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    <strong>The short version:</strong> AXA Global is comprehensive health insurance for people living abroad. SafetyWing is travel medical insurance for emergencies. If you're healthy, young, traveling short-term, and only need emergency coverage, SafetyWing saves money. For everyone else—especially anyone with health conditions—AXA is the responsible choice.
   </p>
+
+  <h2 id="overview">Overview</h2>
+
   <p>
-    AXA Global is part of the French AXA group, offering robust international health plans. Their main strong presence in Europe and Asia with comprehensive plan options. They're particularly popular among expats in Europe and Asia who want a well-established provider, with competitive pricing with flexible deductible options.
+    Before comparing these providers, understand a fundamental truth: <strong>AXA Global and SafetyWing sell different products.</strong> Comparing them on price alone misses the point—it's like comparing a car lease to a rideshare subscription.
   </p>
+
   <p>
-    SafetyWing is a modern insurance option designed specifically for digital nomads and remote workers. They're known for their subscription-based model with no long-term commitment required. They tend to attract digital nomads, remote workers, and location-independent professionals, offering very affordable monthly subscription starting around $40/month.
+    <strong>AXA Global</strong> is comprehensive international health insurance from one of the world's largest insurers. Part of AXA Group (€99 billion in revenue, founded 1816), they offer plans that cover routine care, chronic conditions, mental health, and everything you'd expect from proper health insurance. They're regulated under EU Solvency II, one of the strictest insurance regulatory frameworks in the world.
   </p>
+
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    <strong>SafetyWing</strong> is travel medical insurance designed for digital nomads. It covers emergencies—accidents, sudden illness, urgent care—but explicitly excludes routine care, pre-existing conditions, mental health, and chronic disease management. It's a startup (founded 2017) offering an affordable subscription for people who want basic emergency coverage while traveling.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Comprehensive health insurance</li>
-        <li>One of world's largest insurers</li>
-        <li>Covers routine and chronic care</li>
-        <li>€3M+ coverage limits</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Product:</strong> Health insurance</li>
+        <li><strong>Coverage:</strong> Comprehensive</li>
+        <li><strong>Pre-existing:</strong> Covered after waiting period</li>
+        <li><strong>Maximum:</strong> €3M+ / Unlimited</li>
+        <li><strong>Backing:</strong> €99B global insurer</li>
+        <li><strong>Best for:</strong> Long-term expats</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Travel medical insurance</li>
-        <li>Emergency coverage only</li>
-        <li>No routine care</li>
-        <li>$250K maximum</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Product:</strong> Travel medical insurance</li>
+        <li><strong>Coverage:</strong> Emergency only</li>
+        <li><strong>Pre-existing:</strong> Not covered</li>
+        <li><strong>Maximum:</strong> $250,000</li>
+        <li><strong>Backing:</strong> Startup (2017)</li>
+        <li><strong>Best for:</strong> Healthy nomads</li>
       </ul>
     </div>
   </div>
 
-  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-amber-900 mb-3">Different Products, Different Purposes</h3>
-    <p class="text-amber-800">
-      This comparison isn't about which is "better"—it's about understanding that SafetyWing is travel insurance while AXA is health insurance. They serve different needs at different price points.
+  <h2 id="product-difference">Understanding What You're Buying</h2>
+
+  <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">⚠️ Critical Distinction</h3>
+    <p class="mb-4">
+      <strong>Health Insurance (AXA Global):</strong> Covers your ongoing healthcare needs—routine checkups, chronic condition management, mental health, prescriptions, and emergencies. Designed for people living abroad who need a primary healthcare plan.
+    </p>
+    <p>
+      <strong>Travel Medical Insurance (SafetyWing):</strong> Covers unexpected emergencies—accidents and sudden illness only. Explicitly excludes routine care, pre-existing conditions, and anything not "emergency." Designed as a safety net for travelers, not a primary healthcare plan.
     </p>
   </div>
 
-  <h2 id="coverage-comparison">Coverage Comparison</h2>
+  <h3>What SafetyWing Won't Cover</h3>
   <p>
-    The coverage gap is substantial. AXA covers your ongoing healthcare needs; SafetyWing covers emergencies only.
+    To understand SafetyWing's limitations, here's what's explicitly excluded:
+  </p>
+  <ul>
+    <li><strong>Pre-existing conditions:</strong> Any health issue you had before enrolling—completely excluded</li>
+    <li><strong>Mental health:</strong> Depression, anxiety, therapy—not covered at all</li>
+    <li><strong>Chronic conditions:</strong> Diabetes management, thyroid medication, ongoing treatment—excluded</li>
+    <li><strong>Routine care:</strong> Annual checkups, preventive screenings, vaccinations—not covered</li>
+    <li><strong>Maternity:</strong> Pregnancy and childbirth—excluded (except emergency complications)</li>
+    <li><strong>Dental:</strong> Except emergency pain relief</li>
+    <li><strong>Prescription refills:</strong> Ongoing medications you need regularly—not covered</li>
+  </ul>
+
+  <p>
+    <strong>What this means:</strong> If you take medication for blood pressure, have a history of anxiety, or want to get annual checkups abroad, SafetyWing won't help. You'd pay out of pocket for everything except true emergencies.
+  </p>
+
+  <CTABox
+    title="Need Comprehensive Coverage?"
+    description="Compare actual health insurance options that cover ongoing care."
+    buttonText="Compare Health Insurance"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="coverage-comparison">Coverage Comparison</h2>
+
+  <p>
+    Here's a direct comparison of what each product covers:
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>What SafetyWing doesn't cover:</strong></p>
-  <ul>
-    <li>Pre-existing conditions (completely excluded)</li>
-    <li>Routine care, checkups, preventive care</li>
-    <li>Mental health treatment</li>
-    <li>Maternity (except emergency complications)</li>
-    <li>Chronic condition management</li>
-    <li>Ongoing prescriptions</li>
-  </ul>
+  <h3>Coverage Limits Comparison</h3>
 
-  <h2 id="pricing">Pricing</h2>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={limitColumns} rows={limitRows} />
+  </div>
+
+  <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">$250,000 Reality Check</h3>
+    <p class="mb-4">
+      SafetyWing's $250,000 maximum sounds like a lot, but consider these real scenarios:
+    </p>
+    <ul class="space-y-2 text-neutral-700">
+      <li><strong>Major surgery + ICU stay:</strong> Can easily exceed $250K in the US or other expensive markets</li>
+      <li><strong>Cancer treatment:</strong> Often $300K-$1M+ for full treatment course</li>
+      <li><strong>Serious accident with ongoing care:</strong> Initial hospitalization alone can approach $250K</li>
+      <li><strong>Multiple incidents:</strong> $250K is your lifetime total—one major event could exhaust it</li>
+    </ul>
+    <p class="mt-4 text-sm">
+      AXA's €3M+ or unlimited coverage ensures you're protected even for catastrophic events.
+    </p>
+  </div>
+
+  <h2 id="pricing">Pricing Analysis</h2>
+
   <p>
-    SafetyWing costs 65-70% less than AXA. But you're paying for emergency coverage vs comprehensive health insurance—the price reflects the coverage level.
+    SafetyWing costs 65-75% less than AXA Global. But you're buying fundamentally different products—the price reflects the coverage level.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Understanding the price gap:</strong></p>
+  <h3>Understanding the Price Gap</h3>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold mb-3">What You Get for the Extra Cost</h4>
+    <p class="mb-4">The $100-350/month difference between AXA and SafetyWing buys:</p>
+    <ul class="space-y-2">
+      <li>✓ Coverage for pre-existing conditions (after waiting period)</li>
+      <li>✓ Mental health treatment</li>
+      <li>✓ Chronic condition management</li>
+      <li>✓ Routine checkups and preventive care</li>
+      <li>✓ Prescription drug coverage (not just emergency)</li>
+      <li>✓ €3M+ coverage limits vs $250K</li>
+      <li>✓ €99 billion insurer backing vs startup</li>
+      <li>✓ EU regulatory protections</li>
+    </ul>
+  </div>
+
+  <h3>When SafetyWing's Price Makes Sense</h3>
+  <p>
+    SafetyWing's pricing is genuinely attractive <strong>if and only if</strong>:
+  </p>
   <ul>
-    <li>At 30: $95-150/mo savings, but no routine care or pre-existing coverage</li>
-    <li>At 50: $165-260/mo savings, but one chronic condition could cost thousands</li>
-    <li>The coverage maximum alone (€3M+ vs $250K) shows the difference</li>
+    <li>You're completely healthy with no pre-existing conditions</li>
+    <li>You don't need mental health coverage</li>
+    <li>You don't take any regular medications</li>
+    <li>You're comfortable paying out-of-pocket for routine care</li>
+    <li>You understand the $250K limit could be insufficient for major events</li>
+    <li>You're traveling short-term, not relocating permanently</li>
   </ul>
 
-  <h2 id="key-differences">Key Differences</h2>
+  <h2 id="financial-backing">Financial Stability</h2>
 
-  <h3>Financial Backing</h3>
   <p>
-    <strong>AXA:</strong> One of the world's largest insurance companies. Decades of claims-paying history.
-  </p>
-  <p>
-    <strong>SafetyWing:</strong> Startup founded in 2017. Growing but less established track record.
+    Insurance is a promise to pay future claims. The company behind that promise matters.
   </p>
 
-  <h3>Long-term Suitability</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={financialColumns} rows={financialRows} />
+  </div>
+
+  <h3>Why Financial Backing Matters</h3>
+
   <p>
-    <strong>AXA:</strong> Designed for permanent expats. Lifetime renewal, chronic condition coverage.
-  </p>
-  <p>
-    <strong>SafetyWing:</strong> Designed for travelers. No lifetime renewal guarantee.
+    <strong>AXA Group</strong> has €99 billion in annual revenue, 200+ years of claims-paying history, and A+ financial strength ratings. They're regulated under EU Solvency II, which requires insurers to maintain capital reserves to ensure they can pay claims even in extreme scenarios. If you file a claim, there's no question AXA can pay it.
   </p>
 
-  <h3>Coverage Limits</h3>
   <p>
-    <strong>AXA:</strong> €3M+ maximum coverage. Adequate for serious illness.
+    <strong>SafetyWing</strong> is a venture-backed startup founded in 2017. They've raised significant funding and have grown quickly, but they don't have decades of claims-paying history or the financial reserves of a major insurer. For most straightforward claims, this probably doesn't matter. For a complex, expensive claim? The difference could become relevant.
+  </p>
+
+  <h2 id="claims-process">Claims Experience</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Direct Billing Differences</h3>
+  <p>
+    <strong>AXA Global</strong> has established direct billing relationships with hospitals worldwide. For planned procedures or hospital stays, they can often arrange to pay the hospital directly—you never see the bill.
   </p>
   <p>
-    <strong>SafetyWing:</strong> $250K maximum. May be insufficient for major medical events.
+    <strong>SafetyWing</strong> operates primarily on a reimbursement model. You pay for care upfront and submit claims for reimbursement. For a $50 urgent care visit, this is manageable. For a $50,000 hospital stay, paying upfront is a significant burden.
   </p>
+
+  <h3>Support When Things Go Wrong</h3>
+  <p>
+    AXA offers 24/7 multilingual support with dedicated case managers for complex situations. If you're facing a serious medical event abroad, having experienced support coordinating your care is valuable. SafetyWing's support is more basic—appropriate for straightforward claims but potentially inadequate for complex situations.
+  </p>
+
+  <h2 id="scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 1: Healthy 27-Year-Old Nomad</h3>
+      <p class="text-neutral-600 mb-3">Jake travels through Southeast Asia and Latin America for 6-12 months. He's never had health issues, doesn't take medication, and just wants coverage if he breaks an arm or gets seriously ill.</p>
+      <p class="text-neutral-700"><strong>Best choice: SafetyWing</strong> — Jake fits the SafetyWing profile perfectly: young, healthy, short-term travel, emergency-only needs. The $100+/month savings makes sense for his situation. He accepts that routine care comes out of pocket.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 2: 35-Year-Old with Managed Anxiety</h3>
+      <p class="text-neutral-600 mb-3">Maria moved to Lisbon and takes medication for anxiety. She sees a therapist monthly and wants to continue treatment abroad.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global</strong> — SafetyWing won't cover her anxiety medication, therapy, or any related care. Even though Maria is otherwise healthy, her mental health needs make comprehensive insurance essential.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 3: Retired Couple in Spain</h3>
+      <p class="text-neutral-600 mb-3">John and Susan, both 62, retired to Barcelona. They have typical age-related health considerations and want reliable healthcare access.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global</strong> — At their age, the likelihood of developing conditions requiring ongoing care is significant. SafetyWing's emergency-only model and $250K limit are inadequate. They need comprehensive coverage with high limits and chronic condition support.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 4: Digital Nomad Family</h3>
+      <p class="text-neutral-600 mb-3">The Chens (parents 35, kids 5 and 8) travel slowly between countries while working remotely. Kids are healthy but need regular checkups.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global</strong> — Kids need routine pediatric care, vaccinations, and checkups that SafetyWing doesn't cover. One childhood illness requiring follow-up treatment wouldn't be covered. The family needs real health insurance.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 5: Short-Term Gap Year</h3>
+      <p class="text-neutral-600 mb-3">Alex, 24, is taking 6 months between jobs to backpack through Asia. Completely healthy, no medications, just wants basic emergency coverage.</p>
+      <p class="text-neutral-700"><strong>Best choice: SafetyWing</strong> — For a finite travel period with a healthy young person, SafetyWing makes sense. Alex understands the limitations, accepts out-of-pocket routine care costs, and prioritizes budget. The savings fund more travel.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose AXA Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're living abroad long-term</li>
-        <li>You have or may develop health conditions</li>
-        <li>You want routine care covered</li>
-        <li>You need mental health coverage</li>
-        <li>You want established insurer backing</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You have any pre-existing conditions</li>
+        <li>✓ You need mental health coverage</li>
+        <li>✓ You take regular medications</li>
+        <li>✓ You want routine care covered</li>
+        <li>✓ You're relocating long-term</li>
+        <li>✓ You have a family with children</li>
+        <li>✓ You're over 50</li>
+        <li>✓ You want €3M+ coverage limits</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing May Work If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're young and completely healthy</li>
-        <li>You're traveling short-term</li>
-        <li>You have zero health conditions</li>
-        <li>You accept emergency-only coverage</li>
-        <li>Budget is the primary concern</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You're completely healthy (no conditions)</li>
+        <li>✓ You don't need mental health coverage</li>
+        <li>✓ You don't take any regular medications</li>
+        <li>✓ You only need emergency coverage</li>
+        <li>✓ You're traveling short-term</li>
+        <li>✓ You're young (under 40)</li>
+        <li>✓ Budget is the primary concern</li>
+        <li>✓ You understand and accept the limitations</li>
       </ul>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need Real Health Insurance?</h3>
+      <p class="text-neutral-600 text-sm mb-4">AXA provides comprehensive coverage backed by a €99B global insurer.</p>
+      <a href="/providers/axa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View AXA Plans →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Just Need Emergency Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">SafetyWing offers affordable travel medical for healthy nomads.</p>
+      <a href="/providers/safetywing" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View SafetyWing Plans →
+      </a>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
+
   <p>
-    For long-term expats or anyone with health considerations, AXA Global is the responsible choice. The comprehensive coverage and established backing justify the higher cost.
+    <strong>This isn't really a comparison—it's a choice between two different products.</strong>
   </p>
+
   <p>
-    SafetyWing can work for young, healthy nomads on short adventures who understand the limitations. But it's not a substitute for health insurance—it's emergency travel coverage.
+    <strong>AXA Global</strong> is comprehensive health insurance for people living abroad. If you have any health conditions, take medications, need mental health coverage, or are relocating long-term, AXA (or similar comprehensive insurers) is the responsible choice. The higher cost buys real protection that covers your actual healthcare needs.
   </p>
+
   <p>
-    <strong>Ask yourself:</strong> If you developed a health condition abroad, would $250K and emergency-only coverage be sufficient? If not, the "savings" from SafetyWing could prove costly.
+    <strong>SafetyWing</strong> is travel medical insurance for young, healthy nomads who understand they're only getting emergency coverage. If you fit that profile—completely healthy, no conditions, no medications, short-term travel, budget-focused—SafetyWing delivers what it promises at an attractive price. Just don't mistake it for health insurance.
+  </p>
+
+  <p>
+    <strong>The dangerous middle:</strong> The people who get hurt are those who choose SafetyWing to save money when they actually need comprehensive coverage. If you develop a health condition abroad with SafetyWing, you won't be covered. If you need mental health support, you won't be covered. If you have a major medical event exceeding $250K, you'll face uncovered costs.
+  </p>
+
+  <p>
+    Be honest about your health and needs. The "savings" from choosing the wrong product can become very expensive.
   </p>
 
   <CTABox
-    title="Get Comprehensive Coverage"
-    description="Compare proper health insurance options."
-    buttonText="See All Options"
+    title="Ready to Choose?"
+    description="Get quotes based on your actual coverage needs, not just price."
+    buttonText="Compare Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Can I upgrade from SafetyWing to AXA if I develop a condition?</h3>
+      <p class="text-neutral-600 mt-2">Yes, but the condition you developed would likely face a waiting period or exclusion as a pre-existing condition. This is why choosing appropriate coverage from the start matters—switching after developing a condition is difficult.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Is SafetyWing legitimate?</h3>
+      <p class="text-neutral-600 mt-2">Yes, SafetyWing is a legitimate company with real insurance backing. They're transparent about what they cover (emergencies) and don't cover (everything else). The issue isn't legitimacy—it's whether their product matches your needs.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">What if I'm healthy now but might develop conditions later?</h3>
+      <p class="text-neutral-600 mt-2">This is exactly why comprehensive insurance matters for long-term expats. With AXA, conditions developed while covered become covered conditions. With SafetyWing, you'd need to switch insurers and face new pre-existing condition limitations.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Is AXA's €3M+ limit really necessary?</h3>
+      <p class="text-neutral-600 mt-2">For most claims, no. But insurance is for worst-case scenarios. Cancer treatment, serious accidents, or ICU stays can exceed $250K, especially in expensive markets. The high limit protects against catastrophic events that would otherwise bankrupt you.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Can I use SafetyWing for a quick trip, then switch to AXA?</h3>
+      <p class="text-neutral-600 mt-2">Yes, many people use SafetyWing for short trips and comprehensive insurance when settling somewhere. Just be aware that any conditions developed during the SafetyWing period would be pre-existing when applying to AXA.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">What's the SafetyWing deductible?</h3>
+      <p class="text-neutral-600 mt-2">SafetyWing has a $250 deductible per injury/illness, with a $3,000 outpatient limit. This is reasonable for emergency coverage but would add up quickly if you needed any ongoing care (which isn't covered anyway).</p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> SafetyWing Nomad Insurance is travel medical insurance, not comprehensive health insurance. Understand coverage limitations before choosing based on price alone.
+      <strong>Disclaimer:</strong> SafetyWing Nomad Insurance is travel medical insurance, not comprehensive health insurance. It covers emergencies only and excludes pre-existing conditions, mental health, routine care, and chronic conditions. Understand coverage limitations before choosing based on price alone.
     </p>
   </div>
+
 </PageShell>
