@@ -2,14 +2,21 @@
 import PageShell from '../../components/PageShell.astro';
 import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'company-backgrounds', text: 'Company Backgrounds', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
+  { id: 'mental-health', text: 'Mental Health Coverage', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
   { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'customer-experience', text: 'Customer Experience', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
 ];
 
 const relatedLinks = [
@@ -27,82 +34,137 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
+  { feature: 'Headquarters', axa: 'Paris, France', bupa: 'London, UK' },
+  { feature: 'Regulation', axa: 'EU (French ACPR)', bupa: 'UK (FCA/PRA)' },
   { feature: 'Inpatient Care', axa: true, bupa: true },
   { feature: 'Outpatient Care', axa: true, bupa: true },
   { feature: 'Mental Health', axa: 'Good', bupa: 'Excellent' },
-  { feature: 'Maternity', axa: 'Optional', bupa: 'Optional' },
-  { feature: 'Dental', axa: 'Optional', bupa: 'Optional' },
-  { feature: 'Vision', axa: 'Optional', bupa: 'Optional' },
-  { feature: 'Pre-Existing Conditions', axa: 'Moratorium', bupa: 'Full medical underwriting' },
-  { feature: 'Medical Evacuation', axa: true, bupa: true },
+  { feature: 'Maternity', axa: '10-12 mo wait', bupa: '12 mo wait' },
+  { feature: 'Dental/Vision', axa: 'Optional', bupa: 'Optional' },
+  { feature: 'Pre-existing Underwriting', axa: 'Moratorium', bupa: 'Full medical' },
   { feature: 'Annual Maximum', axa: '€1M-Unlimited', bupa: '$2M-Unlimited' },
-  { feature: 'Regulatory Framework', axa: 'EU-regulated', bupa: 'UK-regulated' },
+  { feature: 'No-Claims Discount', axa: 'No', bupa: 'Yes' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
+  { key: 'axa', header: 'AXA Comfort' },
+  { key: 'bupa', header: 'BUPA Gold' },
+];
+
+const pricingRows = [
+  { profile: 'Age 30, ex-US', axa: '€110-150/mo', bupa: '$200-280/mo' },
+  { profile: 'Age 40, ex-US', axa: '€150-200/mo', bupa: '$280-380/mo' },
+  { profile: 'Age 50, ex-US', axa: '€220-300/mo', bupa: '$400-520/mo' },
+  { profile: 'Age 60, ex-US', axa: '€350-450/mo', bupa: '$600-800/mo' },
+  { profile: 'Family of 4', axa: '€380-520/mo', bupa: '$700-1,000/mo' },
+];
+
+const planTiersColumns = [
+  { key: 'tier', header: 'Tier' },
   { key: 'axa', header: 'AXA Global' },
   { key: 'bupa', header: 'BUPA Global' },
 ];
 
-const pricingRows = [
-  { profile: 'Single, Age 30', axa: '€110-150/mo', bupa: '$200-280/mo' },
-  { profile: 'Single, Age 45', axa: '€180-240/mo', bupa: '$350-450/mo' },
-  { profile: 'Couple, Age 35', axa: '€220-300/mo', bupa: '$400-560/mo' },
-  { profile: 'Family of 4', axa: '€380-520/mo', bupa: '$700-1,000/mo' },
+const planTiersRows = [
+  { tier: 'Entry Level', axa: 'Essential', bupa: 'Silver' },
+  { tier: 'Mid-Range', axa: 'Comfort', bupa: 'Gold' },
+  { tier: 'Premium', axa: 'Excellence', bupa: 'Platinum' },
+  { tier: 'Ultra-Premium', axa: 'Exclusive', bupa: 'Lifeline' },
+  { tier: 'Max Deductible', axa: '€5,000', bupa: '$5,000' },
+  { tier: 'Cancer Care', axa: 'Included', bupa: 'LifeLine option' },
 ];
 ---
 
 <PageShell
-  title="AXA Global vs BUPA Global"
-  description="Compare AXA Global and BUPA Global side by side. Two premium European insurers—see which offers better value for your needs."
-  headline="AXA Global vs BUPA Global: Premium European Insurers Compared"
-  subheadline="Both are top-tier options with strong European roots. Here's how to choose between them."
-  heroBackgroundImage="/images/compare/axa-vs-bupa-hero-bg.png"
+  title="AXA Global vs BUPA Global: Complete 2024 Comparison"
+  description="In-depth comparison of AXA Global and BUPA Global international health insurance. Coverage, pricing, mental health, pre-existing conditions, and which premium insurer is right for you."
+  headline="AXA Global vs BUPA Global: The Complete Premium Insurer Comparison"
+  subheadline="Two of Europe's finest insurers competing for expat business. Value vs premium service—here's how to choose."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    AXA Global and Bupa Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    AXA Global and BUPA Global represent two different philosophies in premium international health insurance. Both are backed by major European insurance groups with impeccable financial strength, both offer comprehensive global coverage, and both serve the expat market with quality products. But they differ meaningfully in approach, pricing, and specific strengths.
   </p>
   <p>
-    AXA Global is part of the French AXA group, offering robust international health plans. Their main strong presence in Europe and Asia with comprehensive plan options. They're particularly popular among expats in Europe and Asia who want a well-established provider, with competitive pricing with flexible deductible options.
+    AXA Global, headquartered in Paris and regulated under EU frameworks, focuses on delivering comprehensive coverage at competitive prices. They're the value proposition in premium insurance—not cheap, but offering excellent coverage without the highest price tag. French insurance culture emphasizes comprehensive, bundled coverage with efficient pricing.
   </p>
   <p>
-    Bupa Global is a UK-based insurer with a strong reputation in international health coverage. They're known for their comprehensive coverage and a solid reputation for claims handling. They tend to attract expats who want reliable coverage from an established brand, offering mid-to-premium range with good value for the coverage provided.
+    BUPA Global, based in London with UK regulation, takes a premium-service approach. They charge more but offer exceptional mental health coverage, robust pre-existing condition underwriting, industry-leading customer service, and unique features like no-claims discounts. British insurance culture emphasizes service quality and personalized support.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    This comparison isn't about finding a "winner"—both are excellent insurers serving different needs. It's about understanding which approach better matches your priorities. If value matters most, lean toward AXA. If mental health coverage, pre-existing conditions, or premium service matter most, BUPA may justify its higher premiums.
+  </p>
+  <p>
+    Let's examine both providers in depth to help you make the right choice.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global</h3>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global at a Glance</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>EU-regulated (French insurer)</li>
-        <li>More competitive pricing</li>
-        <li>Strong European networks</li>
-        <li>Good value for comprehensive coverage</li>
+        <li><strong>Parent:</strong> AXA Group (France)</li>
+        <li><strong>Regulation:</strong> French ACPR (EU)</li>
+        <li><strong>Network:</strong> 1.6M+ providers</li>
+        <li><strong>Philosophy:</strong> Value-focused premium</li>
+        <li><strong>Strength:</strong> Competitive pricing</li>
+        <li><strong>Best for:</strong> Value-conscious expats</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global</h3>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global at a Glance</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>UK-regulated (British insurer)</li>
-        <li>Premium pricing, premium service</li>
-        <li>Excellent mental health coverage</li>
-        <li>Strong pre-existing condition options</li>
+        <li><strong>Parent:</strong> Bupa Group (UK)</li>
+        <li><strong>Regulation:</strong> UK FCA/PRA</li>
+        <li><strong>Network:</strong> Extensive global</li>
+        <li><strong>Philosophy:</strong> Premium service</li>
+        <li><strong>Strength:</strong> Mental health, service</li>
+        <li><strong>Best for:</strong> Service-focused expats</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="company-backgrounds">Company Backgrounds</h2>
+  <p>
+    Understanding the heritage of these insurers helps explain their different market positions and product philosophies.
+  </p>
+
+  <h3>AXA Global: French Insurance Excellence</h3>
+  <p>
+    AXA traces its origins to 1816 with the founding of a fire insurance company in France. Through two centuries of mergers and growth, it became AXA Group—one of the world's largest insurance and asset management companies, managing over €800 billion in assets and serving more than 100 million customers globally.
+  </p>
+  <p>
+    AXA Global Healthcare is their international private medical insurance division, serving expats and globally mobile individuals. Their French heritage shows in their approach: comprehensive coverage packages, efficient operations, and competitive pricing. French insurance culture tends toward bundled benefits and value engineering rather than premium positioning.
+  </p>
+  <p>
+    EU regulation through the French ACPR (Autorité de contrôle prudentiel et de résolution) provides strong consumer protections under the Solvency II framework. For expats in Europe, this regulatory familiarity can simplify visa applications and administrative processes.
+  </p>
+  <p>
+    AXA's market position is clear: premium-quality coverage without premium pricing. They compete with BUPA and Cigna on coverage quality while maintaining more competitive premiums.
+  </p>
+
+  <h3>BUPA Global: British Service Excellence</h3>
+  <p>
+    BUPA (British United Provident Association) was founded in 1947 as a provident association to preserve private healthcare access in the UK following the creation of the National Health Service. Unlike publicly traded insurers, BUPA operates as a company limited by guarantee—they have no shareholders, so profits are reinvested in the business rather than distributed as dividends.
+  </p>
+  <p>
+    BUPA Global is their international division, providing coverage to expats worldwide. Their British heritage emphasizes service excellence, personalized support, and comprehensive benefits. BUPA consistently wins awards for customer service and is considered the premium brand in international health insurance.
+  </p>
+  <p>
+    UK regulation through the FCA (Financial Conduct Authority) and PRA (Prudential Regulation Authority) is rigorous, with strong consumer protection standards. Post-Brexit, BUPA Global operates as a UK-regulated insurer, which may create some complexity for certain EU applications but remains widely accepted globally.
+  </p>
+  <p>
+    BUPA's market position is deliberately premium. They charge more but deliver more—better mental health coverage, robust pre-existing condition options, exceptional service, and unique features like no-claims discounts. For those who can afford it and value these differentiators, BUPA delivers.
+  </p>
+
   <CTABox
     title="Compare Both Providers"
-    description="Get quotes from AXA Global and BUPA Global for your situation."
+    description="Get personalized quotes from AXA Global and BUPA Global based on your specific needs."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
@@ -110,25 +172,125 @@ const pricingRows = [
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    Both insurers offer comprehensive coverage. The differences are in the details—particularly mental health coverage and how they handle pre-existing conditions.
+    At the core coverage level, both providers offer comprehensive international health insurance. The differences are in specific areas and how they handle particular situations.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
+  <h3>Inpatient and Outpatient Coverage</h3>
   <p>
-    <strong>Key differences:</strong>
+    Both providers deliver excellent inpatient coverage—hospital stays, surgeries, cancer treatment, and intensive care are covered with high limits across all tiers. Neither has a meaningful advantage in core inpatient coverage quality.
   </p>
-  <ul>
-    <li><strong>Mental health:</strong> BUPA Global has some of the best mental health coverage in the industry. AXA's is good but not as comprehensive</li>
-    <li><strong>Pre-existing conditions:</strong> BUPA offers full medical underwriting, which can mean better coverage if you qualify. AXA uses moratorium underwriting (conditions excluded until claim-free period passes)</li>
-    <li><strong>Regulation:</strong> AXA's EU regulation provides strong consumer protections. BUPA's UK regulation is also robust but different</li>
-  </ul>
-
-  <h2 id="pricing">Pricing</h2>
   <p>
-    AXA Global is significantly more affordable than BUPA Global—often 30-40% less for similar coverage levels.
+    Outpatient coverage is comprehensive with both providers at mid-tier and above. Doctor visits, specialist consultations, diagnostics, therapies, and prescriptions are covered according to plan terms. AXA bundles outpatient into their Comfort tier; BUPA includes it in Gold and above.
+  </p>
+  <p>
+    For standard medical needs, both providers perform equally well. The differences emerge in specialized areas.
+  </p>
+
+  <h3>Plan Tiers</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planTiersColumns} rows={planTiersRows} />
+  </div>
+
+  <p>
+    Both providers offer multiple tiers from basic to ultra-premium. AXA's tiers range from Essential (inpatient only) through Exclusive (unlimited coverage). BUPA's tiers range from Silver through the premium Lifeline option.
+  </p>
+  <p>
+    BUPA's Lifeline deserves special mention—it's designed for those who want absolute maximum coverage, particularly for cancer and critical illness. This specialized option reflects BUPA's willingness to create premium products for specific needs.
+  </p>
+
+  <h3>Maternity Coverage</h3>
+  <p>
+    Both providers offer maternity as optional coverage with waiting periods—10-12 months for AXA, 12 months for BUPA. Coverage includes prenatal care, delivery, postnatal care, and newborn coverage.
+  </p>
+  <p>
+    Neither has a significant advantage in maternity terms. Both handle it competently as an add-on benefit.
+  </p>
+
+  <h3>No-Claims Discount</h3>
+  <p>
+    <strong>BUPA offers a no-claims discount</strong>—if you don't make claims, your premiums can reduce at renewal. This rewards healthy members who don't use their coverage heavily. Over years, these discounts can offset some of BUPA's higher base pricing.
+  </p>
+  <p>
+    <strong>AXA does not offer no-claims discounts.</strong> Your premiums increase with age and inflation regardless of claims history. For healthy people who rarely use their insurance, this is a meaningful difference.
+  </p>
+
+  <h2 id="mental-health">Mental Health Coverage: BUPA's Major Advantage</h2>
+  <p>
+    Mental health coverage is where these providers diverge most significantly. BUPA has invested heavily in mental health benefits, making it one of their key differentiators.
+  </p>
+
+  <h3>BUPA's Mental Health Approach</h3>
+  <p>
+    BUPA Global offers some of the most comprehensive mental health coverage in international insurance. Their benefits include generous outpatient therapy allowances, psychiatric consultations, inpatient mental health treatment, and ongoing support for chronic mental health conditions.
+  </p>
+  <p>
+    Their approach recognizes that expats face elevated mental health challenges—isolation, cultural adjustment, career stress, distance from support networks. BUPA doesn't treat mental health as an afterthought; it's a core part of their value proposition.
+  </p>
+  <p>
+    Session limits are more generous than most competitors. Coverage for conditions like depression, anxiety, PTSD, and other mental health diagnoses is meaningful rather than token. For someone who needs regular therapy abroad, BUPA's mental health coverage can be worth thousands of dollars annually.
+  </p>
+
+  <h3>AXA's Mental Health Approach</h3>
+  <p>
+    AXA includes mental health coverage in their higher tiers, and it's adequate for many needs. Outpatient therapy, psychiatric consultations, and mental health medications are covered according to plan terms.
+  </p>
+  <p>
+    However, AXA's mental health coverage is not their strength. Session limits may be tighter, coverage terms more restrictive, and the overall approach less comprehensive than BUPA's. For someone with significant mental health needs, AXA's coverage may feel limited.
+  </p>
+
+  <h3>The Mental Health Decision</h3>
+  <p>
+    If mental health coverage is a priority—whether for existing needs or as a precaution given the stresses of expat life—BUPA has a clear advantage. The premium difference may be justified by the mental health benefits alone if you anticipate needing this coverage.
+  </p>
+  <p>
+    If mental health isn't a primary concern and you're generally healthy, AXA's adequate coverage combined with lower premiums may be the smarter choice.
+  </p>
+
+  <h2 id="pre-existing-conditions">Pre-existing Conditions: Different Approaches</h2>
+  <p>
+    How insurers handle pre-existing conditions significantly impacts coverage for people with existing health needs. AXA and BUPA take different approaches.
+  </p>
+
+  <h3>AXA's Moratorium Underwriting</h3>
+  <p>
+    AXA typically uses moratorium underwriting as their default approach. This means pre-existing conditions are automatically excluded from coverage for a moratorium period (usually 2-5 years). After the moratorium period passes without claims related to the condition, it may become covered.
+  </p>
+  <p>
+    The advantage: quick, simple application process with no medical questionnaires. The disadvantage: conditions you have now won't be covered initially, regardless of how well-managed they are.
+  </p>
+  <p>
+    For healthy people with minor or no pre-existing conditions, moratorium underwriting is fine. For people with conditions they want covered, it's limiting.
+  </p>
+
+  <h3>BUPA's Full Medical Underwriting</h3>
+  <p>
+    BUPA offers full medical underwriting, reviewing your complete health history and making coverage decisions condition by condition. This takes longer—you fill out detailed medical questionnaires, BUPA reviews them, and then provides specific terms.
+  </p>
+  <p>
+    The potential outcomes: full coverage for well-managed conditions, specific exclusions for problematic conditions, premium loadings for higher-risk situations, or sometimes coverage denial for very serious conditions.
+  </p>
+  <p>
+    The advantage: the possibility of getting pre-existing conditions covered from day one if they're well-managed. Well-controlled diabetes, stable hypertension, or managed chronic conditions might be covered rather than automatically excluded.
+  </p>
+  <p>
+    The disadvantage: more complex application, longer wait for coverage decisions, and the possibility of unfavorable terms.
+  </p>
+
+  <h3>Which Approach Is Better?</h3>
+  <p>
+    If you're healthy with no significant pre-existing conditions, AXA's simpler moratorium approach is fine—and you'll pay less for coverage.
+  </p>
+  <p>
+    If you have pre-existing conditions you want covered, BUPA's full underwriting offers the possibility of coverage that AXA's moratorium approach cannot. The higher premiums may be worth it if specific conditions get covered.
+  </p>
+
+  <h2 id="pricing">Pricing Breakdown</h2>
+  <p>
+    AXA Global is significantly more affordable than BUPA Global—typically 30-40% less for comparable coverage. This is the most dramatic difference between these providers.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
@@ -136,92 +298,271 @@ const pricingRows = [
   </div>
 
   <p>
-    <strong>Notes on pricing:</strong>
+    <em>Prices based on comprehensive coverage excluding US with moderate deductibles. Your actual quote will vary.</em>
   </p>
-  <ul>
-    <li>BUPA's premium pricing reflects their premium service and extensive benefits</li>
-    <li>AXA offers similar core coverage at a lower price point</li>
-    <li>Both offer high-deductible options to reduce premiums</li>
-    <li>The gap widens with age—BUPA's premiums increase more steeply</li>
-  </ul>
+
+  <h3>Understanding the Price Gap</h3>
+  <p>
+    The 30-40% price difference isn't because AXA provides inferior coverage—their core coverage is comparable. The gap reflects BUPA's premium positioning: better mental health coverage, full medical underwriting, exceptional service, no-claims discounts, and the premium brand perception.
+  </p>
+  <p>
+    For a 40-year-old, the difference might be $100-180/month—$1,200-2,160 annually. Over five years of coverage, that's $6,000-$10,800 in savings if you choose AXA. That's meaningful money.
+  </p>
+  <p>
+    But if BUPA's mental health coverage saves you $200/month in therapy costs, or if their pre-existing condition coverage means you don't pay out of pocket for chronic condition management, the math changes.
+  </p>
+
+  <h3>Price Increases Over Time</h3>
+  <p>
+    Both providers increase premiums with age and inflation. BUPA's increases tend to be steeper, widening the gap as you age. A 30-year-old might find BUPA 30% more expensive; by age 60, it could be 40% or more.
+  </p>
+  <p>
+    BUPA's no-claims discount can partially offset this for healthy members who don't claim. But if you do claim, you lose the discount while still paying higher base premiums.
+  </p>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-2">The Value Question</h3>
+    <p class="text-amber-800">
+      Is BUPA worth 30-40% more than AXA? For most healthy expats without pre-existing conditions or significant mental health needs, probably not. AXA delivers excellent coverage at a better price. But for those who specifically need BUPA's strengths—mental health, pre-existing condition coverage, premium service—the premium may be justified.
+    </p>
+  </div>
 
   <CTABox
     title="Get Your Actual Price"
-    description="Prices vary significantly by age and coverage choices."
+    description="See the actual premium difference for your specific situation."
     buttonText="Get a Quote"
     buttonHref="/best/expat-health-insurance"
   />
 
   <h2 id="network-and-claims">Network and Claims</h2>
+  <p>
+    Provider networks and claims processes affect your day-to-day insurance experience.
+  </p>
 
   <h3>Provider Networks</h3>
   <p>
-    <strong>BUPA Global</strong> has extensive direct-billing relationships worldwide, with particularly strong networks in the UK, Europe, and Asia.
+    <strong>BUPA Global</strong> has one of the most extensive direct-billing networks in international insurance. Their relationships span major hospitals globally, with particularly strong coverage in the UK, Europe, Asia, and the Middle East. Direct billing at network facilities minimizes out-of-pocket expenses.
   </p>
   <p>
-    <strong>AXA Global</strong> has excellent European coverage and growing networks elsewhere. Direct billing is available at major hospitals but may be less extensive than BUPA's.
+    <strong>AXA Global</strong> maintains 1.6 million+ providers worldwide with strong European coverage. Their network is excellent in Europe (home territory) and solid elsewhere. Direct billing is available at major international hospitals but may be less extensive than BUPA's in some regions.
+  </p>
+  <p>
+    For most expat destinations, both networks provide adequate access to quality care. BUPA may have an edge in specific locations or for access to premium facilities.
   </p>
 
-  <h3>Claims Process</h3>
+  <h3>Claims Processing</h3>
   <p>
-    Both offer online claims submission and mobile apps. BUPA's claims process is often praised as one of the smoothest in the industry. AXA's is reliable but may take slightly longer.
+    <strong>BUPA's claims process</strong> is often praised as one of the smoothest in the industry. Their dedicated claims teams, efficient processing, and member portal make claims management relatively painless. Simple claims typically process quickly.
+  </p>
+  <p>
+    <strong>AXA's claims process</strong> is reliable and functional. Claims are processed within reasonable timeframes, and their portal handles submissions adequately. Not quite as polished as BUPA's, but competent.
   </p>
 
   <h3>Customer Service</h3>
   <p>
-    BUPA Global is known for exceptional customer service with dedicated case managers. AXA provides solid 24/7 support but BUPA's service is generally rated higher.
+    <strong>BUPA Global</strong> is known for exceptional customer service. Dedicated case managers for complex situations, responsive support, and a genuine culture of service excellence. BUPA consistently wins industry awards for customer service.
+  </p>
+  <p>
+    <strong>AXA Global</strong> provides solid 24/7 multilingual support that handles most situations competently. Their service is professional and adequate but less consistently exceptional than BUPA's.
+  </p>
+  <p>
+    If service quality is paramount—you want someone helpful every time you call, complex situations handled smoothly, and a feeling that the insurer truly cares—BUPA delivers this at a premium. If functional, reliable service is sufficient, AXA provides it at a better price.
+  </p>
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+  <p>
+    Here's how these providers might perform in situations expats commonly encounter.
+  </p>
+
+  <h3>Scenario 1: Healthy 35-Year-Old in Spain</h3>
+  <p>
+    You're 35, healthy, no pre-existing conditions. You need comprehensive coverage while living in Madrid.
+  </p>
+  <p>
+    <strong>With AXA Comfort:</strong> Comprehensive coverage at competitive pricing. EU regulation is perfect for Spain. Direct billing at major Spanish hospitals. Annual cost approximately €1,400-1,800.
+  </p>
+  <p>
+    <strong>With BUPA Gold:</strong> Similar coverage quality at 30-40% higher cost. Better mental health coverage you may not need. Annual cost approximately $2,400-3,400.
+  </p>
+  <p>
+    <strong>Verdict:</strong> AXA wins for healthy people without specific needs that BUPA serves better. Save the money.
+  </p>
+
+  <h3>Scenario 2: Expat Dealing with Depression</h3>
+  <p>
+    You're 42 and have been dealing with depression since relocating abroad. You need regular therapy—likely weekly sessions—and potentially medication management.
+  </p>
+  <p>
+    <strong>With AXA Excellence:</strong> Mental health coverage is included but may have tighter session limits. You might hit annual caps before year-end, requiring out-of-pocket payment for continued therapy.
+  </p>
+  <p>
+    <strong>With BUPA Platinum:</strong> Industry-leading mental health coverage with generous session allowances. Weekly therapy throughout the year is more likely to be covered without hitting limits.
+  </p>
+  <p>
+    <strong>Verdict:</strong> BUPA wins if mental health is an active, ongoing need. The premium difference may be less than out-of-pocket therapy costs with AXA's limitations.
+  </p>
+
+  <h3>Scenario 3: Managing Type 2 Diabetes Abroad</h3>
+  <p>
+    You're 50 with well-controlled Type 2 diabetes. You need regular monitoring, medications, and occasional specialist visits.
+  </p>
+  <p>
+    <strong>With AXA (Moratorium):</strong> Diabetes-related care is excluded during the moratorium period. You'll pay out of pocket for medications, monitoring supplies, and related appointments until the moratorium ends (if it ever does while you remain claim-free for diabetes).
+  </p>
+  <p>
+    <strong>With BUPA (Full Underwriting):</strong> BUPA reviews your diabetes history. If well-controlled with stable HbA1c levels, they may cover diabetes management—possibly with a premium loading. Your ongoing diabetes care becomes insured rather than out-of-pocket.
+  </p>
+  <p>
+    <strong>Verdict:</strong> BUPA's underwriting approach offers the possibility of coverage AXA can't match for pre-existing conditions. For someone with ongoing condition management needs, BUPA's higher premiums may be offset by covered care.
+  </p>
+
+  <h3>Scenario 4: Family with Children in Singapore</h3>
+  <p>
+    You're a family of four—two adults (40) and two children (8, 11)—living in Singapore. Standard healthcare needs, no significant pre-existing conditions.
+  </p>
+  <p>
+    <strong>With AXA Family Plan:</strong> Comprehensive family coverage at €380-520/month. Good pediatric networks in Singapore. Solid coverage for family needs.
+  </p>
+  <p>
+    <strong>With BUPA Family Plan:</strong> Premium family coverage at $700-1,000/month. Exceptional service, extensive Singapore networks, better mental health coverage if needed for any family member.
+  </p>
+  <p>
+    <strong>Verdict:</strong> AXA saves $300-500/month—$3,600-6,000 annually. For a healthy family, that's significant money better spent elsewhere. BUPA only makes sense if specific premium benefits are needed.
+  </p>
+
+  <h3>Scenario 5: High-Net-Worth Individual Prioritizing Service</h3>
+  <p>
+    You're 55, successful, and expect premium service in all aspects of life. You want the best coverage, best service, and don't mind paying for it.
+  </p>
+  <p>
+    <strong>With AXA Exclusive:</strong> Excellent coverage with unlimited benefits. Professional service. But AXA doesn't position itself as ultra-premium—it's comprehensive but not concierge-level.
+  </p>
+  <p>
+    <strong>With BUPA Platinum/Lifeline:</strong> Premium coverage with exceptional service culture. Dedicated case managers, VIP treatment, the brand perception of having "the best" insurance. The experience matches high-end expectations.
+  </p>
+  <p>
+    <strong>Verdict:</strong> If money isn't the primary concern and you want the premium experience, BUPA delivers it. Their service culture genuinely differs from competitors.
+  </p>
+
+  <h2 id="customer-experience">Customer Experience</h2>
+  <p>
+    How does it feel to actually use these insurance products?
+  </p>
+
+  <h3>Digital Experience</h3>
+  <p>
+    Both providers offer member portals and mobile apps for managing coverage, finding providers, and submitting claims. Neither is dramatically better—both are functional tools that handle standard needs.
+  </p>
+  <p>
+    BUPA's digital experience may feel slightly more polished, consistent with their premium positioning. AXA's tools are adequate without being exceptional.
+  </p>
+
+  <h3>Service Interactions</h3>
+  <p>
+    BUPA genuinely excels at service interactions. Representatives are helpful, knowledgeable, and empowered to solve problems. Complex situations get dedicated attention from case managers. The company culture prioritizes member satisfaction.
+  </p>
+  <p>
+    AXA provides solid, professional service. Representatives handle standard situations competently. For complex situations, service quality may be less consistent than BUPA's.
+  </p>
+
+  <h3>Claims Satisfaction</h3>
+  <p>
+    BUPA members generally report smoother claims experiences—faster processing, fewer disputes, more favorable outcomes for gray-area situations. This reflects their service-first culture.
+  </p>
+  <p>
+    AXA handles claims adequately. Straightforward claims process without issue. More complex claims may take longer or require more back-and-forth.
   </p>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
+  <p>
+    Based on all factors analyzed, here's who each provider serves best.
+  </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose AXA Global If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Value for money is important</li>
-        <li>You want EU regulatory protections</li>
-        <li>You're primarily based in Europe</li>
-        <li>You don't have complex pre-existing conditions</li>
-        <li>You want comprehensive coverage without premium pricing</li>
+        <li><strong>Value matters</strong> — Save 30-40% on premiums</li>
+        <li><strong>You're healthy</strong> — No significant pre-existing conditions</li>
+        <li><strong>Mental health isn't priority</strong> — Basic coverage suffices</li>
+        <li><strong>EU regulation helps</strong> — Visa applications in Europe</li>
+        <li><strong>Functional service is fine</strong> — Don't need concierge-level</li>
+        <li><strong>You're in Europe</strong> — AXA's strongest network</li>
       </ul>
     </div>
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose BUPA Global If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Mental health coverage is a priority</li>
-        <li>You have pre-existing conditions to declare</li>
-        <li>You want premium service and support</li>
-        <li>Budget is less of a concern</li>
-        <li>You value the most extensive provider network</li>
+        <li><strong>Mental health is priority</strong> — Industry-best coverage</li>
+        <li><strong>You have pre-existing conditions</strong> — Full underwriting possibility</li>
+        <li><strong>Premium service matters</strong> — Exceptional support culture</li>
+        <li><strong>You're healthy long-term</strong> — No-claims discounts help</li>
+        <li><strong>Budget isn't primary concern</strong> — Can afford premium pricing</li>
+        <li><strong>You want "the best"</strong> — Premium brand perception</li>
       </ul>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    Both AXA Global and BUPA Global are excellent choices—this is a comparison between two premium options, not good vs bad.
+    Both AXA Global and BUPA Global are excellent insurance providers. This comparison is between two premium options, not good versus bad. Either will provide comprehensive international health coverage from financially stable, reputable insurers.
   </p>
   <p>
-    <strong>AXA Global</strong> offers the better value proposition for most people. You get comprehensive coverage, EU regulatory protections, and solid service at a significantly lower price point.
+    <strong>AXA Global</strong> offers the better value proposition for most expats. You get comprehensive coverage, EU regulatory benefits, and solid service at 30-40% lower premiums than BUPA. For healthy people without specific needs that BUPA serves better, AXA is the smart choice. The savings compound over years of coverage.
   </p>
   <p>
-    <strong>BUPA Global</strong> is worth the premium if mental health coverage is important to you, if you have pre-existing conditions that need full underwriting, or if you simply want the best service and most extensive network regardless of cost.
+    <strong>BUPA Global</strong> justifies its premium pricing for specific needs. If mental health coverage is important to you—whether for existing needs or as a priority given expat stresses—BUPA's industry-leading benefits may be worth the premium. If you have pre-existing conditions you want covered, BUPA's full underwriting offers possibilities AXA's moratorium approach cannot. If exceptional service matters and you can afford it, BUPA delivers.
   </p>
   <p>
-    Get quotes from both to see the actual price difference for your situation—it might be larger or smaller than the estimates above.
+    Our recommendation for most expats: <strong>AXA Global</strong> offers better value. Save the 30-40% unless you specifically need what BUPA offers.
+  </p>
+  <p>
+    The exceptions: Choose <strong>BUPA</strong> if mental health is an active priority, if you have pre-existing conditions requiring coverage, or if premium service genuinely matters to you and money is secondary.
   </p>
 
   <CTABox
     title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific needs."
+    description="Get personalized quotes from both AXA Global and BUPA Global. See the actual premium difference for your situation."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <h2 id="faqs">Frequently Asked Questions</h2>
+
+  <h3>Is BUPA Global worth the extra cost over AXA Global?</h3>
+  <p>
+    For most healthy expats, no. AXA provides comprehensive coverage at 30-40% lower premiums. BUPA is worth the premium if you specifically need their mental health coverage, want pre-existing conditions underwritten, or prioritize exceptional service over cost savings.
+  </p>
+
+  <h3>Which provider has better mental health coverage?</h3>
+  <p>
+    BUPA Global has significantly better mental health coverage—it's one of their key differentiators. More generous session limits, better coverage terms, and a genuine emphasis on mental health benefits. If mental health is important, BUPA is the clear choice.
+  </p>
+
+  <h3>How do pre-existing conditions work with each provider?</h3>
+  <p>
+    AXA uses moratorium underwriting—pre-existing conditions are automatically excluded until you go claim-free for a period (usually 2-5 years). BUPA uses full medical underwriting—they review your health history and may cover well-managed conditions from day one, exclude specific conditions, or apply premium loadings.
+  </p>
+
+  <h3>Does BUPA's no-claims discount offset their higher premiums?</h3>
+  <p>
+    Partially, for consistently healthy members. If you maintain no-claims status for years, the discounts accumulate and can reduce the price gap. But if you make claims, you lose the discount while still paying higher base premiums. For most people, the discount doesn't fully close the gap.
+  </p>
+
+  <h3>Which provider is better for families?</h3>
+  <p>
+    Both serve families well. AXA offers significant cost savings—potentially $3,600-6,000 annually for a family. BUPA offers better mental health coverage for any family member who might need it and superior service. For healthy families, AXA's savings are compelling. For families with specific needs BUPA serves, the premium may be justified.
+  </p>
+
+  <h3>Can I switch between these providers?</h3>
+  <p>
+    Yes, at annual renewal. However, conditions that developed while on your previous policy become pre-existing for the new insurer. If you've developed health issues, switching carefully—particularly to AXA's moratorium underwriting, which would exclude your new conditions.
+  </p>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan features change frequently. We are not insurance brokers or agents. Always verify current information directly with AXA Global and BUPA Global before making purchasing decisions. Individual circumstances vary, and what works for one person may not work for another.
     </p>
   </div>
 </PageShell>

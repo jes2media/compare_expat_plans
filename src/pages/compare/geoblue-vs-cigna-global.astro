@@ -2,14 +2,21 @@
 import PageShell from '../../components/PageShell.astro';
 import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'company-backgrounds', text: 'Company Backgrounds', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'us-network', text: 'US Network Access', level: 2 },
+  { id: 'international-coverage', text: 'International Coverage', level: 2 },
+  { id: 'pricing', text: 'Pricing Comparison', level: 2 },
+  { id: 'plan-tiers', text: 'Plan Tiers Explained', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'customer-experience', text: 'Customer Experience', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQs', level: 2 },
 ];
 
 const relatedLinks = [
@@ -17,6 +24,7 @@ const relatedLinks = [
   { title: 'Cigna Global Review', href: '/providers/cigna-global' },
   { title: 'Best for US Expats', href: '/best/us-expat-insurance' },
   { title: 'Aetna vs GeoBlue', href: '/compare/aetna-international-vs-geoblue' },
+  { title: 'Cigna vs Aetna', href: '/compare/cigna-global-vs-aetna-international' },
   { title: 'Mexico Insurance Guide', href: '/countries/mexico/insurance' },
 ];
 
@@ -27,36 +35,70 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'US Network', geoblue: 'Blue Cross (largest)', cigna: '1.5M+ providers' },
+  { feature: 'US Network', geoblue: 'Blue Cross Blue Shield (90%+ US providers)', cigna: '1.5M+ providers' },
   { feature: 'Inpatient Care', geoblue: true, cigna: true },
   { feature: 'Outpatient Care', geoblue: true, cigna: true },
-  { feature: 'Mental Health', geoblue: true, cigna: true },
-  { feature: 'Maternity', geoblue: 'Optional', cigna: 'Optional' },
+  { feature: 'Mental Health', geoblue: 'Limited', cigna: 'Comprehensive' },
+  { feature: 'Maternity', geoblue: 'Optional (10-month wait)', cigna: 'Optional (10-month wait)' },
   { feature: 'Dental', geoblue: 'Optional', cigna: 'Optional' },
-  { feature: 'Medical Evacuation', geoblue: true, cigna: true },
-  { feature: 'US Coverage Included', geoblue: 'Yes (core)', cigna: 'Add-on' },
+  { feature: 'Vision', geoblue: 'Limited', cigna: 'Optional' },
+  { feature: 'Medical Evacuation', geoblue: '$500K included', cigna: 'Unlimited' },
+  { feature: 'Repatriation', geoblue: '$500K included', cigna: 'Unlimited' },
+  { feature: 'US Coverage Included', geoblue: 'Yes (core benefit)', cigna: 'Add-on (+40-60%)' },
   { feature: 'Annual Maximum', geoblue: '$1M-$5M', cigna: '$1M-Unlimited' },
+  { feature: 'Lifetime Maximum', geoblue: 'Same as annual', cigna: 'Unlimited available' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
   { key: 'geoblue', header: 'GeoBlue' },
-  { key: 'cigna', header: 'Cigna Global + US' },
+  { key: 'cignaNoUS', header: 'Cigna (No US)' },
+  { key: 'cignaUS', header: 'Cigna (+ US)' },
 ];
 
 const pricingRows = [
-  { profile: 'Single, Age 30', geoblue: '$180-240/mo', cigna: '$200-260/mo' },
-  { profile: 'Single, Age 45', geoblue: '$280-360/mo', cigna: '$320-400/mo' },
-  { profile: 'Couple, Age 35', geoblue: '$360-480/mo', cigna: '$400-520/mo' },
-  { profile: 'Family of 4', geoblue: '$550-750/mo', cigna: '$650-850/mo' },
+  { profile: 'Single, Age 30', geoblue: '$180-240/mo', cignaNoUS: '$140-180/mo', cignaUS: '$210-280/mo' },
+  { profile: 'Single, Age 45', geoblue: '$280-360/mo', cignaNoUS: '$220-280/mo', cignaUS: '$340-420/mo' },
+  { profile: 'Single, Age 55', geoblue: '$420-540/mo', cignaNoUS: '$340-440/mo', cignaUS: '$520-660/mo' },
+  { profile: 'Couple, Age 35', geoblue: '$360-480/mo', cignaNoUS: '$280-360/mo', cignaUS: '$420-540/mo' },
+  { profile: 'Family of 4', geoblue: '$550-750/mo', cignaNoUS: '$450-600/mo', cignaUS: '$680-900/mo' },
+];
+
+const planTierColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'cigna', header: 'Cigna Global' },
+];
+
+const planTierRows = [
+  { tier: 'Entry Level', geoblue: 'Voyager Choice ($1M max)', cigna: 'Silver ($1M max)' },
+  { tier: 'Mid-Range', geoblue: 'Voyager Essential ($2M max)', cigna: 'Gold ($2M max)' },
+  { tier: 'Premium', geoblue: 'Voyager Elite ($5M max)', cigna: 'Platinum (Unlimited)' },
+  { tier: 'Short-Term Option', geoblue: 'Traveler (trip-based)', cigna: 'Not available' },
+  { tier: 'Deductible Options', geoblue: '$0-$2,500', cigna: '$0-$10,000' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'cigna', header: 'Cigna Global' },
+];
+
+const networkRows = [
+  { region: 'United States', geoblue: 'Excellent (BCBS network)', cigna: 'Good (large but fragmented)' },
+  { region: 'Western Europe', geoblue: 'Good', cigna: 'Excellent' },
+  { region: 'Latin America', geoblue: 'Good', cigna: 'Excellent' },
+  { region: 'Southeast Asia', geoblue: 'Limited', cigna: 'Excellent' },
+  { region: 'Middle East', geoblue: 'Limited', cigna: 'Excellent' },
+  { region: 'Direct Billing', geoblue: 'Primarily US', cigna: 'Worldwide' },
 ];
 ---
 
 <PageShell
-  title="GeoBlue vs Cigna Global"
-  description="Compare GeoBlue and Cigna Global for US expats. See which offers better US network access, coverage, and value."
-  headline="GeoBlue vs Cigna Global: Which Is Better for US Expats?"
-  subheadline="Both offer US coverage, but with different approaches. Here's how to choose between them."
+  title="GeoBlue vs Cigna Global: Complete Comparison for US Expats"
+  description="In-depth comparison of GeoBlue and Cigna Global for American expats. Compare US network access, pricing, coverage, and which one works better for your situation."
+  headline="GeoBlue vs Cigna Global: The Complete Guide for US Expats"
+  subheadline="Both insurers serve Americans abroad, but their approach to US coverage differs dramatically. Here's how to choose."
   heroBackgroundImage="/images/compare/geoblue-vs-cigna-hero-bg.png"
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
@@ -64,160 +106,407 @@ const pricingRows = [
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/us-expat-insurance"
 >
-    <h2 id="overview">Overview</h2>
+
+  <h2 id="overview">Overview</h2>
   <p>
-    GeoBlue and Cigna Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    GeoBlue and Cigna Global are the two most common recommendations for American expats seeking international health insurance with US coverage. Both are reputable, both cover the US, and both serve the expat market well. But they take fundamentally different approaches to US healthcare access—and that difference affects both your care options and your costs.
   </p>
   <p>
-    GeoBlue is a Blue Cross Blue Shield company focused on international health coverage. Their main connection to the Blue Cross Blue Shield network and strong US ties. They're particularly popular among American expats who want continuity with US healthcare brands, with mid-range with good options for short and long-term coverage.
+    <strong>The core difference:</strong> GeoBlue is built around US healthcare. They're a Blue Cross Blue Shield company, and access to the BCBS network is central to their value proposition. Cigna Global, by contrast, is built for truly global coverage—US access is available but treated as an add-on that costs 40-60% extra.
   </p>
   <p>
-    Cigna Global is known for its extensive global network and strong customer service. They're known for their massive provider network with direct billing at over 1.5 million healthcare facilities worldwide. They tend to attract families and American expats who prioritize convenience, offering premium pricing but many feel the convenience justifies the cost.
+    This distinction matters more than you might think. If you return to the US frequently—visiting family, handling business, or simply preferring American doctors for certain care—GeoBlue's integrated approach could save you thousands annually while providing better access. If you're truly global and only touch down in the US occasionally, Cigna's broader international network might serve you better despite the US coverage add-on cost.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    This comparison examines both providers in detail: their company backgrounds, coverage specifics, network strengths, pricing, and real-world performance. By the end, you'll know exactly which one fits your situation.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue at a Glance</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Blue Cross Blue Shield network access</li>
-        <li>US coverage built into plans</li>
-        <li>Designed for Americans abroad</li>
-        <li>Strong telemedicine options</li>
+        <li><strong>Parent:</strong> Blue Cross Blue Shield</li>
+        <li><strong>US Network:</strong> BCBS (90%+ of US providers)</li>
+        <li><strong>US Coverage:</strong> Included in base plans</li>
+        <li><strong>Max Coverage:</strong> Up to $5M</li>
+        <li><strong>Best For:</strong> Frequent US visitors</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Cigna Global</h3>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Cigna Global at a Glance</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Largest global provider network</li>
-        <li>US coverage as optional add-on</li>
-        <li>More plan customization options</li>
-        <li>Stronger outside the US</li>
+        <li><strong>Parent:</strong> The Cigna Group (NYSE: CI)</li>
+        <li><strong>Global Network:</strong> 1.5M+ providers worldwide</li>
+        <li><strong>US Coverage:</strong> Optional add-on (+40-60%)</li>
+        <li><strong>Max Coverage:</strong> Unlimited available</li>
+        <li><strong>Best For:</strong> Truly global lifestyles</li>
       </ul>
     </div>
   </div>
 
   <CTABox
-    title="Compare Both Providers"
-    description="Get quotes from GeoBlue and Cigna Global for your situation."
+    title="Compare Quotes Directly"
+    description="Get personalized pricing from both GeoBlue and Cigna Global based on your specific situation."
     buttonText="Get Free Quotes"
     buttonHref="/best/us-expat-insurance"
     variant="highlight"
   />
 
+  <h2 id="company-backgrounds">Company Backgrounds</h2>
+
+  <h3>GeoBlue: The BCBS International Arm</h3>
+  <p>
+    GeoBlue is the international health insurance division of Blue Cross Blue Shield, the largest health insurance network in the United States. This isn't a licensing arrangement or partnership—GeoBlue is actually owned by BCBS, which means GeoBlue members get direct access to the same network that covers one in three Americans.
+  </p>
+  <p>
+    Founded in 2012, GeoBlue was created specifically to address the gap in coverage for Americans living and traveling abroad. The company recognized that traditional domestic BCBS plans provided poor or no coverage outside the US, leaving expats to find separate international coverage that often excluded their home country.
+  </p>
+  <p>
+    GeoBlue's solution was elegant: create international plans that include US coverage by default, using the existing BCBS network. This means GeoBlue members can see their regular US doctors during visits home, use any BCBS hospital for care, and avoid the hassle of coordinating between multiple insurance plans.
+  </p>
+  <p>
+    The company offers three main product lines: Voyager plans for long-term expats, Traveler plans for short-term trips, and employer-sponsored group plans. They're headquartered in Pennsylvania and licensed in all 50 states plus Washington DC.
+  </p>
+
+  <h3>Cigna Global: The Multinational Healthcare Giant</h3>
+  <p>
+    Cigna Global is the international division of The Cigna Group, a Fortune 15 healthcare company with over 190 million customer relationships worldwide. The company traces its roots back to 1792, making it one of the oldest insurance companies in the United States, though its global expansion is more recent.
+  </p>
+  <p>
+    The Cigna Global division serves expatriates, international organizations, and globally mobile individuals across 200+ countries and territories. Unlike GeoBlue's US-centric approach, Cigna built its international business from a truly global perspective—their largest membership bases are outside the US, and their network is designed to work seamlessly across continents.
+  </p>
+  <p>
+    Cigna's global network includes over 1.5 million healthcare providers worldwide, with direct billing relationships at hospitals in virtually every major city. Their claims processing centers operate 24/7 across multiple time zones, and they offer service in multiple languages including Spanish, Mandarin, Arabic, and French.
+  </p>
+  <p>
+    For Cigna Global, US coverage is a regional add-on rather than a core feature. This reflects their diverse customer base—many Cigna Global members are Europeans, Asians, or other nationalities who never need US care. For Americans who do need it, the US add-on provides coverage but at a significant additional cost.
+  </p>
+
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    The key difference is how they handle US coverage. GeoBlue includes it by default; Cigna charges extra for it.
+    Both GeoBlue and Cigna Global provide comprehensive international medical coverage, but their approaches differ in several key areas. Here's a detailed breakdown of what each provider covers.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
+  <h3>Key Coverage Differences</h3>
+
+  <p><strong>US Coverage Integration:</strong> This is the most significant difference. GeoBlue includes US coverage in all their long-term plans by default—it's not optional, and you don't pay extra for it. Cigna treats the US as a separate region that costs 40-60% more to add. For an American expat, this means GeoBlue's base price includes US care while Cigna's advertised price does not.</p>
+
+  <p><strong>Annual and Lifetime Maximums:</strong> Cigna offers unlimited coverage options; GeoBlue caps at $5 million. In practice, $5 million covers virtually any medical situation, but if unlimited coverage gives you peace of mind, Cigna provides it.</p>
+
+  <p><strong>Mental Health:</strong> Cigna's mental health coverage is more comprehensive. Their plans include outpatient therapy, psychiatric care, and treatment for conditions like depression and anxiety with relatively generous limits. GeoBlue's mental health coverage is more limited, often with lower annual caps and more restrictions. If mental health care is a priority, Cigna is the stronger choice.</p>
+
+  <p><strong>Medical Evacuation:</strong> Both providers include evacuation coverage, but Cigna offers unlimited evacuation benefits while GeoBlue caps at $500,000. For most scenarios, $500,000 is more than sufficient—even a complex air ambulance evacuation from a remote location rarely exceeds this. But Cigna's unlimited coverage eliminates any concern about hitting limits.</p>
+
+  <p><strong>Wellness Benefits:</strong> Cigna includes more preventive care in their standard plans—annual physicals, vaccinations, and health screenings are typically covered. GeoBlue's wellness coverage is more limited; some preventive services require higher-tier plans or aren't covered at all.</p>
+
+  <h2 id="us-network">US Network Access: GeoBlue's Major Advantage</h2>
   <p>
-    <strong>Key differences:</strong>
+    For American expats who return home regularly, US network access is often the deciding factor—and this is where GeoBlue has a significant edge.
+  </p>
+
+  <h3>GeoBlue's Blue Cross Blue Shield Network</h3>
+  <p>
+    GeoBlue members have access to the Blue Cross Blue Shield network, which covers over 90% of doctors and hospitals in the United States. This isn't a limited subset or a specially negotiated network—it's the full BCBS network that serves over 115 million Americans.
+  </p>
+  <p>
+    What this means in practice:
   </p>
   <ul>
-    <li><strong>US network:</strong> GeoBlue uses Blue Cross Blue Shield—the largest US network. Cigna's US network is large but not as extensive</li>
-    <li><strong>Plan structure:</strong> GeoBlue plans assume you'll use US care; Cigna treats it as an add-on</li>
-    <li><strong>Maximum coverage:</strong> Cigna offers unlimited options; GeoBlue caps at $5M (still very high)</li>
+    <li><strong>Your existing doctors:</strong> If you have US physicians you've seen for years, chances are they accept BCBS and therefore accept GeoBlue</li>
+    <li><strong>Any hospital:</strong> Virtually every hospital in the US is in the BCBS network, from major academic medical centers to rural community hospitals</li>
+    <li><strong>Direct billing:</strong> Most BCBS providers will bill GeoBlue directly, so you won't have to pay upfront and file for reimbursement</li>
+    <li><strong>Negotiated rates:</strong> You benefit from BCBS's negotiated provider rates, which are typically lower than out-of-network charges</li>
   </ul>
-
-  <h2 id="pricing">Pricing</h2>
   <p>
-    When comparing prices, you need to factor in US coverage for Cigna. GeoBlue includes it; Cigna charges 40-60% more when you add it.
+    This network access is baked into GeoBlue's DNA. They don't treat US care as an exception or an add-on—it's central to what they offer.
+  </p>
+
+  <h3>Cigna's US Network</h3>
+  <p>
+    Cigna Global's US network is large—over 900,000 healthcare providers—but it's not as comprehensive as BCBS. More importantly, Cigna's US network for international plan holders is different from their domestic network for US-based members.
+  </p>
+  <p>
+    When you add US coverage to a Cigna Global plan, you're not getting access to Cigna's full domestic PPO network. You're getting access to a separate international network that includes many but not all US providers. Some doctors who accept Cigna domestic insurance don't accept Cigna Global.
+  </p>
+  <p>
+    This can create friction:
+  </p>
+  <ul>
+    <li><strong>Doctor limitations:</strong> Your preferred US doctor might accept Cigna domestic but not Cigna Global</li>
+    <li><strong>Network confusion:</strong> It's harder to verify whether a specific provider is in-network for international members</li>
+    <li><strong>More reimbursement:</strong> You may need to pay upfront and file claims more often in the US</li>
+  </ul>
+  <p>
+    This isn't a dealbreaker—Cigna's US network is still substantial—but it's an important consideration if seamless US access matters to you.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h4 class="text-lg font-semibold text-blue-900 mb-2">Network Tip</h4>
+    <p class="text-blue-800">
+      Before choosing, call your preferred US doctors and ask specifically if they accept "GeoBlue international plans" or "Cigna Global international plans." Don't just ask if they accept "Blue Cross" or "Cigna"—the international networks differ from domestic ones.
+    </p>
+  </div>
+
+  <h2 id="international-coverage">International Coverage: Cigna's Strength</h2>
+  <p>
+    While GeoBlue excels in the US, Cigna Global has the advantage internationally. Their global network is larger, their direct billing relationships are more extensive, and their service infrastructure is more robust outside North America.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Direct Billing Network</h3>
+  <p>
+    Cigna's direct billing network is one of the largest in the industry. In most major cities worldwide, you can find hospitals and clinics that will bill Cigna directly—you show your card, receive care, and leave without paying out of pocket.
+  </p>
+  <p>
+    GeoBlue's international direct billing network is smaller. Outside the US, you'll more often need to pay upfront and submit receipts for reimbursement. This isn't necessarily a problem—GeoBlue's reimbursement is reliable—but it does require more financial float and administrative effort on your part.
+  </p>
+
+  <h3>Regional Presence</h3>
+  <p>
+    Cigna has strong regional offices throughout Europe, Asia, and the Middle East. If you're based in London, Dubai, Singapore, or Hong Kong, Cigna's local presence means faster service, local language support, and staff who understand regional healthcare systems.
+  </p>
+  <p>
+    GeoBlue's operations are more US-centric. Their customer service is excellent, but it's primarily US-based. If you're in Southeast Asia and need help navigating a local hospital system at 3 AM, Cigna's regional teams may be more accessible.
+  </p>
+
+  <h3>Claims Processing</h3>
+  <p>
+    Both providers offer online claims submission. Cigna's portal is more sophisticated, with features like document upload, real-time status tracking, and cost estimates. GeoBlue's portal is functional but more basic.
+  </p>
+  <p>
+    Claims turnaround is similar—typically 5-10 business days for straightforward claims. Complex cases may take longer with either provider, though Cigna's larger claims team can sometimes process faster during high-volume periods.
+  </p>
+
+  <CTABox
+    title="Get Personalized Quotes"
+    description="See actual pricing for your age, location, and coverage needs."
+    buttonText="Compare Plans"
+    buttonHref="/best/us-expat-insurance"
+  />
+
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>
+    Pricing comparisons between GeoBlue and Cigna Global are complicated by the US coverage question. GeoBlue's prices include US coverage; Cigna's base prices do not.
+  </p>
+  <p>
+    The table below shows three price points: GeoBlue (with US included), Cigna without US coverage, and Cigna with the US add-on. For American expats, the relevant comparison is usually the first and third columns.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
+  <h3>Understanding the Price Difference</h3>
   <p>
-    <strong>Notes on pricing:</strong>
-  </p>
-  <ul>
-    <li>GeoBlue is often more cost-effective when US coverage is essential</li>
-    <li>Cigna without US coverage is cheaper, but that defeats the purpose for most US expats</li>
-    <li>Both offer high-deductible options to reduce premiums</li>
-  </ul>
-
-  <CTABox
-    title="Get Your Actual Price"
-    description="Prices vary by age, location, and coverage choices."
-    buttonText="Get a Quote"
-    buttonHref="/best/us-expat-insurance"
-  />
-
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>US Network Access</h3>
-  <p>
-    <strong>GeoBlue</strong> gives you access to the Blue Cross Blue Shield network—over 90% of US doctors and hospitals. This is a significant advantage if you frequently return to the US.
+    When you compare apples to apples—GeoBlue vs. Cigna with US coverage—GeoBlue is typically 10-15% cheaper. This makes sense given their business models: GeoBlue is designed around US coverage, so they can price it efficiently. Cigna treats the US as an add-on to a global product, which creates overhead.
   </p>
   <p>
-    <strong>Cigna Global</strong> has a large US network but it's not as comprehensive as BCBS. You may have fewer in-network options in some areas.
+    However, if you genuinely don't need US coverage—perhaps you're an American who's permanently relocated with no plans to return—Cigna without the US add-on is noticeably cheaper than GeoBlue. You can't remove US coverage from GeoBlue plans, so you'd be paying for access you don't use.
   </p>
 
-  <h3>International Coverage</h3>
+  <h3>Factors That Affect Pricing</h3>
+  <p><strong>Age:</strong> Both providers price primarily on age, with premiums increasing significantly after 45 and again after 55. The age-based increases are comparable between providers.</p>
+  <p><strong>Location:</strong> Your country of residence affects pricing. Living in countries with expensive healthcare (Switzerland, Singapore) costs more than living in countries with affordable healthcare (Thailand, Mexico).</p>
+  <p><strong>Deductible:</strong> Higher deductibles reduce premiums significantly. Cigna offers more deductible flexibility ($0-$10,000) while GeoBlue's range is narrower ($0-$2,500).</p>
+  <p><strong>Coverage add-ons:</strong> Maternity, dental, and vision add-ons increase costs with both providers. These are similarly priced between GeoBlue and Cigna.</p>
+
+  <h2 id="plan-tiers">Plan Tiers Explained</h2>
   <p>
-    <strong>Cigna Global</strong> has the edge internationally with 1.5M+ providers worldwide and more direct-billing relationships outside the US.
-  </p>
-  <p>
-    <strong>GeoBlue</strong> provides solid international coverage but their network is smaller outside the US. You may need to pay and file for reimbursement more often.
+    Both providers offer multiple plan tiers. Understanding what each tier includes helps you choose the right balance of coverage and cost.
   </p>
 
-  <h3>Claims Process</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planTierColumns} rows={planTierRows} />
+  </div>
+
+  <h3>GeoBlue Plan Tiers</h3>
+  <p><strong>Voyager Choice:</strong> Entry-level coverage with $1M annual maximum. Covers inpatient and outpatient care, prescription drugs, and emergency services. Good for healthy individuals who want basic protection.</p>
+  <p><strong>Voyager Essential:</strong> Mid-range option with $2M maximum. Adds better preventive care coverage and slightly lower cost-sharing. Popular choice for families.</p>
+  <p><strong>Voyager Elite:</strong> Premium coverage with $5M maximum. Includes enhanced wellness benefits, lower deductibles, and additional coverage for things like alternative medicine.</p>
+  <p><strong>Traveler:</strong> Short-term option for trips rather than long-term expat life. Good for extended vacations or temporary assignments.</p>
+
+  <h3>Cigna Global Plan Tiers</h3>
+  <p><strong>Silver:</strong> Basic coverage with $1M maximum. Covers essential medical care but with higher cost-sharing. Best for cost-conscious individuals in good health.</p>
+  <p><strong>Gold:</strong> Enhanced coverage with $2M maximum. Better benefits, lower deductibles, and more comprehensive outpatient coverage. Most popular tier for expats.</p>
+  <p><strong>Platinum:</strong> Premium coverage with unlimited maximum. Top-tier benefits, lowest cost-sharing, and the most comprehensive coverage including enhanced mental health and wellness benefits.</p>
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
   <p>
-    Both offer online claims submission. Cigna's portal is generally more polished. GeoBlue's process is straightforward but less feature-rich.
+    To illustrate how these differences play out in practice, let's look at five common expat situations and which provider makes more sense for each.
+  </p>
+
+  <h3>Scenario 1: Frequent US Visitor</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> Sarah, 42, lives in Mexico City. Returns to the US 3-4 times per year to visit family in Texas. Has a cardiologist in Houston she's seen for 10 years.</p>
+    <p class="mt-4"><strong>Best Choice: GeoBlue</strong></p>
+    <p>Sarah's regular US visits and established relationship with a US specialist make GeoBlue the clear choice. Her Houston cardiologist almost certainly accepts BCBS, so she can continue seeing him seamlessly. She'll save money compared to Cigna with US coverage, and her care coordination will be simpler.</p>
+  </div>
+
+  <h3>Scenario 2: Truly Global Professional</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> Marcus, 35, is a consultant who splits time between London, Singapore, and Dubai. He visits the US once every 2-3 years for conferences. Has no ongoing US healthcare relationships.</p>
+    <p class="mt-4"><strong>Best Choice: Cigna Global (without US add-on)</strong></p>
+    <p>Marcus's lifestyle is truly global with minimal US ties. Cigna's international network serves London, Singapore, and Dubai exceptionally well with direct billing and local support. He can skip the US coverage add-on and save significantly. If he ever needs US care during a conference, he can pay out-of-pocket or add coverage temporarily.</p>
+  </div>
+
+  <h3>Scenario 3: Retiree Splitting Time</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> Robert and Linda, both 58, are retired and split their year between Costa Rica (7 months) and Florida (5 months). They have Medicare in the US but it doesn't cover them abroad.</p>
+    <p class="mt-4"><strong>Best Choice: GeoBlue</strong></p>
+    <p>With 5 months annually in the US, they need solid US coverage. GeoBlue integrates with their existing US healthcare seamlessly. They can keep their Florida doctors, and when something happens in Costa Rica, they're covered there too. The integrated US coverage saves them from managing multiple policies.</p>
+  </div>
+
+  <h3>Scenario 4: Digital Nomad</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> Alex, 29, works remotely and moves every few months—currently in Portugal, planning to try Bali next, then maybe Colombia. Visits the US occasionally for holidays.</p>
+    <p class="mt-4"><strong>Best Choice: Cigna Global (consider SafetyWing as alternative)</strong></p>
+    <p>Alex's location flexibility and budget consciousness make Cigna's modular approach appealing. He can start without US coverage and add it only if his travel patterns change. At 29 and healthy, he might also consider SafetyWing's nomad-focused plans for even lower costs, using either GeoBlue or Cigna as a "level up" option later.</p>
+  </div>
+
+  <h3>Scenario 5: Family with US Schools</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> The Chen family (parents 45 and 43, kids 15 and 12) live in Singapore. The kids attend an American school and will likely return to the US for college. The family visits the US every summer.</p>
+    <p class="mt-4"><strong>Best Choice: Cigna Global with US coverage (for now)</strong></p>
+    <p>Cigna's Singapore presence and strong mental health coverage (important for teenagers) make them a good fit for daily life. They need US coverage for summer visits, and Cigna's comprehensive coverage works well. However, once the kids start US college, GeoBlue for the students (or domestic plans) might make more sense, while parents stay on Cigna.</p>
+  </div>
+
+  <h2 id="customer-experience">Customer Experience</h2>
+  <p>
+    Both GeoBlue and Cigna Global have good reputations for customer service, but their approaches differ.
+  </p>
+
+  <h3>GeoBlue Customer Service</h3>
+  <p>
+    GeoBlue's customer service is US-based and operates primarily in English. They offer 24/7 phone support and have a reputation for knowledgeable, helpful representatives. The BCBS relationship means their US network support is particularly strong—they can help you find in-network providers and navigate the US healthcare system effectively.
+  </p>
+  <p>
+    However, for international support, GeoBlue is more limited. If you're in Thailand trying to find a hospital at midnight local time, you'll be calling a US call center during their daytime hours. This works, but it's not as seamless as having regional support.
+  </p>
+
+  <h3>Cigna Global Customer Service</h3>
+  <p>
+    Cigna's global infrastructure means regional support across multiple time zones. They have service centers in Europe, Asia, and the Middle East with multilingual staff. If you need help in Singapore at 2 AM, you can reach an Asian service center rather than a US center at 2 PM.
+  </p>
+  <p>
+    Cigna's digital experience is also more developed. Their mobile app allows claims submission, digital ID cards, provider search, and benefit tracking. GeoBlue has an app, but it's less feature-rich.
+  </p>
+
+  <h3>Claims Experience</h3>
+  <p>
+    Both providers pay claims reliably. In our research, we found no significant pattern of claim denials or delays with either. Average reimbursement time is 5-10 business days for straightforward claims.
+  </p>
+  <p>
+    The main difference is in direct billing. Cigna's broader international direct billing network means you'll file fewer reimbursement claims. GeoBlue members outside the US file claims more often but report the process as straightforward.
   </p>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose GeoBlue If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You return to the US frequently</li>
-        <li>BCBS network access is important</li>
-        <li>You want US coverage included by default</li>
-        <li>You have existing US doctors you want to keep</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-900 mb-3">Choose GeoBlue If You:</h3>
+      <ul class="space-y-2 text-blue-800">
+        <li>Return to the US frequently (3+ times per year)</li>
+        <li>Have established US doctors you want to keep</li>
+        <li>Value seamless BCBS network access</li>
+        <li>Want US coverage included without extra cost</li>
+        <li>Live in Latin America or the Caribbean</li>
+        <li>Prefer simpler pricing without add-ons</li>
+        <li>Don't need extensive mental health coverage</li>
       </ul>
     </div>
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Cigna Global If:</h3>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Cigna Global If You:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You spend most time outside the US</li>
-        <li>You want the largest global network</li>
-        <li>Direct billing abroad is a priority</li>
-        <li>You want more plan customization</li>
+        <li>Live or spend significant time outside the Americas</li>
+        <li>Value the largest global provider network</li>
+        <li>Need comprehensive mental health coverage</li>
+        <li>Want unlimited coverage maximums</li>
+        <li>Prefer direct billing over reimbursement</li>
+        <li>Can skip US coverage to save money</li>
+        <li>Want regional support in your time zone</li>
       </ul>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    For US expats who regularly return home, <strong>GeoBlue</strong> often makes more sense. The integrated BCBS network and included US coverage provide seamless care on both sides of the ocean.
+    For American expats who maintain ties to the US—visiting family, keeping US doctors, or potentially returning—<strong>GeoBlue</strong> is usually the better choice. The integrated BCBS network access is hard to match, the pricing is competitive when you factor in included US coverage, and the simplicity of one plan covering both your expat life and US visits reduces administrative headaches.
   </p>
   <p>
-    <strong>Cigna Global</strong> is the better choice if you're truly global—spending significant time in multiple countries and only occasionally visiting the US. Their international network is unmatched.
+    <strong>Cigna Global</strong> makes more sense if you're truly global. If you live in Europe or Asia, rarely visit the US, and value the convenience of direct billing at hospitals worldwide, Cigna's international infrastructure serves you better. The optional US coverage add-on means you're not paying for access you don't use—or you can add it selectively if your circumstances change.
   </p>
   <p>
-    If you're unsure, consider where you'll actually receive most of your care. If the answer is "mostly in the US," lean toward GeoBlue. If it's "mostly abroad," Cigna Global with the US add-on may serve you better.
+    The middle ground exists too. Some expats start with Cigna Global without US coverage (for the cost savings), then switch to GeoBlue if they find themselves visiting the US more often than expected. Others do the reverse—starting with GeoBlue for family ties, then moving to Cigna if they settle permanently abroad.
+  </p>
+  <p>
+    Whichever you choose, both are reputable providers that pay claims reliably and provide solid coverage. The "wrong" choice here isn't a disaster—it's just suboptimal for your specific situation. Either way, you'll have international health coverage from a respected insurer.
   </p>
 
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific needs."
-    buttonText="Compare Plans Now"
+    title="Ready to Compare?"
+    description="Get personalized quotes from both GeoBlue and Cigna Global to see actual pricing for your situation."
+    buttonText="Get Free Quotes"
     buttonHref="/best/us-expat-insurance"
     variant="highlight"
   />
 
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between GeoBlue and Cigna Global?</h3>
+      <p class="text-neutral-600">
+        Yes, you can switch at renewal time. However, any new pre-existing conditions developed while on your current plan may face waiting periods or exclusions with the new provider. If you have chronic conditions, this could limit your options.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Does GeoBlue work with Medicare?</h3>
+      <p class="text-neutral-600">
+        GeoBlue is independent of Medicare—it doesn't coordinate with Medicare or count as creditable coverage. However, many expats use GeoBlue alongside Medicare if they're over 65 and splitting time between the US and abroad. GeoBlue covers you internationally where Medicare doesn't apply.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">What happens if I move back to the US permanently?</h3>
+      <p class="text-neutral-600">
+        Both GeoBlue and Cigna Global are international plans and require you to live outside the US. If you move back permanently, you'll need to transition to domestic US coverage. GeoBlue may help facilitate a move to a domestic BCBS plan. Cigna can help transition to domestic Cigna options.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Are pre-existing conditions covered?</h3>
+      <p class="text-neutral-600">
+        Both providers use medical underwriting, meaning they review your health history before issuing a policy. Pre-existing conditions may be excluded, covered with limitations, or require a waiting period. The specifics depend on the condition and your overall health. Apply to both to see what each offers.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I add my US-based family members?</h3>
+      <p class="text-neutral-600">
+        Neither GeoBlue nor Cigna Global allows US-based family members who don't live abroad. These are expat plans requiring international residence. US-based family members need domestic coverage.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which has better maternity coverage?</h3>
+      <p class="text-neutral-600">
+        Both offer maternity as an optional add-on with 10-month waiting periods. Coverage levels are similar. Cigna's maternity benefits tend to have slightly higher limits in some regions. If maternity is a priority, compare the specific maternity riders from each provider for your situation.
+      </p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is based on publicly available information and is provided for educational purposes only. Coverage details, pricing, networks, and plan availability change frequently. We are not licensed insurance brokers. Always verify current information directly with GeoBlue and Cigna Global before making coverage decisions.
     </p>
   </div>
+
 </PageShell>
