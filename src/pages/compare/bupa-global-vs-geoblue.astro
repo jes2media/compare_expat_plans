@@ -5,10 +5,17 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'eligibility', text: 'Eligibility & Target Market', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'plan-options', text: 'Plan Options', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage', level: 2 },
+  { id: 'international-network', text: 'International Network', level: 2 },
+  { id: 'mental-health', text: 'Mental Health Coverage', level: 2 },
+  { id: 'claims-service', text: 'Claims & Customer Service', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
@@ -16,6 +23,8 @@ const relatedLinks = [
   { title: 'BUPA Global Review', href: '/providers/bupa-global' },
   { title: 'GeoBlue Review', href: '/providers/geoblue' },
   { title: 'Best US Expat Insurance', href: '/best/us-expat-insurance' },
+  { title: 'Best Premium Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Best for Mental Health', href: '/best/mental-health-coverage' },
 ];
 
 const coverageColumns = [
@@ -25,130 +34,468 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Inpatient Care', bupa: true, geoblue: true },
-  { feature: 'Outpatient Care', bupa: true, geoblue: true },
-  { feature: 'Mental Health', bupa: 'Better than average', geoblue: 'Moderate' },
-  { feature: 'Maternity', bupa: '10-12 mo wait', geoblue: '12 mo wait' },
-  { feature: 'Dental', bupa: 'Optional', geoblue: 'Optional' },
-  { feature: 'Telemedicine', bupa: true, geoblue: true },
-  { feature: 'Medical Evacuation', bupa: true, geoblue: true },
-  { feature: 'US Coverage', bupa: 'Add-on', geoblue: 'Included (BCBS network)' },
-  { feature: 'Non-US Citizens', bupa: 'Yes', geoblue: 'Limited' },
+  { feature: 'Available To', bupa: 'All nationalities', geoblue: 'Primarily US citizens' },
+  { feature: 'Maximum Coverage', bupa: 'Unlimited', geoblue: '$1M - $5M' },
+  { feature: 'Inpatient Hospital', bupa: '✓ All plans', geoblue: '✓ All plans' },
+  { feature: 'Outpatient Care', bupa: '✓ All plans', geoblue: '✓ Choice/Excel' },
+  { feature: 'Mental Health', bupa: '✓ Full parity', geoblue: '✓ Choice/Excel (limited)' },
+  { feature: 'Maternity', bupa: '✓ 10-12 month wait', geoblue: '✓ Excel (12 month wait)' },
+  { feature: 'Preventive Care', bupa: '✓ Health+ tier', geoblue: '✓ Excel' },
+  { feature: 'Dental/Vision', bupa: 'Optional add-on', geoblue: 'Optional add-on' },
+  { feature: 'Medical Evacuation', bupa: 'Unlimited', geoblue: 'Up to $500K' },
+  { feature: 'Chronic Conditions', bupa: '✓ Full support', geoblue: '✓ Standard coverage' },
+  { feature: 'Pre-existing Conditions', bupa: 'Full underwriting', geoblue: '2-year lookback' },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'bupa', header: 'BUPA Global' },
   { key: 'geoblue', header: 'GeoBlue' },
 ];
 
+const planRows = [
+  { aspect: 'Plan Structure', bupa: 'Core + add-on modules', geoblue: 'Fixed tiers (Essential/Choice/Excel)' },
+  { aspect: 'Entry Level', bupa: 'Essentials (~$200-300/mo)', geoblue: 'Essential (~$180-250/mo)' },
+  { aspect: 'Mid Tier', bupa: 'Health+ (~$300-450/mo)', geoblue: 'Choice (~$250-350/mo)' },
+  { aspect: 'Top Tier', bupa: 'Elite+ (~$450-650/mo)', geoblue: 'Excel (~$350-480/mo)' },
+  { aspect: 'Deductible Options', bupa: '$0 to $10,000+', geoblue: '$0 to $5,000' },
+  { aspect: 'US Coverage', bupa: 'Optional add-on (+30-50%)', geoblue: 'Included in base price' },
+  { aspect: 'Customization', bupa: 'Add modules (dental, wellness, etc.)', geoblue: 'Fixed tier benefits' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'bupa_exus', header: 'BUPA (excl. US)' },
+  { key: 'bupa_us', header: 'BUPA (incl. US)' },
+  { key: 'geoblue', header: 'GeoBlue (incl. US)' },
+];
+
 const pricingRows = [
-  { age: '30', bupa: '$170-260/mo', geoblue: '$150-230/mo' },
-  { age: '40', bupa: '$230-350/mo', geoblue: '$200-310/mo' },
-  { age: '50', bupa: '$300-460/mo', geoblue: '$280-430/mo' },
-  { age: '60', bupa: '$450-680/mo', geoblue: '$400-620/mo' },
+  { profile: 'Age 30, healthy', bupa_exus: '~$180-260/mo', bupa_us: '~$270-400/mo', geoblue: '~$200-280/mo' },
+  { profile: 'Age 40, healthy', bupa_exus: '~$250-350/mo', bupa_us: '~$375-525/mo', geoblue: '~$280-380/mo' },
+  { profile: 'Age 50, healthy', bupa_exus: '~$350-480/mo', bupa_us: '~$525-720/mo', geoblue: '~$400-520/mo' },
+  { profile: 'Age 60, healthy', bupa_exus: '~$500-700/mo', bupa_us: '~$750-1,050/mo', geoblue: '~$580-750/mo' },
+  { profile: 'Couple, 40s', bupa_exus: '~$480-680/mo', bupa_us: '~$720-1,020/mo', geoblue: '~$540-740/mo' },
+  { profile: 'Family of 4', bupa_exus: '~$750-1,000/mo', bupa_us: '~$1,125-1,500/mo', geoblue: '~$850-1,100/mo' },
+];
+
+const mentalHealthColumns = [
+  { key: 'aspect', header: 'Mental Health Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'geoblue', header: 'GeoBlue' },
+];
+
+const mentalHealthRows = [
+  { aspect: 'Coverage Approach', bupa: 'Full parity with physical health', geoblue: 'Standard coverage (session limits)' },
+  { aspect: 'Annual Benefit Limit', bupa: 'No separate limit', geoblue: 'Varies by tier ($5K-$25K typical)' },
+  { aspect: 'Session Limits', bupa: 'None', geoblue: '30-60 sessions/year typical' },
+  { aspect: 'Inpatient Psychiatric', bupa: '✓ Fully covered', geoblue: '✓ Covered (day limits may apply)' },
+  { aspect: 'Outpatient Therapy', bupa: '✓ Fully covered', geoblue: '✓ Choice/Excel only' },
+  { aspect: 'Psychiatrist Visits', bupa: '✓ Fully covered', geoblue: '✓ Choice/Excel only' },
+  { aspect: 'Pre-existing Mental Health', bupa: 'May cover after underwriting', geoblue: 'Typically excluded' },
+  { aspect: 'Telehealth Therapy', bupa: '✓ Available', geoblue: '✓ Available' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'geoblue', header: 'GeoBlue' },
+];
+
+const networkRows = [
+  { aspect: 'Global Provider Count', bupa: '1.2M+ providers', geoblue: '1.7M+ international' },
+  { aspect: 'Strongest Regions', bupa: 'Europe, Middle East, Asia-Pacific', geoblue: 'Americas, US network' },
+  { aspect: 'Direct Billing', bupa: 'Extensive worldwide', geoblue: 'Strong in US, variable abroad' },
+  { aspect: 'Provider Finder', bupa: 'Online portal + app', geoblue: 'Award-winning mobile app' },
+  { aspect: 'Hospital Access', bupa: 'Premium private hospitals', geoblue: 'Network hospitals' },
+  { aspect: 'Evacuation Coordination', bupa: 'In-house team', geoblue: 'Partner network' },
 ];
 ---
 
 <PageShell
-  title="BUPA Global vs GeoBlue"
-  description="Compare BUPA Global and GeoBlue international health insurance. Premium service vs BCBS network access for expats."
+  title="BUPA Global vs GeoBlue: Complete 2025 Comparison"
+  description="BUPA Global vs GeoBlue compared in depth. UK premium service vs US BCBS network—which international health insurance fits your nationality and needs?"
   headline="BUPA Global vs GeoBlue"
-  subheadline="UK premium insurer vs BCBS-affiliated US specialist. Different strengths for different expats."
+  subheadline="UK premium insurer vs American BCBS specialist. Different target markets, different strengths, very different US coverage approaches."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
+
+  <!-- Quick Decision Guide - CRO: Helps users self-select quickly -->
+  <div class="bg-gradient-to-r from-primary-50 to-neutral-50 border border-primary-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">⚡ Quick Decision Guide</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white rounded p-4 border border-primary-100">
+        <p class="font-medium text-primary-900 mb-2">Choose BUPA if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You're not a US citizen</li>
+          <li>• Mental health coverage is priority</li>
+          <li>• You value premium service</li>
+          <li>• You don't need regular US care</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded p-4 border border-neutral-200">
+        <p class="font-medium text-neutral-900 mb-2">Choose GeoBlue if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You're a US citizen</li>
+          <li>• You want BCBS network access</li>
+          <li>• You visit the US regularly</li>
+          <li>• Budget-conscious with US needs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <p>
-    Bupa Global and GeoBlue are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
-  </p>
-  <p>
-    Bupa Global is a UK-based insurer with a strong reputation in international health coverage. Their main comprehensive coverage and a solid reputation for claims handling. They're particularly popular among expats who want reliable coverage from an established brand, with mid-to-premium range with good value for the coverage provided.
-  </p>
-  <p>
-    GeoBlue is a Blue Cross Blue Shield company focused on international health coverage. They're known for their connection to the Blue Cross Blue Shield network and strong US ties. They tend to attract American expats who want continuity with US healthcare brands, offering mid-range with good options for short and long-term coverage.
-  </p>
-  <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    BUPA Global and GeoBlue serve fundamentally different markets. BUPA is a UK-headquartered premium insurer available to anyone worldwide, known for exceptional service and mental health coverage. GeoBlue is Blue Cross Blue Shield's international arm, designed specifically for US citizens who need seamless coverage between the US and abroad.
   </p>
 
+  <p>
+    <strong>BUPA Global</strong> is part of the BUPA Group, a UK health company with 80+ years of history. They're known for premium service, comprehensive coverage, and industry-leading mental health benefits. BUPA accepts members of any nationality and has particularly strong networks in Europe, the Middle East, and Asia-Pacific. Their approach is "full service"—you pay premium prices for premium coverage and service.
+  </p>
+
+  <p>
+    <strong>GeoBlue</strong> is Blue Cross Blue Shield's answer to international health insurance. They leverage the massive BCBS US network (the largest in America) to provide Americans abroad with seamless coverage that works both internationally and when visiting home. GeoBlue is primarily designed for US citizens—non-Americans have limited eligibility.
+  </p>
+
+  <p>
+    This comparison matters most if you're American deciding between BUPA's premium service and GeoBlue's US network integration. For non-Americans, BUPA is usually the clear choice since GeoBlue may not even be available.
+  </p>
+
+  <!-- At-a-glance boxes with trust signals - CRO: Builds credibility -->
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Available to all nationalities</li>
-        <li>Premium service and support</li>
-        <li>Best-in-class mental health</li>
-        <li>Strong worldwide network</li>
+        <li><strong>Parent Company:</strong> BUPA Group (UK)</li>
+        <li><strong>Founded:</strong> 1947 (global division later)</li>
+        <li><strong>Available To:</strong> All nationalities</li>
+        <li><strong>Coverage Limit:</strong> Unlimited</li>
+        <li><strong>Best For:</strong> Non-US citizens, mental health priority</li>
+        <li><strong>Reputation:</strong> Premium service, best-in-class mental health</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Designed for US citizens</li>
-        <li>BCBS network access in US</li>
-        <li>Seamless US-abroad coverage</li>
-        <li>US-based customer service</li>
+        <li><strong>Parent Company:</strong> Blue Cross Blue Shield</li>
+        <li><strong>Founded:</strong> 1997</li>
+        <li><strong>Available To:</strong> Primarily US citizens</li>
+        <li><strong>Coverage Limit:</strong> $1M - $5M</li>
+        <li><strong>Best For:</strong> US citizens, frequent US visits</li>
+        <li><strong>Network:</strong> BCBS (largest US network)</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="eligibility">Eligibility & Target Market</h2>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-2">🚨 Critical: Check Eligibility First</h3>
+    <p class="text-amber-800">
+      <strong>GeoBlue is primarily for US citizens.</strong> Non-US citizens may have very limited eligibility for GeoBlue Voyager plans. If you're not American, BUPA Global (or another international insurer) is likely your only option between these two.
+    </p>
+  </div>
+
+  <h3>BUPA Global Eligibility</h3>
+  <ul>
+    <li><strong>Nationality:</strong> Any nationality accepted</li>
+    <li><strong>Residence:</strong> Must live outside your home country (expat requirement)</li>
+    <li><strong>Age:</strong> Typically 18-74 for new applications (varies by plan)</li>
+    <li><strong>Pre-existing conditions:</strong> Full medical underwriting (disclosure required)</li>
+  </ul>
+
+  <h3>GeoBlue Eligibility</h3>
+  <ul>
+    <li><strong>Nationality:</strong> US citizens primarily; limited options for permanent residents</li>
+    <li><strong>Residence:</strong> Living abroad (Voyager) or traveling (Trekker)</li>
+    <li><strong>Age:</strong> Typically up to 84 for new applications</li>
+    <li><strong>Pre-existing conditions:</strong> 2-year lookback period, exclusions apply</li>
+  </ul>
+
+  <p>
+    If you're a non-US citizen considering GeoBlue, verify eligibility before proceeding. Most non-Americans will find BUPA, Cigna, or Allianz are better fits.
+  </p>
+
   <CTABox
-    title="Compare Both Providers"
-    description="Get personalized quotes based on your situation."
+    title="Confirm Your Eligibility"
+    description="Get quotes to verify which plans you qualify for based on your nationality and situation."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    Both provide comprehensive international coverage. BUPA offers more globally, while GeoBlue is optimized for Americans.
+    Both providers offer comprehensive international coverage, but with different strengths. BUPA excels in mental health and chronic condition support; GeoBlue excels in US network integration.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>Key differences:</strong></p>
+  <h3>Key Coverage Differences</h3>
+
+  <p><strong>Coverage Limits:</strong></p>
   <ul>
-    <li>GeoBlue is primarily for US citizens; BUPA accepts all nationalities</li>
-    <li>GeoBlue includes BCBS network access; BUPA charges extra for US coverage</li>
-    <li>BUPA has superior mental health coverage and chronic condition support</li>
+    <li><strong>BUPA:</strong> Unlimited coverage on most plans—no cap on claims</li>
+    <li><strong>GeoBlue:</strong> $1M to $5M depending on plan tier</li>
+  </ul>
+  <p>
+    BUPA's unlimited coverage provides extra peace of mind for catastrophic situations. For most people, GeoBlue's $5M limit is adequate, but BUPA wins for those who want no ceiling.
+  </p>
+
+  <p><strong>Mental Health (Major Difference):</strong></p>
+  <ul>
+    <li><strong>BUPA:</strong> Full parity with physical health—no separate limits, no session caps</li>
+    <li><strong>GeoBlue:</strong> Covered on Choice/Excel tiers, but with session limits and annual caps</li>
+  </ul>
+  <p>
+    If mental health coverage matters, BUPA is substantially better. See the dedicated mental health section below.
+  </p>
+
+  <p><strong>Medical Evacuation:</strong></p>
+  <ul>
+    <li><strong>BUPA:</strong> Unlimited evacuation and repatriation coverage</li>
+    <li><strong>GeoBlue:</strong> Up to $500,000</li>
+  </ul>
+  <p>
+    Both limits are adequate for most situations, but BUPA's unlimited is better for remote locations where evacuation costs can be extreme.
+  </p>
+
+  <h2 id="plan-options">Plan Options</h2>
+
+  <p>
+    BUPA offers modular customization; GeoBlue uses straightforward fixed tiers.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>BUPA Global Plans</h3>
+  <p><strong>Core Plans:</strong></p>
+  <ul>
+    <li><strong>Essentials:</strong> Hospital and day-patient care, cancer treatment</li>
+    <li><strong>Health+:</strong> Adds outpatient, therapy, mental health, wellness</li>
+    <li><strong>Elite+:</strong> Comprehensive with vision, dental options, enhanced limits</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <p><strong>Add-on Modules:</strong></p>
+  <ul>
+    <li>US coverage (adds 30-50% to premium)</li>
+    <li>Dental and vision</li>
+    <li>Wellness and preventive care</li>
+    <li>Maternity</li>
+  </ul>
+
+  <h3>GeoBlue Plans</h3>
+  <p><strong>Voyager Series (Long-term expats):</strong></p>
+  <ul>
+    <li><strong>Essential:</strong> Inpatient only, budget option, no outpatient</li>
+    <li><strong>Choice:</strong> Adds outpatient, mental health, most popular tier</li>
+    <li><strong>Excel:</strong> Comprehensive including maternity and wellness</li>
+  </ul>
+
+  <p><strong>Key Difference:</strong> GeoBlue includes US coverage in all plans at no extra cost. BUPA requires a paid add-on for US coverage.
+  </p>
+
+  <h2 id="pricing">Pricing Breakdown</h2>
+
   <p>
-    GeoBlue is often slightly cheaper, especially considering US coverage is included. BUPA's premium pricing reflects its service quality.
+    GeoBlue is notably cheaper for Americans who need US coverage. BUPA's prices are premium, especially when US coverage is added.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Pricing notes:</strong></p>
+  <p class="text-sm text-neutral-600 italic">
+    *Estimates based on 2024-2025 quotes for mid-tier plans. Actual prices vary based on health history, exact location, and plan customization.
+  </p>
+
+  <h3>The US Coverage Cost Difference</h3>
+  <p>
+    This is the critical pricing factor for Americans:
+  </p>
   <ul>
-    <li>GeoBlue prices include US coverage via BCBS</li>
-    <li>BUPA prices exclude US; add 30-40% for US inclusion</li>
-    <li>With US coverage added, BUPA is notably more expensive</li>
+    <li><strong>GeoBlue:</strong> US coverage included in base price</li>
+    <li><strong>BUPA:</strong> US coverage adds 30-50% to premiums</li>
   </ul>
 
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>Provider Networks</h3>
   <p>
-    <strong>BUPA Global</strong> has extensive worldwide direct billing. Strong in Europe, Middle East, and Asia-Pacific.
+    For a 40-year-old American who needs US coverage:
   </p>
+  <ul>
+    <li>BUPA with US coverage: ~$375-525/month</li>
+    <li>GeoBlue with US coverage: ~$280-380/month</li>
+    <li>Difference: ~$95-145/month ($1,140-1,740/year)</li>
+  </ul>
+
   <p>
-    <strong>GeoBlue</strong> provides access to 1.7+ million BCBS providers in the US plus international networks abroad.
+    Over several years, this difference is substantial. Americans who need regular US healthcare access save significantly with GeoBlue.
   </p>
 
-  <h3>Customer Service</h3>
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-blue-900 mb-2">When BUPA's Premium Is Worth It</h3>
+    <ul class="text-blue-800 space-y-1">
+      <li><strong>Mental health priority:</strong> BUPA's unlimited mental health coverage justifies the premium</li>
+      <li><strong>No US needs:</strong> BUPA without US coverage is competitively priced</li>
+      <li><strong>Premium service matters:</strong> BUPA's service quality is consistently rated higher</li>
+      <li><strong>Non-US citizen:</strong> GeoBlue isn't an option anyway</li>
+    </ul>
+  </div>
+
+  <!-- CTA after pricing - CRO: Capture users ready to compare costs -->
+  <CTABox
+    title="Get Your Actual Price"
+    description="Pricing varies significantly. Get personalized quotes for your age and coverage needs."
+    buttonText="Get Free Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <h2 id="us-coverage">US Coverage</h2>
+
   <p>
-    BUPA is renowned for service quality with dedicated care teams. GeoBlue offers solid US-based support familiar to Americans.
+    This is where GeoBlue has a significant structural advantage for Americans.
+  </p>
+
+  <h3>GeoBlue: Built-In US Network</h3>
+  <p>
+    GeoBlue provides access to the Blue Cross Blue Shield network—the largest in the US:
+  </p>
+  <ul>
+    <li><strong>96% of US hospitals</strong> are in-network</li>
+    <li><strong>90%+ of doctors</strong> accept BCBS</li>
+    <li><strong>Direct billing:</strong> Show your card, no upfront payment at network providers</li>
+    <li><strong>Prescription coverage:</strong> Fill scripts at US pharmacies</li>
+    <li><strong>No premium increase:</strong> US coverage is included in base pricing</li>
+  </ul>
+
+  <p>
+    For Americans who visit home regularly, this integration is valuable. Walk into any BCBS-accepting facility and use your coverage exactly as you would with domestic insurance.
+  </p>
+
+  <h3>BUPA: US as Add-on</h3>
+  <p>
+    BUPA offers US coverage, but it works differently:
+  </p>
+  <ul>
+    <li><strong>Add-on required:</strong> Adds 30-50% to your premium</li>
+    <li><strong>Smaller US network:</strong> Not as extensive as BCBS</li>
+    <li><strong>Reimbursement common:</strong> May need to pay upfront at some US providers</li>
+    <li><strong>Good for occasional use:</strong> Works for emergency visits, not regular care</li>
+  </ul>
+
+  <p>
+    BUPA's US coverage is adequate for Americans who rarely visit home. But for those who return regularly or maintain US doctor relationships, GeoBlue's BCBS integration is more practical.
+  </p>
+
+  <h2 id="international-network">International Network</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>BUPA's International Strength</h3>
+  <p>
+    BUPA has extensive networks in:
+  </p>
+  <ul>
+    <li><strong>Europe:</strong> Strong UK, Germany, Spain, France coverage</li>
+    <li><strong>Middle East:</strong> Excellent UAE, Saudi Arabia, Qatar networks</li>
+    <li><strong>Asia-Pacific:</strong> Good coverage in Singapore, Hong Kong, Australia, Thailand</li>
+  </ul>
+  <p>
+    BUPA's global network emphasizes premium private hospitals. Direct billing is extensive in major expat destinations.
+  </p>
+
+  <h3>GeoBlue's International Coverage</h3>
+  <p>
+    GeoBlue has 1.7 million+ international providers:
+  </p>
+  <ul>
+    <li><strong>Americas:</strong> Strong coverage in Latin America and Canada</li>
+    <li><strong>Europe:</strong> Good Western Europe coverage</li>
+    <li><strong>Asia:</strong> Adequate but not as deep as BUPA</li>
+  </ul>
+  <p>
+    GeoBlue's international network is solid but not as premium-focused as BUPA. Their strength is US integration, not global depth.
+  </p>
+
+  <h2 id="mental-health">Mental Health Coverage</h2>
+
+  <p>
+    This is where BUPA significantly outperforms GeoBlue—and most other international insurers.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={mentalHealthColumns} rows={mentalHealthRows} />
+  </div>
+
+  <h3>BUPA's Mental Health Philosophy</h3>
+  <p>
+    BUPA treats mental health with full parity to physical health:
+  </p>
+  <ul>
+    <li><strong>No separate limits:</strong> Mental health draws from your overall coverage, not a separate bucket</li>
+    <li><strong>No session caps:</strong> See a therapist as often as medically necessary</li>
+    <li><strong>Inpatient covered:</strong> Psychiatric hospitalization fully covered</li>
+    <li><strong>Pre-existing considered:</strong> May cover pre-existing mental health conditions after underwriting</li>
+  </ul>
+  <p>
+    This approach is rare in international insurance. Most insurers cap mental health at $5,000-$25,000 annually or limit sessions. BUPA doesn't.
+  </p>
+
+  <h3>GeoBlue's Mental Health Coverage</h3>
+  <p>
+    GeoBlue's mental health coverage is standard but limited:
+  </p>
+  <ul>
+    <li>Only available on Choice and Excel tiers (not Essential)</li>
+    <li>Annual limits typically $5,000-$25,000</li>
+    <li>Session limits (30-60 per year is common)</li>
+    <li>Pre-existing mental health conditions typically excluded</li>
+  </ul>
+  <p>
+    For someone needing regular therapy or managing a mental health condition, GeoBlue's limits may be insufficient. BUPA provides meaningfully better coverage in this area.
+  </p>
+
+  <h2 id="claims-service">Claims & Customer Service</h2>
+
+  <h3>BUPA Global Service</h3>
+  <p>
+    BUPA is known for premium customer service:
+  </p>
+  <ul>
+    <li><strong>Dedicated care teams:</strong> Personal case managers for complex situations</li>
+    <li><strong>24/7 support:</strong> Global phone and online assistance</li>
+    <li><strong>Claims processing:</strong> 5-10 business days typical</li>
+    <li><strong>Direct billing:</strong> Extensive relationships with hospitals worldwide</li>
+    <li><strong>Second opinion service:</strong> Access to specialist consultations</li>
+  </ul>
+  <p>
+    BUPA's service quality justifies part of their premium pricing. When things go wrong medically, having responsive, capable support matters.
+  </p>
+
+  <h3>GeoBlue Service</h3>
+  <p>
+    GeoBlue offers solid, US-style service:
+  </p>
+  <ul>
+    <li><strong>24/7 support:</strong> Phone, chat, and online portal</li>
+    <li><strong>Claims processing:</strong> 7-14 days typical</li>
+    <li><strong>Mobile app:</strong> Award-winning provider finder and claims submission</li>
+    <li><strong>US-based support:</strong> Familiar service style for Americans</li>
+    <li><strong>BCBS integration:</strong> US claims process very smoothly</li>
+  </ul>
+  <p>
+    GeoBlue's service is good but not premium. Their mobile app is genuinely excellent—possibly the best in the industry for finding providers abroad.
   </p>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
@@ -156,43 +503,208 @@ const pricingRows = [
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose BUPA Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're not a US citizen</li>
-        <li>Mental health coverage is important</li>
-        <li>You prioritize service quality</li>
-        <li>You don't need regular US care</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You're not a US citizen (GeoBlue may not be available)</li>
+        <li>✓ Mental health coverage is important to you</li>
+        <li>✓ You value premium service and support</li>
+        <li>✓ You don't need regular US healthcare access</li>
+        <li>✓ You want unlimited coverage limits</li>
+        <li>✓ You're based in Europe, Middle East, or Asia-Pacific</li>
+        <li>✓ You have chronic conditions requiring ongoing support</li>
+        <li>✓ Service quality matters more than cost</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose GeoBlue If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're a US citizen</li>
-        <li>You want BCBS network access</li>
-        <li>You visit the US regularly</li>
-        <li>You prefer US-style service</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You're a US citizen</li>
+        <li>✓ You want BCBS network access in the US</li>
+        <li>✓ You visit the US regularly</li>
+        <li>✓ Budget is a significant factor</li>
+        <li>✓ You prefer simple tier-based plans</li>
+        <li>✓ You like GeoBlue's mobile app experience</li>
+        <li>✓ Mental health coverage is not a priority</li>
+        <li>✓ You want US-style service and processes</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="verdict">Our Verdict</h2>
+  <!-- CTA after Who Should Choose - CRO: Users who've self-identified their needs -->
+  <CTABox
+    title="Know Which Fits Better?"
+    description="Get personalized quotes based on your nationality and needs."
+    buttonText="Get Your Quote"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+
   <p>
-    For US citizens, GeoBlue offers excellent value with integrated BCBS access—hard to beat for Americans who travel home regularly.
-  </p>
-  <p>
-    For non-US citizens, or Americans who prioritize mental health coverage and premium service over US network access, BUPA Global is worth the higher cost.
+    Let's see how these providers perform in situations expats commonly face.
   </p>
 
+  <h3>Scenario 1: The British Expat in Dubai</h3>
+  <p class="italic text-neutral-600">
+    James, 45, is relocating from London to Dubai for work. He has a history of anxiety and wants solid mental health coverage. He won't need US coverage.
+  </p>
+  <p>
+    <strong>Best choice: BUPA Global Health+</strong>
+  </p>
+  <p>
+    James isn't a US citizen, so GeoBlue isn't really an option. Even if it were, BUPA's mental health coverage is dramatically better for someone managing anxiety. BUPA's Middle East network is also strong for Dubai. Without needing US coverage, BUPA's pricing is reasonable.
+  </p>
+
+  <h3>Scenario 2: The American Retiree in Costa Rica</h3>
+  <p class="italic text-neutral-600">
+    Linda, 62, is retiring to Costa Rica. She visits family in Texas twice a year and wants to keep her US doctors for checkups.
+  </p>
+  <p>
+    <strong>Best choice: GeoBlue Voyager Choice or Excel</strong>
+  </p>
+  <p>
+    Linda needs seamless US coverage, and GeoBlue delivers that with BCBS network access. She can see her Texas doctors as always. The cost savings over BUPA (with US add-on) are significant at her age—potentially $200-300/month.
+  </p>
+
+  <h3>Scenario 3: The American with Depression in Portugal</h3>
+  <p class="italic text-neutral-600">
+    Michael, 38, manages depression with regular therapy and occasional medication adjustments. He's moving to Lisbon and wants comprehensive mental health coverage.
+  </p>
+  <p>
+    <strong>Best choice: BUPA Global Health+ (despite being American)</strong>
+  </p>
+  <p>
+    Even though GeoBlue would be cheaper, Michael's mental health needs make BUPA the better choice. GeoBlue's session limits and annual caps could leave him paying out-of-pocket for ongoing therapy. BUPA's unlimited mental health coverage provides security. If he rarely visits the US, the cost difference is manageable.
+  </p>
+
+  <h3>Scenario 4: The Canadian Couple in Thailand</h3>
+  <p class="italic text-neutral-600">
+    David and Sarah, both 50, are Canadian snowbirds spending winters in Thailand. They want solid coverage but don't need US access.
+  </p>
+  <p>
+    <strong>Best choice: BUPA Global Essentials or Health+</strong>
+  </p>
+  <p>
+    As Canadians, GeoBlue isn't available to them. BUPA without US coverage is competitively priced and has good Thailand networks. BUPA's Asia-Pacific presence makes them a natural fit.
+  </p>
+
+  <h3>Scenario 5: The American Digital Nomad in Europe</h3>
+  <p class="italic text-neutral-600">
+    Emily, 29, works remotely and moves between Spain, Portugal, and Italy. She visits parents in California once a year. She's healthy and budget-conscious.
+  </p>
+  <p>
+    <strong>Best choice: GeoBlue Voyager Essential or Choice</strong>
+  </p>
+  <p>
+    Emily's young, healthy, and cost-conscious. GeoBlue's included US coverage saves money over BUPA's add-on. She doesn't need extensive mental health coverage. GeoBlue's lower tiers work well for healthy young expats.
+  </p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can non-US citizens get GeoBlue?</h3>
+      <p class="text-neutral-600">
+        Very limited. GeoBlue Voyager is designed for US citizens and permanent residents. Some short-term travel products may be available to non-Americans, but long-term expat coverage is primarily for Americans. Non-US citizens should look at BUPA, Cigna, or Allianz instead.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is BUPA's mental health coverage really unlimited?</h3>
+      <p class="text-neutral-600">
+        Yes, on Health+ and Elite+ plans, mental health has full parity with physical health. There's no separate annual limit or session cap. Your overall coverage limit applies (which is often unlimited), not a mental health sub-limit. This is rare in international insurance and a genuine BUPA advantage.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How much does BUPA's US coverage add-on cost?</h3>
+      <p class="text-neutral-600">
+        Typically 30-50% on top of your base premium, varying by age and plan. For a 40-year-old on Health+, expect roughly $100-175/month additional. This makes BUPA notably more expensive than GeoBlue for Americans who need regular US coverage.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Which has better international hospital networks?</h3>
+      <p class="text-neutral-600">
+        BUPA generally has stronger international networks, particularly in Europe, Middle East, and Asia-Pacific. They emphasize relationships with premium private hospitals. GeoBlue's international network is solid but not as deep. GeoBlue's strength is US coverage, not global hospital relationships.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I switch between these providers later?</h3>
+      <p class="text-neutral-600">
+        Yes, but with caveats. Switching triggers new underwriting—any conditions you've developed become pre-existing for the new insurer. If you develop a chronic condition on GeoBlue, BUPA may exclude it. Generally, staying with your current insurer is better if you've had health issues since joining.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Which processes claims faster?</h3>
+      <p class="text-neutral-600">
+        BUPA typically processes claims in 5-10 days; GeoBlue takes 7-14 days. However, with direct billing (which both offer extensively), you rarely file claims for major expenses anyway. For US claims, GeoBlue's BCBS integration means most in-network claims never require member intervention.
+      </p>
+    </div>
+  </div>
+
+  <!-- Inline FAQ CTA - CRO: Capture users who read through FAQ -->
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-4 my-4">
+    <p class="text-primary-900 text-center">
+      <strong>Have more questions?</strong> Request quotes to speak with specialists who can clarify coverage for your situation.
+      <a href="/best/expat-health-insurance" class="text-primary-700 underline hover:text-primary-800 ml-1">Get Free Quotes →</a>
+    </p>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+
+  <p>
+    BUPA Global and GeoBlue serve different markets and excel at different things. The right choice depends heavily on your nationality and specific needs.
+  </p>
+
+  <p>
+    <strong>For US citizens who need regular US healthcare access:</strong> GeoBlue is the clear value choice. BCBS network integration, included US coverage, and competitive pricing make it hard to beat for Americans who travel home regularly.
+  </p>
+
+  <p>
+    <strong>For Americans who prioritize mental health coverage:</strong> BUPA may be worth the premium despite being more expensive. GeoBlue's mental health limits can leave you underinsured if you need ongoing therapy or psychiatric care. BUPA's unlimited mental health coverage provides genuine security.
+  </p>
+
+  <p>
+    <strong>For non-US citizens:</strong> BUPA is typically the choice since GeoBlue isn't really available. Fortunately, BUPA is an excellent international insurer with strong networks and service—you're not settling for second best.
+  </p>
+
+  <p>
+    The key question for Americans: How much does mental health coverage matter to you, and how often do you need US healthcare? If mental health is critical, BUPA's premium is justified. If you just need solid coverage with seamless US access, GeoBlue delivers at lower cost.
+  </p>
+
+  <!-- Split provider CTAs - CRO: Clear next step for each provider -->
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for BUPA?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for non-US citizens, mental health priority, and premium service seekers.</p>
+      <a href="/providers/bupa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View BUPA Options →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for GeoBlue?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for US citizens who want BCBS network access and competitive pricing.</p>
+      <a href="/providers/geoblue" class="inline-block w-full text-center bg-neutral-700 hover:bg-neutral-800 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get GeoBlue Quote →
+      </a>
+    </div>
+  </div>
+
+  <!-- Final CTA - CRO: Last chance conversion -->
   <CTABox
-    title="Ready to Decide?"
-    description="Get quotes based on your citizenship and needs."
-    buttonText="Compare Plans Now"
+    title="Compare Both Providers"
+    description="Get personalized quotes from BUPA Global and GeoBlue to see actual pricing for your nationality and needs."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> GeoBlue is primarily available to US citizens. Verify eligibility and coverage details with providers.
+      <strong>Disclaimer:</strong> GeoBlue is primarily available to US citizens. This comparison is for informational purposes only. Prices, coverage details, and eligibility requirements change frequently. Verify all information directly with providers before purchasing.
     </p>
   </div>
 </PageShell>

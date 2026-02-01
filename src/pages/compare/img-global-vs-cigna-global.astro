@@ -5,19 +5,25 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'company-background', text: 'Company Background', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'plan-options', text: 'Plan Tiers & Options', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'deductible-advantage', text: 'The Deductible Advantage', level: 2 },
+  { id: 'networks', text: 'Provider Networks', level: 2 },
+  { id: 'claims-service', text: 'Claims & Customer Service', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'IMG Global Review', href: '/providers/img-global' },
   { title: 'Cigna Global Review', href: '/providers/cigna-global' },
-  { title: 'Best Budget Insurance', href: '/best/budget-expat-insurance' },
+  { title: 'Best Budget Insurance', href: '/best/budget-expat-health-insurance' },
   { title: 'Mexico Insurance Guide', href: '/countries/mexico/insurance' },
-  { title: 'Portugal Insurance Guide', href: '/countries/portugal/insurance' },
+  { title: 'Thailand Insurance Guide', href: '/countries/thailand/insurance' },
 ];
 
 const coverageColumns = [
@@ -27,162 +33,451 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Max Coverage', img: 'Up to $8M', cigna: 'Unlimited' },
-  { feature: 'Inpatient Care', img: true, cigna: true },
-  { feature: 'Outpatient Care', img: true, cigna: true },
-  { feature: 'Mental Health', img: 'Limited', cigna: true },
-  { feature: 'Maternity', img: 'Optional', cigna: 'Optional' },
-  { feature: 'Dental', img: 'Optional', cigna: 'Optional' },
-  { feature: 'Deductible Options', img: '7 choices', cigna: '4 choices' },
-  { feature: 'Medical Evacuation', img: true, cigna: true },
-  { feature: 'Deductible Waiver Outside US', img: '50%', cigna: 'No' },
-  { feature: 'Travel Intelligence Alerts', img: true, cigna: false },
+  { feature: 'Maximum Coverage', img: 'Up to $8M', cigna: 'Up to Unlimited' },
+  { feature: 'Inpatient Hospital', img: '✓ All plans', cigna: '✓ All plans' },
+  { feature: 'Outpatient Care', img: '✓ All plans', cigna: '✓ Gold/Platinum' },
+  { feature: 'Mental Health', img: 'Limited ($50K-$100K)', cigna: '✓ Included (higher limits)' },
+  { feature: 'Maternity', img: 'Optional (10 mo wait)', cigna: 'Optional (12 mo wait)' },
+  { feature: 'Preventive Care', img: '✓ Higher tiers', cigna: '✓ Platinum' },
+  { feature: 'Dental/Vision', img: 'Optional add-on', cigna: 'Optional add-on' },
+  { feature: 'Medical Evacuation', img: '✓ Up to $1M', cigna: '✓ Included' },
+  { feature: 'Pre-existing Conditions', img: 'Full underwriting', cigna: 'Full underwriting' },
+  { feature: 'US Coverage', img: 'Optional add-on', cigna: 'Optional add-on' },
+  { feature: '50% Deductible Waiver (outside US)', img: '✓ Unique feature', cigna: '✗ Not offered' },
 ];
 
-const pricingColumns = [
-  { key: 'profile', header: 'Profile' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'img', header: 'IMG Global' },
   { key: 'cigna', header: 'Cigna Global' },
 ];
 
+const planRows = [
+  { aspect: 'Plan Structure', img: 'Tiered (Global Medical Insurance)', cigna: 'Tiered (Silver/Gold/Platinum)' },
+  { aspect: 'Entry Level', img: 'Silver (~$100-140/mo)', cigna: 'Silver (~$120-160/mo)' },
+  { aspect: 'Mid Tier', img: 'Gold (~$140-200/mo)', cigna: 'Gold (~$160-220/mo)' },
+  { aspect: 'Top Tier', img: 'Platinum (~$200-300/mo)', cigna: 'Platinum (~$220-320/mo)' },
+  { aspect: 'Deductible Options', img: '7 choices ($250-$10,000)', cigna: '4 choices ($0-$10,000)' },
+  { aspect: 'Area of Coverage', img: 'Worldwide or excluding US', cigna: 'Regional or worldwide' },
+  { aspect: 'Deductible Waiver', img: '50% waived outside US', cigna: 'No waiver' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'img', header: 'IMG Global (excl. US)' },
+  { key: 'cigna', header: 'Cigna Global (excl. US)' },
+  { key: 'savings', header: 'Annual Savings with IMG' },
+];
+
 const pricingRows = [
-  { profile: 'Single, Age 30', img: '$100-150/mo', cigna: '$140-180/mo' },
-  { profile: 'Single, Age 45', img: '$180-250/mo', cigna: '$220-280/mo' },
-  { profile: 'Couple, Age 35', img: '$200-300/mo', cigna: '$280-360/mo' },
-  { profile: 'Family of 4', img: '$350-500/mo', cigna: '$450-600/mo' },
+  { profile: 'Age 30, healthy', img: '~$100-140/mo', cigna: '~$140-180/mo', savings: '~$480-720' },
+  { profile: 'Age 40, healthy', img: '~$150-200/mo', cigna: '~$190-250/mo', savings: '~$480-600' },
+  { profile: 'Age 50, healthy', img: '~$220-300/mo', cigna: '~$280-370/mo', savings: '~$720-840' },
+  { profile: 'Age 60, healthy', img: '~$320-420/mo', cigna: '~$400-550/mo', savings: '~$960-1,560' },
+  { profile: 'Couple, 40s', img: '~$290-390/mo', cigna: '~$370-490/mo', savings: '~$960-1,200' },
+  { profile: 'Family of 4', img: '~$420-580/mo', cigna: '~$550-750/mo', savings: '~$1,560-2,040' },
+];
+
+const deductibleColumns = [
+  { key: 'deductible', header: 'Deductible' },
+  { key: 'premium_impact', header: 'Approx. Premium Impact' },
+  { key: 'outside_us', header: 'Effective Deductible Outside US (IMG)' },
+  { key: 'best_for', header: 'Best For' },
+];
+
+const deductibleRows = [
+  { deductible: '$250', premium_impact: 'Highest premiums', outside_us: '$125', best_for: 'Frequent healthcare users' },
+  { deductible: '$500', premium_impact: '-5% vs $250', outside_us: '$250', best_for: 'Moderate healthcare needs' },
+  { deductible: '$1,000', premium_impact: '-10% vs $250', outside_us: '$500', best_for: 'Occasional doctor visits' },
+  { deductible: '$2,500', premium_impact: '-20% vs $250', outside_us: '$1,250', best_for: 'Healthy, cost-conscious' },
+  { deductible: '$5,000', premium_impact: '-30% vs $250', outside_us: '$2,500', best_for: 'Major events only' },
+  { deductible: '$10,000', premium_impact: '-40% vs $250', outside_us: '$5,000', best_for: 'Catastrophic coverage only' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'cigna', header: 'Cigna Global' },
+];
+
+const networkRows = [
+  { aspect: 'Global Provider Count', img: 'Smaller network', cigna: '1.5M+ providers' },
+  { aspect: 'Direct Billing', img: 'Limited (major hospitals)', cigna: 'Extensive worldwide' },
+  { aspect: 'Payment Model', img: 'Often pay-then-claim', cigna: 'Often direct billing' },
+  { aspect: 'Provider Finder', img: 'Basic online directory', cigna: 'Mobile app + web portal' },
+  { aspect: 'Hospital Quality', img: 'Major hospitals covered', cigna: 'Wide range of facilities' },
+  { aspect: 'Pre-authorization', img: 'Required for planned care', cigna: 'Required >$1,000 non-emergency' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'cigna', header: 'Cigna Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Claims Submission', img: 'Online portal, app, email', cigna: 'Mobile app, portal, email' },
+  { aspect: 'Processing Time', img: '10-30 days (sometimes longer)', cigna: '5-10 business days' },
+  { aspect: 'Complex Claims', img: 'Can take weeks to months', cigna: 'Generally faster resolution' },
+  { aspect: 'Customer Service', img: '24/7 in 18 languages', cigna: '24/7 multilingual (highly rated)' },
+  { aspect: 'Trustpilot Rating', img: '4.6/5 (19,000+ reviews)', cigna: '4.0/5 (1,000+ reviews)' },
+  { aspect: 'Service Reputation', img: 'Good but variable', cigna: 'Consistently strong' },
 ];
 ---
 
 <PageShell
-  title="IMG Global vs Cigna Global"
-  description="Compare IMG Global and Cigna Global international health insurance. Budget-friendly vs premium: which is right for you?"
-  headline="IMG Global vs Cigna Global: Budget vs Premium Compared"
-  subheadline="Should you save money with IMG or pay more for Cigna's premium features? Here's how they compare."
+  title="IMG Global vs Cigna Global: Complete 2025 Comparison"
+  description="IMG Global vs Cigna Global compared in depth. Budget-friendly insurance vs premium coverage—see where to save money and when to pay more."
+  headline="IMG Global vs Cigna Global"
+  subheadline="The budget contender vs the premium standard. Save 20-30% with IMG or invest in Cigna's superior network and service—here's how to decide."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
+
+  <!-- Quick Decision Guide - CRO: Helps users self-select quickly -->
+  <div class="bg-gradient-to-r from-primary-50 to-neutral-50 border border-primary-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">⚡ Quick Decision Guide</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white rounded p-4 border border-primary-100">
+        <p class="font-medium text-primary-900 mb-2">Choose IMG if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• Budget is your top priority (save 20-30%)</li>
+          <li>• You're healthy and rarely need care</li>
+          <li>• You'll mostly be outside the US</li>
+          <li>• You can handle pay-then-claim</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded p-4 border border-neutral-200">
+        <p class="font-medium text-neutral-900 mb-2">Choose Cigna if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• Direct billing matters to you</li>
+          <li>• You have ongoing health needs</li>
+          <li>• Mental health coverage is important</li>
+          <li>• You value premium customer service</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <p>
-    IMG Global and Cigna Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
-  </p>
-  <p>
-    IMG Global is offering affordable international health insurance with flexible options. Their main budget-friendly plans that still provide solid coverage. They're particularly popular among budget-conscious expats and digital nomads, with lower premiums with higher deductible options available.
-  </p>
-  <p>
-    Cigna Global is known for its extensive global network and strong customer service. They're known for their massive provider network with direct billing at over 1.5 million healthcare facilities worldwide. They tend to attract families and American expats who prioritize convenience, offering premium pricing but many feel the convenience justifies the cost.
-  </p>
-  <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    IMG Global and Cigna Global represent two different approaches to international health insurance. IMG is the value leader—solid coverage at budget-friendly prices. Cigna is the premium standard—larger network, better service, higher cost. This comparison will help you decide whether the savings with IMG are worth the trade-offs.
   </p>
 
+  <p>
+    <strong>IMG Global</strong> (International Medical Group) has been providing international insurance for over 30 years. They've built a reputation for affordable coverage with flexible options. Their unique 50% deductible waiver for care outside the US is a genuine money-saver. With a 4.6/5 Trustpilot rating from 19,000+ reviews, customer satisfaction is strong—though reviews note that claims processing can be slow.
+  </p>
+
+  <p>
+    <strong>Cigna Global</strong> is often considered the benchmark in international health insurance. With 1.5 million+ providers worldwide and a reputation for excellent customer service, they're the premium choice. You pay more for Cigna—typically 20-30% more than IMG—but you get a larger network, faster claims, and more comprehensive coverage for things like mental health.
+  </p>
+
+  <p>
+    The core question: Is Cigna's premium experience worth 20-30% more per year? For some expats, definitely. For others, IMG's savings make more sense.
+  </p>
+
+  <!-- At-a-glance boxes with trust signals - CRO: Builds credibility -->
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global</h3>
       <ul class="space-y-2 text-neutral-600">
+        <li><strong>Founded:</strong> 1990 (Indianapolis, USA)</li>
         <li><strong>Trustpilot:</strong> 4.6/5 (19,000+ reviews)</li>
-        <li>Budget-friendly pricing</li>
-        <li>7 deductible options for flexibility</li>
-        <li>50% deductible waived outside US</li>
-        <li>30+ years in business</li>
+        <li><strong>Coverage Limit:</strong> Up to $8M</li>
+        <li><strong>Best For:</strong> Budget-conscious, healthy expats</li>
+        <li><strong>Unique Feature:</strong> 50% deductible waiver outside US</li>
+        <li><strong>Positioning:</strong> Value leader</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Cigna Global</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li><strong>Network:</strong> 1.5M+ providers</li>
-        <li>Unlimited coverage on top plans</li>
-        <li>24/7 multilingual customer service</li>
-        <li>Strong direct billing network</li>
-        <li>User-friendly app and portal</li>
+        <li><strong>Parent Company:</strong> Cigna Corporation (US)</li>
+        <li><strong>Network:</strong> 1.5M+ providers worldwide</li>
+        <li><strong>Coverage Limit:</strong> Up to Unlimited</li>
+        <li><strong>Best For:</strong> Service-focused, ongoing health needs</li>
+        <li><strong>Strength:</strong> Direct billing and customer service</li>
+        <li><strong>Positioning:</strong> Premium standard</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="company-background">Company Background</h2>
+
+  <h3>IMG Global: The Value Specialist</h3>
+  <p>
+    International Medical Group (IMG) was founded in 1990 in Indianapolis, Indiana. They've carved out a niche as the budget-friendly option in international health insurance:
+  </p>
+  <ul>
+    <li>Over 30 years serving expats, missionaries, students, and travelers</li>
+    <li>Known for competitive pricing and flexible deductible options</li>
+    <li>Strong customer reviews (4.6/5 on Trustpilot with 19,000+ ratings)</li>
+    <li>Unique features like the 50% deductible waiver and Travel Intelligence alerts</li>
+  </ul>
+  <p>
+    IMG isn't trying to be Cigna. They're intentionally positioned as the value option—solid coverage at lower prices, with trade-offs in network size and claims speed.
+  </p>
+
+  <h3>Cigna Global: The Premium Standard</h3>
+  <p>
+    Cigna's global health division is part of Cigna Corporation, one of America's largest health services companies. Their international operations are headquartered in Belgium:
+  </p>
+  <ul>
+    <li>1.5 million+ providers in 200+ countries</li>
+    <li>Consistently rated for excellent customer service</li>
+    <li>Strong direct billing network worldwide</li>
+    <li>Comprehensive coverage including robust mental health benefits</li>
+  </ul>
+  <p>
+    Cigna is often the default recommendation for expats who want the "best" insurance. Whether that premium experience is worth the cost depends on your priorities.
+  </p>
+
   <CTABox
     title="Compare Both Providers"
-    description="Get quotes from IMG Global and Cigna Global for your situation."
+    description="Get personalized quotes from IMG Global and Cigna Global to see actual pricing."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    Both providers cover the essentials, but there are meaningful differences in coverage limits, flexibility, and included features.
+    Both providers offer comprehensive international coverage. The differences are in limits, mental health, and unique features.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <h3>Key Differences</h3>
+  <h3>Key Coverage Differences</h3>
+
+  <p><strong>Coverage Limits:</strong></p>
   <ul>
-    <li><strong>Coverage limits:</strong> Cigna offers unlimited coverage on Platinum plans. IMG caps at $8 million (still very high).</li>
-    <li><strong>Deductible flexibility:</strong> IMG offers 7 deductible options ($250-$10,000) vs Cigna's 4 options.</li>
-    <li><strong>Deductible waiver:</strong> IMG waives 50% of your deductible for care outside the US—a unique money-saving feature.</li>
-    <li><strong>Mental health:</strong> Cigna provides more comprehensive mental health coverage.</li>
-    <li><strong>Travel alerts:</strong> IMG includes Travel Intelligence with location-specific safety alerts.</li>
+    <li><strong>IMG:</strong> Up to $8 million maximum coverage</li>
+    <li><strong>Cigna:</strong> Up to unlimited on Platinum plans</li>
+  </ul>
+  <p>
+    $8 million is extremely high for most situations—it would cover virtually any medical scenario. But if unlimited coverage provides peace of mind, Cigna offers it.
+  </p>
+
+  <p><strong>Mental Health (Significant Difference):</strong></p>
+  <ul>
+    <li><strong>IMG:</strong> Limited mental health coverage ($50,000-$100,000 depending on plan)</li>
+    <li><strong>Cigna:</strong> More comprehensive mental health benefits, higher limits</li>
+  </ul>
+  <p>
+    If mental health coverage is important to you, Cigna is meaningfully better. IMG's limits may be insufficient for ongoing therapy or psychiatric care.
+  </p>
+
+  <p><strong>50% Deductible Waiver (IMG Exclusive):</strong></p>
+  <ul>
+    <li><strong>IMG:</strong> 50% of your deductible is waived for care received outside the US</li>
+    <li><strong>Cigna:</strong> No equivalent feature</li>
+  </ul>
+  <p>
+    This unique IMG feature means a $2,500 deductible becomes effectively $1,250 for care in Mexico, Portugal, Thailand, or anywhere outside the US. For expats who rarely visit America, this is a meaningful benefit.
+  </p>
+
+  <p><strong>Travel Intelligence (IMG Exclusive):</strong></p>
+  <p>
+    IMG includes Travel Intelligence—location-specific safety alerts, travel advisories, and security information. A nice bonus for expats who travel frequently.
+  </p>
+
+  <h2 id="plan-options">Plan Tiers & Options</h2>
+
+  <p>
+    Both providers use tiered plans, but IMG offers significantly more deductible flexibility.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>IMG Global Plans</h3>
+  <p><strong>Global Medical Insurance (GMI):</strong></p>
+  <ul>
+    <li><strong>Silver:</strong> Comprehensive coverage, lower limits on some benefits</li>
+    <li><strong>Gold:</strong> Enhanced limits, better wellness coverage</li>
+    <li><strong>Platinum:</strong> Highest limits, most comprehensive</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <p><strong>Deductible Options (7 choices):</strong></p>
+  <ul>
+    <li>$250, $500, $1,000, $2,500, $5,000, $7,500, $10,000</li>
+  </ul>
   <p>
-    This is where IMG shines. Their premiums are typically 20-30% lower than Cigna for comparable coverage levels.
+    This range lets you fine-tune your premium vs out-of-pocket balance. High deductibles ($5,000+) dramatically reduce premiums for those who rarely need care.
+  </p>
+
+  <h3>Cigna Global Plans</h3>
+  <p><strong>International Health Insurance:</strong></p>
+  <ul>
+    <li><strong>Silver:</strong> Inpatient only—hospital, surgery, emergencies</li>
+    <li><strong>Gold:</strong> Adds outpatient—doctor visits, prescriptions, therapy</li>
+    <li><strong>Platinum:</strong> Comprehensive—wellness, preventive, enhanced limits</li>
+  </ul>
+
+  <p><strong>Deductible Options (4 choices):</strong></p>
+  <ul>
+    <li>$0, $2,500, $5,000, $10,000</li>
+  </ul>
+  <p>
+    Fewer options than IMG, but covers the main scenarios. Note: Cigna Silver is inpatient-only, while IMG Silver includes outpatient.
+  </p>
+
+  <h2 id="pricing">Pricing Breakdown</h2>
+
+  <p>
+    IMG is typically 20-30% cheaper than Cigna for comparable coverage. The savings are real and significant.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p>
-    <em>Prices based on Silver/Gold tier plans excluding US coverage. Actual quotes vary based on specific plan, deductible, and location.</em>
+  <p class="text-sm text-neutral-600 italic">
+    *Estimates based on 2024-2025 quotes for mid-tier plans excluding US coverage. Actual prices vary based on health history, exact location, and plan details.
   </p>
 
-  <h3>Annual Savings with IMG</h3>
+  <h3>What the Savings Mean</h3>
   <p>
-    For a 35-year-old individual, choosing IMG over Cigna could save $400-600 per year. For a family, savings could reach $1,200-1,800 annually.
+    For a family of four, choosing IMG over Cigna saves roughly $1,500-2,000 per year. Over five years abroad, that's $7,500-10,000 in premium savings. Whether that's worth the trade-offs depends on your situation.
   </p>
 
-  <h3>Factors Affecting Price</h3>
-  <ul>
-    <li><strong>Deductible choice:</strong> IMG's high-deductible options ($5,000-$10,000) offer the biggest savings</li>
-    <li><strong>Coverage area:</strong> Both charge much more for US coverage</li>
-    <li><strong>Payment frequency:</strong> IMG charges 20% more for monthly payments; pay annually to save</li>
-  </ul>
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-blue-900 mb-2">When IMG's Savings Matter Most</h3>
+    <ul class="text-blue-800 space-y-1">
+      <li><strong>Young and healthy:</strong> Lower chance of needing Cigna's better claims service</li>
+      <li><strong>Living outside the US:</strong> Benefit from 50% deductible waiver</li>
+      <li><strong>Budget-constrained:</strong> Premium savings can be significant over years</li>
+      <li><strong>Comfortable with reimbursement:</strong> Can handle paying upfront occasionally</li>
+    </ul>
+  </div>
 
+  <!-- CTA after pricing - CRO: Capture users comparing costs -->
   <CTABox
     title="Get Your Actual Price"
-    description="See real quotes based on your age, location, and coverage needs."
-    buttonText="Get a Quote"
+    description="Pricing varies by individual. See exact quotes for your age and coverage needs."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <h2 id="deductible-advantage">The Deductible Advantage</h2>
 
-  <h3>Provider Networks</h3>
   <p>
-    <strong>Cigna Global</strong> has a clear advantage with 1.5 million+ providers and strong direct billing arrangements worldwide. You're more likely to find in-network care and avoid paying upfront.
-  </p>
-  <p>
-    <strong>IMG Global</strong> has a smaller network but still covers major hospitals in most countries. You may need to pay and file for reimbursement more often.
+    IMG's deductible flexibility and 50% waiver for non-US care are genuine differentiators worth understanding in depth.
   </p>
 
-  <h3>Claims Process</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={deductibleColumns} rows={deductibleRows} />
+  </div>
+
+  <h3>How the 50% Waiver Works</h3>
   <p>
-    <strong>Cigna Global</strong> processes claims in 5-10 business days with an easy-to-use online portal. Direct billing reduces the need to file claims for major procedures.
+    If you choose a $5,000 deductible and receive care in Portugal:
   </p>
+  <ul>
+    <li>Your effective deductible is $2,500 (50% waived)</li>
+    <li>After paying $2,500 out-of-pocket, IMG covers the rest</li>
+    <li>The same care in the US would require the full $5,000 deductible</li>
+  </ul>
+
   <p>
-    <strong>IMG Global</strong> has excellent customer reviews (4.6/5), but claims can take longer—sometimes weeks to months for complex cases. Some customers report slow response times during the claims process.
+    For expats living outside the US who rarely visit America, this makes high-deductible plans even more attractive. A $10,000 deductible becomes $5,000 effective—affordable catastrophic coverage at minimal premium cost.
   </p>
 
-  <h3>Customer Service</h3>
+  <h3>Optimizing Your Deductible Choice</h3>
   <p>
-    <strong>Cigna Global</strong> offers 24/7 multilingual support with a reputation for responsive, helpful service.
+    <strong>High deductible ($5,000-$10,000):</strong> Best for healthy expats who want low premiums and catastrophic protection. With IMG's 50% waiver, your effective deductible is manageable.
   </p>
   <p>
-    <strong>IMG Global</strong> provides 24/7 support in 18 languages with in-house medical staff. Their website and quote process are highly rated, though live chat support receives mixed reviews.
+    <strong>Medium deductible ($1,000-$2,500):</strong> Balances premium cost with reasonable out-of-pocket exposure. Good for most people.
+  </p>
+  <p>
+    <strong>Low deductible ($250-$500):</strong> Best if you expect to use healthcare frequently. Premium is higher, but out-of-pocket is predictable.
+  </p>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-2">Cigna Doesn't Offer This</h3>
+    <p class="text-amber-800">
+      Cigna has no equivalent to IMG's 50% deductible waiver. With Cigna, a $5,000 deductible is $5,000 whether you're in Thailand or Texas. For expats who'll primarily receive care outside the US, IMG's waiver creates real value.
+    </p>
+  </div>
+
+  <h2 id="networks">Provider Networks</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Cigna's Network Advantage</h3>
+  <p>
+    Cigna's 1.5 million+ provider network is genuinely industry-leading:
+  </p>
+  <ul>
+    <li>Direct billing at hospitals worldwide—show your card, don't pay upfront</li>
+    <li>Mobile app to find nearby providers</li>
+    <li>Pre-authorization handled electronically</li>
+    <li>Consistent experience across countries</li>
+  </ul>
+  <p>
+    For someone with ongoing health needs who visits doctors frequently, Cigna's network makes life easier. Less paperwork, less out-of-pocket, less hassle.
+  </p>
+
+  <h3>IMG's Network Reality</h3>
+  <p>
+    IMG's network is smaller but functional:
+  </p>
+  <ul>
+    <li>Major hospitals in most countries are covered</li>
+    <li>Direct billing available at some facilities (not as extensive)</li>
+    <li>Often need to pay and file for reimbursement</li>
+    <li>Claims processing can take weeks</li>
+  </ul>
+  <p>
+    For healthy expats who rarely need care, IMG's network is adequate. When you do need major care, they'll cover it—you just might pay upfront and wait for reimbursement.
+  </p>
+
+  <h3>The Practical Difference</h3>
+  <p>
+    With Cigna, routine healthcare is seamless—walk in, get treated, walk out. With IMG, you might pay $200 for a doctor visit and wait 2-4 weeks for reimbursement. For some people, that's a minor inconvenience. For others (especially those with limited cash flow), it's a real problem.
+  </p>
+
+  <h2 id="claims-service">Claims & Customer Service</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>IMG's Claims Experience</h3>
+  <p>
+    IMG's Trustpilot rating (4.6/5) is actually higher than Cigna's, but the reviews reveal nuance:
+  </p>
+  <ul>
+    <li><strong>Positives:</strong> Generally cover what they say they'll cover, good value</li>
+    <li><strong>Negatives:</strong> Claims processing can be slow (weeks to months for complex cases)</li>
+    <li><strong>Mixed:</strong> Customer service quality varies by representative</li>
+  </ul>
+  <p>
+    If you file a straightforward claim, IMG processes it fine. Complex claims or disputes can drag on longer than with Cigna.
+  </p>
+
+  <h3>Cigna's Claims Experience</h3>
+  <p>
+    Cigna's service reputation is consistently strong:
+  </p>
+  <ul>
+    <li>Claims typically processed in 5-10 business days</li>
+    <li>Direct billing reduces the need to file claims</li>
+    <li>24/7 support with knowledgeable staff</li>
+    <li>Proactive communication during claims</li>
+  </ul>
+  <p>
+    When things go wrong medically, Cigna's support can make a real difference. This is part of what you pay for with their premium pricing.
   </p>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
@@ -190,50 +485,204 @@ const pricingRows = [
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose IMG Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Budget is your top priority</li>
-        <li>You want maximum deductible flexibility</li>
-        <li>You'll mainly get care outside the US</li>
-        <li>You're young and healthy</li>
-        <li>You can wait for slower claims processing</li>
-        <li>You value the 50% deductible waiver abroad</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ Budget is your top priority</li>
+        <li>✓ You're young and healthy</li>
+        <li>✓ You'll primarily be outside the US</li>
+        <li>✓ You can handle pay-then-claim model</li>
+        <li>✓ You want maximum deductible flexibility</li>
+        <li>✓ The 50% deductible waiver benefits you</li>
+        <li>✓ Mental health coverage isn't critical</li>
+        <li>✓ You can wait for slower claims processing</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Cigna Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Direct billing availability is important</li>
-        <li>You want a larger provider network</li>
-        <li>Mental health coverage is a priority</li>
-        <li>You prefer faster claims processing</li>
-        <li>You want premium customer service</li>
-        <li>You're willing to pay more for convenience</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ Direct billing is important to you</li>
+        <li>✓ You have ongoing healthcare needs</li>
+        <li>✓ Mental health coverage matters</li>
+        <li>✓ You want the largest provider network</li>
+        <li>✓ Fast claims processing is valuable</li>
+        <li>✓ Premium customer service is worth paying for</li>
+        <li>✓ Unlimited coverage provides peace of mind</li>
+        <li>✓ You're willing to pay 20-30% more</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="verdict">Our Verdict</h2>
+  <!-- CTA after Who Should Choose - CRO: Users who've self-identified -->
+  <CTABox
+    title="Know Which Fits Better?"
+    description="Get personalized quotes to see actual pricing for your situation."
+    buttonText="Get Your Quote"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+
   <p>
-    <strong>For budget-conscious expats,</strong> IMG Global offers excellent value. You get solid coverage at significantly lower prices, plus unique benefits like the 50% deductible waiver and 7 deductible choices. Their 4.6/5 Trustpilot rating (from 19,000+ reviews) shows customers are generally satisfied.
-  </p>
-  <p>
-    <strong>For expats who prioritize service and convenience,</strong> Cigna Global is worth the premium. Their larger network, faster claims, and stronger direct billing make the insurance experience smoother—especially valuable if you have ongoing health needs.
-  </p>
-  <p>
-    <strong>Our recommendation:</strong> If you're healthy, cost-conscious, and don't mind occasional out-of-pocket payments while waiting for reimbursement, IMG is an excellent choice. If you want the peace of mind that comes with a larger network and faster claims, invest in Cigna.
+    Let's see how these providers perform in situations expats commonly face.
   </p>
 
+  <h3>Scenario 1: The Healthy Digital Nomad</h3>
+  <p class="italic text-neutral-600">
+    Alex, 29, works remotely from Portugal, Thailand, and Mexico. He's very healthy, rarely sees doctors, and is budget-conscious. He just wants coverage in case something serious happens.
+  </p>
+  <p>
+    <strong>Best choice: IMG Global with $5,000 deductible</strong>
+  </p>
+  <p>
+    Alex is the ideal IMG customer. Young, healthy, low healthcare usage, living outside the US. The $5,000 deductible becomes $2,500 effective with IMG's waiver. At his age, he might pay $80-100/month for solid catastrophic coverage. If he rarely files claims, IMG's slower processing doesn't matter. The $40-60/month savings over Cigna is $500-700/year.
+  </p>
+
+  <h3>Scenario 2: The Expat with Ongoing Health Issues</h3>
+  <p class="italic text-neutral-600">
+    Maria, 52, has managed type 2 diabetes and sees doctors regularly. She's moving to Spain and needs insurance that handles ongoing care smoothly.
+  </p>
+  <p>
+    <strong>Best choice: Cigna Global Gold</strong>
+  </p>
+  <p>
+    Maria will be filing claims regularly. Cigna's direct billing network means she can see endocrinologists and specialists without paying upfront each time. Their faster claims processing and better customer service matter when you're managing a chronic condition. The premium is worth it for Maria.
+  </p>
+
+  <h3>Scenario 3: The Budget-Conscious Family</h3>
+  <p class="italic text-neutral-600">
+    The Chens (parents 38 and 36, kids 7 and 4) are relocating from the US to Costa Rica. Both parents are healthy. They need coverage but want to minimize costs—they're not wealthy.
+  </p>
+  <p>
+    <strong>Best choice: IMG Global Gold</strong>
+  </p>
+  <p>
+    A family of four shows IMG's savings clearly: potentially $1,500-2,000/year less than Cigna. The kids will need occasional pediatric care, but most of that is routine—IMG covers it, just with possible reimbursement delays. The 50% deductible waiver helps since they'll be in Costa Rica. Over their kids' childhoods abroad, the savings could reach $15,000+.
+  </p>
+
+  <h3>Scenario 4: The Executive Who Values Convenience</h3>
+  <p class="italic text-neutral-600">
+    David, 45, is a VP relocating to Singapore. His employer pays for insurance. He travels constantly and wants healthcare that "just works" without thinking about claims and reimbursements.
+  </p>
+  <p>
+    <strong>Best choice: Cigna Global Platinum</strong>
+  </p>
+  <p>
+    David isn't paying the premium himself, and even if he were, his time is valuable. Cigna's direct billing everywhere, fast claims, and premium service mean he can focus on work, not paperwork. The higher cost is justified by the convenience.
+  </p>
+
+  <h3>Scenario 5: The Mental Health-Conscious Expat</h3>
+  <p class="italic text-neutral-600">
+    Sarah, 34, manages anxiety with regular therapy sessions. She's moving to Portugal and wants to continue her mental health care abroad.
+  </p>
+  <p>
+    <strong>Best choice: Cigna Global Gold</strong>
+  </p>
+  <p>
+    IMG's mental health limits ($50,000-$100,000) might be fine, but Cigna's more comprehensive coverage provides security for ongoing therapy. If Sarah sees a therapist weekly, Cigna's better mental health benefits and direct billing for mental health providers make the premium worthwhile.
+  </p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is IMG really 20-30% cheaper, or are there hidden costs?</h3>
+      <p class="text-neutral-600">
+        IMG's premiums are genuinely lower. The trade-offs are network size (more pay-then-claim situations) and claims processing speed. There are no hidden costs, but you may experience more friction when using the insurance. For some people, that friction isn't worth the savings.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How does the 50% deductible waiver actually work?</h3>
+      <p class="text-neutral-600">
+        When you receive care outside the US, your deductible is automatically cut in half. A $2,500 deductible becomes $1,250 for that claim. This applies per policy year, not per claim—once you've hit your effective deductible (half the stated amount outside US), you're covered at 100% for the rest of the year.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is IMG's $8M coverage limit a concern?</h3>
+      <p class="text-neutral-600">
+        For 99.9% of medical situations, $8 million is more than enough. Even catastrophic cases rarely exceed that. Cigna's unlimited coverage provides psychological peace of mind, but practically speaking, $8M covers virtually anything. This shouldn't be a major decision factor.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How bad is IMG's claims processing really?</h3>
+      <p class="text-neutral-600">
+        For simple claims, IMG processes in 2-4 weeks typically. Complex claims (large amounts, unusual treatments, pre-existing condition questions) can take longer—sometimes months. If fast reimbursement matters to you or you have limited cash flow, this is a real consideration.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I switch from IMG to Cigna later if I'm not happy?</h3>
+      <p class="text-neutral-600">
+        Yes, but switching triggers new medical underwriting. Any conditions you've developed become pre-existing for Cigna. If you're still healthy, switching is straightforward. If you've had health issues, you might face exclusions or higher premiums.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Why is IMG's Trustpilot rating higher than Cigna's?</h3>
+      <p class="text-neutral-600">
+        IMG has more reviews (19,000+ vs 1,000+) and attracts generally satisfied budget-conscious customers. Cigna's reviews skew toward people with complex situations who may be more critical. Neither rating tells the full story—read actual reviews to understand the nuances.
+      </p>
+    </div>
+  </div>
+
+  <!-- Inline FAQ CTA - CRO: Capture users who read through FAQ -->
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-4 my-4">
+    <p class="text-primary-900 text-center">
+      <strong>Have more questions?</strong> Request quotes to speak with brokers who can clarify coverage details.
+      <a href="/best/expat-health-insurance" class="text-primary-700 underline hover:text-primary-800 ml-1">Get Free Quotes →</a>
+    </p>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+
+  <p>
+    IMG Global and Cigna Global represent a genuine value vs premium trade-off. Neither is objectively "better"—they serve different priorities.
+  </p>
+
+  <p>
+    <strong>Choose IMG Global</strong> if you're healthy, budget-conscious, and comfortable with occasional friction in the claims process. The 20-30% savings are real, and features like the 50% deductible waiver and 7 deductible options provide flexibility Cigna doesn't match. For young, healthy expats living outside the US, IMG offers excellent value.
+  </p>
+
+  <p>
+    <strong>Choose Cigna Global</strong> if you value convenience, have ongoing health needs, or prioritize mental health coverage. The larger network, faster claims, and better service are worth paying for if you'll actually use them. For families with kids, people with chronic conditions, or anyone who doesn't want to think about claims paperwork, Cigna delivers a smoother experience.
+  </p>
+
+  <p>
+    The decision often comes down to health status and cash flow. If you're healthy with comfortable savings (can handle paying $500+ and waiting for reimbursement), IMG's savings compound nicely over years. If you expect regular healthcare use or prefer seamless direct billing, Cigna's premium is justified.
+  </p>
+
+  <!-- Split provider CTAs - CRO: Clear next step for each provider -->
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for IMG?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for budget-conscious, healthy expats who want value and flexibility.</p>
+      <a href="/providers/img-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View IMG Options →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Cigna?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for those who prioritize service, network size, and convenience.</p>
+      <a href="/providers/cigna-global" class="inline-block w-full text-center bg-neutral-700 hover:bg-neutral-800 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get Cigna Quote →
+      </a>
+    </div>
+  </div>
+
+  <!-- Final CTA - CRO: Last chance conversion -->
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific needs."
-    buttonText="Compare Plans Now"
+    title="Compare Both Providers"
+    description="Get personalized quotes from IMG Global and Cigna Global to see actual pricing for your situation."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change frequently. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan availability change frequently. We are not insurance brokers or licensed advisors. Verify all information directly with IMG Global and Cigna Global before purchasing.
     </p>
   </div>
 </PageShell>
