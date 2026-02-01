@@ -1,6 +1,6 @@
 # Project Progress Log
 
-Last updated: January 30, 2026
+Last updated: February 1, 2026
 
 ---
 
@@ -19,6 +19,62 @@ Last updated: January 30, 2026
 ---
 
 ## Completed Milestones
+
+### February 1, 2026 - Long-Form Comparison Articles + CRO Template
+
+#### Long-Form Comparison Articles (7 total, ~4,000 words each)
+Expanded provider comparison pages to comprehensive long-form articles for SEO:
+
+**Completed articles:**
+1. `bupa-global-vs-cigna-global` - Premium vs network size comparison
+2. `cigna-global-vs-allianz-care` - Global network vs European value
+3. `safetywing-vs-img-global` - Budget/nomad-focused comparison
+4. `axa-global-vs-allianz-care` - European insurer comparison
+5. `cigna-global-vs-aetna-international` - US-focused providers, US coverage integration
+6. `axa-global-vs-bupa-global` - Value vs premium service, mental health focus
+7. `geoblue-vs-cigna-global` - US network access (BCBS) vs global network
+
+**Article structure (12 sections):**
+- Overview with Quick Decision Guide
+- Company Backgrounds
+- Coverage Comparison (with table)
+- Key Differentiator sections (2, customized per matchup)
+- Pricing Comparison (with table)
+- Plan Tiers Explained
+- Real-World Scenarios (5 personas)
+- Customer Experience
+- Who Should Choose Which
+- Our Verdict
+- FAQs (6 questions)
+
+#### CRO Optimizations Applied to GeoBlue vs Cigna
+Implemented conversion rate optimization based on analysis:
+
+**CRO elements added:**
+1. Quick Decision Guide box at top (reduces bounce for decisive readers)
+2. Trust signal badges (A+ BBB, 4.2★ Trustpilot) in "At a Glance" boxes
+3. 6 CTAs strategically placed throughout (was 3):
+   - After overview (highlighted)
+   - Mid-article after key sections
+   - After pricing with urgency messaging ("rates increase 5-8% annually")
+   - After real-world scenarios
+   - After verdict (highlighted)
+   - After FAQ (highlighted)
+4. Split provider CTAs in "Who Should Choose" section (direct links to each provider)
+5. Inline CTA in high-intent FAQ answer (pre-existing conditions)
+
+#### Longform Comparison Template Created
+Created reusable template at `templates/longform-comparison.astro`:
+- Configuration section at top for easy provider/page setup
+- All 12 TOC sections pre-structured
+- Comparison tables with placeholder data
+- All CRO elements built-in
+- Placeholder syntax: `{{PLACEHOLDER}}` for easy find-replace
+- Comments documenting CRO purpose of each section
+
+**Usage:** Copy template, replace `{{PLACEHOLDER}}` values, customize content.
+
+---
 
 ### January 30, 2026 - Programmatic Page Expansion
 

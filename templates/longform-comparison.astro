@@ -1,0 +1,460 @@
+---
+/**
+ * LONGFORM COMPARISON PAGE TEMPLATE
+ *
+ * CRO-optimized template for provider comparison articles (~4,000+ words)
+ *
+ * Key features:
+ * - Quick decision guide at top (reduces bounce)
+ * - Trust signals in "at a glance" boxes
+ * - 6 CTAs strategically placed throughout
+ * - Split provider CTAs in decision section
+ * - Urgency messaging on pricing CTA
+ * - Inline CTA in FAQ section
+ *
+ * Replace all {{PLACEHOLDER}} values with actual content.
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+// =============================================================================
+// CONFIGURATION - Update these for each comparison
+// =============================================================================
+
+const provider1 = {
+  name: '{{PROVIDER_1_NAME}}',
+  slug: '{{provider-1-slug}}',
+  tagline: '{{Provider 1 short description}}',
+  trustBadge: '{{A+ BBB Rating}}',  // or "4.2★ Trustpilot" etc.
+  parent: '{{Parent Company}}',
+  keyFeature: '{{Main selling point}}',
+  bestFor: '{{Target audience}}',
+};
+
+const provider2 = {
+  name: '{{PROVIDER_2_NAME}}',
+  slug: '{{provider-2-slug}}',
+  tagline: '{{Provider 2 short description}}',
+  trustBadge: '{{4.2★ Trustpilot}}',
+  parent: '{{Parent Company}}',
+  keyFeature: '{{Main selling point}}',
+  bestFor: '{{Target audience}}',
+};
+
+const pageConfig = {
+  // The key differentiator between these providers
+  coreDifference: '{{What is the main difference readers need to understand?}}',
+  // Quick decision criteria
+  chooseProvider1If: '{{one-line criteria for choosing provider 1}}',
+  chooseProvider2If: '{{one-line criteria for choosing provider 2}}',
+  // CTA destination
+  ctaHref: '/best/{{relevant-category}}',
+};
+
+// =============================================================================
+// TABLE OF CONTENTS - Adjust section names as needed
+// =============================================================================
+
+const tocItems = [
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'company-backgrounds', text: 'Company Backgrounds', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'key-differentiator-1', text: '{{Key Differentiator Section}}', level: 2 },
+  { id: 'key-differentiator-2', text: '{{Second Differentiator}}', level: 2 },
+  { id: 'pricing', text: 'Pricing Comparison', level: 2 },
+  { id: 'plan-tiers', text: 'Plan Tiers Explained', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'customer-experience', text: 'Customer Experience', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: `${provider1.name} Review`, href: `/providers/${provider1.slug}` },
+  { title: `${provider2.name} Review`, href: `/providers/${provider2.slug}` },
+  { title: '{{Related Category}}', href: '/best/{{category}}' },
+  { title: '{{Related Comparison}}', href: '/compare/{{comparison}}' },
+  { title: '{{Related Guide}}', href: '/countries/{{country}}/insurance' },
+];
+
+// =============================================================================
+// COMPARISON TABLES - Customize rows for each comparison
+// =============================================================================
+
+const coverageColumns = [
+  { key: 'feature', header: 'Feature' },
+  { key: 'provider1', header: provider1.name },
+  { key: 'provider2', header: provider2.name },
+];
+
+const coverageRows = [
+  { feature: '{{Feature 1}}', provider1: '{{Value}}', provider2: '{{Value}}' },
+  { feature: '{{Feature 2}}', provider1: true, provider2: true },
+  { feature: '{{Feature 3}}', provider1: '{{Value}}', provider2: '{{Value}}' },
+  // Add more rows as needed
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'provider1', header: provider1.name },
+  { key: 'provider2', header: provider2.name },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30', provider1: '${{X}}-{{Y}}/mo', provider2: '${{X}}-{{Y}}/mo' },
+  { profile: 'Single, Age 45', provider1: '${{X}}-{{Y}}/mo', provider2: '${{X}}-{{Y}}/mo' },
+  { profile: 'Couple, Age 35', provider1: '${{X}}-{{Y}}/mo', provider2: '${{X}}-{{Y}}/mo' },
+  { profile: 'Family of 4', provider1: '${{X}}-{{Y}}/mo', provider2: '${{X}}-{{Y}}/mo' },
+];
+
+const planTierColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'provider1', header: provider1.name },
+  { key: 'provider2', header: provider2.name },
+];
+
+const planTierRows = [
+  { tier: 'Entry Level', provider1: '{{Plan name}}', provider2: '{{Plan name}}' },
+  { tier: 'Mid-Range', provider1: '{{Plan name}}', provider2: '{{Plan name}}' },
+  { tier: 'Premium', provider1: '{{Plan name}}', provider2: '{{Plan name}}' },
+];
+---
+
+<PageShell
+  title={`${provider1.name} vs ${provider2.name}: Complete Comparison`}
+  description={`In-depth comparison of ${provider1.name} and ${provider2.name}. Compare coverage, pricing, and which one works better for your situation.`}
+  headline={`${provider1.name} vs ${provider2.name}: The Complete Guide`}
+  subheadline="{{Compelling subheadline explaining the key difference}}"
+  heroImage="/images/pages/provider-card-generic.png"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref={pageConfig.ctaHref}
+>
+
+  <!-- =======================================================================
+       SECTION: Overview with Quick Decision Guide
+       CRO: Reduces bounce by giving decisive readers immediate guidance
+       ======================================================================= -->
+  <h2 id="overview">Overview</h2>
+
+  <div class="bg-primary-50 border-l-4 border-primary-500 p-4 my-6">
+    <p class="font-semibold text-primary-900 mb-2">Quick Decision Guide</p>
+    <p class="text-primary-800 text-sm">
+      <strong>Choose {provider1.name}</strong> {pageConfig.chooseProvider1If}.
+      <strong>Choose {provider2.name}</strong> {pageConfig.chooseProvider2If}.
+      <a href="#who-should-choose" class="text-primary-600 underline ml-1">Jump to full breakdown →</a>
+    </p>
+  </div>
+
+  <p>
+    {{Opening paragraph: Establish that both are good options, set up the comparison}}
+  </p>
+  <p>
+    <strong>The core difference:</strong> {{Explain the fundamental difference in one paragraph}}
+  </p>
+  <p>
+    {{Why this difference matters to the reader}}
+  </p>
+  <p>
+    This comparison examines both providers in detail: their company backgrounds, coverage specifics, pricing, and real-world performance. By the end, you'll know exactly which one fits your situation.
+  </p>
+
+  <!-- At a Glance boxes with trust signals -->
+  <div class="grid md:grid-cols-2 gap-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-neutral-900">{provider1.name} at a Glance</h3>
+        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{provider1.trustBadge}</span>
+      </div>
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Parent:</strong> {provider1.parent}</li>
+        <li><strong>Key Feature:</strong> {provider1.keyFeature}</li>
+        <li><strong>Best For:</strong> {provider1.bestFor}</li>
+      </ul>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-neutral-900">{provider2.name} at a Glance</h3>
+        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{provider2.trustBadge}</span>
+      </div>
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Parent:</strong> {provider2.parent}</li>
+        <li><strong>Key Feature:</strong> {provider2.keyFeature}</li>
+        <li><strong>Best For:</strong> {provider2.bestFor}</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CTA #1: After overview -->
+  <CTABox
+    title="Compare Quotes Directly"
+    description={`Get personalized pricing from both ${provider1.name} and ${provider2.name} based on your specific situation.`}
+    buttonText="Get Free Quotes"
+    buttonHref={pageConfig.ctaHref}
+    variant="highlight"
+  />
+
+  <!-- =======================================================================
+       SECTION: Company Backgrounds
+       ======================================================================= -->
+  <h2 id="company-backgrounds">Company Backgrounds</h2>
+
+  <h3>{provider1.name}: {{Descriptive subtitle}}</h3>
+  <p>{{Company history and background - 2-3 paragraphs}}</p>
+
+  <h3>{provider2.name}: {{Descriptive subtitle}}</h3>
+  <p>{{Company history and background - 2-3 paragraphs}}</p>
+
+  <!-- =======================================================================
+       SECTION: Coverage Comparison
+       ======================================================================= -->
+  <h2 id="coverage-comparison">Coverage Comparison</h2>
+  <p>{{Intro paragraph about coverage differences}}</p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+  </div>
+
+  <h3>Key Coverage Differences</h3>
+  <p><strong>{{Difference 1}}:</strong> {{Explanation}}</p>
+  <p><strong>{{Difference 2}}:</strong> {{Explanation}}</p>
+  <p><strong>{{Difference 3}}:</strong> {{Explanation}}</p>
+
+  <!-- =======================================================================
+       SECTION: Key Differentiator #1 (customize for each comparison)
+       Example: "US Network Access" or "Mental Health Coverage"
+       ======================================================================= -->
+  <h2 id="key-differentiator-1">{{Key Differentiator}}: {provider1.name}'s Advantage</h2>
+  <p>{{Deep dive into provider 1's main strength}}</p>
+
+  <!-- Optional: Add a tip box for actionable advice -->
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h4 class="text-lg font-semibold text-blue-900 mb-2">{{Tip Title}}</h4>
+    <p class="text-blue-800">{{Actionable tip related to this differentiator}}</p>
+  </div>
+
+  <!-- =======================================================================
+       SECTION: Key Differentiator #2
+       ======================================================================= -->
+  <h2 id="key-differentiator-2">{{Second Differentiator}}: {provider2.name}'s Strength</h2>
+  <p>{{Deep dive into provider 2's main strength}}</p>
+
+  <!-- CTA #2: Mid-article -->
+  <CTABox
+    title="Get Personalized Quotes"
+    description="See actual pricing for your age, location, and coverage needs."
+    buttonText="Compare Plans"
+    buttonHref={pageConfig.ctaHref}
+  />
+
+  <!-- =======================================================================
+       SECTION: Pricing
+       CRO: Add urgency messaging about rate locks
+       ======================================================================= -->
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>{{Context about pricing differences}}</p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+  </div>
+
+  <h3>Understanding the Price Difference</h3>
+  <p>{{Analysis of why prices differ}}</p>
+
+  <h3>Factors That Affect Pricing</h3>
+  <p><strong>Age:</strong> {{How age affects pricing}}</p>
+  <p><strong>Location:</strong> {{How location affects pricing}}</p>
+  <p><strong>Deductible:</strong> {{How deductible affects pricing}}</p>
+
+  <!-- CTA #3: After pricing with urgency -->
+  <CTABox
+    title="Lock In Your Rate"
+    description="International health insurance premiums typically increase 5-8% annually. Getting covered now locks in rates based on your current age."
+    buttonText="Get Your Personalized Quote"
+    buttonHref={pageConfig.ctaHref}
+    variant="highlight"
+  />
+
+  <!-- =======================================================================
+       SECTION: Plan Tiers
+       ======================================================================= -->
+  <h2 id="plan-tiers">Plan Tiers Explained</h2>
+  <p>Both providers offer multiple plan tiers. Understanding what each tier includes helps you choose the right balance of coverage and cost.</p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planTierColumns} rows={planTierRows} />
+  </div>
+
+  <h3>{provider1.name} Plan Tiers</h3>
+  <p>{{Description of each tier}}</p>
+
+  <h3>{provider2.name} Plan Tiers</h3>
+  <p>{{Description of each tier}}</p>
+
+  <!-- =======================================================================
+       SECTION: Real-World Scenarios
+       CRO: Helps readers self-identify and builds confidence in recommendation
+       ======================================================================= -->
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+  <p>To illustrate how these differences play out in practice, let's look at common situations and which provider makes more sense.</p>
+
+  <h3>Scenario 1: {{Persona Name}}</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> {{Description of person and situation}}</p>
+    <p class="mt-4"><strong>Best Choice: {provider1.name}</strong></p>
+    <p>{{Explanation of why this provider fits}}</p>
+  </div>
+
+  <h3>Scenario 2: {{Persona Name}}</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> {{Description of person and situation}}</p>
+    <p class="mt-4"><strong>Best Choice: {provider2.name}</strong></p>
+    <p>{{Explanation of why this provider fits}}</p>
+  </div>
+
+  <!-- Add 3-5 scenarios total -->
+
+  <!-- CTA #4: After scenarios -->
+  <CTABox
+    title="Which Scenario Fits You?"
+    description="See how these providers would price coverage for your specific situation."
+    buttonText="Get Your Custom Quote"
+    buttonHref={pageConfig.ctaHref}
+  />
+
+  <!-- =======================================================================
+       SECTION: Customer Experience
+       ======================================================================= -->
+  <h2 id="customer-experience">Customer Experience</h2>
+  <p>{{Intro about service differences}}</p>
+
+  <h3>{provider1.name} Customer Service</h3>
+  <p>{{Description of service experience}}</p>
+
+  <h3>{provider2.name} Customer Service</h3>
+  <p>{{Description of service experience}}</p>
+
+  <h3>Claims Experience</h3>
+  <p>{{Comparison of claims processes}}</p>
+
+  <!-- =======================================================================
+       SECTION: Who Should Choose Which
+       CRO: Split CTAs for each provider - captures decided users
+       ======================================================================= -->
+  <h2 id="who-should-choose">Who Should Choose Which</h2>
+
+  <div class="grid md:grid-cols-2 gap-6 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-900 mb-3">Choose {provider1.name} If You:</h3>
+      <ul class="space-y-2 text-blue-800 mb-4">
+        <li>{{Criteria 1}}</li>
+        <li>{{Criteria 2}}</li>
+        <li>{{Criteria 3}}</li>
+        <li>{{Criteria 4}}</li>
+        <li>{{Criteria 5}}</li>
+      </ul>
+      <a href={`/providers/${provider1.slug}`} class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get {provider1.name} Quote →
+      </a>
+    </div>
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose {provider2.name} If You:</h3>
+      <ul class="space-y-2 text-neutral-600 mb-4">
+        <li>{{Criteria 1}}</li>
+        <li>{{Criteria 2}}</li>
+        <li>{{Criteria 3}}</li>
+        <li>{{Criteria 4}}</li>
+        <li>{{Criteria 5}}</li>
+      </ul>
+      <a href={`/providers/${provider2.slug}`} class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get {provider2.name} Quote →
+      </a>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       SECTION: Verdict
+       ======================================================================= -->
+  <h2 id="verdict">Our Verdict</h2>
+  <p>
+    {{Summary recommendation for provider 1 audience}}
+  </p>
+  <p>
+    {{Summary recommendation for provider 2 audience}}
+  </p>
+  <p>
+    {{Closing reassurance that both are good choices}}
+  </p>
+
+  <!-- CTA #5: After verdict -->
+  <CTABox
+    title="Ready to Compare?"
+    description={`Get personalized quotes from both ${provider1.name} and ${provider2.name} to see actual pricing for your situation.`}
+    buttonText="Get Free Quotes"
+    buttonHref={pageConfig.ctaHref}
+    variant="highlight"
+  />
+
+  <!-- =======================================================================
+       SECTION: FAQs
+       CRO: Include inline CTA in high-intent FAQ answers
+       ======================================================================= -->
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">{{FAQ Question 1}}</h3>
+      <p class="text-neutral-600">{{Answer}}</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">{{FAQ Question 2}}</h3>
+      <p class="text-neutral-600">{{Answer}}</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Are pre-existing conditions covered?</h3>
+      <p class="text-neutral-600">
+        {{Answer about underwriting}}. <a href={pageConfig.ctaHref} class="text-primary-600 hover:text-primary-700 underline">Get quotes from both providers</a> to see what coverage they'll offer for your situation.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">{{FAQ Question 4}}</h3>
+      <p class="text-neutral-600">{{Answer}}</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">{{FAQ Question 5}}</h3>
+      <p class="text-neutral-600">{{Answer}}</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">{{FAQ Question 6}}</h3>
+      <p class="text-neutral-600">{{Answer}}</p>
+    </div>
+  </div>
+
+  <!-- CTA #6: After FAQ -->
+  <CTABox
+    title="Still Have Questions?"
+    description={`Get personalized guidance and quotes from both ${provider1.name} and ${provider2.name}. Compare actual prices for your age, location, and coverage needs.`}
+    buttonText="Compare Plans Now"
+    buttonHref={pageConfig.ctaHref}
+    variant="highlight"
+  />
+
+  <!-- =======================================================================
+       DISCLAIMER - Required on all comparison pages
+       ======================================================================= -->
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> This comparison is based on publicly available information and is provided for educational purposes only. Coverage details, pricing, networks, and plan availability change frequently. We are not licensed insurance brokers. Always verify current information directly with {provider1.name} and {provider2.name} before making coverage decisions.
+    </p>
+  </div>
+
+</PageShell>

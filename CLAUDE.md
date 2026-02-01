@@ -39,6 +39,8 @@ Requires `IDEOGRAM_API_KEY` in `.env` or `Ideogram.env`.
 - `src/components/` - Reusable Astro components
 - `src/layouts/Layout.astro` - Main layout wrapper with SEO metadata
 - `scripts/ideogram/` - AI image generation tooling
+- `templates/` - Reusable page templates for content creation
+- `docs/` - Project documentation and progress tracking
 
 **Page types**:
 - `/countries/[country]/insurance` - Country-specific guides (Spain, Portugal, Mexico, Thailand, Costa Rica, France)
@@ -87,3 +89,23 @@ Key principles:
 - Include disclaimers where appropriate
 
 Read `EDITORIAL.md` before writing or editing any content.
+
+## Templates
+
+**`templates/longform-comparison.astro`** - CRO-optimized template for provider comparison articles (~4,000 words). Includes:
+- Quick decision guide at top
+- Trust signal badges
+- 6 strategically placed CTAs
+- Split provider CTAs in decision section
+- Urgency messaging on pricing CTA
+- 12-section structure with comparison tables
+
+Usage: Copy template, replace `{{PLACEHOLDER}}` values.
+
+## Progress Tracking
+
+See `docs/PROGRESS.md` for:
+- Current project status and page counts
+- Completed milestones by date
+- Country refinement progress
+- Next steps and priorities
