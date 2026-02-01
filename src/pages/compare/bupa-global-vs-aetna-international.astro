@@ -5,17 +5,25 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'plan-tiers', text: 'Plan Tiers', level: 2 },
   { id: 'pricing', text: 'Pricing', level: 2 },
+  { id: 'mental-health', text: 'Mental Health Coverage', level: 2 },
   { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage', level: 2 },
+  { id: 'real-scenarios', text: 'Real Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'BUPA Global Review', href: '/providers/bupa-global' },
   { title: 'Aetna International Review', href: '/providers/aetna-international' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Best for US Expats', href: '/best/us-expat-insurance' },
+  { title: 'UK Expat Insurance Guide', href: '/countries/united-kingdom/insurance' },
 ];
 
 const coverageColumns = [
@@ -27,78 +35,169 @@ const coverageColumns = [
 const coverageRows = [
   { feature: 'Inpatient Care', bupa: true, aetna: true },
   { feature: 'Outpatient Care', bupa: true, aetna: true },
-  { feature: 'Mental Health', bupa: 'Better than average', aetna: 'Moderate' },
-  { feature: 'Maternity', bupa: '10-12 mo wait', aetna: '10-12 mo wait' },
+  { feature: 'Mental Health', bupa: 'Excellent (full parity)', aetna: 'Good' },
+  { feature: 'Maternity', bupa: 'Optional (10-12mo wait)', aetna: 'Optional (10-12mo wait)' },
   { feature: 'Dental', bupa: 'Optional', aetna: 'Optional' },
-  { feature: 'Chronic Conditions', bupa: 'Strong support', aetna: 'Covered' },
-  { feature: 'Telemedicine', bupa: true, aetna: true },
-  { feature: 'Medical Evacuation', bupa: true, aetna: true },
-  { feature: 'US Coverage', bupa: 'Add-on', aetna: 'Included (most plans)' },
+  { feature: 'Vision', bupa: 'Optional', aetna: 'Optional' },
+  { feature: 'Chronic Conditions', bupa: 'Strong programs', aetna: 'Covered' },
+  { feature: 'Wellness Programs', bupa: 'Extensive', aetna: 'Good' },
+  { feature: 'Telemedicine', bupa: 'Global access', aetna: 'Global access' },
+  { feature: 'Medical Evacuation', bupa: 'Unlimited', aetna: 'Included' },
+  { feature: 'US Coverage', bupa: 'Add-on (extra cost)', aetna: 'Included by default' },
+  { feature: 'Annual Maximum', bupa: '$2M-Unlimited', aetna: '$2M-Unlimited' },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'bupa', header: 'BUPA Global' },
   { key: 'aetna', header: 'Aetna International' },
 ];
 
+const planRows = [
+  { aspect: 'Entry Tier', bupa: 'Essentials', aetna: 'Navigator' },
+  { aspect: 'Mid Tier', bupa: 'Comprehensive', aetna: 'Pioneer' },
+  { aspect: 'Top Tier', bupa: 'Premier', aetna: 'Voyager' },
+  { aspect: 'Deductible Options', bupa: '$0-$20,000', aetna: '$0-$10,000' },
+  { aspect: 'Area of Cover', bupa: 'Regional or Worldwide', aetna: 'Regional or Worldwide' },
+  { aspect: 'Underwriting', bupa: 'Moratorium or MHD', aetna: 'Full medical' },
+  { aspect: 'Lifetime Limit', bupa: 'None', aetna: 'None' },
+  { aspect: 'Renewability', bupa: 'Guaranteed', aetna: 'Guaranteed' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'notes', header: 'Notes' },
+];
+
 const pricingRows = [
-  { age: '30', bupa: '$170-260/mo', aetna: '$160-250/mo' },
-  { age: '40', bupa: '$230-350/mo', aetna: '$220-340/mo' },
-  { age: '50', bupa: '$300-460/mo', aetna: '$290-440/mo' },
-  { age: '60', bupa: '$450-680/mo', aetna: '$420-640/mo' },
+  { profile: 'Single, Age 30', bupa: '$170-260/mo', aetna: '$180-270/mo', notes: 'BUPA excl. US' },
+  { profile: 'Single, Age 40', bupa: '$230-350/mo', aetna: '$250-380/mo', notes: 'BUPA excl. US' },
+  { profile: 'Single, Age 50', bupa: '$300-460/mo', aetna: '$330-500/mo', notes: 'BUPA excl. US' },
+  { profile: 'Single, Age 60', bupa: '$450-680/mo', aetna: '$480-720/mo', notes: 'BUPA excl. US' },
+  { profile: 'Family of 4', bupa: '$600-900/mo', aetna: '$650-950/mo', notes: 'BUPA excl. US' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Network Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'aetna', header: 'Aetna International' },
+];
+
+const networkRows = [
+  { aspect: 'Global Reach', bupa: '190+ countries', aetna: '190+ countries' },
+  { aspect: 'US Network', bupa: 'Limited (add-on)', aetna: 'Aetna domestic network' },
+  { aspect: 'European Network', bupa: 'Excellent', aetna: 'Good' },
+  { aspect: 'Asia Network', bupa: 'Strong', aetna: 'Good' },
+  { aspect: 'Americas Network', bupa: 'Good', aetna: 'Excellent' },
+  { aspect: 'Direct Billing', bupa: 'Extensive globally', aetna: 'Strong in Americas' },
+  { aspect: 'Prescription Benefits', bupa: 'Standard', aetna: 'CVS integration' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims & Service' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'aetna', header: 'Aetna International' },
+];
+
+const claimsRows = [
+  { aspect: 'Claims Submission', bupa: 'App, web, email', aetna: 'App, web, email' },
+  { aspect: 'Processing Time', bupa: '5-7 business days', aetna: '5-10 business days' },
+  { aspect: 'Customer Service', bupa: 'Highly rated', aetna: 'Good' },
+  { aspect: 'Care Coordination', bupa: 'Dedicated teams', aetna: 'Available' },
+  { aspect: 'Second Opinion', bupa: 'Included', aetna: 'Included' },
+  { aspect: '24/7 Support', bupa: 'Yes (multilingual)', aetna: 'Yes (multilingual)' },
 ];
 ---
 
 <PageShell
   title="BUPA Global vs Aetna International"
-  description="Compare BUPA Global and Aetna International health insurance. Two premium insurers with different strengths for expats."
-  headline="BUPA Global vs Aetna International"
-  subheadline="Premium tier head-to-head. UK service excellence vs US healthcare integration."
+  description="Compare BUPA Global and Aetna International for expat health insurance. UK service excellence vs US healthcare integration—detailed pricing, coverage, and analysis."
+  headline="BUPA Global vs Aetna International: Premium Providers Compared"
+  subheadline="UK service excellence meets US healthcare integration. Two premium insurers with different strengths—here's how to choose."
+  heroBackgroundImage="/images/compare/bupa-vs-aetna-hero-bg.png"
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    Bupa Global and Aetna International are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    BUPA Global and Aetna International represent the premium tier of international health insurance. Both offer comprehensive coverage, global networks, and the financial stability that long-term expats need. The difference lies in their heritage and what they optimize for.
   </p>
   <p>
-    Bupa Global is a UK-based insurer with a strong reputation in international health coverage. Their main comprehensive coverage and a solid reputation for claims handling. They're particularly popular among expats who want reliable coverage from an established brand, with mid-to-premium range with good value for the coverage provided.
+    <strong>BUPA Global</strong> is the international arm of BUPA, the British United Provident Association founded in 1947. With 43+ million customers worldwide, they're known for exceptional service, industry-leading mental health coverage, and a member-first approach that treats you as a partner rather than a policyholder. BUPA consistently wins awards for customer satisfaction and claims handling.
   </p>
   <p>
-    Aetna International is backed by CVS Health, offering plans designed for globally mobile individuals. They're known for their integration with US healthcare system and strong employer-sponsored options. They tend to attract US-based companies with international employees and American expats, offering mid-range pricing with good corporate plan options.
+    <strong>Aetna International</strong> is part of CVS Health, one of America's largest healthcare companies. They bring US healthcare integration that no other international insurer can match—direct access to Aetna's domestic network, CVS prescription benefits, and seamless coverage when you return to the States. They're particularly strong for Americans abroad and companies with global workforces.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    This is a genuine premium-vs-premium comparison. Neither is "better"—they're optimized for different priorities. BUPA excels at service and mental health. Aetna excels at US integration. Your choice depends on what matters most to you.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>UK-headquartered, service-focused</li>
-        <li>Best-in-class mental health coverage</li>
-        <li>Excellent customer service reputation</li>
-        <li>Strong chronic condition management</li>
+        <li><strong>Parent:</strong> BUPA (UK, non-profit)</li>
+        <li><strong>Founded:</strong> 1947</li>
+        <li><strong>Customers:</strong> 43+ million worldwide</li>
+        <li><strong>Strength:</strong> Mental health, service quality</li>
+        <li><strong>Best For:</strong> Service-focused expats</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>CVS Health backed (US)</li>
-        <li>US coverage included by default</li>
-        <li>CVS prescription integration</li>
-        <li>Strong Americas network</li>
+        <li><strong>Parent:</strong> CVS Health (US)</li>
+        <li><strong>Founded:</strong> 1853 (domestic)</li>
+        <li><strong>Customers:</strong> 39+ million globally</li>
+        <li><strong>Strength:</strong> US network, CVS integration</li>
+        <li><strong>Best For:</strong> Americans abroad</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+  <p>
+    Since both providers offer premium coverage, the decision often comes down to specific needs and preferences.
+  </p>
+
+  <div class="bg-gradient-to-r from-purple-50 to-blue-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Choose BUPA Global if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ Mental health coverage is a priority</li>
+      <li>✓ You value exceptional customer service</li>
+      <li>✓ You're based in Europe, Middle East, or Asia</li>
+      <li>✓ You have or expect chronic conditions</li>
+      <li>✓ US coverage isn't essential</li>
+      <li>✓ You want moratorium underwriting (no health questions)</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Choose Aetna International if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You're American and need seamless US coverage</li>
+      <li>✓ You want CVS prescription benefits</li>
+      <li>✓ You're based in the Americas</li>
+      <li>✓ Your employer offers Aetna</li>
+      <li>✓ You prefer full medical underwriting</li>
+      <li>✓ US network access is important</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Either works well if:</h3>
+    <ul class="space-y-2 text-neutral-700">
+      <li>✓ You want comprehensive premium coverage</li>
+      <li>✓ You need global hospital access</li>
+      <li>✓ You want unlimited or high annual maximums</li>
+      <li>✓ You need maternity coverage (both offer it)</li>
+    </ul>
+  </div>
+
   <CTABox
-    title="Compare Premium Options"
-    description="Get quotes from both premium insurers."
+    title="Compare Both Premium Options"
+    description="Get personalized quotes from BUPA Global and Aetna International for your situation."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
@@ -106,94 +205,353 @@ const pricingRows = [
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    As premium insurers, both offer comprehensive coverage. The differences are in specializations—BUPA excels at mental health and service, Aetna at US integration.
+    At the premium tier, core medical coverage is comparable. Both cover what matters: hospitalization, outpatient care, specialists, emergency treatment, and more. The differences appear in specializations and add-ons.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>Key differences:</strong></p>
+  <h3>Key Coverage Differences</h3>
+
+  <p><strong>Mental Health</strong></p>
+  <p>
+    This is BUPA's standout advantage. They offer full mental health parity—treating mental health the same as physical health with no separate limits. Therapy, psychiatry, inpatient treatment, and crisis support are all covered comprehensively. Aetna provides good mental health coverage, but it doesn't match BUPA's depth and commitment.
+  </p>
+
+  <p><strong>US Coverage</strong></p>
+  <p>
+    Aetna includes US coverage in most plans by default, with access to their domestic Aetna network. BUPA treats US coverage as an add-on that increases premiums 30-40%. If you need regular US healthcare, Aetna's integrated approach provides better value.
+  </p>
+
+  <p><strong>Chronic Condition Management</strong></p>
+  <p>
+    BUPA offers dedicated chronic condition support programs—nurse care coordinators, regular check-ins, and proactive health management. Aetna covers chronic conditions but takes a more transactional approach.
+  </p>
+
+  <p><strong>Prescription Benefits</strong></p>
+  <p>
+    Aetna's CVS Health connection provides prescription benefits that other international insurers can't match. Fill prescriptions at CVS pharmacies with integrated coverage and potential discounts. BUPA covers prescriptions but without the pharmacy network integration.
+  </p>
+
+  <h2 id="plan-tiers">Plan Tiers</h2>
+  <p>
+    Both providers offer tiered plans from core coverage to comprehensive protection.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>BUPA Global Tiers</h3>
   <ul>
-    <li>BUPA has notably better mental health coverage and support programs</li>
-    <li>Aetna includes US coverage by default; BUPA charges extra</li>
-    <li>BUPA offers superior chronic condition management programs</li>
-    <li>Aetna has CVS prescription benefits for US purchases</li>
+    <li><strong>Essentials:</strong> Core hospital and outpatient coverage. $2M maximum. Good for healthy individuals who want premium backing without premium pricing</li>
+    <li><strong>Comprehensive:</strong> Enhanced benefits including wellness, additional therapies, and higher limits. Most popular choice</li>
+    <li><strong>Premier:</strong> Unlimited coverage, full wellness benefits, and maximum flexibility. Top-tier protection with no practical limits</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h3>Aetna International Tiers</h3>
+  <ul>
+    <li><strong>Navigator:</strong> Essential coverage for cost-conscious members. Core benefits with higher cost-sharing</li>
+    <li><strong>Pioneer:</strong> Balanced coverage and cost. Enhanced outpatient benefits and lower deductibles</li>
+    <li><strong>Voyager:</strong> Comprehensive coverage with maximum benefits. Lowest cost-sharing and broadest coverage</li>
+  </ul>
+
+  <h3>Underwriting Approaches</h3>
   <p>
-    Pricing is similar between these premium insurers. Aetna may appear cheaper because US coverage is included.
+    <strong>BUPA</strong> offers both moratorium underwriting (no health questions, but pre-existing conditions not covered for 24 months) and Medical History Disregarded (MHD) at higher premiums. MHD covers everything including pre-existing conditions from day one.
+  </p>
+  <p>
+    <strong>Aetna</strong> typically uses full medical underwriting—you complete a health questionnaire and they assess your history. This may result in exclusions or loading for specific conditions, but covered conditions are covered immediately.
+  </p>
+
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>
+    Pricing is similar between these premium providers, but the comparison requires context: BUPA prices typically exclude US coverage, while Aetna includes it.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Pricing notes:</strong></p>
+  <p><em>*BUPA prices shown exclude US coverage. Add 30-40% for worldwide including US. Aetna prices include US coverage. Actual premiums vary by health history, deductible choice, and specific plan selected.</em></p>
+
+  <h3>Understanding the Price Comparison</h3>
   <ul>
-    <li>BUPA prices exclude US coverage; add 30-40% for US inclusion</li>
-    <li>Aetna prices include US coverage</li>
-    <li>BUPA may offer Medical History Disregarded options at higher premium</li>
+    <li><strong>If you don't need US coverage:</strong> BUPA is typically 5-10% less expensive for comparable benefits</li>
+    <li><strong>If you need US coverage:</strong> Aetna often provides better value since US is included by default</li>
+    <li><strong>With BUPA's MHD option:</strong> Premiums increase significantly but you get immediate coverage for everything</li>
+    <li><strong>High deductibles:</strong> Both offer substantial premium reductions with $5,000-$10,000+ deductibles</li>
   </ul>
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <CTABox
+    title="Get Your Actual Price"
+    description="Premium pricing depends on many factors. Get personalized quotes from both providers."
+    buttonText="Compare Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
 
-  <h3>Provider Networks</h3>
+  <h2 id="mental-health">Mental Health Coverage</h2>
   <p>
-    <strong>BUPA Global</strong> has extensive direct billing worldwide with particularly strong networks in Europe, Middle East, and Asia.
-  </p>
-  <p>
-    <strong>Aetna International</strong> excels in the Americas with CVS Health integration providing seamless US access.
+    This is where BUPA Global truly differentiates itself from not just Aetna, but most international insurers.
   </p>
 
-  <h3>Customer Service</h3>
+  <h3>BUPA Global: Industry-Leading Mental Health</h3>
   <p>
-    BUPA consistently receives higher customer service ratings. Their dedicated care teams and proactive outreach set them apart. Aetna's service is good but more transactional.
+    BUPA has made mental health a core focus of their international coverage:
   </p>
+  <ul>
+    <li><strong>Full parity:</strong> Mental health treated identically to physical health—same limits, same processes</li>
+    <li><strong>Comprehensive outpatient:</strong> Therapy with psychologists, counselors, and social workers</li>
+    <li><strong>Psychiatry:</strong> Full psychiatric care including medication management</li>
+    <li><strong>Inpatient treatment:</strong> Mental health hospitalization when clinically appropriate</li>
+    <li><strong>Crisis support:</strong> 24/7 mental health crisis line and emergency intervention</li>
+    <li><strong>Employee Assistance:</strong> Additional support programs for stress, anxiety, and life challenges</li>
+    <li><strong>No separate sub-limits:</strong> Uses the same annual maximum as physical health</li>
+  </ul>
+
+  <h3>Aetna International: Solid but Standard</h3>
+  <p>
+    Aetna provides good mental health coverage, but it's closer to industry standard:
+  </p>
+  <ul>
+    <li><strong>Outpatient therapy:</strong> Covered with visit limits or session caps depending on plan</li>
+    <li><strong>Psychiatry:</strong> Medication management covered</li>
+    <li><strong>Inpatient:</strong> Mental health hospitalization with some limitations</li>
+    <li><strong>EAP programs:</strong> Available, especially through employer plans</li>
+  </ul>
+
+  <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-neutral-900 mb-2">The Mental Health Bottom Line</h4>
+    <p class="text-neutral-700">
+      If mental health coverage is important to you—whether you're currently managing a condition or want comprehensive support available—BUPA Global offers genuinely superior coverage. It's one of their clearest competitive advantages.
+    </p>
+  </div>
+
+  <h2 id="network-and-claims">Provider Networks & Claims</h2>
+
+  <h3>Network Comparison</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Claims & Service Comparison</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Service Quality</h3>
+  <p>
+    <strong>BUPA Global</strong> consistently receives higher customer satisfaction ratings. Their member services team takes a proactive approach—checking in after hospitalizations, coordinating complex care, and treating members as partners. You'll often have a dedicated care coordinator for ongoing needs.
+  </p>
+  <p>
+    <strong>Aetna International</strong> provides solid service, but it's more transactional. Claims processing is efficient, support is available when you need it, but you won't get the same proactive outreach. The CVS integration adds value for prescriptions and US-based care.
+  </p>
+
+  <h2 id="us-coverage">US Coverage Comparison</h2>
+  <p>
+    This is Aetna's primary competitive advantage—and it's substantial for Americans or anyone needing regular US healthcare.
+  </p>
+
+  <h3>Aetna International US Coverage</h3>
+  <ul>
+    <li><strong>Included by default:</strong> Most plans include US coverage without extra premium</li>
+    <li><strong>Aetna domestic network:</strong> Access to Aetna's US provider network with negotiated rates</li>
+    <li><strong>CVS integration:</strong> Fill prescriptions at CVS with integrated benefits</li>
+    <li><strong>Direct billing:</strong> Many US providers will bill Aetna directly</li>
+    <li><strong>Seamless experience:</strong> No difference between US and international coverage</li>
+  </ul>
+
+  <h3>BUPA Global US Coverage</h3>
+  <ul>
+    <li><strong>Add-on required:</strong> US coverage costs 30-40% more in premium</li>
+    <li><strong>Limited network:</strong> Smaller US provider network than Aetna</li>
+    <li><strong>Reimbursement model:</strong> More likely to pay and claim for US care</li>
+    <li><strong>Coverage caps:</strong> Some plans limit US coverage days per year</li>
+  </ul>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-neutral-900 mb-2">US Coverage Bottom Line</h4>
+    <p class="text-neutral-700">
+      If you're American, return to the US regularly, or have US-based family you visit, Aetna's integrated US coverage provides genuine value. BUPA can cover US care, but it's an add-on without the same network depth.
+    </p>
+  </div>
+
+  <h2 id="real-scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">American Executive in Singapore</h4>
+      <p class="text-neutral-600 mb-3">
+        Michael, 48, is a VP at a tech company based in Singapore. He returns to California quarterly for board meetings and has aging parents he visits. He needs seamless coverage between Singapore and the US.
+      </p>
+      <p class="text-primary-700 font-medium">→ Aetna International is the clear choice. The integrated US coverage and Aetna network access make his frequent US visits hassle-free. CVS prescription benefits add practical value.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">British Expat with Anxiety</h4>
+      <p class="text-neutral-600 mb-3">
+        Emma, 35, works in Dubai and manages generalized anxiety with weekly therapy. She's British and rarely visits the US. Mental health support is her top priority.
+      </p>
+      <p class="text-primary-700 font-medium">→ BUPA Global is essential here. Their mental health parity means her therapy is covered like any other medical care, without session limits or separate caps. BUPA's service culture will support her ongoing care needs.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Family Relocating to Germany</h4>
+      <p class="text-neutral-600 mb-3">
+        The Johnsons—two parents (both 42) and two kids (10 and 14)—are moving from Texas to Munich for a 3-year assignment. They want comprehensive family coverage with the option to see doctors during US visits.
+      </p>
+      <p class="text-primary-700 font-medium">→ Both work, but Aetna edges ahead for the US coverage inclusion. However, if either parent has mental health needs, BUPA's superior coverage might tip the balance.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Entrepreneur with Diabetes</h4>
+      <p class="text-neutral-600 mb-3">
+        David, 52, has well-controlled Type 2 diabetes and is relocating to Spain. He needs coverage for ongoing diabetes management and potential complications.
+      </p>
+      <p class="text-primary-700 font-medium">→ BUPA Global with their moratorium underwriting or MHD option. Their chronic condition support programs provide proactive management, and MHD means his diabetes is covered immediately without exclusions.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Young Couple in Mexico City</h4>
+      <p class="text-neutral-600 mb-3">
+        Carlos and Maria, both 30, are healthy and want premium coverage while living in Mexico City. They want good regional coverage and might start a family in a few years.
+      </p>
+      <p class="text-primary-700 font-medium">→ Aetna International fits well. Strong Americas network, good value for their age, and maternity add-ons available when needed. BUPA works too, but Aetna's Americas focus is a plus.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose BUPA Global If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Mental health coverage is important</li>
-        <li>You have chronic conditions</li>
-        <li>Customer service quality is a priority</li>
-        <li>You're based in Europe, Middle East, or Asia</li>
+        <li>✓ Mental health coverage is a priority</li>
+        <li>✓ You have chronic conditions</li>
+        <li>✓ Customer service quality matters most</li>
+        <li>✓ You're based in Europe, Middle East, or Asia</li>
+        <li>✓ You don't need regular US coverage</li>
+        <li>✓ You want moratorium or MHD underwriting</li>
+        <li>✓ You prefer proactive care coordination</li>
+        <li>✓ You value a healthcare partner over a transactional insurer</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Aetna International If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You need seamless US coverage</li>
-        <li>You want CVS prescription benefits</li>
-        <li>You're American living abroad</li>
-        <li>You're based in the Americas</li>
+        <li>✓ You're American living abroad</li>
+        <li>✓ You need integrated US coverage</li>
+        <li>✓ CVS prescription benefits are valuable</li>
+        <li>✓ You're based in the Americas</li>
+        <li>✓ Your employer offers Aetna</li>
+        <li>✓ You prefer full medical underwriting</li>
+        <li>✓ US network access is important</li>
+        <li>✓ You want a major US healthcare company behind your coverage</li>
       </ul>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    Both are excellent premium choices. BUPA Global edges ahead for service quality and mental health coverage—important for long-term expats who want a healthcare partner, not just an insurer.
+    This is a genuine premium-tier comparison where neither provider is objectively "better." Both offer excellent coverage, global networks, and the stability that long-term expats need.
   </p>
   <p>
-    Aetna International is the better choice for Americans who need integrated US coverage and prescription benefits. The CVS connection provides real value for those who use it.
+    <strong>Choose BUPA Global</strong> if service quality and mental health coverage are your priorities. BUPA treats you as a healthcare partner, not just a policyholder. Their proactive care coordination, industry-leading mental health benefits, and chronic condition programs provide a qualitatively different experience. If you don't need US coverage, BUPA typically offers slightly better value.
   </p>
+  <p>
+    <strong>Choose Aetna International</strong> if you're American or need regular US healthcare access. The integrated Aetna network and CVS prescription benefits provide genuine value that other international insurers can't match. For Americans abroad, Aetna's seamless US-international coverage removes friction from an already complex expat life.
+  </p>
+  <p>
+    Both are excellent choices. You're comparing premium to premium, not settling for second-best either way.
+  </p>
+
+  <div class="bg-gradient-to-r from-purple-50 to-blue-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">The Bottom Line</h3>
+    <p class="text-neutral-700">
+      <strong>BUPA Global:</strong> Best for service quality, mental health coverage, and members who want a healthcare partner. Ideal for non-Americans based outside the US.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      <strong>Aetna International:</strong> Best for Americans abroad and anyone needing integrated US coverage. CVS prescription benefits add practical value.
+    </p>
+  </div>
 
   <CTABox
     title="Ready to Decide?"
-    description="Get quotes from both premium providers."
+    description="Get quotes from both premium providers and compare for your specific situation."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for BUPA Global?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for mental health coverage, service quality, and members who want a healthcare partner.</p>
+      <a href="/providers/bupa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View BUPA Options →
+      </a>
+    </div>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Aetna?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for Americans abroad and anyone needing integrated US coverage and CVS benefits.</p>
+      <a href="/providers/aetna-international" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View Aetna Options →
+      </a>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which has better customer service?</h3>
+      <p class="text-neutral-600">
+        BUPA Global consistently receives higher customer satisfaction scores and is known for proactive service. They'll check in after hospitalizations and coordinate complex care. Aetna provides good service but takes a more transactional approach.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What's the real price difference?</h3>
+      <p class="text-neutral-600">
+        Without US coverage, BUPA is typically 5-10% less expensive. With US coverage (which Aetna includes by default), Aetna often provides better value. Get quotes from both to compare your specific situation.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What if I have a pre-existing condition?</h3>
+      <p class="text-neutral-600">
+        BUPA offers moratorium underwriting (conditions excluded for 24 months, then covered if symptom-free) or Medical History Disregarded (everything covered immediately at higher premiums). Aetna uses full medical underwriting—they review your history and may exclude specific conditions or apply loading.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Do both cover mental health?</h3>
+      <p class="text-neutral-600">
+        Yes, but at different levels. BUPA Global offers full mental health parity—treating it identically to physical health with no separate limits. Aetna provides solid mental health coverage but with typical insurance limitations. If mental health is a priority, BUPA has a clear advantage.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which is better for families?</h3>
+      <p class="text-neutral-600">
+        Both offer excellent family coverage. Aetna may provide better value if you need US coverage. BUPA's service quality and wellness programs may be more valuable for families with health management needs. Both offer maternity add-ons with similar waiting periods.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between them later?</h3>
+      <p class="text-neutral-600">
+        Yes, but switching involves new underwriting. Any conditions you develop become pre-existing for the new insurer. Both offer guaranteed renewability, so staying with your current provider avoids this issue. Choose thoughtfully from the start.
+      </p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> Prices and coverage details change. Verify all information with providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change regularly. We are not licensed insurance brokers. Verify all information directly with BUPA Global and Aetna International before purchasing. Both are excellent premium insurers—the right choice depends on your individual priorities.
     </p>
   </div>
 </PageShell>

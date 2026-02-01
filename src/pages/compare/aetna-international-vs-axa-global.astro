@@ -5,17 +5,25 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'plan-tiers', text: 'Plan Tiers', level: 2 },
   { id: 'pricing', text: 'Pricing', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage', level: 2 },
   { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'regulatory', text: 'Regulatory Backing', level: 2 },
+  { id: 'real-scenarios', text: 'Real Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'Aetna International Review', href: '/providers/aetna-international' },
   { title: 'AXA Global Review', href: '/providers/axa-global' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Best for US Expats', href: '/best/us-expat-insurance' },
+  { title: 'France Insurance Guide', href: '/countries/france/insurance' },
 ];
 
 const coverageColumns = [
@@ -27,78 +35,168 @@ const coverageColumns = [
 const coverageRows = [
   { feature: 'Inpatient Care', aetna: true, axa: true },
   { feature: 'Outpatient Care', aetna: true, axa: true },
-  { feature: 'Mental Health', aetna: 'Moderate', axa: 'Limited' },
-  { feature: 'Maternity', aetna: '10-12 mo wait', axa: '10-12 mo wait' },
+  { feature: 'Mental Health', aetna: 'Good', axa: 'Moderate' },
+  { feature: 'Maternity', aetna: 'Optional (10-12mo wait)', axa: 'Optional (10-12mo wait)' },
   { feature: 'Dental', aetna: 'Optional', axa: 'Optional' },
-  { feature: 'Telemedicine', aetna: true, axa: true },
-  { feature: 'Medical Evacuation', aetna: true, axa: true },
-  { feature: 'US Coverage', aetna: 'Included (most plans)', axa: 'Add-on' },
-  { feature: 'Prescription Benefits', aetna: 'CVS integration', axa: 'Standard' },
+  { feature: 'Vision', aetna: 'Optional', axa: 'Optional' },
+  { feature: 'Telemedicine', aetna: 'Global access', axa: 'Global access' },
+  { feature: 'Medical Evacuation', aetna: 'Included', axa: 'Unlimited' },
+  { feature: 'US Coverage', aetna: 'Included by default', axa: 'Add-on (30-40% extra)' },
+  { feature: 'Prescription Benefits', aetna: 'CVS integration', axa: 'Standard coverage' },
+  { feature: 'Annual Maximum', aetna: '$2M-Unlimited', axa: '€1M-Unlimited' },
+  { feature: 'Wellness Programs', aetna: 'Good', axa: 'Included (vaccinations, screenings)' },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'aetna', header: 'Aetna International' },
   { key: 'axa', header: 'AXA Global' },
 ];
 
+const planRows = [
+  { aspect: 'Entry Tier', aetna: 'Navigator', axa: 'Essential' },
+  { aspect: 'Mid Tier', aetna: 'Pioneer', axa: 'Comprehensive' },
+  { aspect: 'Top Tier', aetna: 'Voyager', axa: 'Excellence' },
+  { aspect: 'Plan Structure', aetna: 'Fixed tiers', axa: 'Modular (add-ons)' },
+  { aspect: 'Deductible Options', aetna: '$0-$10,000', axa: '€0-€10,000' },
+  { aspect: 'Area of Cover', aetna: 'Regional or Worldwide', axa: 'By zone (1-4)' },
+  { aspect: 'Underwriting', aetna: 'Full medical', axa: 'Moratorium or full' },
+  { aspect: 'Lifetime Limit', aetna: 'None', axa: 'None' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'notes', header: 'Notes' },
+];
+
 const pricingRows = [
-  { age: '30', aetna: '$160-250/mo', axa: '$140-220/mo' },
-  { age: '40', aetna: '$220-340/mo', axa: '$190-300/mo' },
-  { age: '50', aetna: '$290-440/mo', axa: '$260-400/mo' },
-  { age: '60', aetna: '$420-640/mo', axa: '$380-580/mo' },
+  { profile: 'Single, Age 30', aetna: '$180-270/mo', axa: '€130-190/mo', notes: 'Aetna incl. US' },
+  { profile: 'Single, Age 40', aetna: '$250-380/mo', axa: '€180-270/mo', notes: 'Aetna incl. US' },
+  { profile: 'Single, Age 50', aetna: '$330-500/mo', axa: '€250-380/mo', notes: 'Aetna incl. US' },
+  { profile: 'Single, Age 60', aetna: '$480-720/mo', axa: '€360-540/mo', notes: 'Aetna incl. US' },
+  { profile: 'Family of 4', aetna: '$650-950/mo', axa: '€450-680/mo', notes: 'Aetna incl. US' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Network Aspect' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'axa', header: 'AXA Global' },
+];
+
+const networkRows = [
+  { aspect: 'Global Reach', aetna: '190+ countries', axa: '190+ countries' },
+  { aspect: 'US Network', aetna: 'Aetna domestic network', axa: 'Limited partnerships' },
+  { aspect: 'European Network', aetna: 'Good', axa: 'Excellent' },
+  { aspect: 'Asia Network', aetna: 'Good', axa: 'Strong' },
+  { aspect: 'Americas Network', aetna: 'Excellent', axa: 'Good' },
+  { aspect: 'Direct Billing', aetna: 'Strong in Americas', axa: 'Extensive in Europe' },
+  { aspect: 'Prescription Network', aetna: 'CVS (US)', axa: 'Standard reimbursement' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims & Service' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'axa', header: 'AXA Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Claims Submission', aetna: 'App, web, email', axa: 'App, web, email' },
+  { aspect: 'Processing Time', aetna: '5-10 business days', axa: '5-10 business days' },
+  { aspect: 'Currency Options', aetna: 'Multiple', axa: 'Multiple' },
+  { aspect: '24/7 Support', aetna: 'Yes (multilingual)', axa: 'Yes (multilingual)' },
+  { aspect: 'Regulatory Oversight', aetna: 'US-based', axa: 'EU Solvency II' },
 ];
 ---
 
 <PageShell
   title="Aetna International vs AXA Global"
-  description="Compare Aetna International and AXA Global health insurance. US-backed with CVS benefits vs European global insurer."
-  headline="Aetna International vs AXA Global"
-  subheadline="US healthcare integration vs European insurance tradition. Different strengths for different expats."
+  description="Compare Aetna International and AXA Global for expat health insurance. US healthcare integration vs European insurance tradition—pricing, coverage, and which is right for you."
+  headline="Aetna International vs AXA Global: US Giant vs European Powerhouse"
+  subheadline="CVS Health integration meets French insurance tradition. Two corporate giants with different strengths for expats."
+  heroBackgroundImage="/images/compare/aetna-vs-axa-hero-bg.png"
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    Aetna International and AXA Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    Aetna International and AXA Global represent two different approaches to international health insurance—US healthcare integration versus European insurance tradition. Both are backed by massive parent companies with strong financial stability, but they optimize for different markets and priorities.
   </p>
   <p>
-    Aetna International is backed by CVS Health, offering plans designed for globally mobile individuals. Their main integration with US healthcare system and strong employer-sponsored options. They're particularly popular among US-based companies with international employees and American expats, with mid-range pricing with good corporate plan options.
+    <strong>Aetna International</strong> is part of CVS Health, one of America's largest healthcare companies with over $300 billion in annual revenue. They've built international coverage specifically for globally mobile individuals, with seamless integration into Aetna's domestic US network and CVS prescription benefits. If you're American or need regular US healthcare, Aetna delivers unique value.
   </p>
   <p>
-    AXA Global is part of the French AXA group, offering robust international health plans. They're known for their strong presence in Europe and Asia with comprehensive plan options. They tend to attract expats in Europe and Asia who want a well-established provider, offering competitive pricing with flexible deductible options.
+    <strong>AXA Global Healthcare</strong> operates under French insurance giant AXA Group (€100B+ in assets), one of the world's largest insurers. They offer modular plans with strong European networks and competitive pricing—especially when you exclude US coverage. AXA is regulated under EU Solvency II, providing robust consumer protections.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    The core decision often comes down to US coverage: Aetna includes it by default with network integration; AXA treats it as an expensive add-on. If you don't need US coverage, AXA typically offers 10-15% better pricing.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>CVS Health backing</li>
-        <li>US coverage included by default</li>
-        <li>CVS prescription integration</li>
-        <li>Better mental health coverage</li>
+        <li><strong>Parent:</strong> CVS Health (US)</li>
+        <li><strong>Founded:</strong> 1853 (domestic Aetna)</li>
+        <li><strong>Assets:</strong> $300B+ (CVS Health)</li>
+        <li><strong>Strength:</strong> US network, CVS prescriptions</li>
+        <li><strong>Best For:</strong> Americans abroad</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>French-headquartered global giant</li>
-        <li>Competitive pricing (excl. US)</li>
-        <li>Strong European networks</li>
-        <li>Modular plan structure</li>
+        <li><strong>Parent:</strong> AXA Group (France)</li>
+        <li><strong>Founded:</strong> 1816 (historical roots)</li>
+        <li><strong>Assets:</strong> €100B+ (AXA Group)</li>
+        <li><strong>Strength:</strong> EU networks, modular plans</li>
+        <li><strong>Best For:</strong> Expats outside the US</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+  <p>
+    The decision between these providers often comes down to geography and US healthcare needs.
+  </p>
+
+  <div class="bg-gradient-to-r from-blue-50 to-amber-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Choose Aetna International if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You're American and return to the US regularly</li>
+      <li>✓ You want integrated US coverage by default</li>
+      <li>✓ CVS prescription benefits are valuable to you</li>
+      <li>✓ You're based in the Americas</li>
+      <li>✓ Mental health coverage is a priority</li>
+      <li>✓ You prefer full medical underwriting</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Choose AXA Global if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You don't need US coverage</li>
+      <li>✓ You're based in Europe or Asia</li>
+      <li>✓ Budget matters (save 10-15% without US)</li>
+      <li>✓ You want modular plan flexibility</li>
+      <li>✓ You prefer EU regulatory protections</li>
+      <li>✓ You want moratorium underwriting option</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Either works well if:</h3>
+    <ul class="space-y-2 text-neutral-700">
+      <li>✓ You want comprehensive global coverage</li>
+      <li>✓ You need unlimited or high annual maximums</li>
+      <li>✓ Financial stability of the parent company matters</li>
+      <li>✓ You need maternity coverage (both offer it)</li>
+    </ul>
+  </div>
+
   <CTABox
     title="Compare Both Providers"
-    description="Get personalized quotes from Aetna and AXA."
+    description="Get personalized quotes from Aetna International and AXA Global for your situation."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
@@ -106,94 +204,349 @@ const pricingRows = [
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    Both provide comprehensive international coverage. The key differences are US integration and prescription benefits.
+    Both providers offer comprehensive coverage at comparable plan levels. The differences are in US integration, prescription benefits, and mental health depth.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>Key differences:</strong></p>
+  <h3>Key Coverage Differences</h3>
+
+  <p><strong>US Coverage</strong></p>
+  <p>
+    This is the fundamental difference. Aetna includes US coverage in most plans by default—you get access to their domestic network, CVS prescription benefits, and seamless care when you're stateside. AXA treats US coverage as an optional add-on that increases premiums 30-40%.
+  </p>
+
+  <p><strong>Prescription Benefits</strong></p>
+  <p>
+    Aetna's CVS Health connection provides prescription benefits other international insurers can't match. Fill prescriptions at CVS pharmacies with integrated coverage and competitive pricing. AXA covers prescriptions through standard reimbursement without pharmacy network integration.
+  </p>
+
+  <p><strong>Mental Health</strong></p>
+  <p>
+    Aetna provides solid mental health coverage including therapy and psychiatry. AXA offers moderate mental health benefits but with more limitations. Neither matches BUPA Global's full parity, but Aetna has a slight edge.
+  </p>
+
+  <p><strong>Plan Flexibility</strong></p>
+  <p>
+    AXA offers modular plans where you can add or remove coverage components. Aetna uses fixed plan tiers with predetermined coverage levels. AXA's approach lets you tailor coverage more precisely to your needs.
+  </p>
+
+  <h2 id="plan-tiers">Plan Tiers</h2>
+  <p>
+    Understanding each provider's structure helps you compare equivalent options.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>Aetna International Tiers</h3>
   <ul>
-    <li>Aetna includes US coverage; AXA charges 30-40% extra</li>
-    <li>Aetna has CVS prescription benefits in the US</li>
-    <li>Aetna has better mental health coverage</li>
-    <li>AXA has stronger European hospital networks</li>
+    <li><strong>Navigator:</strong> Essential coverage for cost-conscious members. Core hospital and outpatient with higher cost-sharing</li>
+    <li><strong>Pioneer:</strong> Balanced coverage and cost. Enhanced outpatient and lower deductibles. Most popular choice</li>
+    <li><strong>Voyager:</strong> Comprehensive coverage with maximum benefits. Lowest cost-sharing and broadest coverage</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h3>AXA Global Tiers</h3>
+  <ul>
+    <li><strong>Essential:</strong> Core hospital coverage at the lowest price. Basic protection without outpatient</li>
+    <li><strong>Comprehensive:</strong> Hospital plus outpatient with good limits. Balances coverage and cost</li>
+    <li><strong>Excellence:</strong> Premium coverage with extensive benefits. Includes wellness and enhanced limits</li>
+  </ul>
+
+  <h3>Underwriting Approaches</h3>
   <p>
-    AXA appears cheaper, but that's without US coverage. Once you add US coverage to AXA, Aetna becomes competitive or cheaper.
+    <strong>Aetna</strong> uses full medical underwriting—you complete a health questionnaire and they assess your history. This may result in exclusions or loading for specific conditions, but covered conditions are covered immediately.
+  </p>
+  <p>
+    <strong>AXA</strong> offers both moratorium underwriting (no health questions, but pre-existing conditions not covered for 24 months) and full medical underwriting depending on the plan and region.
+  </p>
+
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>
+    AXA appears cheaper in direct comparisons, but context matters: Aetna includes US coverage; AXA doesn't. When you add US coverage to AXA, the gap narrows or reverses.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Pricing notes:</strong></p>
+  <p><em>*Aetna prices include US coverage. AXA prices exclude US coverage—add 30-40% for worldwide including US. Actual premiums vary by health history, deductible choice, and specific plan selected.</em></p>
+
+  <h3>Understanding the Price Comparison</h3>
   <ul>
-    <li>Aetna prices include US coverage</li>
-    <li>AXA prices exclude US; add 30-40% for inclusion</li>
-    <li>For US expats, Aetna often provides better value</li>
+    <li><strong>If you don't need US coverage:</strong> AXA is typically 10-15% less expensive for comparable benefits</li>
+    <li><strong>If you need US coverage:</strong> Aetna often provides better value since US is included by default with network access</li>
+    <li><strong>With high deductibles:</strong> Both offer significant premium reductions—AXA's modular approach may provide more options</li>
+    <li><strong>Currency consideration:</strong> Aetna prices in USD; AXA typically in EUR. Exchange rate fluctuations affect the comparison</li>
   </ul>
 
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>Provider Networks</h3>
+  <h3>The True Cost of US Coverage</h3>
   <p>
-    <strong>Aetna International</strong> has excellent US coverage through CVS Health plus solid international networks, especially in the Americas.
-  </p>
-  <p>
-    <strong>AXA Global</strong> has strong networks in Europe, Middle East, and Asia-Pacific, reflecting its global footprint.
+    If you add US coverage to an AXA plan, expect premiums to increase 30-40%. At that point, Aetna's integrated US coverage with network access and CVS benefits often provides better value. Don't compare Aetna (with US) to AXA (without US) and conclude AXA is cheaper—compare equivalent coverage.
   </p>
 
-  <h3>Prescription Benefits</h3>
+  <CTABox
+    title="Get Your Actual Price"
+    description="Pricing depends on many factors. Get personalized quotes from both providers."
+    buttonText="Compare Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <h2 id="us-coverage">US Coverage Comparison</h2>
   <p>
-    Aetna's CVS integration provides real value for Americans—competitive pricing and convenient access at US pharmacies. AXA offers standard prescription coverage.
+    For Americans or anyone needing US healthcare, this is often the deciding factor.
   </p>
+
+  <h3>Aetna International US Coverage</h3>
+  <ul>
+    <li><strong>Included by default:</strong> Most plans include US coverage without extra premium</li>
+    <li><strong>Aetna domestic network:</strong> Access to Aetna's US provider network with negotiated rates</li>
+    <li><strong>CVS integration:</strong> Fill prescriptions at CVS with integrated benefits</li>
+    <li><strong>Direct billing:</strong> Many US providers will bill Aetna directly</li>
+    <li><strong>Seamless experience:</strong> Coverage works identically in the US and abroad</li>
+  </ul>
+
+  <h3>AXA Global US Coverage</h3>
+  <ul>
+    <li><strong>Add-on required:</strong> US coverage costs 30-40% more in premium</li>
+    <li><strong>Limited network:</strong> Smaller US provider partnerships than Aetna</li>
+    <li><strong>Reimbursement model:</strong> More likely to pay out-of-pocket and claim</li>
+    <li><strong>Coverage adequate:</strong> Benefits are comprehensive once you have the add-on</li>
+  </ul>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-neutral-900 mb-2">US Coverage Bottom Line</h4>
+    <p class="text-neutral-700">
+      If you need regular US healthcare, Aetna's integrated approach provides better value and convenience. Their domestic network and CVS benefits are genuine advantages. If you never use US healthcare, AXA without the US add-on offers meaningful savings.
+    </p>
+  </div>
+
+  <h2 id="network-and-claims">Provider Networks & Claims</h2>
+
+  <h3>Network Comparison</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Claims & Service</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Geographic Strengths</h3>
+  <p>
+    <strong>Aetna</strong> excels in the Americas—particularly the US where their domestic network provides unmatched access. Their international networks in Europe and Asia are solid but not their primary strength.
+  </p>
+  <p>
+    <strong>AXA</strong> excels in Europe and has strong networks in Asia-Pacific, reflecting their French heritage and global expansion. Their Americas coverage is adequate but not as deep as Aetna's.
+  </p>
+
+  <h2 id="regulatory">Regulatory Backing</h2>
+  <p>
+    Both providers have strong regulatory oversight, but from different frameworks.
+  </p>
+
+  <h3>Aetna: US Regulatory Framework</h3>
+  <p>
+    Aetna International operates under US regulatory oversight. CVS Health is publicly traded and subject to SEC reporting requirements. US insurance regulations apply to their operations.
+  </p>
+
+  <h3>AXA: EU Solvency II Framework</h3>
+  <p>
+    AXA Global operates under EU Solvency II regulations—one of the most rigorous insurance regulatory frameworks globally. This includes:
+  </p>
+  <ul>
+    <li><strong>Capital requirements:</strong> Strict solvency ratios to ensure claims-paying ability</li>
+    <li><strong>Risk management:</strong> Mandatory enterprise risk management frameworks</li>
+    <li><strong>Consumer protections:</strong> EU consumer protection regulations apply</li>
+    <li><strong>Transparency:</strong> Regular public disclosures of financial health</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-neutral-900 mb-2">Regulatory Consideration</h4>
+    <p class="text-neutral-700">
+      Both providers are financially stable with strong regulatory oversight. AXA's EU Solvency II framework is particularly robust for consumer protection. This may matter to risk-conscious expats who value regulatory backing.
+    </p>
+  </div>
+
+  <h2 id="real-scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">American Consultant in London</h4>
+      <p class="text-neutral-600 mb-3">
+        David, 42, works as a management consultant based in London but returns to Chicago quarterly and has family in the US. He wants seamless coverage between the UK and US.
+      </p>
+      <p class="text-primary-700 font-medium">→ Aetna International is the clear choice. The integrated US coverage and domestic network access make his frequent US visits hassle-free. CVS prescription benefits add practical value when he's stateside.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">German Executive in Singapore</h4>
+      <p class="text-neutral-600 mb-3">
+        Claudia, 38, works for a German company based in Singapore. She never visits the US and values EU regulatory protections. Budget is a consideration.
+      </p>
+      <p class="text-primary-700 font-medium">→ AXA Global fits better. No need for US coverage means lower premiums. Strong Asia networks serve her well in Singapore, and EU Solvency II regulation provides comfort. The 10-15% savings without US coverage add up over time.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">American Family in Dubai</h4>
+      <p class="text-neutral-600 mb-3">
+        The Smiths—two parents (40 and 38) and two kids (8 and 11)—relocated from Texas to Dubai. They visit family in the US annually and maintain US doctors for the kids.
+      </p>
+      <p class="text-primary-700 font-medium">→ Aetna International is the better fit. Family coverage with integrated US access makes annual visits simple. They can see their kids' US pediatrician during visits without paperwork hassles.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">French Entrepreneur in Thailand</h4>
+      <p class="text-neutral-600 mb-3">
+        Marie, 35, runs an online business from Bangkok. She's French, rarely visits the US, and wants flexible coverage she can customize.
+      </p>
+      <p class="text-primary-700 font-medium">→ AXA Global is ideal. Strong Asia networks, modular plan structure to customize coverage, competitive pricing without US, and familiar European service approach. The moratorium underwriting option provides easy enrollment.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Canadian Remote Worker in Mexico</h4>
+      <p class="text-neutral-600 mb-3">
+        James, 32, works remotely from Mexico City. He occasionally visits the US for conferences but doesn't need regular US healthcare. He values comprehensive coverage at a reasonable price.
+      </p>
+      <p class="text-primary-700 font-medium">→ AXA Global without US coverage provides good value. Occasional US visits don't justify the premium for integrated US coverage. If his US travel increases, he could switch to Aetna or add AXA's US rider.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Aetna International If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You're American or need US coverage</li>
-        <li>You want CVS prescription benefits</li>
-        <li>Mental health coverage matters</li>
-        <li>You visit the US regularly</li>
+        <li>✓ You're American living abroad</li>
+        <li>✓ You need integrated US coverage</li>
+        <li>✓ CVS prescription benefits are valuable</li>
+        <li>✓ You're based in the Americas</li>
+        <li>✓ Mental health coverage matters</li>
+        <li>✓ You prefer full medical underwriting</li>
+        <li>✓ Your employer offers Aetna</li>
+        <li>✓ US network access is important</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose AXA Global If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You don't need US coverage</li>
-        <li>You're based in Europe</li>
-        <li>You prefer European service approach</li>
-        <li>Budget without US is priority</li>
+        <li>✓ You don't need US coverage</li>
+        <li>✓ You're based in Europe or Asia</li>
+        <li>✓ Budget is a priority (save 10-15%)</li>
+        <li>✓ You want modular plan flexibility</li>
+        <li>✓ You prefer EU regulatory protections</li>
+        <li>✓ You want moratorium underwriting option</li>
+        <li>✓ You're not American</li>
+        <li>✓ European service approach appeals to you</li>
       </ul>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    For Americans or anyone needing integrated US healthcare, Aetna International delivers better value. The CVS prescription benefits alone can justify the choice.
+    This comparison comes down to <strong>US coverage needs</strong>. Both are excellent providers backed by global corporate giants with strong financial stability.
   </p>
   <p>
-    For Europeans or expats who don't need US coverage, AXA Global offers solid coverage at competitive prices with the backing of one of the world's largest insurers.
+    <strong>Choose Aetna International</strong> if you're American or need regular US healthcare. The integrated US coverage, domestic network access, and CVS prescription benefits provide genuine value that other international insurers struggle to match. For Americans abroad, Aetna removes friction from an already complex expat life.
   </p>
+  <p>
+    <strong>Choose AXA Global</strong> if US coverage isn't a priority. You'll save 10-15% on premiums while getting excellent coverage backed by one of the world's largest insurers under robust EU regulation. Their modular plans provide flexibility, and their European and Asian networks are strong.
+  </p>
+  <p>
+    Don't compare Aetna (with US) to AXA (without US) and conclude AXA is cheaper. Compare equivalent coverage. When you add US coverage to AXA, Aetna often wins on value—especially with the CVS integration.
+  </p>
+
+  <div class="bg-gradient-to-r from-blue-50 to-amber-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">The Bottom Line</h3>
+    <p class="text-neutral-700">
+      <strong>Aetna International:</strong> Best for Americans abroad and anyone needing integrated US coverage. CVS prescription benefits and Aetna's domestic network provide unique value.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      <strong>AXA Global:</strong> Best for non-Americans and expats who don't need US coverage. Save 10-15% with strong EU-regulated coverage and modular flexibility.
+    </p>
+  </div>
 
   <CTABox
     title="Ready to Decide?"
-    description="Get quotes from both providers."
+    description="Get quotes from both providers and compare for your specific situation."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need US Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Aetna provides integrated US coverage with domestic network access and CVS benefits.</p>
+      <a href="/providers/aetna-international" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View Aetna Options →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Don't Need US Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">AXA offers competitive pricing, modular plans, and strong EU regulatory backing.</p>
+      <a href="/providers/axa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View AXA Options →
+      </a>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which is actually cheaper?</h3>
+      <p class="text-neutral-600">
+        AXA is 10-15% cheaper when you exclude US coverage. But when you add US coverage to AXA (30-40% premium increase), Aetna is often comparable or cheaper—with better US network integration. Compare equivalent coverage, not headline prices.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What are CVS prescription benefits?</h3>
+      <p class="text-neutral-600">
+        Aetna's CVS Health connection means you can fill prescriptions at CVS pharmacies with integrated coverage and competitive pricing. This is valuable for Americans who fill prescriptions during US visits. AXA uses standard prescription reimbursement without pharmacy network integration.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What if I have a pre-existing condition?</h3>
+      <p class="text-neutral-600">
+        Aetna uses full medical underwriting—they review your history and may cover, exclude, or rate up conditions. AXA offers moratorium underwriting (no health questions, but conditions not covered for 24 months) or full underwriting depending on the plan.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which has better mental health coverage?</h3>
+      <p class="text-neutral-600">
+        Aetna has a slight edge in mental health coverage, but neither matches BUPA Global's full parity. If mental health is your top priority, consider BUPA. If it's one factor among many, Aetna provides solid coverage.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What is EU Solvency II?</h3>
+      <p class="text-neutral-600">
+        Solvency II is the EU's insurance regulatory framework—one of the most rigorous globally. It requires insurers to maintain capital reserves, implement risk management, and provide transparency. AXA operates under this framework, providing robust consumer protections.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between them later?</h3>
+      <p class="text-neutral-600">
+        Yes, but switching involves new underwriting. Any conditions you develop become pre-existing for the new insurer. Both offer guaranteed renewability, so staying with your current provider avoids this issue. Choose thoughtfully based on your anticipated needs.
+      </p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> Prices and coverage details change. Verify all information with providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change regularly. We are not licensed insurance brokers. Verify all information directly with Aetna International and AXA Global before purchasing. Both are excellent providers—the right choice depends on your US coverage needs and geographic focus.
     </p>
   </div>
 </PageShell>

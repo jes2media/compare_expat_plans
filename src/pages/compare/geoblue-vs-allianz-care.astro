@@ -5,11 +5,17 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'plan-tiers', text: 'Plan Tiers', level: 2 },
   { id: 'pricing', text: 'Pricing', level: 2 },
+  { id: 'bcbs-network', text: 'BCBS Network Advantage', level: 2 },
   { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'eligibility', text: 'Eligibility', level: 2 },
+  { id: 'real-scenarios', text: 'Real Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
@@ -32,32 +38,84 @@ const coverageRows = [
   { feature: 'Mental Health', geoblue: 'Good', allianz: 'Good' },
   { feature: 'Maternity', geoblue: 'Optional', allianz: 'Optional' },
   { feature: 'Dental', geoblue: 'Optional', allianz: 'Optional' },
+  { feature: 'Vision', geoblue: 'Optional', allianz: 'Optional' },
   { feature: 'US Coverage', geoblue: 'Integrated (BCBS)', allianz: 'Add-on' },
   { feature: 'US Network', geoblue: 'BCBS (90%+ US hospitals)', allianz: 'Limited' },
-  { feature: 'Medical Evacuation', geoblue: true, allianz: true },
+  { feature: 'Medical Evacuation', geoblue: '$500K', allianz: 'Unlimited' },
   { feature: 'Annual Maximum', geoblue: '$1M-$5M', allianz: '€1M-Unlimited' },
-  { feature: 'Plan Flexibility', geoblue: 'Moderate', allianz: 'High (modular)' },
+  { feature: 'Plan Flexibility', geoblue: 'Fixed tiers', allianz: 'Modular (build your own)' },
+  { feature: 'Wellness Benefits', geoblue: 'Basic', allianz: 'Included (vaccinations, screenings)' },
+];
+
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
+const planRows = [
+  { aspect: 'Entry Plan', geoblue: 'Voyager Essential', allianz: 'Essential' },
+  { aspect: 'Mid-Tier Plan', geoblue: 'Voyager Choice', allianz: 'Classic' },
+  { aspect: 'Premium Plan', geoblue: 'Voyager Select', allianz: 'Premium' },
+  { aspect: 'US-Focused Plan', geoblue: 'All plans (built-in)', allianz: 'US add-on required' },
+  { aspect: 'Deductible Options', geoblue: '$0-$5,000', allianz: '€0-€10,000' },
+  { aspect: 'Copay Options', geoblue: 'Standard %', allianz: 'Customizable' },
+  { aspect: 'Area of Cover', geoblue: 'Worldwide or US-excluded', allianz: 'By zone (1-4)' },
+  { aspect: 'Lifetime Limit', geoblue: 'None', allianz: 'None' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
   { key: 'geoblue', header: 'GeoBlue' },
   { key: 'allianz', header: 'Allianz Care' },
+  { key: 'savings', header: 'Allianz Savings' },
 ];
 
 const pricingRows = [
-  { profile: 'Single, Age 30', geoblue: '$150-220/mo', allianz: '€100-140/mo' },
-  { profile: 'Single, Age 45', geoblue: '$280-380/mo', allianz: '€170-230/mo' },
-  { profile: 'Couple, Age 35', geoblue: '$300-440/mo', allianz: '€200-280/mo' },
-  { profile: 'Family of 4', geoblue: '$500-750/mo', allianz: '€350-480/mo' },
+  { profile: 'Single, Age 30', geoblue: '$180-220/mo', allianz: '€100-140/mo', savings: '~35%' },
+  { profile: 'Single, Age 45', geoblue: '$320-380/mo', allianz: '€170-230/mo', savings: '~35%' },
+  { profile: 'Single, Age 55', geoblue: '$450-520/mo', allianz: '€280-350/mo', savings: '~30%' },
+  { profile: 'Couple, Age 35', geoblue: '$360-440/mo', allianz: '€200-280/mo', savings: '~35%' },
+  { profile: 'Family of 4', geoblue: '$620-750/mo', allianz: '€350-480/mo', savings: '~35%' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Network Aspect' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
+const networkRows = [
+  { aspect: 'US Network', geoblue: 'BCBS - 96% of hospitals', allianz: 'Limited partnerships' },
+  { aspect: 'European Network', geoblue: 'Partner network', allianz: 'Strong direct relationships' },
+  { aspect: 'Asia Network', geoblue: 'Good (major cities)', allianz: 'Good (major cities)' },
+  { aspect: 'Direct Billing US', geoblue: 'Automatic (BCBS)', allianz: 'Limited availability' },
+  { aspect: 'Direct Billing Intl', geoblue: 'Major providers', allianz: 'Extensive in Europe' },
+  { aspect: 'Provider Search', geoblue: 'Mobile app + web', allianz: 'Mobile app + web' },
+  { aspect: 'Pre-authorization', geoblue: 'Required for planned', allianz: 'Required for planned' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
+const claimsRows = [
+  { aspect: 'Claims Submission', geoblue: 'App, web, email', allianz: 'App, web, email' },
+  { aspect: 'Processing Time', geoblue: '5-10 business days', allianz: '5-10 business days' },
+  { aspect: 'US Claims', geoblue: 'Often automatic (BCBS)', allianz: 'Manual submission' },
+  { aspect: 'Reimbursement Method', geoblue: 'Direct deposit', allianz: 'Direct deposit' },
+  { aspect: 'Currency Options', geoblue: 'USD', allianz: 'Multiple currencies' },
+  { aspect: '24/7 Support', geoblue: 'Yes', allianz: 'Yes' },
 ];
 ---
 
 <PageShell
   title="GeoBlue vs Allianz Care"
-  description="Compare GeoBlue and Allianz Care. US-focused BCBS network vs flexible European insurer for international health coverage."
-  headline="GeoBlue vs Allianz Care: US Network vs European Flexibility"
-  subheadline="Two different approaches to international coverage. Here's how to choose based on your needs."
+  description="Compare GeoBlue and Allianz Care for expat health insurance. US-focused BCBS network vs flexible European insurer—pricing, coverage, and which is right for you."
+  headline="GeoBlue vs Allianz Care: BCBS Network vs European Value"
+  subheadline="The defining question: How important is US healthcare access? Your answer determines which provider wins."
   heroBackgroundImage="/images/compare/geoblue-vs-allianz-hero-bg.png"
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
@@ -65,44 +123,78 @@ const pricingRows = [
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    GeoBlue and Allianz Care are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    GeoBlue and Allianz Care represent two fundamentally different approaches to international health insurance. One is built specifically for Americans with unmatched US network access. The other offers European engineering, modular flexibility, and significantly lower prices.
   </p>
   <p>
-    GeoBlue is a Blue Cross Blue Shield company focused on international health coverage. Their main connection to the Blue Cross Blue Shield network and strong US ties. They're particularly popular among American expats who want continuity with US healthcare brands, with mid-range with good options for short and long-term coverage.
+    <strong>GeoBlue</strong> is a Blue Cross Blue Shield company—America's largest health insurance network. They've adapted that massive infrastructure for expats, giving you access to 96% of US hospitals with direct billing. If you're American and plan to return home regularly for care, no other international insurer matches their US network. That advantage comes at a price: GeoBlue typically costs 25-35% more than comparable Allianz plans.
   </p>
   <p>
-    Allianz Care is backed by German insurance giant Allianz, offering flexible and competitively priced plans. They're known for their plan customization and competitive pricing, often 10-15% cheaper than comparable options. They tend to attract cost-conscious expats who value flexibility, offering competitive rates with good coverage options.
+    <strong>Allianz Care</strong> operates from Dublin under German insurance giant Allianz SE (€150B+ in assets). Their strength is flexibility—modular plans that let you build exactly what you need, strong European networks, and competitive pricing. They serve over 500,000 members in 190+ countries and are particularly popular with non-American expats and cost-conscious travelers.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    The core decision is straightforward: if US healthcare access matters, GeoBlue delivers unique value. If it doesn't, Allianz offers the same quality coverage for substantially less money.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>BCBS network access in the US</li>
-        <li>Built for American expats</li>
-        <li>90%+ US hospital coverage</li>
-        <li>Strong emergency support</li>
+        <li><strong>Parent:</strong> Blue Cross Blue Shield</li>
+        <li><strong>Based:</strong> United States</li>
+        <li><strong>Target:</strong> American expats</li>
+        <li><strong>Strength:</strong> BCBS network (96% US hospitals)</li>
+        <li><strong>Price Position:</strong> Premium tier</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Allianz Care</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Modular plan design</li>
-        <li>Strong European networks</li>
-        <li>Competitive pricing</li>
-        <li>Flexible coverage options</li>
+        <li><strong>Parent:</strong> Allianz SE (Germany)</li>
+        <li><strong>Based:</strong> Dublin, Ireland</li>
+        <li><strong>Target:</strong> Global expats</li>
+        <li><strong>Strength:</strong> Modular plans, EU networks</li>
+        <li><strong>Price Position:</strong> Value leader (25-35% less)</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+  <p>
+    Don't have time for the full comparison? Here's the decision in 60 seconds:
+  </p>
+
+  <div class="bg-gradient-to-r from-blue-50 to-amber-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Choose GeoBlue if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You're a US citizen or permanent resident</li>
+      <li>✓ You return to the US at least annually for care</li>
+      <li>✓ You have US doctors or specialists you need to keep</li>
+      <li>✓ You want automatic direct billing at US hospitals</li>
+      <li>✓ Budget is secondary to network convenience</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Choose Allianz Care if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ US coverage is not a priority</li>
+      <li>✓ You're based in Europe or elsewhere outside the US</li>
+      <li>✓ You want to customize coverage to your exact needs</li>
+      <li>✓ Budget matters (save 25-35%)</li>
+      <li>✓ You prefer European regulatory protections</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Either works well if:</h3>
+    <ul class="space-y-2 text-neutral-700">
+      <li>✓ You need solid global coverage without US-specific requirements</li>
+      <li>✓ You want comprehensive inpatient and outpatient care</li>
+      <li>✓ You need maternity or mental health coverage</li>
+    </ul>
+  </div>
+
   <CTABox
-    title="Compare Both Providers"
-    description="Get quotes from GeoBlue and Allianz Care for your situation."
+    title="Still Not Sure?"
+    description="Get personalized quotes from both providers and compare actual pricing for your situation."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
@@ -110,119 +202,372 @@ const pricingRows = [
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    The core medical coverage is comparable, but the US integration and plan flexibility differ significantly.
+    Core medical coverage is comparable between these providers. Both cover what matters: hospitalization, outpatient care, emergency treatment, and prescription drugs. The differences emerge in US network access, plan flexibility, and optional benefits.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
+  <h3>Key Coverage Differences Explained</h3>
+
+  <p><strong>US Coverage & Network</strong></p>
   <p>
-    <strong>Key differences:</strong>
+    This is the fundamental difference. GeoBlue includes BCBS network access in every plan—96% of US hospitals, 90%+ of physicians, with automatic direct billing. Walk into almost any US hospital and your coverage works seamlessly.
+  </p>
+  <p>
+    Allianz treats US coverage as an optional add-on with limited network partnerships. You can get reimbursed for US care, but you'll likely pay out-of-pocket first and submit claims manually. Adding US coverage to Allianz narrows the price gap significantly.
+  </p>
+
+  <p><strong>Plan Flexibility</strong></p>
+  <p>
+    GeoBlue offers fixed plan tiers (Essential, Choice, Select) with predetermined coverage levels. Simple to understand, but less customizable.
+  </p>
+  <p>
+    Allianz provides modular plans where you select your inpatient coverage, then add outpatient, dental, vision, and other modules as needed. This lets you build a plan that exactly matches your needs—and budget.
+  </p>
+
+  <p><strong>Annual Maximums</strong></p>
+  <p>
+    GeoBlue caps at $5M (their Select tier), which is substantial for nearly any medical situation. Allianz offers truly unlimited coverage on their premium tiers—no cap regardless of costs.
+  </p>
+
+  <p><strong>Medical Evacuation</strong></p>
+  <p>
+    GeoBlue caps evacuation at $500,000. Allianz offers unlimited medical evacuation. In practice, both limits exceed what most evacuations cost, but unlimited provides peace of mind for those in remote or developing areas.
+  </p>
+
+  <h2 id="plan-tiers">Plan Tiers</h2>
+  <p>
+    Understanding each provider's plan structure helps you compare apples to apples.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>GeoBlue Plan Structure</h3>
+  <p>
+    GeoBlue offers three main tiers, all with BCBS network access:
   </p>
   <ul>
-    <li><strong>US network:</strong> GeoBlue's BCBS network covers 90%+ of US hospitals with direct billing. Allianz treats US coverage as an add-on with limited network access</li>
-    <li><strong>Plan flexibility:</strong> Allianz offers modular plans where you choose your coverage components. GeoBlue has more fixed plan structures</li>
-    <li><strong>Geographic focus:</strong> GeoBlue is optimized for Americans; Allianz works well globally but excels in Europe</li>
-    <li><strong>Maximum limits:</strong> Allianz offers unlimited coverage options; GeoBlue caps at $5M (still substantial)</li>
+    <li><strong>Voyager Essential:</strong> Core coverage for cost-conscious expats. Higher cost-sharing but full network access</li>
+    <li><strong>Voyager Choice:</strong> Balanced coverage and cost. Most popular option</li>
+    <li><strong>Voyager Select:</strong> Comprehensive coverage with lowest out-of-pocket costs. $5M maximum</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h3>Allianz Care Plan Structure</h3>
   <p>
-    Allianz Care is generally 25-35% less expensive than GeoBlue, reflecting different market positioning and the value of US network access.
+    Allianz uses a modular approach with coverage zones:
+  </p>
+  <ul>
+    <li><strong>Essential:</strong> Hospital-only coverage at the lowest price</li>
+    <li><strong>Classic:</strong> Hospital plus outpatient. Most popular choice</li>
+    <li><strong>Premium:</strong> Comprehensive coverage including wellness and extras</li>
+  </ul>
+  <p>
+    Coverage zones (1-4) determine geographic scope and pricing. Zone 1 (EU only) is cheapest; Zone 4 (worldwide including US) is most expensive.
+  </p>
+
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>
+    Allianz Care is consistently 25-35% less expensive than GeoBlue for comparable coverage. This reflects the value of BCBS network access and GeoBlue's US-focused positioning.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p>
-    <strong>Notes on pricing:</strong>
-  </p>
+  <p><em>*Prices shown are for mid-tier plans with moderate deductibles, excluding US coverage for Allianz. Actual premiums vary based on age, health history, area of coverage, and selected benefits. Get personalized quotes for accurate pricing.</em></p>
+
+  <h3>What Drives the Price Difference?</h3>
   <ul>
-    <li>GeoBlue's premium includes valuable BCBS network access</li>
-    <li>Allianz's modular approach lets you reduce costs by dropping unnecessary coverage</li>
-    <li>Adding US coverage to Allianz narrows the price gap significantly</li>
-    <li>Both offer deductible options to manage premiums</li>
+    <li><strong>US Network Costs:</strong> BCBS network access is expensive. US healthcare prices are 2-3x higher than most countries, which GeoBlue must price into every plan</li>
+    <li><strong>Target Market:</strong> GeoBlue focuses on Americans willing to pay more for US convenience. Allianz competes globally on value</li>
+    <li><strong>Plan Structure:</strong> Allianz's modular approach lets you strip out coverage you don't need. GeoBlue's fixed tiers may include features you won't use</li>
+    <li><strong>Regulatory Environment:</strong> Allianz operates under EU Solvency II regulations with lower overhead</li>
   </ul>
+
+  <h3>When the Gap Narrows</h3>
+  <p>
+    If you add US coverage to an Allianz plan, the price difference shrinks to 10-15%. At that point, GeoBlue's superior US network often provides better value.
+  </p>
 
   <CTABox
     title="Get Your Actual Price"
-    description="Prices vary by age, location, and coverage choices."
-    buttonText="Get a Quote"
+    description="These estimates don't account for your specific situation. Age, health history, and coverage choices all affect your premium."
+    buttonText="Get Personalized Quotes"
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <h2 id="bcbs-network">The BCBS Network Advantage</h2>
+  <p>
+    GeoBlue's Blue Cross Blue Shield connection deserves special attention because it's their key differentiator.
+  </p>
 
-  <h3>Provider Networks</h3>
+  <h3>What BCBS Network Access Means</h3>
+  <ul>
+    <li><strong>96% of US hospitals</strong> accept BCBS directly</li>
+    <li><strong>90%+ of US physicians</strong> are in-network</li>
+    <li><strong>Automatic direct billing:</strong> Show your card, get treated, no paperwork</li>
+    <li><strong>Negotiated rates:</strong> BCBS rates are typically 30-60% below "self-pay" rates</li>
+    <li><strong>Pre-existing specialist relationships:</strong> If you have US doctors, they likely accept BCBS</li>
+  </ul>
+
+  <h3>Real-World Value</h3>
   <p>
-    <strong>GeoBlue</strong> leverages the Blue Cross Blue Shield network—the largest in the US—plus international partnerships. This means seamless care whether you're in the US or abroad.
+    Imagine you need an MRI during a US visit. With GeoBlue:
   </p>
+  <ul>
+    <li>Walk into nearly any imaging center</li>
+    <li>Show your GeoBlue/BCBS card</li>
+    <li>Pay your copay</li>
+    <li>Done—no claim forms, no waiting for reimbursement</li>
+  </ul>
   <p>
-    <strong>Allianz Care</strong> has strong networks in Europe and growing partnerships globally. Their European coverage is particularly robust, with extensive direct-billing arrangements.
+    With Allianz (US add-on):
   </p>
+  <ul>
+    <li>Find an in-network provider (limited selection) or pay out-of-pocket</li>
+    <li>Pay the full amount upfront if out-of-network</li>
+    <li>Submit claim forms with documentation</li>
+    <li>Wait 5-10 days for reimbursement</li>
+  </ul>
+
+  <h3>When BCBS Doesn't Matter</h3>
+  <p>
+    If you don't visit the US or need US healthcare, this advantage is irrelevant. Paying a 25-35% premium for network access you'll never use doesn't make financial sense.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-neutral-900 mb-2">Important Note on GeoBlue Eligibility</h4>
+    <p class="text-neutral-600">
+      GeoBlue primarily serves US citizens, permanent residents, and those with strong US ties. If you're not American, verify eligibility before assuming GeoBlue is an option. Allianz accepts applicants from nearly any country.
+    </p>
+  </div>
+
+  <h2 id="network-and-claims">Provider Networks & Claims</h2>
+
+  <h3>Network Comparison</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
 
   <h3>Claims Process</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Claims Experience</h3>
   <p>
-    Both offer online claims submission and mobile apps. GeoBlue's US claims are often automatic through BCBS. Allianz processes claims efficiently but may require more manual submission internationally.
+    <strong>GeoBlue's US claims</strong> are often invisible—direct billing means you never see a bill. International claims work like most insurers: submit documentation, wait for processing.
+  </p>
+  <p>
+    <strong>Allianz's European claims</strong> are smooth with extensive direct-billing partnerships. Their claims team is experienced with international documentation and multiple currencies.
+  </p>
+  <p>
+    Both providers offer mobile apps and online portals for claims submission. Processing times are similar at 5-10 business days for non-direct-billed claims.
   </p>
 
-  <h3>For Different Expat Types</h3>
+  <h2 id="eligibility">Eligibility & Restrictions</h2>
+
+  <h3>GeoBlue Requirements</h3>
+  <ul>
+    <li><strong>Citizenship:</strong> Primarily US citizens and permanent residents</li>
+    <li><strong>Age:</strong> Most plans accept ages 0-74 (some to 84)</li>
+    <li><strong>Residency:</strong> Must be living outside the US for majority of plan year</li>
+    <li><strong>Pre-existing conditions:</strong> Reviewed individually; may be excluded or rated</li>
+  </ul>
+
+  <h3>Allianz Care Requirements</h3>
+  <ul>
+    <li><strong>Citizenship:</strong> Most nationalities accepted</li>
+    <li><strong>Age:</strong> Plans available to age 74 (extensions possible)</li>
+    <li><strong>Residency:</strong> Flexible; available to expats and frequent travelers</li>
+    <li><strong>Pre-existing conditions:</strong> Moratorium underwriting standard (2-year wait)</li>
+  </ul>
+
+  <h3>Underwriting Comparison</h3>
   <p>
-    American expats who visit home regularly will find GeoBlue's network access invaluable. Expats based in Europe or those who don't need US coverage can save significantly with Allianz.
+    GeoBlue uses full medical underwriting—you complete a health questionnaire and they may exclude specific conditions or adjust pricing. This means healthier applicants may get better rates.
   </p>
+  <p>
+    Allianz primarily uses moratorium underwriting: no health questions at application, but pre-existing conditions aren't covered for 24 months unless you've been symptom-free and treatment-free during that period.
+  </p>
+
+  <h2 id="real-scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">American Tech Worker in Berlin</h4>
+      <p class="text-neutral-600 mb-3">
+        Marcus, 34, works remotely for a US company while living in Berlin. He visits family in Texas twice yearly and wants to keep seeing his US specialist.
+      </p>
+      <p class="text-primary-700 font-medium">→ GeoBlue is the clear choice. BCBS network access makes US visits seamless, and he can maintain his specialist relationship without paperwork hassles.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">British Retiree in Portugal</h4>
+      <p class="text-neutral-600 mb-3">
+        Margaret, 62, retired to the Algarve. She has no plans to visit the US and wants comprehensive coverage at a reasonable price.
+      </p>
+      <p class="text-primary-700 font-medium">→ Allianz Care wins easily. No need for US coverage means she saves 30%+ while getting excellent European network access.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Canadian Entrepreneur in Singapore</h4>
+      <p class="text-neutral-600 mb-3">
+        David, 41, runs an e-commerce business from Singapore. He travels frequently throughout Asia and occasionally to the US for conferences.
+      </p>
+      <p class="text-primary-700 font-medium">→ Allianz Care fits better. Occasional US visits don't justify BCBS premiums, and Allianz's Asia coverage is strong. He can add US coverage as an option for trips.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">American Couple with Health Conditions</h4>
+      <p class="text-neutral-600 mb-3">
+        Susan and Tom, both 55, are planning to retire in Costa Rica. Susan has a managed thyroid condition; Tom had a cardiac stent five years ago.
+      </p>
+      <p class="text-primary-700 font-medium">→ GeoBlue may provide better coverage. Full underwriting means their conditions can be properly assessed and potentially covered. Allianz's moratorium approach would exclude those conditions for 24 months.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Young Digital Nomad from Australia</h4>
+      <p class="text-neutral-600 mb-3">
+        Emma, 28, works as a freelance designer traveling through Europe. She's healthy, budget-conscious, and won't be visiting the US.
+      </p>
+      <p class="text-primary-700 font-medium">→ Allianz Care is ideal. Lower premiums, strong European networks, and modular plans let her customize coverage to exactly what she needs.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose GeoBlue If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You're an American expat</li>
-        <li>You return to the US regularly</li>
-        <li>BCBS network access matters to you</li>
-        <li>You want seamless US/international coverage</li>
-        <li>You have US doctors you want to keep seeing</li>
+        <li>✓ You're American and return to the US regularly</li>
+        <li>✓ You have US doctors or specialists to maintain</li>
+        <li>✓ Seamless US hospital access matters to you</li>
+        <li>✓ You prefer full underwriting over moratorium</li>
+        <li>✓ You value BCBS brand recognition and trust</li>
+        <li>✓ Budget is secondary to convenience</li>
+        <li>✓ You might relocate back to the US eventually</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Allianz Care If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Budget is a priority</li>
-        <li>You're based in Europe</li>
-        <li>You don't need US coverage</li>
-        <li>You want to customize your plan</li>
-        <li>You prefer modular coverage options</li>
+        <li>✓ You don't need regular US healthcare access</li>
+        <li>✓ You're based in Europe</li>
+        <li>✓ Budget matters—save 25-35%</li>
+        <li>✓ You want to customize your coverage precisely</li>
+        <li>✓ You prefer EU regulatory protections</li>
+        <li>✓ You're not a US citizen</li>
+        <li>✓ You want unlimited coverage options</li>
       </ul>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    This comparison largely comes down to your relationship with the US healthcare system.
+    This comparison comes down to one question: <strong>How important is US healthcare access?</strong>
   </p>
   <p>
-    <strong>GeoBlue</strong> is the clear choice for American expats who maintain ties to home. The BCBS network access is genuinely valuable—90%+ of US hospitals with direct billing makes stateside care effortless. You pay more, but the convenience is real.
+    <strong>If US access matters—choose GeoBlue.</strong> No other international insurer offers BCBS network integration. The 25-35% premium you pay buys real convenience: 96% of US hospitals with direct billing, 90%+ of US physicians in-network, and automatic processing of US claims. For American expats who maintain ties to home, this simplicity is worth paying for.
   </p>
   <p>
-    <strong>Allianz Care</strong> makes more sense if US coverage isn't a priority. The modular plan design, competitive pricing, and strong European networks serve expats well. You can always add US coverage if needed, though it won't match GeoBlue's network.
+    <strong>If US access doesn't matter—choose Allianz Care.</strong> You get equivalent medical coverage, strong European networks, modular plan flexibility, and save significant money. Paying extra for BCBS access you won't use makes no financial sense.
   </p>
   <p>
-    Get quotes from both—if you don't need US coverage, Allianz could save you 25-35%. If you do, GeoBlue's premium is likely worth it.
+    The decision really is that straightforward. Both are quality insurers with solid reputations. The right choice depends entirely on your relationship with US healthcare.
   </p>
+
+  <div class="bg-gradient-to-r from-blue-50 to-amber-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">The Bottom Line</h3>
+    <p class="text-neutral-700">
+      <strong>GeoBlue:</strong> Best for American expats who need seamless US healthcare access. Pay more, get BCBS network convenience.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      <strong>Allianz Care:</strong> Best for everyone else. Strong coverage, European networks, 25-35% savings.
+    </p>
+  </div>
 
   <CTABox
     title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific needs."
+    description="Get quotes from both providers and see actual pricing for your specific situation."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for GeoBlue?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for Americans who need BCBS network access and seamless US care.</p>
+      <a href="/providers/geoblue" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View GeoBlue Options →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Allianz?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for expats who want value, flexibility, and strong European coverage.</p>
+      <a href="/providers/allianz-care" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View Allianz Options →
+      </a>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can non-Americans get GeoBlue coverage?</h3>
+      <p class="text-neutral-600">
+        GeoBlue primarily serves US citizens and permanent residents. Some plans may accept non-Americans with strong US ties (work visa, family), but it's not their target market. Allianz accepts applicants from most nationalities.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What if I add US coverage to Allianz—does it match GeoBlue?</h3>
+      <p class="text-neutral-600">
+        Adding US coverage to Allianz narrows the price gap to 10-15%, but the network doesn't match. Allianz's US coverage involves limited provider partnerships and often requires out-of-pocket payment with reimbursement. GeoBlue's BCBS integration is genuinely superior for US care.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">How do pre-existing conditions work with each provider?</h3>
+      <p class="text-neutral-600">
+        GeoBlue uses full medical underwriting—they review your health history and may cover, exclude, or rate up conditions. Allianz uses moratorium underwriting—no health questions, but pre-existing conditions aren't covered for 24 months unless you've been symptom- and treatment-free during that period.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which has better mental health coverage?</h3>
+      <p class="text-neutral-600">
+        Both offer comparable mental health coverage at similar plan levels. Neither provides exceptional mental health benefits like BUPA Global. If mental health is a priority, review specific plan documents for both or consider providers known for comprehensive mental health parity.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between these providers later?</h3>
+      <p class="text-neutral-600">
+        Yes, but with caveats. Switching means new underwriting and potential gaps. Pre-existing conditions may not transfer. It's best to choose the right provider upfront. That said, both insurers are stable enough that you shouldn't need to switch for financial reasons.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What about coverage during US visits with Allianz?</h3>
+      <p class="text-neutral-600">
+        Without the US add-on, Allianz plans typically provide emergency-only US coverage (varies by plan). With the US add-on, you get broader coverage but still face network limitations. For routine US care or specialists, GeoBlue's BCBS network is substantially better.
+      </p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not licensed insurance brokers. Verify all information directly with GeoBlue and Allianz Care before purchasing. Individual circumstances vary—what works for one expat may not suit another.
     </p>
   </div>
 </PageShell>

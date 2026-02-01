@@ -5,11 +5,17 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
+  { id: 'what-comparing', text: 'What You\'re Actually Comparing', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'plan-tiers', text: 'Plan Options', level: 2 },
   { id: 'pricing', text: 'Pricing', level: 2 },
   { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'mental-health', text: 'Mental Health Coverage', level: 2 },
+  { id: 'real-scenarios', text: 'Real Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
@@ -27,37 +33,90 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Type', bupa: 'Health Insurance', safetywing: 'Travel Medical' },
+  { feature: 'Product Type', bupa: 'Health Insurance', safetywing: 'Travel Medical' },
   { feature: 'Maximum Coverage', bupa: '$2M-Unlimited', safetywing: '$250,000' },
   { feature: 'Inpatient Care', bupa: true, safetywing: true },
-  { feature: 'Outpatient Care', bupa: true, safetywing: 'Limited' },
-  { feature: 'Mental Health', bupa: 'Excellent', safetywing: false },
-  { feature: 'Maternity', bupa: 'Optional', safetywing: false },
-  { feature: 'Pre-Existing Conditions', bupa: 'After waiting period', safetywing: false },
+  { feature: 'Outpatient Care', bupa: 'Full coverage', safetywing: 'Limited ($1,500 cap)' },
+  { feature: 'Mental Health', bupa: 'Excellent (full parity)', safetywing: false },
+  { feature: 'Maternity', bupa: 'Optional (add-on)', safetywing: 'Complications only' },
+  { feature: 'Pre-Existing Conditions', bupa: 'Covered after waiting period', safetywing: false },
   { feature: 'Routine Checkups', bupa: true, safetywing: false },
-  { feature: 'Medical Evacuation', bupa: true, safetywing: '$100,000' },
-  { feature: 'Home Country Coverage', bupa: 'Optional', safetywing: '15 days/90 days' },
+  { feature: 'Prescriptions', bupa: 'Full coverage', safetywing: 'Emergency only ($150 cap)' },
+  { feature: 'Medical Evacuation', bupa: 'Unlimited', safetywing: '$100,000' },
+  { feature: 'Home Country Coverage', bupa: 'Optional (45/90 days)', safetywing: '15 days per 90' },
+  { feature: 'Dental', bupa: 'Optional (add-on)', safetywing: 'Emergency only' },
+];
+
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'safetywing', header: 'SafetyWing Nomad' },
+];
+
+const planRows = [
+  { aspect: 'Plan Structure', bupa: 'Annual policy', safetywing: 'Subscription (4-week periods)' },
+  { aspect: 'Entry Tier', bupa: 'Essentials ($2M)', safetywing: 'Single plan ($250K)' },
+  { aspect: 'Mid Tier', bupa: 'Comprehensive', safetywing: 'N/A - one plan only' },
+  { aspect: 'Top Tier', bupa: 'Premier (Unlimited)', safetywing: 'N/A' },
+  { aspect: 'Deductible Options', bupa: '$0-$20,000', safetywing: '$250 (fixed)' },
+  { aspect: 'Contract Length', bupa: '12 months', safetywing: 'Cancel anytime' },
+  { aspect: 'Auto-Renewal', bupa: 'Yes (annual)', safetywing: 'Yes (4-weekly)' },
+  { aspect: 'Age Limit', bupa: '75 (enrollment)', safetywing: '69' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
   { key: 'bupa', header: 'BUPA Global' },
   { key: 'safetywing', header: 'SafetyWing Nomad' },
+  { key: 'difference', header: 'Price Difference' },
 ];
 
 const pricingRows = [
-  { profile: 'Single, Age 30', bupa: '$200-280/mo', safetywing: '$45/mo' },
-  { profile: 'Single, Age 45', bupa: '$350-450/mo', safetywing: '$73/mo' },
-  { profile: 'Couple, Age 35', bupa: '$400-560/mo', safetywing: '$90/mo' },
-  { profile: 'Family of 4', bupa: '$700-1,000/mo', safetywing: '$140/mo' },
+  { profile: 'Single, Age 25', bupa: '$170-240/mo', safetywing: '$42/mo', difference: '75-80% less' },
+  { profile: 'Single, Age 30', bupa: '$200-280/mo', safetywing: '$45/mo', difference: '77-84% less' },
+  { profile: 'Single, Age 45', bupa: '$350-450/mo', safetywing: '$73/mo', difference: '79-84% less' },
+  { profile: 'Single, Age 55', bupa: '$500-650/mo', safetywing: '$117/mo', difference: '77-82% less' },
+  { profile: 'Couple, Age 35', bupa: '$400-560/mo', safetywing: '$90/mo', difference: '77-84% less' },
+  { profile: 'Family of 4', bupa: '$700-1,000/mo', safetywing: '$140/mo', difference: '80-86% less' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'safetywing', header: 'SafetyWing Nomad' },
+];
+
+const networkRows = [
+  { aspect: 'Provider Network', bupa: 'Global hospital network', safetywing: 'No formal network' },
+  { aspect: 'Direct Billing', bupa: 'Yes (major hospitals)', safetywing: 'Rarely available' },
+  { aspect: 'Payment Model', bupa: 'Direct pay or reimbursement', safetywing: 'Pay and claim' },
+  { aspect: 'Claims Portal', bupa: 'Comprehensive app + web', safetywing: 'Simple web form' },
+  { aspect: 'Claims Processing', bupa: '5-10 business days', safetywing: '7-14 business days' },
+  { aspect: '24/7 Support', bupa: 'Yes (multilingual)', safetywing: 'Limited hours' },
+  { aspect: 'Case Management', bupa: 'Dedicated managers', safetywing: 'Basic support' },
+];
+
+const claimsColumns = [
+  { key: 'scenario', header: 'Scenario' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'safetywing', header: 'SafetyWing Nomad' },
+];
+
+const claimsRows = [
+  { scenario: 'Emergency Room Visit', bupa: 'Direct billing likely', safetywing: 'Pay, claim later' },
+  { scenario: 'Specialist Consultation', bupa: 'Covered, may direct bill', safetywing: 'Limited coverage ($1,500 cap)' },
+  { scenario: 'Hospital Admission', bupa: 'Coordinated admission', safetywing: 'Pay, claim later' },
+  { scenario: 'Outpatient Surgery', bupa: 'Pre-auth, then direct bill', safetywing: 'May not be covered' },
+  { scenario: 'Physical Therapy', bupa: 'Covered (limits vary)', safetywing: 'Not covered' },
+  { scenario: 'Mental Health Session', bupa: 'Covered (full parity)', safetywing: 'Not covered' },
 ];
 ---
 
 <PageShell
   title="BUPA Global vs SafetyWing"
-  description="Compare BUPA Global and SafetyWing side by side. Premium health insurance vs budget nomad coverage—which is right for you?"
-  headline="BUPA Global vs SafetyWing: Premium vs Budget Comparison"
-  subheadline="Comprehensive health insurance vs affordable travel medical. Understanding what you're actually comparing."
+  description="Compare BUPA Global and SafetyWing Nomad for expat coverage. Premium health insurance vs budget travel medical—understand what you're actually comparing."
+  headline="BUPA Global vs SafetyWing: Health Insurance vs Travel Medical"
+  subheadline="These aren't competing products—they're different categories. Understanding that difference is the key to choosing right."
   heroBackgroundImage="/images/compare/bupa-vs-safetywing-hero-bg.png"
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
@@ -65,169 +124,509 @@ const pricingRows = [
   ctaButtonText="Compare Your Options"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    Bupa Global and SafetyWing are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    BUPA Global and SafetyWing appear to compete in the same space—international coverage for people living or traveling abroad. But they're fundamentally different products solving different problems at vastly different price points.
   </p>
   <p>
-    Bupa Global is a UK-based insurer with a strong reputation in international health coverage. Their main comprehensive coverage and a solid reputation for claims handling. They're particularly popular among expats who want reliable coverage from an established brand, with mid-to-premium range with good value for the coverage provided.
+    <strong>BUPA Global</strong> offers comprehensive international health insurance. They cover everything from annual checkups to chronic disease management to mental health treatment. Founded in 1947, BUPA (British United Provident Association) serves over 43 million customers in 190+ countries. They're one of the most recognized names in international health insurance, known for thorough coverage and exceptional mental health benefits.
   </p>
   <p>
-    SafetyWing is a modern insurance option designed specifically for digital nomads and remote workers. They're known for their subscription-based model with no long-term commitment required. They tend to attract digital nomads, remote workers, and location-independent professionals, offering very affordable monthly subscription starting around $40/month.
+    <strong>SafetyWing Nomad Insurance</strong> is travel medical insurance designed for digital nomads and remote workers. It covers emergencies and accidents—broken bones, sudden illness, unexpected hospitalizations—but not routine care, chronic conditions, or mental health. Founded in 2018 by Scandinavian entrepreneurs, SafetyWing has gained popularity among the digital nomad community for its low cost and subscription-based flexibility.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    Here's the critical distinction: <strong>SafetyWing is not health insurance.</strong> It's travel medical coverage. BUPA Global is actual health insurance. Comparing them directly is like comparing car insurance to an extended warranty—they serve different purposes.
   </p>
 
+  <div class="bg-amber-50 border border-amber-300 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">Important: Product Category Warning</h3>
+    <p class="text-neutral-700">
+      Before comparing prices, understand what you're buying. SafetyWing Nomad is <strong>travel medical insurance</strong>, not health insurance. It doesn't cover:
+    </p>
+    <ul class="text-neutral-700 mt-2 space-y-1">
+      <li>• Mental health treatment</li>
+      <li>• Pre-existing conditions</li>
+      <li>• Routine checkups or preventive care</li>
+      <li>• Chronic condition management (diabetes, high blood pressure, etc.)</li>
+      <li>• Planned surgeries or treatments</li>
+    </ul>
+    <p class="text-neutral-700 mt-3">
+      If you need any of these, SafetyWing isn't an option regardless of price.
+    </p>
+  </div>
+
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Comprehensive health insurance</li>
-        <li>Excellent mental health coverage</li>
-        <li>Pre-existing conditions covered</li>
-        <li>Routine care and checkups included</li>
-        <li>Premium pricing ($200-400+/mo)</li>
+        <li><strong>Type:</strong> Comprehensive Health Insurance</li>
+        <li><strong>Founded:</strong> 1947 (UK)</li>
+        <li><strong>Customers:</strong> 43+ million worldwide</li>
+        <li><strong>Strength:</strong> Mental health, comprehensive coverage</li>
+        <li><strong>Price Range:</strong> $200-650+/month</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing Nomad</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Travel medical insurance</li>
-        <li>Emergency and accident coverage</li>
-        <li>No pre-existing condition coverage</li>
-        <li>No routine care</li>
-        <li>Budget pricing ($45-75/mo)</li>
+        <li><strong>Type:</strong> Travel Medical Insurance</li>
+        <li><strong>Founded:</strong> 2018 (Norway)</li>
+        <li><strong>Customers:</strong> Growing nomad community</li>
+        <li><strong>Strength:</strong> Low cost, flexibility</li>
+        <li><strong>Price Range:</strong> $42-120/month</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+  <p>
+    This decision often makes itself once you understand what each product covers.
+  </p>
+
+  <div class="bg-gradient-to-r from-purple-50 to-teal-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">You NEED BUPA Global (or similar health insurance) if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You have any pre-existing conditions</li>
+      <li>✓ You take regular medications</li>
+      <li>✓ Mental health coverage matters to you</li>
+      <li>✓ You want routine checkups covered</li>
+      <li>✓ You might get pregnant or are planning to</li>
+      <li>✓ You're over 40 or have emerging health concerns</li>
+      <li>✓ You want comprehensive, worry-free coverage</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">SafetyWing MIGHT work if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You're young and genuinely healthy</li>
+      <li>✓ You have no pre-existing conditions</li>
+      <li>✓ You don't need mental health coverage</li>
+      <li>✓ You can pay out-of-pocket for routine care</li>
+      <li>✓ You only want emergency/accident coverage</li>
+      <li>✓ Budget is your primary concern</li>
+      <li>✓ You're comfortable with coverage gaps</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">Quick Test:</h3>
+    <p class="text-neutral-700">
+      Ask yourself: "Would I be okay paying $200-500 out of pocket for a doctor visit, blood work, or prescriptions?" If yes, SafetyWing might work. If that sounds stressful or unaffordable, you need actual health insurance.
+    </p>
+  </div>
+
   <CTABox
-    title="Need Help Choosing?"
-    description="Compare options based on your actual health needs and budget."
-    buttonText="See All Options"
+    title="Not Sure What You Need?"
+    description="Get personalized recommendations based on your health situation and budget."
+    buttonText="Compare All Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <h2 id="what-comparing">What You're Actually Comparing</h2>
+  <p>
+    Understanding the product category difference is essential before comparing features or prices.
+  </p>
+
+  <h3>BUPA Global: Comprehensive Health Insurance</h3>
+  <p>
+    Health insurance covers your ongoing health needs—not just emergencies. With BUPA Global you get:
+  </p>
+  <ul>
+    <li><strong>Routine care:</strong> Annual physicals, blood work, screenings, vaccinations</li>
+    <li><strong>Chronic condition management:</strong> Diabetes, hypertension, asthma—ongoing treatment and medications</li>
+    <li><strong>Mental health:</strong> Therapy, psychiatry, inpatient mental health treatment (BUPA is known for exceptional mental health coverage)</li>
+    <li><strong>Specialist care:</strong> Dermatologists, cardiologists, endocrinologists—whoever you need</li>
+    <li><strong>Pre-existing conditions:</strong> Covered after a waiting period (typically 12-24 months)</li>
+    <li><strong>Maternity:</strong> Full pregnancy and delivery coverage (add-on with waiting period)</li>
+    <li><strong>Emergency care:</strong> Also covered, of course</li>
+  </ul>
+
+  <h3>SafetyWing Nomad: Travel Medical Insurance</h3>
+  <p>
+    Travel medical insurance covers unexpected emergencies while traveling—that's it. SafetyWing covers:
+  </p>
+  <ul>
+    <li><strong>Emergencies:</strong> Accidents, sudden illness, unexpected hospitalization</li>
+    <li><strong>Medical evacuation:</strong> Getting you to appropriate care (up to $100,000)</li>
+    <li><strong>Emergency dental:</strong> Tooth pain, infections (limited)</li>
+    <li><strong>Limited outpatient:</strong> Some coverage, but capped at $1,500</li>
+  </ul>
+  <p>
+    What SafetyWing explicitly does NOT cover:
+  </p>
+  <ul>
+    <li><strong>Pre-existing conditions:</strong> Any condition you had before enrolling</li>
+    <li><strong>Mental health:</strong> Therapy, psychiatry, mental health hospitalization</li>
+    <li><strong>Routine care:</strong> Checkups, physicals, screenings</li>
+    <li><strong>Ongoing treatment:</strong> Cancer treatment, dialysis, chronic disease management</li>
+    <li><strong>Planned procedures:</strong> Anything you know you need before enrolling</li>
+  </ul>
+
+  <div class="bg-neutral-100 border border-neutral-300 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-neutral-900 mb-3">The Analogy</h4>
+    <p class="text-neutral-700">
+      Think of it like car coverage. <strong>BUPA Global</strong> is like having car insurance PLUS a maintenance plan—oil changes, brake pads, tune-ups, plus collision and liability coverage.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      <strong>SafetyWing</strong> is like having collision-only coverage—if you crash, you're covered. But oil changes, brake pads, and that weird engine noise? All on you.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      Both have their place, but they solve different problems.
+    </p>
+  </div>
+
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    The coverage gap between these two options is significant. BUPA Global covers nearly everything; SafetyWing covers emergencies only.
+    Here's a detailed breakdown of what each product actually covers.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
+  <h3>Key Coverage Gaps in SafetyWing</h3>
   <p>
-    <strong>What this means in practice:</strong>
+    The most significant gaps in SafetyWing coverage that catch people off guard:
+  </p>
+
+  <p><strong>1. Outpatient Cap ($1,500)</strong></p>
+  <p>
+    SafetyWing limits outpatient coverage to $1,500 per "certificate period" (4 weeks). One specialist visit with blood work could eat half that. A few doctor visits and you've exhausted it.
+  </p>
+
+  <p><strong>2. No Mental Health</strong></p>
+  <p>
+    Zero mental health coverage. No therapy, no psychiatry, no mental health medications. If you're struggling abroad and need help, SafetyWing won't cover it.
+  </p>
+
+  <p><strong>3. No Pre-Existing Conditions</strong></p>
+  <p>
+    If you have any condition that existed before enrollment—high blood pressure, diabetes, anxiety, anything—it's not covered. Flare-ups of existing conditions? Not covered.
+  </p>
+
+  <p><strong>4. No Routine Care</strong></p>
+  <p>
+    Annual checkups, cancer screenings, vaccinations, preventive care—all out of pocket. SafetyWing only kicks in when something unexpected goes wrong.
+  </p>
+
+  <p><strong>5. Prescription Limits</strong></p>
+  <p>
+    Prescriptions are capped at $150 per certificate period. If you need any regular medication, you're paying out of pocket.
+  </p>
+
+  <h2 id="plan-tiers">Plan Options</h2>
+  <p>
+    The plan structures are fundamentally different—BUPA offers comprehensive tiers, SafetyWing has one product.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>BUPA Global Plan Tiers</h3>
+  <ul>
+    <li><strong>Essentials:</strong> Core coverage with $2M maximum. Hospital and outpatient basics</li>
+    <li><strong>Comprehensive:</strong> Mid-tier with enhanced benefits. More specialist coverage and higher limits</li>
+    <li><strong>Premier:</strong> Top-tier with unlimited maximum. Extensive wellness benefits, enhanced mental health, and no practical coverage limits</li>
+  </ul>
+  <p>
+    All tiers include BUPA's exceptional mental health coverage and access to their global hospital network.
+  </p>
+
+  <h3>SafetyWing Nomad</h3>
+  <p>
+    SafetyWing offers one plan—Nomad Insurance. There's no tier selection. What you see is what you get:
   </p>
   <ul>
-    <li><strong>Break your leg abroad:</strong> Both cover it</li>
-    <li><strong>Need therapy for anxiety:</strong> BUPA covers it; SafetyWing doesn't</li>
-    <li><strong>Managing diabetes:</strong> BUPA covers it (after waiting period); SafetyWing doesn't</li>
-    <li><strong>Annual physical:</strong> BUPA covers it; SafetyWing doesn't</li>
-    <li><strong>Having a baby:</strong> BUPA offers maternity add-on; SafetyWing covers complications only</li>
+    <li>$250,000 maximum coverage</li>
+    <li>$250 deductible (fixed)</li>
+    <li>$1,500 outpatient limit per 4-week period</li>
+    <li>$100,000 medical evacuation</li>
+    <li>15 days of US/home country coverage per 90 days</li>
   </ul>
-
-  <h2 id="pricing">Pricing</h2>
   <p>
-    The price difference is dramatic—SafetyWing costs roughly 75-80% less than BUPA Global. But you're getting fundamentally different products.
+    The simplicity is part of the appeal—one plan, one price, take it or leave it.
+  </p>
+
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>
+    Here's where SafetyWing's appeal becomes clear—and where the danger lies. The price difference is dramatic: 75-85% lower. But you're getting a fundamentally different (and much more limited) product.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
+  <p><em>*BUPA Global prices are for mid-tier plans (Comprehensive) with moderate deductibles. Actual premiums vary based on age, health history, area of coverage, and selected benefits. SafetyWing prices are standard rates from their website.</em></p>
+
+  <h3>Why the Huge Price Difference?</h3>
   <p>
-    <strong>Understanding the price gap:</strong>
+    The 75-85% price gap reflects what's actually covered:
   </p>
   <ul>
-    <li>BUPA's higher price reflects comprehensive coverage and unlimited benefits</li>
-    <li>SafetyWing's low price reflects limited, emergency-only coverage</li>
-    <li>The $150-200/month difference pays for routine care, mental health, and chronic condition management</li>
-    <li>If you're healthy and just need emergency coverage, SafetyWing's price is appealing</li>
+    <li><strong>BUPA covers everything:</strong> Routine care, chronic conditions, mental health, specialist visits, prescriptions—all the expensive stuff</li>
+    <li><strong>SafetyWing covers emergencies only:</strong> They're betting most healthy young nomads won't have emergencies</li>
+    <li><strong>BUPA has high limits:</strong> $2M minimum, unlimited on Premier</li>
+    <li><strong>SafetyWing caps at $250,000:</strong> Adequate for most emergencies, but not for major illness</li>
+    <li><strong>BUPA's claims are higher:</strong> Routine care means frequent claims; SafetyWing rarely pays out</li>
   </ul>
 
+  <h3>The Hidden Cost of SafetyWing</h3>
+  <p>
+    SafetyWing's low price assumes you'll pay out-of-pocket for everything except emergencies. Calculate what you'd spend on:
+  </p>
+  <ul>
+    <li>Quarterly doctor visits: $150-400 each</li>
+    <li>Annual blood work: $100-300</li>
+    <li>Monthly prescriptions: $50-500+</li>
+    <li>Dental cleanings: $75-200 each</li>
+    <li>Therapy sessions: $100-250 each</li>
+  </ul>
+  <p>
+    If you're truly healthy and never use these services, SafetyWing saves money. If you use even modest healthcare, the savings evaporate.
+  </p>
+
   <CTABox
-    title="Consider Your Health Needs"
-    description="The right choice depends on what coverage you actually need."
+    title="Calculate Your True Cost"
+    description="Factor in what you'll pay out-of-pocket with SafetyWing vs what BUPA covers."
     buttonText="Compare Plans"
     buttonHref="/best/expat-health-insurance"
   />
 
   <h2 id="network-and-claims">Network and Claims</h2>
 
-  <h3>Provider Networks</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>BUPA Global Network</h3>
   <p>
-    <strong>BUPA Global</strong> has established relationships with hospitals worldwide and offers direct billing at major facilities. You can often see a doctor without paying upfront.
-  </p>
-  <p>
-    <strong>SafetyWing</strong> works on a reimbursement model. You pay for care and submit claims afterward. They don't have a traditional provider network.
+    BUPA maintains relationships with hospitals worldwide. In major cities, you can often receive care without paying upfront—BUPA bills the hospital directly. Their member services team coordinates care for complex cases, arranges second opinions, and navigates local healthcare systems on your behalf.
   </p>
 
-  <h3>Claims Process</h3>
+  <h3>SafetyWing "Network"</h3>
   <p>
-    BUPA Global has a mature claims system with an online portal and app. SafetyWing's claims process is simpler (fewer things to claim) but also less sophisticated.
+    SafetyWing doesn't have a traditional network. You pay for care, then submit claims for reimbursement. In some cases, they can arrange direct billing with hospitals, but don't count on it. The claims process is simple (limited coverage means simple claims) but you'll typically pay upfront.
   </p>
 
-  <h3>Customer Support</h3>
+  <h3>Claims Process Comparison</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h2 id="mental-health">Mental Health Coverage</h2>
   <p>
-    BUPA Global offers 24/7 multilingual support and dedicated case managers for complex situations. SafetyWing has more limited support appropriate for a travel insurance product.
+    This deserves special attention because it's where these products differ most dramatically—and where SafetyWing's gaps can cause real harm.
   </p>
+
+  <h3>BUPA Global: Industry-Leading Mental Health</h3>
+  <p>
+    BUPA Global is known for exceptional mental health coverage:
+  </p>
+  <ul>
+    <li><strong>Full parity:</strong> Mental health treated same as physical health</li>
+    <li><strong>Outpatient therapy:</strong> Sessions with psychologists and counselors</li>
+    <li><strong>Psychiatry:</strong> Medication management and psychiatric care</li>
+    <li><strong>Inpatient treatment:</strong> Mental health hospitalization when needed</li>
+    <li><strong>No separate limits:</strong> Uses same annual maximum as physical health</li>
+  </ul>
+  <p>
+    If you're managing anxiety, depression, or any mental health condition—or want the option to address issues that arise—BUPA provides genuine support.
+  </p>
+
+  <h3>SafetyWing: Zero Mental Health Coverage</h3>
+  <p>
+    SafetyWing explicitly excludes all mental health:
+  </p>
+  <ul>
+    <li>No therapy coverage</li>
+    <li>No psychiatry</li>
+    <li>No mental health medications</li>
+    <li>No mental health hospitalization</li>
+  </ul>
+  <p>
+    If you experience a mental health crisis abroad with SafetyWing, you're on your own financially. This is a serious gap for anyone who might need mental health support.
+  </p>
+
+  <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-red-800 mb-2">Mental Health Warning</h4>
+    <p class="text-red-700">
+      Living abroad can be isolating. Culture shock, loneliness, and adjustment issues are common. If there's any chance you might need mental health support, SafetyWing won't help. This isn't theoretical—many expats need mental health care during their time abroad.
+    </p>
+  </div>
+
+  <h2 id="real-scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Healthy 26-Year-Old Digital Nomad</h4>
+      <p class="text-neutral-600 mb-3">
+        Maya works remotely, travels through Southeast Asia, has no health conditions, and hasn't seen a doctor in three years. She's comfortable paying cash for occasional clinic visits.
+      </p>
+      <p class="text-primary-700 font-medium">→ SafetyWing fits her profile. She needs emergency coverage, not comprehensive health insurance. The $45/month price is appropriate for her low-risk situation.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">35-Year-Old Remote Worker with Anxiety</h4>
+      <p class="text-neutral-600 mb-3">
+        James manages anxiety with weekly therapy and daily medication. He's moving abroad to work remotely and wants to continue his treatment.
+      </p>
+      <p class="text-primary-700 font-medium">→ BUPA Global is essential. SafetyWing wouldn't cover his therapy or medications—he'd pay $500-800/month out of pocket on top of SafetyWing's premium. BUPA's comprehensive coverage actually costs less than SafetyWing + out-of-pocket care.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">45-Year-Old with Managed Hypertension</h4>
+      <p class="text-neutral-600 mb-3">
+        Linda takes blood pressure medication daily and needs quarterly checkups. Her condition is well-controlled but requires ongoing management.
+      </p>
+      <p class="text-primary-700 font-medium">→ BUPA Global is the only option. SafetyWing wouldn't cover her pre-existing condition, medications, or monitoring appointments. Her hypertension literally disqualifies her from SafetyWing coverage for that condition.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Couple Planning Pregnancy Abroad</h4>
+      <p class="text-neutral-600 mb-3">
+        Sarah and Tom, both 32, plan to start a family while living in Portugal. They want maternity coverage included.
+      </p>
+      <p class="text-primary-700 font-medium">→ BUPA Global with maternity add-on. SafetyWing only covers emergency complications—it won't cover prenatal care, delivery, or routine pregnancy appointments. The maternity add-on has a waiting period, so they need to plan ahead.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Budget-Conscious Recent College Grad</h4>
+      <p class="text-neutral-600 mb-3">
+        Alex just graduated, is healthy, and wants to travel for a year on a tight budget. They've never had a serious health issue and rarely see doctors.
+      </p>
+      <p class="text-primary-700 font-medium">→ SafetyWing is reasonable here. For a healthy young person on a gap year, emergency-only coverage may be sufficient. They should understand the limitations and have emergency savings for routine care.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose BUPA Global If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You have ongoing health needs</li>
-        <li>Mental health coverage is important</li>
-        <li>You want routine checkups covered</li>
-        <li>You have or expect pre-existing conditions</li>
-        <li>You want comprehensive, worry-free coverage</li>
-        <li>You can afford premium pricing</li>
+        <li>✓ You have any pre-existing conditions</li>
+        <li>✓ You take regular medications</li>
+        <li>✓ Mental health coverage matters</li>
+        <li>✓ You want routine checkups covered</li>
+        <li>✓ You're planning pregnancy</li>
+        <li>✓ You're over 40</li>
+        <li>✓ You want comprehensive, worry-free coverage</li>
+        <li>✓ You can afford $200-400+/month</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose SafetyWing If:</h3>
+    <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing May Work If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You're young and healthy</li>
-        <li>You only need emergency coverage</li>
-        <li>Budget is your primary concern</li>
-        <li>You're a digital nomad moving frequently</li>
-        <li>You're comfortable with limited coverage</li>
-        <li>You can pay out-of-pocket for routine care</li>
+        <li>✓ You're under 35 and genuinely healthy</li>
+        <li>✓ You have zero pre-existing conditions</li>
+        <li>✓ You don't need mental health care</li>
+        <li>✓ You can pay cash for routine care</li>
+        <li>✓ You only need emergency coverage</li>
+        <li>✓ Budget is your top priority</li>
+        <li>✓ You understand and accept the gaps</li>
+        <li>✓ You have emergency savings</li>
       </ul>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    This isn't really an apples-to-apples comparison. BUPA Global and SafetyWing serve different purposes at different price points.
+    This isn't really a comparison of competitors—it's a comparison of product categories. <strong>BUPA Global is health insurance. SafetyWing is travel medical insurance.</strong> They solve different problems.
   </p>
   <p>
-    <strong>BUPA Global</strong> is the right choice if you want actual health insurance that covers everything from checkups to chronic conditions. It's expensive, but you're getting comprehensive coverage with one of the most respected names in international health insurance.
+    <strong>BUPA Global</strong> is the right choice if you need actual health insurance—coverage for routine care, chronic conditions, mental health, and ongoing medical needs. Yes, it costs 4-5x more than SafetyWing. But it covers 10x more. For anyone with health needs beyond "I hope I don't get hit by a bus," BUPA provides real protection.
   </p>
   <p>
-    <strong>SafetyWing</strong> is appropriate if you're healthy, budget-conscious, and primarily worried about catastrophic events like accidents or sudden illness. It's not a replacement for health insurance—it's travel medical coverage for people willing to handle routine health expenses out of pocket.
+    <strong>SafetyWing</strong> serves a specific niche: young, healthy digital nomads who need catastrophic coverage and nothing else. If you're 25, in perfect health, and comfortable paying out-of-pocket for the rare doctor visit, SafetyWing's low cost makes sense. Just understand you're buying emergency coverage, not health insurance.
   </p>
   <p>
-    If you're unsure, consider: Would you be comfortable paying $200+ out of pocket for a doctor visit or $100+ for prescriptions? If yes, SafetyWing might work. If that sounds stressful, you probably need actual health insurance like BUPA Global.
+    The danger is people choosing SafetyWing because it's cheap, not understanding what they're giving up. Don't let price drive a decision about your health coverage. Understand what each product covers, then choose based on your actual needs.
   </p>
 
+  <div class="bg-gradient-to-r from-purple-50 to-teal-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">The Bottom Line</h3>
+    <p class="text-neutral-700">
+      <strong>BUPA Global:</strong> Comprehensive health insurance for people who want real coverage. Best for anyone with health needs, anyone over 35-40, or anyone who values peace of mind.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      <strong>SafetyWing Nomad:</strong> Budget emergency coverage for healthy young nomads. Good for catastrophic protection on a tight budget—but understand it's NOT health insurance.
+    </p>
+  </div>
+
   <CTABox
-    title="Find the Right Coverage Level"
-    description="See options across the price spectrum based on your needs."
-    buttonText="Compare All Options"
+    title="Ready to Decide?"
+    description="Compare your options based on what you actually need covered."
+    buttonText="Compare All Plans"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need Real Health Insurance?</h3>
+      <p class="text-neutral-600 text-sm mb-4">BUPA Global covers everything—routine care, chronic conditions, mental health, and more.</p>
+      <a href="/providers/bupa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View BUPA Global Options →
+      </a>
+    </div>
+    <div class="bg-teal-50 border border-teal-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Just Need Emergency Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">SafetyWing covers accidents and emergencies at budget prices—if you're healthy and young.</p>
+      <a href="/providers/safetywing" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View SafetyWing Options →
+      </a>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Is SafetyWing actually health insurance?</h3>
+      <p class="text-neutral-600">
+        No. SafetyWing Nomad Insurance is travel medical insurance. It covers emergencies and accidents but not routine care, chronic conditions, mental health, or pre-existing conditions. It's categorically different from comprehensive health insurance like BUPA Global.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Why is SafetyWing so much cheaper?</h3>
+      <p class="text-neutral-600">
+        SafetyWing covers much less. They only pay for emergencies—rare events for most healthy young people. BUPA Global covers everything including routine care, chronic conditions, and mental health, which generates far more claims. You're comparing emergency-only coverage to comprehensive coverage.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I use SafetyWing for regular doctor visits?</h3>
+      <p class="text-neutral-600">
+        SafetyWing has limited outpatient coverage ($1,500 per 4-week period), but it's meant for illness treatment, not routine care. Checkups, preventive care, and general wellness visits aren't covered. You'd pay out-of-pocket for routine care.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What if I develop a health condition while on SafetyWing?</h3>
+      <p class="text-neutral-600">
+        If you develop a new condition while covered by SafetyWing, initial emergency treatment may be covered. But ongoing management of that condition wouldn't be—it would become a "pre-existing condition" for future coverage purposes. This is where travel medical insurance shows its limitations.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Does BUPA Global cover the US?</h3>
+      <p class="text-neutral-600">
+        BUPA Global offers optional US coverage, typically for visits rather than residence. Adding US coverage increases premiums significantly due to US healthcare costs. Review plan details for specific US coverage options and limitations.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I switch from SafetyWing to BUPA Global later?</h3>
+      <p class="text-neutral-600">
+        Yes, but with important caveats. Any conditions you develop while on SafetyWing would be pre-existing for BUPA's underwriting. BUPA uses moratorium underwriting for some plans (conditions not covered for 24 months) or full medical underwriting (they review your history). It's generally better to start with appropriate coverage than to switch later.
+      </p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. BUPA Global and SafetyWing are different product categories—health insurance vs travel medical insurance. Prices, coverage, and plan details change. We are not licensed insurance brokers. Verify all information directly with both providers before purchasing. Your individual health needs should drive your decision, not price alone.
     </p>
   </div>
 </PageShell>

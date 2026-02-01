@@ -5,11 +5,17 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
+  { id: 'what-comparing', text: 'What You\'re Actually Comparing', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
   { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'key-differences', text: 'Key Differences', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage', level: 2 },
+  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'eligibility', text: 'Eligibility', level: 2 },
+  { id: 'real-scenarios', text: 'Real Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
@@ -17,201 +23,539 @@ const relatedLinks = [
   { title: 'SafetyWing Review', href: '/providers/safetywing' },
   { title: 'Best US Expat Insurance', href: '/best/us-expat-insurance' },
   { title: 'Best Digital Nomad Insurance', href: '/best/digital-nomad-insurance' },
+  { title: 'BUPA Global vs SafetyWing', href: '/compare/bupa-global-vs-safetywing' },
 ];
 
 const coverageColumns = [
   { key: 'feature', header: 'Feature' },
   { key: 'geoblue', header: 'GeoBlue' },
-  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'safetywing', header: 'SafetyWing Nomad' },
 ];
 
 const coverageRows = [
-  { feature: 'Insurance Type', geoblue: 'Health insurance', safetywing: 'Travel medical' },
-  { feature: 'Inpatient Care', geoblue: true, safetywing: 'Limited' },
-  { feature: 'Outpatient Care', geoblue: true, safetywing: 'Emergency only' },
-  { feature: 'Mental Health', geoblue: 'Moderate', safetywing: 'Not covered' },
-  { feature: 'Maternity', geoblue: '12 mo wait', safetywing: 'Not covered' },
-  { feature: 'Pre-existing Conditions', geoblue: 'Underwriting', safetywing: 'Not covered' },
-  { feature: 'Routine Care', geoblue: true, safetywing: 'Not covered' },
-  { feature: 'US Coverage', geoblue: 'BCBS network', safetywing: 'Limited' },
-  { feature: 'Maximum Coverage', geoblue: '$5M', safetywing: '$250K' },
+  { feature: 'Product Type', geoblue: 'Health Insurance', safetywing: 'Travel Medical' },
+  { feature: 'Maximum Coverage', geoblue: '$1M-$5M', safetywing: '$250,000' },
+  { feature: 'Inpatient Care', geoblue: true, safetywing: true },
+  { feature: 'Outpatient Care', geoblue: 'Full coverage', safetywing: 'Limited ($1,500 cap)' },
+  { feature: 'Mental Health', geoblue: 'Moderate (limits vary)', safetywing: false },
+  { feature: 'Maternity', geoblue: 'Optional (12mo wait)', safetywing: 'Complications only' },
+  { feature: 'Pre-Existing Conditions', geoblue: 'Underwritten (may cover)', safetywing: false },
+  { feature: 'Routine Checkups', geoblue: true, safetywing: false },
+  { feature: 'Prescriptions', geoblue: 'Full coverage', safetywing: 'Emergency only ($150 cap)' },
+  { feature: 'US Coverage', geoblue: 'BCBS network (96% hospitals)', safetywing: '15 days per 90' },
+  { feature: 'Medical Evacuation', geoblue: '$500,000', safetywing: '$100,000' },
+  { feature: 'Chronic Conditions', geoblue: 'May be covered', safetywing: false },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'geoblue', header: 'GeoBlue' },
   { key: 'safetywing', header: 'SafetyWing Nomad' },
 ];
 
+const planRows = [
+  { aspect: 'Plan Structure', geoblue: 'Annual policy', safetywing: 'Subscription (4-week)' },
+  { aspect: 'Plan Options', geoblue: '3 tiers (Essential, Choice, Select)', safetywing: 'One plan only' },
+  { aspect: 'Deductible Options', geoblue: '$0-$5,000', safetywing: '$250 (fixed)' },
+  { aspect: 'Contract Length', geoblue: '12 months', safetywing: 'Cancel anytime' },
+  { aspect: 'Auto-Renewal', geoblue: 'Annual', safetywing: '4-weekly' },
+  { aspect: 'Target Audience', geoblue: 'US citizens abroad', safetywing: 'Digital nomads' },
+  { aspect: 'Age Limit', geoblue: '74-84 (varies)', safetywing: '69' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'safetywing', header: 'SafetyWing Nomad' },
+  { key: 'difference', header: 'Price Difference' },
+];
+
 const pricingRows = [
-  { age: '30', geoblue: '$150-230/mo', safetywing: '$45-70/mo' },
-  { age: '40', geoblue: '$200-310/mo', safetywing: '$65-95/mo' },
-  { age: '50', geoblue: '$280-430/mo', safetywing: '$95-140/mo' },
-  { age: '60', geoblue: '$400-620/mo', safetywing: '$150-210/mo' },
+  { profile: 'Single, Age 25', geoblue: '$140-200/mo', safetywing: '$42/mo', difference: '70-79% less' },
+  { profile: 'Single, Age 30', geoblue: '$160-230/mo', safetywing: '$45/mo', difference: '72-80% less' },
+  { profile: 'Single, Age 40', geoblue: '$220-320/mo', safetywing: '$68/mo', difference: '69-79% less' },
+  { profile: 'Single, Age 50', geoblue: '$300-450/mo', safetywing: '$105/mo', difference: '65-77% less' },
+  { profile: 'Couple, Age 35', geoblue: '$320-460/mo', safetywing: '$90/mo', difference: '72-80% less' },
+  { profile: 'Family of 4', geoblue: '$550-800/mo', safetywing: '$140/mo', difference: '75-82% less' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Network Aspect' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'safetywing', header: 'SafetyWing Nomad' },
+];
+
+const networkRows = [
+  { aspect: 'US Network', geoblue: 'BCBS (96% hospitals)', safetywing: 'No formal network' },
+  { aspect: 'International Network', geoblue: 'Partner hospitals', safetywing: 'No formal network' },
+  { aspect: 'Direct Billing US', geoblue: 'Automatic (BCBS)', safetywing: 'Rarely available' },
+  { aspect: 'Direct Billing Intl', geoblue: 'Major hospitals', safetywing: 'Rarely available' },
+  { aspect: 'Claims Submission', geoblue: 'App, web, email', safetywing: 'Web form' },
+  { aspect: 'Claims Processing', geoblue: '5-10 business days', safetywing: '7-14 business days' },
+  { aspect: '24/7 Support', geoblue: 'Yes', safetywing: 'Limited hours' },
 ];
 ---
 
 <PageShell
   title="GeoBlue vs SafetyWing"
-  description="Compare GeoBlue and SafetyWing for US expats. Comprehensive BCBS coverage vs budget travel medical insurance."
-  headline="GeoBlue vs SafetyWing"
-  subheadline="Comprehensive health insurance vs budget travel medical. Very different products for different needs."
+  description="Compare GeoBlue and SafetyWing for US expat coverage. BCBS network health insurance vs budget travel medical—understand what you're actually comparing."
+  headline="GeoBlue vs SafetyWing: BCBS Health Insurance vs Budget Travel Medical"
+  subheadline="For US citizens abroad, this isn't a close call. Here's why GeoBlue's BCBS network changes everything."
+  heroBackgroundImage="/images/compare/geoblue-vs-safetywing-hero-bg.png"
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Compare Options"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    GeoBlue and SafetyWing are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    GeoBlue and SafetyWing represent opposite ends of the international coverage spectrum. One is comprehensive health insurance with the most valuable US network an expat can access. The other is budget travel medical insurance designed for healthy young nomads.
   </p>
   <p>
-    GeoBlue is a Blue Cross Blue Shield company focused on international health coverage. Their main connection to the Blue Cross Blue Shield network and strong US ties. They're particularly popular among American expats who want continuity with US healthcare brands, with mid-range with good options for short and long-term coverage.
+    <strong>GeoBlue</strong> is a Blue Cross Blue Shield company—America's largest health insurance network. They've built international health insurance specifically for US citizens abroad, with seamless access to BCBS's domestic network of 96% of US hospitals and 90%+ of physicians. When you return home for visits, your coverage works automatically. This integration is unique among international insurers.
   </p>
   <p>
-    SafetyWing is a modern insurance option designed specifically for digital nomads and remote workers. They're known for their subscription-based model with no long-term commitment required. They tend to attract digital nomads, remote workers, and location-independent professionals, offering very affordable monthly subscription starting around $40/month.
+    <strong>SafetyWing Nomad Insurance</strong> is travel medical coverage for digital nomads and remote workers. Founded in 2018, they've built a following with subscription-based flexibility and low prices starting around $42/month. But they cover emergencies only—not routine care, mental health, pre-existing conditions, or comprehensive US coverage.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    This comparison matters because the price difference is dramatic (65-80% less with SafetyWing). But so is the coverage difference. Understanding what you're actually comparing is essential before choosing.
   </p>
 
-  <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Comprehensive health insurance</li>
-        <li>BCBS network (1.7M+ providers)</li>
-        <li>Covers routine and preventive care</li>
-        <li>Pre-existing conditions (underwritten)</li>
-      </ul>
-    </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Travel medical insurance</li>
-        <li>Emergency coverage only</li>
-        <li>No routine care coverage</li>
-        <li>No pre-existing conditions</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-amber-900 mb-3">Important Distinction</h3>
-    <p class="text-amber-800">
-      These are not equivalent products. SafetyWing is travel medical insurance designed for emergencies. GeoBlue is comprehensive health insurance. Choosing SafetyWing to save money means accepting significant coverage gaps.
+  <div class="bg-amber-50 border border-amber-300 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">Critical: Product Category Difference</h3>
+    <p class="text-neutral-700">
+      <strong>GeoBlue is health insurance.</strong> It covers routine care, specialists, prescriptions, and ongoing health needs—plus the BCBS network when you're in the US.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      <strong>SafetyWing is travel medical insurance.</strong> It covers emergencies and accidents only. No routine care, no mental health, no pre-existing conditions, no comprehensive US coverage.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      Comparing prices without understanding this difference leads to bad decisions.
     </p>
   </div>
 
-  <h2 id="coverage-comparison">Coverage Comparison</h2>
+  <div class="grid md:grid-cols-2 gap-6 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Type:</strong> Comprehensive Health Insurance</li>
+        <li><strong>Parent:</strong> Blue Cross Blue Shield</li>
+        <li><strong>For:</strong> US citizens living abroad</li>
+        <li><strong>Strength:</strong> BCBS network (96% US hospitals)</li>
+        <li><strong>Price Range:</strong> $140-450+/month</li>
+      </ul>
+    </div>
+    <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing Nomad</h3>
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Type:</strong> Travel Medical Insurance</li>
+        <li><strong>Parent:</strong> SafetyWing (startup)</li>
+        <li><strong>For:</strong> Digital nomads, travelers</li>
+        <li><strong>Strength:</strong> Low price, flexibility</li>
+        <li><strong>Price Range:</strong> $42-120/month</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
   <p>
-    The coverage differences are substantial. This isn't about minor feature variations—it's about fundamentally different protection levels.
+    For US citizens living abroad, this decision is often straightforward.
   </p>
+
+  <div class="bg-gradient-to-r from-blue-50 to-teal-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">You need GeoBlue if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You're a US citizen planning to return for healthcare</li>
+      <li>✓ You have any health conditions or take medications</li>
+      <li>✓ You want routine checkups covered</li>
+      <li>✓ Mental health coverage matters</li>
+      <li>✓ You have US doctors or specialists to maintain</li>
+      <li>✓ You're living abroad long-term (1+ years)</li>
+      <li>✓ You want comprehensive protection, not just emergency coverage</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">SafetyWing might work if:</h3>
+    <ul class="space-y-2 text-neutral-700 mb-6">
+      <li>✓ You're under 35 and genuinely healthy</li>
+      <li>✓ You have zero pre-existing conditions</li>
+      <li>✓ You don't need mental health care</li>
+      <li>✓ You're traveling short-term (under 1 year)</li>
+      <li>✓ You rarely or never return to the US</li>
+      <li>✓ You can pay out-of-pocket for routine care</li>
+      <li>✓ Budget is your absolute top priority</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-neutral-900 mb-4">The US citizen test:</h3>
+    <p class="text-neutral-700">
+      If you're American and plan to use US healthcare during visits home, GeoBlue's BCBS network access is uniquely valuable. No other international insurer offers this integration. SafetyWing's 15 days per 90 US coverage with no network access doesn't compare.
+    </p>
+  </div>
+
+  <CTABox
+    title="Not Sure What You Need?"
+    description="Get quotes from both and compare based on your specific situation."
+    buttonText="Compare All Options"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="what-comparing">What You're Actually Comparing</h2>
+
+  <h3>GeoBlue: Comprehensive Health Insurance + BCBS Network</h3>
+  <p>
+    GeoBlue provides actual health insurance that covers ongoing health needs:
+  </p>
+  <ul>
+    <li><strong>Routine care:</strong> Annual physicals, blood work, screenings, vaccinations</li>
+    <li><strong>Specialist care:</strong> Dermatologists, cardiologists, endocrinologists—whoever you need</li>
+    <li><strong>Prescriptions:</strong> Full coverage for medications without arbitrary caps</li>
+    <li><strong>Mental health:</strong> Therapy and psychiatry (limits vary by plan)</li>
+    <li><strong>Pre-existing conditions:</strong> Reviewed individually—may be covered after underwriting</li>
+    <li><strong>BCBS network:</strong> 96% of US hospitals, 90%+ of physicians, direct billing</li>
+    <li><strong>Emergency care:</strong> Also covered, of course</li>
+  </ul>
+
+  <h3>SafetyWing: Emergency-Only Travel Medical</h3>
+  <p>
+    SafetyWing covers unexpected emergencies while traveling:
+  </p>
+  <ul>
+    <li><strong>Emergencies:</strong> Accidents, sudden illness, unexpected hospitalization</li>
+    <li><strong>Medical evacuation:</strong> Up to $100,000</li>
+    <li><strong>Limited outpatient:</strong> $1,500 cap per 4-week period</li>
+    <li><strong>Emergency prescriptions:</strong> $150 cap</li>
+    <li><strong>Limited US coverage:</strong> 15 days per 90-day period</li>
+  </ul>
+  <p>
+    What SafetyWing does NOT cover:
+  </p>
+  <ul>
+    <li><strong>Pre-existing conditions:</strong> Completely excluded</li>
+    <li><strong>Mental health:</strong> Zero coverage</li>
+    <li><strong>Routine care:</strong> No checkups, screenings, or preventive care</li>
+    <li><strong>Ongoing treatment:</strong> Chronic disease management not covered</li>
+    <li><strong>Comprehensive US care:</strong> Only 15 days per quarter with no network</li>
+  </ul>
+
+  <h2 id="coverage-comparison">Coverage Comparison</h2>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>What SafetyWing doesn't cover:</strong></p>
-  <ul>
-    <li>Pre-existing conditions (completely excluded)</li>
-    <li>Routine care, checkups, preventive care</li>
-    <li>Mental health treatment</li>
-    <li>Maternity (except emergency complications)</li>
-    <li>Chronic condition management</li>
-    <li>Dental (except emergency)</li>
-  </ul>
+  <h3>Plan Structure</h3>
 
-  <h2 id="pricing">Pricing</h2>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>Key Coverage Differences</h3>
+
+  <p><strong>Maximum Coverage</strong></p>
   <p>
-    SafetyWing costs 60-75% less than GeoBlue. But you're comparing travel insurance to health insurance—the savings reflect the coverage gap.
+    GeoBlue offers $1M-$5M annual maximums. SafetyWing caps at $250,000. For most emergencies, $250K is sufficient. But a serious illness, complex surgery, or extended ICU stay can exceed that—especially in the US where costs are highest.
+  </p>
+
+  <p><strong>Pre-Existing Conditions</strong></p>
+  <p>
+    GeoBlue uses full medical underwriting. They review your health history and may cover conditions, exclude specific conditions, or offer coverage with loading. Some conditions get covered; some don't—but there's a path to coverage.
+  </p>
+  <p>
+    SafetyWing excludes all pre-existing conditions. Period. If you have any health condition before enrolling, it's not covered. Flare-ups of existing conditions? Not covered.
+  </p>
+
+  <p><strong>Mental Health</strong></p>
+  <p>
+    GeoBlue offers moderate mental health coverage (varies by plan). It's not BUPA-level comprehensive, but therapy and psychiatry are available with some limits.
+  </p>
+  <p>
+    SafetyWing offers zero mental health coverage. No therapy, no psychiatry, no mental health medications.
+  </p>
+
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>
+    The price difference is dramatic—65-82% less with SafetyWing. But you're comparing health insurance to emergency-only travel coverage.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>What the price difference means:</strong></p>
+  <p><em>*GeoBlue prices are for mid-tier plans. Actual premiums vary by age, health history, plan tier, and deductible. SafetyWing prices are standard rates from their website.</em></p>
+
+  <h3>Why the Huge Price Difference?</h3>
   <ul>
-    <li>At 30: Save ~$100/mo but lose routine care, mental health, pre-existing coverage</li>
-    <li>At 50: Save ~$185/mo but one health issue could cost thousands out-of-pocket</li>
-    <li>The "savings" disappear if you need any non-emergency care</li>
+    <li><strong>GeoBlue covers everything:</strong> Routine care, specialists, prescriptions, ongoing health needs</li>
+    <li><strong>SafetyWing covers emergencies only:</strong> They're betting most healthy young travelers won't have emergencies</li>
+    <li><strong>GeoBlue includes BCBS:</strong> Access to America's largest health network adds significant value</li>
+    <li><strong>SafetyWing has no network:</strong> No negotiated rates, no direct billing infrastructure</li>
+    <li><strong>GeoBlue's claims are higher:</strong> Comprehensive coverage generates more claims</li>
   </ul>
 
-  <h2 id="key-differences">Key Differences</h2>
-
-  <h3>US Coverage</h3>
+  <h3>The Hidden Cost of SafetyWing</h3>
   <p>
-    <strong>GeoBlue:</strong> Full BCBS network access—negotiated rates at 90% of US hospitals.
+    Calculate what you'd pay out-of-pocket with SafetyWing for care they don't cover:
   </p>
+  <ul>
+    <li>Annual physical in the US: $150-400</li>
+    <li>Blood work: $100-300</li>
+    <li>Monthly prescriptions: $50-500+</li>
+    <li>Specialist visit: $200-500</li>
+    <li>Therapy session: $150-300</li>
+  </ul>
   <p>
-    <strong>SafetyWing:</strong> Limited US coverage with caps. Not designed for ongoing US care.
-  </p>
-
-  <h3>Long-term Viability</h3>
-  <p>
-    <strong>GeoBlue:</strong> Suitable for years of expat life. Lifetime renewal available.
-  </p>
-  <p>
-    <strong>SafetyWing:</strong> Designed for temporary travel. Not ideal for permanent expats.
+    If you're healthy and never use these services, SafetyWing saves money. If you use even modest healthcare, the savings shrink or disappear.
   </p>
 
-  <h3>Risk Profile</h3>
+  <CTABox
+    title="Get Your Actual Price"
+    description="Factor in what you'll actually need covered, not just the monthly premium."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <h2 id="us-coverage">US Coverage: The Decisive Difference</h2>
   <p>
-    <strong>GeoBlue:</strong> Comprehensive protection against health costs.
+    For US citizens, this is often the deciding factor. GeoBlue's BCBS network access is unique among international insurers.
+  </p>
+
+  <h3>GeoBlue US Coverage</h3>
+  <ul>
+    <li><strong>BCBS network:</strong> 96% of US hospitals, 90%+ of physicians</li>
+    <li><strong>Direct billing:</strong> Show your card, pay your copay, done</li>
+    <li><strong>Negotiated rates:</strong> BCBS rates are 30-60% below self-pay</li>
+    <li><strong>Unlimited days:</strong> Use US coverage as often as you need</li>
+    <li><strong>Same benefits:</strong> Coverage works identically in the US and abroad</li>
+    <li><strong>Existing relationships:</strong> Keep seeing your US doctors</li>
+  </ul>
+
+  <h3>SafetyWing US Coverage</h3>
+  <ul>
+    <li><strong>15 days per 90:</strong> Limited US time before coverage lapses</li>
+    <li><strong>No network:</strong> No BCBS, no negotiated rates, no direct billing</li>
+    <li><strong>Pay and claim:</strong> Pay full self-pay rates, submit for reimbursement</li>
+    <li><strong>Emergency focus:</strong> Designed for travel emergencies, not regular US care</li>
+    <li><strong>Same limits apply:</strong> $250K maximum, $1,500 outpatient cap</li>
+  </ul>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold text-neutral-900 mb-2">The BCBS Advantage in Practice</h4>
+    <p class="text-neutral-700">
+      Imagine you need an MRI during a US visit. With GeoBlue: Walk into almost any imaging center, show your card, pay your copay, get the scan. With SafetyWing: Find a facility, pay $1,500-3,000 out of pocket at self-pay rates, submit a claim, wait for partial reimbursement (if it qualifies as an emergency).
+    </p>
+    <p class="text-neutral-700 mt-2">
+      If you're American and plan to receive any US healthcare, GeoBlue's network access is worth the premium.
+    </p>
+  </div>
+
+  <h2 id="network-and-claims">Network and Claims</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Claims Experience</h3>
+  <p>
+    <strong>GeoBlue's US claims</strong> are often invisible—direct billing through BCBS means you never see a bill. International claims require documentation and processing but benefit from GeoBlue's established systems.
   </p>
   <p>
-    <strong>SafetyWing:</strong> Emergency-only coverage. Significant financial risk for non-emergencies.
+    <strong>SafetyWing claims</strong> are straightforward (limited coverage means simple claims) but always require you to pay first and claim later. There's no direct billing infrastructure.
   </p>
+
+  <h2 id="eligibility">Eligibility Requirements</h2>
+
+  <h3>GeoBlue Requirements</h3>
+  <ul>
+    <li><strong>Citizenship:</strong> Primarily US citizens and permanent residents</li>
+    <li><strong>Age:</strong> 0-74 (some plans to 84)</li>
+    <li><strong>Residency:</strong> Must live outside the US for majority of plan year</li>
+    <li><strong>Health history:</strong> Full medical underwriting required</li>
+    <li><strong>Pre-existing conditions:</strong> Reviewed individually; may be covered, excluded, or rated</li>
+  </ul>
+
+  <h3>SafetyWing Requirements</h3>
+  <ul>
+    <li><strong>Citizenship:</strong> Most nationalities accepted</li>
+    <li><strong>Age:</strong> 0-69</li>
+    <li><strong>Residency:</strong> Flexible; travelers and nomads welcome</li>
+    <li><strong>Health history:</strong> No health questions</li>
+    <li><strong>Pre-existing conditions:</strong> All excluded automatically</li>
+  </ul>
+
+  <h2 id="real-scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">American Remote Worker in Portugal</h4>
+      <p class="text-neutral-600 mb-3">
+        Jennifer, 38, works remotely from Lisbon but returns to visit family in Chicago twice a year. She has a dermatologist she likes to see annually and wants ongoing healthcare access.
+      </p>
+      <p class="text-primary-700 font-medium">→ GeoBlue is the clear choice. She can see her Chicago dermatologist with BCBS direct billing, get checkups during visits, and have comprehensive coverage in Portugal. SafetyWing's 15-day US limit and no network access wouldn't work.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">25-Year-Old Backpacker</h4>
+      <p class="text-neutral-600 mb-3">
+        Tyler, 25, just graduated and is traveling through Southeast Asia for 6-8 months. He's healthy, has no medications or conditions, and isn't planning to return to the US during his trip.
+      </p>
+      <p class="text-primary-700 font-medium">→ SafetyWing is reasonable here. Short-term travel, no US visits planned, young and healthy, budget-focused. He should understand the limitations but for emergency-only coverage on a gap year, SafetyWing fits the profile.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">50-Year-Old Retiree in Costa Rica</h4>
+      <p class="text-neutral-600 mb-3">
+        Robert, 50, retired early and moved to Costa Rica. He takes blood pressure medication and sees a cardiologist annually. He returns to Texas twice a year.
+      </p>
+      <p class="text-primary-700 font-medium">→ GeoBlue is essential. His blood pressure medication is a pre-existing condition SafetyWing won't cover. He needs regular cardiology follow-ups. BCBS network access for his Texas visits is valuable. SafetyWing would leave him exposed.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Digital Nomad Couple</h4>
+      <p class="text-neutral-600 mb-3">
+        Mike and Sarah, both 32, run an online business while traveling. They're healthy, have no conditions, and have been nomadic for 3 years. They visit the US maybe once every 18 months.
+      </p>
+      <p class="text-primary-700 font-medium">→ SafetyWing could work given their profile, but at 32 they're approaching the age where health issues start emerging. GeoBlue would provide more comprehensive protection. They should honestly assess their risk tolerance and healthcare usage patterns.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="font-semibold text-neutral-900 mb-2">Anxious Expat in Barcelona</h4>
+      <p class="text-neutral-600 mb-3">
+        Amanda, 34, manages anxiety with monthly therapy sessions. She's American, living in Barcelona, and visits family in Florida annually.
+      </p>
+      <p class="text-primary-700 font-medium">→ GeoBlue is the only real option. SafetyWing has zero mental health coverage. She'd pay $200-400/month out-of-pocket for therapy on top of SafetyWing's premium—making GeoBlue cheaper overall while providing BCBS access for Florida visits.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose GeoBlue If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You're a US citizen living abroad long-term</li>
-        <li>You have any health conditions</li>
-        <li>You want routine care covered</li>
-        <li>You need mental health coverage</li>
-        <li>You visit the US regularly</li>
+        <li>✓ You're a US citizen living abroad</li>
+        <li>✓ You return to the US for healthcare</li>
+        <li>✓ You have any health conditions</li>
+        <li>✓ You take regular medications</li>
+        <li>✓ You want routine checkups covered</li>
+        <li>✓ Mental health coverage matters</li>
+        <li>✓ You want BCBS network access</li>
+        <li>✓ You're living abroad long-term</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing May Work If:</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>You're young and very healthy</li>
-        <li>You're traveling short-term (under 1 year)</li>
-        <li>You have zero health conditions</li>
-        <li>You understand and accept the coverage gaps</li>
-        <li>Budget is absolutely critical</li>
+        <li>✓ You're under 35 and genuinely healthy</li>
+        <li>✓ You have zero health conditions</li>
+        <li>✓ You rarely visit the US</li>
+        <li>✓ You don't need mental health care</li>
+        <li>✓ You can pay for routine care out-of-pocket</li>
+        <li>✓ You're traveling short-term</li>
+        <li>✓ Budget is your top priority</li>
+        <li>✓ You understand it's emergency-only</li>
       </ul>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    For US citizens planning to live abroad long-term, GeoBlue is the responsible choice. The BCBS network access alone justifies the premium for anyone who may need US care.
+    For US citizens living abroad, <strong>GeoBlue is the responsible choice</strong> in most situations. The BCBS network access alone—96% of US hospitals with direct billing—provides value that no other international insurer can match.
   </p>
   <p>
-    SafetyWing can work for young, healthy digital nomads on short-term adventures who understand they're buying emergency coverage only. But calling it a substitute for health insurance is misleading.
+    <strong>GeoBlue</strong> makes sense for anyone with health needs, anyone over 35-40, anyone who returns to the US regularly, and anyone who wants comprehensive protection rather than emergency-only coverage. Yes, it costs more. But it's actual health insurance.
   </p>
   <p>
-    <strong>The real question:</strong> Can you afford to pay out-of-pocket for routine care, mental health, and any pre-existing conditions? If not, SafetyWing's "savings" are illusory.
+    <strong>SafetyWing</strong> has a legitimate place for young, healthy travelers on short-term adventures who understand exactly what they're getting: emergency coverage with significant gaps. If you're 25, traveling for 6 months, healthy, and won't touch US healthcare, SafetyWing's price is hard to argue with.
+  </p>
+  <p>
+    But don't choose SafetyWing just because it's cheaper. Understand the coverage difference first. If you need healthcare beyond emergencies—especially in the US—the "savings" will cost you more than the premium difference.
   </p>
 
+  <div class="bg-gradient-to-r from-blue-50 to-teal-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">The Bottom Line</h3>
+    <p class="text-neutral-700">
+      <strong>GeoBlue:</strong> Comprehensive health insurance with BCBS network access. Best for US citizens abroad who want real coverage and US healthcare access.
+    </p>
+    <p class="text-neutral-700 mt-2">
+      <strong>SafetyWing:</strong> Budget emergency coverage for healthy young travelers. Good for short-term trips if you understand it's NOT health insurance.
+    </p>
+  </div>
+
   <CTABox
-    title="Get Proper Coverage"
-    description="Compare comprehensive health insurance options."
-    buttonText="See All Options"
-    buttonHref="/best/us-expat-insurance"
+    title="Ready to Decide?"
+    description="Get quotes based on your actual needs and compare the real cost of coverage."
+    buttonText="Compare All Plans"
+    buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need BCBS Network Access?</h3>
+      <p class="text-neutral-600 text-sm mb-4">GeoBlue provides comprehensive health insurance with 96% US hospital coverage.</p>
+      <a href="/providers/geoblue" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View GeoBlue Options →
+      </a>
+    </div>
+    <div class="bg-teal-50 border border-teal-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Just Need Emergency Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">SafetyWing covers emergencies at budget prices—if you're healthy and young.</p>
+      <a href="/providers/safetywing" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View SafetyWing Options →
+      </a>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I use SafetyWing for US healthcare?</h3>
+      <p class="text-neutral-600">
+        SafetyWing limits US coverage to 15 days per 90-day period and has no provider network. You'd pay full self-pay rates (often 2-3x negotiated rates) and claim for reimbursement. It's designed for travel emergencies, not ongoing US care. GeoBlue's BCBS network provides far better US access.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What if I develop a health condition while on SafetyWing?</h3>
+      <p class="text-neutral-600">
+        Initial emergency treatment may be covered. But ongoing management of that condition wouldn't be—it would become a "pre-existing condition." This is where emergency-only coverage shows its limits. With GeoBlue, conditions that develop while covered remain covered.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Is GeoBlue only for US citizens?</h3>
+      <p class="text-neutral-600">
+        GeoBlue primarily serves US citizens and permanent residents. Some plans may accept non-Americans with strong US ties. If you're not American, verify eligibility before applying—and consider whether BCBS network access (GeoBlue's key advantage) is relevant to you.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Why is SafetyWing so much cheaper?</h3>
+      <p class="text-neutral-600">
+        SafetyWing covers much less. They only pay for emergencies—rare events for most healthy young travelers. GeoBlue covers everything including routine care, specialist visits, prescriptions, and mental health. You're comparing emergency-only coverage to comprehensive health insurance.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I switch from SafetyWing to GeoBlue later?</h3>
+      <p class="text-neutral-600">
+        Yes, but any conditions you develop while on SafetyWing become pre-existing for GeoBlue's underwriting. They may exclude those conditions or apply loading. It's generally better to start with appropriate coverage than to upgrade later when health issues have emerged.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Does GeoBlue cover mental health?</h3>
+      <p class="text-neutral-600">
+        Yes, though coverage levels vary by plan. GeoBlue offers moderate mental health coverage including therapy and psychiatry with some limits. It's not as comprehensive as BUPA Global's mental health parity, but it's far better than SafetyWing's zero coverage.
+      </p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> SafetyWing Nomad Insurance is travel medical insurance, not comprehensive health insurance. Understand the coverage limitations before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. GeoBlue is comprehensive health insurance; SafetyWing Nomad is travel medical insurance—different product categories with different coverage levels. Prices, coverage, and plan details change. We are not licensed insurance brokers. Verify all information directly with both providers before purchasing.
     </p>
   </div>
 </PageShell>

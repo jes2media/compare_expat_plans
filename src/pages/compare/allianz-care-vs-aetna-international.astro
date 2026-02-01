@@ -5,10 +5,16 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'company-background', text: 'Company Background', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'plan-options', text: 'Plan Options', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage', level: 2 },
+  { id: 'networks', text: 'Provider Networks', level: 2 },
+  { id: 'claims-service', text: 'Claims & Customer Service', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
@@ -16,6 +22,8 @@ const relatedLinks = [
   { title: 'Allianz Care Review', href: '/providers/allianz-care' },
   { title: 'Aetna International Review', href: '/providers/aetna-international' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Best for US Expats', href: '/best/us-expat-insurance' },
+  { title: 'Spain Insurance Guide', href: '/countries/spain/insurance' },
 ];
 
 const coverageColumns = [
@@ -25,130 +33,401 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Inpatient Care', allianz: true, aetna: true },
-  { feature: 'Outpatient Care', allianz: true, aetna: true },
-  { feature: 'Mental Health', allianz: 'Limited', aetna: 'Moderate' },
-  { feature: 'Maternity', allianz: '10-12 mo wait', aetna: '10-12 mo wait' },
-  { feature: 'Dental', allianz: 'Optional', aetna: 'Optional' },
-  { feature: 'Vision', allianz: 'Optional', aetna: 'Optional' },
-  { feature: 'Telemedicine', allianz: true, aetna: true },
-  { feature: 'Medical Evacuation', allianz: true, aetna: true },
-  { feature: 'US Coverage', allianz: 'Add-on', aetna: 'Included (most plans)' },
+  { feature: 'Maximum Coverage', allianz: '€1M - Unlimited', aetna: '$1M - $5M' },
+  { feature: 'Inpatient Hospital', allianz: '✓ All plans', aetna: '✓ All plans' },
+  { feature: 'Outpatient Care', allianz: '✓ All plans', aetna: '✓ Prime/Platinum' },
+  { feature: 'Mental Health', allianz: 'Limited (varies by plan)', aetna: '✓ Included (moderate limits)' },
+  { feature: 'Maternity', allianz: 'Optional (10-12 mo wait)', aetna: 'Optional (10-12 mo wait)' },
+  { feature: 'Preventive Care', allianz: '✓ Higher tiers', aetna: '✓ Platinum' },
+  { feature: 'Dental/Vision', allianz: 'Optional add-on', aetna: 'Optional add-on' },
+  { feature: 'Medical Evacuation', allianz: '✓ Included', aetna: '✓ Up to $1M' },
+  { feature: 'Pre-existing Conditions', allianz: 'Moratorium underwriting', aetna: 'Full underwriting' },
+  { feature: 'US Coverage', allianz: 'Optional add-on (+30-50%)', aetna: 'Included in most plans' },
+  { feature: 'Telemedicine', allianz: '✓ Included', aetna: '✓ Select plans' },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'allianz', header: 'Allianz Care' },
   { key: 'aetna', header: 'Aetna International' },
 ];
 
+const planRows = [
+  { aspect: 'Plan Structure', allianz: 'Modular (core + add-ons)', aetna: 'Tiered (Pioneer) + Modular (Navigator)' },
+  { aspect: 'Entry Level', allianz: 'Essential (~€120-180/mo)', aetna: 'Pioneer (~$160-220/mo)' },
+  { aspect: 'Mid Tier', allianz: 'Classic (~€180-280/mo)', aetna: 'Prime (~$220-320/mo)' },
+  { aspect: 'Top Tier', allianz: 'Premium (~€280-400/mo)', aetna: 'Platinum (~$320-450/mo)' },
+  { aspect: 'Deductible Options', allianz: '€0 to €5,000+', aetna: '$0 to $5,000' },
+  { aspect: 'Currency', allianz: 'Euro (€)', aetna: 'US Dollar ($)' },
+  { aspect: 'US Coverage Default', allianz: 'Not included', aetna: 'Included' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'allianz', header: 'Allianz (excl. US)' },
+  { key: 'allianz_us', header: 'Allianz (incl. US)' },
+  { key: 'aetna', header: 'Aetna (incl. US)' },
+];
+
 const pricingRows = [
-  { age: '30', allianz: '$150-240/mo', aetna: '$160-250/mo' },
-  { age: '40', allianz: '$200-320/mo', aetna: '$220-340/mo' },
-  { age: '50', allianz: '$270-420/mo', aetna: '$290-440/mo' },
-  { age: '60', allianz: '$400-600/mo', aetna: '$420-640/mo' },
+  { profile: 'Age 30, healthy', allianz: '~€130-180/mo', allianz_us: '~€195-280/mo', aetna: '~$180-260/mo' },
+  { profile: 'Age 40, healthy', allianz: '~€180-260/mo', allianz_us: '~€270-400/mo', aetna: '~$260-380/mo' },
+  { profile: 'Age 50, healthy', allianz: '~€260-380/mo', allianz_us: '~€390-570/mo', aetna: '~$380-520/mo' },
+  { profile: 'Age 60, healthy', allianz: '~€380-540/mo', allianz_us: '~€570-810/mo', aetna: '~$520-720/mo' },
+  { profile: 'Couple, 40s', allianz: '~€350-510/mo', allianz_us: '~€525-765/mo', aetna: '~$500-740/mo' },
+  { profile: 'Family of 4', allianz: '~€520-760/mo', allianz_us: '~€780-1,140/mo', aetna: '~$750-1,050/mo' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'aetna', header: 'Aetna International' },
+];
+
+const networkRows = [
+  { aspect: 'Global Provider Count', allianz: '1M+ providers', aetna: '1.7M+ providers' },
+  { aspect: 'Strongest Regions', allianz: 'Europe, Asia-Pacific', aetna: 'Americas, US network' },
+  { aspect: 'US Network', allianz: 'Limited (add-on required)', aetna: 'Aetna network (1.7M+ US providers)' },
+  { aspect: 'Direct Billing', allianz: 'Extensive in Europe/Asia', aetna: 'Extensive in US, good globally' },
+  { aspect: 'CVS Integration', allianz: '✗ Not available', aetna: '✓ 9,900+ CVS pharmacies + MinuteClinic' },
+  { aspect: 'Provider Finder', allianz: 'Online portal + app', aetna: 'Mobile app + web' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'aetna', header: 'Aetna International' },
+];
+
+const claimsRows = [
+  { aspect: 'Claims Submission', allianz: 'App, portal, email', aetna: 'App, portal, email' },
+  { aspect: 'Processing Time', allianz: '7-14 business days', aetna: '5-10 business days' },
+  { aspect: 'Customer Service', allianz: '24/7 multilingual', aetna: '24/7 multilingual' },
+  { aspect: 'Service Reputation', allianz: 'Good, professional', aetna: 'Strong, especially for US claims' },
+  { aspect: 'Corporate Support', allianz: 'Available', aetna: 'Excellent (major corporate focus)' },
+  { aspect: 'Pre-authorization', allianz: 'Required for planned procedures', aetna: 'Required for non-emergencies >$1,000' },
 ];
 ---
 
 <PageShell
-  title="Allianz Care vs Aetna International"
-  description="Compare Allianz Care and Aetna International health insurance. European value vs US-backed premium coverage for expats."
+  title="Allianz Care vs Aetna International: Complete 2025 Comparison"
+  description="Allianz Care vs Aetna International compared in depth. European value vs US-integrated coverage—which international health insurance fits your needs?"
   headline="Allianz Care vs Aetna International"
-  subheadline="European value player vs US-backed premium insurer. Here's how they stack up."
+  subheadline="German insurance giant vs CVS Health-backed American insurer. Competitive pricing vs US integration—here's how to choose."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
+
+  <!-- Quick Decision Guide - CRO: Helps users self-select quickly -->
+  <div class="bg-gradient-to-r from-primary-50 to-neutral-50 border border-primary-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">⚡ Quick Decision Guide</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white rounded p-4 border border-primary-100">
+        <p class="font-medium text-primary-900 mb-2">Choose Allianz if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You don't need US coverage (save 20-30%)</li>
+          <li>• Budget is a primary concern</li>
+          <li>• You're based in Europe or Asia</li>
+          <li>• You prefer euro billing</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded p-4 border border-neutral-200">
+        <p class="font-medium text-neutral-900 mb-2">Choose Aetna if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You're American needing US coverage</li>
+          <li>• You want CVS pharmacy integration</li>
+          <li>• Your employer offers Aetna</li>
+          <li>• You visit the US frequently</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <p>
-    Allianz Care and Aetna International are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
-  </p>
-  <p>
-    Allianz Care is backed by German insurance giant Allianz, offering flexible and competitively priced plans. Their main plan customization and competitive pricing, often 10-15% cheaper than comparable options. They're particularly popular among cost-conscious expats who value flexibility, with competitive rates with good coverage options.
-  </p>
-  <p>
-    Aetna International is backed by CVS Health, offering plans designed for globally mobile individuals. They're known for their integration with US healthcare system and strong employer-sponsored options. They tend to attract US-based companies with international employees and American expats, offering mid-range pricing with good corporate plan options.
-  </p>
-  <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    Allianz Care and Aetna International represent two different approaches to international health insurance. Allianz is the European value play—competitive pricing with solid coverage. Aetna is the US-integrated option—higher cost but seamless American healthcare access. The choice often comes down to whether you need US coverage.
   </p>
 
+  <p>
+    <strong>Allianz Care</strong> is the international health insurance division of Allianz Group, one of the world's largest insurance companies headquartered in Munich, Germany. They're known for competitive pricing—typically 15-20% cheaper than comparable US-based insurers when US coverage isn't needed. Allianz uses moratorium underwriting, which can be simpler for those with pre-existing conditions.
+  </p>
+
+  <p>
+    <strong>Aetna International</strong> is part of CVS Health, one of America's largest healthcare companies. Their international plans are designed with Americans in mind—US coverage is included by default, and you get access to the Aetna US network plus CVS pharmacy benefits. If you're American or need regular US healthcare access, Aetna's integration is valuable.
+  </p>
+
+  <p>
+    The core question: Do you need US coverage? If yes, Aetna's integrated approach often makes sense despite higher pricing. If no, Allianz offers better value.
+  </p>
+
+  <!-- At-a-glance boxes with trust signals - CRO: Builds credibility -->
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Allianz Care</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>German-headquartered global insurer</li>
-        <li>Competitive pricing (15-20% less)</li>
-        <li>Strong financial backing</li>
-        <li>Good for cost-conscious expats</li>
+        <li><strong>Parent Company:</strong> Allianz SE (Germany)</li>
+        <li><strong>Founded:</strong> 1890 (international division later)</li>
+        <li><strong>Coverage Limit:</strong> Up to Unlimited</li>
+        <li><strong>Best For:</strong> Non-US expats, budget-conscious</li>
+        <li><strong>Underwriting:</strong> Moratorium (simpler process)</li>
+        <li><strong>Currency:</strong> Euro (€)</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>CVS Health backed (US)</li>
-        <li>US coverage included by default</li>
-        <li>CVS prescription benefits</li>
-        <li>Better for Americans abroad</li>
+        <li><strong>Parent Company:</strong> CVS Health (US)</li>
+        <li><strong>Founded:</strong> 1853 (international division 1960s)</li>
+        <li><strong>Coverage Limit:</strong> $1M - $5M</li>
+        <li><strong>Best For:</strong> Americans abroad, corporate plans</li>
+        <li><strong>US Network:</strong> 1.7M+ providers + CVS</li>
+        <li><strong>Currency:</strong> US Dollar ($)</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="company-background">Company Background</h2>
+
+  <h3>Allianz Care: German Engineering, Global Reach</h3>
+  <p>
+    Allianz Group is one of the world's largest financial services companies, founded in 1890 in Berlin. Their international health insurance division offers:
+  </p>
+  <ul>
+    <li>Strong financial backing (€1.5+ trillion in assets under management)</li>
+    <li>EU-regulated insurance products</li>
+    <li>Competitive pricing vs US-based insurers</li>
+    <li>Moratorium underwriting—pre-existing conditions excluded initially but may be covered later</li>
+    <li>Strong networks in Europe and Asia-Pacific</li>
+  </ul>
+  <p>
+    Allianz positions itself as the value option—not the cheapest, but consistently 15-20% below premium US insurers for comparable coverage.
+  </p>
+
+  <h3>Aetna International: CVS Health Integration</h3>
+  <p>
+    Aetna was founded in 1853 and is now part of CVS Health, creating one of America's largest integrated healthcare companies. For international coverage, this means:
+  </p>
+  <ul>
+    <li>Access to 1.7 million+ US healthcare providers</li>
+    <li>CVS pharmacy integration (9,900+ locations)</li>
+    <li>MinuteClinic access for walk-in care</li>
+    <li>Strong corporate and employer plan focus</li>
+    <li>Full medical underwriting (more thorough but may cover more conditions)</li>
+  </ul>
+  <p>
+    Aetna's strength is US integration. If you need American healthcare while abroad, their infrastructure is unmatched.
+  </p>
+
   <CTABox
     title="Compare Both Providers"
-    description="Get personalized quotes from Allianz and Aetna."
+    description="Get personalized quotes from Allianz Care and Aetna International."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    Both offer comprehensive international coverage. The key difference is US coverage—Aetna includes it by default, while Allianz charges extra.
+    Both providers offer comprehensive international coverage. The key differences are in US coverage approach, underwriting method, and coverage limits.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>Key differences:</strong></p>
-  <ul>
-    <li>Aetna includes US coverage in most plans; Allianz charges 30-50% more for it</li>
-    <li>Aetna has slightly better mental health coverage</li>
-    <li>Allianz offers more plan customization options</li>
-  </ul>
+  <h3>Key Coverage Differences</h3>
 
-  <h2 id="pricing">Pricing</h2>
+  <p><strong>Coverage Limits:</strong></p>
+  <ul>
+    <li><strong>Allianz:</strong> Up to unlimited on Premium plans</li>
+    <li><strong>Aetna:</strong> $1M to $5M depending on plan</li>
+  </ul>
   <p>
-    Allianz is typically 10-15% cheaper for equivalent coverage (excluding US). If you need US coverage, the gap narrows significantly.
+    Allianz offers higher limits on top-tier plans. For most people, either is adequate, but Allianz wins if unlimited coverage matters.
+  </p>
+
+  <p><strong>Mental Health:</strong></p>
+  <ul>
+    <li><strong>Allianz:</strong> Limited coverage, varies significantly by plan tier</li>
+    <li><strong>Aetna:</strong> Included on most plans with moderate limits</li>
+  </ul>
+  <p>
+    Neither excels at mental health coverage (BUPA is better for that), but Aetna is marginally more consistent.
+  </p>
+
+  <p><strong>Pre-existing Conditions (Important Difference):</strong></p>
+  <ul>
+    <li><strong>Allianz:</strong> Moratorium underwriting—conditions excluded initially, may be covered after 2 years symptom-free</li>
+    <li><strong>Aetna:</strong> Full medical underwriting—disclose everything, some conditions may be covered immediately or excluded permanently</li>
+  </ul>
+  <p>
+    Moratorium underwriting is simpler (no medical questionnaire) but means automatic exclusions. Full underwriting is more thorough but can lead to better outcomes for some conditions.
+  </p>
+
+  <h2 id="plan-options">Plan Options</h2>
+
+  <p>
+    Both providers offer tiered plans with optional add-ons.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <h3>Allianz Care Plans</h3>
+  <ul>
+    <li><strong>Essential:</strong> Inpatient core coverage, basic outpatient</li>
+    <li><strong>Classic:</strong> Enhanced outpatient, better limits</li>
+    <li><strong>Premium:</strong> Comprehensive including wellness, highest limits</li>
+  </ul>
+  <p><strong>Add-ons:</strong> US coverage, dental, vision, maternity, wellness</p>
+
+  <h3>Aetna International Plans</h3>
+  <p><strong>Pioneer Series (Tiered):</strong></p>
+  <ul>
+    <li><strong>Pioneer:</strong> Inpatient-focused</li>
+    <li><strong>Prime:</strong> Adds comprehensive outpatient</li>
+    <li><strong>Platinum:</strong> Full coverage including wellness</li>
+  </ul>
+  <p><strong>Navigator Series (Modular):</strong> Build your own plan by selecting modules</p>
+
+  <h2 id="pricing">Pricing Breakdown</h2>
+
+  <p>
+    Allianz is significantly cheaper when US coverage isn't needed. With US coverage added, the gap narrows considerably.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Pricing notes:</strong></p>
+  <p class="text-sm text-neutral-600 italic">
+    *Estimates based on 2024-2025 quotes for mid-tier plans. Actual prices vary based on health history, exact location, and plan customization.
+  </p>
+
+  <h3>The US Coverage Price Impact</h3>
+  <p>
+    The critical pricing insight:
+  </p>
   <ul>
-    <li>Prices assume worldwide coverage excluding US for Allianz</li>
-    <li>Aetna prices include US coverage</li>
-    <li>Adding US to Allianz eliminates most price difference</li>
+    <li><strong>Without US coverage:</strong> Allianz is 20-30% cheaper</li>
+    <li><strong>With US coverage:</strong> Prices are similar (Aetna may be slightly better value)</li>
   </ul>
 
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>Provider Networks</h3>
   <p>
-    <strong>Allianz Care</strong> has good global coverage with direct billing at major hospitals worldwide. Network is strong in Europe and Asia.
+    For a 40-year-old who needs US coverage:
+  </p>
+  <ul>
+    <li>Allianz with US add-on: ~€270-400/month (~$290-430)</li>
+    <li>Aetna with US included: ~$260-380/month</li>
+  </ul>
+  <p>
+    Once you add US coverage to Allianz, Aetna's included US coverage becomes competitive.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-blue-900 mb-2">When Allianz Saves You Money</h3>
+    <ul class="text-blue-800 space-y-1">
+      <li><strong>No US needs:</strong> Skip the US add-on and save 30-50%</li>
+      <li><strong>Europe/Asia-based:</strong> Allianz networks are strong there</li>
+      <li><strong>Budget priority:</strong> Consistently lower base pricing</li>
+      <li><strong>Euro income:</strong> Avoid currency conversion fees</li>
+    </ul>
+  </div>
+
+  <!-- CTA after pricing - CRO: Capture users comparing costs -->
+  <CTABox
+    title="Get Your Actual Price"
+    description="Pricing varies significantly. See exact quotes for your situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <h2 id="us-coverage">US Coverage</h2>
+
+  <p>
+    This is the defining difference between these two providers.
+  </p>
+
+  <h3>Aetna: US Coverage Built-In</h3>
+  <p>
+    Aetna includes US coverage by default on most international plans:
+  </p>
+  <ul>
+    <li><strong>1.7 million+ US providers</strong> in the Aetna network</li>
+    <li><strong>CVS pharmacy integration:</strong> Fill prescriptions at 9,900+ CVS locations</li>
+    <li><strong>MinuteClinic access:</strong> Walk-in care at CVS stores</li>
+    <li><strong>Direct billing:</strong> Extensive in the US</li>
+    <li><strong>Seamless experience:</strong> Works like domestic US insurance when visiting</li>
+  </ul>
+  <p>
+    For Americans abroad who visit home regularly, this integration is genuinely valuable. You can see your US doctors, fill prescriptions at CVS, and get walk-in care—all covered seamlessly.
+  </p>
+
+  <h3>Allianz: US as Optional Add-on</h3>
+  <p>
+    Allianz treats US coverage as an add-on:
+  </p>
+  <ul>
+    <li><strong>Adds 30-50% to premium</strong></li>
+    <li><strong>Smaller US network</strong> than Aetna</li>
+    <li><strong>No CVS integration</strong></li>
+    <li><strong>More reimbursement-based</strong> in the US</li>
+  </ul>
+  <p>
+    Allianz's US coverage works but isn't as smooth as Aetna's. You're more likely to pay upfront and file claims.
+  </p>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-2">The US Coverage Decision</h3>
+    <p class="text-amber-800">
+      If you're American or will regularly access US healthcare, Aetna's integrated approach is worth the premium. If you don't need US coverage, Allianz saves you 30-50% on premiums. This single factor often determines which provider is better for you.
+    </p>
+  </div>
+
+  <h2 id="networks">Provider Networks</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Allianz Network Strengths</h3>
+  <ul>
+    <li><strong>Europe:</strong> Excellent coverage, strong direct billing</li>
+    <li><strong>Asia-Pacific:</strong> Good coverage in major expat destinations</li>
+    <li><strong>Middle East:</strong> Solid networks in UAE, Saudi Arabia</li>
+    <li><strong>Americas (non-US):</strong> Adequate coverage</li>
+  </ul>
+
+  <h3>Aetna Network Strengths</h3>
+  <ul>
+    <li><strong>United States:</strong> Best-in-class with CVS integration</li>
+    <li><strong>Americas:</strong> Strong Latin America coverage</li>
+    <li><strong>Global:</strong> 1.7M+ providers in 200+ countries</li>
+    <li><strong>Corporate locations:</strong> Often has relationships where employers operate</li>
+  </ul>
+
+  <h2 id="claims-service">Claims & Customer Service</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Claims Experience</h3>
+  <p>
+    <strong>Allianz:</strong> Processes claims in 7-14 days typically. Good but not exceptional. European-style professional service.
   </p>
   <p>
-    <strong>Aetna International</strong> has excellent US network access through CVS Health integration, plus solid international coverage.
+    <strong>Aetna:</strong> Faster processing (5-10 days). Particularly smooth for US claims where direct billing is common. Strong corporate account support.
   </p>
 
-  <h3>Claims Process</h3>
+  <h3>Corporate Plans</h3>
   <p>
-    Both offer app-based and online claims. Aetna's US integration makes claims smoother for US-based care. Allianz processes are straightforward but may be slower.
+    If your employer offers international insurance, Aetna may have an edge. They specialize in corporate accounts and often offer better rates through employer relationships. Allianz also offers corporate plans but isn't as dominant in this space.
   </p>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
@@ -156,43 +435,206 @@ const pricingRows = [
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Allianz Care If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You don't need US coverage</li>
-        <li>Budget is a primary concern</li>
-        <li>You're a European expat</li>
-        <li>You want plan flexibility</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You don't need US coverage</li>
+        <li>✓ Budget is a primary concern</li>
+        <li>✓ You're based in Europe or Asia</li>
+        <li>✓ You prefer euro billing</li>
+        <li>✓ You want simpler underwriting (moratorium)</li>
+        <li>✓ You prefer unlimited coverage options</li>
+        <li>✓ You're not American</li>
+        <li>✓ You want plan flexibility</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Aetna International If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're American and need US coverage</li>
-        <li>You want CVS prescription benefits</li>
-        <li>You had Aetna through an employer</li>
-        <li>You visit the US frequently</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You're American and need US coverage</li>
+        <li>✓ You want CVS pharmacy benefits</li>
+        <li>✓ You visit the US frequently</li>
+        <li>✓ Your employer offers Aetna</li>
+        <li>✓ You want faster claims processing</li>
+        <li>✓ You prefer full medical underwriting</li>
+        <li>✓ You have pre-existing conditions you want reviewed</li>
+        <li>✓ You want MinuteClinic access</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="verdict">Our Verdict</h2>
-  <p>
-    The decision often comes down to US coverage needs. If you're American or need regular US healthcare access, Aetna's integrated approach makes sense despite higher base pricing.
+  <!-- CTA after Who Should Choose -->
+  <CTABox
+    title="Know Which Fits Better?"
+    description="Get personalized quotes based on your US coverage needs."
+    buttonText="Get Your Quote"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+
+  <h3>Scenario 1: The British Expat in Dubai</h3>
+  <p class="italic text-neutral-600">
+    James, 38, moved from London to Dubai. He won't need US coverage and wants competitive pricing.
   </p>
   <p>
-    If you don't need US coverage, Allianz offers better value with comparable international coverage. The 10-15% savings compound significantly over years of premiums.
+    <strong>Best choice: Allianz Care Classic</strong>
+  </p>
+  <p>
+    James doesn't need US coverage, so Allianz's 20-30% lower pricing is pure savings. Allianz has good Middle East networks, and euro billing works for someone from Europe. The savings compound to thousands over years.
   </p>
 
+  <h3>Scenario 2: The American Executive in Singapore</h3>
+  <p class="italic text-neutral-600">
+    Sarah, 45, is a VP relocated to Singapore by her US company. She visits family in California twice yearly and wants to keep her US doctors.
+  </p>
+  <p>
+    <strong>Best choice: Aetna International Prime or Platinum</strong>
+  </p>
+  <p>
+    Sarah needs seamless US coverage. Aetna's built-in US network lets her see California doctors without hassle. CVS integration means prescriptions work smoothly. Her company may even have a corporate Aetna plan with better rates.
+  </p>
+
+  <h3>Scenario 3: The German Family in Thailand</h3>
+  <p class="italic text-neutral-600">
+    The Muellers (parents 40 and 38, kids 10 and 7) relocated from Munich to Bangkok. They visit Germany annually but have no US ties.
+  </p>
+  <p>
+    <strong>Best choice: Allianz Care Premium</strong>
+  </p>
+  <p>
+    A family of four shows Allianz's savings clearly. Without US coverage needs, they might save €200-300/month vs Aetna—€2,400-3,600/year. Allianz has good Thailand and Germany networks. Euro billing is convenient for Germans.
+  </p>
+
+  <h3>Scenario 4: The Pre-existing Condition Question</h3>
+  <p class="italic text-neutral-600">
+    Maria, 52, has controlled high blood pressure. She wants to understand how each insurer handles this.
+  </p>
+  <p>
+    <strong>Consider both carefully:</strong>
+  </p>
+  <ul>
+    <li><strong>Allianz (Moratorium):</strong> Blood pressure excluded automatically. If she's symptom-free for 2 years, it may be covered.</li>
+    <li><strong>Aetna (Full Underwriting):</strong> She discloses the condition. Aetna may: cover it, exclude it, add a premium loading, or require more info. Outcome is case-by-case.</li>
+  </ul>
+  <p>
+    Maria should get quotes from both and see how each handles her specific condition.
+  </p>
+
+  <h3>Scenario 5: The Corporate Transferee</h3>
+  <p class="italic text-neutral-600">
+    David, 35, is being transferred abroad by his Fortune 500 employer. The company offers international insurance.
+  </p>
+  <p>
+    <strong>Best choice: Check employer offering first</strong>
+  </p>
+  <p>
+    Large employers often have negotiated Aetna corporate plans with better rates and enhanced benefits. David should see what his company offers before looking at individual plans. Corporate rates can be 20-30% better than individual.
+  </p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What's the difference between moratorium and full underwriting?</h3>
+      <p class="text-neutral-600">
+        <strong>Moratorium (Allianz):</strong> No medical questionnaire. All pre-existing conditions automatically excluded. If you're symptom-free for 2 years, conditions may become covered. Simpler process.
+        <br/><br/>
+        <strong>Full underwriting (Aetna):</strong> Complete medical questionnaire required. Insurer reviews each condition and decides: cover it, exclude it, or add premium. More thorough but can result in better coverage for some conditions.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is Allianz really 20-30% cheaper?</h3>
+      <p class="text-neutral-600">
+        Yes, when US coverage isn't needed. The gap is real and consistent across age groups. However, once you add US coverage to Allianz, prices become similar to Aetna. The savings only apply if you skip US coverage.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How valuable is CVS integration really?</h3>
+      <p class="text-neutral-600">
+        For Americans who visit home: genuinely valuable. You can fill prescriptions at any CVS, walk into MinuteClinic for minor issues, and use a familiar pharmacy system. For non-Americans who never visit the US: no value at all.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Which has better mental health coverage?</h3>
+      <p class="text-neutral-600">
+        Neither excels here. Aetna is marginally better with more consistent inclusion across plans. If mental health is a priority, BUPA Global is significantly better than both Allianz and Aetna.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I switch between them later?</h3>
+      <p class="text-neutral-600">
+        Yes, but switching triggers new underwriting. Any conditions you've developed become pre-existing for the new insurer. If you're healthy, switching is straightforward. If you've had health issues, staying put is usually better.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What if my employer offers Aetna?</h3>
+      <p class="text-neutral-600">
+        Take it seriously. Corporate Aetna rates are typically 20-30% better than individual plans, with potentially enhanced benefits. Unless you have specific reasons to prefer Allianz (like not needing US coverage and wanting to save more), employer-sponsored Aetna is usually a good deal.
+      </p>
+    </div>
+  </div>
+
+  <!-- Inline FAQ CTA -->
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-4 my-4">
+    <p class="text-primary-900 text-center">
+      <strong>Have more questions?</strong> Request quotes to speak with brokers who can clarify coverage details.
+      <a href="/best/expat-health-insurance" class="text-primary-700 underline hover:text-primary-800 ml-1">Get Free Quotes →</a>
+    </p>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+
+  <p>
+    The Allianz vs Aetna decision usually comes down to one question: Do you need US coverage?
+  </p>
+
+  <p>
+    <strong>Choose Allianz Care</strong> if you don't need US coverage. The 20-30% savings are real and significant over years. Allianz offers solid international coverage with strong European and Asian networks. If you're not American and won't regularly access US healthcare, paying Aetna's premium for US integration you won't use doesn't make sense.
+  </p>
+
+  <p>
+    <strong>Choose Aetna International</strong> if you're American or need regular US healthcare access. The CVS integration, large US network, and seamless experience for US visits justify the price. If you're choosing between "Allianz with US add-on" vs "Aetna with US included," Aetna is usually the better value.
+  </p>
+
+  <p>
+    For corporate assignees, check your employer's offerings—corporate Aetna plans are often competitively priced and may be the best option regardless of your individual preference.
+  </p>
+
+  <!-- Split provider CTAs -->
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Allianz?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for non-US expats who want competitive pricing and European networks.</p>
+      <a href="/providers/allianz-care" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View Allianz Options →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Aetna?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for Americans who want seamless US coverage and CVS integration.</p>
+      <a href="/providers/aetna-international" class="inline-block w-full text-center bg-neutral-700 hover:bg-neutral-800 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get Aetna Quote →
+      </a>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
   <CTABox
-    title="Ready to Decide?"
-    description="Get quotes from both providers for your specific situation."
-    buttonText="Compare Plans Now"
+    title="Compare Both Providers"
+    description="Get personalized quotes from Allianz Care and Aetna International to see actual pricing."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> Prices and coverage details change. Verify all information with providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan availability change frequently. We are not insurance brokers. Verify all information directly with providers before purchasing.
     </p>
   </div>
 </PageShell>
