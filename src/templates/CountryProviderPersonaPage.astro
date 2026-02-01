@@ -1,0 +1,740 @@
+---
+/**
+ * CountryProviderPersonaPage.astro
+ *
+ * Template for three-way pages like /countries/spain/cigna-global/for-retirees
+ * These pages answer very specific queries about a provider for a persona in a country.
+ */
+
+import Layout from '../layouts/Layout.astro';
+import CTABox from '../components/CTABox.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import ContentCards from '../components/ContentCards.astro';
+import Disclosure from '../components/Disclosure.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+
+import type { Provider } from '../data/types';
+import type { Country } from '../data/types';
+import type { Persona } from '../data/personas';
+
+interface Props {
+  country: Country;
+  provider: Provider;
+  persona: Persona;
+}
+
+const { country, provider, persona } = Astro.props;
+
+// Generate a fit rating based on provider type and persona
+function getFitRating(): 'excellent' | 'good' | 'fair' | 'not-recommended' {
+  const providerType = provider.type;
+  const personaSlug = persona.slug;
+
+  // International providers are generally good for most personas
+  if (providerType === 'international') {
+    // SafetyWing is best for digital nomads and students, less so for retirees
+    if (provider.slug === 'safetywing') {
+      if (['digital-nomads', 'students', 'freelancers'].includes(personaSlug)) return 'excellent';
+      if (['remote-workers', 'entrepreneurs'].includes(personaSlug)) return 'good';
+      return 'fair';
+    }
+    // World Nomads is travel insurance - not great for long-term
+    if (provider.slug === 'world-nomads') {
+      if (['digital-nomads'].includes(personaSlug)) return 'good';
+      return 'fair';
+    }
+    // Premium providers like Cigna, Bupa, Allianz are good for retirees and families
+    if (['cigna-global', 'bupa-global', 'allianz-care', 'axa-global'].includes(provider.slug)) {
+      if (['retirees', 'seniors', 'families'].includes(personaSlug)) return 'excellent';
+      if (['entrepreneurs', 'remote-workers'].includes(personaSlug)) return 'good';
+      if (['digital-nomads', 'freelancers'].includes(personaSlug)) return 'good';
+      if (['students'].includes(personaSlug)) return 'fair'; // Too expensive for students
+      return 'good';
+    }
+    // IMG Global - budget international
+    if (provider.slug === 'img-global') {
+      if (['digital-nomads', 'freelancers', 'students'].includes(personaSlug)) return 'good';
+      if (['retirees', 'seniors'].includes(personaSlug)) return 'fair';
+      return 'good';
+    }
+  }
+
+  return 'good';
+}
+
+const fitRating = getFitRating();
+
+// Rating display config
+const ratingConfig: Record<string, { label: string; color: string; bgColor: string; borderColor: string }> = {
+  'excellent': { label: 'Excellent Match', color: 'text-green-800', bgColor: 'bg-green-100', borderColor: 'border-green-200' },
+  'good': { label: 'Good Match', color: 'text-blue-800', bgColor: 'bg-blue-100', borderColor: 'border-blue-200' },
+  'fair': { label: 'Fair Match', color: 'text-amber-800', bgColor: 'bg-amber-100', borderColor: 'border-amber-200' },
+  'not-recommended': { label: 'Not Recommended', color: 'text-red-800', bgColor: 'bg-red-100', borderColor: 'border-red-200' }
+};
+
+const rating = ratingConfig[fitRating];
+
+// Generate summary based on the combination
+function getSummary(): string {
+  if (fitRating === 'excellent') {
+    return `${provider.name} is an excellent choice for ${persona.name.toLowerCase()} living in ${country.name}. Their plans align well with both the local healthcare landscape and the specific needs of this demographic.`;
+  } else if (fitRating === 'good') {
+    return `${provider.name} is a solid option for ${persona.name.toLowerCase()} in ${country.name}. While not perfect for every situation, they offer good coverage that works well for most needs.`;
+  } else if (fitRating === 'fair') {
+    return `${provider.name} can work for ${persona.name.toLowerCase()} in ${country.name}, but there may be better options. Consider comparing with providers that specialize in serving this demographic.`;
+  }
+  return `We don't recommend ${provider.name} for ${persona.name.toLowerCase()} in ${country.name}. Better alternatives exist for this specific combination.`;
+}
+
+// Generate overview prose
+function getOverviewProse(): string[] {
+  const paragraphs: string[] = [];
+
+  paragraphs.push(
+    `When you're a ${persona.singular} moving to ${country.name}, choosing the right health insurance isn't just about coverage—it's about finding a provider that understands both your lifestyle and the local healthcare system. ${provider.name} is one of several international options available, and here we'll break down exactly how well they serve ${persona.name.toLowerCase()} specifically in ${country.name}.`
+  );
+
+  if (country.insuranceRequired) {
+    paragraphs.push(
+      `Important context: ${country.name} requires health insurance for visa holders. ${country.requirementExplanation || ''} ${provider.name}'s plans typically meet these visa requirements, but always verify the specific coverage amounts with the consulate before applying.`
+    );
+  } else {
+    paragraphs.push(
+      `While ${country.name} doesn't strictly require health insurance for all visa types, having proper coverage is essential. ${provider.name} offers international plans that provide security whether you're using ${country.publicHealthcare?.name || 'public healthcare'} as a backup or relying entirely on private care.`
+    );
+  }
+
+  // Add healthcare landscape context
+  paragraphs.push(
+    `${country.name}'s healthcare landscape presents both opportunities and challenges for ${persona.name.toLowerCase()}. The public system (${country.publicHealthcare?.name || 'national healthcare'}) may be available to residents, but access, quality, and wait times vary. Many expats find that private insurance from providers like ${provider.name} gives them more control over their healthcare experience—faster appointments, English-speaking doctors, and access to private facilities.`
+  );
+
+  // Add persona-specific context
+  if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    paragraphs.push(
+      `As a ${persona.singular}, your healthcare needs are likely more predictable but also more frequent than younger expats. You need a provider that handles chronic conditions, preventive care, and potential hospitalizations without excessive paperwork or claim denials. ${provider.name}'s track record with ${persona.name.toLowerCase()} in ${country.name} is worth examining closely.`
+    );
+  } else if (persona.slug === 'digital-nomads' || persona.slug === 'freelancers') {
+    paragraphs.push(
+      `As a ${persona.singular}, your insurance needs differ from traditional expats. You might be in ${country.name} for a few months or a few years—flexibility matters. You also need coverage that works when you travel to other destinations, not just when you're based here. ${provider.name}'s global coverage model is designed with this mobility in mind.`
+    );
+  } else if (persona.slug === 'families') {
+    paragraphs.push(
+      `Moving abroad with family adds complexity to your insurance decision. You need coverage for adults and children, potentially maternity benefits, pediatric care, and the peace of mind that comes from knowing your kids can see a doctor quickly when needed. ${provider.name} offers family plans, but the details matter—especially around dependent coverage, well-child visits, and emergency care.`
+    );
+  } else {
+    paragraphs.push(
+      `Your situation as a ${persona.singular} in ${country.name} comes with specific insurance considerations. You need coverage that matches your lifestyle, your likely healthcare needs, and your budget. ${provider.name} is one option worth evaluating, but the right choice depends on understanding exactly what they offer and where they fall short.`
+    );
+  }
+
+  paragraphs.push(
+    `This guide covers what ${provider.name} does well for ${persona.name.toLowerCase()} in ${country.name}, where they fall short, realistic cost expectations, and how they compare to alternatives. The goal is to help you make an informed decision based on your actual situation.`
+  );
+
+  return paragraphs;
+}
+
+// Generate benefits based on persona and country context
+function getBenefits(): string[] {
+  const benefits: string[] = [];
+
+  // Provider-specific benefits
+  if (provider.includesUS) {
+    benefits.push(`Includes US coverage—valuable if you'll travel back to the US or have US-based family`);
+  }
+
+  if (['cigna-global', 'bupa-global', 'allianz-care', 'axa-global'].includes(provider.slug)) {
+    benefits.push(`Strong hospital network in ${country.name}—likely has direct billing with major private hospitals`);
+    benefits.push(`Comprehensive coverage including outpatient, inpatient, and chronic condition management`);
+  }
+
+  if (provider.slug === 'safetywing') {
+    benefits.push(`Monthly subscription model—no annual commitment required`);
+    benefits.push(`Covers you in ${country.name} and 180+ other countries without changing plans`);
+  }
+
+  // Persona-specific benefits
+  if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    if (['cigna-global', 'bupa-global', 'allianz-care'].includes(provider.slug)) {
+      benefits.push(`Accepts applicants in older age brackets—check specific age limits`);
+      benefits.push(`Pre-existing condition coverage available through underwriting`);
+    }
+  }
+
+  if (persona.slug === 'digital-nomads' || persona.slug === 'freelancers') {
+    benefits.push(`Worldwide coverage means you can travel from ${country.name} without changing plans`);
+    if (provider.slug === 'safetywing') {
+      benefits.push(`No fixed address requirement—designed for location-independent lifestyles`);
+    }
+  }
+
+  if (persona.slug === 'families') {
+    benefits.push(`Family plan options that can cover spouse and children on one policy`);
+    if (['cigna-global', 'bupa-global', 'allianz-care'].includes(provider.slug)) {
+      benefits.push(`Pediatric care, vaccinations, and well-child visits typically included`);
+    }
+  }
+
+  // Country-specific benefits
+  if (country.publicHealthcare?.name) {
+    benefits.push(`Works alongside ${country.publicHealthcare.name}—use private insurance for faster care and specialist access`);
+  }
+
+  return benefits.slice(0, 5);
+}
+
+// Generate drawbacks
+function getDrawbacks(): string[] {
+  const drawbacks: string[] = [];
+
+  // Provider-specific drawbacks
+  if (['cigna-global', 'bupa-global', 'allianz-care', 'axa-global'].includes(provider.slug)) {
+    drawbacks.push(`Premium pricing—expect to pay more than budget international options`);
+    if (persona.slug === 'students' || persona.slug === 'freelancers') {
+      drawbacks.push(`May be overkill for ${persona.name.toLowerCase()} who primarily need emergency coverage`);
+    }
+  }
+
+  if (provider.slug === 'safetywing') {
+    drawbacks.push(`Limited coverage compared to comprehensive plans—$250k lifetime cap`);
+    drawbacks.push(`Not true health insurance—better classified as travel medical coverage`);
+    if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+      drawbacks.push(`Age limits and limited chronic condition coverage make it unsuitable for older adults`);
+    }
+  }
+
+  if (provider.slug === 'world-nomads') {
+    drawbacks.push(`Trip-based coverage—not designed for long-term residence in ${country.name}`);
+    drawbacks.push(`Limited medical coverage compared to health insurance plans`);
+  }
+
+  if (provider.slug === 'img-global') {
+    drawbacks.push(`12-month pre-existing condition exclusion period`);
+  }
+
+  if (!provider.includesUS) {
+    drawbacks.push(`Does not include US coverage—a limitation if you'll travel back frequently`);
+  }
+
+  // Country-specific drawbacks
+  if (country.insuranceRequired) {
+    drawbacks.push(`Verify coverage meets ${country.name}'s visa requirements before purchasing`);
+  }
+
+  return drawbacks.slice(0, 4);
+}
+
+// Estimate cost based on persona and provider
+function getEstimatedCost(): string {
+  if (provider.slug === 'safetywing') {
+    return '$40-80/month';
+  }
+  if (provider.slug === 'world-nomads') {
+    return '$50-100/month';
+  }
+  if (provider.slug === 'img-global') {
+    return '$80-150/month';
+  }
+
+  // Premium providers - adjust for persona
+  if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    return '$300-600/month';
+  }
+  if (persona.slug === 'families') {
+    return '$400-800/month (family)';
+  }
+  if (persona.slug === 'students') {
+    return '$150-250/month';
+  }
+
+  return '$150-350/month';
+}
+
+// Key features for table
+interface KeyFeature {
+  feature: string;
+  status: 'yes' | 'partial' | 'no';
+  note: string;
+}
+
+function getKeyFeatures(): KeyFeature[] {
+  const features: KeyFeature[] = [];
+
+  // Universal features
+  features.push({
+    feature: `Coverage in ${country.name}`,
+    status: 'yes',
+    note: 'Worldwide coverage includes here'
+  });
+
+  if (country.insuranceRequired) {
+    features.push({
+      feature: 'Meets visa requirements',
+      status: ['cigna-global', 'bupa-global', 'allianz-care', 'axa-global', 'img-global'].includes(provider.slug) ? 'yes' : 'partial',
+      note: provider.slug === 'safetywing' ? 'Verify with consulate' : ''
+    });
+  }
+
+  // Persona-specific features
+  if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    features.push({
+      feature: 'Accepts 65+ applicants',
+      status: ['cigna-global', 'bupa-global', 'allianz-care', 'axa-global'].includes(provider.slug) ? 'yes' :
+              provider.slug === 'img-global' ? 'partial' : 'no',
+      note: ''
+    });
+    features.push({
+      feature: 'Pre-existing conditions',
+      status: ['cigna-global', 'bupa-global', 'allianz-care'].includes(provider.slug) ? 'yes' : 'partial',
+      note: ''
+    });
+  }
+
+  if (persona.slug === 'digital-nomads' || persona.slug === 'freelancers') {
+    features.push({
+      feature: 'Multi-country coverage',
+      status: 'yes',
+      note: 'Without plan changes'
+    });
+    features.push({
+      feature: 'Monthly payment',
+      status: provider.slug === 'safetywing' ? 'yes' : 'no',
+      note: ''
+    });
+  }
+
+  if (persona.slug === 'families') {
+    features.push({
+      feature: 'Family plans',
+      status: provider.slug !== 'world-nomads' ? 'yes' : 'partial',
+      note: ''
+    });
+    features.push({
+      feature: 'Maternity coverage',
+      status: ['cigna-global', 'bupa-global', 'allianz-care'].includes(provider.slug) ? 'yes' : 'partial',
+      note: fitRating === 'excellent' ? '10-12 month wait' : ''
+    });
+  }
+
+  // Provider features
+  features.push({
+    feature: 'Direct billing',
+    status: ['cigna-global', 'bupa-global', 'allianz-care', 'axa-global'].includes(provider.slug) ? 'yes' : 'partial',
+    note: ''
+  });
+
+  features.push({
+    feature: 'Telehealth included',
+    status: ['cigna-global', 'bupa-global', 'allianz-care', 'safetywing'].includes(provider.slug) ? 'yes' : 'partial',
+    note: ''
+  });
+
+  return features.slice(0, 6);
+}
+
+// FAQs
+function getFAQs(): Array<{ question: string; answer: string }> {
+  return [
+    {
+      question: `Is ${provider.name} good for ${persona.name.toLowerCase()} in ${country.name}?`,
+      answer: getSummary()
+    },
+    {
+      question: `How much does ${provider.name} cost for ${persona.name.toLowerCase()} in ${country.name}?`,
+      answer: `${persona.name} typically pay around ${getEstimatedCost()} for ${provider.name}. Costs vary based on age, coverage level, and deductible choices. ${country.name}'s cost of living doesn't directly affect premiums since ${provider.name} prices globally, but local private healthcare costs (${country.privateHealthcare?.cost || 'varies'}) give context on what you're insuring against.`
+    },
+    {
+      question: `Does ${provider.name} meet ${country.name}'s visa insurance requirements?`,
+      answer: country.insuranceRequired
+        ? `${country.name} requires health insurance for visa applicants. ${provider.name}'s international plans typically meet these requirements, but always verify specific coverage amounts with the ${country.demonym} consulate. Requirements may include minimum coverage amounts, repatriation coverage, and specific validity periods.`
+        : `${country.name} doesn't have strict insurance requirements for most visa types. However, having comprehensive coverage from ${provider.name} provides essential protection and may be required for certain visa categories.`
+    },
+    {
+      question: `Does ${provider.name} have a hospital network in ${country.name}?`,
+      answer: ['cigna-global', 'bupa-global', 'allianz-care', 'axa-global'].includes(provider.slug)
+        ? `Yes, ${provider.name} has established relationships with major hospitals in ${country.name}. This means direct billing (no out-of-pocket expenses at participating hospitals) and pre-negotiated rates. Check their provider directory for specific hospitals in your area.`
+        : `${provider.name} uses a reimbursement model in ${country.name}—you pay upfront and submit claims for reimbursement. Some providers may offer direct billing, but confirm this before treatment.`
+    },
+    {
+      question: `Can I use ${country.publicHealthcare?.name || 'public healthcare'} alongside ${provider.name}?`,
+      answer: `Yes, you can use both systems. Many expats in ${country.name} use ${country.publicHealthcare?.name || 'public healthcare'} for routine care and their ${provider.name} coverage for private specialists, shorter wait times, or services not covered publicly. Your ${provider.name} plan works independently—using public healthcare doesn't affect your private coverage.`
+    }
+  ];
+}
+
+const summary = getSummary();
+const overviewProse = getOverviewProse();
+const benefits = getBenefits();
+const drawbacks = getDrawbacks();
+const estimatedCost = getEstimatedCost();
+const keyFeatures = getKeyFeatures();
+const faqs = getFAQs();
+
+// Sidebar links
+const sidebarLinks = [
+  { title: `Insurance in ${country.name}`, href: `/countries/${country.slug}/insurance` },
+  { title: `${provider.name} Review`, href: provider.href },
+  { title: `Insurance for ${persona.name}`, href: persona.href },
+  { title: 'Compare All Providers', href: '/best/expat-health-insurance' },
+];
+
+// Related cards
+const relatedCards = [
+  {
+    title: `${country.name} Insurance Guide`,
+    description: `Complete guide to health insurance options in ${country.name}.`,
+    href: `/countries/${country.slug}/insurance`,
+    image: country.heroImage || '/images/countries/default-hero-bg.png',
+  },
+  {
+    title: `${provider.name} for ${persona.name}`,
+    description: `How ${provider.name} serves ${persona.name.toLowerCase()} worldwide.`,
+    href: `/providers/${provider.slug}/for-${persona.slug}`,
+    image: '/images/pages/provider-card-generic.png',
+  },
+  {
+    title: `Insurance for ${persona.name}`,
+    description: `Compare all providers for ${persona.name.toLowerCase()}.`,
+    href: persona.href,
+    image: '/images/pages/digital-nomad-hero-bg.png',
+  },
+];
+
+// Meta
+const pageTitle = `${provider.name} for ${persona.name} in ${country.name} | Expat Insurance`;
+const pageDescription = `Is ${provider.name} right for ${persona.name.toLowerCase()} in ${country.name}? Coverage details, costs (${estimatedCost}), and alternatives.`;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- HERO SECTION -->
+  <section class="py-10 lg:py-14 border-b border-neutral-200 bg-gradient-to-br from-primary-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12">
+        <!-- Text Content (Left) -->
+        <div class="flex-1 max-w-2xl">
+          <p class="text-sm font-medium text-primary-600 mb-2">
+            <a href={`/countries/${country.slug}/insurance`} class="hover:underline">{country.name}</a>
+            {' → '}
+            <a href={provider.href} class="hover:underline">{provider.name}</a>
+            {' → '}
+            <span>For {persona.name}</span>
+          </p>
+          <div class="flex items-center gap-3 mb-4">
+            {provider.logo && (
+              <img src={provider.logo} alt={provider.name} class="h-10 w-auto" />
+            )}
+            <span class={`px-3 py-1 rounded-full text-sm font-medium ${rating.bgColor} ${rating.color}`}>
+              {rating.label}
+            </span>
+          </div>
+          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+            {provider.name} for {persona.name} in {country.name}
+          </h1>
+          <p class="text-lg text-neutral-600 mb-6">
+            {summary}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 mb-4">
+            <a
+              href={provider.href}
+              class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+              style="color: white;"
+            >
+              View {provider.name} Plans
+            </a>
+            <a
+              href={`/countries/${country.slug}/insurance`}
+              class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+            >
+              All {country.name} Options
+            </a>
+          </div>
+          <Disclosure />
+        </div>
+        <!-- Hero Image (Right) -->
+        <div class="hidden lg:block flex-shrink-0 mt-8 lg:mt-0">
+          <img
+            src="/images/pages/provider-card-generic.png"
+            alt={`${provider.name} for ${persona.name.toLowerCase()} in ${country.name}`}
+            class="w-80 h-auto rounded-lg shadow-lg"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <article class="flex-1 min-w-0">
+
+        <!-- Overview Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+          {overviewProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+        </section>
+
+        <!-- Quick Facts Table -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Facts</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse bg-white rounded-lg overflow-hidden border border-neutral-200">
+              <tbody>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700 w-1/3">Fit Rating</td>
+                  <td class="px-4 py-3">
+                    <span class={`px-2 py-1 rounded text-sm font-medium ${rating.bgColor} ${rating.color}`}>
+                      {rating.label}
+                    </span>
+                  </td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Country</td>
+                  <td class="px-4 py-3 text-neutral-700">{country.name}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Estimated Cost</td>
+                  <td class="px-4 py-3 text-neutral-700">{estimatedCost}</td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Insurance Required?</td>
+                  <td class="px-4 py-3 text-neutral-700">
+                    {country.insuranceRequired ? 'Yes—required for visa' : 'Recommended but not mandatory'}
+                  </td>
+                </tr>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Local Healthcare</td>
+                  <td class="px-4 py-3 text-neutral-700">
+                    {country.publicHealthcare?.name || 'Public system available'}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Private Healthcare Cost</td>
+                  <td class="px-4 py-3 text-neutral-700">{country.privateHealthcare?.cost || 'Varies'}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Key Features Checklist -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Key Features for {persona.name} in {country.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            Here's how {provider.name} performs on the features that matter most to {persona.name.toLowerCase()} living in {country.name}. Green means full support, yellow means partial or conditional, and red means lacking.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            These features were selected based on what {persona.name.toLowerCase()} typically need when living abroad. A "partial" rating doesn't mean the feature is bad—it means there are conditions, limitations, or extra steps involved. Always verify specific details with {provider.name} directly before purchasing.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            {keyFeatures.map((feature) => (
+              <div class="flex items-center gap-3 bg-white border border-neutral-200 rounded-lg p-4">
+                {feature.status === 'yes' && (
+                  <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+                {feature.status === 'partial' && (
+                  <svg class="w-5 h-5 text-yellow-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01" />
+                  </svg>
+                )}
+                {feature.status === 'no' && (
+                  <svg class="w-5 h-5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                )}
+                <div>
+                  <span class="text-neutral-900 text-sm font-medium">{feature.feature}</span>
+                  {feature.note && <span class="text-neutral-500 text-xs ml-1">({feature.note})</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Benefits for {persona.name} in {country.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            These are the specific advantages {provider.name} offers for {persona.name.toLowerCase()} living in {country.name}. Some benefits relate to the provider's overall strengths, while others are specific to how they serve this demographic in this location.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            When evaluating benefits, consider what actually matters for your situation. A feature that sounds impressive on paper might not be relevant to how you'll actually use your insurance. Focus on the benefits that align with your likely healthcare needs as a {persona.singular} in {country.name}.
+          </p>
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h3 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              What Works Well
+            </h3>
+            <ul class="space-y-2">
+              {benefits.map((benefit) => (
+                <li class="flex items-start gap-2 text-neutral-700">
+                  <span class="text-green-600 mt-1">•</span>
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- Drawbacks Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Drawbacks to Consider</h2>
+          <p class="text-neutral-700 mb-4">
+            No provider is perfect. Here are the limitations of {provider.name} for {persona.name.toLowerCase()} in {country.name}. Understanding these upfront helps you decide if they're dealbreakers or acceptable tradeoffs.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            These drawbacks aren't necessarily reasons to avoid {provider.name}—they're factors to weigh against the benefits. Some limitations matter more for certain {persona.name.toLowerCase()} than others. A drawback that's critical for one person might be irrelevant to your situation.
+          </p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <h3 class="font-semibold text-amber-800 mb-3 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              Watch Out For
+            </h3>
+            <ul class="space-y-2">
+              {drawbacks.map((drawback) => (
+                <li class="flex items-start gap-2 text-neutral-700">
+                  <span class="text-amber-600 mt-1">•</span>
+                  {drawback}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing for {persona.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            For {persona.name.toLowerCase()} in {country.name}, expect to pay around {estimatedCost} with {provider.name}. This estimate assumes typical coverage needs for this demographic. Your actual cost varies based on age, health history, deductible choices, and specific coverage selections.
+          </p>
+          <p class="text-neutral-700 mb-6">
+            Context: Private healthcare in {country.name} costs around {country.privateHealthcare?.cost || 'varies'}. Your insurance premiums buy peace of mind plus access to private care without large out-of-pocket expenses.
+          </p>
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm text-neutral-500 mb-1">Estimated Monthly Cost</p>
+                <p class="text-2xl font-bold text-primary-700">{estimatedCost}</p>
+              </div>
+              <div class="text-right">
+                <p class="text-sm text-neutral-500 mb-1">Local Private Care</p>
+                <p class="font-semibold text-neutral-900">{country.privateHealthcare?.cost || 'Varies'}</p>
+              </div>
+            </div>
+            <p class="text-sm text-neutral-600 mt-4">
+              Get a personalized quote from {provider.name} for accurate pricing based on your specific situation.
+            </p>
+          </div>
+        </section>
+
+        <!-- Recommendation Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Our Recommendation</h2>
+          <p class="text-neutral-700 mb-4">
+            {fitRating === 'excellent' && `${provider.name} is one of the best options for ${persona.name.toLowerCase()} in ${country.name}. Their coverage aligns well with both local healthcare realities and the specific needs of this demographic. If pricing works for your budget, you can proceed with confidence.`}
+            {fitRating === 'good' && `${provider.name} is a solid choice for ${persona.name.toLowerCase()} in ${country.name}. While not the absolute best fit for every situation, they offer reliable coverage that meets most needs. Compare with one or two alternatives to confirm they're right for you.`}
+            {fitRating === 'fair' && `${provider.name} can work for ${persona.name.toLowerCase()} in ${country.name}, but isn't optimized for this combination. Consider the alternatives below—you may find better value or more relevant coverage elsewhere.`}
+            {fitRating === 'not-recommended' && `We don't recommend ${provider.name} for ${persona.name.toLowerCase()} in ${country.name}. The fit isn't right—check the alternatives below for providers better suited to your situation.`}
+          </p>
+          <p class="text-neutral-700 mb-4">
+            Keep in mind that insurance needs change over time. What works when you first arrive in {country.name} might not be ideal after you've been there for a few years. Many {persona.name.toLowerCase()} start with one provider and switch as their situation evolves. {provider.name} allows this flexibility—you're not locked in forever, and you can reassess annually.
+          </p>
+          <div class={`rounded-lg p-6 ${rating.bgColor} border ${rating.borderColor}`}>
+            <div class="flex items-center gap-2 mb-2">
+              <span class={`font-bold ${rating.color}`}>{rating.label}</span>
+              <span class="text-neutral-700">for {persona.name} in {country.name}</span>
+            </div>
+            <p class="text-neutral-700">
+              {fitRating === 'excellent' ? `${provider.name} is a top choice for this combination.` :
+               fitRating === 'good' ? `${provider.name} works well for most ${persona.name.toLowerCase()} here.` :
+               fitRating === 'fair' ? `Consider comparing alternatives before committing.` :
+               `Look at alternatives better suited to your needs.`}
+            </p>
+          </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-white border border-neutral-200 rounded-lg">
+                <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-neutral-900">
+                  {faq.question}
+                  <svg class="w-5 h-5 text-neutral-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-5 pb-5 text-neutral-700">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Bottom Line Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">The Bottom Line</h2>
+          <p class="text-neutral-700 mb-4">
+            Choosing health insurance as a {persona.singular} in {country.name} means balancing coverage quality, cost, and convenience. {provider.name} offers {fitRating === 'excellent' ? 'an excellent' : fitRating === 'good' ? 'a solid' : 'a workable'} option for this combination, though the right choice ultimately depends on your specific priorities.
+          </p>
+          <p class="text-neutral-700 mb-4">
+            The best approach is to get quotes from {provider.name} and one or two alternatives, then compare the actual coverage and pricing for your specific age, health status, and needs. What looks good on paper might look different once you see real numbers. Take time to read the policy documents carefully—especially exclusions and waiting periods.
+          </p>
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+            <p class="text-neutral-700 mb-4">
+              <strong>Our verdict:</strong> {provider.name} rates as <span class={rating.color.replace('text-', '')}>{rating.label.toLowerCase()}</span> for {persona.name.toLowerCase()} in {country.name}. {summary}
+            </p>
+            <p class="text-neutral-700">
+              Estimated cost: {estimatedCost}. Get a personalized quote to confirm pricing for your age and health profile.
+            </p>
+          </div>
+        </section>
+
+        <!-- Author Box -->
+        <section class="not-prose mb-10">
+          <AuthorBox
+            name="John Spencer"
+            bio="John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad."
+            image="/images/john-spencer.png"
+          />
+        </section>
+
+        <!-- CTA -->
+        <CTABox
+          title={fitRating === 'not-recommended' ? `Find Better Options for ${persona.name} in ${country.name}` : `Get a ${provider.name} Quote`}
+          description={fitRating === 'not-recommended' ? `Compare providers better suited for ${persona.name.toLowerCase()} in ${country.name}.` : `See pricing and coverage details for ${persona.name.toLowerCase()} in ${country.name}.`}
+          buttonText={fitRating === 'not-recommended' ? 'Compare Alternatives' : 'Get Quote'}
+          buttonHref={fitRating === 'not-recommended' ? `/countries/${country.slug}/insurance` : provider.href}
+          variant="highlight"
+          showDisclosure={false}
+        />
+
+      </article>
+
+      <!-- Sticky Sidebar -->
+      <StickySidebar
+        ctaTitle={`${provider.name} in ${country.name}`}
+        ctaDescription={`Coverage for ${persona.name.toLowerCase()}.`}
+        ctaButtonText="Get Quote"
+        ctaButtonHref={provider.href}
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+
+    <!-- Related Content -->
+    <section class="mt-16 border-t border-neutral-200 pt-12">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-6">Related Resources</h2>
+      <ContentCards cards={relatedCards} columns={3} />
+    </section>
+  </div>
+</Layout>

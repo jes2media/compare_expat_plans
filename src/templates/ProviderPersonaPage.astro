@@ -8,10 +8,10 @@
 
 import Layout from '../layouts/Layout.astro';
 import CTABox from '../components/CTABox.astro';
-import AuthorBox from '../components/AuthorBox.astro';
-import TableOfContents from '../components/TableOfContents.astro';
 import StickySidebar from '../components/StickySidebar.astro';
+import ContentCards from '../components/ContentCards.astro';
 import Disclosure from '../components/Disclosure.astro';
+import AuthorBox from '../components/AuthorBox.astro';
 
 import type { Provider } from '../data/types';
 import type { Persona } from '../data/personas';
@@ -32,119 +32,337 @@ interface Props {
 
 const { provider, persona, entry, alternatives } = Astro.props;
 
-// Rating display
-const ratingDisplay = {
-  'excellent': { label: 'Excellent Match', color: 'green', icon: '★★★★★' },
-  'good': { label: 'Good Match', color: 'blue', icon: '★★★★☆' },
-  'fair': { label: 'Fair Match', color: 'amber', icon: '★★★☆☆' },
-  'not-recommended': { label: 'Not Recommended', color: 'red', icon: '★★☆☆☆' }
+// Rating display config
+const ratingConfig: Record<string, { label: string; color: string; bgColor: string; borderColor: string }> = {
+  'excellent': { label: 'Excellent Match', color: 'text-green-800', bgColor: 'bg-green-100', borderColor: 'border-green-200' },
+  'good': { label: 'Good Match', color: 'text-blue-800', bgColor: 'bg-blue-100', borderColor: 'border-blue-200' },
+  'fair': { label: 'Fair Match', color: 'text-amber-800', bgColor: 'bg-amber-100', borderColor: 'border-amber-200' },
+  'not-recommended': { label: 'Not Recommended', color: 'text-red-800', bgColor: 'bg-red-100', borderColor: 'border-red-200' }
 };
 
-const rating = ratingDisplay[entry.rating];
+const rating = ratingConfig[entry.rating];
 
-// Generate TOC items
-const tocItems = [
-  { id: 'overview', text: `${provider.name} for ${persona.name}`, level: 2 },
-  { id: 'benefits', text: 'Benefits', level: 2 },
-  { id: 'drawbacks', text: 'Drawbacks', level: 2 },
-  { id: 'recommendation', text: 'Our Recommendation', level: 2 },
-  { id: 'alternatives', text: 'Alternatives', level: 2 },
-];
+// Generate prose content based on rating and provider/persona combination
+function getOverviewProse(): string[] {
+  const paragraphs: string[] = [];
 
-// Author info
-const author = {
-  name: 'John Spencer',
-  bio: 'John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad.',
-  image: '/images/john-spencer.png',
-};
+  if (entry.rating === 'excellent') {
+    paragraphs.push(
+      `${provider.name} is one of the strongest options available for ${persona.name.toLowerCase()}. Their plans are well-suited to the specific needs of this demographic, offering the coverage and flexibility that ${persona.name.toLowerCase()} typically require when living abroad.`
+    );
+    paragraphs.push(
+      `What sets ${provider.name} apart for ${persona.name.toLowerCase()} is their understanding of what this group actually needs. Rather than offering generic international coverage, they've built features and support systems that address the real challenges ${persona.name.toLowerCase()} face—from visa compliance to managing healthcare across borders.`
+    );
+  } else if (entry.rating === 'good') {
+    paragraphs.push(
+      `${provider.name} is a solid choice for ${persona.name.toLowerCase()}, offering good coverage that meets most needs. While not perfect for everyone, their plans provide a strong foundation of protection that works well for this demographic.`
+    );
+    paragraphs.push(
+      `The key question is whether ${provider.name}'s strengths align with your specific priorities. They do several things well for ${persona.name.toLowerCase()}, but there are also some limitations to be aware of before committing.`
+    );
+  } else if (entry.rating === 'fair') {
+    paragraphs.push(
+      `${provider.name} can work for ${persona.name.toLowerCase()}, but it's not their strongest market. Their plans weren't specifically designed with this demographic in mind, which means you may find gaps or limitations that don't exist with providers who specialize in serving ${persona.name.toLowerCase()}.`
+    );
+    paragraphs.push(
+      `Before choosing ${provider.name}, we recommend comparing with providers that score higher for ${persona.name.toLowerCase()}. That said, if ${provider.name} appeals to you for other reasons, here's what you need to know to make it work.`
+    );
+  } else {
+    paragraphs.push(
+      `We don't recommend ${provider.name} for most ${persona.name.toLowerCase()}. Their products aren't designed for this demographic, and you're likely to encounter frustrations—whether that's coverage gaps, pricing that doesn't make sense, or features that don't match how ${persona.name.toLowerCase()} actually live.`
+    );
+    paragraphs.push(
+      `This isn't a criticism of ${provider.name} overall—they may be excellent for other groups. But ${persona.name.toLowerCase()} have specific needs that ${provider.name} simply isn't set up to address well. See our alternatives below for better options.`
+    );
+  }
+
+  paragraphs.push(
+    `This guide breaks down the details: what ${provider.name} does well for ${persona.name.toLowerCase()}, where they fall short, realistic cost expectations, and how they compare to alternatives. Our goal is to help you make an informed decision, not push you toward any particular provider.`
+  );
+
+  return paragraphs;
+}
+
+function getBenefitsProse(): string[] {
+  const paragraphs: string[] = [];
+
+  if (entry.benefits.length > 0) {
+    paragraphs.push(
+      `${provider.name} offers several advantages that matter specifically to ${persona.name.toLowerCase()}. These aren't just marketing bullet points—they're the features that actually make a difference in day-to-day life abroad.`
+    );
+
+    if (entry.rating === 'excellent' || entry.rating === 'good') {
+      paragraphs.push(
+        `The benefits below represent real value for ${persona.name.toLowerCase()}. When evaluating any insurance provider, these are the kinds of features worth prioritizing—and ${provider.name} delivers on them.`
+      );
+    }
+  }
+
+  return paragraphs;
+}
+
+function getDrawbacksProse(): string[] {
+  const paragraphs: string[] = [];
+
+  if (entry.drawbacks.length > 0) {
+    paragraphs.push(
+      `No insurance provider is perfect, and ${provider.name} is no exception. Being aware of these limitations upfront helps you avoid surprises and decide whether they're dealbreakers for your situation.`
+    );
+
+    if (entry.rating === 'fair' || entry.rating === 'not-recommended') {
+      paragraphs.push(
+        `For ${persona.name.toLowerCase()} specifically, these drawbacks are more significant than they might be for other groups. Consider carefully whether you can work around these limitations before choosing ${provider.name}.`
+      );
+    }
+  }
+
+  return paragraphs;
+}
+
+function getPricingProse(): string[] {
+  const paragraphs: string[] = [];
+
+  if (entry.estimatedCost) {
+    paragraphs.push(
+      `For ${persona.name.toLowerCase()}, expect to pay around ${entry.estimatedCost} with ${provider.name}. This estimate assumes typical coverage needs and a mid-range plan. Your actual cost may vary based on age, health history, and specific coverage choices.`
+    );
+    paragraphs.push(
+      `When comparing prices, look beyond the monthly premium. Consider deductibles, copays, coverage limits, and what's actually included. A cheaper plan that excludes things you need isn't really saving you money—it's just shifting costs to when you actually need care.`
+    );
+  } else {
+    paragraphs.push(
+      `Pricing with ${provider.name} for ${persona.name.toLowerCase()} varies significantly based on your specific situation. Contact them directly or use their online quote tool for accurate pricing. Be sure to compare the total cost of coverage, not just the premium.`
+    );
+  }
+
+  return paragraphs;
+}
+
+function getRecommendationProse(): string[] {
+  const paragraphs: string[] = [];
+
+  if (entry.rating === 'excellent') {
+    paragraphs.push(
+      `${provider.name} earns our highest rating for ${persona.name.toLowerCase()}. If their coverage and pricing work for your situation, you can proceed with confidence. They understand the needs of this demographic and have built their products accordingly.`
+    );
+    if (entry.recommendedPlan) {
+      paragraphs.push(
+        `We specifically recommend their ${entry.recommendedPlan} plan for most ${persona.name.toLowerCase()}. It offers the best balance of coverage and cost for typical needs. You can always adjust up or down based on your specific requirements.`
+      );
+    }
+  } else if (entry.rating === 'good') {
+    paragraphs.push(
+      `${provider.name} is a good choice for ${persona.name.toLowerCase()}, though not the only good option. They do most things well, and if their strengths align with your priorities, you'll likely be satisfied with their coverage and service.`
+    );
+    paragraphs.push(
+      `Consider comparing with alternatives to ensure you're getting the best fit. Sometimes a provider rated "excellent" for ${persona.name.toLowerCase()} may actually cost less while offering more relevant coverage.`
+    );
+  } else if (entry.rating === 'fair') {
+    paragraphs.push(
+      `We rate ${provider.name} as fair for ${persona.name.toLowerCase()}—not bad, but not optimized for this demographic. If you choose them, go in with realistic expectations about the limitations and consider whether their strengths outweigh the drawbacks in your specific case.`
+    );
+    paragraphs.push(
+      `Seriously consider the alternatives listed below before committing. Providers with higher ratings for ${persona.name.toLowerCase()} are likely to offer a better overall experience.`
+    );
+  } else {
+    paragraphs.push(
+      `We don't recommend ${provider.name} for ${persona.name.toLowerCase()}. The fit simply isn't there—you'll likely pay too much, get coverage that doesn't match your needs, or encounter frustrations that providers specializing in ${persona.name.toLowerCase()} have solved.`
+    );
+    paragraphs.push(
+      `Look at the alternatives below for providers that actually understand and serve ${persona.name.toLowerCase()} well. Your insurance experience will be significantly better with a provider rated "excellent" or "good" for your demographic.`
+    );
+  }
+
+  return paragraphs;
+}
+
+const overviewProse = getOverviewProse();
+const benefitsProse = getBenefitsProse();
+const drawbacksProse = getDrawbacksProse();
+const pricingProse = getPricingProse();
+const recommendationProse = getRecommendationProse();
+
+// Key features for table
+interface KeyFeature {
+  feature: string;
+  status: 'yes' | 'partial' | 'no' | 'varies';
+  note: string;
+}
+
+function getKeyFeatures(): KeyFeature[] {
+  const features: KeyFeature[] = [];
+
+  // Add persona-specific features
+  if (persona.slug === 'digital-nomads') {
+    features.push(
+      { feature: 'Monthly payment option', status: provider.slug === 'safetywing' ? 'yes' : 'no', note: provider.slug === 'safetywing' ? 'Subscription model' : 'Annual payment typical' },
+      { feature: 'Multi-country coverage', status: entry.rating === 'excellent' || entry.rating === 'good' ? 'yes' : 'partial', note: 'Without changing plans' },
+      { feature: 'No fixed address required', status: provider.slug === 'safetywing' ? 'yes' : 'partial', note: '' },
+      { feature: 'Telehealth included', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: '' }
+    );
+  } else if (persona.slug === 'retirees' || persona.slug === 'seniors') {
+    features.push(
+      { feature: 'Accepts ages 65+', status: entry.rating === 'excellent' || entry.rating === 'good' ? 'yes' : 'partial', note: entry.rating === 'excellent' ? 'Good age limits' : 'Check specific limits' },
+      { feature: 'Pre-existing coverage', status: entry.rating === 'excellent' ? 'yes' : entry.rating === 'good' ? 'partial' : 'no', note: entry.rating === 'excellent' ? 'With underwriting' : '' },
+      { feature: 'Chronic condition management', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: '' },
+      { feature: 'Medical evacuation', status: 'yes', note: 'To home country' }
+    );
+  } else if (persona.slug === 'families') {
+    features.push(
+      { feature: 'Family plans available', status: entry.rating === 'excellent' || entry.rating === 'good' ? 'yes' : 'partial', note: '' },
+      { feature: 'Maternity coverage', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: entry.rating === 'excellent' ? '10-12 month wait' : 'Check availability' },
+      { feature: 'Pediatric/well-child care', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: '' },
+      { feature: 'Newborn coverage', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: entry.rating === 'excellent' ? 'From birth' : '' }
+    );
+  } else if (persona.slug === 'students') {
+    features.push(
+      { feature: 'Meets university requirements', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: '' },
+      { feature: 'Affordable (<$150/mo)', status: ['safetywing', 'img-global'].includes(provider.slug) ? 'yes' : 'no', note: '' },
+      { feature: 'Mental health coverage', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: '' },
+      { feature: 'Flexible terms', status: entry.rating === 'excellent' || entry.rating === 'good' ? 'yes' : 'partial', note: '' }
+    );
+  } else {
+    features.push(
+      { feature: 'Worldwide coverage', status: entry.rating === 'excellent' || entry.rating === 'good' ? 'yes' : 'partial', note: '' },
+      { feature: 'Pre-existing coverage', status: entry.rating === 'excellent' ? 'yes' : entry.rating === 'good' ? 'partial' : 'no', note: '' },
+      { feature: 'Direct billing', status: entry.rating === 'excellent' ? 'yes' : 'partial', note: '' },
+      { feature: 'Visa-compliant', status: 'yes', note: 'Most countries' }
+    );
+  }
+
+  return features;
+}
+
+const keyFeatures = getKeyFeatures();
+
+// FAQs
+function getFAQs(): Array<{ question: string; answer: string }> {
+  return [
+    {
+      question: `Is ${provider.name} good for ${persona.name.toLowerCase()}?`,
+      answer: entry.rating === 'excellent'
+        ? `Yes, ${provider.name} is one of the best options for ${persona.name.toLowerCase()}. ${entry.summary}`
+        : entry.rating === 'good'
+        ? `Yes, ${provider.name} is a solid choice for ${persona.name.toLowerCase()}. ${entry.summary}`
+        : entry.rating === 'fair'
+        ? `${provider.name} can work for ${persona.name.toLowerCase()}, but isn't ideal. ${entry.summary}`
+        : `We don't recommend ${provider.name} for ${persona.name.toLowerCase()}. ${entry.summary}`
+    },
+    {
+      question: `How much does ${provider.name} cost for ${persona.name.toLowerCase()}?`,
+      answer: entry.estimatedCost
+        ? `${persona.name} typically pay around ${entry.estimatedCost} for ${provider.name}. Actual costs vary based on age, health status, and coverage level chosen.`
+        : `Pricing varies significantly based on your situation. Contact ${provider.name} directly for an accurate quote.`
+    },
+    {
+      question: `What's the best ${provider.name} plan for ${persona.name.toLowerCase()}?`,
+      answer: entry.recommendedPlan
+        ? `For ${persona.name.toLowerCase()}, we recommend ${provider.name}'s ${entry.recommendedPlan}. This provides the best balance of coverage and value for typical needs in this demographic.`
+        : `The best plan depends on your specific needs. Compare coverage levels and consider what matters most for your situation.`
+    },
+    {
+      question: `Does ${provider.name} cover pre-existing conditions for ${persona.name.toLowerCase()}?`,
+      answer: entry.rating === 'excellent' || entry.rating === 'good'
+        ? `${provider.name} offers pre-existing condition coverage through their underwriting process. Coverage may be immediate, subject to a moratorium period, or excluded depending on the condition.`
+        : `Pre-existing condition coverage with ${provider.name} is limited for ${persona.name.toLowerCase()}. If this is important to you, consider alternatives with better pre-existing coverage.`
+    },
+    {
+      question: `What are alternatives to ${provider.name} for ${persona.name.toLowerCase()}?`,
+      answer: alternatives.filter(a => a.slug !== provider.slug).length > 0
+        ? `Top alternatives for ${persona.name.toLowerCase()} include ${alternatives.filter(a => a.slug !== provider.slug).slice(0, 3).map(a => a.name).join(', ')}. Each has different strengths depending on your priorities.`
+        : `Compare other international health insurance providers to find the best fit for your specific needs.`
+    },
+  ];
+}
+
+const faqs = getFAQs();
 
 // Sidebar links
 const sidebarLinks = [
-  { title: `${provider.name} Review`, href: provider.href },
+  { title: `${provider.name} Full Review`, href: provider.href },
   { title: `Insurance for ${persona.name}`, href: persona.href },
   { title: 'Compare All Providers', href: '/best/expat-health-insurance' },
+  { title: 'Pre-Existing Conditions Guide', href: '/guides/pre-existing-conditions-abroad' },
+];
+
+// Related cards
+const relatedCards = [
+  {
+    title: `${provider.name} Review`,
+    description: `Complete review of ${provider.name}'s plans, coverage, and pricing.`,
+    href: provider.href,
+    image: '/images/guides/pre-existing-conditions-hero.png',
+  },
+  {
+    title: `Insurance for ${persona.name}`,
+    description: `Compare all providers for ${persona.name.toLowerCase()}.`,
+    href: persona.href,
+    image: '/images/pages/digital-nomad-hero-bg.png',
+  },
+  {
+    title: 'Best Expat Health Insurance',
+    description: 'Compare top international health insurance providers.',
+    href: '/best/expat-health-insurance',
+    image: '/images/guides/english-speaking-doctors-hero.png',
+  },
 ];
 
 // Meta
-const pageTitle = `${provider.name} for ${persona.name}: Is It Right for You? (2025)`;
-const pageDescription = `Is ${provider.name} a good choice for ${persona.name.toLowerCase()}? ${entry.summary.slice(0, 120)}...`;
-
-// Breadcrumb schema
-const siteUrl = "https://compareexpatplans.com";
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
-    { "@type": "ListItem", "position": 2, "name": "Providers", "item": `${siteUrl}/providers` },
-    { "@type": "ListItem", "position": 3, "name": provider.name, "item": `${siteUrl}${provider.href}` },
-    { "@type": "ListItem", "position": 4, "name": `For ${persona.name}` },
-  ],
-};
+const pageTitle = `${provider.name} for ${persona.name}: Is It Right for You? | Expat Insurance`;
+const pageDescription = `Is ${provider.name} a good choice for ${persona.name.toLowerCase()}? Honest assessment with pricing, benefits, drawbacks, and alternatives.`;
 ---
 
-<Layout title={pageTitle} description={pageDescription} ogType="article">
-  <!-- Structured Data -->
-  <Fragment slot="structured-data">
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  </Fragment>
-
+<Layout title={pageTitle} description={pageDescription}>
   <!-- HERO SECTION -->
-  <section class="bg-gradient-to-b from-neutral-50 to-white py-10 lg:py-14 border-b border-neutral-200">
+  <section class="py-10 lg:py-14 border-b border-neutral-200 bg-gradient-to-br from-primary-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <p class="text-sm font-medium text-primary-600 mb-2">
-          <a href={provider.href} class="hover:underline">{provider.name}</a>
-          {' → '}
-          <span>For {persona.name}</span>
-        </p>
-        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-          {provider.name} for {persona.name}
-        </h1>
-
-        <!-- Rating Badge -->
-        <div class="mb-6">
-          {entry.rating === 'excellent' && (
-            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800">
-              ★★★★★ Excellent Match
+      <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12">
+        <!-- Text Content (Left) -->
+        <div class="flex-1 max-w-2xl">
+          <p class="text-sm font-medium text-primary-600 mb-2">
+            <a href={provider.href} class="hover:underline">{provider.name}</a>
+            {' → '}
+            <span>For {persona.name}</span>
+          </p>
+          <div class="flex items-center gap-3 mb-4">
+            {provider.logo && (
+              <img src={provider.logo} alt={provider.name} class="h-10 w-auto" />
+            )}
+            <span class={`px-3 py-1 rounded-full text-sm font-medium ${rating.bgColor} ${rating.color}`}>
+              {rating.label}
             </span>
-          )}
-          {entry.rating === 'good' && (
-            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-              ★★★★☆ Good Match
-            </span>
-          )}
-          {entry.rating === 'fair' && (
-            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-amber-100 text-amber-800">
-              ★★★☆☆ Fair Match
-            </span>
-          )}
-          {entry.rating === 'not-recommended' && (
-            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-red-100 text-red-800">
-              ★★☆☆☆ Not Recommended
-            </span>
-          )}
+          </div>
+          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+            {provider.name} for {persona.name}
+          </h1>
+          <p class="text-lg text-neutral-600 mb-6">
+            {entry.summary}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 mb-4">
+            <a
+              href={provider.href}
+              class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+              style="color: white;"
+            >
+              View {provider.name} Plans
+            </a>
+            <a
+              href={persona.href}
+              class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+            >
+              All {persona.name} Options
+            </a>
+          </div>
+          <Disclosure />
         </div>
-
-        <p class="text-lg text-neutral-600 mb-6">
-          {entry.summary}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3 mb-4">
-          <a
-            href={provider.href}
-            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
-            style="color: white;"
-          >
-            Get a {provider.name} Quote
-          </a>
-          <a
-            href={persona.href}
-            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
-          >
-            All Options for {persona.name}
-          </a>
+        <!-- Hero Image (Right) -->
+        <div class="hidden lg:block flex-shrink-0 mt-8 lg:mt-0">
+          <img
+            src="/images/pages/provider-card-generic.png"
+            alt={`${provider.name} insurance for ${persona.name.toLowerCase()}`}
+            class="w-80 h-auto rounded-lg shadow-lg"
+          />
         </div>
-        <Disclosure />
       </div>
     </div>
   </section>
@@ -152,186 +370,297 @@ const breadcrumbSchema = {
   <!-- MAIN CONTENT -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
     <div class="flex gap-12">
-      <!-- Main Content -->
       <article class="flex-1 min-w-0">
 
-        <!-- TOP META -->
-        <div class="mb-8">
-          <AuthorBox
-            name={author.name}
-            bio={author.bio}
-            image={author.image}
-          />
-        </div>
+        <!-- Overview Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+          {overviewProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+        </section>
 
-        <!-- TOC (Mobile) -->
-        <div class="lg:hidden mb-8">
-          <TableOfContents items={tocItems} />
-        </div>
-
-        <!-- CONTENT -->
-        <div class="prose prose-neutral max-w-none">
-
-          <h2 id="overview">{provider.name} for {persona.name}: Overview</h2>
-
-          <!-- Quick Stats -->
-          <div class="grid md:grid-cols-3 gap-4 my-8 not-prose">
-            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
-              <p class="text-sm text-neutral-500 mb-1">Rating</p>
-              <p class="font-semibold text-neutral-900">{rating.label}</p>
-            </div>
-            {entry.recommendedPlan && (
-              <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
-                <p class="text-sm text-neutral-500 mb-1">Recommended Plan</p>
-                <p class="font-semibold text-neutral-900">{entry.recommendedPlan}</p>
-              </div>
-            )}
-            {entry.estimatedCost && (
-              <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
-                <p class="text-sm text-neutral-500 mb-1">Estimated Cost</p>
-                <p class="font-semibold text-neutral-900">{entry.estimatedCost}</p>
-              </div>
-            )}
+        <!-- Quick Facts Table -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Facts</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse bg-white rounded-lg overflow-hidden border border-neutral-200">
+              <tbody>
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700 w-1/3">Fit Rating</td>
+                  <td class="px-4 py-3">
+                    <span class={`px-2 py-1 rounded text-sm font-medium ${rating.bgColor} ${rating.color}`}>
+                      {rating.label}
+                    </span>
+                  </td>
+                </tr>
+                {entry.recommendedPlan && (
+                  <tr class="border-b border-neutral-200">
+                    <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Recommended Plan</td>
+                    <td class="px-4 py-3 text-neutral-700">{entry.recommendedPlan}</td>
+                  </tr>
+                )}
+                {entry.estimatedCost && (
+                  <tr class="border-b border-neutral-200">
+                    <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Estimated Cost</td>
+                    <td class="px-4 py-3 text-neutral-700">{entry.estimatedCost}</td>
+                  </tr>
+                )}
+                <tr class="border-b border-neutral-200">
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Best For</td>
+                  <td class="px-4 py-3 text-neutral-700">
+                    {entry.rating === 'excellent' ? `${persona.name} seeking comprehensive coverage` :
+                     entry.rating === 'good' ? `${persona.name} with standard needs` :
+                     entry.rating === 'fair' ? `${persona.name} with specific requirements matching their strengths` :
+                     `Other demographics—not ${persona.name.toLowerCase()}`}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 bg-neutral-50 font-medium text-neutral-700">Key Strength</td>
+                  <td class="px-4 py-3 text-neutral-700">{entry.benefits[0] || 'See benefits below'}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </section>
 
-          <p>
-            As a {persona.singular}, you have specific insurance needs: {persona.keyNeeds.slice(0, 2).join(', ').toLowerCase()}, and more.
-            Here's how {provider.name} stacks up for your situation.
+        <!-- Key Features Checklist -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Key Features for {persona.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            Here's how {provider.name} performs on the features that matter most to {persona.name.toLowerCase()}. Green means they deliver well, yellow means partial or conditional support, and red means this feature is lacking.
           </p>
-
-          <!-- Benefits -->
-          <h2 id="benefits">Benefits of {provider.name} for {persona.name}</h2>
-
-          <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6 not-prose">
-            <h3 class="text-lg font-semibold text-green-900 mb-3">What Works Well</h3>
-            <ul class="space-y-2">
-              {entry.benefits.map(benefit => (
-                <li class="flex items-start gap-2 text-green-800">
-                  <svg class="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <p class="text-neutral-700 mb-6">
+            These ratings are specific to {persona.name.toLowerCase()}—a feature marked as partial might be excellent for a different demographic but not quite right for your needs.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            {keyFeatures.map((feature) => (
+              <div class="flex items-center gap-3 bg-white border border-neutral-200 rounded-lg p-4">
+                {feature.status === 'yes' && (
+                  <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Drawbacks -->
-          <h2 id="drawbacks">Drawbacks to Consider</h2>
-
-          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6 not-prose">
-            <h3 class="text-lg font-semibold text-amber-900 mb-3">Watch Out For</h3>
-            <ul class="space-y-2">
-              {entry.drawbacks.map(drawback => (
-                <li class="flex items-start gap-2 text-amber-800">
-                  <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                )}
+                {feature.status === 'partial' && (
+                  <svg class="w-5 h-5 text-yellow-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01" />
                   </svg>
-                  <span>{drawback}</span>
+                )}
+                {feature.status === 'no' && (
+                  <svg class="w-5 h-5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                )}
+                {feature.status === 'varies' && (
+                  <svg class="w-5 h-5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h8" />
+                  </svg>
+                )}
+                <div>
+                  <span class="text-neutral-900 text-sm font-medium">{feature.feature}</span>
+                  {feature.note && <span class="text-neutral-500 text-xs ml-1">({feature.note})</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Benefits for {persona.name}</h2>
+          {benefitsProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h3 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              What Works Well
+            </h3>
+            <ul class="space-y-2">
+              {entry.benefits.map((benefit) => (
+                <li class="flex items-start gap-2 text-neutral-700">
+                  <span class="text-green-600 mt-1">•</span>
+                  {benefit}
                 </li>
               ))}
             </ul>
           </div>
+        </section>
 
-          <!-- Recommendation -->
-          <h2 id="recommendation">Our Recommendation</h2>
+        <!-- Drawbacks Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Drawbacks to Consider</h2>
+          {drawbacksProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
+          ))}
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <h3 class="font-semibold text-amber-800 mb-3 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              Watch Out For
+            </h3>
+            <ul class="space-y-2">
+              {entry.drawbacks.map((drawback) => (
+                <li class="flex items-start gap-2 text-neutral-700">
+                  <span class="text-amber-600 mt-1">•</span>
+                  {drawback}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
-          {entry.rating === 'excellent' && (
-            <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6 not-prose">
-              <p class="text-green-800">
-                <strong class="text-green-900">Excellent choice.</strong> {provider.name} is one of the best options for {persona.name.toLowerCase()}.
-                {entry.recommendedPlan && ` We recommend the ${entry.recommendedPlan} plan.`}
-                {entry.estimatedCost && ` Expect to pay around ${entry.estimatedCost}.`}
-              </p>
-            </div>
-          )}
-
-          {entry.rating === 'good' && (
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6 not-prose">
-              <p class="text-blue-800">
-                <strong class="text-blue-900">Good option.</strong> {provider.name} works well for most {persona.name.toLowerCase()}.
-                {entry.recommendedPlan && ` Consider the ${entry.recommendedPlan} plan.`}
-                {entry.estimatedCost && ` Budget around ${entry.estimatedCost}.`}
-              </p>
-            </div>
-          )}
-
-          {entry.rating === 'fair' && (
-            <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6 not-prose">
-              <p class="text-amber-800">
-                <strong class="text-amber-900">Consider alternatives.</strong> {provider.name} can work for {persona.name.toLowerCase()}, but there may be better options depending on your specific needs.
-                Check the alternatives below.
-              </p>
-            </div>
-          )}
-
-          {entry.rating === 'not-recommended' && (
-            <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-6 not-prose">
-              <p class="text-red-800">
-                <strong class="text-red-900">Not recommended.</strong> {provider.name} is not the best fit for most {persona.name.toLowerCase()}.
-                We suggest looking at the alternatives below for better options suited to your needs.
-              </p>
-            </div>
-          )}
-
-          <CTABox
-            title={entry.rating === 'not-recommended' ? `Find Better Options for ${persona.name}` : `Get a ${provider.name} Quote`}
-            description={entry.rating === 'not-recommended' ? `Compare providers better suited for ${persona.name.toLowerCase()}.` : `See pricing for ${persona.name.toLowerCase()}.`}
-            buttonText={entry.rating === 'not-recommended' ? 'Compare Alternatives' : 'Get Quote'}
-            buttonHref={entry.rating === 'not-recommended' ? persona.href : provider.href}
-            variant="highlight"
-            showDisclosure={false}
-          />
-
-          <!-- Alternatives -->
-          <h2 id="alternatives">Alternatives for {persona.name}</h2>
-          <p>
-            Here's how other providers compare for {persona.name.toLowerCase()}:
-          </p>
-        </div>
-
-        <!-- Alternatives Grid -->
-        <div class="grid md:grid-cols-2 gap-4 my-8">
-          {alternatives.filter(a => a.slug !== provider.slug).slice(0, 4).map(alt => (
-            <a
-              href={alt.href}
-              class="block bg-white border border-neutral-200 rounded-lg p-5 hover:border-primary-300 hover:shadow-md transition-all"
-            >
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="font-semibold text-neutral-900">{alt.name}</h3>
-                {alt.rating === 'excellent' && (
-                  <span class="text-xs px-2 py-1 rounded bg-green-100 text-green-800">Excellent</span>
-                )}
-                {alt.rating === 'good' && (
-                  <span class="text-xs px-2 py-1 rounded bg-blue-100 text-blue-800">Good</span>
-                )}
-                {alt.rating === 'fair' && (
-                  <span class="text-xs px-2 py-1 rounded bg-amber-100 text-amber-800">Fair</span>
-                )}
-                {alt.rating === 'not-recommended' && (
-                  <span class="text-xs px-2 py-1 rounded bg-red-100 text-red-800">Not Rec.</span>
+        <!-- Pricing Section -->
+        {entry.estimatedCost && (
+          <section class="not-prose mb-10">
+            <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing for {persona.name}</h2>
+            {pricingProse.map((paragraph) => (
+              <p class="text-neutral-700 mb-4">{paragraph}</p>
+            ))}
+            <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-neutral-500 mb-1">Estimated Monthly Cost</p>
+                  <p class="text-2xl font-bold text-primary-700">{entry.estimatedCost}</p>
+                </div>
+                {entry.recommendedPlan && (
+                  <div class="text-right">
+                    <p class="text-sm text-neutral-500 mb-1">Recommended Plan</p>
+                    <p class="font-semibold text-neutral-900">{entry.recommendedPlan}</p>
+                  </div>
                 )}
               </div>
-              <p class="text-sm text-primary-600 font-medium">View details →</p>
-            </a>
+              <p class="text-sm text-neutral-600 mt-4">
+                Actual costs vary based on age, health status, and coverage selections. Get a personalized quote for accurate pricing.
+              </p>
+            </div>
+          </section>
+        )}
+
+        <!-- Recommendation Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Our Recommendation</h2>
+          {recommendationProse.map((paragraph) => (
+            <p class="text-neutral-700 mb-4">{paragraph}</p>
           ))}
-        </div>
+          <div class={`rounded-lg p-6 ${rating.bgColor} border ${rating.borderColor}`}>
+            <div class="flex items-center gap-2 mb-2">
+              <span class={`font-bold ${rating.color}`}>{rating.label}</span>
+              <span class="text-neutral-700">for {persona.name}</span>
+            </div>
+            <p class="text-neutral-700">
+              {entry.rating === 'excellent' ? `${provider.name} is a top choice. Proceed with confidence.` :
+               entry.rating === 'good' ? `${provider.name} works well for most ${persona.name.toLowerCase()}.` :
+               entry.rating === 'fair' ? `Consider alternatives before committing to ${provider.name}.` :
+               `Look at alternatives better suited to ${persona.name.toLowerCase()}.`}
+            </p>
+          </div>
+        </section>
 
-        <div class="prose prose-neutral max-w-none">
-          <p>
-            <a href={persona.href}>See all insurance options for {persona.name.toLowerCase()} →</a>
+        <!-- Alternatives Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">Alternatives for {persona.name}</h2>
+          <p class="text-neutral-700 mb-4">
+            {entry.rating === 'excellent'
+              ? `While ${provider.name} is a top choice, these alternatives are also worth considering for ${persona.name.toLowerCase()}. Comparing options ensures you find the best fit for your specific situation.`
+              : `These providers may be better suited for ${persona.name.toLowerCase()} than ${provider.name}. Each has different strengths depending on your priorities.`
+            }
           </p>
-        </div>
+          <p class="text-neutral-700 mb-6">
+            The ratings below show how each provider serves {persona.name.toLowerCase()} specifically—not their overall quality. A provider rated "fair" here might be excellent for a different demographic.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {alternatives.filter(a => a.slug !== provider.slug).slice(0, 4).map((alt) => (
+              <a
+                href={alt.href}
+                class="block bg-white border border-neutral-200 rounded-lg p-5 hover:border-primary-300 hover:shadow-sm transition-all"
+              >
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-semibold text-neutral-900">{alt.name}</h3>
+                  <span class={`text-xs px-2 py-1 rounded ${
+                    alt.rating === 'excellent' ? 'bg-green-100 text-green-800' :
+                    alt.rating === 'good' ? 'bg-blue-100 text-blue-800' :
+                    alt.rating === 'fair' ? 'bg-amber-100 text-amber-800' :
+                    'bg-red-100 text-red-800'
+                  }`}>
+                    {alt.rating === 'excellent' ? 'Excellent' :
+                     alt.rating === 'good' ? 'Good' :
+                     alt.rating === 'fair' ? 'Fair' : 'Not Rec.'}
+                  </span>
+                </div>
+                <p class="text-sm text-primary-600 font-medium">View details →</p>
+              </a>
+            ))}
+          </div>
+          <p class="text-sm text-neutral-500 mt-4">
+            <a href={persona.href} class="text-primary-600 hover:underline">See all insurance options for {persona.name.toLowerCase()} →</a>
+          </p>
+        </section>
 
-        <!-- DISCLAIMER -->
-        <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
-          <p class="text-sm text-neutral-600">
-            <strong>Disclaimer:</strong> This assessment is for informational purposes only. Coverage details, pricing, and availability change. We are not insurance brokers. Verify all information with {provider.name} before purchasing.
+        <!-- FAQs Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-white border border-neutral-200 rounded-lg">
+                <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-neutral-900">
+                  {faq.question}
+                  <svg class="w-5 h-5 text-neutral-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-5 pb-5 text-neutral-700">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Bottom Line Section -->
+        <section class="not-prose mb-10">
+          <h2 class="text-2xl font-bold text-neutral-900 mb-4">The Bottom Line</h2>
+          <p class="text-neutral-700 mb-4">
+            Choosing the right expat health insurance matters. The provider you select affects not just your coverage and costs, but your entire experience when you need healthcare abroad. Getting it right upfront saves significant frustration later.
           </p>
-        </div>
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+            <p class="text-neutral-700 mb-4">
+              <strong>Our verdict:</strong> {provider.name} {entry.rating === 'excellent' ? 'is an excellent choice' : entry.rating === 'good' ? 'is a good choice' : entry.rating === 'fair' ? 'is a fair choice' : 'is not recommended'} for {persona.name.toLowerCase()}.
+              {entry.summary}
+            </p>
+            {entry.recommendedPlan && entry.estimatedCost && (
+              <p class="text-neutral-700">
+                If you go with {provider.name}, consider their {entry.recommendedPlan} plan at around {entry.estimatedCost}. Get a personalized quote to confirm pricing for your situation.
+              </p>
+            )}
+          </div>
+        </section>
+
+        <!-- Author Box -->
+        <section class="not-prose mb-10">
+          <AuthorBox
+            name="John Spencer"
+            bio="John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad."
+            image="/images/john-spencer.png"
+          />
+        </section>
+
+        <!-- CTA -->
+        <CTABox
+          title={entry.rating === 'not-recommended' ? `Find Better Options for ${persona.name}` : `Get a ${provider.name} Quote`}
+          description={entry.rating === 'not-recommended' ? `Compare providers better suited for ${persona.name.toLowerCase()}.` : `See pricing and coverage details for ${persona.name.toLowerCase()}.`}
+          buttonText={entry.rating === 'not-recommended' ? 'Compare Alternatives' : 'Get Quote'}
+          buttonHref={entry.rating === 'not-recommended' ? persona.href : provider.href}
+          variant="highlight"
+          showDisclosure={false}
+        />
+
       </article>
 
-      <!-- Sticky Sidebar (Desktop) -->
+      <!-- Sticky Sidebar -->
       <StickySidebar
         ctaTitle={`${provider.name} for ${persona.name}`}
         ctaDescription="Get a personalized quote."
@@ -340,5 +669,11 @@ const breadcrumbSchema = {
         relatedLinks={sidebarLinks}
       />
     </div>
+
+    <!-- Related Content -->
+    <section class="mt-16 border-t border-neutral-200 pt-12">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-6">Related Resources</h2>
+      <ContentCards cards={relatedCards} columns={3} />
+    </section>
   </div>
 </Layout>

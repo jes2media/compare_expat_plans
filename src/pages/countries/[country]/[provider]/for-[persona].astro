@@ -1,0 +1,92 @@
+---
+/**
+ * Dynamic route for country × provider × persona pages.
+ *
+ * Generates pages like:
+ * - /countries/spain/cigna-global/for-retirees
+ * - /countries/thailand/safetywing/for-digital-nomads
+ * - /countries/portugal/bupa-global/for-families
+ *
+ * Shows how a specific provider serves a specific persona in a specific country.
+ */
+
+import CountryProviderPersonaPage from '../../../../templates/CountryProviderPersonaPage.astro';
+import { getInternationalProviders, getProviderBySlug } from '../../../../data/providers';
+import { getCountryBySlug } from '../../../../data/countries';
+import { personas, getPersonaBySlug } from '../../../../data/personas';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get international providers (most relevant for these pages)
+  const internationalProviders = getInternationalProviders();
+
+  // Target countries - top expat destinations
+  const targetCountrySlugs = [
+    // Europe - Mediterranean
+    'spain', 'portugal', 'france', 'italy', 'greece',
+    // Europe - Northern/Central
+    'germany', 'netherlands', 'uk',
+    // Southeast Asia
+    'thailand', 'vietnam', 'indonesia', 'malaysia', 'singapore', 'philippines',
+    // East Asia
+    'japan',
+    // Middle East
+    'uae',
+    // Latin America
+    'mexico', 'costa-rica', 'panama', 'colombia', 'ecuador',
+    // Oceania
+    'australia',
+  ];
+
+  // Target personas - most common searches
+  const targetPersonaSlugs = [
+    'digital-nomads',
+    'retirees',
+    'families',
+    'remote-workers',
+    'freelancers',
+    'seniors',
+  ];
+
+  const paths: Array<{
+    params: { country: string; provider: string; persona: string };
+    props: {
+      country: NonNullable<ReturnType<typeof getCountryBySlug>>;
+      provider: NonNullable<ReturnType<typeof getProviderBySlug>>;
+      persona: NonNullable<ReturnType<typeof getPersonaBySlug>>;
+    };
+  }> = [];
+
+  // Generate pages for each country × provider × persona combination
+  for (const countrySlug of targetCountrySlugs) {
+    const country = getCountryBySlug(countrySlug);
+    if (!country) continue;
+
+    for (const provider of internationalProviders) {
+      for (const personaSlug of targetPersonaSlugs) {
+        const persona = getPersonaBySlug(personaSlug);
+        if (!persona) continue;
+
+        paths.push({
+          params: {
+            country: countrySlug,
+            provider: provider.slug,
+            persona: personaSlug,
+          },
+          props: {
+            country,
+            provider,
+            persona,
+          },
+        });
+      }
+    }
+  }
+
+  return paths;
+};
+
+const { country, provider, persona } = Astro.props;
+---
+
+<CountryProviderPersonaPage country={country} provider={provider} persona={persona} />
