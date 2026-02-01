@@ -4,17 +4,24 @@ import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'eligibility', text: 'Eligibility: The First Question', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage: The BCBS Advantage', level: 2 },
+  { id: 'pricing', text: 'Pricing Analysis', level: 2 },
+  { id: 'network-comparison', text: 'Provider Networks', level: 2 },
+  { id: 'claims-process', text: 'Claims Experience', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'GeoBlue Review', href: '/providers/geoblue' },
   { title: 'AXA Global Review', href: '/providers/axa-global' },
+  { title: 'Best US Expat Insurance', href: '/best/us-expat-insurance' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
 ];
 
@@ -25,175 +32,505 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Inpatient Care', geoblue: true, axa: true },
-  { feature: 'Outpatient Care', geoblue: true, axa: true },
-  { feature: 'Mental Health', geoblue: 'Moderate', axa: 'Limited' },
-  { feature: 'Maternity', geoblue: '12 mo wait', axa: '10-12 mo wait' },
-  { feature: 'Dental', geoblue: 'Optional', axa: 'Optional' },
-  { feature: 'Telemedicine', geoblue: true, axa: true },
-  { feature: 'Medical Evacuation', geoblue: true, axa: true },
-  { feature: 'US Coverage', geoblue: 'Included (BCBS)', axa: 'Add-on' },
-  { feature: 'Non-US Citizens', geoblue: 'Limited', axa: 'Yes' },
+  { feature: 'Inpatient Care', geoblue: 'Full coverage', axa: 'Full coverage' },
+  { feature: 'Outpatient Care', geoblue: 'Full coverage', axa: 'Full coverage' },
+  { feature: 'Mental Health', geoblue: 'Moderate (30 days inpatient)', axa: 'Limited (varies by plan)' },
+  { feature: 'Maternity', geoblue: '12 month wait', axa: '10-12 month wait' },
+  { feature: 'Dental', geoblue: 'Optional add-on', axa: 'Optional add-on' },
+  { feature: 'Vision', geoblue: 'Basic included', axa: 'Optional' },
+  { feature: 'Telemedicine', geoblue: 'Included (24/7)', axa: 'Included' },
+  { feature: 'Medical Evacuation', geoblue: '$500K+', axa: 'Unlimited' },
+  { feature: 'US Coverage', geoblue: 'Included (BCBS)', axa: 'Add-on (30-40% extra)' },
+  { feature: 'Pre-existing Conditions', geoblue: 'Moratorium', axa: 'Both options' },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'geoblue', header: 'GeoBlue' },
   { key: 'axa', header: 'AXA Global' },
 ];
 
+const planRows = [
+  { aspect: 'Plan Types', geoblue: 'Xplorer, Navigator, Voyager', axa: 'Health Me, Health You, Health Us' },
+  { aspect: 'Coverage Regions', geoblue: 'Worldwide + US focus', axa: 'Worldwide, zoned pricing' },
+  { aspect: 'Maximum Benefit', geoblue: '$8M lifetime', axa: 'Unlimited most plans' },
+  { aspect: 'Deductible Options', geoblue: '$100 - $5,000', axa: '€0 - €5,000' },
+  { aspect: 'Coinsurance', geoblue: 'Varies by plan', axa: '80/20 or 100% options' },
+  { aspect: 'Plan Modularity', geoblue: 'Fixed tiers', axa: 'Highly modular' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'geoblue', header: 'GeoBlue (with US)' },
+  { key: 'axa_no_us', header: 'AXA (no US)' },
+  { key: 'axa_with_us', header: 'AXA (with US)' },
+];
+
 const pricingRows = [
-  { age: '30', geoblue: '$150-230/mo', axa: '$140-220/mo' },
-  { age: '40', geoblue: '$200-310/mo', axa: '$190-300/mo' },
-  { age: '50', geoblue: '$280-430/mo', axa: '$260-400/mo' },
-  { age: '60', geoblue: '$400-620/mo', axa: '$380-580/mo' },
+  { profile: '30-year-old, $1K deductible', geoblue: '$180-250/mo', axa_no_us: '$140-200/mo', axa_with_us: '$195-280/mo' },
+  { profile: '40-year-old, $1K deductible', geoblue: '$240-330/mo', axa_no_us: '$190-270/mo', axa_with_us: '$265-380/mo' },
+  { profile: '50-year-old, $1K deductible', geoblue: '$320-450/mo', axa_no_us: '$260-360/mo', axa_with_us: '$365-505/mo' },
+  { profile: 'Couple (35, 35), $2K deductible', geoblue: '$420-560/mo', axa_no_us: '$320-440/mo', axa_with_us: '$450-615/mo' },
+  { profile: 'Family of 4, $2.5K deductible', geoblue: '$650-850/mo', axa_no_us: '$520-700/mo', axa_with_us: '$730-980/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'axa', header: 'AXA Global' },
+];
+
+const networkRows = [
+  { region: 'United States', geoblue: '1.7M+ BCBS providers', axa: 'Limited network' },
+  { region: 'Europe', geoblue: 'Partner networks', axa: 'Extensive (home market)' },
+  { region: 'Asia Pacific', geoblue: 'Good coverage', axa: 'Strong presence' },
+  { region: 'Latin America', geoblue: 'Solid coverage', axa: 'Good coverage' },
+  { region: 'Middle East', geoblue: 'Partner networks', axa: 'Very strong' },
+  { region: 'Direct Billing', geoblue: 'Excellent in US', axa: 'Good globally' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'axa', header: 'AXA Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Submission Methods', geoblue: 'App, online, fax', axa: 'App, online, email' },
+  { aspect: 'Processing Time', geoblue: '5-10 business days', axa: '7-14 business days' },
+  { aspect: 'Direct Billing (US)', geoblue: 'Automatic at BCBS', axa: 'Limited availability' },
+  { aspect: 'Direct Billing (Intl)', geoblue: 'Request required', axa: 'Network hospitals' },
+  { aspect: 'Customer Service Hours', geoblue: '24/7 (US-based)', axa: 'Extended hours (UK)' },
+  { aspect: 'Language Support', geoblue: 'English, Spanish', axa: '20+ languages' },
 ];
 ---
 
 <PageShell
-  title="GeoBlue vs AXA Global"
-  description="Compare GeoBlue and AXA Global health insurance. BCBS network for Americans vs European global coverage."
+  title="GeoBlue vs AXA Global: US Network Access vs European Global Coverage"
+  description="Comprehensive comparison of GeoBlue and AXA Global health insurance. BCBS network for Americans vs modular European coverage for all nationalities."
   headline="GeoBlue vs AXA Global"
-  subheadline="US-focused BCBS affiliate vs European global insurer. Serving different expat populations."
+  subheadline="BCBS affiliate for US citizens vs French global insurer for everyone. Your eligibility may determine your choice."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">Make Your Choice in 60 Seconds</h3>
+
+    <p class="mb-4"><strong>Question 1: Are you a US citizen?</strong></p>
+    <ul class="mb-4">
+      <li><strong>No →</strong> GeoBlue likely won't accept you. <strong>Choose AXA Global</strong></li>
+      <li><strong>Yes →</strong> Continue to Question 2</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 2: Will you use healthcare in the US?</strong></p>
+    <ul class="mb-4">
+      <li><strong>Yes, regularly →</strong> The BCBS network is invaluable. <strong>Choose GeoBlue</strong></li>
+      <li><strong>Rarely or never →</strong> You're paying for access you won't use. Consider AXA</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 3: Where are you primarily based?</strong></p>
+    <ul>
+      <li><strong>Europe, Middle East, or Asia →</strong> AXA's networks are stronger there</li>
+      <li><strong>Americas →</strong> GeoBlue's US coverage is a bigger advantage</li>
+    </ul>
+  </div>
+
   <p>
-    GeoBlue and AXA Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    <strong>The short version:</strong> If you're a US citizen who visits home regularly, GeoBlue's BCBS network access is hard to beat. For everyone else—or US citizens who won't use US healthcare—AXA Global offers excellent coverage at competitive rates with more plan flexibility.
   </p>
+
+  <h2 id="overview">Overview</h2>
+
   <p>
-    GeoBlue is a Blue Cross Blue Shield company focused on international health coverage. Their main connection to the Blue Cross Blue Shield network and strong US ties. They're particularly popular among American expats who want continuity with US healthcare brands, with mid-range with good options for short and long-term coverage.
+    GeoBlue and AXA Global represent two different approaches to international health insurance: a US-focused affiliate of America's largest health network versus a European insurance giant serving all nationalities worldwide.
   </p>
+
   <p>
-    AXA Global is part of the French AXA group, offering robust international health plans. They're known for their strong presence in Europe and Asia with comprehensive plan options. They tend to attract expats in Europe and Asia who want a well-established provider, offering competitive pricing with flexible deductible options.
+    <strong>GeoBlue</strong> is the international arm of the Blue Cross Blue Shield Association. This connection gives them access to 1.7+ million US healthcare providers—the same network Americans use domestically. They primarily serve US citizens living abroad, though some plans accept permanent residents. Their value proposition is simple: keep your access to the US healthcare system while living overseas.
   </p>
+
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    <strong>AXA Global</strong> is part of AXA Group, one of the world's largest insurance companies (€99 billion in revenues). Headquartered in France with operations in 50+ countries, they serve expats of all nationalities. Their strength is global reach, modular plan design, and strong regulatory backing under EU Solvency II requirements.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>BCBS affiliated</li>
-        <li>Designed for US citizens</li>
-        <li>1.7M+ US providers</li>
-        <li>US-based service</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Founded:</strong> 1997 (as Blue Cross affiliate)</li>
+        <li><strong>Parent:</strong> BCBS Association</li>
+        <li><strong>Headquarters:</strong> Pennsylvania, USA</li>
+        <li><strong>Eligibility:</strong> Primarily US citizens</li>
+        <li><strong>Key Strength:</strong> BCBS network access</li>
+        <li><strong>Plan Style:</strong> Fixed tiers, US-centric</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Available to all nationalities</li>
-        <li>French-headquartered</li>
-        <li>Strong European networks</li>
-        <li>Modular plan options</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Founded:</strong> 1816 (AXA Group)</li>
+        <li><strong>Parent:</strong> AXA Group (€99B revenue)</li>
+        <li><strong>Headquarters:</strong> Paris, France</li>
+        <li><strong>Eligibility:</strong> All nationalities</li>
+        <li><strong>Key Strength:</strong> Global reach, modular plans</li>
+        <li><strong>Plan Style:</strong> Highly customizable</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="eligibility">Eligibility: The First Question</h2>
+
+  <p>
+    Before comparing coverage and pricing, there's a fundamental question: can you even apply?
+  </p>
+
+  <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">⚠️ Eligibility Reality Check</h3>
+    <p class="mb-4">
+      <strong>GeoBlue</strong> is primarily designed for US citizens and permanent residents. Their international plans generally require:
+    </p>
+    <ul class="mb-4">
+      <li>US citizenship or green card status</li>
+      <li>A US address (even if living abroad)</li>
+      <li>For some plans, intent to return to the US</li>
+    </ul>
+    <p>
+      <strong>AXA Global</strong> accepts applications from citizens of nearly any country, with no US connection required.
+    </p>
+  </div>
+
+  <p>
+    <strong>If you're not a US citizen,</strong> this comparison may be straightforward: GeoBlue likely isn't an option, making AXA Global (or other international insurers) your path forward.
+  </p>
+
+  <p>
+    <strong>If you are a US citizen,</strong> both options are available, and the choice comes down to how much you value US healthcare access versus AXA's broader global presence and plan flexibility.
+  </p>
+
   <CTABox
-    title="Compare Both Providers"
-    description="Find the right fit for your nationality and needs."
+    title="Check Your Options"
+    description="Get quotes from both providers based on your citizenship and needs."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    Both offer comprehensive coverage, but target different populations. Eligibility is the first consideration.
+    Both providers offer comprehensive international health coverage, but with different approaches to plan design and specific benefits.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>Key differences:</strong></p>
+  <h3>Mental Health Coverage</h3>
+  <p>
+    GeoBlue provides moderate mental health coverage across their plans—typically 30 days inpatient and outpatient visits with some limitations. AXA's mental health coverage varies significantly by plan level, with entry-tier plans offering minimal coverage and premium tiers providing better benefits. Neither is industry-leading for mental health, but GeoBlue is more consistent.
+  </p>
+
+  <h3>Maternity Coverage</h3>
+  <p>
+    Both require 10-12 month waiting periods for maternity benefits. GeoBlue's maternity coverage is generally limited compared to their other benefits. AXA offers maternity as an add-on module, allowing you to customize coverage levels. If maternity is a priority, verify specific limits before enrolling.
+  </p>
+
+  <h3>Pre-existing Conditions</h3>
+  <p>
+    GeoBlue uses a moratorium approach: pre-existing conditions aren't covered initially but can become covered after a period without treatment (typically 2 years). AXA offers both moratorium and full medical underwriting options, giving you flexibility to choose your approach.
+  </p>
+
+  <h3>Plan Structure Comparison</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <p>
+    <strong>Key takeaway:</strong> GeoBlue offers simpler, fixed-tier plans that are easy to understand. AXA's modular approach allows more customization but requires more decisions. If you want to build exactly the coverage you need, AXA's flexibility is valuable. If you prefer "choose a tier and go," GeoBlue is simpler.
+  </p>
+
+  <h2 id="us-coverage">US Coverage: The BCBS Advantage</h2>
+
+  <p>
+    This is the decisive factor for many US citizens. GeoBlue's Blue Cross Blue Shield connection isn't just marketing—it translates to real-world advantages when you need US healthcare.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">What BCBS Network Access Means</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <h4 class="font-semibold mb-2">The Numbers</h4>
+        <ul class="space-y-1 text-neutral-700 text-sm">
+          <li>96% of US hospitals in-network</li>
+          <li>1.7+ million healthcare providers</li>
+          <li>Negotiated rates (not "reasonable & customary")</li>
+          <li>Direct billing at most facilities</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Real Impact</h4>
+        <ul class="space-y-1 text-neutral-700 text-sm">
+          <li>No surprise balance billing</li>
+          <li>Walk into any BCBS facility</li>
+          <li>Same process as domestic insurance</li>
+          <li>No reimbursement claims in US</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>AXA's US Coverage Option</h3>
+  <p>
+    AXA does offer US coverage as an add-on, but it works differently:
+  </p>
   <ul>
-    <li>GeoBlue is primarily for US citizens; AXA accepts all nationalities</li>
-    <li>GeoBlue includes BCBS US network; AXA charges extra for US coverage</li>
-    <li>GeoBlue has better mental health coverage</li>
-    <li>AXA has stronger European hospital networks</li>
+    <li><strong>Cost:</strong> Adds 30-40% to your premium</li>
+    <li><strong>Network:</strong> More limited than BCBS</li>
+    <li><strong>Process:</strong> More likely to require reimbursement claims</li>
+    <li><strong>Value:</strong> Adequate for occasional US visits, not for regular US healthcare</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
   <p>
-    Pricing is similar when comparing apples to apples. AXA appears cheaper but excludes US coverage.
+    <strong>The bottom line:</strong> If you'll use US healthcare more than occasionally, GeoBlue's included BCBS access is worth significant premium differences. If you'll rarely set foot in a US hospital, AXA's approach (exclude US, save 30-40%) makes more financial sense.
+  </p>
+
+  <h2 id="pricing">Pricing Analysis</h2>
+
+  <p>
+    Direct price comparison is complicated by US coverage differences. Here's an apples-to-apples view:
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Pricing notes:</strong></p>
+  <h3>Understanding the Price Differences</h3>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold mb-3">Price Comparison Reality</h4>
+    <ul class="space-y-2">
+      <li><strong>GeoBlue prices include US coverage</strong> — You're getting BCBS network access</li>
+      <li><strong>AXA without US is 20-30% cheaper</strong> — But you can't use US healthcare</li>
+      <li><strong>AXA with US is similar to GeoBlue</strong> — But with a smaller US network</li>
+      <li><strong>For US citizens needing US coverage:</strong> GeoBlue offers better value per dollar</li>
+      <li><strong>For anyone not needing US coverage:</strong> AXA is clearly more affordable</li>
+    </ul>
+  </div>
+
+  <h3>Deductible Strategy Differences</h3>
+  <p>
+    Both offer deductible options up to $5,000/€5,000, but they work differently:
+  </p>
   <ul>
-    <li>GeoBlue prices include BCBS US network access</li>
-    <li>AXA prices exclude US; add 30-40% for inclusion</li>
-    <li>For US citizens needing US coverage, GeoBlue is better value</li>
+    <li><strong>GeoBlue:</strong> Simpler deductible structure, applies to most services</li>
+    <li><strong>AXA:</strong> More complex options including per-treatment deductibles and coinsurance combinations</li>
   </ul>
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <CTABox
+    title="Compare Your Actual Costs"
+    description="Prices vary significantly by age, location, and coverage needs. Get personalized quotes."
+    buttonText="Get Your Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
 
-  <h3>Provider Networks</h3>
+  <h2 id="network-comparison">Provider Networks</h2>
+
   <p>
-    <strong>GeoBlue</strong> provides access to 1.7+ million BCBS providers in the US—one of the largest networks available. International coverage is solid but US is the strength.
-  </p>
-  <p>
-    <strong>AXA Global</strong> has extensive networks in Europe, Middle East, and Asia. US coverage is available but not as integrated as BCBS.
+    Provider network strength varies dramatically by region. Here's how they compare:
   </p>
 
-  <h3>Service Approach</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Regional Breakdown</h3>
+
   <p>
-    GeoBlue offers US-style customer service familiar to Americans. AXA's service follows European norms, which may feel different to US expats.
+    <strong>United States:</strong> GeoBlue wins decisively. The BCBS network is unmatched—96% of hospitals, 1.7M+ providers, negotiated rates everywhere. AXA's US network exists but is smaller and less integrated.
   </p>
+
+  <p>
+    <strong>Europe:</strong> AXA has the advantage here. As a French company, they've built extensive networks across the EU. GeoBlue's European coverage works through partner networks that are less comprehensive.
+  </p>
+
+  <p>
+    <strong>Asia Pacific:</strong> Both have good coverage. AXA has stronger presence in markets like Hong Kong and Singapore. GeoBlue has solid coverage through international partnerships.
+  </p>
+
+  <p>
+    <strong>Middle East:</strong> AXA has a significant edge, with strong networks in UAE, Saudi Arabia, and throughout the region. GeoBlue's coverage is adequate but not as deep.
+  </p>
+
+  <h2 id="claims-process">Claims Experience</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Real-World Claims Differences</h3>
+
+  <p>
+    <strong>GeoBlue's US Advantage:</strong> In the US, claims at BCBS facilities are automatic. Show your card, get treated, walk out. No forms, no reimbursement wait. This seamless experience doesn't fully extend internationally, where you may need to submit claims.
+  </p>
+
+  <p>
+    <strong>AXA's Global Consistency:</strong> AXA's claims process works similarly everywhere. Their network hospitals can direct bill. Outside the network, you submit claims through their app or online portal. Processing takes slightly longer than GeoBlue's US claims but is consistent worldwide.
+  </p>
+
+  <h3>Customer Service</h3>
+  <p>
+    GeoBlue operates US-style 24/7 customer service from their Pennsylvania headquarters. If you're American, the communication style will feel familiar. AXA's service operates from the UK with extended hours and support in 20+ languages—better for non-English speakers but potentially unfamiliar to Americans.
+  </p>
+
+  <h2 id="scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 1: American Teacher in Spain</h3>
+      <p class="text-neutral-600 mb-3">Sarah, 34, teaches English in Madrid. She visits family in Ohio twice a year and wants to see her long-time doctor during those visits.</p>
+      <p class="text-neutral-700"><strong>Best choice: GeoBlue</strong> — The BCBS network means she can see her US doctor with no hassle. In Spain, coverage is adequate, and she values the seamless US visits more than AXA's stronger European network.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 2: British Executive in Singapore</h3>
+      <p class="text-neutral-600 mb-3">James, 45, works for a UK company's Singapore office. He has no ties to the US and travels frequently to Europe for meetings.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global</strong> — He can't get GeoBlue anyway (not a US citizen), but AXA is ideal: strong Asian networks, excellent European coverage, and 20-30% savings without paying for US coverage he'll never use.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 3: American Retiree in Portugal</h3>
+      <p class="text-neutral-600 mb-3">Mike and Linda, both 62, retired to Lisbon. They left the US permanently, have Portuguese residency, and don't plan to return for healthcare.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global (excluding US)</strong> — Even though they could get GeoBlue, why pay for BCBS access they won't use? AXA's European networks are stronger in Portugal, and they'll save $200+/month by excluding US coverage.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 4: American Consultant, Global Travel</h3>
+      <p class="text-neutral-600 mb-3">David, 38, consults for clients worldwide. He's based in Thailand but spends 3-4 months in the US annually for client work.</p>
+      <p class="text-neutral-700"><strong>Best choice: GeoBlue</strong> — With significant US time, the BCBS network is valuable. If he gets sick in the US, he wants seamless access, not reimbursement claims. The premium difference is worth it for his usage pattern.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 5: Australian Family in Dubai</h3>
+      <p class="text-neutral-600 mb-3">The Chen family (parents 40, kids 8 and 11) relocated from Sydney to Dubai. They have no US connections and value comprehensive family coverage.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global</strong> — Not eligible for GeoBlue, but AXA is excellent for their situation: very strong Middle East networks, competitive family pricing, and modular plans that let them add the specific coverage their kids need.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose GeoBlue If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're a US citizen</li>
-        <li>You want BCBS network access</li>
-        <li>You visit the US regularly</li>
-        <li>You prefer US-style service</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You're a US citizen or permanent resident</li>
+        <li>✓ You visit the US regularly (2+ times/year)</li>
+        <li>✓ You want to use US healthcare when home</li>
+        <li>✓ You have US doctors you want to keep seeing</li>
+        <li>✓ You prefer familiar US-style insurance</li>
+        <li>✓ Seamless US claims matter more than savings</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose AXA Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're not a US citizen</li>
-        <li>You don't need US coverage</li>
-        <li>You're based in Europe</li>
-        <li>You want modular plan options</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You're not a US citizen (GeoBlue isn't an option)</li>
+        <li>✓ You don't need US healthcare access</li>
+        <li>✓ You're based in Europe, Middle East, or Asia</li>
+        <li>✓ You want to customize your exact coverage</li>
+        <li>✓ Lower premiums are a priority</li>
+        <li>✓ You prefer established European insurers</li>
       </ul>
     </div>
   </div>
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need US Healthcare Access?</h3>
+      <p class="text-neutral-600 text-sm mb-4">GeoBlue's BCBS network gives you seamless US coverage with 1.7M+ providers.</p>
+      <a href="/providers/geoblue" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View GeoBlue Plans →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Don't Need US Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">AXA offers competitive global coverage with modular plans and strong EU networks.</p>
+      <a href="/providers/axa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View AXA Plans →
+      </a>
+    </div>
+  </div>
+
   <h2 id="verdict">Our Verdict</h2>
+
   <p>
-    The choice often comes down to citizenship. US citizens should seriously consider GeoBlue for the BCBS network access alone—it's hard to replicate that value elsewhere.
+    <strong>The choice often comes down to citizenship and US healthcare needs.</strong>
   </p>
+
   <p>
-    Non-US citizens, or those who don't need US coverage, will find AXA Global offers excellent international coverage with the backing of a global insurance giant.
+    For US citizens who visit home regularly or want to maintain US healthcare relationships, <strong>GeoBlue is the clear winner</strong>. The BCBS network access is genuinely valuable—it's the difference between seamless care and navigating reimbursement claims. You can walk into 96% of US hospitals with your GeoBlue card and receive care just like you would with domestic insurance.
+  </p>
+
+  <p>
+    For non-US citizens—or US citizens who've permanently relocated and won't use US healthcare—<strong>AXA Global offers better value</strong>. You'll save 20-30% by not paying for US network access you won't use, and AXA's European, Middle Eastern, and Asian networks are often stronger than GeoBlue's international coverage.
+  </p>
+
+  <p>
+    <strong>The hybrid case:</strong> If you're a US citizen who occasionally visits home (once a year or less), the choice is harder. Calculate whether the BCBS access is worth the premium difference. For many, the peace of mind is worth it. For budget-conscious expats who are comfortable navigating reimbursement claims during rare US visits, AXA can work.
   </p>
 
   <CTABox
     title="Ready to Decide?"
-    description="Get quotes based on your situation."
+    description="Get personalized quotes based on your citizenship, location, and coverage needs."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Can non-US citizens get GeoBlue?</h3>
+      <p class="text-neutral-600 mt-2">Generally no. GeoBlue's international plans are designed for US citizens and permanent residents. Some short-term travel plans may have broader eligibility, but their core expat products require US citizenship or green card status.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">How much does US coverage add to AXA premiums?</h3>
+      <p class="text-neutral-600 mt-2">Typically 30-40% more than the base price. For a 40-year-old, that might mean $75-100 extra per month. The exact amount depends on your base plan and coverage level.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Is GeoBlue's BCBS network really that much better?</h3>
+      <p class="text-neutral-600 mt-2">For US care, yes. BCBS covers 96% of US hospitals and has negotiated rates with 1.7M+ providers. Other international insurers' US networks are significantly smaller, and you're more likely to face balance billing or reimbursement requirements.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Which has better customer service?</h3>
+      <p class="text-neutral-600 mt-2">It depends on your perspective. GeoBlue offers US-style 24/7 service that Americans find familiar. AXA provides multi-language support (20+ languages) with a more European service approach. Neither is objectively "better"—it's about what feels comfortable to you.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Can I switch from one to the other?</h3>
+      <p class="text-neutral-600 mt-2">Yes, but pre-existing conditions may face new waiting periods. If you've been continuously covered, some insurers offer credit for prior coverage. Always check the underwriting requirements before switching.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Which is more financially stable?</h3>
+      <p class="text-neutral-600 mt-2">Both are backed by major insurance organizations. AXA Group is one of the world's largest insurers (€99B revenue) with EU Solvency II regulatory oversight. BCBS is the largest health insurance organization in the US. Neither is going anywhere.</p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> GeoBlue eligibility is primarily limited to US citizens. Verify eligibility and coverage with providers.
+      <strong>Disclaimer:</strong> GeoBlue eligibility is primarily limited to US citizens and permanent residents. Verify your eligibility and specific coverage details with providers before purchasing. Prices shown are estimates and will vary based on your specific profile and coverage selections.
     </p>
   </div>
+
 </PageShell>

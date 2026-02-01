@@ -4,18 +4,25 @@ import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage: The Key Difference', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'deductible-options', text: 'Deductible Strategies', level: 2 },
+  { id: 'pricing', text: 'Pricing Analysis', level: 2 },
+  { id: 'network-comparison', text: 'Provider Networks', level: 2 },
+  { id: 'claims-process', text: 'Claims Experience', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'IMG Global Review', href: '/providers/img-global' },
   { title: 'GeoBlue Review', href: '/providers/geoblue' },
   { title: 'Best US Expat Insurance', href: '/best/us-expat-insurance' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
 ];
 
 const coverageColumns = [
@@ -25,175 +32,526 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Inpatient Care', img: true, geoblue: true },
-  { feature: 'Outpatient Care', img: true, geoblue: true },
-  { feature: 'Mental Health', img: 'Limited', geoblue: 'Moderate' },
-  { feature: 'Maternity', img: '12 mo wait', geoblue: '12 mo wait' },
-  { feature: 'Dental', img: 'Optional', geoblue: 'Optional' },
-  { feature: 'Telemedicine', img: true, geoblue: true },
-  { feature: 'Medical Evacuation', img: true, geoblue: true },
-  { feature: 'US Coverage', img: 'Included (most plans)', geoblue: 'Included (BCBS)' },
-  { feature: 'High Deductible Options', img: 'Up to $25,000', geoblue: 'Up to $5,000' },
+  { feature: 'Inpatient Care', img: 'Full coverage', geoblue: 'Full coverage' },
+  { feature: 'Outpatient Care', img: 'Full coverage', geoblue: 'Full coverage' },
+  { feature: 'Mental Health', img: 'Limited (varies)', geoblue: 'Moderate (30 days inpatient)' },
+  { feature: 'Maternity', img: '12 month wait', geoblue: '12 month wait' },
+  { feature: 'Dental', img: 'Optional add-on', geoblue: 'Optional add-on' },
+  { feature: 'Vision', img: 'Optional', geoblue: 'Basic included' },
+  { feature: 'Telemedicine', img: 'Included', geoblue: 'Included (24/7)' },
+  { feature: 'Medical Evacuation', img: '$500K-$1M', geoblue: '$500K+' },
+  { feature: 'US Coverage', img: 'Included (standard networks)', geoblue: 'Included (BCBS network)' },
+  { feature: 'Pre-existing Conditions', img: 'Moratorium', geoblue: 'Moratorium' },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const usNetworkColumns = [
+  { key: 'aspect', header: 'US Network Aspect' },
   { key: 'img', header: 'IMG Global' },
   { key: 'geoblue', header: 'GeoBlue' },
 ];
 
+const usNetworkRows = [
+  { aspect: 'Network Type', img: 'Various PPO networks', geoblue: 'Blue Cross Blue Shield' },
+  { aspect: 'US Hospitals', img: 'Good coverage', geoblue: '96% of US hospitals' },
+  { aspect: 'US Providers', img: 'Thousands', geoblue: '1.7 million+' },
+  { aspect: 'Negotiated Rates', img: 'Yes, with network', geoblue: 'Full BCBS rates' },
+  { aspect: 'Direct Billing (US)', img: 'Limited availability', geoblue: 'Seamless at BCBS' },
+  { aspect: 'Balance Billing Risk', img: 'Possible', geoblue: 'Minimal' },
+];
+
+const deductibleColumns = [
+  { key: 'deductible', header: 'Deductible' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'geoblue', header: 'GeoBlue' },
+];
+
+const deductibleRows = [
+  { deductible: '$0', img: 'Available', geoblue: 'Available' },
+  { deductible: '$250-500', img: 'Available', geoblue: 'Available' },
+  { deductible: '$1,000', img: 'Available', geoblue: 'Available' },
+  { deductible: '$2,500', img: 'Available', geoblue: 'Available' },
+  { deductible: '$5,000', img: 'Available', geoblue: 'Maximum' },
+  { deductible: '$10,000', img: 'Available', geoblue: 'Not available' },
+  { deductible: '$25,000', img: 'Available', geoblue: 'Not available' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'img_low', header: 'IMG ($2.5K ded)' },
+  { key: 'img_high', header: 'IMG ($10K ded)' },
+  { key: 'geoblue', header: 'GeoBlue ($2.5K ded)' },
+];
+
 const pricingRows = [
-  { age: '30', img: '$120-200/mo', geoblue: '$150-230/mo' },
-  { age: '40', img: '$160-280/mo', geoblue: '$200-310/mo' },
-  { age: '50', img: '$220-360/mo', geoblue: '$280-430/mo' },
-  { age: '60', img: '$340-520/mo', geoblue: '$400-620/mo' },
+  { profile: '30-year-old', img_low: '$140-180/mo', img_high: '$95-130/mo', geoblue: '$180-250/mo' },
+  { profile: '40-year-old', img_low: '$190-250/mo', img_high: '$130-170/mo', geoblue: '$240-330/mo' },
+  { profile: '50-year-old', img_low: '$260-340/mo', img_high: '$180-230/mo', geoblue: '$320-450/mo' },
+  { profile: 'Couple (35, 35)', img_low: '$300-400/mo', img_high: '$210-280/mo', geoblue: '$380-500/mo' },
+  { profile: 'Family of 4', img_low: '$480-620/mo', img_high: '$340-440/mo', geoblue: '$600-800/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'geoblue', header: 'GeoBlue' },
+];
+
+const networkRows = [
+  { region: 'United States', img: 'Good (PPO networks)', geoblue: 'Excellent (BCBS)' },
+  { region: 'Europe', img: 'Partner networks', geoblue: 'Partner networks' },
+  { region: 'Asia Pacific', img: 'Good coverage', geoblue: 'Good coverage' },
+  { region: 'Latin America', img: 'Strong presence', geoblue: 'Solid coverage' },
+  { region: 'Direct Billing (US)', img: 'Limited', geoblue: 'Seamless' },
+  { region: 'Direct Billing (Intl)', img: 'Moderate', geoblue: 'Moderate' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'geoblue', header: 'GeoBlue' },
+];
+
+const claimsRows = [
+  { aspect: 'Submission Methods', img: 'App, online, fax', geoblue: 'App, online, fax' },
+  { aspect: 'Processing Time', img: '7-14 business days', geoblue: '5-10 business days' },
+  { aspect: 'US Claims', img: 'May require reimbursement', geoblue: 'Automatic at BCBS' },
+  { aspect: 'International Claims', img: 'Standard reimbursement', geoblue: 'Standard reimbursement' },
+  { aspect: 'Customer Service', img: 'US-based', geoblue: 'US-based (24/7)' },
+  { aspect: 'Language Support', img: 'English, Spanish', geoblue: 'English, Spanish' },
 ];
 ---
 
 <PageShell
-  title="IMG Global vs GeoBlue"
-  description="Compare IMG Global and GeoBlue international health insurance. Value flexibility vs BCBS network access for US expats."
+  title="IMG Global vs GeoBlue: Budget Flexibility vs BCBS Network Access"
+  description="Compare IMG Global and GeoBlue for US expat health insurance. High-deductible savings vs seamless BCBS network access. Both include US coverage."
   headline="IMG Global vs GeoBlue"
-  subheadline="Two US-based options with different approaches. Flexibility vs network access."
+  subheadline="Two US-based expat insurers with different value propositions: budget flexibility vs BCBS network power."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">Make Your Choice in 60 Seconds</h3>
+
+    <p class="mb-4"><strong>Question 1: How often will you use US healthcare?</strong></p>
+    <ul class="mb-4">
+      <li><strong>Frequently (2+ times/year) →</strong> The BCBS network is worth it. <strong>Lean GeoBlue</strong></li>
+      <li><strong>Rarely or emergency only →</strong> You may not need BCBS access. Continue to Question 2</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 2: Is budget your primary concern?</strong></p>
+    <ul class="mb-4">
+      <li><strong>Yes →</strong> IMG's high-deductible options save 30-50%. <strong>Choose IMG</strong></li>
+      <li><strong>No, coverage quality matters more →</strong> GeoBlue's BCBS network provides better US experience</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 3: Are you comfortable with insurance DIY?</strong></p>
+    <ul>
+      <li><strong>Yes →</strong> IMG's reimbursement process is manageable for self-starters</li>
+      <li><strong>No, want seamless experience →</strong> GeoBlue's BCBS integration is smoother</li>
+    </ul>
+  </div>
+
   <p>
-    IMG Global and GeoBlue are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    <strong>The short version:</strong> Both are legitimate US-based options with included US coverage. GeoBlue's BCBS network is genuinely valuable for frequent US healthcare users. IMG's ultra-high deductibles offer real savings for healthy expats who primarily want catastrophic coverage.
   </p>
+
+  <h2 id="overview">Overview</h2>
+
   <p>
-    IMG Global is offering affordable international health insurance with flexible options. Their main budget-friendly plans that still provide solid coverage. They're particularly popular among budget-conscious expats and digital nomads, with lower premiums with higher deductible options available.
+    IMG Global and GeoBlue are both US-based international health insurers that include US coverage. This makes them direct competitors for American expats. But they take fundamentally different approaches: IMG competes on price and flexibility, while GeoBlue competes on network quality and seamless US integration.
   </p>
+
   <p>
-    GeoBlue is a Blue Cross Blue Shield company focused on international health coverage. They're known for their connection to the Blue Cross Blue Shield network and strong US ties. They tend to attract American expats who want continuity with US healthcare brands, offering mid-range with good options for short and long-term coverage.
+    <strong>IMG Global</strong> has provided expat and travel medical insurance since 1990. They're known for highly customizable plans with deductible options up to $25,000—far beyond most competitors. Their value proposition is straightforward: solid international coverage at lower prices, especially for healthy expats willing to accept higher deductibles.
   </p>
+
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    <strong>GeoBlue</strong> is the international arm of Blue Cross Blue Shield, giving them access to the largest healthcare network in America: 1.7+ million providers and 96% of US hospitals. For Americans who want their international insurance to work seamlessly when they're home, this BCBS connection is the key differentiator.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Lower premiums overall</li>
-        <li>Highly customizable plans</li>
-        <li>Very high deductible options</li>
-        <li>Good for healthy individuals</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Founded:</strong> 1990</li>
+        <li><strong>Headquarters:</strong> Indianapolis, USA</li>
+        <li><strong>Key Strength:</strong> High-deductible flexibility</li>
+        <li><strong>US Network:</strong> Various PPO networks</li>
+        <li><strong>Max Deductible:</strong> $25,000</li>
+        <li><strong>Best For:</strong> Budget-conscious, healthy expats</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>BCBS network (1.7M+ providers)</li>
-        <li>Seamless US coverage</li>
-        <li>Better mental health coverage</li>
-        <li>Stronger brand recognition</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Founded:</strong> 1997 (as BCBS affiliate)</li>
+        <li><strong>Headquarters:</strong> Pennsylvania, USA</li>
+        <li><strong>Key Strength:</strong> BCBS network access</li>
+        <li><strong>US Network:</strong> Blue Cross Blue Shield</li>
+        <li><strong>Max Deductible:</strong> $5,000</li>
+        <li><strong>Best For:</strong> Frequent US healthcare users</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="us-coverage">US Coverage: The Key Difference</h2>
+
+  <p>
+    Both providers include US coverage—that's table stakes for this comparison. The question is how that US coverage actually works in practice.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={usNetworkColumns} rows={usNetworkRows} />
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">What BCBS Network Access Actually Means</h3>
+    <p class="mb-4">
+      GeoBlue's Blue Cross Blue Shield connection isn't marketing—it's a real operational advantage:
+    </p>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <h4 class="font-semibold mb-2">The Numbers</h4>
+        <ul class="space-y-1 text-neutral-700 text-sm">
+          <li>96% of US hospitals in-network</li>
+          <li>1.7 million healthcare providers</li>
+          <li>Pre-negotiated rates everywhere</li>
+          <li>Automatic direct billing</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">In Practice</h4>
+        <ul class="space-y-1 text-neutral-700 text-sm">
+          <li>Walk in, show card, get treated</li>
+          <li>No upfront payment required</li>
+          <li>No reimbursement claims to file</li>
+          <li>Same experience as domestic insurance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>IMG's US Coverage Reality</h3>
+  <p>
+    IMG includes US coverage, but it works differently:
+  </p>
+  <ul>
+    <li><strong>Network:</strong> Various PPO networks, not BCBS—fewer providers, less negotiating power</li>
+    <li><strong>Process:</strong> Often requires upfront payment and reimbursement claims</li>
+    <li><strong>Direct billing:</strong> Available but less consistent than BCBS</li>
+    <li><strong>Balance billing:</strong> More risk of surprise bills from out-of-network providers</li>
+  </ul>
+
+  <p>
+    <strong>The bottom line:</strong> If you'll use US healthcare occasionally (emergencies, annual checkups), IMG's coverage is adequate. If you'll use US healthcare regularly, GeoBlue's BCBS integration provides a meaningfully better experience.
+  </p>
+
   <CTABox
     title="Compare Both Providers"
-    description="Get quotes from IMG and GeoBlue."
+    description="Get personalized quotes based on your usage patterns and budget."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    Both include US coverage by default. The main differences are network access and plan flexibility.
+    Beyond US network differences, here's how their coverage compares on other dimensions:
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>Key differences:</strong></p>
-  <ul>
-    <li>GeoBlue has BCBS network access; IMG uses broader but less integrated networks</li>
-    <li>IMG offers much higher deductible options (up to $25K vs $5K)</li>
-    <li>GeoBlue has better mental health coverage</li>
-    <li>IMG is more customizable overall</li>
-  </ul>
-
-  <h2 id="pricing">Pricing</h2>
+  <h3>Mental Health Coverage</h3>
   <p>
-    IMG is typically 15-25% cheaper than GeoBlue for similar coverage. The gap widens with high-deductible strategies.
+    GeoBlue has a slight edge here—they typically provide 30 days inpatient mental health coverage and reasonable outpatient benefits. IMG's mental health coverage is more limited and varies significantly by plan. Neither is industry-leading for mental health (BUPA Global is better), but GeoBlue is more consistent.
+  </p>
+
+  <h3>Telemedicine</h3>
+  <p>
+    Both offer telemedicine, but GeoBlue's 24/7 service is slightly more robust. For expats in different time zones, this can matter when you need advice at odd hours.
+  </p>
+
+  <h3>Pre-existing Conditions</h3>
+  <p>
+    Both use the moratorium approach: pre-existing conditions aren't covered initially but can become covered after a period (typically 2 years) without related treatment or symptoms. This is standard in the industry.
+  </p>
+
+  <h2 id="deductible-options">Deductible Strategies</h2>
+
+  <p>
+    This is where IMG Global has a decisive advantage. Their deductible options go far beyond GeoBlue's maximum.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={deductibleColumns} rows={deductibleRows} />
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">Why High Deductibles Matter</h3>
+    <p class="mb-4">
+      IMG's $10K-$25K deductible options serve a specific strategy:
+    </p>
+    <ul class="space-y-2 text-neutral-700">
+      <li><strong>Catastrophic-only coverage:</strong> You're protected against major events (hospitalization, surgery, emergencies)</li>
+      <li><strong>Self-insure routine care:</strong> Pay for checkups and minor issues out of pocket</li>
+      <li><strong>Premium savings:</strong> 45-60% lower premiums than low-deductible plans</li>
+      <li><strong>Best for:</strong> Healthy individuals, those in low-cost healthcare countries, financially stable expats</li>
+    </ul>
+    <p class="mt-4">
+      <strong>Example:</strong> A 40-year-old choosing IMG's $10K deductible over GeoBlue's $2.5K deductible could save $100+/month—$1,200+ annually. In most countries outside the US, $1,200 covers significant routine care.
+    </p>
+  </div>
+
+  <h3>GeoBlue's Deductible Philosophy</h3>
+  <p>
+    GeoBlue caps deductibles at $5,000, reflecting their target audience: expats who want comprehensive coverage with predictable costs. If you want ultra-high deductibles, GeoBlue simply isn't an option.
+  </p>
+
+  <h2 id="pricing">Pricing Analysis</h2>
+
+  <p>
+    IMG is consistently cheaper—the question is whether the price difference justifies the network trade-offs.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Pricing notes:</strong></p>
+  <h3>Understanding the Price Gap</h3>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold mb-3">Price Comparison Insights</h4>
+    <ul class="space-y-2">
+      <li><strong>IMG at same deductible as GeoBlue:</strong> 15-25% cheaper</li>
+      <li><strong>IMG with high deductible ($10K):</strong> 40-50% cheaper than GeoBlue</li>
+      <li><strong>What you're paying for with GeoBlue:</strong> BCBS network access, seamless US claims</li>
+      <li><strong>Annual savings with IMG ($10K ded):</strong> $1,500-2,500 for most profiles</li>
+    </ul>
+  </div>
+
+  <h3>The Real Question</h3>
+  <p>
+    Is BCBS network access worth $1,500-2,500 per year? The answer depends entirely on how you use US healthcare:
+  </p>
   <ul>
-    <li>IMG's high-deductible plans can be 40%+ cheaper</li>
-    <li>GeoBlue's BCBS access may justify premium for frequent US users</li>
-    <li>Both include US coverage in these estimates</li>
+    <li><strong>Frequent US healthcare use:</strong> Yes, BCBS access is probably worth the premium</li>
+    <li><strong>Occasional US use:</strong> Maybe—depends on your comfort with reimbursement processes</li>
+    <li><strong>Rare US use:</strong> Probably not—IMG's savings compound over time</li>
   </ul>
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <CTABox
+    title="Calculate Your Actual Costs"
+    description="Premiums vary by age, location, and coverage choices. Get personalized quotes."
+    buttonText="Get Your Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
 
-  <h3>Provider Networks</h3>
+  <h2 id="network-comparison">Provider Networks</h2>
+
   <p>
-    <strong>IMG Global</strong> works with various networks globally. US coverage is included but without guaranteed BCBS rates.
-  </p>
-  <p>
-    <strong>GeoBlue</strong> provides direct BCBS network access—negotiated rates at 90% of US hospitals and 1.7M+ providers.
+    Here's how their networks compare across regions:
   </p>
 
-  <h3>Claims Process</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Regional Analysis</h3>
+
   <p>
-    Both offer online claims. GeoBlue's BCBS integration means simpler direct billing in the US. IMG may require more reimbursement claims.
+    <strong>United States:</strong> GeoBlue wins decisively. BCBS is the largest network in America—96% of hospitals, 1.7M+ providers. IMG's US coverage works but doesn't match this reach or integration.
   </p>
+
+  <p>
+    <strong>International (Europe, Asia, Latin America):</strong> Both are similar. Neither has dominant international networks like some premium providers. GeoBlue uses partner networks overseas; IMG does the same. The BCBS advantage is US-specific.
+  </p>
+
+  <p>
+    <strong>Latin America:</strong> IMG has slightly stronger presence here—it's a popular market for their expat products. GeoBlue is adequate but not exceptional outside the US.
+  </p>
+
+  <h3>Direct Billing Differences</h3>
+  <p>
+    In the US, the gap is significant: GeoBlue's BCBS direct billing is automatic and seamless. IMG's direct billing requires more coordination and isn't guaranteed. Internationally, both work similarly—expect to pay upfront and file claims for reimbursement in many cases.
+  </p>
+
+  <h2 id="claims-process">Claims Experience</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>US Claims: The Key Difference</h3>
+
+  <p>
+    <strong>GeoBlue in the US:</strong> Walk into a BCBS facility, show your card, receive care, walk out. The provider bills GeoBlue directly. You may never file a claim at all for US care.
+  </p>
+
+  <p>
+    <strong>IMG in the US:</strong> Check if the provider is in-network. If yes, may be able to direct bill—but verify first. If not, pay upfront and file for reimbursement. More variable experience.
+  </p>
+
+  <h3>International Claims: Similar</h3>
+  <p>
+    Outside the US, both work similarly. Direct billing is available at some hospitals (arranged in advance), but expect to pay upfront and file claims for reimbursement in many cases. Processing times are comparable (5-14 business days).
+  </p>
+
+  <h3>Customer Service</h3>
+  <p>
+    Both offer US-based customer service familiar to Americans. GeoBlue's 24/7 availability is slightly better than IMG's. Neither offers the multilingual support of European providers, but for English-speaking Americans, both are adequate.
+  </p>
+
+  <h2 id="scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 1: Frequent Flyer to the US</h3>
+      <p class="text-neutral-600 mb-3">Jennifer, 42, lives in London but travels to Chicago 4-5 times a year for family and business. She sees her US doctor during visits and wants seamless US healthcare.</p>
+      <p class="text-neutral-700"><strong>Best choice: GeoBlue</strong> — With frequent US visits and an existing US doctor relationship, the BCBS network is invaluable. She can continue seeing her doctor with no friction. The premium difference is worth it for her usage pattern.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 2: Budget-Conscious Digital Nomad</h3>
+      <p class="text-neutral-600 mb-3">Marcus, 28, works remotely from Southeast Asia. He's extremely healthy, hasn't seen a doctor in 3 years, and visits the US once a year for holidays. Budget is tight.</p>
+      <p class="text-neutral-700"><strong>Best choice: IMG Global ($10K deductible)</strong> — Marcus needs catastrophic coverage, not premium networks. The $10K deductible cuts his premium nearly in half. Healthcare in SEA is cheap for routine care. He's saving $1,500+/year that compounds over time.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 3: Retiree in Mexico with US Medical Relationships</h3>
+      <p class="text-neutral-600 mb-3">Robert and Susan, both 62, retired to San Miguel de Allende. They have specialists in Houston they've seen for 20 years and cross the border for quarterly checkups.</p>
+      <p class="text-neutral-700"><strong>Best choice: GeoBlue</strong> — Their ongoing US medical relationships make BCBS access essential. Walking into their Houston doctors' offices with working insurance is worth the premium. At their age, reliable US healthcare access matters more than savings.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 4: Young Professional in Europe</h3>
+      <p class="text-neutral-600 mb-3">Emily, 31, took a job in Berlin. She visits family in Denver once a year but would use local German healthcare for anything serious. She's healthy and cost-conscious.</p>
+      <p class="text-neutral-700"><strong>Best choice: IMG Global ($5K deductible)</strong> — Emily doesn't need premium US networks for one annual visit. German healthcare is excellent for serious issues. IMG's moderate deductible gives her solid coverage at lower cost. The BCBS premium isn't justified for her usage.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 5: Family with Kids in Asia</h3>
+      <p class="text-neutral-600 mb-3">The Park family (parents 38, kids 7 and 10) moved from San Francisco to Singapore. They visit grandparents in California twice a year and want good coverage for the kids.</p>
+      <p class="text-neutral-700"><strong>Best choice: GeoBlue</strong> — With kids, you can't predict healthcare needs. Having seamless BCBS access during California visits provides peace of mind. Kids get sick at inconvenient times—walking into any BCBS urgent care beats navigating IMG's reimbursement process with sick children.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose IMG Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Budget is a primary concern</li>
-        <li>You want high-deductible options</li>
-        <li>You rarely use US healthcare</li>
-        <li>You're healthy and want catastrophic coverage</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ Budget is a primary concern</li>
+        <li>✓ You want high-deductible options ($10K+)</li>
+        <li>✓ You're healthy and want catastrophic coverage</li>
+        <li>✓ You rarely use US healthcare</li>
+        <li>✓ You're comfortable filing reimbursement claims</li>
+        <li>✓ Premium savings matter more than convenience</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose GeoBlue If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You visit the US frequently</li>
-        <li>You want BCBS network rates</li>
-        <li>Mental health coverage matters</li>
-        <li>You prefer established brand backing</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You use US healthcare regularly (2+ times/year)</li>
+        <li>✓ You have existing US doctor relationships</li>
+        <li>✓ You want seamless BCBS network access</li>
+        <li>✓ You prefer avoiding reimbursement claims</li>
+        <li>✓ Convenience matters more than savings</li>
+        <li>✓ You have kids who may need US care unpredictably</li>
       </ul>
     </div>
   </div>
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want Maximum Savings?</h3>
+      <p class="text-neutral-600 text-sm mb-4">IMG's high-deductible options save 30-50% for budget-conscious expats.</p>
+      <a href="/providers/img-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View IMG Plans →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want BCBS Network Access?</h3>
+      <p class="text-neutral-600 text-sm mb-4">GeoBlue provides seamless access to 1.7M+ US providers.</p>
+      <a href="/providers/geoblue" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View GeoBlue Plans →
+      </a>
+    </div>
+  </div>
+
   <h2 id="verdict">Our Verdict</h2>
+
   <p>
-    For budget-conscious expats who rarely return to the US, IMG Global offers better value with more flexibility. The high-deductible options make it especially attractive for healthy individuals.
+    <strong>This comparison comes down to a simple trade-off: savings vs. US network quality.</strong>
   </p>
+
   <p>
-    For expats who regularly visit the US or want the security of BCBS network access, GeoBlue justifies its premium. The seamless US integration is worth paying for if you'll use it.
+    <strong>IMG Global</strong> is the right choice for budget-conscious expats who primarily need international coverage with adequate (not premium) US access. Their ultra-high deductible options can save healthy expats $1,500-2,500+ annually. If you're young, healthy, and rarely use US healthcare, IMG delivers real value without unnecessary premium costs.
+  </p>
+
+  <p>
+    <strong>GeoBlue</strong> is the right choice for expats who will actually use US healthcare. The BCBS network isn't just marketing—it's 96% of US hospitals and 1.7M+ providers with direct billing. If you visit the US regularly, have existing US doctor relationships, or have kids who might need US care unpredictably, the BCBS access justifies the higher premiums.
+  </p>
+
+  <p>
+    <strong>The middle ground:</strong> If you're on the fence, consider your realistic US healthcare usage. One US emergency room visit without good insurance can cost more than years of GeoBlue premium differences. But if you haven't used US healthcare in years and don't plan to, IMG's savings are real money that compounds over time.
   </p>
 
   <CTABox
     title="Ready to Decide?"
-    description="Get quotes from both providers."
+    description="Get personalized quotes from both providers to see your actual costs."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Is IMG's US coverage really adequate?</h3>
+      <p class="text-neutral-600 mt-2">Yes, it's adequate—just not as seamless as BCBS. You'll have coverage for emergencies and scheduled care. The difference is in experience: more paperwork, less automatic direct billing, possible out-of-network surprises. For occasional US use, it works fine. For regular US healthcare, it's more friction.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Can non-US citizens get GeoBlue?</h3>
+      <p class="text-neutral-600 mt-2">Generally no. GeoBlue's main products are designed for US citizens and permanent residents. Some short-term travel plans may have broader eligibility, but their core expat products require US citizenship. If you're not a US citizen, IMG is one of your main US-based options.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">How much can I really save with IMG's high deductibles?</h3>
+      <p class="text-neutral-600 mt-2">Substantial amounts. A 40-year-old choosing a $10K deductible over a $2.5K deductible typically saves $80-120/month—that's $1,000-1,500/year. Compared to GeoBlue at similar coverage levels, total savings can reach $2,000-2,500/year.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">What if I have a US emergency with IMG?</h3>
+      <p class="text-neutral-600 mt-2">You're covered. In a true emergency, go to any ER—coverage isn't dependent on network in emergencies. The difference is process: you may need to pay upfront and file for reimbursement, whereas GeoBlue would handle it automatically at a BCBS facility.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Which has better international coverage?</h3>
+      <p class="text-neutral-600 mt-2">They're similar internationally. GeoBlue's BCBS advantage is US-specific. Outside the US, both use partner networks with comparable coverage. Neither is as strong internationally as some premium global providers.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Can I switch between them?</h3>
+      <p class="text-neutral-600 mt-2">Yes, but pre-existing conditions may face new waiting periods. If you've developed health conditions, switching resets coverage for those conditions. Many expats stick with their initial choice to maintain coverage continuity.</p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> Prices and coverage details change. Verify all information with providers before purchasing.
+      <strong>Disclaimer:</strong> GeoBlue eligibility is primarily limited to US citizens and permanent residents. Verify eligibility with providers before applying. Prices and coverage details change; confirm all information with providers before purchasing.
     </p>
   </div>
+
 </PageShell>

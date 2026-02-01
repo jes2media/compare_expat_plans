@@ -4,18 +4,25 @@ import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'overview', text: 'Overview', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'deductible-strategy', text: 'The Deductible Difference', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Analysis', level: 2 },
+  { id: 'network-comparison', text: 'Provider Networks', level: 2 },
+  { id: 'claims-process', text: 'Claims Experience', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'IMG Global Review', href: '/providers/img-global' },
   { title: 'AXA Global Review', href: '/providers/axa-global' },
   { title: 'Best Budget Expat Insurance', href: '/best/budget-expat-insurance' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
 ];
 
 const coverageColumns = [
@@ -25,175 +32,528 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Inpatient Care', img: true, axa: true },
-  { feature: 'Outpatient Care', img: true, axa: true },
-  { feature: 'Mental Health', img: 'Limited', axa: 'Limited' },
-  { feature: 'Maternity', img: '12 mo wait', axa: '10-12 mo wait' },
-  { feature: 'Dental', img: 'Optional', axa: 'Optional' },
-  { feature: 'Telemedicine', img: true, axa: true },
-  { feature: 'Medical Evacuation', img: true, axa: true },
-  { feature: 'US Coverage', img: 'Included (most plans)', axa: 'Add-on' },
-  { feature: 'Max Deductible', img: '$25,000', axa: '€5,000' },
+  { feature: 'Inpatient Care', img: 'Full coverage', axa: 'Full coverage' },
+  { feature: 'Outpatient Care', img: 'Full coverage', axa: 'Full coverage' },
+  { feature: 'Mental Health', img: 'Limited (varies by plan)', axa: 'Limited (varies by plan)' },
+  { feature: 'Maternity', img: '12 month wait', axa: '10-12 month wait' },
+  { feature: 'Dental', img: 'Optional add-on', axa: 'Optional add-on' },
+  { feature: 'Vision', img: 'Optional', axa: 'Optional' },
+  { feature: 'Telemedicine', img: 'Included', axa: 'Included' },
+  { feature: 'Medical Evacuation', img: '$500K-$1M', axa: 'Unlimited' },
+  { feature: 'US Coverage', img: 'Included (most plans)', axa: 'Add-on (30-40% extra)' },
+  { feature: 'Pre-existing Conditions', img: 'Moratorium', axa: 'Both options' },
 ];
 
-const pricingColumns = [
-  { key: 'age', header: 'Age' },
+const planColumns = [
+  { key: 'aspect', header: 'Aspect' },
   { key: 'img', header: 'IMG Global' },
   { key: 'axa', header: 'AXA Global' },
 ];
 
+const planRows = [
+  { aspect: 'Plan Types', img: 'Global Medical, Patriot, Select', axa: 'Health Me, Health You, Health Us' },
+  { aspect: 'Coverage Regions', img: 'Worldwide, area-based', axa: 'Worldwide, zoned pricing' },
+  { aspect: 'Maximum Benefit', img: '$1M - $8M', axa: 'Unlimited most plans' },
+  { aspect: 'Deductible Options', img: '$0 - $25,000', axa: '€0 - €5,000' },
+  { aspect: 'Coinsurance', img: '80/20 to 100%', axa: '80/20 or 100% options' },
+  { aspect: 'Plan Modularity', img: 'Highly flexible', axa: 'Highly modular' },
+];
+
+const deductibleColumns = [
+  { key: 'deductible', header: 'Deductible' },
+  { key: 'img', header: 'IMG Premium Impact' },
+  { key: 'axa', header: 'AXA Premium Impact' },
+];
+
+const deductibleRows = [
+  { deductible: '$0 / €0', img: 'Base premium', axa: 'Base premium' },
+  { deductible: '$1,000 / €1,000', img: '~15-20% savings', axa: '~15-20% savings' },
+  { deductible: '$2,500 / €2,500', img: '~25-30% savings', axa: '~25-30% savings' },
+  { deductible: '$5,000 / €5,000', img: '~35-40% savings', axa: '~35-40% savings' },
+  { deductible: '$10,000', img: '~45-50% savings', axa: 'Not available' },
+  { deductible: '$25,000', img: '~55-60% savings', axa: 'Not available' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'img_standard', header: 'IMG ($2.5K ded)' },
+  { key: 'img_high', header: 'IMG ($10K ded)' },
+  { key: 'axa_no_us', header: 'AXA (no US)' },
+  { key: 'axa_with_us', header: 'AXA (with US)' },
+];
+
 const pricingRows = [
-  { age: '30', img: '$120-200/mo', axa: '$140-220/mo' },
-  { age: '40', img: '$160-280/mo', axa: '$190-300/mo' },
-  { age: '50', img: '$220-360/mo', axa: '$260-400/mo' },
-  { age: '60', img: '$340-520/mo', axa: '$380-580/mo' },
+  { profile: '30-year-old', img_standard: '$140-180/mo', img_high: '$95-130/mo', axa_no_us: '$140-200/mo', axa_with_us: '$195-280/mo' },
+  { profile: '40-year-old', img_standard: '$190-250/mo', img_high: '$130-170/mo', axa_no_us: '$190-270/mo', axa_with_us: '$265-380/mo' },
+  { profile: '50-year-old', img_standard: '$260-340/mo', img_high: '$180-230/mo', axa_no_us: '$260-360/mo', axa_with_us: '$365-505/mo' },
+  { profile: 'Couple (35, 35)', img_standard: '$300-400/mo', img_high: '$210-280/mo', axa_no_us: '$320-440/mo', axa_with_us: '$450-615/mo' },
+  { profile: 'Family of 4', img_standard: '$480-620/mo', img_high: '$340-440/mo', axa_no_us: '$520-700/mo', axa_with_us: '$730-980/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'axa', header: 'AXA Global' },
+];
+
+const networkRows = [
+  { region: 'United States', img: 'Good coverage (included)', axa: 'Limited (add-on)' },
+  { region: 'Europe', img: 'Partner networks', axa: 'Extensive (home market)' },
+  { region: 'Asia Pacific', img: 'Good coverage', axa: 'Strong presence' },
+  { region: 'Latin America', img: 'Strong (popular market)', axa: 'Good coverage' },
+  { region: 'Middle East', img: 'Adequate', axa: 'Very strong' },
+  { region: 'Direct Billing', img: 'Moderate availability', axa: 'Good globally' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'axa', header: 'AXA Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Submission Methods', img: 'App, online, fax', axa: 'App, online, email' },
+  { aspect: 'Processing Time', img: '7-14 business days', axa: '7-14 business days' },
+  { aspect: 'Direct Billing', img: 'Request required', axa: 'Network hospitals' },
+  { aspect: 'Reimbursement', img: 'Standard process', axa: 'Standard process' },
+  { aspect: 'Customer Service', img: 'US-based', axa: 'UK-based, multilingual' },
+  { aspect: 'Language Support', img: 'English, Spanish', axa: '20+ languages' },
 ];
 ---
 
 <PageShell
-  title="IMG Global vs AXA Global"
-  description="Compare IMG Global and AXA Global health insurance. US-based flexibility vs European established insurer for expats."
+  title="IMG Global vs AXA Global: Value-Tier Expat Insurance Compared"
+  description="Compare IMG Global and AXA Global health insurance. US flexibility with high deductibles vs European modular plans for expats worldwide."
   headline="IMG Global vs AXA Global"
-  subheadline="Value-tier comparison: US flexibility vs European establishment."
+  subheadline="US-based flexibility versus European establishment. Two value-tier options with different strengths."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-4">Make Your Choice in 60 Seconds</h3>
+
+    <p class="mb-4"><strong>Question 1: Do you need US healthcare coverage?</strong></p>
+    <ul class="mb-4">
+      <li><strong>Yes →</strong> IMG includes it by default; AXA charges 30-40% extra. <strong>Lean IMG</strong></li>
+      <li><strong>No →</strong> AXA may offer better value. Continue to Question 2</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 2: Do you want a high-deductible strategy?</strong></p>
+    <ul class="mb-4">
+      <li><strong>Yes ($10K+) →</strong> Only IMG offers ultra-high deductibles. <strong>Choose IMG</strong></li>
+      <li><strong>No (under €5K) →</strong> Both are competitive. Continue to Question 3</li>
+    </ul>
+
+    <p class="mb-4"><strong>Question 3: Where are you primarily based?</strong></p>
+    <ul>
+      <li><strong>Europe, Middle East →</strong> AXA has stronger networks there</li>
+      <li><strong>Americas, Asia →</strong> IMG's coverage is solid in these regions</li>
+    </ul>
+  </div>
+
   <p>
-    IMG Global and AXA Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    <strong>The short version:</strong> IMG Global wins on flexibility—ultra-high deductibles and included US coverage make it ideal for healthy expats who want catastrophic protection at lower costs. AXA Global wins on stability and European presence—backed by one of the world's largest insurers with stronger networks in Europe and the Middle East.
   </p>
+
+  <h2 id="overview">Overview</h2>
+
   <p>
-    IMG Global is offering affordable international health insurance with flexible options. Their main budget-friendly plans that still provide solid coverage. They're particularly popular among budget-conscious expats and digital nomads, with lower premiums with higher deductible options available.
+    IMG Global and AXA Global represent two solid mid-tier options in the international health insurance market. While neither is the premium choice, both offer legitimate coverage at competitive prices—they just take different approaches.
   </p>
+
   <p>
-    AXA Global is part of the French AXA group, offering robust international health plans. They're known for their strong presence in Europe and Asia with comprehensive plan options. They tend to attract expats in Europe and Asia who want a well-established provider, offering competitive pricing with flexible deductible options.
+    <strong>IMG Global</strong> is a US-based insurer specializing in expatriate and travel medical insurance since 1990. They're known for highly customizable plans with unusually high deductible options (up to $25,000) that can dramatically reduce premiums. Their sweet spot is budget-conscious expats who want solid coverage without premium pricing.
   </p>
+
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    <strong>AXA Global</strong> is the international health division of AXA Group, a French insurance giant with €99 billion in annual revenue. They offer modular plans that let you build exactly the coverage you need. Their strength is the backing of a truly global insurance organization with strong European networks and EU regulatory oversight.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>US-based insurer</li>
-        <li>Highly customizable plans</li>
-        <li>Very high deductible options</li>
-        <li>US coverage included by default</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Founded:</strong> 1990</li>
+        <li><strong>Headquarters:</strong> Indianapolis, USA</li>
+        <li><strong>Specialty:</strong> Expat & travel medical</li>
+        <li><strong>Key Strength:</strong> High-deductible flexibility</li>
+        <li><strong>US Coverage:</strong> Included by default</li>
+        <li><strong>Best For:</strong> Budget-conscious, healthy expats</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>French-headquartered global insurer</li>
-        <li>Strong financial backing</li>
-        <li>Good European network</li>
-        <li>Modular plan structure</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global at a Glance</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Founded:</strong> 1816 (AXA Group)</li>
+        <li><strong>Headquarters:</strong> Paris, France</li>
+        <li><strong>Specialty:</strong> Global health insurance</li>
+        <li><strong>Key Strength:</strong> Financial backing, EU networks</li>
+        <li><strong>US Coverage:</strong> Optional add-on</li>
+        <li><strong>Best For:</strong> Europe-based expats</li>
       </ul>
     </div>
   </div>
 
-  <CTABox
-    title="Compare Value Options"
-    description="Get quotes from both value-tier insurers."
-    buttonText="Get Free Quotes"
-    buttonHref="/best/expat-health-insurance"
-    variant="highlight"
-  />
-
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    Both offer solid international coverage. Key differences are in US coverage approach and deductible flexibility.
+    Both providers offer comprehensive international health coverage. Core medical benefits are similar—the differences emerge in flexibility, add-ons, and specific coverage limits.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <p><strong>Key differences:</strong></p>
-  <ul>
-    <li>IMG includes US coverage by default; AXA charges extra</li>
-    <li>IMG offers much higher deductible options for premium savings</li>
-    <li>AXA has stronger European network presence</li>
-    <li>Both have similar (limited) mental health coverage</li>
-  </ul>
-
-  <h2 id="pricing">Pricing</h2>
+  <h3>Mental Health Coverage</h3>
   <p>
-    IMG is typically 10-15% cheaper, and the gap widens with high-deductible strategies. AXA may be comparable when US coverage isn't needed.
+    Neither provider is known for exceptional mental health coverage. Both offer limited benefits that vary by plan level. If mental health coverage is a priority, verify specific limits before enrolling—and consider whether a premium provider like BUPA Global might be worth the extra cost.
+  </p>
+
+  <h3>Maternity Coverage</h3>
+  <p>
+    Both require 10-12 month waiting periods. IMG's maternity coverage is available as an add-on with specific limits. AXA offers maternity as a module you can add to your plan. Neither is exceptional, but both are adequate for planned pregnancies if you enroll well in advance.
+  </p>
+
+  <h3>Medical Evacuation</h3>
+  <p>
+    IMG offers $500K-$1M evacuation coverage depending on the plan. AXA provides unlimited evacuation on most plans. For expats in remote locations or developing countries, AXA's unlimited evacuation is a meaningful advantage.
+  </p>
+
+  <h3>Plan Structure</h3>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planColumns} rows={planRows} />
+  </div>
+
+  <CTABox
+    title="Compare Both Providers"
+    description="Get personalized quotes to see exact coverage and pricing for your situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="deductible-strategy">The Deductible Difference</h2>
+
+  <p>
+    This is where IMG Global stands out. Their high-deductible options go far beyond what most international insurers offer—and for healthy expats, this can mean substantial savings.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={deductibleColumns} rows={deductibleRows} />
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">The High-Deductible Strategy</h3>
+    <p class="mb-4">
+      IMG's $10,000-$25,000 deductible options aren't for everyone, but they serve a specific purpose:
+    </p>
+    <ul class="space-y-2 text-neutral-700">
+      <li><strong>Catastrophic coverage:</strong> Protection against major medical events (hospitalization, surgery, emergencies)</li>
+      <li><strong>Self-insure routine care:</strong> Pay for checkups and minor issues out of pocket</li>
+      <li><strong>Premium savings:</strong> 45-60% lower premiums than low-deductible plans</li>
+      <li><strong>Good for:</strong> Healthy individuals, those in low-cost healthcare countries, financially stable expats</li>
+    </ul>
+    <p class="mt-4 text-sm">
+      <strong>Example:</strong> A 40-year-old could save $100+/month with a $10K deductible versus a $2.5K deductible. Over a year, that's $1,200+ in premium savings—more than covering routine care costs in most countries outside the US.
+    </p>
+  </div>
+
+  <h3>AXA's Approach</h3>
+  <p>
+    AXA caps deductibles at €5,000, which is still reasonable but doesn't allow the aggressive high-deductible strategies IMG enables. If you want ultra-high deductibles, IMG is your only option between these two. If €5,000 is high enough for your strategy, AXA remains competitive.
+  </p>
+
+  <h2 id="us-coverage">US Coverage Comparison</h2>
+
+  <p>
+    US healthcare access is a major differentiator between these providers—not in quality, but in how it's structured and priced.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-6 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG's US Coverage</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Included by default</strong> on most plans</li>
+        <li>Works with various US networks</li>
+        <li>No BCBS affiliation (unlike GeoBlue)</li>
+        <li>May require reimbursement claims</li>
+        <li>Good for occasional US visits</li>
+      </ul>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA's US Coverage</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Optional add-on</strong> (30-40% premium increase)</li>
+        <li>More limited US network</li>
+        <li>Can exclude US to save significantly</li>
+        <li>Better for non-Americans</li>
+        <li>Excludes US when not needed</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    <strong>The practical difference:</strong> If you need US coverage, IMG's included access makes it simpler and often cheaper. If you don't need US coverage, AXA lets you exclude it entirely and pocket the savings. Neither offers BCBS-level US network access (that's GeoBlue's advantage), but both provide functional US coverage.
+  </p>
+
+  <h2 id="pricing">Pricing Analysis</h2>
+
+  <p>
+    Price comparison between IMG and AXA depends heavily on two factors: US coverage needs and deductible strategy. Here's how they stack up:
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p><strong>Pricing notes:</strong></p>
+  <h3>Understanding the Price Dynamics</h3>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h4 class="font-semibold mb-3">Key Pricing Insights</h4>
+    <ul class="space-y-2">
+      <li><strong>IMG with standard deductible vs AXA without US:</strong> Very similar pricing</li>
+      <li><strong>IMG with high deductible:</strong> 30-40% cheaper than either standard option</li>
+      <li><strong>AXA with US coverage:</strong> The most expensive option in this comparison</li>
+      <li><strong>Best value for US coverage:</strong> IMG (included at lower cost)</li>
+      <li><strong>Best value without US:</strong> Close race, AXA slightly better in Europe</li>
+    </ul>
+  </div>
+
+  <h3>When IMG is Cheaper</h3>
   <ul>
-    <li>IMG prices include US coverage</li>
-    <li>AXA prices exclude US (add 30-40% for inclusion)</li>
-    <li>IMG's $25K deductible option can cut premiums 40%+</li>
+    <li>You want a high-deductible strategy ($10K+)</li>
+    <li>You need US coverage included</li>
+    <li>You're healthy and want catastrophic-only coverage</li>
   </ul>
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <h3>When AXA is Cheaper</h3>
+  <ul>
+    <li>You don't need US coverage at all</li>
+    <li>You want moderate deductibles (under €5K)</li>
+    <li>You're based in Europe (may get better rates)</li>
+  </ul>
 
-  <h3>Provider Networks</h3>
+  <CTABox
+    title="See Your Actual Prices"
+    description="Premiums vary significantly based on your specific profile. Get personalized quotes."
+    buttonText="Get Your Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <h2 id="network-comparison">Provider Networks</h2>
+
   <p>
-    <strong>IMG Global</strong> has good worldwide coverage with moderate direct billing availability.
-  </p>
-  <p>
-    <strong>AXA Global</strong> has particularly strong networks in Europe and parts of Asia, reflecting its French headquarters.
+    Neither IMG nor AXA has the dominant networks of premium providers, but both offer adequate global coverage with different regional strengths.
   </p>
 
-  <h3>Claims Process</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Regional Analysis</h3>
+
   <p>
-    Both offer online claims submission. AXA's processes may feel more familiar to European expats. IMG's system is straightforward but US-oriented.
+    <strong>United States:</strong> IMG has the edge here—US coverage is built into most plans, and they've established reasonable provider relationships. AXA's US network is more limited and costs extra.
   </p>
+
+  <p>
+    <strong>Europe:</strong> AXA wins decisively. As a French company, they've built extensive networks across the EU. Their Middle East presence is also strong. IMG's European coverage works but isn't as deep.
+  </p>
+
+  <p>
+    <strong>Latin America:</strong> IMG has strong coverage here—it's a popular market for their expat products. AXA is adequate but not exceptional.
+  </p>
+
+  <p>
+    <strong>Asia Pacific:</strong> Both offer good coverage. Neither dominates this region like some premium providers.
+  </p>
+
+  <h3>Direct Billing</h3>
+  <p>
+    AXA has slightly better direct billing arrangements globally, particularly in Europe. IMG's direct billing availability is more variable—you may need to pay upfront and file for reimbursement more often. Neither matches the seamless experience of premium providers.
+  </p>
+
+  <h2 id="claims-process">Claims Experience</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Claims Reality Check</h3>
+
+  <p>
+    Both providers have standard claims processes—neither exceptional nor problematic. Processing times are similar (7-14 business days), and both offer modern submission methods.
+  </p>
+
+  <p>
+    <strong>IMG's approach:</strong> US-based service that Americans find familiar. English and Spanish support. More reimbursement-based than direct billing.
+  </p>
+
+  <p>
+    <strong>AXA's approach:</strong> UK-based service with 20+ language support. Better for non-English speakers and non-Americans. Slightly better direct billing network.
+  </p>
+
+  <h3>Customer Service Expectations</h3>
+  <p>
+    Set realistic expectations: these are value-tier providers. Customer service is adequate but not premium. If you need hand-holding through claims or expect concierge-level support, consider premium providers like BUPA Global or Cigna Global. If you're comfortable navigating standard insurance processes, both IMG and AXA work fine.
+  </p>
+
+  <h2 id="scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 1: Digital Nomad in Southeast Asia</h3>
+      <p class="text-neutral-600 mb-3">Alex, 32, works remotely from Thailand and Vietnam. He's healthy, rarely sees doctors, and wants protection against major medical events. He visits the US once a year.</p>
+      <p class="text-neutral-700"><strong>Best choice: IMG Global ($10K deductible)</strong> — The ultra-high deductible cuts his premium nearly in half. Healthcare is cheap in SEA, so he self-insures routine care. US coverage is included for his annual visits. Perfect fit for his profile.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 2: German Engineer in Dubai</h3>
+      <p class="text-neutral-600 mb-3">Klaus, 45, was transferred to Dubai for 3 years. He has no US ties, values European-style service, and wants comprehensive coverage with moderate deductibles.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global (excluding US)</strong> — Strong Middle East networks, EU regulatory backing, familiar European service approach. By excluding US coverage he doesn't need, he gets excellent value.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 3: American Retiree in Mexico</h3>
+      <p class="text-neutral-600 mb-3">Carol, 58, retired to San Miguel de Allende. She's on a fixed income, wants to keep her healthcare affordable, but needs US coverage for visits to her kids in Texas.</p>
+      <p class="text-neutral-700"><strong>Best choice: IMG Global ($5K deductible)</strong> — Mexican healthcare is affordable, so a moderate deductible makes sense. US coverage is included, and IMG is competitive in Latin America. The premium savings help her fixed income.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 4: British Family in France</h3>
+      <p class="text-neutral-600 mb-3">The Wilson family (parents 38, kids 6 and 9) moved from London to Nice. They need family coverage, prefer lower deductibles for the kids, and have no US plans.</p>
+      <p class="text-neutral-700"><strong>Best choice: AXA Global</strong> — Excellent French networks (it's their home market), family-friendly plans, modular design lets them add pediatric-specific coverage. No reason to pay for US coverage they won't use.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 5: Healthy Minimalist Anywhere</h3>
+      <p class="text-neutral-600 mb-3">Jordan, 29, wants the absolute minimum insurance for catastrophic coverage only. They're extremely healthy, haven't seen a doctor in years, and just want protection against disasters.</p>
+      <p class="text-neutral-700"><strong>Best choice: IMG Global ($25K deductible)</strong> — This is IMG's unique territory. A $25K deductible means true catastrophic-only coverage at rock-bottom premiums. Jordan pays for nothing except emergencies, saving $150+/month versus standard plans.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose IMG Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You need US coverage</li>
-        <li>You want high-deductible options</li>
-        <li>Maximum customization matters</li>
-        <li>You're American or US-based</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You want high-deductible options ($10K+)</li>
+        <li>✓ You need US coverage included</li>
+        <li>✓ You're healthy and want catastrophic coverage</li>
+        <li>✓ You're based in the Americas or Asia</li>
+        <li>✓ Budget is a primary concern</li>
+        <li>✓ You're comfortable with DIY insurance navigation</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose AXA Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You don't need US coverage</li>
-        <li>You're based in Europe</li>
-        <li>You prefer European service style</li>
-        <li>Financial strength is a priority</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You don't need US coverage</li>
+        <li>✓ You're based in Europe or Middle East</li>
+        <li>✓ You want stronger financial backing</li>
+        <li>✓ Multi-language support matters</li>
+        <li>✓ You prefer moderate deductibles</li>
+        <li>✓ EU regulatory oversight is valuable to you</li>
       </ul>
     </div>
   </div>
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want Maximum Flexibility?</h3>
+      <p class="text-neutral-600 text-sm mb-4">IMG offers ultra-high deductibles and included US coverage for budget-conscious expats.</p>
+      <a href="/providers/img-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View IMG Plans →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want European Stability?</h3>
+      <p class="text-neutral-600 text-sm mb-4">AXA offers €99B backing, strong EU networks, and modular plan design.</p>
+      <a href="/providers/axa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View AXA Plans →
+      </a>
+    </div>
+  </div>
+
   <h2 id="verdict">Our Verdict</h2>
+
   <p>
-    For Americans or anyone needing US coverage, IMG Global offers better value with more flexibility. The high-deductible options are particularly attractive for healthy individuals wanting catastrophic coverage.
+    <strong>These are both solid mid-tier options that excel in different ways.</strong>
   </p>
+
   <p>
-    For Europeans or those who don't need US coverage, AXA Global is competitive and offers the backing of one of the world's largest insurers. The European network strength is a real advantage for those based in the EU.
+    <strong>IMG Global</strong> is the flexibility champion. Their ultra-high deductible options (up to $25K) are unique in the international insurance market and can save healthy expats significant money. Add in included US coverage, and IMG becomes the clear choice for Americans abroad or anyone who wants catastrophic-only protection at minimal cost.
   </p>
+
+  <p>
+    <strong>AXA Global</strong> is the stability champion. Backed by one of the world's largest insurers with €99 billion in revenue and EU Solvency II regulatory oversight, AXA offers peace of mind about long-term claim payment. Their European and Middle Eastern networks are genuinely strong, and the ability to exclude US coverage provides real savings for those who don't need it.
+  </p>
+
+  <p>
+    <strong>The decision framework:</strong>
+  </p>
+  <ul>
+    <li>Need US coverage? → <strong>IMG</strong> (it's included)</li>
+    <li>Want ultra-high deductibles? → <strong>IMG</strong> (only option)</li>
+    <li>Based in Europe/Middle East? → <strong>AXA</strong> (stronger networks)</li>
+    <li>Value regulatory backing? → <strong>AXA</strong> (EU Solvency II)</li>
+    <li>Don't need US coverage? → <strong>AXA</strong> (exclude and save)</li>
+  </ul>
 
   <CTABox
     title="Ready to Decide?"
-    description="Get quotes from both providers."
+    description="Get personalized quotes from both providers based on your specific needs."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Is IMG Global a legitimate insurer?</h3>
+      <p class="text-neutral-600 mt-2">Yes. IMG has operated since 1990 and insures hundreds of thousands of people globally. They're a legitimate mid-tier provider, not a fly-by-night operation. They're not as large as AXA, but they're established and financially stable.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Why doesn't AXA offer $10K+ deductibles?</h3>
+      <p class="text-neutral-600 mt-2">European insurers typically cap deductibles lower than American ones. AXA's €5,000 maximum reflects European market norms. If you want ultra-high deductibles, you'll need a US-based provider like IMG.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Is AXA's financial backing really that important?</h3>
+      <p class="text-neutral-600 mt-2">For most people, both providers are stable enough. AXA's size (€99B revenue) provides extra peace of mind for those who worry about insurers going bankrupt or not paying claims. IMG is smaller but has a solid track record. The difference matters more psychologically than practically for most expats.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Can I switch between these providers?</h3>
+      <p class="text-neutral-600 mt-2">Yes, but pre-existing conditions may face new waiting periods when switching. If you've developed health conditions during your coverage, switching can reset coverage for those conditions. Always compare carefully before switching.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Which processes claims faster?</h3>
+      <p class="text-neutral-600 mt-2">They're similar—both typically process claims in 7-14 business days. Neither is notably fast or slow. If claims speed is critical, neither of these is the answer; premium providers sometimes offer faster processing.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900">Should I consider premium providers instead?</h3>
+      <p class="text-neutral-600 mt-2">Possibly, if you have specific needs. BUPA Global offers better mental health coverage. Cigna Global has excellent customer service. Aetna International provides CVS benefits. Premium providers cost 30-50% more but may be worth it for certain profiles. IMG and AXA are best for budget-conscious expats who don't need premium features.</p>
+    </div>
+  </div>
+
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> Prices and coverage details change. Verify all information with providers before purchasing.
+      <strong>Disclaimer:</strong> Prices and coverage details change frequently. Verify all information with providers before purchasing. Premium estimates are approximate and will vary based on your specific profile, location, and coverage selections.
     </p>
   </div>
+
 </PageShell>
