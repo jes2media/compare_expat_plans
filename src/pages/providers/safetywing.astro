@@ -5,12 +5,17 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-assessment', text: 'Quick Assessment', level: 2 },
   { id: 'plans-and-coverage', text: 'Plans and Coverage', level: 2 },
+  { id: 'network-and-access', text: 'Network and Access', level: 2 },
   { id: 'pricing', text: 'Pricing', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'pros-and-cons', text: 'Pros and Cons', level: 2 },
   { id: 'claims-and-service', text: 'Claims and Service', level: 2 },
   { id: 'who-its-for', text: 'Who It\'s For', level: 2 },
   { id: 'alternatives', text: 'Alternatives to Consider', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+  { id: 'final-verdict', text: 'Final Verdict', level: 2 },
 ];
 
 const relatedLinks = [
@@ -32,7 +37,7 @@ const planColumns = [
 const planRows = [
   { plan: 'Nomad Insurance', type: 'Travel medical', billing: 'Every 4 weeks', bestFor: 'Digital nomads, frequent travelers' },
   { plan: 'Remote Health', type: 'Full health insurance', billing: 'Monthly', bestFor: 'Long-term expats, remote workers' },
-  { plan: 'Remote Doctor', type: 'Telemedicine', billing: 'Monthly', bestFor: 'Primary care supplement' },
+  { plan: 'Remote Doctor', type: 'Telemedicine add-on', billing: 'Monthly', bestFor: 'Primary care supplement' },
 ];
 
 const coverageColumns = [
@@ -43,44 +48,110 @@ const coverageColumns = [
 
 const coverageRows = [
   { benefit: 'Maximum Coverage', nomad: '$250,000', remote: '$1M-$10M' },
-  { benefit: 'Deductible', nomad: '$250', remote: '$0-$5,000' },
-  { benefit: 'Hospitalization', nomad: 'Covered', remote: 'Full coverage' },
+  { benefit: 'Deductible', nomad: '$250 per incident', remote: '$0-$5,000 annual' },
+  { benefit: 'Hospitalization', nomad: 'Emergency only', remote: 'Full coverage' },
   { benefit: 'Outpatient', nomad: 'Emergency only', remote: 'Full coverage' },
-  { benefit: 'Maternity', nomad: 'Not covered', remote: 'Available (waiting period)' },
+  { benefit: 'Maternity', nomad: 'Not covered', remote: '12-month waiting period' },
   { benefit: 'Mental Health', nomad: 'Not covered', remote: 'Included' },
-  { benefit: 'US Coverage', nomad: 'Up to 30 days/90', remote: 'Optional add-on' },
-  { benefit: 'Pre-existing', nomad: 'Not covered', remote: 'Covered after waiting period' },
+  { benefit: 'Pre-existing', nomad: 'Not covered', remote: '24-month waiting period' },
+  { benefit: 'Dental', nomad: 'Emergency only ($1K)', remote: 'Optional module' },
+  { benefit: 'Vision', nomad: 'Not covered', remote: 'Optional module' },
+];
+
+const nomadVsRemoteColumns = [
+  { key: 'factor', header: 'Factor' },
+  { key: 'nomad', header: 'Nomad Insurance' },
+  { key: 'remote', header: 'Remote Health' },
+];
+
+const nomadVsRemoteRows = [
+  { factor: 'Insurance Type', nomad: 'Travel medical', remote: 'Full health insurance' },
+  { factor: 'Target User', nomad: 'Active travelers', remote: 'Settled expats' },
+  { factor: 'Monthly Cost (Age 30)', nomad: '~$45', remote: '~$150-250' },
+  { factor: 'Annual Commitment', nomad: 'None (4-week cycles)', remote: 'None (monthly)' },
+  { factor: 'Routine Care', nomad: 'Not covered', remote: 'Fully covered' },
+  { factor: 'Best Use Case', nomad: 'Emergency backup', remote: 'Primary health coverage' },
+];
+
+const pricingColumns = [
+  { key: 'age', header: 'Age Range' },
+  { key: 'nomadPrice', header: 'Nomad Insurance (per 4 weeks)' },
+  { key: 'remoteStandard', header: 'Remote Health Standard (monthly)' },
+  { key: 'remotePremium', header: 'Remote Health Premium (monthly)' },
+];
+
+const pricingRows = [
+  { age: '18-29', nomadPrice: '$45.08', remoteStandard: '~$100-150', remotePremium: '~$150-200' },
+  { age: '30-39', nomadPrice: '$45.08', remoteStandard: '~$125-175', remotePremium: '~$175-250' },
+  { age: '40-49', nomadPrice: '$76.28', remoteStandard: '~$200-300', remotePremium: '~$300-400' },
+  { age: '50-59', nomadPrice: '$117.04', remoteStandard: '~$350-450', remotePremium: '~$450-550' },
+  { age: '60-69', nomadPrice: '$189.28', remoteStandard: '~$500-700', remotePremium: '~$700-900' },
+];
+
+const nomadCoverageColumns = [
+  { key: 'benefit', header: 'Benefit' },
+  { key: 'covered', header: 'Covered?' },
+  { key: 'limit', header: 'Limit' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const nomadCoverageRows = [
+  { benefit: 'Emergency Hospital', covered: '✓ Yes', limit: 'Up to $250K', notes: 'Room and board, surgery, ICU' },
+  { benefit: 'Emergency Outpatient', covered: '✓ Yes', limit: 'Up to $250K', notes: 'ER visits, urgent care' },
+  { benefit: 'Acute Illness', covered: '✓ Yes', limit: 'Up to $250K', notes: 'New illness while traveling' },
+  { benefit: 'Medical Evacuation', covered: '✓ Yes', limit: '$100,000', notes: 'Transport to appropriate facility' },
+  { benefit: 'Trip Interruption', covered: '✓ Yes', limit: '$5,000', notes: 'If hospitalized 24+ hours' },
+  { benefit: 'Travel Delay', covered: '✓ Yes', limit: '$100/day', notes: '2+ day delays' },
+  { benefit: 'Lost Baggage', covered: '✓ Yes', limit: '$3,000', notes: 'After 24 hours' },
+  { benefit: 'Emergency Dental', covered: 'Limited', limit: '$1,000', notes: 'Pain relief only' },
+  { benefit: 'Routine Checkups', covered: '✗ No', limit: '—', notes: 'Not travel medical' },
+  { benefit: 'Pre-existing', covered: '✗ No', limit: '—', notes: 'Never covered' },
+  { benefit: 'Mental Health', covered: '✗ No', limit: '—', notes: 'Not covered' },
+  { benefit: 'Maternity', covered: '✗ No', limit: '—', notes: 'Not covered' },
 ];
 ---
 
 <PageShell
-  title="SafetyWing Review"
-  description="In-depth review of SafetyWing insurance for digital nomads and expats. Coverage, pricing, and honest pros/cons of Nomad Insurance and Remote Health."
+  title="SafetyWing Review 2025"
+  description="In-depth SafetyWing review comparing Nomad Insurance vs Remote Health. Coverage, pricing, and honest analysis for digital nomads and expats."
   headline="SafetyWing Review"
   subheadline="The startup that disrupted travel insurance. Subscription-based, nomad-friendly, and refreshingly simple—but is it enough coverage for you?"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get a SafetyWing Quote"
   ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/lifestyle/pre-existing-conditions.png"
 >
   <h2 id="overview">Overview</h2>
   <p>
-    SafetyWing launched in 2017 with a mission to build the first "country" for digital nomads—starting with insurance. Founded by Norwegian entrepreneurs, they brought a Silicon Valley startup mentality to an industry that desperately needed disruption.
+    SafetyWing launched in 2017 with a mission to build the first "country" for digital nomads—starting with insurance. Founded by Norwegian entrepreneurs in San Francisco, they brought a Silicon Valley startup mentality to an industry that desperately needed disruption.
   </p>
   <p>
-    Their flagship product, Nomad Insurance, became wildly popular by doing something radical: treating travel insurance like a subscription. No annual commitments, no complicated applications, just pay-as-you-go coverage that works anywhere in the world.
+    Their flagship product, <strong>Nomad Insurance</strong>, became wildly popular by doing something radical: treating travel insurance like a subscription. No annual commitments, no complicated applications, just pay-as-you-go coverage that works anywhere in the world. Sign up in 5 minutes, get covered immediately, cancel anytime.
+  </p>
+  <p>
+    But here's what many people miss: <strong>Nomad Insurance is travel medical insurance, not health insurance</strong>. It covers emergencies while traveling. It doesn't cover routine care, pre-existing conditions, mental health, or maternity. For those needs, SafetyWing offers <strong>Remote Health</strong>—a completely different product that's actual health insurance.
   </p>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
     <h3 class="text-lg font-semibold text-neutral-900 mb-3">Quick Facts</h3>
     <ul class="space-y-2 text-neutral-600">
       <li><strong>Founded:</strong> 2017 (San Francisco)</li>
-      <li><strong>Headquarters:</strong> San Francisco, CA (distributed team)</li>
-      <li><strong>Countries Covered:</strong> 180+ (varies by product)</li>
-      <li><strong>Plan Types:</strong> Nomad Insurance, Remote Health, Remote Doctor</li>
-      <li><strong>Underwriter:</strong> Tokio Marine (Nomad), various (Remote Health)</li>
-      <li><strong>Known For:</strong> Digital nomad community, subscription model</li>
+      <li><strong>Team:</strong> Distributed globally (nomad-style)</li>
+      <li><strong>Countries Covered:</strong> 180+ (Nomad), 175+ (Remote Health)</li>
+      <li><strong>Products:</strong> Nomad Insurance, Remote Health, Remote Doctor</li>
+      <li><strong>Underwriter:</strong> Tokio Marine HCC (Nomad Insurance)</li>
+      <li><strong>Key Feature:</strong> Subscription model—no annual commitment</li>
+      <li><strong>Community:</strong> 500,000+ members claimed</li>
+      <li><strong>Best For:</strong> Digital nomads, remote workers, budget-conscious travelers</li>
     </ul>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-2">Critical Distinction: Nomad Insurance ≠ Health Insurance</h3>
+    <p class="text-amber-800">
+      Nomad Insurance is <strong>travel medical insurance</strong>—it covers emergencies and unexpected illness while traveling. It does NOT cover routine checkups, ongoing prescriptions, pre-existing conditions, mental health, or maternity. If you need comprehensive health coverage, you need Remote Health or a different insurer entirely. This is the #1 misunderstanding about SafetyWing.
+    </p>
   </div>
 
   <CTABox
@@ -91,9 +162,57 @@ const coverageRows = [
     variant="highlight"
   />
 
+  <h2 id="quick-assessment">Quick Assessment: Which SafetyWing Product Do You Need?</h2>
+
+  <p>
+    SafetyWing offers two very different products. Understanding which one fits your needs is critical before signing up.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={nomadVsRemoteColumns} rows={nomadVsRemoteRows} />
+  </div>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-green-900 mb-3">Nomad Insurance Is Right If:</h3>
+    <ul class="space-y-2 text-green-800">
+      <li>✓ You're young (under 40) and healthy</li>
+      <li>✓ You're actively traveling between countries</li>
+      <li>✓ You only need emergency/catastrophic coverage</li>
+      <li>✓ You have no pre-existing conditions</li>
+      <li>✓ You don't need mental health or maternity coverage</li>
+      <li>✓ You want the cheapest possible option</li>
+      <li>✓ You're testing the nomad lifestyle short-term</li>
+    </ul>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-blue-900 mb-3">Remote Health Is Right If:</h3>
+    <ul class="space-y-2 text-blue-800">
+      <li>✓ You need actual health insurance (not just travel medical)</li>
+      <li>✓ You want routine care, checkups, and prescriptions covered</li>
+      <li>✓ Mental health coverage matters to you</li>
+      <li>✓ You're planning pregnancy (and can wait 12 months)</li>
+      <li>✓ You have pre-existing conditions (can wait 24 months)</li>
+      <li>✓ You're settled in one location long-term</li>
+      <li>✓ You want comprehensive protection</li>
+    </ul>
+  </div>
+
+  <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-red-900 mb-3">Consider Other Insurers If:</h3>
+    <ul class="space-y-2 text-red-800">
+      <li>✗ You need pre-existing conditions covered now (try Allianz moratorium)</li>
+      <li>✗ You need extensive US coverage (try Aetna or GeoBlue)</li>
+      <li>✗ You want premium customer service (try Cigna or BUPA)</li>
+      <li>✗ You're over 69 (Nomad) or 74 (Remote Health)</li>
+      <li>✗ You need direct billing at most providers</li>
+      <li>✗ You have complex medical needs</li>
+    </ul>
+  </div>
+
   <h2 id="plans-and-coverage">Plans and Coverage</h2>
   <p>
-    SafetyWing offers three products targeting different needs. Understanding which one fits your situation is critical—they're very different.
+    SafetyWing offers three products. Understanding exactly what each covers—and doesn't cover—is essential.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
@@ -102,128 +221,232 @@ const coverageRows = [
 
   <h3>Nomad Insurance (Travel Medical)</h3>
   <p>
-    This is SafetyWing's original product and what made them famous. Nomad Insurance is travel medical insurance—not comprehensive health insurance. It covers emergencies and acute illness while traveling, not ongoing healthcare.
+    SafetyWing's original product. Nomad Insurance is travel medical insurance designed for people moving between countries. It's affordable because it only covers emergencies and acute illness—not routine healthcare.
   </p>
-  <ul>
-    <li><strong>Coverage:</strong> $250,000 maximum (relatively low)</li>
-    <li><strong>Deductible:</strong> $250 per injury/illness</li>
-    <li><strong>Home Country:</strong> 30 days per 90-day period (for visits)</li>
-    <li><strong>Age Limit:</strong> 10-69 years old</li>
-    <li><strong>Children:</strong> One child under 10 included free per adult</li>
-  </ul>
 
-  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-amber-900 mb-2">Important Distinction</h3>
-    <p class="text-amber-800">
-      Nomad Insurance is <strong>travel medical insurance</strong>, not health insurance. It covers emergencies and unexpected illness while traveling. It does not cover routine checkups, ongoing prescriptions, pre-existing conditions, or planned treatments. If you need comprehensive coverage, look at Remote Health instead.
-    </p>
+  <h4>What Nomad Insurance Covers</h4>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={nomadCoverageColumns} rows={nomadCoverageRows} />
   </div>
 
-  <h3>What Nomad Insurance Covers</h3>
+  <h4>Key Nomad Insurance Limitations</h4>
   <ul>
-    <li><strong>Emergency Medical:</strong> Hospitalization, surgery, emergency care</li>
-    <li><strong>Acute Illness:</strong> New illnesses that arise while traveling</li>
-    <li><strong>Injuries:</strong> Accidents, sports injuries (amateur)</li>
-    <li><strong>Emergency Dental:</strong> Pain relief only (up to $1,000)</li>
-    <li><strong>Medical Evacuation:</strong> Up to $100,000</li>
-    <li><strong>Trip Interruption:</strong> Up to $5,000</li>
-    <li><strong>Travel Delay:</strong> $100/day for 2+ days</li>
-    <li><strong>Lost Baggage:</strong> Up to $3,000</li>
+    <li><strong>$250,000 maximum coverage:</strong> Low for serious illness. A major US hospitalization can exceed this.</li>
+    <li><strong>$250 deductible per incident:</strong> Applies to each new injury or illness.</li>
+    <li><strong>Home country limit:</strong> Only 30 days per 90-day period. US citizens can't use it as US coverage.</li>
+    <li><strong>Age limit:</strong> 10-69 years old. No coverage for children under 10 (except one free per adult).</li>
+    <li><strong>No pre-existing conditions:</strong> Never covered, no exceptions.</li>
+    <li><strong>No routine care:</strong> Checkups, vaccinations, ongoing prescriptions—none covered.</li>
   </ul>
 
-  <h3>What Nomad Insurance Doesn't Cover</h3>
+  <h3>Remote Health (Full Health Insurance)</h3>
+  <p>
+    Remote Health is SafetyWing's answer to expats who need actual health insurance. It's a completely different product from Nomad Insurance—comprehensive coverage with higher limits, outpatient care, mental health, and optional maternity.
+  </p>
+
+  <h4>Remote Health Tiers</h4>
   <ul>
-    <li>Pre-existing conditions (at all)</li>
-    <li>Routine care, checkups, preventive care</li>
-    <li>Mental health</li>
-    <li>Maternity and childbirth</li>
-    <li>Ongoing prescriptions</li>
-    <li>Dental (except emergency pain relief)</li>
-    <li>Vision</li>
-    <li>More than 30 days in home country per 90 days</li>
+    <li><strong>Standard:</strong> $1M maximum, core coverage, competitive pricing</li>
+    <li><strong>Premium:</strong> $2.5M maximum, enhanced coverage, dental/vision options</li>
+    <li><strong>Elite:</strong> $5M-$10M maximum, top-tier coverage, executive-level benefits</li>
   </ul>
+
+  <h4>Remote Health Key Features</h4>
+  <ul>
+    <li><strong>Outpatient coverage:</strong> Doctor visits, labs, imaging, prescriptions</li>
+    <li><strong>Mental health:</strong> Included (sessions vary by tier)</li>
+    <li><strong>Maternity:</strong> Available with 12-month waiting period</li>
+    <li><strong>Pre-existing conditions:</strong> Covered after 24-month waiting period</li>
+    <li><strong>Deductible options:</strong> $0, $500, $2,500, or $5,000</li>
+    <li><strong>Age limit:</strong> 18-74 years old for new enrollees</li>
+  </ul>
+
+  <h3>Coverage Comparison: Nomad vs Remote Health</h3>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <h3>Remote Health (Full Health Insurance)</h3>
+  <h3>Remote Doctor (Telemedicine Add-On)</h3>
   <p>
-    Remote Health is SafetyWing's answer to expats who need actual health insurance, not just travel medical. It's a completely different product with comprehensive coverage.
-  </p>
-  <ul>
-    <li><strong>Coverage:</strong> $1M, $2.5M, $5M, or $10M options</li>
-    <li><strong>Deductible:</strong> $0, $500, $2,500, or $5,000</li>
-    <li><strong>Outpatient:</strong> Included (doctor visits, labs, imaging)</li>
-    <li><strong>Mental Health:</strong> Included</li>
-    <li><strong>Maternity:</strong> Available with 12-month waiting period</li>
-    <li><strong>Pre-existing:</strong> Covered after 24-month waiting period</li>
-    <li><strong>Age Limit:</strong> 18-74 years old (new enrollees)</li>
-  </ul>
-
-  <h3>Remote Health Tiers</h3>
-  <ul>
-    <li><strong>Standard:</strong> Core coverage, $1M maximum</li>
-    <li><strong>Premium:</strong> Enhanced coverage, $2.5M maximum</li>
-    <li><strong>Elite:</strong> Top-tier coverage, $5M-$10M maximum</li>
-  </ul>
-  <p>
-    Remote Health is significantly more expensive than Nomad Insurance—but it's actually health insurance, not just travel medical.
-  </p>
-
-  <h3>Remote Doctor (Telemedicine)</h3>
-  <p>
-    A supplementary telemedicine service providing unlimited virtual consultations. Useful as a complement to high-deductible plans or for quick primary care access.
+    Remote Doctor provides unlimited telemedicine consultations for ~$49/month. Useful as a supplement to high-deductible plans or for quick primary care access when traveling.
   </p>
   <ul>
     <li>Unlimited video consultations</li>
     <li>Prescription referrals</li>
     <li>24/7 availability</li>
-    <li>Low monthly cost (~$49)</li>
+    <li>Works standalone or with other plans</li>
+  </ul>
+
+  <h2 id="network-and-access">Network and Access</h2>
+  <p>
+    SafetyWing operates differently from traditional insurers. There's no fixed provider network—you can see any doctor or hospital. The trade-off is limited direct billing.
+  </p>
+
+  <h3>How SafetyWing Coverage Works</h3>
+  <ul>
+    <li><strong>Freedom of choice:</strong> See any licensed provider anywhere in the world</li>
+    <li><strong>Direct billing:</strong> Limited—mostly for hospitalizations over $1,000</li>
+    <li><strong>Reimbursement:</strong> Most claims require paying upfront, then submitting for reimbursement</li>
+    <li><strong>Emergency assistance:</strong> 24/7 line for hospitalization coordination</li>
+  </ul>
+
+  <h3>Direct Billing Availability</h3>
+  <p>
+    Unlike Cigna or Allianz with extensive direct billing networks, SafetyWing's direct billing is limited:
+  </p>
+  <ul>
+    <li><strong>Nomad Insurance:</strong> Direct billing only for hospitalizations exceeding $1,000. Call the assistance line first.</li>
+    <li><strong>Remote Health:</strong> Better direct billing through partner networks, but still primarily reimbursement-based outside major hospitals.</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-2">Practical Impact</h3>
+    <p class="text-amber-800">
+      For most outpatient care, you'll pay upfront and submit for reimbursement. This works fine for small claims in countries with affordable healthcare, but can be challenging if you need expensive treatment and don't have savings for upfront payment. Traditional insurers like Cigna offer more extensive direct billing networks.
+    </p>
+  </div>
+
+  <h3>Geographic Coverage</h3>
+  <p>
+    SafetyWing covers most countries, but with important restrictions:
+  </p>
+  <ul>
+    <li><strong>Nomad Insurance:</strong> 180+ countries. Home country limited to 30 days per 90.</li>
+    <li><strong>Remote Health:</strong> 175+ countries. US coverage available as add-on.</li>
+    <li><strong>Excluded countries:</strong> North Korea, Iran, Cuba, Syria, and other sanctioned nations.</li>
+    <li><strong>US restrictions:</strong> Nomad Insurance limits US stays; Remote Health requires US add-on for full coverage.</li>
   </ul>
 
   <h2 id="pricing">Pricing</h2>
   <p>
-    SafetyWing's pricing is straightforward—one of their biggest selling points.
+    SafetyWing's pricing is simple and transparent—a major selling point. No hidden fees, no complex underwriting, just age-based rates.
   </p>
 
-  <h3>Nomad Insurance Pricing</h3>
-  <p>
-    Nomad Insurance uses simple age-based pricing without complex underwriting:
-  </p>
-  <ul>
-    <li>Age 10-39: $45.08 per 4 weeks</li>
-    <li>Age 40-49: $76.28 per 4 weeks</li>
-    <li>Age 50-59: $117.04 per 4 weeks</li>
-    <li>Age 60-69: $189.28 per 4 weeks</li>
-  </ul>
-  <p>
-    <strong>US Coverage:</strong> Add ~$30-50 per 4 weeks for US inclusion (for non-US citizens).
-  </p>
-  <p>
-    That works out to roughly $42-175/month depending on age—remarkably affordable for travel medical coverage.
-  </p>
+  <h3>Pricing Comparison by Age</h3>
 
-  <h3>Remote Health Pricing</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+  </div>
+
+  <h3>Nomad Insurance Pricing Details</h3>
+  <ul>
+    <li><strong>Base rate (age 10-39):</strong> $45.08 per 4 weeks</li>
+    <li><strong>US coverage add-on:</strong> ~$30-50 additional per 4 weeks</li>
+    <li><strong>Children under 10:</strong> One free per adult, additional $22.54/4 weeks</li>
+    <li><strong>Payment:</strong> Automatic renewal every 4 weeks until you cancel</li>
+  </ul>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-green-900 mb-2">Value Calculation: Nomad Insurance</h3>
+    <p class="text-green-800">
+      At $45/month for ages under 40, Nomad Insurance is roughly <strong>1/3 to 1/4 the cost</strong> of comprehensive health insurance like Cigna or Allianz. The trade-off: you get emergency coverage only, not full health insurance. For young, healthy travelers who just need catastrophic protection, this is excellent value.
+    </p>
+  </div>
+
+  <h3>Remote Health Pricing Details</h3>
   <p>
-    Remote Health is priced more like traditional health insurance:
+    Remote Health pricing varies by age, region, and deductible:
   </p>
   <ul>
-    <li>Age 25, $5K deductible: ~$100-150/month</li>
-    <li>Age 35, $2.5K deductible: ~$150-250/month</li>
-    <li>Age 45, $500 deductible: ~$300-450/month</li>
-    <li>Age 55, $0 deductible: ~$500-700/month</li>
+    <li><strong>Deductible options:</strong> $0, $500, $2,500, $5,000 annual</li>
+    <li><strong>Regional pricing:</strong> US coverage adds 30-50% to base premium</li>
+    <li><strong>Dental/Vision:</strong> Optional add-ons for additional cost</li>
+    <li><strong>Family plans:</strong> Available with child discounts</li>
   </ul>
-  <p>
-    Region affects pricing—US coverage increases premiums substantially.
-  </p>
+
+  <h3>What Affects Your Premium</h3>
+  <ul>
+    <li><strong>Age:</strong> Primary factor—rates increase significantly over 40</li>
+    <li><strong>Region:</strong> US coverage costs more; some regions cheaper than others</li>
+    <li><strong>Deductible:</strong> Higher deductible = lower premium (30-50% savings possible)</li>
+    <li><strong>Add-ons:</strong> Dental, vision, maternity increase cost</li>
+  </ul>
 
   <CTABox
     title="See Your Actual Price"
-    description="Get an instant quote with no forms to fill out."
+    description="Get an instant quote with no forms to fill out. Takes 30 seconds."
     buttonText="Get a Quote"
     buttonHref="/best/expat-health-insurance"
   />
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+  <p>
+    Here's how SafetyWing performs in common situations. These scenarios highlight where SafetyWing works well—and where it falls short.
+  </p>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 1: Food Poisoning in Thailand</h3>
+      <p class="text-neutral-600 mb-3">
+        You get severe food poisoning in Chiang Mai, need IV fluids and medication at a local hospital.
+      </p>
+      <p class="text-green-700 font-medium">
+        ✓ Outcome: Covered. This is exactly what Nomad Insurance is for—acute illness while traveling. Hospital cost likely under $200, claim paid within 2-3 weeks after submission.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 2: Broken Leg in Portugal</h3>
+      <p class="text-neutral-600 mb-3">
+        You fall and break your leg while hiking. Need emergency surgery and 2 nights in hospital.
+      </p>
+      <p class="text-green-700 font-medium">
+        ✓ Outcome: Covered. Call the assistance line, they coordinate with hospital for direct billing. Surgery, hospital stay, and follow-up covered up to $250K limit.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 3: Routine Checkup Needed</h3>
+      <p class="text-neutral-600 mb-3">
+        You want an annual physical and blood work while living in Mexico City.
+      </p>
+      <p class="text-red-700 font-medium">
+        ✗ Outcome: Not covered (Nomad Insurance). Routine care isn't travel medical. Pay out of pocket (cheap in Mexico) or upgrade to Remote Health.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 4: Anxiety Treatment Needed</h3>
+      <p class="text-neutral-600 mb-3">
+        You're experiencing anxiety and want regular therapy sessions.
+      </p>
+      <p class="text-red-700 font-medium">
+        ✗ Outcome: Not covered (Nomad Insurance). Mental health isn't covered at all. With Remote Health, you'd have coverage after enrollment, but Nomad Insurance excludes mental health entirely.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 5: Pre-existing Diabetes Complication</h3>
+      <p class="text-neutral-600 mb-3">
+        You have Type 2 diabetes and experience a related complication requiring treatment.
+      </p>
+      <p class="text-red-700 font-medium">
+        ✗ Outcome: Not covered (Nomad Insurance). Pre-existing conditions are never covered. Remote Health covers pre-existing conditions after 24 months—but that's a long wait.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 6: Heart Attack in the US While Visiting Family</h3>
+      <p class="text-neutral-600 mb-3">
+        You're a US citizen visiting family for 3 weeks when you have a heart attack.
+      </p>
+      <p class="text-amber-700 font-medium">
+        ⚠ Outcome: Partially covered, risky. If within 30-day home country limit and no pre-existing heart condition, covered. But $250K max could be insufficient for US cardiac care. US hospitalization can exceed $100K+. This is where Nomad Insurance's limits become dangerous.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Scenario 7: Remote Health with Routine Care</h3>
+      <p class="text-neutral-600 mb-3">
+        You have Remote Health Standard and need regular doctor visits, prescriptions, and a specialist referral in Lisbon.
+      </p>
+      <p class="text-green-700 font-medium">
+        ✓ Outcome: Covered. Remote Health includes outpatient care—this is what it's for. Pay deductible, then covered. Most claims require reimbursement, but straightforward process.
+      </p>
+    </div>
+  </div>
 
   <h2 id="pros-and-cons">Pros and Cons</h2>
 
@@ -231,27 +454,31 @@ const coverageRows = [
     <div class="bg-green-50 border border-green-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-green-900 mb-3">Pros</h3>
       <ul class="space-y-2 text-green-800">
-        <li>No annual commitment—cancel anytime</li>
-        <li>Simple, transparent pricing</li>
-        <li>Easy online signup (5 minutes)</li>
-        <li>Covers 180+ countries</li>
-        <li>Free child under 10 with each adult</li>
-        <li>Good for short-term/transitional coverage</li>
-        <li>Modern, user-friendly interface</li>
-        <li>Strong community of nomad users</li>
+        <li><strong>No annual commitment</strong>—cancel anytime</li>
+        <li><strong>Simple, transparent pricing</strong></li>
+        <li><strong>5-minute online signup</strong></li>
+        <li><strong>180+ countries covered</strong></li>
+        <li><strong>Free child under 10</strong> per adult (Nomad)</li>
+        <li><strong>Subscription flexibility</strong>—start/stop as needed</li>
+        <li><strong>Modern, user-friendly interface</strong></li>
+        <li><strong>Strong nomad community</strong></li>
+        <li><strong>Very affordable</strong> for what it covers</li>
+        <li><strong>Immediate coverage</strong>—no waiting to start</li>
       </ul>
     </div>
     <div class="bg-red-50 border border-red-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-red-900 mb-3">Cons</h3>
       <ul class="space-y-2 text-red-800">
-        <li>Nomad Insurance is travel medical, not full health</li>
-        <li>$250K max is low for serious illness</li>
-        <li>No pre-existing condition coverage (Nomad)</li>
-        <li>No mental health coverage (Nomad)</li>
-        <li>No maternity coverage (Nomad)</li>
-        <li>US coverage limited to 30 days/90</li>
-        <li>Less established than traditional insurers</li>
-        <li>Claims can require persistence</li>
+        <li><strong>Nomad Insurance isn't health insurance</strong></li>
+        <li><strong>$250K max is low</strong> for serious illness</li>
+        <li><strong>No pre-existing coverage</strong> (Nomad)</li>
+        <li><strong>No mental health coverage</strong> (Nomad)</li>
+        <li><strong>No maternity coverage</strong> (Nomad)</li>
+        <li><strong>Limited direct billing</strong>—mostly reimbursement</li>
+        <li><strong>30-day home country limit</strong></li>
+        <li><strong>Claims can take 10-30 days</strong></li>
+        <li><strong>No 24/7 phone support</strong></li>
+        <li><strong>Less established</strong> than traditional insurers</li>
       </ul>
     </div>
   </div>
@@ -259,7 +486,7 @@ const coverageRows = [
   <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
     <h3 class="text-lg font-semibold text-blue-900 mb-2">The Real Trade-off</h3>
     <p class="text-blue-800">
-      SafetyWing's Nomad Insurance is affordable because it's minimal coverage. If you're young, healthy, and just need emergency coverage while traveling, it's excellent value. If you have health conditions, need regular care, or want comprehensive coverage, you'll need Remote Health or a different provider entirely.
+      SafetyWing's Nomad Insurance is affordable because it's minimal coverage. If you're young, healthy, and just need emergency protection while traveling, it's excellent value—roughly 1/4 the cost of comprehensive insurance. If you have health conditions, need regular care, or want comprehensive coverage, you need Remote Health (3-5x more expensive) or a different provider entirely.
     </p>
   </div>
 
@@ -267,97 +494,191 @@ const coverageRows = [
 
   <h3>Filing Claims</h3>
   <p>
-    SafetyWing handles claims through their online portal. The process is straightforward but reviews are mixed:
+    SafetyWing handles claims through their online portal. The process is straightforward:
   </p>
   <ul>
-    <li><strong>Submission:</strong> Upload receipts and documentation online</li>
-    <li><strong>Processing Time:</strong> 10-30 days typical</li>
-    <li><strong>Payment:</strong> Direct deposit or check</li>
-    <li><strong>Direct Billing:</strong> Limited—most claims are reimbursement</li>
+    <li><strong>Submission:</strong> Upload receipts and documentation online or via email</li>
+    <li><strong>Required documents:</strong> Itemized bills, proof of payment, medical reports</li>
+    <li><strong>Processing time:</strong> 10-30 business days typical</li>
+    <li><strong>Payment:</strong> Direct deposit, PayPal, or check</li>
   </ul>
+
+  <h3>Direct Billing Process</h3>
+  <p>
+    For hospitalizations over $1,000:
+  </p>
+  <ol>
+    <li>Call the 24/7 assistance line before admission if possible</li>
+    <li>Provide your policy information to the hospital</li>
+    <li>SafetyWing coordinates guarantee of payment</li>
+    <li>Hospital bills SafetyWing directly</li>
+  </ol>
+  <p>
+    For outpatient care and smaller claims, you'll typically pay upfront and submit for reimbursement.
+  </p>
 
   <h3>What Users Report</h3>
   <p>
-    Reviews are mixed. Common themes:
+    Reviews are mixed. Common themes from the nomad community:
   </p>
   <ul>
-    <li><strong>Positive:</strong> Easy signup, simple interface, responsive support for basic questions</li>
-    <li><strong>Negative:</strong> Claims can take longer than expected, some denials require appeals, limited direct billing</li>
+    <li><strong>Positive:</strong> Easy signup, works when you need it, responsive email support</li>
+    <li><strong>Negative:</strong> Claims can take longer than expected, some denials require appeals, limited phone support</li>
+    <li><strong>Neutral:</strong> Works well for what it's designed for—just understand the limitations</li>
   </ul>
-  <p>
-    For emergency hospitalizations, SafetyWing does coordinate with hospitals—but smaller claims often require paying upfront and submitting for reimbursement.
-  </p>
 
   <h3>Customer Support</h3>
   <ul>
-    <li>Email support (primary channel)</li>
-    <li>Chat support during business hours</li>
-    <li>No 24/7 phone line (email for emergencies)</li>
-    <li>Knowledge base and FAQ</li>
+    <li><strong>Email:</strong> Primary support channel, typically 24-48 hour response</li>
+    <li><strong>Chat:</strong> Available during business hours</li>
+    <li><strong>24/7 Emergency Line:</strong> For hospitalization coordination</li>
+    <li><strong>No general phone support:</strong> Email-first company</li>
   </ul>
-  <p>
-    Support is adequate but not premium. You won't get the white-glove service of Cigna or Bupa.
-  </p>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-2">Support Expectations</h3>
+    <p class="text-neutral-600">
+      SafetyWing is a startup with startup-style support. You won't get the white-glove service of Cigna or BUPA with dedicated case managers and 24/7 phone lines. If premium customer service matters to you, traditional insurers may be better despite higher costs.
+    </p>
+  </div>
 
   <h2 id="who-its-for">Who It's For</h2>
-  <p>
-    SafetyWing Nomad Insurance is ideal for:
-  </p>
+
+  <h3>Ideal SafetyWing Users (Nomad Insurance)</h3>
   <ul>
-    <li>Digital nomads moving frequently between countries</li>
-    <li>Young, healthy travelers (under 40)</li>
-    <li>Remote workers on short-term assignments</li>
-    <li>Gap coverage between jobs or moves</li>
-    <li>Budget-conscious travelers needing emergency coverage</li>
-    <li>People who hate long-term commitments</li>
-    <li>First-time expats testing the lifestyle</li>
+    <li><strong>Digital nomads:</strong> Moving frequently between countries</li>
+    <li><strong>Young travelers (under 40):</strong> Healthy with no pre-existing conditions</li>
+    <li><strong>Remote workers:</strong> On short-term international assignments</li>
+    <li><strong>Gap coverage seekers:</strong> Between jobs, between countries</li>
+    <li><strong>Budget-conscious travelers:</strong> Need emergency coverage only</li>
+    <li><strong>Commitment-averse:</strong> Don't want annual contracts</li>
+    <li><strong>First-time expats:</strong> Testing the lifestyle before committing to full health insurance</li>
+    <li><strong>Travelers with local insurance:</strong> Want emergency backup for travel outside home country</li>
   </ul>
 
-  <p>
-    SafetyWing Remote Health is better for:
-  </p>
+  <h3>Ideal SafetyWing Users (Remote Health)</h3>
   <ul>
-    <li>Long-term expats who need comprehensive coverage</li>
-    <li>Remote workers with permanent base abroad</li>
-    <li>People who want mental health and maternity coverage</li>
-    <li>Those willing to wait out pre-existing condition periods</li>
+    <li><strong>Settled expats:</strong> Established in one location long-term</li>
+    <li><strong>Remote workers with benefits gaps:</strong> Company doesn't provide international coverage</li>
+    <li><strong>Mental health coverage seekers:</strong> Need therapy/psychiatry covered</li>
+    <li><strong>Family planners:</strong> Want maternity coverage (and can wait 12 months)</li>
+    <li><strong>Pre-existing condition holders:</strong> Willing to wait 24 months for coverage</li>
   </ul>
 
-  <p>
-    SafetyWing is not the right fit if you:
-  </p>
+  <h3>Not Ideal For</h3>
   <ul>
-    <li>Have pre-existing conditions you need covered now</li>
-    <li>Need comprehensive coverage and Nomad Insurance's limits concern you</li>
-    <li>Return to the US frequently (30-day limit is restrictive)</li>
-    <li>Want premium customer service and direct billing</li>
-    <li>Are over 69 (Nomad) or 74 (Remote Health)</li>
-    <li>Need extensive mental health coverage (Nomad doesn't cover it)</li>
+    <li><strong>People with pre-existing conditions needing immediate coverage:</strong> Try Allianz moratorium underwriting</li>
+    <li><strong>Frequent US visitors:</strong> 30-day limit is too restrictive (try Aetna or GeoBlue)</li>
+    <li><strong>Anyone over 69 (Nomad) or 74 (Remote Health):</strong> Age limits apply</li>
+    <li><strong>Those wanting premium service:</strong> SafetyWing is more DIY (try Cigna or BUPA)</li>
+    <li><strong>Complex medical needs:</strong> Traditional insurers offer better case management</li>
+    <li><strong>High-coverage needs:</strong> $250K max is low for serious illness</li>
   </ul>
 
   <h2 id="alternatives">Alternatives to Consider</h2>
   <p>
-    Depending on your needs, consider these alternatives:
+    Depending on your needs, these alternatives may work better:
   </p>
   <ul>
-    <li><strong>IMG Global:</strong> Higher coverage limits, more traditional structure, better for longer stays. <a href="/providers/img-global">Read our review</a></li>
-    <li><strong>Cigna Global:</strong> Comprehensive coverage, premium service, higher cost. <a href="/providers/cigna-global">Read our review</a></li>
-    <li><strong>World Nomads:</strong> Another travel-focused option, good for adventure activities</li>
-    <li><strong>Allianz Care:</strong> Strong European presence, comprehensive plans. <a href="/providers/allianz-care">Read our review</a></li>
-    <li><strong>GeoBlue:</strong> Best for US citizens who need US network access. <a href="/providers/geoblue">Read our review</a></li>
+    <li><strong>IMG Global:</strong> Higher coverage limits ($5M+), more traditional structure, better for longer stays. Similar price range to Remote Health. <a href="/providers/img-global">Read our review</a></li>
+    <li><strong>Cigna Global:</strong> Comprehensive coverage, premium customer service, extensive direct billing. Costs more but offers more. <a href="/providers/cigna-global">Read our review</a></li>
+    <li><strong>Allianz Care:</strong> Strong European presence, moratorium underwriting for pre-existing conditions. Good for EU-focused expats. <a href="/providers/allianz-care">Read our review</a></li>
+    <li><strong>GeoBlue:</strong> BCBS network access for US citizens. Best for Americans who return to the US frequently. <a href="/providers/geoblue">Read our review</a></li>
+    <li><strong>World Nomads:</strong> Another travel-focused option, better for adventure activities (SafetyWing limits extreme sports)</li>
+    <li><strong>BUPA Global:</strong> Premium option with full mental health parity. Higher cost but comprehensive coverage. <a href="/providers/bupa-global">Read our review</a></li>
   </ul>
 
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for SafetyWing?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Get instant coverage with no forms to fill out.</p>
+      <a href="/best/expat-health-insurance" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get a SafetyWing Quote →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want to Compare First?</h3>
+      <p class="text-neutral-600 text-sm mb-4">See how SafetyWing stacks up against IMG Global.</p>
+      <a href="/compare/safetywing-vs-img-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Compare SafetyWing vs IMG →
+      </a>
+    </div>
+  </div>
+
+  <h2 id="faqs">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is SafetyWing Nomad Insurance real health insurance?</h3>
+      <p class="text-neutral-600">
+        No. Nomad Insurance is travel medical insurance—it covers emergencies and acute illness while traveling. It doesn't cover routine care, checkups, pre-existing conditions, mental health, or maternity. If you need actual health insurance, you need Remote Health or a different provider. This is the most common misunderstanding about SafetyWing.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I use Nomad Insurance as a US citizen in the US?</h3>
+      <p class="text-neutral-600">
+        Only for 30 days per 90-day period. Nomad Insurance is designed for travel outside your home country. US citizens can use it abroad and during short home visits, but it's not a replacement for US health insurance. If you spend significant time in the US, consider Aetna or GeoBlue instead.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What happens if I get sick with a pre-existing condition?</h3>
+      <p class="text-neutral-600">
+        Nomad Insurance: Not covered, period. Remote Health: Covered after a 24-month waiting period. If you have significant pre-existing conditions and need coverage sooner, Allianz Care offers moratorium underwriting where conditions can be covered after 2 years of no symptoms/treatment—potentially faster than waiting 24 months.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How does the subscription model work?</h3>
+      <p class="text-neutral-600">
+        Nomad Insurance auto-renews every 4 weeks. You can cancel anytime through your dashboard, and coverage ends at the end of your current paid period. No cancellation fees, no penalties. You can also pause and restart coverage as needed—useful if you're returning to your home country for an extended period.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is $250,000 maximum coverage enough?</h3>
+      <p class="text-neutral-600">
+        It depends where you are. For most countries, $250K covers even serious emergencies. However, a major hospitalization in the US can exceed $250K—especially cardiac events, cancer treatment, or ICU stays. If you'll be in the US, the coverage limit is a real risk. Consider higher-limit options like IMG ($5M) or Cigna ($2M+) for US exposure.
+      </p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How do claims and reimbursements work?</h3>
+      <p class="text-neutral-600">
+        For most claims: pay upfront, save receipts, submit through the online portal, receive reimbursement in 10-30 days via direct deposit or PayPal. For hospitalizations over $1,000: call the assistance line first, they coordinate direct billing with the hospital. Direct billing is limited compared to traditional insurers—expect to handle most claims as reimbursements.
+      </p>
+    </div>
+  </div>
+
+  <h2 id="final-verdict">Final Verdict</h2>
+  <p>
+    SafetyWing solved a real problem: making travel insurance simple, flexible, and affordable for the modern nomad. Their subscription model—no annual commitments, instant signup, cancel anytime—is genuinely better than traditional travel insurance.
+  </p>
+  <p>
+    <strong>Nomad Insurance</strong> is excellent value for what it is: emergency coverage for healthy travelers. At $45/month for ages under 40, it's a quarter the cost of comprehensive health insurance. If you're young, healthy, moving between countries, and just need catastrophic protection, Nomad Insurance makes sense.
+  </p>
+  <p>
+    But understand the limitations. <strong>Nomad Insurance is not health insurance</strong>. It doesn't cover routine care, pre-existing conditions, mental health, or maternity. The $250K maximum can be insufficient for serious US medical events. If you need actual health coverage—not just emergency backup—look at Remote Health or traditional insurers like Cigna, Allianz, or IMG.
+  </p>
+  <p>
+    <strong>Remote Health</strong> fills the gap for expats who need comprehensive coverage but like SafetyWing's approach. It costs 3-5x more than Nomad Insurance because it's actual health insurance. It's competitive with other comprehensive options, though you may find better direct billing networks and customer service with established insurers.
+  </p>
+  <p>
+    <strong>Bottom line:</strong> SafetyWing is a great fit for young, healthy nomads who need flexible emergency coverage. It's not the right fit if you have health conditions, need comprehensive coverage, or want premium customer service. Know what you're buying, and SafetyWing delivers exactly what it promises.
+  </p>
+
   <CTABox
-    title="Ready to Compare?"
-    description="See how SafetyWing stacks up against alternatives for your specific situation."
-    buttonText="Compare Plans"
+    title="Ready to Get Covered?"
+    description="Get instant SafetyWing coverage in 5 minutes. No forms, no commitment."
+    buttonText="Get Your Quote"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change. We are not affiliated with SafetyWing and are not insurance brokers. Verify all information directly with SafetyWing before purchasing.
+      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change. We are not affiliated with SafetyWing and are not insurance brokers. Verify all information directly with SafetyWing before purchasing. Last reviewed: January 2025.
     </p>
   </div>
 </PageShell>

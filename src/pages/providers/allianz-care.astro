@@ -5,53 +5,123 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
-  { id: 'plans-and-coverage', text: 'Plans and Coverage', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'pros-and-cons', text: 'Pros and Cons', level: 2 },
-  { id: 'claims-and-service', text: 'Claims and Service', level: 2 },
+  { id: 'quick-assessment', text: 'Quick Assessment', level: 2 },
+  { id: 'plans-coverage', text: 'Plans and Coverage', level: 2 },
+  { id: 'pricing-analysis', text: 'Pricing Analysis', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'customer-service', text: 'Customer Service', level: 2 },
+  { id: 'pros-cons', text: 'Pros and Cons', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-its-for', text: 'Who It\'s For', level: 2 },
-  { id: 'alternatives', text: 'Alternatives to Consider', level: 2 },
+  { id: 'how-it-compares', text: 'How It Compares', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'Allianz vs Cigna', href: '/compare/cigna-global-vs-allianz-care' },
   { title: 'Allianz vs BUPA', href: '/compare/allianz-care-vs-bupa-global' },
-  { title: 'Allianz vs AXA', href: '/compare/axa-global-vs-allianz-care' },
+  { title: 'Allianz vs IMG', href: '/compare/allianz-care-vs-img-global' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
-  { title: 'Allianz in Spain', href: '/countries/spain/insurance/allianz-care' },
-  { title: 'Allianz in France', href: '/countries/france/insurance/allianz-care' },
+  { title: 'Insurance for Pre-existing Conditions', href: '/insurance-for/pre-existing-conditions' },
 ];
 
 const planColumns = [
-  { key: 'plan', header: 'Plan' },
-  { key: 'limit', header: 'Annual Limit' },
-  { key: 'maternity', header: 'Maternity' },
-  { key: 'bestFor', header: 'Best For' },
+  { key: 'feature', header: 'Feature' },
+  { key: 'base', header: 'Base' },
+  { key: 'enhanced', header: 'Enhanced' },
+  { key: 'signature', header: 'Signature' },
 ];
 
 const planRows = [
-  { plan: 'Base', limit: '$1.35 million', maternity: 'Add-on', bestFor: 'Essential coverage' },
-  { plan: 'Enhanced', limit: '$2.7 million', maternity: 'Included', bestFor: 'Comprehensive care' },
-  { plan: 'Signature', limit: '$5 million', maternity: 'Included + Fertility', bestFor: 'Premium coverage' },
+  { feature: 'Annual Maximum', base: '€1.35M', enhanced: '€2.7M', signature: '€5M' },
+  { feature: 'Inpatient Hospital', base: 'Full coverage', enhanced: 'Full coverage', signature: 'Full coverage' },
+  { feature: 'Outpatient Care', base: 'Optional add-on', enhanced: 'Included', signature: 'Included' },
+  { feature: 'Mental Health', base: 'Inpatient only', enhanced: 'In + Outpatient', signature: 'Enhanced' },
+  { feature: 'Maternity', base: 'Optional add-on', enhanced: 'Included', signature: 'Included + Fertility' },
+  { feature: 'Dental', base: 'Optional add-on', enhanced: 'Optional add-on', signature: 'Included' },
+  { feature: 'Vision', base: 'Not included', enhanced: 'Optional add-on', signature: 'Included' },
+  { feature: 'Cancer Treatment', base: 'Up to plan max', enhanced: 'Up to plan max', signature: 'Up to plan max' },
+  { feature: 'Medical Evacuation', base: 'Included', enhanced: 'Included', signature: 'Included' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'base', header: 'Base' },
+  { key: 'enhanced', header: 'Enhanced' },
+  { key: 'signature', header: 'Signature' },
+];
+
+const pricingRows = [
+  { profile: 'Age 25, €0 deductible', base: '€100-120/mo', enhanced: '€140-170/mo', signature: '€200-240/mo' },
+  { profile: 'Age 35, €500 deductible', base: '€110-140/mo', enhanced: '€150-190/mo', signature: '€220-280/mo' },
+  { profile: 'Age 45, €1,000 deductible', base: '€135-175/mo', enhanced: '€190-240/mo', signature: '€280-350/mo' },
+  { profile: 'Age 55, €2,500 deductible', base: '€180-230/mo', enhanced: '€250-320/mo', signature: '€380-480/mo' },
+  { profile: 'Age 65, €5,000 deductible', base: '€280-360/mo', enhanced: '€380-480/mo', signature: '€540-680/mo' },
+];
+
+const moratoriumColumns = [
+  { key: 'aspect', header: 'Underwriting Type' },
+  { key: 'full', header: 'Full Medical Underwriting' },
+  { key: 'moratorium', header: 'Moratorium Underwriting' },
+];
+
+const moratoriumRows = [
+  { aspect: 'Application Process', full: 'Detailed health questionnaire', moratorium: 'Simple declaration' },
+  { aspect: 'Pre-existing Conditions', full: 'May be excluded permanently', moratorium: 'Excluded initially, covered after 2 years' },
+  { aspect: 'Approval Time', full: 'Days to weeks', moratorium: 'Often instant' },
+  { aspect: 'Premium Impact', full: 'May have loading', moratorium: 'Standard rates' },
+  { aspect: 'Coverage Certainty', full: 'Know exclusions upfront', moratorium: 'Uncertainty until claim time' },
+  { aspect: 'Best For', full: 'Those wanting clarity', moratorium: 'Those with pre-existing conditions' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'details', header: 'Allianz Care' },
+];
+
+const claimsRows = [
+  { aspect: 'Submission Methods', details: 'MyHealth portal, mobile app, email' },
+  { aspect: 'Processing Time', details: '74% within 24 hours, most within 48 hours (company claim)' },
+  { aspect: 'Direct Billing', details: '2 million+ providers globally' },
+  { aspect: 'Pre-authorization', details: 'Required for planned hospitalization' },
+  { aspect: 'Reimbursement', details: 'Bank transfer, multiple currencies' },
+  { aspect: 'Appeals Process', details: 'Formal appeals with medical review' },
+];
+
+const competitorColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'competitor', header: 'Key Difference' },
+];
+
+const competitorRows = [
+  { aspect: 'Network Size', allianz: '2 million+ providers', competitor: 'Largest network available' },
+  { aspect: 'Moratorium Option', allianz: 'Yes (unique)', competitor: 'Most competitors don\'t offer this' },
+  { aspect: 'Deductible Savings', allianz: 'Up to 60% with €10K', competitor: 'Highest savings available' },
+  { aspect: 'Pre-existing Conditions', allianz: 'Moratorium pathway', competitor: 'Best option for existing conditions' },
+  { aspect: 'Customer Reviews', allianz: 'Mixed', competitor: 'Lower than IMG/Cigna' },
+  { aspect: 'Claims Speed', allianz: '74% in 24 hours (claimed)', competitor: 'Faster than IMG, varies in practice' },
 ];
 ---
 
 <PageShell
-  title="Allianz Care Review"
-  description="In-depth review of Allianz Care international health insurance. Coverage options, pricing, pros and cons for expats."
+  title="Allianz Care Review 2024: Comprehensive Analysis for Expats"
+  description="In-depth Allianz Care review covering plans, pricing, moratorium underwriting, and real scenarios. Find out if Allianz is right for your expat health insurance needs."
   headline="Allianz Care International Health Insurance Review"
-  subheadline="A detailed look at Allianz Care's plans, pricing, and whether they might be right for your expat needs."
+  subheadline="The 2 million provider network with a game-changing moratorium option for pre-existing conditions. But mixed reviews mean you need the full picture. Here's our honest assessment."
   tocItems={tocItems}
   relatedLinks={relatedLinks}
-  ctaButtonText="Get an Allianz Care Quote"
+  ctaButtonText="Get an Allianz Quote"
   ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/lifestyle/pre-existing-conditions.png"
 >
   <h2 id="overview">Overview</h2>
   <p>
-    Allianz Care is the international health insurance arm of Allianz Partners, part of Allianz SE—one of the world's largest insurance and financial services companies. With an A+ Superior rating from A.M. Best, they bring significant financial backing to the expat insurance market.
+    Allianz Care is the international health insurance arm of Allianz Partners, part of Allianz SE—one of the world's largest insurance and financial services companies with over €150 billion in revenue. With an A+ Superior rating from A.M. Best, they bring significant financial backing to the expat insurance market.
   </p>
   <p>
-    The company offers international health coverage for expats, digital nomads, students, and families living abroad for 12 months or more. They're known for flexible plan options and a massive global provider network.
+    What sets Allianz Care apart is their moratorium underwriting option—a pathway for people with pre-existing conditions to eventually get coverage. Combined with a 2 million+ provider network (the largest in the industry) and deductible options that save up to 60%, Allianz Care offers unique value for the right expat.
   </p>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
@@ -59,46 +129,98 @@ const planRows = [
     <ul class="space-y-2 text-neutral-600">
       <li><strong>Parent Company:</strong> Allianz SE (Munich, Germany)</li>
       <li><strong>Financial Rating:</strong> A+ Superior (A.M. Best)</li>
-      <li><strong>Network Providers:</strong> 2 million+</li>
+      <li><strong>Network Providers:</strong> 2 million+ (largest in industry)</li>
       <li><strong>Countries Covered:</strong> 200+ territories</li>
       <li><strong>Plan Types:</strong> Base, Enhanced, Signature</li>
       <li><strong>Age Limit:</strong> Up to 75 to enroll</li>
+      <li><strong>Underwriting:</strong> Full medical OR moratorium option</li>
+      <li><strong>Deductible Savings:</strong> Up to 60% with €10,000 deductible</li>
     </ul>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>The Moratorium Advantage:</strong> Unlike most insurers who permanently exclude pre-existing conditions, Allianz offers moratorium underwriting. Pre-existing conditions are excluded initially, but after 2 years without claims for that condition, it becomes covered. This is a genuine pathway to full coverage that few competitors offer.
+    </p>
   </div>
 
   <CTABox
     title="Get a Personalized Quote"
-    description="See what Allianz Care would cost for your situation."
+    description="See what Allianz Care would cost for your specific situation."
     buttonText="Get Quote"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
-  <h2 id="plans-and-coverage">Plans and Coverage</h2>
+  <h2 id="quick-assessment">Quick Assessment: Is Allianz Care Right for You?</h2>
+  <p>
+    Before diving into details, here's a quick framework to assess whether Allianz Care fits your needs.
+  </p>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-green-900 mb-3">Allianz is likely a great fit if you:</h3>
+    <ul class="space-y-2 text-green-800">
+      <li>Have pre-existing conditions and want a path to coverage</li>
+      <li>Want access to the largest provider network (2M+)</li>
+      <li>Prefer high-deductible plans with major savings (up to 60%)</li>
+      <li>Live in or are moving to Europe</li>
+      <li>Value financial stability (Allianz SE backing)</li>
+      <li>Want flexible modular coverage options</li>
+      <li>Are under 75 and can enroll</li>
+    </ul>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-3">Consider alternatives if you:</h3>
+    <ul class="space-y-2 text-amber-800">
+      <li>Prioritize customer service ratings (Allianz reviews are mixed)</li>
+      <li>Need certainty about what's covered (moratorium has ambiguity)</li>
+      <li>Live in Germany, Ireland, UAE, or Brazil (not available)</li>
+      <li>Want to cancel mid-year (not allowed after cooling off)</li>
+      <li>Need extensive mental health coverage (BUPA better)</li>
+      <li>Prefer premium service over competitive pricing</li>
+    </ul>
+  </div>
+
+  <h2 id="plans-coverage">Plans and Coverage</h2>
   <p>
     Allianz Care offers three main plan tiers—Base, Enhanced, and Signature—each with increasing coverage limits and benefits. All plans include inpatient care as a foundation, with optional add-ons for outpatient and dental coverage.
   </p>
 
+  <h3>Plan Comparison</h3>
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={planColumns} rows={planRows} />
   </div>
 
-  <h3>Core Coverage (All Plans)</h3>
-  <ul>
-    <li>Hospital stays with private room accommodation</li>
-    <li>Surgical procedures and specialist treatment</li>
-    <li>Cancer treatment (oncology covered up to plan maximum)</li>
-    <li>Medical repatriation</li>
-    <li>Emergency evacuation</li>
-    <li>Health and wellbeing checks</li>
-  </ul>
+  <h3>Base Plan</h3>
+  <p>
+    Essential coverage focused on major medical events. €1.35 million annual limit with inpatient coverage included. Outpatient, dental, and maternity are available as add-ons. Best for healthy individuals who want protection against catastrophic events while managing routine care out-of-pocket.
+  </p>
 
-  <h3>Enhanced and Signature Extras</h3>
-  <ul>
-    <li><strong>Maternity:</strong> Routine pregnancy, childbirth, and complications (12-month waiting period)</li>
-    <li><strong>Bariatric surgery:</strong> Weight loss surgery (24-month waiting period)</li>
-    <li><strong>Fertility treatment:</strong> Up to $9,450 on Signature plan (12-month waiting period)</li>
-  </ul>
+  <h3>Enhanced Plan</h3>
+  <p>
+    Comprehensive coverage suitable for most expats. €2.7 million annual limit with outpatient and maternity included. Mental health covers both inpatient and outpatient. This is the sweet spot for most expats who want full coverage without Signature pricing.
+  </p>
+
+  <h3>Signature Plan</h3>
+  <p>
+    Premium coverage with €5 million annual limit. Includes everything in Enhanced plus dental, vision, and fertility treatment (up to €9,450 with 12-month waiting period). Bariatric surgery available with 24-month waiting period. For those who want maximum coverage.
+  </p>
+
+  <h3>Moratorium vs Full Medical Underwriting</h3>
+  <p>
+    This is Allianz Care's most important feature. You can choose between two underwriting approaches:
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={moratoriumColumns} rows={moratoriumRows} />
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>How Moratorium Works:</strong> Pre-existing conditions (anything you've had symptoms of, treatment for, or advice about in the 5 years before enrollment) are excluded initially. After 2 consecutive years without related treatment, symptoms, or advice, the condition becomes covered. It's a genuine pathway to full coverage—rare in international insurance.
+    </p>
+  </div>
 
   <h3>Optional Add-Ons</h3>
   <ul>
@@ -107,47 +229,75 @@ const planRows = [
   </ul>
 
   <h3>Geographic Coverage Options</h3>
-  <p>
-    Choose your coverage area based on where you'll be living:
-  </p>
   <ul>
-    <li>Worldwide (including USA)</li>
-    <li>Worldwide excluding USA</li>
-    <li>Europe</li>
-    <li>Africa</li>
+    <li><strong>Worldwide (including USA):</strong> Full global coverage</li>
+    <li><strong>Worldwide excluding USA:</strong> Significant savings</li>
+    <li><strong>Europe:</strong> Regional coverage at lower rates</li>
+    <li><strong>Africa:</strong> Regional option available</li>
   </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="text-amber-800 text-sm">
+      <strong>Important:</strong> Allianz Care is not available if you reside in Brazil, Dubai/UAE, Germany, Ireland, Iran, North Korea, Russia, or countries under international sanctions. Check availability before applying.
+    </p>
+  </div>
+
+  <h2 id="pricing-analysis">Pricing Analysis</h2>
   <p>
-    <strong>Note:</strong> Allianz Care is not available if you reside in Brazil, Dubai/UAE, Germany, Ireland, Iran, North Korea, Russia, or countries under international sanctions.
+    Allianz Care pricing depends on your age, plan tier, deductible choice, coverage area, and optional add-ons. The combination of high-deductible options (up to 60% savings) makes them competitive for budget-conscious expats.
   </p>
 
-  <h2 id="pricing">Pricing</h2>
+  <h3>Estimated Monthly Premiums (Worldwide Excluding USA)</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+  </div>
+
   <p>
-    Allianz Care pricing depends on your age, plan tier, deductible choice, coverage area, and optional add-ons. Excluding US coverage reduces premiums significantly.
+    <strong>Note:</strong> These are estimates for worldwide coverage excluding USA. Adding US coverage increases premiums by approximately 40-50%.
   </p>
 
-  <h3>Estimated Monthly Premiums (Worldwide excluding USA)</h3>
-  <ul>
-    <li>Age 25: €95-110/month ($100-120)</li>
-    <li>Age 35: €110-140/month ($120-150)</li>
-    <li>Age 45: €135-180/month ($145-195)</li>
-    <li>Age 55: €220-300/month ($240-325)</li>
-    <li>Age 65: €350-400/month ($380-435)</li>
-  </ul>
+  <h3>Deductible Options and Savings</h3>
   <p>
-    <em>Estimates based on Enhanced plan with moderate deductible. Actual prices vary.</em>
+    Allianz offers aggressive deductible discounts—some of the highest in the industry:
   </p>
-
-  <h3>Ways to Reduce Premiums</h3>
   <ul>
-    <li><strong>Higher deductibles:</strong> Up to 60% savings with €10,000 deductible</li>
-    <li><strong>Exclude US coverage:</strong> Significant savings if you won't visit the US</li>
-    <li><strong>Pay annually:</strong> Avoid 3-5% surcharges for monthly/quarterly payments</li>
-    <li><strong>Regional coverage:</strong> Europe-only plans cost less than worldwide</li>
+    <li><strong>€0 deductible:</strong> Base premium (no savings)</li>
+    <li><strong>€150 deductible:</strong> ~5% savings</li>
+    <li><strong>€500 deductible:</strong> ~15% savings</li>
+    <li><strong>€1,000 deductible:</strong> ~25% savings</li>
+    <li><strong>€2,500 deductible:</strong> ~35% savings</li>
+    <li><strong>€5,000 deductible:</strong> ~45% savings</li>
+    <li><strong>€10,000 deductible:</strong> ~60% savings</li>
   </ul>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>Real Math:</strong> A 40-year-old on Enhanced with €0 deductible might pay €220/month (€2,640/year). With €5,000 deductible: ~€120/month (€1,440/year). Annual savings: €1,200. If you don't hit your deductible, that's real money back in your pocket.
+    </p>
+  </div>
 
   <h3>Payment Options</h3>
+  <ul>
+    <li><strong>Annual:</strong> No surcharge (best value)</li>
+    <li><strong>Half-yearly:</strong> 3% surcharge</li>
+    <li><strong>Quarterly:</strong> 4% surcharge</li>
+    <li><strong>Monthly:</strong> 5% surcharge (requires direct debit)</li>
+  </ul>
+
+  <h3>5-Year Cost Projection</h3>
   <p>
-    Pay annually (0% surcharge), half-yearly (3%), quarterly (4%), or monthly (5%). Bank transfer and debit card accepted; monthly payments require direct debit.
+    For a 40-year-old on Enhanced with €2,500 deductible, paying annually:
+  </p>
+  <ul>
+    <li><strong>Year 1:</strong> ~€2,040 (€170/month equivalent)</li>
+    <li><strong>Year 2:</strong> ~€2,140 (5% increase)</li>
+    <li><strong>Year 3:</strong> ~€2,250 (age + inflation)</li>
+    <li><strong>Year 4:</strong> ~€2,360</li>
+    <li><strong>Year 5:</strong> ~€2,480</li>
+    <li><strong>5-Year Total:</strong> ~€11,270</li>
+  </ul>
+  <p>
+    Compare to BUPA Premier at ~€16,000+ over 5 years—Allianz saves roughly €4,700.
   </p>
 
   <CTABox
@@ -157,134 +307,271 @@ const planRows = [
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="pros-and-cons">Pros and Cons</h2>
+  <h2 id="claims-experience">Claims Experience</h2>
+  <p>
+    Allianz Care claims they process 74% of claims within 24 hours and most within 48 hours. However, customer reviews are mixed—some praise quick processing while others report frustrations.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Direct Billing Network</h3>
+  <p>
+    With 2 million+ providers, Allianz has the largest direct billing network in international health insurance:
+  </p>
+  <ul>
+    <li><strong>Process:</strong> Contact Allianz before admission to arrange direct billing</li>
+    <li><strong>Coverage:</strong> Major hospitals worldwide</li>
+    <li><strong>Benefit:</strong> No out-of-pocket for covered services at network facilities</li>
+    <li><strong>Limitation:</strong> Outpatient care often requires reimbursement</li>
+  </ul>
+
+  <h3>Claims Processing</h3>
+  <ul>
+    <li><strong>Online:</strong> MyHealth portal for submission and tracking</li>
+    <li><strong>Mobile App:</strong> Photo upload and real-time status</li>
+    <li><strong>Turnaround:</strong> 24-48 hours (company claim); varies in practice</li>
+    <li><strong>Payment:</strong> Bank transfer in your preferred currency</li>
+  </ul>
+
+  <h3>Pre-authorization Requirements</h3>
+  <p>
+    Pre-authorization is required for:
+  </p>
+  <ul>
+    <li>All planned/elective hospitalizations</li>
+    <li>Advanced imaging (MRI, CT scans)</li>
+    <li>Surgical procedures</li>
+    <li>Cancer treatments</li>
+    <li>Mental health inpatient stays</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="text-amber-800 text-sm">
+      <strong>Reviews Note:</strong> While Allianz claims fast processing, customer reviews are mixed. Common complaints include difficulty getting claims approved for certain conditions and strict interpretation of pre-existing condition exclusions. Document everything and understand your coverage before you need to use it.
+    </p>
+  </div>
+
+  <h2 id="customer-service">Customer Service</h2>
+  <p>
+    Allianz Care provides 24/7 emergency assistance and customer support with several value-added services.
+  </p>
+
+  <h3>Support Channels</h3>
+  <ul>
+    <li><strong>Phone:</strong> 24/7 emergency assistance line</li>
+    <li><strong>Email:</strong> Customer service inquiries</li>
+    <li><strong>MyHealth Portal:</strong> Claims, documents, policy management</li>
+    <li><strong>Mobile App:</strong> Full functionality on the go</li>
+  </ul>
+
+  <h3>Value-Added Services</h3>
+  <ul>
+    <li><strong>MediLine Medical Advice Service:</strong> Speak with medical professionals for health advice</li>
+    <li><strong>Telemedicine Hub:</strong> Remote consultations with doctors</li>
+    <li><strong>Expat Assistance Program:</strong> Counseling, legal referrals, financial guidance</li>
+    <li><strong>Second Medical Opinion:</strong> Expert review for serious diagnoses</li>
+  </ul>
+
+  <h3>Customer Reviews</h3>
+  <p>
+    Allianz Care customer reviews are mixed compared to competitors like IMG (4.6/5) or Cigna. Common themes:
+  </p>
+  <ul>
+    <li><strong>Positive:</strong> Large network, coverage options, financial stability</li>
+    <li><strong>Negative:</strong> Claims disputes, strict pre-existing interpretations, inconsistent service</li>
+  </ul>
+  <p>
+    This doesn't mean Allianz is bad—many customers have positive experiences. But set realistic expectations and document everything.
+  </p>
+
+  <h2 id="pros-cons">Pros and Cons</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-green-50 border border-green-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-green-900 mb-3">Pros</h3>
       <ul class="space-y-2 text-green-800">
-        <li>Massive provider network (2M+ worldwide)</li>
-        <li>Strong financial backing (Allianz SE)</li>
-        <li>Flexible deductible options (up to 60% savings)</li>
-        <li>Excellent oncology coverage</li>
-        <li>24/7 emergency assistance included</li>
-        <li>Telemedicine Hub for remote consultations</li>
-        <li>Expat Assistance Program (counseling, legal referrals)</li>
-        <li>Direct billing at network hospitals</li>
-        <li>No waiting periods for core coverage</li>
+        <li>Largest network (2 million+ providers)</li>
+        <li>Moratorium underwriting for pre-existing conditions</li>
+        <li>Up to 60% savings with high deductibles</li>
+        <li>Strong financial backing (Allianz SE, A+ rating)</li>
+        <li>Flexible modular plan design</li>
+        <li>Telemedicine and medical advice included</li>
+        <li>Expat Assistance Program (counseling, legal)</li>
         <li>Enroll up to age 75</li>
+        <li>24/7 emergency assistance</li>
+        <li>No waiting periods for core coverage</li>
       </ul>
     </div>
     <div class="bg-red-50 border border-red-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-red-900 mb-3">Cons</h3>
       <ul class="space-y-2 text-red-800">
         <li>Mixed customer reviews on claims handling</li>
-        <li>Pre-existing conditions require full underwriting</li>
+        <li>Strict interpretation of pre-existing exclusions</li>
         <li>12-month maternity waiting period</li>
         <li>Can't cancel mid-year (after 30-day cooling off)</li>
         <li>Not available in several countries (Germany, Ireland, UAE, Brazil)</li>
         <li>Monthly payments have 5% surcharge</li>
-        <li>Some reports of slow claims processing</li>
+        <li>Moratorium creates uncertainty until claim time</li>
+        <li>Mental health coverage limited vs BUPA</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="claims-and-service">Claims and Service</h2>
-
-  <h3>Filing Claims</h3>
+  <h2 id="scenarios">Real-World Scenarios</h2>
   <p>
-    Allianz Care processes claims through their online portal and mobile app. According to the company, 74% of claims are processed within 24 hours, and most within 48 hours.
-  </p>
-  <ul>
-    <li>Online claims submission via MyHealth portal</li>
-    <li>Mobile app for claims and ID cards</li>
-    <li>Direct settlement with network hospitals for inpatient care</li>
-    <li>Reimbursement for out-of-network care</li>
-  </ul>
-
-  <h3>Customer Service</h3>
-  <p>
-    Allianz Care provides 24/7 emergency assistance and customer support. They also offer:
-  </p>
-  <ul>
-    <li>MediLine Medical Advice Service (speak with medical professionals)</li>
-    <li>Telemedicine Hub for remote consultations</li>
-    <li>Expat Assistance Program (counseling, legal and financial referrals)</li>
-  </ul>
-
-  <h3>Customer Reviews</h3>
-  <p>
-    Customer experiences vary. While some praise the coverage and provider network, others report frustrations with claims handling and customer service responsiveness. Common complaints include:
-  </p>
-  <ul>
-    <li>Difficulty getting claims approved for certain conditions</li>
-    <li>Strict interpretation of pre-existing condition exclusions</li>
-    <li>Inconsistent service quality</li>
-  </ul>
-  <p>
-    As with any insurer, document everything and understand your coverage before you need to use it.
+    Here's how Allianz Care performs in common expat situations:
   </p>
 
-  <h3>Pre-Existing Conditions</h3>
-  <p>
-    Allianz Care uses full medical underwriting. When you apply, you'll disclose your health history and they'll decide what to cover. Pre-existing conditions may be:
-  </p>
-  <ul>
-    <li>Covered with limitations</li>
-    <li>Excluded temporarily</li>
-    <li>Excluded permanently</li>
-    <li>Subject to premium loading</li>
-  </ul>
-  <p>
-    Be thorough and honest on your application—undisclosed conditions can result in claim denials.
-  </p>
+  <div class="space-y-6 my-8">
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 1: Pre-existing Hypertension via Moratorium</h3>
+      <p class="text-neutral-600 mb-3">55-year-old with controlled hypertension (on medication for 8 years) applies for Enhanced plan using moratorium underwriting.</p>
+      <p class="text-green-700 font-medium">Outcome: Application approved instantly without health questionnaire. Hypertension excluded initially. After 2 years without blood pressure-related claims, treatment, or advice, hypertension becomes covered. Member manages condition carefully for 2 years, then gets full coverage. Other conditions covered from day one.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 2: Moratorium Backfires</h3>
+      <p class="text-neutral-600 mb-3">40-year-old with history of back pain uses moratorium. At month 18, has severe episode requiring surgery.</p>
+      <p class="text-red-700 font-medium">Outcome: Claim denied—back issues are still in moratorium period. Member pays €15,000 for surgery out-of-pocket. The 2-year clock resets. With full medical underwriting, they would have known upfront if back issues were excluded or covered with limitations.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 3: High-Deductible Strategy Works</h3>
+      <p class="text-neutral-600 mb-3">35-year-old healthy expat chooses Enhanced with €5,000 deductible, saving 45% on premiums (~€1,200/year).</p>
+      <p class="text-green-700 font-medium">Outcome: Over 3 years, member has no major claims. Total savings: €3,600. In year 4, needs €8,000 surgery. Pays €5,000 deductible, Allianz covers €3,000. Net position: still €1,600 ahead vs €0 deductible plan. Strategy works for healthy individuals.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 4: Claims Dispute</h3>
+      <p class="text-neutral-600 mb-3">Member submits €4,500 claim for diagnostic tests. Allianz partially denies, claiming some tests weren't medically necessary.</p>
+      <p class="text-amber-700 font-medium">Outcome: Member appeals with doctor's letter explaining necessity. After 6 weeks, Allianz approves additional €2,000 but maintains €1,500 denial. Member frustrated but receives €3,000 of €4,500 claim. Documentation and persistence matter.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 5: Network Size Advantage</h3>
+      <p class="text-neutral-600 mb-3">Expat in rural Portugal needs specialist care. Searches for in-network options.</p>
+      <p class="text-green-700 font-medium">Outcome: With 2 million+ providers, Allianz has more options within 50km than competitors. Member finds in-network specialist, arranges direct billing, and avoids reimbursement hassle. Large network provides real convenience in less urban areas.</p>
+    </div>
+  </div>
 
   <h2 id="who-its-for">Who It's For</h2>
-  <p>
-    Allianz Care may be a good fit if you:
-  </p>
+
+  <h3>Ideal Allianz Care Members</h3>
   <ul>
-    <li>Want a large, established provider with global reach</li>
-    <li>Prefer flexible deductible options to control costs</li>
-    <li>Need coverage in Europe, Africa, or Asia (non-US)</li>
-    <li>Value included extras like telemedicine and expat assistance</li>
-    <li>Are under 75 and in reasonably good health</li>
-  </ul>
-  <p>
-    It may not be ideal if you:
-  </p>
-  <ul>
-    <li>Live in Germany, Ireland, UAE, or Brazil (not available)</li>
-    <li>Have significant pre-existing conditions</li>
-    <li>Need maximum flexibility to cancel mid-year</li>
-    <li>Prioritize customer service ratings above all else</li>
+    <li><strong>Pre-existing conditions:</strong> Moratorium offers genuine pathway to coverage</li>
+    <li><strong>Budget-conscious with high deductible tolerance:</strong> Up to 60% savings</li>
+    <li><strong>European expats:</strong> Strong presence and regulatory familiarity</li>
+    <li><strong>Those wanting largest network:</strong> 2 million+ providers worldwide</li>
+    <li><strong>Modular coverage seekers:</strong> Customize exactly what you need</li>
+    <li><strong>Under 75:</strong> Enrollment age limit is competitive</li>
   </ul>
 
-  <h2 id="alternatives">Alternatives to Consider</h2>
-  <p>
-    If Allianz Care doesn't seem like the right fit, consider these alternatives:
-  </p>
+  <h3>Better Alternatives Exist If You:</h3>
   <ul>
-    <li><strong>Cigna Global:</strong> Larger provider network, strong customer service reputation. <a href="/providers/cigna-global">Read our review</a></li>
-    <li><strong>BUPA Global:</strong> Premium option with comprehensive benefits and strong service</li>
-    <li><strong>IMG Global:</strong> Budget-friendly with high-deductible options</li>
-    <li><strong>Aetna International:</strong> Good choice for seamless US coverage integration</li>
+    <li><strong>Prioritize customer service:</strong> Cigna and BUPA have better reviews</li>
+    <li><strong>Need mental health parity:</strong> BUPA offers unlimited coverage</li>
+    <li><strong>Want claim certainty:</strong> Full underwriting elsewhere may be clearer</li>
+    <li><strong>Live in excluded countries:</strong> Germany, Ireland, UAE, Brazil</li>
+    <li><strong>Need US coverage integration:</strong> Aetna has better US network</li>
   </ul>
+
+  <h2 id="how-it-compares">How It Compares</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={competitorColumns} rows={competitorRows} />
+  </div>
+
+  <h3>Allianz vs Cigna Global</h3>
   <p>
-    <a href="/compare/cigna-global-vs-allianz-care">See our Cigna vs Allianz comparison</a>
+    Cigna has better customer reviews and faster claims reputation. Allianz has larger network and moratorium option. Choose Allianz for pre-existing conditions or budget; Cigna for service.
+  </p>
+  <p><a href="/compare/cigna-global-vs-allianz-care">See full Allianz vs Cigna comparison →</a></p>
+
+  <h3>Allianz vs BUPA Global</h3>
+  <p>
+    BUPA offers mental health parity and better customer ratings but costs more. Allianz offers moratorium and better pricing. Choose BUPA for mental health; Allianz for pre-existing conditions.
+  </p>
+  <p><a href="/compare/allianz-care-vs-bupa-global">See full Allianz vs BUPA comparison →</a></p>
+
+  <h3>Allianz vs IMG Global</h3>
+  <p>
+    Both are budget-friendly. IMG has better reviews (4.6/5) and the 50% deductible waiver. Allianz has larger network and moratorium. Choose IMG for value/reviews; Allianz for network/pre-existing.
+  </p>
+  <p><a href="/compare/allianz-care-vs-img-global">See full Allianz vs IMG comparison →</a></p>
+
+  <h3>Allianz vs AXA Global</h3>
+  <p>
+    Both are EU-based with similar pricing. AXA has slightly better European presence; Allianz has larger network and moratorium. Similar value propositions—compare specific quotes.
+  </p>
+  <p><a href="/compare/axa-global-vs-allianz-care">See full Allianz vs AXA comparison →</a></p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">How does moratorium underwriting actually work?</h3>
+      <p class="text-neutral-600">With moratorium, you don't complete a health questionnaire. Instead, any condition you've had symptoms, treatment, or advice for in the past 5 years is automatically excluded. After 2 consecutive years without any related treatment, symptoms, or medical advice for that condition, it becomes covered. The catch: you don't know exactly what's excluded until you file a claim.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Should I choose moratorium or full medical underwriting?</h3>
+      <p class="text-neutral-600">Choose moratorium if you have pre-existing conditions and want a path to eventual coverage, or if you want quick approval without health questions. Choose full medical underwriting if you want certainty about what's covered upfront, or if you're healthy and want clean coverage from day one.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Why isn't Allianz available in Germany?</h3>
+      <p class="text-neutral-600">Allianz SE is a German company, and Germany has specific regulations requiring local health insurance for residents. Allianz Care is designed for international expats, not German domestic coverage. German residents need German domestic insurance (like TK, AOK, or private German plans).</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Why are customer reviews mixed?</h3>
+      <p class="text-neutral-600">Most complaints relate to claims disputes, especially around pre-existing condition interpretations and "medical necessity" denials. Allianz is a large insurer with many policies—some experiences are excellent, others frustrating. Document everything and understand your policy before you need to use it.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I cancel my policy mid-year?</h3>
+      <p class="text-neutral-600">No. After the initial 30-day cooling off period, Allianz Care policies run for the full policy year. You can't cancel mid-year unless you have specific qualifying life events. This is standard for annual health insurance but worth knowing before you commit.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">How does the 60% deductible savings work?</h3>
+      <p class="text-neutral-600">Allianz offers deductible options from €0 to €10,000. The €10,000 deductible saves approximately 60% on premiums compared to €0 deductible. This is higher than most competitors. It works well for healthy individuals who rarely hit their deductible—you keep the premium savings.</p>
+    </div>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+  <p>
+    <strong>Allianz Care is the best choice for expats with pre-existing conditions who want a realistic path to coverage.</strong> The moratorium underwriting option is rare and genuinely valuable. Combined with the largest provider network (2M+) and aggressive deductible discounts (up to 60%), Allianz offers unique value.
+  </p>
+  <p>
+    However, mixed customer reviews mean you should go in with realistic expectations. Document everything, understand your policy, and be prepared to advocate for yourself if you have claims disputes. The moratorium also means uncertainty until you actually file a claim.
+  </p>
+  <p>
+    <strong>Bottom line:</strong> For pre-existing conditions or budget-conscious expats wanting the largest network, Allianz is hard to beat. For those prioritizing customer service or mental health coverage, look elsewhere.
   </p>
 
-  <CTABox
-    title="Ready to Compare?"
-    description="See how Allianz Care compares to other options for your needs."
-    buttonText="Compare Plans"
-    buttonHref="/best/expat-health-insurance"
-    variant="highlight"
-  />
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Allianz Care?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Get a personalized quote based on your specific needs and situation.</p>
+      <a href="/best/expat-health-insurance" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get an Allianz Quote →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want to Compare First?</h3>
+      <p class="text-neutral-600 text-sm mb-4">See how Allianz stacks up against alternatives before deciding.</p>
+      <a href="/compare/cigna-global-vs-allianz-care" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Compare Allianz vs Cigna →
+      </a>
+    </div>
+  </div>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change frequently. We are not affiliated with Allianz Care and are not insurance brokers. Verify all information directly with Allianz Care before purchasing. Coverage restrictions and excluded countries may have changed since this review was written.
+      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change. Always verify current information directly with Allianz Care before purchasing. Coverage restrictions and excluded countries may have changed since this review was written. We are not insurance brokers and do not sell insurance.
     </p>
   </div>
 </PageShell>

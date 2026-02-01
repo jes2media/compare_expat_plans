@@ -5,12 +5,17 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
-  { id: 'plans-and-coverage', text: 'Plans and Coverage', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'pros-and-cons', text: 'Pros and Cons', level: 2 },
-  { id: 'claims-and-service', text: 'Claims and Service', level: 2 },
+  { id: 'quick-assessment', text: 'Quick Assessment', level: 2 },
+  { id: 'plans-coverage', text: 'Plans and Coverage', level: 2 },
+  { id: 'pricing-analysis', text: 'Pricing Analysis', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'customer-service', text: 'Customer Service', level: 2 },
+  { id: 'pros-cons', text: 'Pros and Cons', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-its-for', text: 'Who It\'s For', level: 2 },
-  { id: 'alternatives', text: 'Alternatives to Consider', level: 2 },
+  { id: 'how-it-compares', text: 'How It Compares', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
 const relatedLinks = [
@@ -18,84 +23,211 @@ const relatedLinks = [
   { title: 'IMG vs Cigna', href: '/compare/img-global-vs-cigna-global' },
   { title: 'IMG vs Allianz', href: '/compare/allianz-care-vs-img-global' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
-  { title: 'IMG in Mexico', href: '/countries/mexico/insurance/img-global' },
-  { title: 'IMG in Costa Rica', href: '/countries/costa-rica/insurance/img-global' },
+  { title: 'Best Budget Insurance', href: '/best/budget-expat-insurance' },
 ];
 
 const planColumns = [
-  { key: 'plan', header: 'Plan' },
-  { key: 'limit', header: 'Lifetime Max' },
-  { key: 'outpatient', header: 'Outpatient' },
-  { key: 'bestFor', header: 'Best For' },
+  { key: 'feature', header: 'Feature' },
+  { key: 'bronze', header: 'Bronze' },
+  { key: 'silver', header: 'Silver' },
+  { key: 'gold', header: 'Gold' },
+  { key: 'platinum', header: 'Platinum' },
 ];
 
 const planRows = [
-  { plan: 'Bronze', limit: '$1 million', outpatient: 'Limited', bestFor: 'Basic coverage' },
-  { plan: 'Silver', limit: '$5 million', outpatient: 'Included', bestFor: 'Good value' },
-  { plan: 'Gold', limit: '$5 million', outpatient: 'Enhanced', bestFor: 'Comprehensive' },
-  { plan: 'Platinum', limit: '$8 million', outpatient: 'Premium', bestFor: 'Maximum coverage' },
+  { feature: 'Lifetime Maximum', bronze: '$1M', silver: '$5M', gold: '$5M', platinum: '$8M' },
+  { feature: 'Inpatient Hospital', bronze: 'Full coverage', silver: 'Full coverage', gold: 'Full coverage', platinum: 'Full coverage' },
+  { feature: 'Outpatient Care', bronze: 'Limited', silver: 'Included', gold: 'Enhanced', platinum: 'Premium' },
+  { feature: 'Mental Health', bronze: 'Inpatient only', silver: 'In + Outpatient', gold: 'Enhanced', platinum: 'Comprehensive' },
+  { feature: 'Maternity', bronze: 'Optional add-on', silver: 'Optional add-on', gold: 'Optional add-on', platinum: 'Optional add-on' },
+  { feature: 'Dental', bronze: 'Optional add-on', silver: 'Optional add-on', gold: 'Optional add-on', platinum: 'Optional add-on' },
+  { feature: 'Vision', bronze: 'Optional add-on', silver: 'Optional add-on', gold: 'Optional add-on', platinum: 'Optional add-on' },
+  { feature: 'Medical Evacuation', bronze: 'Included', silver: 'Included', gold: 'Included', platinum: 'Included' },
+  { feature: 'Deductible Waiver', bronze: '50% outside US', silver: '50% outside US', gold: '50% outside US', platinum: '50% outside US' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'silver', header: 'Silver' },
+  { key: 'gold', header: 'Gold' },
+  { key: 'platinum', header: 'Platinum' },
+];
+
+const pricingRows = [
+  { profile: 'Age 30, $250 deductible', silver: '$180-220/mo', gold: '$280-340/mo', platinum: '$420-500/mo' },
+  { profile: 'Age 40, $250 deductible', silver: '$235-285/mo', gold: '$375-450/mo', platinum: '$560-670/mo' },
+  { profile: 'Age 50, $1,000 deductible', silver: '$280-340/mo', gold: '$420-500/mo', platinum: '$620-740/mo' },
+  { profile: 'Age 60, $2,500 deductible', silver: '$380-460/mo', gold: '$540-650/mo', platinum: '$780-940/mo' },
+  { profile: 'Family of 4 (adults 35/35)', silver: '$580-700/mo', gold: '$880-1,060/mo', platinum: '$1,280-1,540/mo' },
+];
+
+const deductibleColumns = [
+  { key: 'deductible', header: 'Deductible' },
+  { key: 'usDeductible', header: 'In US' },
+  { key: 'outsideUs', header: 'Outside US (50% waiver)' },
+  { key: 'savings', header: 'Approx. Premium Savings' },
+];
+
+const deductibleRows = [
+  { deductible: '$250', usDeductible: '$250', outsideUs: '$125', savings: 'Base price' },
+  { deductible: '$500', usDeductible: '$500', outsideUs: '$250', savings: '~10% savings' },
+  { deductible: '$1,000', usDeductible: '$1,000', outsideUs: '$500', savings: '~15% savings' },
+  { deductible: '$2,500', usDeductible: '$2,500', outsideUs: '$1,250', savings: '~25% savings' },
+  { deductible: '$5,000', usDeductible: '$5,000', outsideUs: '$2,500', savings: '~30% savings' },
+  { deductible: '$10,000', usDeductible: '$10,000', outsideUs: '$5,000', savings: '~40% savings' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'details', header: 'IMG Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Submission Methods', details: 'Online portal, mobile app, email' },
+  { aspect: 'Processing Time', details: '2-4 weeks (routine), longer for complex claims' },
+  { aspect: 'Direct Billing', details: 'Available at select hospitals worldwide' },
+  { aspect: 'Pre-authorization', details: 'Required for planned hospitalization' },
+  { aspect: 'Reimbursement', details: 'Bank transfer, check, multiple currencies' },
+  { aspect: 'Appeals Process', details: 'Formal appeals available' },
+];
+
+const competitorColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'competitor', header: 'Key Difference' },
+];
+
+const competitorRows = [
+  { aspect: 'Pricing', img: 'Budget-friendly', competitor: 'Often 20-30% cheaper than Cigna/BUPA' },
+  { aspect: 'Deductible Waiver', img: '50% outside US', competitor: 'Unique feature, reduces out-of-pocket' },
+  { aspect: 'Customer Reviews', img: '4.6/5 Trustpilot (19K+)', competitor: 'Higher than most competitors' },
+  { aspect: 'Network Size', img: 'Direct billing partnerships', competitor: 'Smaller than Cigna/BUPA networks' },
+  { aspect: 'Claims Speed', img: '2-4 weeks typical', competitor: 'Slower than premium providers' },
+  { aspect: 'Age 75+ Coverage', img: 'Global Senior Plan available', competitor: 'Transition option without new underwriting' },
 ];
 ---
 
 <PageShell
-  title="IMG Global Review"
-  description="In-depth review of IMG Global Medical international health insurance. Coverage options, pricing, pros and cons for expats and digital nomads."
+  title="IMG Global Review 2024: Comprehensive Analysis for Expats"
+  description="In-depth IMG Global review covering plans, pricing, the 50% deductible waiver, and real scenarios. Find out if IMG is right for budget-conscious expats."
   headline="IMG Global Medical Insurance Review"
-  subheadline="A detailed look at IMG's plans, pricing, and why they're popular with budget-conscious expats."
+  subheadline="The budget-friendly choice with a killer feature: 50% deductible waiver outside the US. But is the price-quality balance right for you? Here's our honest assessment."
   tocItems={tocItems}
   relatedLinks={relatedLinks}
-  ctaButtonText="Get an IMG Global Quote"
+  ctaButtonText="Get an IMG Quote"
   ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/lifestyle/pre-existing-conditions.png"
 >
   <h2 id="overview">Overview</h2>
   <p>
-    IMG (International Medical Group) has been providing international health insurance for over 30 years. They've built a reputation as one of the most affordable options for expats and digital nomads who want solid medical coverage without premium pricing.
+    IMG (International Medical Group) has been providing international health insurance for over 30 years, building a reputation as one of the most affordable options for expats and digital nomads who want solid medical coverage without premium pricing.
   </p>
   <p>
-    With their parent company SiriusPoint rated A- (Excellent) by A.M. Best, and BBB accreditation since 2005, IMG offers financial stability alongside competitive pricing. Their 4.6/5 Trustpilot rating from over 19,000 reviews reflects strong customer satisfaction.
+    With their parent company SiriusPoint rated A- (Excellent) by A.M. Best, and BBB accreditation since 2005, IMG offers financial stability alongside competitive pricing. Their 4.6/5 Trustpilot rating from over 19,000 reviews reflects strong customer satisfaction—one of the highest ratings in the industry.
   </p>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
     <h3 class="text-lg font-semibold text-neutral-900 mb-3">Quick Facts</h3>
     <ul class="space-y-2 text-neutral-600">
-      <li><strong>Headquarters:</strong> Indianapolis, USA</li>
+      <li><strong>Headquarters:</strong> Indianapolis, Indiana, USA</li>
       <li><strong>Years in Business:</strong> 30+</li>
-      <li><strong>Financial Rating:</strong> A- (Excellent) via SiriusPoint</li>
+      <li><strong>Financial Rating:</strong> A- (Excellent) via SiriusPoint (AM Best)</li>
       <li><strong>Plan Types:</strong> Bronze, Silver, Gold, Platinum</li>
-      <li><strong>Maximum Coverage:</strong> Up to $8 million (Platinum)</li>
-      <li><strong>Age Limit:</strong> Up to 74 to enroll</li>
+      <li><strong>Maximum Coverage:</strong> Up to $8 million lifetime (Platinum)</li>
+      <li><strong>Age Limit:</strong> Up to 74 to enroll (Global Senior Plan at 75+)</li>
       <li><strong>Trustpilot Rating:</strong> 4.6/5 stars (19,000+ reviews)</li>
+      <li><strong>BBB Accreditation:</strong> Since 2005</li>
     </ul>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>The 50% Deductible Waiver:</strong> IMG's standout feature—if you receive treatment outside the US, your deductible is reduced by 50%. A $2,500 deductible becomes $1,250. A $5,000 deductible becomes $2,500. This makes high-deductible plans much more practical for expats living abroad.
+    </p>
   </div>
 
   <CTABox
     title="Get a Personalized Quote"
-    description="See what IMG Global would cost for your situation."
+    description="See what IMG Global would cost for your specific situation."
     buttonText="Get Quote"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
-  <h2 id="plans-and-coverage">Plans and Coverage</h2>
+  <h2 id="quick-assessment">Quick Assessment: Is IMG Global Right for You?</h2>
+  <p>
+    Before diving into details, here's a quick framework to assess whether IMG Global fits your needs.
+  </p>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-green-900 mb-3">IMG is likely a great fit if you:</h3>
+    <ul class="space-y-2 text-green-800">
+      <li>Want solid coverage at affordable prices</li>
+      <li>Live outside the US and want the 50% deductible waiver</li>
+      <li>Prefer flexible deductible options (7 choices)</li>
+      <li>Are a digital nomad or long-term expat</li>
+      <li>Want an easy quote and enrollment process</li>
+      <li>Value high customer ratings (4.6/5 Trustpilot)</li>
+      <li>Need coverage that transitions to 75+ (Global Senior Plan)</li>
+    </ul>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-3">Consider alternatives if you:</h3>
+    <ul class="space-y-2 text-amber-800">
+      <li>Need fast claims reimbursement (IMG can be slow)</li>
+      <li>Want extensive direct billing network (Cigna/BUPA better)</li>
+      <li>Prefer premium customer service over budget pricing</li>
+      <li>Do extreme or adventure sports regularly</li>
+      <li>Want trip cancellation/interruption coverage (not included)</li>
+      <li>Need to lower your deductible at renewal (not allowed)</li>
+    </ul>
+  </div>
+
+  <h2 id="plans-coverage">Plans and Coverage</h2>
   <p>
     IMG Global Medical Insurance offers four plan tiers with increasing coverage limits. All plans are fully customizable with multiple deductible options and optional add-ons.
   </p>
 
+  <h3>Plan Comparison</h3>
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={planColumns} rows={planRows} />
   </div>
 
-  <h3>Core Coverage (All Plans)</h3>
-  <ul>
-    <li>Inpatient hospital care</li>
-    <li>Emergency medical treatment</li>
-    <li>Surgery and anesthesia</li>
-    <li>Prescription medications</li>
-    <li>Cancer treatment</li>
-    <li>Medical evacuation</li>
-    <li>Repatriation of remains</li>
-    <li>24/7 assistance services</li>
-  </ul>
+  <h3>Bronze</h3>
+  <p>
+    Basic coverage for budget-conscious expats. $1 million lifetime maximum with limited outpatient benefits. Best for healthy individuals who want protection against major medical events while handling routine care out-of-pocket.
+  </p>
+
+  <h3>Silver</h3>
+  <p>
+    The sweet spot for most expats. $5 million lifetime maximum with full outpatient coverage included. Good mental health benefits and all the essentials without overpaying. This is IMG's most popular plan.
+  </p>
+
+  <h3>Gold</h3>
+  <p>
+    Enhanced coverage with better outpatient benefits and mental health coverage. Same $5 million lifetime maximum as Silver but with higher per-condition limits and additional benefits.
+  </p>
+
+  <h3>Platinum</h3>
+  <p>
+    Maximum coverage at $8 million lifetime with premium outpatient benefits and comprehensive mental health. Best for those who want the highest coverage without paying Cigna/BUPA prices.
+  </p>
+
+  <h3>The 50% Deductible Waiver Explained</h3>
+  <p>
+    This is IMG's killer feature. When you receive treatment outside the United States, your deductible is automatically reduced by 50%.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={deductibleColumns} rows={deductibleRows} />
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>Real Math:</strong> With a $5,000 deductible (saving ~30% on premiums), your actual out-of-pocket for treatment in Spain is only $2,500. This makes high-deductible plans dramatically more practical for expats—you get the premium savings without the full deductible risk.
+    </p>
+  </div>
 
   <h3>Coverage Areas</h3>
   <p>Choose your geographic coverage:</p>
@@ -105,50 +237,33 @@ const planRows = [
     <li><strong>Europe:</strong> Regional coverage at lower rates</li>
   </ul>
 
-  <h3>Deductible Options</h3>
-  <p>
-    IMG offers seven deductible choices: $250, $500, $1,000, $2,500, $5,000, and $10,000. Higher deductibles significantly reduce premiums.
-  </p>
-  <p>
-    <strong>Bonus:</strong> 50% of your deductible is waived for treatment outside the US. So a $2,500 deductible becomes just $1,250 out-of-pocket for care abroad.
-  </p>
-
   <h3>Optional Add-Ons</h3>
   <ul>
     <li><strong>Dental:</strong> Routine and major dental coverage</li>
     <li><strong>Vision:</strong> Eye exams and glasses/contacts</li>
-    <li><strong>Maternity:</strong> Pregnancy and childbirth (waiting period applies)</li>
+    <li><strong>Maternity:</strong> Pregnancy and childbirth (10-month waiting period)</li>
     <li><strong>Terrorism coverage:</strong> Protection in high-risk areas</li>
   </ul>
 
   <h3>Unique Features</h3>
   <ul>
     <li><strong>Travel Intelligence:</strong> Push notifications with location-specific alerts for crime, terrorism, severe weather, and other threats</li>
-    <li><strong>Direct billing:</strong> IMG identifies providers who bill directly, reducing out-of-pocket costs</li>
-    <li><strong>Multilingual support:</strong> Staff speaks 18 languages</li>
     <li><strong>Global Senior Plan:</strong> Automatic transition option at age 75 with no additional underwriting</li>
+    <li><strong>Multilingual support:</strong> Staff speaks 18 languages</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h2 id="pricing-analysis">Pricing Analysis</h2>
   <p>
     IMG is known for competitive pricing, especially compared to premium providers like BUPA and Cigna. The combination of multiple deductible options and coverage area choices lets you dial in the right price.
   </p>
 
-  <h3>Sample Annual Premiums (Age 40, $250 deductible, Worldwide ex-US)</h3>
-  <ul>
-    <li>Silver: ~$2,800/year ($235/month)</li>
-    <li>Gold: ~$4,500/year ($375/month)</li>
-    <li>Platinum: ~$7,500/year ($625/month)</li>
-  </ul>
-
-  <h3>Sample Annual Premiums (Age 32, $1,000 deductible, Worldwide ex-US)</h3>
-  <ul>
-    <li>Silver: ~$1,500/year ($125/month)</li>
-    <li>Gold: ~$2,400/year ($200/month)</li>
-  </ul>
+  <h3>Estimated Monthly Premiums (Worldwide Excluding US)</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+  </div>
 
   <p>
-    <em>Prices vary by age, coverage area, and exact plan configuration. These are estimates for illustration.</em>
+    <strong>Note:</strong> These are estimates for worldwide coverage excluding USA. Adding US coverage increases premiums by 30-50% depending on plan tier.
   </p>
 
   <h3>Payment Options</h3>
@@ -159,16 +274,24 @@ const planRows = [
     <li><strong>Monthly:</strong> 20% surcharge</li>
   </ul>
   <p>
-    Pay annually if possible—the monthly surcharge adds up to 20% more over the year.
+    Pay annually if possible—the monthly surcharge adds up to 20% more over the year. That's $480 extra on a $2,400/year plan.
   </p>
 
-  <h3>Ways to Save</h3>
+  <h3>5-Year Cost Projection</h3>
+  <p>
+    For a 40-year-old on Silver with $1,000 deductible, paying annually:
+  </p>
   <ul>
-    <li><strong>Higher deductible:</strong> $5,000+ deductibles cut premiums substantially</li>
-    <li><strong>Exclude US/Canada:</strong> Removing North America saves hundreds annually</li>
-    <li><strong>Pay annually:</strong> Avoid 10-20% payment surcharges</li>
-    <li><strong>Regional coverage:</strong> Europe-only costs less than worldwide</li>
+    <li><strong>Year 1:</strong> ~$3,000 ($250/month equivalent)</li>
+    <li><strong>Year 2:</strong> ~$3,150 (5% increase)</li>
+    <li><strong>Year 3:</strong> ~$3,310 (age + inflation)</li>
+    <li><strong>Year 4:</strong> ~$3,475</li>
+    <li><strong>Year 5:</strong> ~$3,650</li>
+    <li><strong>5-Year Total:</strong> ~$16,585</li>
   </ul>
+  <p>
+    Compare this to Cigna Gold at ~$22,000+ over 5 years for similar coverage—IMG saves you roughly $5,400.
+  </p>
 
   <CTABox
     title="See Your Actual Price"
@@ -177,22 +300,105 @@ const planRows = [
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="pros-and-cons">Pros and Cons</h2>
+  <h2 id="claims-experience">Claims Experience</h2>
+  <p>
+    IMG's claims process works, but expect patience. While their overall customer satisfaction is high (4.6/5 Trustpilot), claims processing is the most common complaint.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Direct Billing Network</h3>
+  <p>
+    IMG maintains direct billing relationships with hospitals worldwide, though the network is smaller than Cigna or BUPA:
+  </p>
+  <ul>
+    <li><strong>Process:</strong> Contact IMG before admission to arrange direct billing</li>
+    <li><strong>Availability:</strong> Major hospitals in most countries</li>
+    <li><strong>Limitation:</strong> Smaller clinics often require reimbursement</li>
+    <li><strong>Recommendation:</strong> Always call IMG first for planned hospitalization</li>
+  </ul>
+
+  <h3>Claims Processing Timeline</h3>
+  <ul>
+    <li><strong>Simple claims:</strong> 2-3 weeks</li>
+    <li><strong>Complex claims:</strong> 4-8 weeks</li>
+    <li><strong>Disputed claims:</strong> Can take months</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="text-amber-800 text-sm">
+      <strong>Pro Tip:</strong> Document everything. IMG reviewers consistently mention that persistence pays off—follow up regularly on pending claims and keep copies of all submissions. Claims that are properly documented tend to process faster.
+    </p>
+  </div>
+
+  <h3>Pre-authorization Requirements</h3>
+  <p>
+    Pre-authorization is required for:
+  </p>
+  <ul>
+    <li>All planned/elective hospitalizations</li>
+    <li>Surgeries and major procedures</li>
+    <li>Advanced imaging (MRI, CT, PET scans)</li>
+    <li>Cancer treatments</li>
+    <li>Mental health inpatient stays</li>
+  </ul>
+  <p>
+    Emergency care does not require pre-authorization, but notify IMG within 48 hours.
+  </p>
+
+  <h2 id="customer-service">Customer Service</h2>
+  <p>
+    IMG provides 24/7/365 assistance with in-house medical staff. Support quality is good for basic inquiries but can be slower for complex issues.
+  </p>
+
+  <h3>Support Channels</h3>
+  <ul>
+    <li><strong>Phone:</strong> 24/7 hotline with multilingual support (18 languages)</li>
+    <li><strong>Email:</strong> Typically 24-48 hour response</li>
+    <li><strong>Online Portal:</strong> Claims, ID cards, benefits information</li>
+    <li><strong>Mobile App:</strong> Claims submission and policy management</li>
+    <li><strong>Live Chat:</strong> Available during business hours (mixed reviews)</li>
+  </ul>
+
+  <h3>Medical Support Team</h3>
+  <ul>
+    <li>In-house nurses, doctors, and case managers</li>
+    <li>Emergency evacuation coordination</li>
+    <li>Provider location assistance</li>
+    <li>Medical translation services</li>
+  </ul>
+
+  <h3>Travel Intelligence</h3>
+  <p>
+    IMG's unique Travel Intelligence feature provides push notifications with location-specific alerts:
+  </p>
+  <ul>
+    <li>Crime and security alerts</li>
+    <li>Terrorism warnings</li>
+    <li>Natural disaster updates</li>
+    <li>Disease outbreak information</li>
+    <li>Political instability notices</li>
+  </ul>
+
+  <h2 id="pros-cons">Pros and Cons</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-green-50 border border-green-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-green-900 mb-3">Pros</h3>
       <ul class="space-y-2 text-green-800">
         <li>Excellent customer reviews (4.6/5, 19K+ reviews)</li>
+        <li>50% deductible waiver outside US (unique)</li>
         <li>Very competitive pricing</li>
         <li>Flexible deductible options (7 choices)</li>
-        <li>50% deductible waived outside US</li>
         <li>Up to $8 million coverage (Platinum)</li>
         <li>Easy-to-use website and quote process</li>
-        <li>Direct billing with many providers</li>
         <li>Travel Intelligence safety alerts</li>
         <li>Multilingual support (18 languages)</li>
         <li>Path to coverage at 75+ (Global Senior Plan)</li>
+        <li>BBB accredited since 2005</li>
+        <li>A- financial rating (SiriusPoint)</li>
       </ul>
     </div>
     <div class="bg-red-50 border border-red-200 rounded-lg p-6">
@@ -203,86 +409,167 @@ const planRows = [
         <li>No trip interruption/cancellation coverage</li>
         <li>Monthly payments add 20% to cost</li>
         <li>Can't lower deductible at renewal</li>
+        <li>Smaller direct billing network than competitors</li>
+        <li>Not ideal for adventure/extreme sports</li>
         <li>Account/renewal process frustrations reported</li>
-        <li>Not ideal for adventure sports</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="claims-and-service">Claims and Service</h2>
-
-  <h3>Filing Claims</h3>
+  <h2 id="scenarios">Real-World Scenarios</h2>
   <p>
-    IMG offers online claims submission through their website and mobile app. They also provide direct billing arrangements with providers worldwide to reduce your out-of-pocket expenses.
-  </p>
-  <p>
-    <strong>Important note:</strong> While IMG's overall customer satisfaction is high, some reviewers mention slow claims processing. Expect several weeks for reimbursement, and potentially longer for complex claims. Document everything and follow up regularly.
+    Here's how IMG Global performs in common expat situations:
   </p>
 
-  <h3>Customer Service</h3>
-  <p>
-    IMG provides 24/7/365 assistance with:
-  </p>
-  <ul>
-    <li>In-house nurses, doctors, and case managers</li>
-    <li>Multilingual support (18 languages)</li>
-    <li>Emergency evacuation coordination</li>
-    <li>Provider location assistance</li>
-  </ul>
-  <p>
-    Customer reviews consistently praise the website's ease of use for quotes and policy management, though some mention challenges with the live chat support.
-  </p>
+  <div class="space-y-6 my-8">
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 1: Budget Expat Needs Surgery in Thailand</h3>
+      <p class="text-neutral-600 mb-3">45-year-old on Silver plan with $2,500 deductible needs gallbladder surgery in Bangkok. Estimated cost: $8,000.</p>
+      <p class="text-green-700 font-medium">Outcome: 50% deductible waiver kicks in—actual deductible is $1,250. IMG covers remaining $6,750 after pre-authorization. Total out-of-pocket: $1,250. With Cigna (no waiver), would pay full $2,500 deductible.</p>
+    </div>
 
-  <h3>Pre-Existing Conditions</h3>
-  <p>
-    IMG uses standard underwriting for pre-existing conditions. Coverage depends on your health history—conditions may be covered, excluded, or subject to waiting periods. Be thorough and honest on your application.
-  </p>
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 2: Claims Processing Frustration</h3>
+      <p class="text-neutral-600 mb-3">Digital nomad submits $3,200 claim for emergency room visit in Portugal. Provides all documentation.</p>
+      <p class="text-amber-700 font-medium">Outcome: Initial processing takes 3 weeks. IMG requests additional documentation. After follow-up emails, claim approved at week 5. Member receives reimbursement at week 6. Patience required, but claim paid in full.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 3: Pre-existing Condition Application</h3>
+      <p class="text-neutral-600 mb-3">50-year-old with well-controlled asthma applies for Gold plan.</p>
+      <p class="text-amber-700 font-medium">Outcome: IMG accepts application with asthma excluded for 24 months. Other coverage applies immediately. After 2 claim-free years for respiratory issues, asthma may become covered. Standard underwriting approach—not as favorable as Allianz moratorium.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 4: Transition to Senior Coverage</h3>
+      <p class="text-neutral-600 mb-3">74-year-old IMG member approaching 75th birthday worried about losing coverage.</p>
+      <p class="text-green-700 font-medium">Outcome: IMG offers automatic transition to Global Senior Plan with no new underwriting required. Coverage continues without gap. Premium increases but member maintains insurance without reapplying. Unique benefit not offered by most competitors.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 5: Budget Comparison—IMG vs Cigna</h3>
+      <p class="text-neutral-600 mb-3">35-year-old healthy expat comparing IMG Silver ($200/month) vs Cigna Gold ($340/month) for worldwide excluding US coverage.</p>
+      <p class="text-green-700 font-medium">Outcome: IMG saves $1,680/year with comparable coverage. Over 5 years: ~$8,400 savings. Trade-off is slower claims and smaller direct billing network. For budget-conscious, healthy expat, IMG is the better value.</p>
+    </div>
+  </div>
 
   <h2 id="who-its-for">Who It's For</h2>
-  <p>
-    IMG Global may be a good fit if you:
-  </p>
+
+  <h3>Ideal IMG Global Members</h3>
   <ul>
-    <li>Want solid coverage at affordable prices</li>
-    <li>Prefer flexible deductible options</li>
-    <li>Don't need US/Canada coverage (biggest savings)</li>
-    <li>Are a digital nomad or long-term expat</li>
-    <li>Want an easy quote and enrollment process</li>
-    <li>Value the 50% deductible waiver outside the US</li>
-  </ul>
-  <p>
-    It may not be ideal if you:
-  </p>
-  <ul>
-    <li>Need fast claims reimbursement</li>
-    <li>Want trip cancellation/interruption coverage</li>
-    <li>Do extreme or adventure sports regularly</li>
-    <li>Prefer premium service over budget pricing</li>
-    <li>Need to change your deductible at renewal</li>
+    <li><strong>Budget-conscious expats:</strong> Want solid coverage without premium prices</li>
+    <li><strong>Non-US residents:</strong> The 50% deductible waiver is a game-changer</li>
+    <li><strong>Digital nomads:</strong> Easy enrollment, flexible options, competitive pricing</li>
+    <li><strong>Healthy individuals:</strong> Lower premiums, can handle higher deductibles</li>
+    <li><strong>Long-term planners:</strong> Global Senior Plan provides path to 75+ coverage</li>
+    <li><strong>Patient claims filers:</strong> Willing to wait for reimbursement</li>
   </ul>
 
-  <h2 id="alternatives">Alternatives to Consider</h2>
-  <p>
-    If IMG Global doesn't seem like the right fit, consider these alternatives:
-  </p>
+  <h3>Better Alternatives Exist If You:</h3>
   <ul>
-    <li><strong>Cigna Global:</strong> More premium service and larger network, higher prices. <a href="/providers/cigna-global">Read our review</a></li>
-    <li><strong>Allianz Care:</strong> Similar flexibility, competitive pricing. <a href="/providers/allianz-care">Read our review</a></li>
-    <li><strong>BUPA Global:</strong> Premium coverage with excellent mental health benefits. <a href="/providers/bupa-global">Read our review</a></li>
-    <li><strong>SafetyWing:</strong> Even more budget-friendly, but less comprehensive (travel medical vs health insurance)</li>
+    <li><strong>Need fast claims:</strong> Cigna and BUPA typically process faster</li>
+    <li><strong>Want extensive direct billing:</strong> Cigna's 1.5M+ network is larger</li>
+    <li><strong>Prioritize service over price:</strong> BUPA and Cigna offer premium service</li>
+    <li><strong>Need US coverage integration:</strong> Aetna has better US network</li>
+    <li><strong>Do extreme sports:</strong> IMG's coverage is limited</li>
+    <li><strong>Want mental health parity:</strong> BUPA offers unlimited coverage</li>
   </ul>
 
-  <CTABox
-    title="Ready to Compare?"
-    description="See how IMG Global compares to other options for your needs."
-    buttonText="Compare Plans"
-    buttonHref="/best/expat-health-insurance"
-    variant="highlight"
-  />
+  <h2 id="how-it-compares">How It Compares</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={competitorColumns} rows={competitorRows} />
+  </div>
+
+  <h3>IMG vs Cigna Global</h3>
+  <p>
+    Cigna offers larger network and faster claims but costs 20-40% more. IMG wins on price and the deductible waiver. Choose IMG for budget; Cigna for service.
+  </p>
+  <p><a href="/compare/img-global-vs-cigna-global">See full IMG vs Cigna comparison →</a></p>
+
+  <h3>IMG vs Allianz Care</h3>
+  <p>
+    Both are budget-friendly options. Allianz offers moratorium underwriting (better for pre-existing conditions) and larger network. IMG has better Trustpilot reviews and the deductible waiver.
+  </p>
+  <p><a href="/compare/allianz-care-vs-img-global">See full IMG vs Allianz comparison →</a></p>
+
+  <h3>IMG vs SafetyWing</h3>
+  <p>
+    SafetyWing Nomad Insurance is cheaper but is travel medical, not health insurance. IMG offers comprehensive coverage; SafetyWing offers emergency coverage only.
+  </p>
+  <p><a href="/compare/safetywing-vs-img-global">See full IMG vs SafetyWing comparison →</a></p>
+
+  <h3>IMG vs BUPA Global</h3>
+  <p>
+    BUPA is premium-priced with mental health parity. IMG is budget-priced with good basic mental health. Choose BUPA for mental health priority; IMG for value.
+  </p>
+  <p><a href="/compare/bupa-global-vs-img-global">See full IMG vs BUPA comparison →</a></p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">How does the 50% deductible waiver work?</h3>
+      <p class="text-neutral-600">When you receive medical treatment outside the United States, your chosen deductible is automatically reduced by 50%. A $2,500 deductible becomes $1,250 for care in Mexico, Portugal, Thailand, etc. The waiver applies per policy period, not per claim.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Why are IMG's Trustpilot reviews so high (4.6/5)?</h3>
+      <p class="text-neutral-600">IMG has built a strong reputation for affordable pricing, easy enrollment, and generally good customer service. The 19,000+ reviews reflect satisfied customers who value the price-coverage balance. That said, individual experiences with claims vary.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I lower my deductible at renewal?</h3>
+      <p class="text-neutral-600">No. IMG does not allow you to lower your deductible when renewing your policy. You can raise it (to reduce premiums) but not lower it. Choose your initial deductible carefully.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What happens when I turn 75?</h3>
+      <p class="text-neutral-600">IMG offers automatic transition to the Global Senior Plan with no new underwriting. Your coverage continues without gap. This is a significant benefit—most insurers require new applications at this age, which can be difficult with health conditions.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Why is the free look period only 3 days?</h3>
+      <p class="text-neutral-600">IMG's 3-day free look period is shorter than the industry standard (10-21 days). This means you have less time to cancel for a full refund. Review your policy documents immediately upon receipt.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Does IMG cover adventure sports?</h3>
+      <p class="text-neutral-600">IMG covers amateur sports but excludes professional athletics and many extreme sports. If you regularly do activities like BASE jumping, heli-skiing, or professional racing, coverage may not apply. Check the policy exclusions for your specific activities.</p>
+    </div>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+  <p>
+    <strong>IMG Global is the best choice for budget-conscious expats who want solid coverage without premium prices.</strong> The 50% deductible waiver for care outside the US is a unique feature that makes high-deductible plans genuinely practical. Their 4.6/5 Trustpilot rating reflects real customer satisfaction.
+  </p>
+  <p>
+    However, IMG isn't for everyone. If you need fast claims processing, extensive direct billing, or premium customer service, you'll be happier with Cigna or BUPA despite the higher cost. And the 3-day free look period and inability to lower deductibles at renewal require careful initial planning.
+  </p>
+  <p>
+    <strong>Bottom line:</strong> For value-focused expats living outside the US, IMG offers excellent coverage at competitive prices. The deductible waiver alone can save hundreds per claim.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for IMG Global?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Get a personalized quote based on your specific needs and situation.</p>
+      <a href="/best/expat-health-insurance" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get an IMG Quote →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want to Compare First?</h3>
+      <p class="text-neutral-600 text-sm mb-4">See how IMG stacks up against alternatives before deciding.</p>
+      <a href="/compare/allianz-care-vs-img-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Compare IMG vs Allianz →
+      </a>
+    </div>
+  </div>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change frequently. We are not affiliated with IMG and are not insurance brokers. Verify all information directly with IMG before purchasing.
+      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change. Always verify current information directly with IMG before purchasing. We are not insurance brokers and do not sell insurance.
     </p>
   </div>
 </PageShell>
