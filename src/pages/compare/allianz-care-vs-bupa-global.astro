@@ -5,19 +5,26 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'company-backgrounds', text: 'Company Backgrounds', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'mental-health', text: 'Mental Health Coverage', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'pricing', text: 'Pricing Comparison', level: 2 },
+  { id: 'plan-tiers', text: 'Plan Tiers Explained', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'customer-experience', text: 'Customer Experience', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
+  { id: 'faq', text: 'FAQs', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'Allianz Care Review', href: '/providers/allianz-care' },
   { title: 'BUPA Global Review', href: '/providers/bupa-global' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'AXA vs BUPA', href: '/compare/axa-global-vs-bupa-global' },
+  { title: 'Cigna vs Allianz', href: '/compare/cigna-global-vs-allianz-care' },
   { title: 'Germany Insurance Guide', href: '/countries/germany/insurance' },
-  { title: 'France Insurance Guide', href: '/countries/france/insurance' },
 ];
 
 const coverageColumns = [
@@ -27,16 +34,17 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
+  { feature: 'Headquarters', allianz: 'Munich, Germany', bupa: 'London, UK' },
   { feature: 'Inpatient Care', allianz: true, bupa: true },
   { feature: 'Outpatient Care', allianz: true, bupa: true },
-  { feature: 'Mental Health', allianz: 'Good coverage', bupa: 'Full parity' },
+  { feature: 'Mental Health', allianz: 'Limited (separate caps)', bupa: 'Full parity with physical' },
   { feature: 'Maternity', allianz: 'Up to $30,000', bupa: 'Up to $75,000' },
-  { feature: 'Dental', allianz: 'Add-on', bupa: 'Included (Premier+)' },
-  { feature: 'Vision', allianz: 'Add-on', bupa: 'Included (Premier+)' },
-  { feature: 'Telemedicine', allianz: true, bupa: '24/7 Global' },
-  { feature: 'Medical Evacuation', allianz: true, bupa: true },
-  { feature: 'Pre-existing Conditions', allianz: 'Varies', bupa: 'Often covered' },
-  { feature: 'No-Claims Discount', allianz: false, bupa: true },
+  { feature: 'Dental', allianz: 'Optional add-on', bupa: 'Included (Premier+)' },
+  { feature: 'Vision', allianz: 'Optional add-on', bupa: 'Included (Premier+)' },
+  { feature: 'Pre-existing Underwriting', allianz: 'Moratorium default', bupa: 'Full medical' },
+  { feature: 'Medical Evacuation', allianz: 'Unlimited', bupa: 'Unlimited' },
+  { feature: 'No-Claims Discount', allianz: 'No', bupa: 'Yes (up to 50%)' },
+  { feature: 'Annual Maximum', allianz: '€1M-Unlimited', bupa: '$2M-Unlimited' },
 ];
 
 const pricingColumns = [
@@ -47,88 +55,272 @@ const pricingColumns = [
 
 const pricingRows = [
   { profile: 'Single, Age 30', allianz: '$130-180/mo', bupa: '$200-300/mo' },
-  { profile: 'Single, Age 45', allianz: '$200-280/mo', bupa: '$350-450/mo' },
+  { profile: 'Single, Age 40', allianz: '$180-250/mo', bupa: '$300-400/mo' },
+  { profile: 'Single, Age 50', allianz: '$260-350/mo', bupa: '$420-550/mo' },
   { profile: 'Couple, Age 35', allianz: '$260-360/mo', bupa: '$400-550/mo' },
   { profile: 'Family of 4', allianz: '$400-600/mo', bupa: '$700-950/mo' },
+];
+
+const planTierColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'bupa', header: 'BUPA Global' },
+];
+
+const planTierRows = [
+  { tier: 'Entry Level', allianz: 'Essential', bupa: 'Silver' },
+  { tier: 'Mid-Range', allianz: 'Classic', bupa: 'Gold' },
+  { tier: 'Comprehensive', allianz: 'Premium', bupa: 'Premier' },
+  { tier: 'Ultra-Premium', allianz: 'Platinum', bupa: 'Elite / Lifeline' },
+  { tier: 'Deductible Options', allianz: '€0-€10,000', bupa: '$0-$5,000' },
+  { tier: 'Outpatient Included', allianz: 'Classic tier+', bupa: 'Gold tier+' },
+];
+
+const mentalHealthColumns = [
+  { key: 'aspect', header: 'Mental Health Aspect' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'bupa', header: 'BUPA Global' },
+];
+
+const mentalHealthRows = [
+  { aspect: 'Parity with Physical Health', allianz: 'No', bupa: 'Yes' },
+  { aspect: 'Outpatient Therapy Sessions', allianz: '20-30/year', bupa: 'Unlimited*' },
+  { aspect: 'Inpatient Mental Health', allianz: '30-60 days', bupa: 'Same as physical' },
+  { aspect: 'Pre-existing Mental Health', allianz: 'Usually excluded', bupa: 'Often covered' },
+  { aspect: 'Psychiatrist Visits', allianz: 'Included in cap', bupa: 'Comprehensive' },
+  { aspect: 'Substance Abuse Treatment', allianz: 'Limited', bupa: 'Comprehensive' },
 ];
 ---
 
 <PageShell
-  title="Allianz Care vs BUPA Global"
-  description="Compare Allianz Care and BUPA Global international health insurance. See coverage, pricing, and which provider fits your needs."
-  headline="Allianz Care vs BUPA Global: Which Is Right for You?"
-  subheadline="Mid-range flexibility versus premium inclusivity. Here's how these two international health insurers compare."
+  title="Allianz Care vs BUPA Global: Complete 2024 Comparison"
+  description="In-depth comparison of Allianz Care and BUPA Global for expats. Compare mental health coverage, pre-existing conditions, pricing, and which premium European insurer fits your needs."
+  headline="Allianz Care vs BUPA Global: The Complete Guide"
+  subheadline="German efficiency vs British service excellence. Two premium European insurers with very different approaches to coverage."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+
+  <h2 id="overview">Overview</h2>
+
+  <div class="bg-primary-50 border-l-4 border-primary-500 p-4 my-6">
+    <p class="font-semibold text-primary-900 mb-2">Quick Decision Guide</p>
+    <p class="text-primary-800 text-sm">
+      <strong>Choose Allianz Care</strong> if you're healthy and want premium coverage at 30-40% lower cost with high-deductible flexibility.
+      <strong>Choose BUPA Global</strong> if mental health coverage, pre-existing conditions, or all-inclusive benefits matter most.
+      <a href="#who-should-choose" class="text-primary-600 underline ml-1">Jump to full breakdown →</a>
+    </p>
+  </div>
+
   <p>
-    Allianz Care and Bupa Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    Allianz Care and BUPA Global represent two of Europe's most respected names in international health insurance, but they serve distinctly different market segments. Both are backed by major insurance groups with impeccable financial strength. Both offer comprehensive global coverage. Yet their philosophies couldn't be more different.
   </p>
   <p>
-    Allianz Care is backed by German insurance giant Allianz, offering flexible and competitively priced plans. Their main plan customization and competitive pricing, often 10-15% cheaper than comparable options. They're particularly popular among cost-conscious expats who value flexibility, with competitive rates with good coverage options.
+    <strong>Allianz Care</strong> takes a modular, value-focused approach. Backed by German insurance giant Allianz, they offer flexible plans where you pay for what you need. Their pricing is typically 30-40% lower than BUPA, with high-deductible options that can reduce premiums by up to 60%. German insurance culture emphasizes efficiency and customization.
   </p>
   <p>
-    Bupa Global is a UK-based insurer with a strong reputation in international health coverage. They're known for their comprehensive coverage and a solid reputation for claims handling. They tend to attract expats who want reliable coverage from an established brand, offering mid-to-premium range with good value for the coverage provided.
+    <strong>BUPA Global</strong> takes an all-inclusive, premium-service approach. As a UK-based provident association (no shareholders), they reinvest profits into member benefits. Their plans include mental health parity, higher maternity limits, dental/vision in top tiers, and unique features like no-claims discounts. British insurance culture emphasizes comprehensive protection and service excellence.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    The choice often comes down to your health situation. Healthy expats who want good coverage at a fair price typically prefer Allianz. Those with mental health needs, pre-existing conditions, or who want maximum protection prefer BUPA despite higher premiums.
+  </p>
+  <p>
+    This comprehensive comparison examines both providers in detail to help you make the right choice.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Allianz Care</h3>
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-neutral-900">Allianz Care at a Glance</h3>
+        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">AA- S&P Rating</span>
+      </div>
       <ul class="space-y-2 text-neutral-600">
+        <li><strong>Parent:</strong> Allianz SE (Germany)</li>
         <li><strong>Network:</strong> 2M+ providers globally</li>
-        <li>Flexible plan tiers (Essential to Platinum)</li>
-        <li>Strong in Europe and Asia</li>
-        <li>Up to 60% savings with high deductibles</li>
-        <li>MyHealth digital tools</li>
+        <li><strong>Philosophy:</strong> Modular, value-focused</li>
+        <li><strong>Strength:</strong> Pricing, flexibility</li>
+        <li><strong>Best For:</strong> Healthy, cost-conscious expats</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global</h3>
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-neutral-900">BUPA Global at a Glance</h3>
+        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">4.4★ Trustpilot</span>
+      </div>
       <ul class="space-y-2 text-neutral-600">
-        <li><strong>Trustpilot:</strong> 4.4/5 stars</li>
-        <li>Mental health parity (equal to physical)</li>
-        <li>Pre-existing conditions often covered</li>
-        <li>Dental/vision included in top tiers</li>
-        <li>No-claims discount available</li>
+        <li><strong>Parent:</strong> Bupa Group (UK)</li>
+        <li><strong>Network:</strong> 1.7M+ providers globally</li>
+        <li><strong>Philosophy:</strong> All-inclusive, premium</li>
+        <li><strong>Strength:</strong> Mental health, service</li>
+        <li><strong>Best For:</strong> Those needing comprehensive coverage</li>
       </ul>
     </div>
   </div>
 
   <CTABox
     title="Compare Both Providers"
-    description="Get quotes from Allianz Care and BUPA Global for your situation."
+    description="Get personalized quotes from Allianz Care and BUPA Global based on your specific needs."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
+  <h2 id="company-backgrounds">Company Backgrounds</h2>
+
+  <h3>Allianz Care: German Engineering Applied to Insurance</h3>
+  <p>
+    Allianz SE was founded in Berlin in 1890 and has grown into one of the world's largest financial services companies, managing over €2 trillion in assets. The company serves more than 125 million customers across 70+ countries, with a reputation for financial stability and operational efficiency that reflects German business culture.
+  </p>
+  <p>
+    Allianz Care is their international health insurance division, serving expatriates, globally mobile professionals, and international organizations. Operating from offices in Dublin and Paris, they're regulated under EU frameworks with strong Solvency II compliance.
+  </p>
+  <p>
+    Their approach reflects German insurance philosophy: logical plan structures, competitive pricing through efficiency, and modularity that lets customers pay only for needed benefits. They don't try to be the most premium option—they aim to be the best value among quality insurers.
+  </p>
+  <p>
+    Allianz Care is particularly strong in Europe and Asia, where their brand carries significant weight. Their MyHealth digital platform provides streamlined claims processing and health management tools.
+  </p>
+
+  <h3>BUPA Global: British Healthcare Tradition Meets Global Coverage</h3>
+  <p>
+    BUPA (British United Provident Association) was founded in 1947 specifically to preserve private healthcare access in the UK following the creation of the National Health Service. Unlike most insurers, BUPA is a company limited by guarantee with no shareholders—profits are reinvested into the business and member benefits rather than distributed as dividends.
+  </p>
+  <p>
+    BUPA Global extends this member-focused philosophy worldwide. With over 75 years in healthcare, they've built a reputation for comprehensive coverage, excellent service, and genuine investment in member health outcomes. They're regulated by the UK's FCA and PRA, with rigorous consumer protection standards.
+  </p>
+  <p>
+    BUPA's approach reflects British insurance culture: comprehensive coverage, premium service, and a willingness to pay for quality. They charge more but deliver more—particularly in mental health, where they've invested heavily to offer full parity with physical health coverage.
+  </p>
+  <p>
+    Their unique corporate structure means they can prioritize member benefits over shareholder returns. Features like no-claims discounts and comprehensive pre-existing condition coverage reflect this philosophy.
+  </p>
+
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    BUPA Global includes more benefits in their standard plans, while Allianz Care takes a more modular approach where you add what you need.
+    Both providers offer comprehensive international health coverage, but BUPA includes more in standard plans while Allianz takes a build-your-own approach.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
-  <h3>Key Differences</h3>
-  <ul>
-    <li><strong>Mental health:</strong> BUPA Global offers full mental health parity — same limits as physical health. Allianz Care covers mental health but with separate limits.</li>
-    <li><strong>Maternity:</strong> BUPA Global has higher maternity limits ($75,000 vs $30,000) in comparable plans.</li>
-    <li><strong>Pre-existing conditions:</strong> BUPA Global is more likely to cover pre-existing conditions from day one. Allianz Care typically requires waiting periods or exclusions.</li>
-    <li><strong>Dental/vision:</strong> Included in BUPA's Premier and Elite plans. Add-on with Allianz Care.</li>
-  </ul>
-
-  <h2 id="pricing">Pricing</h2>
+  <h3>Core Medical Coverage</h3>
   <p>
-    Allianz Care is significantly more affordable than BUPA Global, typically 30-40% less for comparable coverage. This reflects BUPA's more inclusive approach.
+    Both providers deliver excellent inpatient and outpatient coverage across all plan tiers. Hospital stays, surgeries, specialist consultations, diagnostics, and prescriptions are covered comprehensively. Neither has a meaningful advantage in core medical benefits.
+  </p>
+
+  <h3>Maternity Coverage</h3>
+  <p>
+    BUPA offers significantly higher maternity limits—up to $75,000 versus Allianz's $30,000 for comparable plans. Both have 10-12 month waiting periods. For those planning families, BUPA's higher limits provide more protection for complicated pregnancies or deliveries.
+  </p>
+
+  <h3>Dental and Vision</h3>
+  <p>
+    BUPA includes dental and vision coverage in their Premier and Elite tiers at no extra cost. Allianz treats these as optional add-ons requiring additional premium. If dental/vision coverage matters, BUPA's bundled approach may offer better value despite higher base premiums.
+  </p>
+
+  <h3>Medical Evacuation</h3>
+  <p>
+    Both providers offer unlimited medical evacuation coverage, ensuring you can be transported to appropriate care facilities regardless of cost or distance.
+  </p>
+
+  <h2 id="mental-health">Mental Health Coverage: BUPA's Key Differentiator</h2>
+  <p>
+    Mental health coverage is where BUPA Global dramatically outperforms Allianz Care—and most other international insurers. This is BUPA's signature differentiator.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={mentalHealthColumns} rows={mentalHealthRows} />
+  </div>
+
+  <h3>BUPA's Mental Health Parity</h3>
+  <p>
+    BUPA Global offers true mental health parity—mental health conditions are covered with the same limits and terms as physical health conditions. This is rare in international insurance and reflects BUPA's genuine investment in mental health benefits.
+  </p>
+  <p>
+    What this means practically:
+  </p>
+  <ul>
+    <li>No separate caps for mental health treatment</li>
+    <li>Outpatient therapy covered comprehensively, not limited to 20-30 sessions</li>
+    <li>Inpatient psychiatric care covered like any other hospitalization</li>
+    <li>Pre-existing mental health conditions often covered after underwriting review</li>
+    <li>Substance abuse treatment included comprehensively</li>
+  </ul>
+  <p>
+    For expats dealing with depression, anxiety, PTSD, or other mental health challenges, BUPA's coverage can be worth thousands annually in covered treatment costs.
+  </p>
+
+  <h3>Allianz's Mental Health Approach</h3>
+  <p>
+    Allianz Care includes mental health coverage, but with meaningful limitations. Outpatient therapy is typically capped at 20-30 sessions annually. Inpatient mental health treatment may have separate limits (30-60 days). Pre-existing mental health conditions are usually excluded under their moratorium underwriting approach.
+  </p>
+  <p>
+    For someone who needs occasional therapy support, Allianz's coverage may suffice. For someone with ongoing mental health needs, the limitations become constraining—and expensive when hitting caps that require out-of-pocket payment.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+    <h4 class="text-lg font-semibold text-blue-900 mb-2">Mental Health Decision</h4>
+    <p class="text-blue-800">
+      If mental health coverage is a priority—whether for existing needs or as a precaution given expat life stresses—BUPA's premium pricing may be justified by mental health benefits alone. Weekly therapy for a year could easily cost $5,000-10,000 out of pocket; BUPA's comprehensive coverage handles this where Allianz's caps might not.
+    </p>
+  </div>
+
+  <h2 id="pre-existing-conditions">Pre-existing Conditions: Different Underwriting Approaches</h2>
+  <p>
+    How insurers handle pre-existing conditions significantly impacts people with existing health needs. Allianz and BUPA take fundamentally different approaches.
+  </p>
+
+  <h3>Allianz Care: Moratorium Underwriting</h3>
+  <p>
+    Allianz typically uses moratorium underwriting as their default approach. This means:
+  </p>
+  <ul>
+    <li>No medical questionnaires required—quick, simple application</li>
+    <li>Pre-existing conditions automatically excluded for a moratorium period (usually 2 years)</li>
+    <li>After the moratorium, conditions may become covered if you've been claim-free for related issues</li>
+    <li>Some conditions may remain permanently excluded</li>
+  </ul>
+  <p>
+    The advantage: fast enrollment with no medical review. The disadvantage: conditions you have now won't be covered initially, regardless of how well-managed they are.
+  </p>
+
+  <h3>BUPA Global: Full Medical Underwriting</h3>
+  <p>
+    BUPA uses full medical underwriting, reviewing your complete health history before issuing a policy. This means:
+  </p>
+  <ul>
+    <li>Detailed medical questionnaires as part of application</li>
+    <li>BUPA reviews your health history condition by condition</li>
+    <li>Well-managed conditions may be covered from day one</li>
+    <li>Some conditions may be excluded, have waiting periods, or trigger premium loadings</li>
+    <li>Longer application process, typically 1-2 weeks for underwriting</li>
+  </ul>
+  <p>
+    The advantage: possibility of getting pre-existing conditions covered immediately if they're well-managed. BUPA is known for covering conditions other insurers won't touch. The disadvantage: more complex application and the possibility of unfavorable terms for some conditions.
+  </p>
+
+  <h3>Which Approach Is Better?</h3>
+  <p>
+    If you're healthy with no significant pre-existing conditions, Allianz's simpler moratorium approach is fine—and you'll pay 30-40% less for coverage.
+  </p>
+  <p>
+    If you have pre-existing conditions you want covered—diabetes, hypertension, managed mental health conditions, past cancer in remission—BUPA's full underwriting offers the possibility of coverage that Allianz's moratorium approach simply cannot provide.
+  </p>
+
+  <CTABox
+    title="Get Personalized Quotes"
+    description="See actual pricing and terms for your specific health situation from both providers."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <h2 id="pricing">Pricing Comparison</h2>
+  <p>
+    Allianz Care is significantly more affordable—typically 30-40% less than BUPA Global for comparable coverage. This is the most dramatic difference between these providers.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
@@ -136,48 +328,153 @@ const pricingRows = [
   </div>
 
   <p>
-    <em>Prices based on comprehensive plans excluding US coverage. Your actual quote may vary based on specific plan selection, deductible, and location.</em>
+    <em>Prices based on comprehensive coverage excluding US. Your actual quote will vary based on specific plan, deductible, and location.</em>
   </p>
 
-  <h3>Notes on Pricing</h3>
+  <h3>Understanding the Price Gap</h3>
+  <p>
+    The 30-40% price difference reflects fundamentally different product philosophies:
+  </p>
   <ul>
-    <li>Allianz Care's high-deductible options can reduce premiums by up to 60%</li>
-    <li>BUPA's no-claims discount rewards claim-free years</li>
-    <li>Adding dental/vision to Allianz closes some of the price gap</li>
-    <li>Both charge significantly more for US coverage</li>
+    <li><strong>BUPA includes more:</strong> Mental health parity, higher maternity limits, dental/vision in top tiers, no-claims discounts</li>
+    <li><strong>BUPA covers more risks:</strong> Full medical underwriting means they're pricing in coverage for pre-existing conditions</li>
+    <li><strong>BUPA invests in service:</strong> Award-winning customer service, in-house medical teams, premium support</li>
   </ul>
+  <p>
+    Allianz achieves lower pricing through efficiency, modular design (pay only for what you need), and moratorium underwriting (avoiding high-risk pre-existing conditions).
+  </p>
+
+  <h3>Long-Term Cost Considerations</h3>
+  <p>
+    <strong>BUPA's no-claims discount</strong> can reduce premiums by up to 50% for members who don't claim. Over years of claim-free coverage, this can partially offset BUPA's higher base pricing. However, making claims resets the discount.
+  </p>
+  <p>
+    <strong>Allianz's high-deductible options</strong> can reduce premiums by up to 60%. A healthy person choosing a €5,000-10,000 deductible might pay less than half the standard premium, making Allianz extremely cost-effective for those willing to self-insure routine expenses.
+  </p>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h4 class="text-lg font-semibold text-amber-900 mb-2">5-Year Cost Example</h4>
+    <p class="text-amber-800">
+      A 40-year-old on Allianz Classic: ~$220/month = $2,640/year = $13,200 over 5 years. Same person on BUPA Gold: ~$350/month = $4,200/year = $21,000 over 5 years. <strong>Difference: $7,800 over 5 years.</strong> Is BUPA's additional coverage worth $7,800? For some, yes. For healthy people without specific needs, probably not.
+    </p>
+  </div>
 
   <CTABox
-    title="Get Your Actual Price"
-    description="Estimates vary. See what you'd actually pay based on your details."
-    buttonText="Get a Quote"
+    title="Lock In Your Rate Today"
+    description="Premiums increase 5-10% annually with age. Getting covered now locks in rates at your current age bracket."
+    buttonText="Get Your Personalized Quote"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="plan-tiers">Plan Tiers Explained</h2>
+  <p>
+    Understanding plan structures helps you compare equivalent options and find the right coverage level.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planTierColumns} rows={planTierRows} />
+  </div>
+
+  <h3>Allianz Care Tiers</h3>
+  <p>
+    <strong>Essential:</strong> Inpatient coverage only—hospital stays, surgeries, emergency care. No routine outpatient. Best for catastrophic protection or supplementing local insurance.
+  </p>
+  <p>
+    <strong>Classic:</strong> Adds comprehensive outpatient coverage—doctor visits, specialists, diagnostics, prescriptions. The popular choice for most expats wanting complete care.
+  </p>
+  <p>
+    <strong>Premium:</strong> Enhanced limits, better wellness coverage, alternative medicine, and reduced cost-sharing. For those wanting robust coverage.
+  </p>
+  <p>
+    <strong>Platinum:</strong> Maximum coverage with highest limits and most comprehensive benefits. Unlimited annual maximum available.
+  </p>
+
+  <h3>BUPA Global Tiers</h3>
+  <p>
+    <strong>Silver:</strong> Core inpatient coverage with limited outpatient. Entry point into BUPA's ecosystem.
+  </p>
+  <p>
+    <strong>Gold:</strong> Comprehensive inpatient and outpatient with BUPA's signature mental health parity. Most popular tier for expats.
+  </p>
+  <p>
+    <strong>Premier:</strong> Premium coverage with dental/vision included. Enhanced wellness and preventive benefits.
+  </p>
+  <p>
+    <strong>Elite/Lifeline:</strong> Ultra-premium coverage including specialized cancer care (Lifeline), maximum limits, and VIP service.
+  </p>
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+  <p>
+    Let's see how these providers compare in common expat situations.
+  </p>
+
+  <h3>Scenario 1: Healthy 35-Year-Old in Singapore</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> Single professional, no pre-existing conditions, occasional doctor visits, mentally healthy.</p>
+    <p class="mt-4"><strong>Best Choice: Allianz Care Classic</strong></p>
+    <p>With no pre-existing conditions or specific needs BUPA serves better, why pay 35% more? Allianz's Classic tier provides comprehensive coverage at competitive pricing. Save $1,500+/year for coverage that's equally good for this profile.</p>
+  </div>
+
+  <h3>Scenario 2: Expat Managing Anxiety and Depression</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> 42-year-old with ongoing anxiety and depression, needs weekly therapy and occasional psychiatrist visits.</p>
+    <p class="mt-4"><strong>Best Choice: BUPA Global Gold</strong></p>
+    <p>BUPA's mental health parity covers weekly therapy without hitting caps. 52 therapy sessions/year at $150/session = $7,800 in therapy alone. Allianz's 20-30 session cap means $3,300-4,500 in out-of-pocket therapy costs. BUPA's higher premiums are more than offset by covered mental health care.</p>
+  </div>
+
+  <h3>Scenario 3: 50-Year-Old with Controlled Type 2 Diabetes</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> Well-controlled diabetes with good HbA1c levels, on metformin, needs regular monitoring.</p>
+    <p class="mt-4"><strong>Best Choice: BUPA Global (with full underwriting)</strong></p>
+    <p>Allianz's moratorium underwriting excludes all diabetes-related care for 2+ years. BUPA's full underwriting may cover well-controlled diabetes—possibly with a premium loading. Paying 20% more in premiums but having diabetes management covered beats paying out-of-pocket for medications, monitoring, and related care.</p>
+  </div>
+
+  <h3>Scenario 4: Family of Four in Germany</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> Two parents (40, 38) and two children (10, 7), all healthy, based in Munich.</p>
+    <p class="mt-4"><strong>Best Choice: Allianz Care Classic Family</strong></p>
+    <p>Healthy family with no specific needs BUPA serves better. Allianz saves $300-400/month—$3,600-4,800/year. Over the years kids are on the policy, that's significant money for education or other family priorities. Allianz's strong German presence is a bonus in Munich.</p>
+  </div>
+
+  <h3>Scenario 5: Planning Pregnancy Abroad</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-4">
+    <p><strong>Profile:</strong> 34-year-old woman planning pregnancy in the next year, wants comprehensive maternity coverage.</p>
+    <p class="mt-4"><strong>Best Choice: BUPA Global Premier</strong></p>
+    <p>BUPA's $75,000 maternity limit (vs Allianz's $30,000) provides significantly more protection for complicated pregnancies. C-sections, NICU stays, and complications can quickly exceed $30,000 in private care. BUPA's higher limit is worth the premium difference for planned pregnancies.</p>
+  </div>
+
+  <CTABox
+    title="Which Scenario Fits You?"
+    description="See how Allianz and BUPA would price coverage for your specific situation."
+    buttonText="Get Your Custom Quote"
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>Provider Networks</h3>
+  <h2 id="customer-experience">Customer Experience</h2>
   <p>
-    <strong>Allianz Care</strong> has a network of over 2 million providers worldwide, with particular strength in Europe and Asia.
-  </p>
-  <p>
-    <strong>BUPA Global</strong> offers access to 1.7 million providers globally, with excellent coverage in major expat destinations.
-  </p>
-  <p>
-    Both networks are extensive. You're unlikely to have trouble finding care with either provider in popular expat locations.
+    Service quality differs between these providers, reflecting their different market positions.
   </p>
 
-  <h3>Claims Process</h3>
+  <h3>BUPA Global Service</h3>
   <p>
-    <strong>Allianz Care</strong> processes most claims within 5 business days. Their MyHealth app allows digital claim submission and tracking.
+    BUPA consistently wins awards for customer service. Their member support includes access to in-house doctors and nurses for medical advice, dedicated case managers for complex situations, and responsive 24/7 multilingual support. Members frequently praise helpful representatives and smooth claims experiences.
   </p>
   <p>
-    <strong>BUPA Global</strong> has strong claims reviews, with customers praising fast settlements. Their MembersWorld app handles claims digitally.
+    Their MembersWorld platform and app provide digital tools for claims submission, finding providers, and managing benefits. The experience feels premium, matching their market positioning.
   </p>
 
-  <h3>Customer Service</h3>
+  <h3>Allianz Care Service</h3>
   <p>
-    Both providers offer 24/7 multilingual support. BUPA Global includes access to in-house doctors and nurses for medical advice.
+    Allianz provides solid, professional service that handles most situations competently. Their MyHealth platform offers digital claims submission and health management tools. 24/7 multilingual support is available.
+  </p>
+  <p>
+    Service is functional and reliable rather than exceptional. For straightforward needs, this is perfectly adequate. For complex situations, BUPA's dedicated approach may feel more supportive.
+  </p>
+
+  <h3>Claims Processing</h3>
+  <p>
+    Both providers process straightforward claims within 5-10 business days. BUPA has a slight edge in claims satisfaction scores, with members reporting fewer disputes and faster resolution of complex cases.
   </p>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
@@ -185,45 +482,105 @@ const pricingRows = [
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Allianz Care If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Budget is a primary concern</li>
-        <li>You want to customize coverage</li>
-        <li>You're based in Europe or Asia</li>
-        <li>You prefer high-deductible options</li>
-        <li>You don't have pre-existing conditions</li>
-        <li>Mental health parity isn't essential</li>
+      <ul class="space-y-2 text-neutral-600 mb-4">
+        <li><strong>Budget matters</strong> — Save 30-40% on premiums</li>
+        <li><strong>You're healthy</strong> — No significant pre-existing conditions</li>
+        <li><strong>Mental health isn't priority</strong> — Basic coverage suffices</li>
+        <li><strong>You want flexibility</strong> — High-deductible options appeal</li>
+        <li><strong>You're in Europe</strong> — Allianz's strongest network</li>
+        <li><strong>German efficiency appeals</strong> — Streamlined, logical approach</li>
       </ul>
+      <a href="/providers/allianz-care" class="inline-block w-full text-center bg-neutral-700 hover:bg-neutral-800 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get Allianz Care Quote →
+      </a>
     </div>
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose BUPA Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Mental health coverage is a priority</li>
-        <li>You have pre-existing conditions</li>
-        <li>You want all-inclusive benefits</li>
-        <li>Higher maternity limits matter</li>
-        <li>You value no-claims discounts</li>
-        <li>Budget is flexible for premium coverage</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-900 mb-3">Choose BUPA Global If:</h3>
+      <ul class="space-y-2 text-blue-800 mb-4">
+        <li><strong>Mental health is priority</strong> — Industry-best coverage</li>
+        <li><strong>You have pre-existing conditions</strong> — Full underwriting possible</li>
+        <li><strong>Premium service matters</strong> — Award-winning support</li>
+        <li><strong>You want all-inclusive</strong> — Dental/vision included</li>
+        <li><strong>Higher maternity limits needed</strong> — $75K vs $30K</li>
+        <li><strong>No-claims discount appeals</strong> — Long-term savings</li>
       </ul>
+      <a href="/providers/bupa-global" class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get BUPA Global Quote →
+      </a>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    This comparison comes down to budget versus benefits.
+    Both Allianz Care and BUPA Global are excellent international health insurers backed by major European insurance groups. This is a choice between two quality options, not good versus bad.
   </p>
   <p>
-    <strong>Choose Allianz Care</strong> if you want solid international coverage at a competitive price and don't need the extras BUPA includes. Their flexibility and high-deductible options make them a good value choice.
+    <strong>Allianz Care</strong> offers the better value for most healthy expats. You get comprehensive coverage from a financially rock-solid insurer at 30-40% lower premiums than BUPA. Their flexibility with high-deductible options makes them even more cost-effective for those willing to self-insure routine expenses. For healthy people without specific needs BUPA serves better, Allianz is the smart choice.
   </p>
   <p>
-    <strong>Choose BUPA Global</strong> if mental health parity, pre-existing condition coverage, or all-inclusive benefits are priorities. You'll pay more, but you get a more comprehensive product with fewer surprises.
+    <strong>BUPA Global</strong> justifies its premium pricing for specific situations. If mental health coverage is a priority—BUPA's parity approach is unmatched. If you have pre-existing conditions—BUPA's full underwriting offers possibilities Allianz's moratorium cannot. If you want all-inclusive benefits, premium service, and are willing to pay for it—BUPA delivers.
   </p>
   <p>
-    For healthy expats primarily concerned with cost, Allianz Care is the better value. For those who want maximum protection and can afford it, BUPA Global delivers.
+    Our recommendation: <strong>Start with Allianz Care</strong> as the default choice. Only upgrade to <strong>BUPA Global</strong> if you specifically need their mental health coverage, have pre-existing conditions requiring coverage, or genuinely value premium service over cost savings.
   </p>
 
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific needs."
+    title="Ready to Compare?"
+    description="Get personalized quotes from both Allianz Care and BUPA Global to see actual pricing for your situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Is BUPA Global worth 30-40% more than Allianz Care?</h3>
+      <p class="text-neutral-600">
+        For most healthy expats, no. Allianz provides comprehensive coverage at significantly lower cost. BUPA is worth the premium if you specifically need their mental health parity, want pre-existing conditions underwritten, or prioritize all-inclusive benefits and premium service over cost savings.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which provider has better mental health coverage?</h3>
+      <p class="text-neutral-600">
+        BUPA Global has dramatically better mental health coverage—it's one of their key differentiators. Full mental health parity means no separate limits for mental health treatment. Allianz covers mental health but with session caps and separate limits that may be insufficient for ongoing needs.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">How do pre-existing conditions work with each provider?</h3>
+      <p class="text-neutral-600">
+        Allianz uses moratorium underwriting—pre-existing conditions are automatically excluded for 2+ years. BUPA uses full medical underwriting—they review your health history and may cover well-managed conditions from day one. <a href="/best/expat-health-insurance" class="text-primary-600 hover:text-primary-700 underline">Get quotes from both</a> to see what terms each offers for your conditions.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Does BUPA's no-claims discount make up for higher premiums?</h3>
+      <p class="text-neutral-600">
+        Partially, over time. Claim-free members can earn discounts up to 50%, which narrows the price gap. But it takes years of no claims to maximize, and any claim resets the discount. For most people, the no-claims discount doesn't fully close the 30-40% gap.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Which provider is better for families?</h3>
+      <p class="text-neutral-600">
+        For healthy families, Allianz's 30-40% savings—potentially $3,600-6,000 annually for a family—is compelling. That's meaningful money for education or other priorities. BUPA makes sense for families with specific needs: a child requiring mental health support, a parent with pre-existing conditions, or planned pregnancy where higher maternity limits matter.
+      </p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between these providers later?</h3>
+      <p class="text-neutral-600">
+        Yes, at annual renewal. However, conditions developed on your previous policy become pre-existing for the new insurer. Switching from BUPA to Allianz means those conditions go into moratorium exclusion. Switching from Allianz to BUPA means new underwriting review. Switch carefully, especially if health has changed.
+      </p>
+    </div>
+  </div>
+
+  <CTABox
+    title="Still Have Questions?"
+    description="Get personalized guidance and quotes from both Allianz Care and BUPA Global. Compare actual prices for your age, location, and coverage needs."
     buttonText="Compare Plans Now"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
@@ -231,7 +588,8 @@ const pricingRows = [
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change frequently. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is based on publicly available information and is provided for educational purposes only. Coverage details, pricing, and plan features change frequently. We are not licensed insurance brokers. Always verify current information directly with Allianz Care and BUPA Global before making coverage decisions.
     </p>
   </div>
+
 </PageShell>

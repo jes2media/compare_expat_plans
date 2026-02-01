@@ -5,10 +5,16 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'fundamental-difference', text: 'The Fundamental Difference', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'plan-options', text: 'Plan Options', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Hospital Access', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'customer-service', text: 'Customer Service', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
@@ -17,7 +23,7 @@ const relatedLinks = [
   { title: 'Cigna Global Review', href: '/providers/cigna-global' },
   { title: 'Best Digital Nomad Insurance', href: '/best/digital-nomad-insurance' },
   { title: 'Portugal Insurance Guide', href: '/countries/portugal/insurance' },
-  { title: 'Spain Insurance Guide', href: '/countries/spain/insurance' },
+  { title: 'Best Budget Insurance', href: '/best/budget-expat-health-insurance' },
 ];
 
 const coverageColumns = [
@@ -27,249 +33,667 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'Type', safetywing: 'Travel Medical', cigna: 'Health Insurance' },
+  { feature: 'Product Type', safetywing: 'Travel Medical Insurance', cigna: 'Health Insurance' },
   { feature: 'Maximum Coverage', safetywing: '$250,000', cigna: 'Unlimited (Platinum)' },
-  { feature: 'Commitment', safetywing: 'None (cancel anytime)', cigna: 'Annual' },
-  { feature: 'Outpatient Care', safetywing: 'Emergency only', cigna: 'Gold/Platinum' },
-  { feature: 'Mental Health', safetywing: 'Not covered', cigna: 'Included' },
-  { feature: 'Maternity', safetywing: 'Not covered', cigna: 'Optional' },
-  { feature: 'Pre-existing', safetywing: 'Not covered', cigna: 'Underwritten' },
-  { feature: 'Direct Billing', safetywing: 'Limited', cigna: '1.5M+ providers' },
-  { feature: 'Customer Service', safetywing: 'Email/chat', cigna: '24/7 phone' },
+  { feature: 'Contract Length', safetywing: 'None—cancel anytime', cigna: 'Annual' },
+  { feature: 'Inpatient (Hospital)', safetywing: '✓ Emergency only', cigna: '✓ All tiers' },
+  { feature: 'Outpatient (Doctor visits)', safetywing: '✗ Emergency only', cigna: '✓ Gold/Platinum' },
+  { feature: 'Routine Care/Preventive', safetywing: '✗ Not covered', cigna: '✓ Platinum' },
+  { feature: 'Mental Health', safetywing: '✗ Not covered', cigna: '✓ Included' },
+  { feature: 'Maternity', safetywing: '✗ Not covered', cigna: '✓ Optional add-on' },
+  { feature: 'Dental/Vision', safetywing: 'Emergency dental only', cigna: 'Optional add-on' },
+  { feature: 'Pre-existing Conditions', safetywing: '✗ Not covered', cigna: 'Underwritten (may cover)' },
+  { feature: 'Chronic Conditions', safetywing: '✗ Not covered', cigna: '✓ Covered if declared' },
+];
+
+const planTierColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'safetywing', header: 'SafetyWing Options' },
+  { key: 'cigna', header: 'Cigna Tiers' },
+];
+
+const planTierRows = [
+  { aspect: 'Entry Level', safetywing: 'Nomad Insurance ($45/mo)', cigna: 'Silver (~$100-150/mo)' },
+  { aspect: 'Mid Tier', safetywing: 'Remote Health (~$100-200/mo)', cigna: 'Gold (~$150-250/mo)' },
+  { aspect: 'Top Tier', safetywing: 'Remote Health + add-ons', cigna: 'Platinum (~$250-400/mo)' },
+  { aspect: 'Deductible Options', safetywing: '$250 (Nomad) or $0-10K (Remote)', cigna: '$0 to $10,000+' },
+  { aspect: 'US Coverage', safetywing: 'Limited (90 days max)', cigna: 'Full (increases cost 40-60%)' },
+  { aspect: 'Family Plans', safetywing: 'Add dependents individually', cigna: 'Family discount ~10-15%' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
   { key: 'safetywing', header: 'SafetyWing Nomad' },
+  { key: 'remote', header: 'SafetyWing Remote Health' },
   { key: 'cigna', header: 'Cigna Gold (ex-US)' },
 ];
 
 const pricingRows = [
-  { profile: 'Age 30', safetywing: '$45/4 weeks', cigna: '$140-200/mo' },
-  { profile: 'Age 40', safetywing: '$76/4 weeks', cigna: '$220-300/mo' },
-  { profile: 'Age 50', safetywing: '$117/4 weeks', cigna: '$350-450/mo' },
-  { profile: 'Age 60', safetywing: '$189/4 weeks', cigna: '$500-650/mo' },
+  { profile: 'Age 25, healthy', safetywing: '~$42/mo', remote: '~$100/mo', cigna: '~$130/mo' },
+  { profile: 'Age 35, healthy', safetywing: '~$49/mo', remote: '~$150/mo', cigna: '~$180/mo' },
+  { profile: 'Age 45, healthy', safetywing: '~$83/mo', remote: '~$250/mo', cigna: '~$280/mo' },
+  { profile: 'Age 55, healthy', safetywing: '~$127/mo', remote: '~$400/mo', cigna: '~$420/mo' },
+  { profile: 'Age 65, healthy', safetywing: 'Not available', remote: '~$600/mo', cigna: '~$650/mo' },
+  { profile: 'Couple, 35, no kids', safetywing: '~$98/mo', remote: '~$300/mo', cigna: '~$340/mo' },
+  { profile: 'Family of 4 (35/35/8/5)', safetywing: '~$165/mo', remote: '~$550/mo', cigna: '~$580/mo' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'cigna', header: 'Cigna Global' },
+];
+
+const networkRows = [
+  { aspect: 'Global Network Size', safetywing: 'Uses partner networks', cigna: '1.5+ million providers' },
+  { aspect: 'Direct Billing', safetywing: 'Limited (major emergencies)', cigna: 'Extensive worldwide' },
+  { aspect: 'Hospital Access', safetywing: 'Any licensed facility', cigna: 'Network preferred, any accepted' },
+  { aspect: 'Provider App/Directory', safetywing: 'Partner lookup', cigna: 'Comprehensive mobile app' },
+  { aspect: 'Typical Experience', safetywing: 'Pay, then claim', cigna: 'Show card, walk out' },
+  { aspect: 'Pre-authorization', safetywing: 'For planned procedures', cigna: 'For non-emergencies >$1,000' },
 ];
 ---
 
 <PageShell
-  title="SafetyWing vs Cigna Global"
-  description="Compare SafetyWing and Cigna Global side by side. Startup travel insurance vs traditional health coverage—which approach fits your needs?"
-  headline="SafetyWing vs Cigna Global: Nomad vs Traditional"
-  subheadline="The scrappy digital nomad favorite versus the established global giant. Completely different products at completely different price points."
+  title="SafetyWing vs Cigna Global: Complete 2025 Comparison"
+  description="SafetyWing vs Cigna Global compared in depth. Travel medical insurance vs comprehensive health coverage—understand what you're actually buying before you choose."
+  headline="SafetyWing vs Cigna Global"
+  subheadline="The startup travel insurance darling versus the global health insurance giant. Different products, different purposes, vastly different prices."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
+
+  <!-- Quick Decision Guide - CRO: Helps users self-select quickly -->
+  <div class="bg-gradient-to-r from-primary-50 to-neutral-50 border border-primary-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">⚡ Quick Decision Guide</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white rounded p-4 border border-primary-100">
+        <p class="font-medium text-primary-900 mb-2">Choose SafetyWing if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You're under 35 and very healthy</li>
+          <li>• You just need emergency coverage</li>
+          <li>• Budget under $60/month</li>
+          <li>• Testing nomad lifestyle short-term</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded p-4 border border-neutral-200">
+        <p class="font-medium text-neutral-900 mb-2">Choose Cigna if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You need actual health insurance</li>
+          <li>• Over 40 or any health conditions</li>
+          <li>• Want mental health coverage</li>
+          <li>• Direct hospital billing matters</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <p>
-    SafetyWing and Cigna Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
-  </p>
-  <p>
-    SafetyWing is a modern insurance option designed specifically for digital nomads and remote workers. Their main subscription-based model with no long-term commitment required. They're particularly popular among digital nomads, remote workers, and location-independent professionals, with very affordable monthly subscription starting around $40/month.
-  </p>
-  <p>
-    Cigna Global is known for its extensive global network and strong customer service. They're known for their massive provider network with direct billing at over 1.5 million healthcare facilities worldwide. They tend to attract families and American expats who prioritize convenience, offering premium pricing but many feel the convenience justifies the cost.
-  </p>
-  <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    SafetyWing and Cigna Global both serve people living abroad, but they sell fundamentally different products. Understanding this distinction is critical—because choosing the wrong one could leave you with a $200,000 hospital bill or paying for coverage you don't need.
   </p>
 
+  <p>
+    <strong>SafetyWing</strong> burst onto the scene in 2017 as a startup built specifically for digital nomads. Their flagship product, Nomad Insurance, is travel medical insurance—not health insurance. It covers emergencies while traveling, with a subscription model that lets you cancel anytime. It's affordable, flexible, and perfectly adequate for healthy young travelers who just want a safety net. They also offer Remote Health, which is actual health insurance, but most people know SafetyWing for Nomad Insurance.
+  </p>
+
+  <p>
+    <strong>Cigna Global</strong> has been providing international health insurance for decades. They offer comprehensive health insurance plans that cover everything from routine checkups to cancer treatment. With a network of 1.5+ million providers worldwide and unlimited coverage options, they're the premium choice for expats who want complete healthcare coverage. You pay more because you get more.
+  </p>
+
+  <p>
+    This comparison will help you understand exactly what each product covers, what it costs, and which one matches your actual needs—not which one has better marketing.
+  </p>
+
+  <!-- At-a-glance boxes with trust signals - CRO: Builds credibility -->
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing Nomad Insurance</h3>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li><strong>Type:</strong> Travel medical insurance</li>
-        <li>Founded 2017 (startup)</li>
-        <li>Subscription-based, cancel anytime</li>
-        <li>$250,000 maximum coverage</li>
-        <li>Simple, transparent pricing</li>
-        <li>Built for digital nomads</li>
+        <li><strong>Type:</strong> Travel Medical Insurance (Nomad) / Health Insurance (Remote Health)</li>
+        <li><strong>Founded:</strong> 2017 (San Francisco startup)</li>
+        <li><strong>Commitment:</strong> None—cancel anytime</li>
+        <li><strong>Coverage Limit:</strong> $250K (Nomad) / $10M (Remote Health)</li>
+        <li><strong>Best For:</strong> Digital nomads, young healthy travelers</li>
+        <li><strong>Trustpilot:</strong> 4.3/5 (2,000+ reviews)</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Cigna Global</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li><strong>Type:</strong> Comprehensive health insurance</li>
-        <li>Decades of global experience</li>
-        <li>Annual commitment</li>
-        <li>Unlimited coverage available</li>
-        <li>1.5M+ provider network</li>
-        <li>Premium customer service</li>
+        <li><strong>Type:</strong> Comprehensive Health Insurance</li>
+        <li><strong>Founded:</strong> 1982 (global division)</li>
+        <li><strong>Commitment:</strong> Annual</li>
+        <li><strong>Coverage Limit:</strong> Up to Unlimited</li>
+        <li><strong>Best For:</strong> Families, long-term expats, those over 40</li>
+        <li><strong>Network:</strong> 1.5M+ providers with direct billing</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="fundamental-difference">The Fundamental Difference</h2>
+
   <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-amber-900 mb-2">Different Products, Different Purposes</h3>
+    <h3 class="text-lg font-semibold text-amber-900 mb-2">🚨 Critical Distinction</h3>
     <p class="text-amber-800">
-      <strong>SafetyWing Nomad Insurance is travel medical insurance</strong>—it covers emergencies while traveling. <strong>Cigna Global is full health insurance</strong>—it covers your complete healthcare needs. SafetyWing costs less because it covers less. This isn't a case of "same thing, different price."
+      <strong>SafetyWing Nomad Insurance is travel medical insurance.</strong> It covers emergencies while traveling—broken bones, sudden illness, urgent care. It does NOT cover routine healthcare, pre-existing conditions, mental health, or maternity.
+    </p>
+    <p class="text-amber-800 mt-2">
+      <strong>Cigna Global is health insurance.</strong> It covers your complete healthcare needs—doctor visits, prescriptions, preventive care, mental health, chronic conditions, everything. It's what you had through your employer, but worldwide.
+    </p>
+    <p class="text-amber-800 mt-2 font-medium">
+      Comparing SafetyWing Nomad to Cigna is like comparing travel insurance to Blue Cross. They're not the same product.
     </p>
   </div>
 
+  <p>
+    This matters because many people choose SafetyWing thinking they're getting health insurance at a great price. They're not. They're getting travel medical insurance—which is a completely valid product, but serves a different purpose.
+  </p>
+
+  <h3>What Travel Medical Insurance (SafetyWing Nomad) Actually Covers</h3>
+  <ul>
+    <li><strong>Emergency room visits</strong> after accidents or sudden illness</li>
+    <li><strong>Emergency hospitalization</strong> for acute conditions</li>
+    <li><strong>Emergency surgery</strong> (appendicitis, broken bones, etc.)</li>
+    <li><strong>Emergency evacuation</strong> to a better hospital</li>
+    <li><strong>Acute illness medications</strong> (antibiotics for infection, etc.)</li>
+    <li><strong>Emergency dental</strong> for pain relief only</li>
+  </ul>
+
+  <h3>What Travel Medical Insurance Does NOT Cover</h3>
+  <ul>
+    <li><strong>Routine doctor visits</strong> when you're feeling off</li>
+    <li><strong>Preventive care</strong> like annual checkups or vaccinations</li>
+    <li><strong>Ongoing prescriptions</strong> for blood pressure, thyroid, etc.</li>
+    <li><strong>Mental health</strong> of any kind</li>
+    <li><strong>Pre-existing conditions</strong> even if they become emergencies</li>
+    <li><strong>Chronic disease management</strong> like diabetes care</li>
+    <li><strong>Pregnancy and childbirth</strong></li>
+    <li><strong>Non-emergency surgery</strong> even if medically necessary</li>
+  </ul>
+
+  <p>
+    If you have high blood pressure and have a stroke abroad, SafetyWing Nomad may deny the claim as a pre-existing condition. If you develop depression, there's no coverage. If you need a non-emergency MRI to investigate chronic pain, you're paying out of pocket.
+  </p>
+
   <CTABox
-    title="Compare Both Options"
-    description="Get quotes to see the actual price difference for your situation."
-    buttonText="Get Free Quotes"
+    title="Not Sure What You Need?"
+    description="Get quotes for both travel medical and health insurance to see the real price difference."
+    buttonText="Compare Both Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    The coverage gap between SafetyWing and Cigna is substantial. Cigna offers comprehensive health insurance; SafetyWing offers emergency travel coverage.
+    Here's the detailed coverage breakdown between SafetyWing Nomad Insurance and Cigna Global health plans. Note that SafetyWing's Remote Health product has different coverage—more similar to Cigna.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
+  <h3>Coverage Limits Matter</h3>
   <p>
-    <strong>What this means in practice:</strong>
+    SafetyWing Nomad has a $250,000 lifetime maximum. That sounds like a lot until you realize:
   </p>
   <ul>
-    <li><strong>Doctor visits:</strong> Cigna covers routine visits; SafetyWing only covers emergencies</li>
-    <li><strong>Prescriptions:</strong> Cigna covers ongoing medications; SafetyWing covers acute-illness prescriptions only</li>
-    <li><strong>Mental health:</strong> Cigna includes it; SafetyWing doesn't cover it at all</li>
-    <li><strong>Serious illness:</strong> Cigna's unlimited coverage handles anything; SafetyWing's $250K could run out with cancer or major surgery</li>
-    <li><strong>Pre-existing conditions:</strong> Cigna underwrites them (may cover with exclusions); SafetyWing excludes them entirely</li>
+    <li>A week in a US hospital ICU can cost $100,000+</li>
+    <li>Cancer treatment often exceeds $300,000</li>
+    <li>Major surgery with complications can hit $200,000</li>
+    <li>Emergency air evacuation alone can cost $50,000-100,000</li>
   </ul>
 
-  <h3>SafetyWing Remote Health Alternative</h3>
   <p>
-    SafetyWing also offers <strong>Remote Health</strong>, which is actual health insurance (not travel medical). Remote Health has coverage up to $10M, includes mental health and maternity, and covers pre-existing conditions after a waiting period. Remote Health competes more directly with Cigna, at $100-700/month. If you like SafetyWing's approach but need real health insurance, Remote Health is worth considering.
+    Cigna's plans go up to unlimited coverage. For Silver and Gold, you typically get $1-2 million. Platinum offers unlimited. If something catastrophic happens, you're not doing math on whether your coverage is enough.
   </p>
 
-  <h2 id="pricing">Pricing</h2>
+  <h3>The Pre-existing Condition Question</h3>
   <p>
-    SafetyWing is dramatically cheaper—but you're paying for different things.
+    <strong>SafetyWing Nomad:</strong> Pre-existing conditions are excluded entirely. If you have asthma and have an asthma attack abroad, that's not covered. If you have a heart condition and have a heart attack, not covered. This is standard for travel medical insurance.
+  </p>
+  <p>
+    <strong>Cigna Global:</strong> Uses full medical underwriting. You'll complete a health questionnaire, and Cigna may: cover conditions normally, exclude specific conditions, add a premium loading, or decline coverage. The process is more involved, but conditions you disclose may eventually be covered (often after a waiting period or as part of ongoing care).
+  </p>
+
+  <h2 id="plan-options">Plan Options</h2>
+
+  <p>
+    Both providers offer multiple tiers, but the structure is completely different.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planTierColumns} rows={planTierRows} />
+  </div>
+
+  <h3>SafetyWing Products</h3>
+  <p><strong>Nomad Insurance</strong> (~$45/month for age 30):</p>
+  <ul>
+    <li>Travel medical insurance (emergencies only)</li>
+    <li>$250,000 coverage limit</li>
+    <li>$250 deductible</li>
+    <li>Cancel anytime, 4-week billing cycles</li>
+    <li>Up to 90 days US coverage per year</li>
+    <li>Best for: Short-term travel, healthy young nomads</li>
+  </ul>
+
+  <p><strong>Remote Health</strong> (~$100-600/month depending on age):</p>
+  <ul>
+    <li>Actual health insurance</li>
+    <li>Up to $10 million coverage</li>
+    <li>Multiple deductible options ($0 to $10,000)</li>
+    <li>Mental health included</li>
+    <li>Maternity available (12-month waiting period)</li>
+    <li>Pre-existing conditions covered after waiting period</li>
+    <li>Best for: Long-term nomads wanting real insurance</li>
+  </ul>
+
+  <h3>Cigna Global Tiers</h3>
+  <p><strong>Silver</strong> (Inpatient only):</p>
+  <ul>
+    <li>Hospital stays and surgery</li>
+    <li>Day-patient treatment</li>
+    <li>Cancer care</li>
+    <li>No outpatient coverage</li>
+    <li>Lowest premium tier</li>
+  </ul>
+
+  <p><strong>Gold</strong> (Most popular):</p>
+  <ul>
+    <li>Everything in Silver</li>
+    <li>Outpatient visits and tests</li>
+    <li>Specialist consultations</li>
+    <li>Prescriptions</li>
+    <li>Physical therapy</li>
+  </ul>
+
+  <p><strong>Platinum</strong> (Comprehensive):</p>
+  <ul>
+    <li>Everything in Gold</li>
+    <li>Wellness and preventive care</li>
+    <li>Annual checkups</li>
+    <li>Vaccinations</li>
+    <li>Unlimited coverage</li>
+  </ul>
+
+  <h2 id="pricing">Pricing Breakdown</h2>
+
+  <p>
+    Price is where SafetyWing shines—if you compare apples to oranges. When you compare apples to apples (SafetyWing Remote Health vs Cigna), the gap narrows significantly.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p>
-    <strong>The price-to-coverage ratio:</strong>
+  <p class="text-sm text-neutral-600 italic">
+    *Estimates based on 2024-2025 quotes for individuals excluding US coverage. Actual prices vary based on health history, exact location, and plan customization.
   </p>
-  <ul>
-    <li>SafetyWing at age 30: ~$49/month for $250K emergency coverage</li>
-    <li>Cigna Gold at age 30: ~$170/month for comprehensive health coverage</li>
-    <li>That's 3.5x more for Cigna—but Cigna covers exponentially more</li>
-  </ul>
 
+  <h3>Why SafetyWing Nomad Is So Cheap</h3>
   <p>
-    <strong>Ways to reduce Cigna's cost:</strong>
+    SafetyWing Nomad Insurance costs 70-80% less than Cigna because it covers 70-80% less. It's travel medical insurance—emergency coverage only. When you need actual healthcare (not just emergency rescue), you pay out of pocket.
+  </p>
+
+  <h3>The Fairer Comparison: Remote Health vs Cigna</h3>
+  <p>
+    SafetyWing Remote Health is actual health insurance, comparable to Cigna Gold. At these tiers:
   </p>
   <ul>
-    <li>Higher deductibles ($5,000-$10,000) can reduce premiums 25-35%</li>
-    <li>Excluding US coverage saves 40-60%</li>
-    <li>Silver tier (inpatient only) is cheaper than Gold</li>
+    <li>Remote Health is roughly 10-15% cheaper for young, healthy individuals</li>
+    <li>The gap narrows for older individuals (over 50)</li>
+    <li>Cigna often wins for families due to better multi-person discounts</li>
+    <li>Remote Health's deductible options can reduce costs further</li>
   </ul>
 
   <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-blue-900 mb-2">When Cigna's Cost Makes Sense</h3>
-    <p class="text-blue-800">
-      If you're over 40, have any health conditions, or want peace of mind for serious illness, Cigna's higher cost is justified. One hospitalization for a serious condition could easily exceed SafetyWing's $250K limit—at which point you'd be paying out of pocket. Cigna's unlimited coverage means you're protected no matter what happens.
-    </p>
+    <h3 class="text-lg font-semibold text-blue-900 mb-2">Ways to Reduce Cigna's Cost</h3>
+    <ul class="text-blue-800 space-y-1">
+      <li><strong>Exclude US coverage:</strong> Saves 40-60% on premiums</li>
+      <li><strong>Higher deductible:</strong> $5,000-$10,000 deductible reduces premiums 25-35%</li>
+      <li><strong>Silver tier:</strong> Inpatient-only saves vs Gold (pair with local insurance for outpatient)</li>
+      <li><strong>Annual payment:</strong> Small discount for paying yearly</li>
+    </ul>
   </div>
 
+  <!-- CTA after pricing - CRO: Capture users ready to compare costs -->
   <CTABox
     title="Get Your Actual Price"
-    description="See the real cost difference for your age and needs."
-    buttonText="Get a Quote"
+    description="Quotes are personalized. See what you'd actually pay based on your age, health, and location."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <h2 id="network-access">Network & Hospital Access</h2>
 
-  <h3>Provider Networks</h3>
   <p>
-    <strong>Cigna Global</strong> has 1.5 million+ providers worldwide with extensive direct-billing relationships. Walk into a network hospital, show your card, and Cigna handles the payment. Their network is particularly strong in Europe, Asia, and the Middle East.
-  </p>
-  <p>
-    <strong>SafetyWing</strong> coordinates with hospitals for major emergencies, but most claims are reimbursement-based. You pay, then submit a claim. For smaller treatments, expect to pay out of pocket and wait for reimbursement.
+    How you actually use your insurance day-to-day differs dramatically between these providers.
   </p>
 
-  <h3>Claims Experience</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Cigna's Network Advantage</h3>
   <p>
-    <strong>Cigna:</strong> User-friendly online portal and app. Claims typically processed in 5-10 days. Direct billing eliminates most claims for major procedures. Known for responsive, professional service.
+    Cigna's 1.5+ million provider network with direct billing is genuinely useful. In practice:
   </p>
+  <ul>
+    <li>Walk into a network hospital, show your Cigna card</li>
+    <li>Get treated, sign paperwork</li>
+    <li>Walk out without paying anything (or just your copay)</li>
+    <li>Cigna handles the bill directly with the hospital</li>
+  </ul>
+
   <p>
-    <strong>SafetyWing:</strong> Simple online claims portal. Processing can take 10-30 days. Mixed reviews—straightforward for small claims, but some users report delays or denials requiring appeals. More typical of budget insurance.
+    The mobile app shows nearby network providers, lets you get pre-authorization, and tracks claims in real-time. For non-emergency situations, this convenience is significant.
   </p>
 
-  <h3>Customer Service</h3>
+  <h3>SafetyWing's Reimbursement Model</h3>
   <p>
-    <strong>Cigna:</strong> 24/7 phone support in multiple languages. Dedicated customer service teams. White-glove service for complex situations. This is premium support.
+    SafetyWing primarily works on reimbursement:
   </p>
+  <ul>
+    <li>Find a hospital or clinic</li>
+    <li>Pay the bill yourself</li>
+    <li>Submit claim with receipts</li>
+    <li>Wait 10-30 days for reimbursement</li>
+  </ul>
+
   <p>
-    <strong>SafetyWing:</strong> Email and chat support during business hours. No 24/7 phone line. Adequate for basic questions, but not the premium experience. They're a startup—act accordingly.
+    For major emergencies, SafetyWing will coordinate with hospitals for direct billing. But for anything non-emergency, expect to pay upfront and wait for reimbursement.
+  </p>
+
+  <h3>What This Means Practically</h3>
+  <p>
+    With Cigna, you can see a doctor for a cold without thinking about money. With SafetyWing Nomad, there's no coverage for that anyway—but even with Remote Health, you might pay $100-200 out of pocket and wait weeks to get it back. If cash flow matters, Cigna's direct billing has real value.
+  </p>
+
+  <h2 id="claims-experience">Claims Experience</h2>
+
+  <h3>SafetyWing Claims</h3>
+  <p>
+    SafetyWing's claims process is straightforward but basic:
+  </p>
+  <ul>
+    <li><strong>Submit via:</strong> Online portal or app</li>
+    <li><strong>Processing time:</strong> 10-30 days typically</li>
+    <li><strong>Documentation:</strong> Receipts, medical reports, sometimes additional forms</li>
+    <li><strong>Payment:</strong> Direct to bank account</li>
+  </ul>
+
+  <p>
+    Reviews are mixed. Small claims (few hundred dollars) usually process without issues. Larger claims or anything touching pre-existing condition exclusions can face scrutiny and delays. Some users report having to appeal denials. This is fairly typical for budget travel insurance.
+  </p>
+
+  <h3>Cigna Claims</h3>
+  <p>
+    Cigna's claims process reflects their premium positioning:
+  </p>
+  <ul>
+    <li><strong>Submit via:</strong> App, online portal, email, or even fax</li>
+    <li><strong>Processing time:</strong> 5-10 business days typically</li>
+    <li><strong>Documentation:</strong> Minimal for small claims; detailed for large ones</li>
+    <li><strong>Direct billing:</strong> Most hospital claims never become "claims"—Cigna pays directly</li>
+  </ul>
+
+  <p>
+    Cigna has more resources and a longer track record. Complex claims get assigned to case managers. Pre-authorization is straightforward through the app. The experience is more consistent than budget insurers.
+  </p>
+
+  <h2 id="customer-service">Customer Service</h2>
+
+  <h3>SafetyWing Support</h3>
+  <ul>
+    <li><strong>Channels:</strong> Email and chat (no phone)</li>
+    <li><strong>Hours:</strong> Business hours, not 24/7</li>
+    <li><strong>Response time:</strong> Usually same day for chat, 1-2 days for email</li>
+    <li><strong>Languages:</strong> English primarily</li>
+  </ul>
+
+  <p>
+    SafetyWing is a startup. Their support is adequate for basic questions and standard claims, but don't expect white-glove service. For a $45/month product, the support matches the price.
+  </p>
+
+  <h3>Cigna Support</h3>
+  <ul>
+    <li><strong>Channels:</strong> 24/7 phone, email, chat, app</li>
+    <li><strong>Response:</strong> Immediate for phone, same day for digital</li>
+    <li><strong>Languages:</strong> Multiple languages available</li>
+    <li><strong>Special services:</strong> Case managers for complex situations, medical concierge</li>
+  </ul>
+
+  <p>
+    Cigna's support is genuinely premium. Need help finding a specialist at 2am? Call them. Need documents for a visa application? They'll expedite. Having a medical emergency? They coordinate with hospitals directly. This is part of what you pay for.
   </p>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose SafetyWing If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're young (under 35) and very healthy</li>
-        <li>You just need emergency coverage, not healthcare</li>
-        <li>You're testing the nomad lifestyle short-term</li>
-        <li>Budget is your primary concern</li>
-        <li>You want zero commitment—cancel anytime</li>
-        <li>You have access to affordable local healthcare</li>
-        <li>You're comfortable with reimbursement claims</li>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing Nomad Is Right If:</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You're under 35 and genuinely healthy</li>
+        <li>✓ You have no pre-existing conditions whatsoever</li>
+        <li>✓ You just need emergency coverage, not healthcare</li>
+        <li>✓ You're traveling short-term (3-12 months)</li>
+        <li>✓ Budget under $60/month is mandatory</li>
+        <li>✓ You're comfortable paying out of pocket for non-emergencies</li>
+        <li>✓ You want zero commitment—cancel anytime</li>
+        <li>✓ You have access to affordable local healthcare</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Cigna Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You need actual health insurance</li>
-        <li>You're over 40 or have any health concerns</li>
-        <li>You want mental health coverage</li>
-        <li>Family coverage matters</li>
-        <li>You want direct billing at hospitals</li>
-        <li>You need high or unlimited coverage limits</li>
-        <li>Premium customer service is worth paying for</li>
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Cigna Global Is Right If:</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You need actual health insurance, not just emergency coverage</li>
+        <li>✓ You're over 40 or have any health conditions</li>
+        <li>✓ Mental health coverage is important to you</li>
+        <li>✓ You have pre-existing conditions you want covered</li>
+        <li>✓ Direct billing and premium service have value to you</li>
+        <li>✓ You're relocating long-term (2+ years)</li>
+        <li>✓ You have a family to cover</li>
+        <li>✓ Peace of mind matters more than minimal cost</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="verdict">Our Verdict</h2>
+  <h3>The Middle Ground: SafetyWing Remote Health</h3>
   <p>
-    SafetyWing and Cigna Global aren't competitors—they're different products serving different needs at different price points.
+    If you want comprehensive health insurance but prefer SafetyWing's digital-first approach, Remote Health is worth considering. It offers:
   </p>
+  <ul>
+    <li>Actual health insurance (not travel medical)</li>
+    <li>$10 million coverage limit</li>
+    <li>Mental health included</li>
+    <li>Pre-existing conditions covered after waiting period</li>
+    <li>10-20% cheaper than Cigna for young individuals</li>
+    <li>Similar subscription flexibility</li>
+  </ul>
   <p>
-    <strong>SafetyWing Nomad Insurance</strong> is excellent for its purpose: affordable emergency coverage for healthy travelers. If you're 28, have no health issues, and just want a safety net while bouncing between Bali and Lisbon, SafetyWing delivers good value. It's the Honda Civic of travel insurance—reliable, affordable, gets the job done.
-  </p>
-  <p>
-    <strong>Cigna Global</strong> is comprehensive health insurance for people who want full coverage. If you're settling abroad long-term, have a family, are over 40, or want peace of mind that you're covered for anything, Cigna provides that security. It's the premium choice—you pay more and get more.
-  </p>
-  <p>
-    The question isn't which is "better"—it's which matches your needs. A 25-year-old healthy nomad spending a year traveling doesn't need Cigna. A 50-year-old with a family moving to Portugal for five years shouldn't rely on SafetyWing. Choose the product that fits your life stage and risk tolerance.
+    Remote Health competes more directly with Cigna Gold. The trade-off is less established networks and less premium support.
   </p>
 
-  <div class="bg-neutral-100 border border-neutral-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-neutral-900 mb-2">Middle Ground: SafetyWing Remote Health</h3>
-    <p class="text-neutral-700">
-      If you want something between these extremes, SafetyWing's <strong>Remote Health</strong> product offers comprehensive health insurance (not travel medical) with coverage up to $10M, mental health included, and a subscription-friendly approach. At $100-700/month, it's cheaper than Cigna while providing real health coverage.
+  <!-- CTA after Who Should Choose - CRO: Users who've self-identified their needs -->
+  <CTABox
+    title="Know What You Need?"
+    description="Get personalized quotes based on your specific situation."
+    buttonText="Get Your Quote"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+
+  <p>
+    Let's see how these products perform in actual situations expats face.
+  </p>
+
+  <h3>Scenario 1: The Digital Nomad Testing the Waters</h3>
+  <p class="italic text-neutral-600">
+    Maya, 27, is leaving her tech job to try the nomad life for 6 months. She's healthy, takes no medications, and has savings to cover minor medical expenses. She'll be in Portugal and Thailand.
+  </p>
+  <p>
+    <strong>Best choice: SafetyWing Nomad Insurance</strong>
+  </p>
+  <p>
+    At ~$45/month, Maya gets emergency coverage without commitment. If she breaks her leg surfing in Bali, she's covered. If she catches a cold, she'll pay $30 to see a local doctor—worth it at her savings. She can cancel anytime if she decides to go home.
+  </p>
+
+  <h3>Scenario 2: The Family Relocating for Work</h3>
+  <p class="italic text-neutral-600">
+    The Johnsons (both 42, two kids 8 and 11) are moving to Spain for a 3-year work assignment. Dad has controlled high blood pressure. They want real healthcare.
+  </p>
+  <p>
+    <strong>Best choice: Cigna Global Gold</strong>
+  </p>
+  <p>
+    Dad's pre-existing condition disqualifies SafetyWing Nomad immediately. Cigna can underwrite the blood pressure and likely cover it (with possible exclusion initially). The kids get full pediatric care. Routine checkups are covered. Direct billing means no out-of-pocket hassles with four people needing care.
+  </p>
+
+  <h3>Scenario 3: The Early Retiree Abroad</h3>
+  <p class="italic text-neutral-600">
+    Robert, 58, is retiring to Costa Rica. He's reasonably healthy but knows healthcare needs increase with age. He wants to know he's protected for anything.
+  </p>
+  <p>
+    <strong>Best choice: Cigna Global Gold or Platinum</strong>
+  </p>
+  <p>
+    At 58, Robert can't rely on $250K coverage limits. A serious illness could easily exceed that. SafetyWing Nomad doesn't cover the routine care he'll increasingly need. Cigna's unlimited coverage (Platinum) or high limits (Gold) plus full outpatient care makes sense. Yes, it costs $400-600/month—but one major health event could cost far more.
+  </p>
+
+  <h3>Scenario 4: The Budget-Conscious Long-Term Nomad</h3>
+  <p class="italic text-neutral-600">
+    Carlos, 34, has been nomading for 3 years and plans to continue. He's healthy, budget-conscious, but wants more than just emergency coverage as he ages.
+  </p>
+  <p>
+    <strong>Best choice: SafetyWing Remote Health</strong>
+  </p>
+  <p>
+    Carlos has outgrown Nomad Insurance's limitations but doesn't want Cigna's price tag. Remote Health gives him real health insurance—mental health, comprehensive care, higher limits—at ~$150/month. It's the middle ground he needs.
+  </p>
+
+  <h3>Scenario 5: The Wealthy Expat Prioritizing Quality</h3>
+  <p class="italic text-neutral-600">
+    The Chengs (55 and 52) are semi-retired, moving between their homes in Singapore, Portugal, and occasionally visiting family in the US. Money isn't their primary concern—quality and convenience are.
+  </p>
+  <p>
+    <strong>Best choice: Cigna Global Platinum with US coverage</strong>
+  </p>
+  <p>
+    The Chengs want the best: unlimited coverage, any hospital worldwide, premium support, no thinking about claims. Cigna Platinum with US coverage costs ~$1,200/month per person but delivers VIP healthcare globally. Direct billing everywhere, 24/7 concierge service, and complete peace of mind.
+  </p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I switch from SafetyWing to Cigna later?</h3>
+      <p class="text-neutral-600">
+        Yes, but with caveats. Any conditions you develop while on SafetyWing become pre-existing conditions when you apply to Cigna. Cigna will underwrite them—possibly excluding them or adding premium. If you know you'll eventually want comprehensive insurance, starting earlier (while healthy) makes sense. Every year you wait with minimal coverage is a year you might develop something that affects future insurability.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is SafetyWing Nomad accepted for visa applications?</h3>
+      <p class="text-neutral-600">
+        Sometimes. Some countries (especially EU Schengen) require specific coverage amounts and may not accept travel medical insurance for long-term visas. Portugal's D7 visa, for example, often requires proof of health insurance—SafetyWing Nomad may not qualify. Cigna or SafetyWing Remote Health would. Check your specific visa requirements before choosing.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What happens if I get sick with SafetyWing and need ongoing care?</h3>
+      <p class="text-neutral-600">
+        SafetyWing Nomad covers the emergency treatment but not ongoing care. If you're hospitalized for appendicitis, the surgery is covered. Follow-up appointments and medications beyond the acute phase may not be. For chronic conditions diagnosed while covered, you'd need to upgrade to Remote Health (with a waiting period) or purchase other insurance—and the new condition becomes pre-existing.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Does Cigna cover US healthcare if I'm based abroad?</h3>
+      <p class="text-neutral-600">
+        Yes, with the US coverage add-on (which increases premiums 40-60%). You can also get limited US coverage for emergencies during visits without the full add-on. If you're American returning home occasionally, clarify exactly what's covered during US visits. Cigna offers various configurations.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I use both together?</h3>
+      <p class="text-neutral-600">
+        Technically yes, though it rarely makes sense. Some people keep SafetyWing Nomad as backup while building up Cigna coverage during waiting periods, but you can't double-claim. The coordination of benefits rules mean one insurer is always primary. It's usually simpler to pick one.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Which is better for families with children?</h3>
+      <p class="text-neutral-600">
+        Cigna, clearly. Kids need routine healthcare: vaccinations, checkups, pediatric visits for ear infections and fevers. SafetyWing Nomad only covers emergencies—fine for healthy adults, inadequate for children who need regular care. Cigna's family discounts also make it more economical for families.
+      </p>
+    </div>
+  </div>
+
+  <!-- Inline FAQ CTA - CRO: Capture users who read through FAQ -->
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-4 my-4">
+    <p class="text-primary-900 text-center">
+      <strong>Still have questions?</strong> Get personalized guidance by requesting quotes—brokers can help clarify coverage details.
+      <a href="/best/expat-health-insurance" class="text-primary-700 underline hover:text-primary-800 ml-1">Get Free Quotes →</a>
     </p>
   </div>
 
+  <h2 id="verdict">Our Verdict</h2>
+
+  <p>
+    SafetyWing and Cigna Global serve different needs for different people at different life stages. The right choice depends entirely on what you actually need.
+  </p>
+
+  <p>
+    <strong>SafetyWing Nomad Insurance</strong> is excellent travel medical insurance for young, healthy people who just need a safety net. At ~$45/month with no commitment, it's perfect for testing the nomad lifestyle. Don't expect healthcare—expect emergency rescue. If you're 28, perfectly healthy, and just want something in case you break your leg, SafetyWing Nomad delivers.
+  </p>
+
+  <p>
+    <strong>Cigna Global</strong> is comprehensive health insurance for people who want to actually be insured. If you're over 40, have any health conditions, have a family, or simply want the security of knowing you're covered for anything, Cigna is the better choice. You pay 3-5x more because you get 3-5x more coverage. That's not a ripoff—it's a different product.
+  </p>
+
+  <p>
+    <strong>SafetyWing Remote Health</strong> sits between them—real health insurance at a startup price point. Worth considering if you want comprehensive coverage but prefer SafetyWing's approach.
+  </p>
+
+  <p>
+    The mistake is choosing SafetyWing Nomad thinking you're getting Cigna-level coverage at a bargain. You're not. Choose the product that matches your actual needs and risk tolerance.
+  </p>
+
+  <!-- Split provider CTAs - CRO: Clear next step for each provider -->
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for SafetyWing?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for young, healthy nomads who want emergency coverage with no commitment.</p>
+      <a href="/providers/safetywing" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View SafetyWing Options →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Cigna?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for families, those over 40, and anyone wanting comprehensive health insurance.</p>
+      <a href="/providers/cigna-global" class="inline-block w-full text-center bg-neutral-700 hover:bg-neutral-800 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get Cigna Global Quote →
+      </a>
+    </div>
+  </div>
+
+  <!-- Final CTA - CRO: Last chance conversion -->
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes based on your specific situation and needs."
-    buttonText="Compare Plans Now"
+    title="Compare Both Options"
+    description="Get personalized quotes for SafetyWing and Cigna to see the actual price difference for your situation."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan availability change frequently. We are not insurance brokers or licensed advisors. Verify all information directly with SafetyWing and Cigna Global before purchasing. Consider consulting with an insurance broker who can assess your specific needs.
     </p>
   </div>
 </PageShell>

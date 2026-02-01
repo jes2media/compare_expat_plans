@@ -5,10 +5,16 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'us-expat-advantage', text: 'The US Expat Advantage', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'plan-options', text: 'Plan Options & Structure', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'us-network', text: 'US Network Access', level: 2 },
+  { id: 'international-network', text: 'International Network', level: 2 },
+  { id: 'claims-service', text: 'Claims & Customer Service', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'real-world-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
@@ -27,246 +33,681 @@ const coverageColumns = [
 ];
 
 const coverageRows = [
-  { feature: 'US Network', aetna: 'Aetna (1.7M+ providers)', geoblue: 'Blue Cross (largest US)' },
-  { feature: 'Maximum Coverage', aetna: '$1M-$5M', geoblue: '$1M-$5M' },
-  { feature: 'Inpatient Care', aetna: true, geoblue: true },
-  { feature: 'Outpatient Care', aetna: 'Prime/Platinum', geoblue: 'Choice/Excel' },
-  { feature: 'Mental Health', aetna: true, geoblue: 'Choice/Excel' },
-  { feature: 'Maternity', aetna: 'Optional', geoblue: 'Excel tier' },
+  { feature: 'US Network', aetna: 'Aetna (1.7M+ providers)', geoblue: 'BCBS (largest US network)' },
+  { feature: 'Maximum Coverage', aetna: '$1M - $5M', geoblue: '$1M - $5M' },
+  { feature: 'Inpatient Hospital', aetna: '✓ All plans', geoblue: '✓ All plans' },
+  { feature: 'Outpatient Care', aetna: '✓ Prime/Platinum', geoblue: '✓ Choice/Excel' },
+  { feature: 'Mental Health', aetna: '✓ Included', geoblue: '✓ Choice/Excel' },
+  { feature: 'Maternity', aetna: 'Optional add-on', geoblue: '✓ Excel tier' },
+  { feature: 'Preventive Care', aetna: '✓ Platinum', geoblue: '✓ Excel' },
   { feature: 'Medical Evacuation', aetna: 'Up to $1M', geoblue: 'Up to $500K' },
-  { feature: 'Telehealth', aetna: 'Select plans', geoblue: 'Included' },
-  { feature: 'US Coverage', aetna: 'Integrated', geoblue: 'Integrated' },
+  { feature: 'Telehealth', aetna: 'Select plans', geoblue: '✓ Included all plans' },
+  { feature: 'Dental/Vision', aetna: 'Optional add-on', geoblue: 'Optional add-on' },
+  { feature: 'Pre-existing Conditions', aetna: '2-year lookback', geoblue: '2-year lookback' },
+];
+
+const planTierColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'geoblue', header: 'GeoBlue' },
+];
+
+const planTierRows = [
+  { aspect: 'Plan Structure', aetna: 'Tiered (Pioneer) + Modular (Navigator)', geoblue: 'Tiered only (Voyager)' },
+  { aspect: 'Entry Level', aetna: 'Pioneer (~$200-280/mo)', geoblue: 'Essential (~$180-250/mo)' },
+  { aspect: 'Mid Tier', aetna: 'Prime (~$280-380/mo)', geoblue: 'Choice (~$250-350/mo)' },
+  { aspect: 'Top Tier', aetna: 'Platinum (~$380-500/mo)', geoblue: 'Excel (~$350-480/mo)' },
+  { aspect: 'Customization', aetna: 'Navigator: Pick modules', geoblue: 'Fixed tiers only' },
+  { aspect: 'Deductible Options', aetna: '$0 to $5,000', geoblue: '$0 to $5,000' },
+  { aspect: 'Annual Maximum', aetna: '$1M - $5M', geoblue: '$1M - $5M' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
-  { key: 'aetna', header: 'Aetna Pioneer Prime' },
-  { key: 'geoblue', header: 'GeoBlue Voyager Choice' },
+  { key: 'aetna', header: 'Aetna Prime (with US)' },
+  { key: 'geoblue', header: 'GeoBlue Choice (with US)' },
 ];
 
 const pricingRows = [
-  { profile: 'Age 30, incl. US', aetna: '$250-340/mo', geoblue: '$250-320/mo' },
-  { profile: 'Age 40, incl. US', aetna: '$320-440/mo', geoblue: '$320-420/mo' },
-  { profile: 'Age 50, incl. US', aetna: '$450-620/mo', geoblue: '$450-580/mo' },
-  { profile: 'Age 60, incl. US', aetna: '$600-800/mo', geoblue: '$620-800/mo' },
+  { profile: 'Age 30, healthy', aetna: '~$280-340/mo', geoblue: '~$260-320/mo' },
+  { profile: 'Age 40, healthy', aetna: '~$350-420/mo', geoblue: '~$330-400/mo' },
+  { profile: 'Age 50, healthy', aetna: '~$480-580/mo', geoblue: '~$450-550/mo' },
+  { profile: 'Age 60, healthy', aetna: '~$650-780/mo', geoblue: '~$620-750/mo' },
+  { profile: 'Couple, 40s', aetna: '~$680-820/mo', geoblue: '~$640-780/mo' },
+  { profile: 'Family of 4 (40/38/10/7)', aetna: '~$950-1,150/mo', geoblue: '~$900-1,100/mo' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'geoblue', header: 'GeoBlue' },
+];
+
+const networkRows = [
+  { aspect: 'US Provider Network', aetna: '1.7M+ providers', geoblue: 'BCBS network (largest)' },
+  { aspect: 'US Hospital Coverage', aetna: '90%+ of hospitals', geoblue: '96% of hospitals' },
+  { aspect: 'International Providers', aetna: '1.7M+ in 200 countries', geoblue: '1.7M+ in 190 countries' },
+  { aspect: 'Direct Billing (US)', aetna: 'Extensive', geoblue: 'Extensive' },
+  { aspect: 'Direct Billing (Intl)', aetna: 'At network hospitals', geoblue: 'At network hospitals' },
+  { aspect: 'Provider Finder', aetna: 'App + website', geoblue: 'Award-winning app' },
 ];
 ---
 
 <PageShell
-  title="Aetna International vs GeoBlue"
-  description="Compare Aetna International and GeoBlue for US expats. Both offer integrated US network access—see how they differ on coverage, price, and service."
-  headline="Aetna International vs GeoBlue: US Expat Insurance Compared"
-  subheadline="Two excellent options for Americans abroad who need seamless US healthcare access. Here's how they stack up."
+  title="Aetna International vs GeoBlue: Complete 2025 Comparison"
+  description="Aetna International vs GeoBlue compared for US expats. Both include seamless US coverage—see which one fits your needs for American healthcare abroad."
+  headline="Aetna International vs GeoBlue"
+  subheadline="The two best options for Americans abroad who need seamless US healthcare access. How they compare on coverage, price, and service."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get Quotes from Both"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
+
+  <!-- Quick Decision Guide - CRO: Helps users self-select quickly -->
+  <div class="bg-gradient-to-r from-primary-50 to-neutral-50 border border-primary-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">⚡ Quick Decision Guide</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white rounded p-4 border border-primary-100">
+        <p class="font-medium text-primary-900 mb-2">Choose Aetna if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You want modular, customizable coverage</li>
+          <li>• Your employer sponsors international insurance</li>
+          <li>• You need higher evacuation limits ($1M)</li>
+          <li>• You prefer Aetna's existing network</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded p-4 border border-neutral-200">
+        <p class="font-medium text-neutral-900 mb-2">Choose GeoBlue if:</p>
+        <ul class="text-sm text-neutral-700 space-y-1">
+          <li>• You want the largest US network (BCBS)</li>
+          <li>• You're already familiar with Blue Cross</li>
+          <li>• Mobile app quality matters to you</li>
+          <li>• You prefer simple, fixed-tier plans</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <p>
-    Aetna International and GeoBlue are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
-  </p>
-  <p>
-    Aetna International is backed by CVS Health, offering plans designed for globally mobile individuals. Their main integration with US healthcare system and strong employer-sponsored options. They're particularly popular among US-based companies with international employees and American expats, with mid-range pricing with good corporate plan options.
-  </p>
-  <p>
-    GeoBlue is a Blue Cross Blue Shield company focused on international health coverage. They're known for their connection to the Blue Cross Blue Shield network and strong US ties. They tend to attract American expats who want continuity with US healthcare brands, offering mid-range with good options for short and long-term coverage.
-  </p>
-  <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    Aetna International and GeoBlue are the two leading options for Americans living abroad who need comprehensive health insurance that works seamlessly in the US. Unlike other international insurers where US coverage is an expensive add-on, both of these providers build US network access into their core product.
   </p>
 
+  <p>
+    <strong>Aetna International</strong> is the global arm of Aetna, now part of CVS Health. They've been providing international coverage for decades, with strong roots in employer-sponsored plans. Aetna offers both tiered plans (Pioneer series) and modular plans (Navigator) that let you customize coverage. Their US network includes 1.7 million+ providers, and they have particularly strong corporate and employer relationships.
+  </p>
+
+  <p>
+    <strong>GeoBlue</strong> is Blue Cross Blue Shield's international health insurance division. The BCBS network is the largest in the US—96% of hospitals and most doctors participate. GeoBlue leverages this massive US infrastructure while building out international coverage. Their plans are simpler (tiered only), but their mobile app is consistently rated as the best in the industry for finding providers and managing claims.
+  </p>
+
+  <p>
+    For Americans abroad, this comparison matters because these are arguably the only two providers where US coverage isn't a costly afterthought. This guide will help you understand exactly how they differ.
+  </p>
+
+  <!-- At-a-glance boxes with trust signals - CRO: Builds credibility -->
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Part of CVS Health / Aetna</li>
-        <li>Access to 1.7M+ US providers</li>
-        <li>Pioneer (tiered) and Navigator (modular) plans</li>
-        <li>Strong employer/corporate options</li>
-        <li>London-based international operations</li>
-        <li>24/7 multilingual support</li>
+        <li><strong>Parent Company:</strong> CVS Health / Aetna</li>
+        <li><strong>Founded:</strong> International division since 1960s</li>
+        <li><strong>US Network:</strong> 1.7M+ providers</li>
+        <li><strong>Coverage Limit:</strong> Up to $5M</li>
+        <li><strong>Best For:</strong> Customization seekers, corporate plans</li>
+        <li><strong>Headquarters:</strong> London (international ops)</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue</h3>
       <ul class="space-y-2 text-neutral-600">
-        <li>Blue Cross Blue Shield's international arm</li>
-        <li>Full BCBS US network (largest in US)</li>
-        <li>Voyager (long-term) and Trekker (travel) plans</li>
-        <li>Familiar to most Americans</li>
-        <li>Pennsylvania-based operations</li>
-        <li>Strong mobile app with provider finder</li>
+        <li><strong>Parent Company:</strong> Blue Cross Blue Shield</li>
+        <li><strong>Founded:</strong> 1997 (as BCBS Global)</li>
+        <li><strong>US Network:</strong> BCBS network (largest in US)</li>
+        <li><strong>Coverage Limit:</strong> Up to $5M</li>
+        <li><strong>Best For:</strong> BCBS loyalists, app-focused users</li>
+        <li><strong>Headquarters:</strong> King of Prussia, PA</li>
       </ul>
     </div>
   </div>
 
+  <h2 id="us-expat-advantage">The US Expat Advantage</h2>
+
   <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-blue-900 mb-2">The US Coverage Advantage</h3>
+    <h3 class="text-lg font-semibold text-blue-900 mb-2">Why This Matters for Americans</h3>
     <p class="text-blue-800">
-      Both Aetna International and GeoBlue include US coverage as a core feature, not an expensive add-on. With other international insurers like Cigna or Allianz, adding US coverage can increase premiums by 40-60%. Aetna and GeoBlue are built for Americans who need to use healthcare in both locations.
+      With most international insurers (Cigna Global, Allianz Care, BUPA), US coverage is an add-on that increases premiums by 40-60%. That's because US healthcare costs 2-3x more than anywhere else. Aetna International and GeoBlue are built differently—they assume you'll use US healthcare and price accordingly. The result: truly integrated US coverage without sticker shock.
     </p>
   </div>
 
+  <p>
+    Americans living abroad face a unique challenge: they often need to access US healthcare for visits home, maintaining relationships with US specialists, or eventual repatriation. Standard international insurance handles this poorly—either excluding US coverage entirely or adding expensive riders.
+  </p>
+
+  <p>
+    Both Aetna and GeoBlue solve this by building US network integration into their core product:
+  </p>
+  <ul>
+    <li><strong>Direct billing at US hospitals and doctors</strong>—no paying upfront and waiting for reimbursement</li>
+    <li><strong>Full US network access</strong>—same providers you'd use with domestic insurance</li>
+    <li><strong>US prescription coverage</strong>—fill scripts at US pharmacies when visiting</li>
+    <li><strong>Seamless coordination</strong>—your plan works the same whether you're in Mexico City or Minneapolis</li>
+  </ul>
+
+  <p>
+    If you're American and will regularly access US healthcare, these two providers should be your starting point. Other international insurers are better suited for expats who don't need US coverage.
+  </p>
+
   <CTABox
     title="Compare Both Providers"
-    description="Get quotes from Aetna International and GeoBlue."
+    description="Get personalized quotes from Aetna International and GeoBlue to see actual pricing."
     buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
+
   <p>
-    Both providers offer comprehensive coverage. The differences are in plan structures and specific benefits.
+    Both providers offer comprehensive international health coverage with similar benefits. The differences are in the details—particularly around mental health, maternity, and evacuation limits.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={coverageColumns} rows={coverageRows} />
   </div>
 
+  <h3>Key Coverage Differences</h3>
+
+  <p><strong>Medical Evacuation:</strong></p>
+  <ul>
+    <li><strong>Aetna:</strong> Up to $1,000,000 for evacuation and repatriation</li>
+    <li><strong>GeoBlue:</strong> Up to $500,000 for evacuation</li>
+  </ul>
   <p>
-    <strong>Key differences:</strong>
+    If you'll be in remote areas or developing countries where evacuation is more likely, Aetna's higher limit provides extra security. For most expats in developed countries, either limit is adequate.
+  </p>
+
+  <p><strong>Mental Health Coverage:</strong></p>
+  <ul>
+    <li><strong>Aetna:</strong> Included on all plans (with session limits on lower tiers)</li>
+    <li><strong>GeoBlue:</strong> Included on Choice and Excel tiers (not Essential)</li>
+  </ul>
+  <p>
+    If mental health coverage matters, check the specific plan tier. GeoBlue Essential excludes it entirely.
+  </p>
+
+  <p><strong>Maternity:</strong></p>
+  <ul>
+    <li><strong>Aetna:</strong> Optional add-on available on Navigator plans</li>
+    <li><strong>GeoBlue:</strong> Included on Excel tier; not available on lower tiers</li>
+  </ul>
+  <p>
+    Planning a family abroad requires careful plan selection. Both providers have 10-12 month waiting periods for maternity benefits.
+  </p>
+
+  <p><strong>Telehealth:</strong></p>
+  <ul>
+    <li><strong>Aetna:</strong> Available on select plans (typically higher tiers)</li>
+    <li><strong>GeoBlue:</strong> Included on all Voyager plans</li>
+  </ul>
+  <p>
+    GeoBlue's telehealth integration is consistently praised—you can video chat with a doctor through the app. Useful for non-emergency consultations anywhere in the world.
+  </p>
+
+  <h3>Pre-existing Conditions</h3>
+  <p>
+    Both providers handle pre-existing conditions similarly:
   </p>
   <ul>
-    <li>GeoBlue connects to the Blue Cross network—the largest in the US with 96% of hospitals</li>
-    <li>Aetna's Navigator plans offer modular customization; GeoBlue uses fixed tiers</li>
-    <li>Aetna has higher medical evacuation limits ($1M vs $500K)</li>
-    <li>GeoBlue includes telehealth; Aetna offers it on select plans</li>
-    <li>Both exclude pre-existing conditions similarly (2-year lookback typical)</li>
+    <li>Standard 2-year lookback period (conditions treated in prior 2 years)</li>
+    <li>Exclusions or waiting periods for pre-existing conditions</li>
+    <li>Some conditions may be covered after waiting periods</li>
+    <li>Full disclosure required on applications</li>
+  </ul>
+  <p>
+    Neither provider is notably better for pre-existing conditions—both are standard in this regard.
+  </p>
+
+  <h2 id="plan-options">Plan Options & Structure</h2>
+
+  <p>
+    This is where Aetna and GeoBlue differ most significantly. Aetna offers customizable modular plans; GeoBlue uses straightforward tiers.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={planTierColumns} rows={planTierRows} />
+  </div>
+
+  <h3>Aetna International Plans</h3>
+  <p><strong>Pioneer Series (Tiered):</strong></p>
+  <ul>
+    <li><strong>Pioneer:</strong> Inpatient-focused, basic coverage</li>
+    <li><strong>Prime:</strong> Adds comprehensive outpatient, mental health</li>
+    <li><strong>Platinum:</strong> Everything including wellness and preventive care</li>
   </ul>
 
-  <h3>Plan Structure Differences</h3>
+  <p><strong>Navigator Series (Modular):</strong></p>
   <p>
-    <strong>Aetna</strong> offers two product lines:
+    Navigator lets you build a custom plan by selecting modules:
   </p>
   <ul>
-    <li><strong>Pioneer:</strong> Tiered plans (Pioneer, Prime, Platinum) with increasing benefits</li>
-    <li><strong>Navigator:</strong> Modular plans where you select coverage modules (outpatient, dental, maternity, etc.)</li>
+    <li>Core (required): Inpatient hospitalization</li>
+    <li>Outpatient: Doctor visits, diagnostics, prescriptions</li>
+    <li>Wellness: Preventive care, screenings, vaccinations</li>
+    <li>Dental: Routine and major dental</li>
+    <li>Vision: Eye exams, glasses, contacts</li>
+    <li>Maternity: Pregnancy and childbirth</li>
   </ul>
   <p>
-    <strong>GeoBlue</strong> uses a simpler structure:
+    This modular approach can save money if you don't need certain benefits. A 30-year-old who doesn't need maternity or dental can build a lean plan at lower cost.
   </p>
+
+  <h3>GeoBlue Plans</h3>
+  <p><strong>Voyager Series (Long-term expats):</strong></p>
   <ul>
-    <li><strong>Voyager:</strong> Essential, Choice, and Excel tiers for long-term expats</li>
-    <li><strong>Trekker:</strong> Travel medical insurance for shorter trips</li>
+    <li><strong>Essential:</strong> Inpatient only, lowest premium, no outpatient or mental health</li>
+    <li><strong>Choice:</strong> Adds outpatient, mental health, most common tier</li>
+    <li><strong>Excel:</strong> Comprehensive including maternity and wellness</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <p><strong>Trekker Series (Travel medical):</strong></p>
   <p>
-    Pricing is similar between these two providers. The main variable is which benefits you need—both offer ways to reduce premiums through deductibles and plan selection.
+    For shorter trips rather than long-term expat living. Travel medical insurance, not comprehensive health insurance.
+  </p>
+
+  <h3>Which Structure Is Better?</h3>
+  <p>
+    <strong>Choose Aetna Navigator</strong> if you know exactly what you need and want to optimize for cost. The modular approach rewards careful planning.
+  </p>
+  <p>
+    <strong>Choose GeoBlue tiers</strong> if you prefer simplicity. Pick Essential, Choice, or Excel based on how comprehensive you want coverage to be. No decisions about modules—just pick a tier.
+  </p>
+
+  <h2 id="pricing">Pricing Breakdown</h2>
+
+  <p>
+    Pricing between Aetna and GeoBlue is competitive. GeoBlue tends to be slightly cheaper at comparable tiers, but Aetna's modular plans can undercut if you skip benefits you don't need.
   </p>
 
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
   </div>
 
-  <p>
-    <strong>Notes on pricing:</strong>
+  <p class="text-sm text-neutral-600 italic">
+    *Estimates based on 2024-2025 quotes for expats including US coverage. Actual prices vary based on health history, exact destination, and plan customization. Both providers include US coverage in base pricing.
   </p>
+
+  <h3>What Affects Pricing</h3>
   <ul>
-    <li>Both include US coverage in base pricing—no expensive add-on</li>
-    <li>Deductible options range from $0 to $5,000 for both</li>
-    <li>Higher deductibles can reduce premiums by 20-30%</li>
-    <li>GeoBlue's Essential tier is 25-35% cheaper than Choice</li>
-    <li>Aetna's Navigator (modular) can be cheaper if you don't need all benefits</li>
+    <li><strong>Age:</strong> Primary factor—premiums roughly double between ages 30 and 60</li>
+    <li><strong>Deductible:</strong> $0 to $5,000 options; higher deductibles reduce premiums 15-25%</li>
+    <li><strong>Plan tier:</strong> Essential/Pioneer is 25-35% cheaper than Excel/Platinum</li>
+    <li><strong>Location:</strong> Some countries have regional surcharges</li>
+    <li><strong>Family:</strong> Children add relatively less; couple/family rates have small discounts vs individual</li>
   </ul>
 
+  <h3>Ways to Reduce Premiums</h3>
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6">
+    <h4 class="font-semibold text-neutral-900 mb-2">For Both Providers:</h4>
+    <ul class="text-neutral-700 space-y-1">
+      <li><strong>Higher deductible:</strong> $2,500-$5,000 deductible can save 20-25%</li>
+      <li><strong>Lower tier:</strong> Essential/Pioneer if you're healthy and just want hospitalization</li>
+      <li><strong>Annual payment:</strong> Small discount for paying yearly vs monthly</li>
+    </ul>
+    <h4 class="font-semibold text-neutral-900 mt-4 mb-2">Aetna-Specific:</h4>
+    <ul class="text-neutral-700 space-y-1">
+      <li><strong>Navigator modules:</strong> Skip dental, vision, maternity if you don't need them</li>
+      <li><strong>Employer sponsorship:</strong> Corporate rates are significantly lower</li>
+    </ul>
+  </div>
+
+  <!-- CTA after pricing - CRO: Capture users ready to compare costs -->
   <CTABox
     title="Get Your Actual Price"
-    description="Pricing varies by age, plan, and deductible. Get a personalized quote."
-    buttonText="Get a Quote"
+    description="These estimates vary by individual. Get personalized quotes for both providers."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
+  <h2 id="us-network">US Network Access</h2>
 
-  <h3>US Network Access</h3>
   <p>
-    <strong>GeoBlue</strong> provides access to the Blue Cross Blue Shield network—the largest in the US. Over 100 million Americans use BCBS domestically, and 96% of US hospitals are in-network. If you've had BCBS before, you'll find the same network abroad.
-  </p>
-  <p>
-    <strong>Aetna International</strong> connects to Aetna's US network of 1.7 million+ providers. While slightly smaller than BCBS, Aetna's network covers all major markets and includes most top hospitals and specialists.
+    For Americans, the US network is often the deciding factor. Here's how they compare.
   </p>
 
-  <h3>International Network</h3>
+  <h3>GeoBlue: Blue Cross Blue Shield Network</h3>
   <p>
-    Both providers maintain extensive international networks:
+    GeoBlue provides access to the Blue Cross Blue Shield network—the largest and most widely accepted in the US:
   </p>
   <ul>
-    <li><strong>GeoBlue:</strong> 1.7 million+ contracted providers in 190 countries</li>
-    <li><strong>Aetna:</strong> 1.7 million+ providers globally, with CVS Health backing</li>
+    <li><strong>96% of US hospitals</strong> are in-network</li>
+    <li><strong>90%+ of doctors</strong> accept Blue Cross</li>
+    <li><strong>Familiar brand:</strong> Most Americans have used BCBS at some point</li>
+    <li><strong>PPO-style access:</strong> See any provider without referrals</li>
   </ul>
-
-  <h3>Claims Process</h3>
   <p>
-    <strong>GeoBlue:</strong> Mobile app with photo submission, real-time tracking, and digital ID cards. Claims typically process in 7-14 days. US Blue Cross claims process faster due to existing infrastructure.
+    If you have existing relationships with US doctors, they almost certainly accept Blue Cross. The network is so large that finding out-of-network providers is unusual.
+  </p>
+
+  <h3>Aetna International: Aetna Network</h3>
+  <p>
+    Aetna's US network is also extensive, though slightly smaller than BCBS:
+  </p>
+  <ul>
+    <li><strong>1.7 million+ providers</strong> nationwide</li>
+    <li><strong>90%+ of hospitals</strong> participate</li>
+    <li><strong>CVS integration:</strong> Pharmacy benefits at 9,900+ CVS locations</li>
+    <li><strong>MinuteClinic access:</strong> Walk-in clinics at CVS stores</li>
+  </ul>
+  <p>
+    The CVS integration is genuinely useful. Need a flu shot, quick prescription, or minor care? Walk into any CVS MinuteClinic. This convenience isn't available with GeoBlue.
+  </p>
+
+  <h3>Which US Network Is Better?</h3>
+  <p>
+    <strong>GeoBlue (BCBS) is marginally larger</strong>—96% vs 90% of hospitals. In practice, both cover essentially every provider you'd want to see in urban and suburban areas. The difference matters most in rural areas where provider choice is limited.
   </p>
   <p>
-    <strong>Aetna:</strong> Online portal, mobile app, and email submission. Claims typically process in 5-10 days. Direct billing available at network providers in both US and international locations.
+    <strong>If you already have doctors you like:</strong> Check if they accept Aetna or BCBS. Most accept both, but some providers are in one network but not the other.
+  </p>
+
+  <h2 id="international-network">International Network</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+  </div>
+
+  <h3>Provider Access Abroad</h3>
+  <p>
+    Both providers have approximately 1.7 million international providers. In practical terms:
+  </p>
+  <ul>
+    <li>Major hospitals in capital cities have direct billing relationships with both</li>
+    <li>Network density is similar across popular expat destinations</li>
+    <li>Neither has significant coverage gaps in developed countries</li>
+    <li>Developing countries may require more reimbursement-based claims</li>
+  </ul>
+
+  <h3>Provider Finder Apps</h3>
+  <p>
+    <strong>GeoBlue's app</strong> is consistently rated superior for finding international providers:
+  </p>
+  <ul>
+    <li>GPS-based provider search</li>
+    <li>Filters by specialty, language, direct billing</li>
+    <li>Provider reviews and ratings</li>
+    <li>One-tap directions and contact</li>
+  </ul>
+  <p>
+    <strong>Aetna's app</strong> is functional but less polished:
+  </p>
+  <ul>
+    <li>Provider directory search</li>
+    <li>Basic filtering options</li>
+    <li>Claims submission</li>
+    <li>ID card access</li>
+  </ul>
+  <p>
+    If finding providers via mobile app is important to you, GeoBlue has the edge.
+  </p>
+
+  <h2 id="claims-service">Claims & Customer Service</h2>
+
+  <h3>Claims Processing</h3>
+  <p><strong>GeoBlue Claims:</strong></p>
+  <ul>
+    <li>Mobile app with photo submission</li>
+    <li>Real-time claim status tracking</li>
+    <li>Typical processing: 7-14 days</li>
+    <li>US Blue Cross claims process faster (existing infrastructure)</li>
+    <li>Direct billing at network providers eliminates most claims</li>
+  </ul>
+
+  <p><strong>Aetna Claims:</strong></p>
+  <ul>
+    <li>Online portal, mobile app, email submission</li>
+    <li>Typical processing: 5-10 days</li>
+    <li>CVS Health backend enables efficient processing</li>
+    <li>Direct billing extensive in both US and international networks</li>
+  </ul>
+
+  <p>
+    Aetna's claims process is marginally faster on average. But with direct billing available from both, you'll rarely need to file claims for major expenses.
   </p>
 
   <h3>Customer Service</h3>
-  <p>
-    Both offer 24/7 support with multilingual assistance. GeoBlue's mobile app is particularly well-reviewed for finding nearby providers. Aetna offers dedicated case managers for complex medical situations.
-  </p>
+  <p><strong>Both offer:</strong></p>
+  <ul>
+    <li>24/7 phone support</li>
+    <li>Multilingual assistance</li>
+    <li>Emergency evacuation coordination</li>
+    <li>Digital ID cards</li>
+    <li>Online member portals</li>
+  </ul>
+
+  <p><strong>Aetna adds:</strong></p>
+  <ul>
+    <li>Dedicated case managers for complex medical situations</li>
+    <li>Stronger corporate account support</li>
+    <li>CVS Health Nurse Line access</li>
+  </ul>
+
+  <p><strong>GeoBlue adds:</strong></p>
+  <ul>
+    <li>Superior mobile app experience</li>
+    <li>Telehealth integration on all plans</li>
+    <li>Award-winning provider finder</li>
+  </ul>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Aetna International If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You want modular, customizable coverage</li>
-        <li>You work for a US company with international assignments</li>
-        <li>You need higher evacuation limits ($1M)</li>
-        <li>You prefer Aetna's network over BCBS</li>
-        <li>You want to pick specific benefits à la carte</li>
-        <li>CVS Health backing matters for financial stability</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You want modular, customizable coverage</li>
+        <li>✓ Your employer offers Aetna international plans</li>
+        <li>✓ You need higher evacuation limits ($1M)</li>
+        <li>✓ You already use and like Aetna domestically</li>
+        <li>✓ CVS MinuteClinic convenience appeals to you</li>
+        <li>✓ You want to pick specific benefits à la carte</li>
+        <li>✓ You're comfortable navigating modular options</li>
+        <li>✓ You value faster claims processing</li>
       </ul>
     </div>
     <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose GeoBlue If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You want the largest US network (BCBS)</li>
-        <li>You're already familiar with Blue Cross</li>
-        <li>You prefer straightforward tiered plans</li>
-        <li>Mobile app quality matters to you</li>
-        <li>You want integrated telehealth</li>
-        <li>Brand familiarity and trust are important</li>
+      <ul class="space-y-2 text-neutral-700">
+        <li>✓ You want the largest US network (BCBS)</li>
+        <li>✓ You're already familiar with Blue Cross Blue Shield</li>
+        <li>✓ Mobile app quality is important to you</li>
+        <li>✓ You prefer simple, straightforward tier selection</li>
+        <li>✓ Telehealth on all plans matters</li>
+        <li>✓ You're in a rural area where network size matters</li>
+        <li>✓ You want the most recognized US healthcare brand</li>
+        <li>✓ You prioritize finding providers easily abroad</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="verdict">Our Verdict</h2>
+  <!-- CTA after Who Should Choose - CRO: Users who've self-identified their needs -->
+  <CTABox
+    title="Know Which Fits Better?"
+    description="Get personalized quotes to confirm pricing for your situation."
+    buttonText="Get Your Quote"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <h2 id="real-world-scenarios">Real-World Scenarios</h2>
+
   <p>
-    Aetna International and GeoBlue are both excellent choices for US expats. The right choice depends on your preferences more than objective superiority.
-  </p>
-  <p>
-    <strong>GeoBlue</strong> is the natural choice if you've used Blue Cross before and want that continuity. The BCBS network is marginally larger, and the brand is familiar to most Americans. Their tiered plans are simple to understand.
-  </p>
-  <p>
-    <strong>Aetna International</strong> is better if you want more customization. The Navigator modular plans let you build exactly the coverage you need without paying for benefits you won't use. The higher evacuation limits and CVS Health backing are also advantages.
-  </p>
-  <p>
-    Both include US coverage without the premium increase you'd see with Cigna or Allianz. For Americans who split time between the US and abroad—or who might repatriate eventually—either option eliminates the coverage gap that would otherwise exist.
-  </p>
-  <p>
-    Get quotes from both to compare actual pricing for your situation. The costs are similar enough that small differences in benefits or network preference should drive your decision.
+    Let's see how these providers perform in situations US expats commonly face.
   </p>
 
+  <h3>Scenario 1: The Corporate Relocator</h3>
+  <p class="italic text-neutral-600">
+    Jennifer, 38, is being transferred to London by her Fortune 500 company for a 3-year assignment. Her employer offers international health insurance.
+  </p>
+  <p>
+    <strong>Best choice: Likely Aetna International</strong>
+  </p>
+  <p>
+    Large employers often have negotiated Aetna corporate plans with better rates and enhanced benefits. Jennifer should check what her company offers before looking at individual plans. Aetna's corporate relationships are stronger than GeoBlue's.
+  </p>
+
+  <h3>Scenario 2: The Retiree in Mexico</h3>
+  <p class="italic text-neutral-600">
+    Robert and Susan, both 62, are retiring to Puerto Vallarta. They'll return to the US 2-3 times per year to see family and US doctors they've used for decades.
+  </p>
+  <p>
+    <strong>Best choice: GeoBlue Voyager Choice or Excel</strong>
+  </p>
+  <p>
+    Their existing US doctors almost certainly accept Blue Cross. The BCBS network gives them maximum flexibility when visiting home. GeoBlue's simpler tiers also suit retirees who don't want to navigate modular options.
+  </p>
+
+  <h3>Scenario 3: The Digital Nomad in Costa Rica</h3>
+  <p class="italic text-neutral-600">
+    Marcus, 31, works remotely and is spending a year in Costa Rica. He's healthy and wants basic coverage with good US access for occasional trips home.
+  </p>
+  <p>
+    <strong>Best choice: Aetna Navigator (custom) or GeoBlue Essential</strong>
+  </p>
+  <p>
+    Both have low-cost options for healthy young expats. Aetna Navigator lets Marcus skip maternity, dental, and vision for a lean plan. GeoBlue Essential is the simplest budget option. Either works—Marcus should get quotes and compare.
+  </p>
+
+  <h3>Scenario 4: The Pregnant Expat in Germany</h3>
+  <p class="italic text-neutral-600">
+    Amanda and Dave, both 34, are planning to start a family while living in Munich. Dave's job doesn't offer international insurance.
+  </p>
+  <p>
+    <strong>Best choice: GeoBlue Excel</strong>
+  </p>
+  <p>
+    GeoBlue Excel includes maternity in the base plan (after waiting period). Aetna requires adding maternity as a Navigator module, which adds complexity. Both have 10-12 month waiting periods, so they need to plan ahead regardless.
+  </p>
+
+  <h3>Scenario 5: The Remote Adventure Worker</h3>
+  <p class="italic text-neutral-600">
+    Tyler, 40, does humanitarian work in remote areas of Southeast Asia and Africa. He needs robust evacuation coverage and strong international networks.
+  </p>
+  <p>
+    <strong>Best choice: Aetna International Platinum</strong>
+  </p>
+  <p>
+    Aetna's $1M evacuation limit (vs GeoBlue's $500K) provides critical protection for remote locations where evacuation costs can be extreme. Aetna also has dedicated case managers for complex international medical situations.
+  </p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I use my plan immediately in the US, or is there a waiting period?</h3>
+      <p class="text-neutral-600">
+        Both Aetna and GeoBlue provide immediate US access with no waiting period for the core plan. You can use US healthcare from day one. Maternity and certain other benefits have waiting periods regardless of which country you're in.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Do these plans satisfy ACA requirements if I maintain US residency?</h3>
+      <p class="text-neutral-600">
+        These are expatriate plans for people living abroad. If you maintain US residency and tax status, you may have different obligations. Both plans are designed for people living outside the US, not for US residents. Consult a tax advisor about your specific situation.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What happens if I move back to the US permanently?</h3>
+      <p class="text-neutral-600">
+        Both plans can continue if you repatriate, but they're designed for expats. You may want to transition to domestic insurance if you return permanently. GeoBlue's BCBS connection makes transition easier—you'll already be familiar with the network. Check portability options before returning.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How do pre-existing conditions work if I switch from one to the other?</h3>
+      <p class="text-neutral-600">
+        If you switch between Aetna and GeoBlue, the new insurer will apply their standard pre-existing condition rules. Continuous coverage doesn't automatically transfer. You'll go through underwriting again. If you have conditions you want covered, staying with your current insurer is usually better than switching.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can family members have different plans?</h3>
+      <p class="text-neutral-600">
+        Yes, you can structure family coverage with each member on a different tier. For example, a healthy spouse could be on Essential while you're on Choice. Both providers allow this, though family plans with everyone on the same tier often have small discounts.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is telehealth available for prescriptions?</h3>
+      <p class="text-neutral-600">
+        GeoBlue's telehealth can prescribe medications that can be filled at international pharmacies or US pharmacies when visiting. Aetna's telehealth availability varies by plan but offers similar capabilities. Both have limits on controlled substances.
+      </p>
+    </div>
+  </div>
+
+  <!-- Inline FAQ CTA - CRO: Capture users who read through FAQ -->
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-4 my-4">
+    <p class="text-primary-900 text-center">
+      <strong>Have more questions?</strong> Request quotes to speak with a broker who can clarify coverage details for your situation.
+      <a href="/best/expat-health-insurance" class="text-primary-700 underline hover:text-primary-800 ml-1">Get Free Quotes →</a>
+    </p>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+
+  <p>
+    Aetna International and GeoBlue are both excellent choices for Americans living abroad. The right choice depends more on your preferences than objective superiority—they're genuinely comparable products.
+  </p>
+
+  <p>
+    <strong>Choose GeoBlue</strong> if you value simplicity and the largest US network. The BCBS connection gives you the most widely accepted US coverage, and their mobile app is genuinely the best in the industry. Pick a tier—Essential, Choice, or Excel—and you're done.
+  </p>
+
+  <p>
+    <strong>Choose Aetna International</strong> if you want more control over your coverage. The Navigator modular system lets you build exactly the plan you need without paying for benefits you won't use. The higher evacuation limit ($1M vs $500K) also matters if you're in remote locations. And if your employer offers Aetna corporate plans, the rates will likely beat individual GeoBlue plans.
+  </p>
+
+  <p>
+    Both include US coverage as a core feature—the main reason these two providers dominate the US expat market. You're not choosing between good and bad; you're choosing between two good options that emphasize different things.
+  </p>
+
+  <p>
+    Get quotes from both. Compare actual pricing for your age and needs. Then pick based on whether you prefer GeoBlue's simplicity and network size, or Aetna's customization and CVS integration.
+  </p>
+
+  <!-- Split provider CTAs - CRO: Clear next step for each provider -->
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Aetna?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for customization seekers, corporate plans, and higher evacuation needs.</p>
+      <a href="/providers/aetna-international" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View Aetna Options →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for GeoBlue?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Best for BCBS network access, simple tiers, and excellent mobile app.</p>
+      <a href="/providers/geoblue" class="inline-block w-full text-center bg-neutral-700 hover:bg-neutral-800 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get GeoBlue Quote →
+      </a>
+    </div>
+  </div>
+
+  <!-- Final CTA - CRO: Last chance conversion -->
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific needs."
-    buttonText="Compare Plans Now"
+    title="Compare Both Providers"
+    description="Get personalized quotes from both Aetna International and GeoBlue to see actual pricing for your situation."
+    buttonText="Get Free Quotes"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not insurance brokers. Verify all information with the providers before purchasing.
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan availability change frequently. We are not insurance brokers or licensed advisors. Verify all information directly with Aetna International and GeoBlue before purchasing. Consider consulting with an insurance broker who specializes in expat coverage.
     </p>
   </div>
 </PageShell>
