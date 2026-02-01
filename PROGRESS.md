@@ -1,6 +1,8 @@
 # Progress Log & Next Steps
 
-Last updated: January 26, 2026
+Last updated: February 1, 2026
+
+> **Note:** For the detailed progress log with all milestones and batches, see `docs/PROGRESS.md`.
 
 ## Completed
 
@@ -49,16 +51,16 @@ Last updated: January 26, 2026
 - [x] `/countries/germany/insurance` - Full guide (GKV vs PKV, mandatory insurance)
 - [x] `/countries/uk/insurance` - Full guide (NHS, IHS, post-Brexit)
 
-#### Provider Reviews (8 total)
+#### Provider Reviews (8 total) - ALL EXPANDED TO LONG-FORM
 - [x] `/providers` - Provider index with card images
-- [x] `/providers/cigna-global` - Full review
-- [x] `/providers/allianz-care` - Full review
-- [x] `/providers/bupa-global` - Full review
-- [x] `/providers/img-global` - Full review
-- [x] `/providers/aetna-international` - Full review (US expat focus)
-- [x] `/providers/geoblue` - Full review (Blue Cross network)
-- [x] `/providers/axa-global` - Full review (EU regulatory benefits)
-- [x] `/providers/safetywing` - Full review (Nomad Insurance vs Remote Health)
+- [x] `/providers/cigna-global` - Long-form review (602 lines, 1.5M+ network)
+- [x] `/providers/allianz-care` - Long-form review (578 lines, moratorium underwriting)
+- [x] `/providers/bupa-global` - Long-form review (579 lines, mental health parity)
+- [x] `/providers/img-global` - Long-form review (576 lines, 50% deductible waiver)
+- [x] `/providers/aetna-international` - Long-form review (560 lines, CVS Health integration)
+- [x] `/providers/geoblue` - Long-form review (567 lines, BCBS network)
+- [x] `/providers/axa-global` - Long-form review (630 lines, EU-regulated)
+- [x] `/providers/safetywing` - Long-form review (685 lines, Nomad vs Remote Health)
 
 #### Best/Comparison Pages (6 total)
 - [x] `/best` - Category index
@@ -217,9 +219,17 @@ Each country now has 8 provider subpages (24 new pages added):
 - All images generated via Ideogram API with sidecar JSON for reproducibility
 
 ### Provider Coverage
-- 8 providers now reviewed: Cigna, Allianz, Bupa, IMG, Aetna, GeoBlue, AXA, SafetyWing
-- Providers span: traditional insurers, US-focused, EU-regulated, and nomad/startup options
-- Travel medical vs health insurance distinction emphasized (especially for SafetyWing)
+- 8 providers now reviewed (ALL expanded to long-form 550-685 lines each)
+- Each provider page has 12-section structure with CRO elements
+- Key differentiators per provider:
+  - Cigna: Largest network (1.5M+), fastest claims
+  - Aetna: CVS Health/US network integration
+  - BUPA: Mental health parity (no limits)
+  - IMG: 50% deductible waiver outside US
+  - Allianz: Moratorium underwriting for pre-existing conditions
+  - GeoBlue: BCBS network (US citizens only)
+  - AXA: EU-regulated (French ACPR)
+  - SafetyWing: Nomad Insurance vs Remote Health distinction
 
 ### Editorial
 - All content should be researched for accuracy (visa requirements, costs change frequently)

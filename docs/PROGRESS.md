@@ -15,10 +15,60 @@ Last updated: February 1, 2026
 **Country comparison pages:** 29 (country vs country)
 **Problem/solution guides:** 6 (with hero images)
 **Constraint pages:** 12 (condition-specific guides)
+**Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 
 ---
 
 ## Completed Milestones
+
+### February 1, 2026 - Long-Form Provider Reviews (8 providers)
+
+#### Provider Pages Expanded to Long-Form (~550-685 lines each)
+Expanded all 8 provider review pages to comprehensive long-form articles with CRO elements:
+
+**Completed provider pages:**
+1. `cigna-global` - 226 → 602 lines (largest global network, 1.5M+ providers)
+2. `aetna-international` - 275 → 560 lines (CVS Health/US network integration)
+3. `bupa-global` - 284 → 579 lines (mental health parity, no visit limits)
+4. `img-global` - 289 → 576 lines (50% deductible waiver outside US, 4.6/5 Trustpilot)
+5. `allianz-care` - 291 → 578 lines (moratorium underwriting, 2M+ network)
+6. `geoblue` - 300 → 567 lines (BCBS network for US citizens only)
+7. `axa-global` - 304 → 630 lines (EU-regulated French ACPR, visa compliance)
+8. `safetywing` - 364 → 685 lines (Nomad Insurance vs Remote Health distinction)
+
+**Provider page structure (12 sections):**
+- Overview with Quick Facts
+- Quick Assessment (good fit / consider alternatives)
+- Plans and Coverage (with comparison tables)
+- Network and Access (regional strength tables)
+- Pricing (deductible impact tables)
+- Real-World Scenarios (6 scenarios with color-coded outcomes)
+- Pros and Cons (side-by-side)
+- Claims and Service
+- Who It's For (ideal / not ideal)
+- Alternatives to Consider
+- FAQs (6 questions)
+- Final Verdict
+
+**CRO elements in provider pages:**
+- Quick Assessment box at top (reduces bounce)
+- Trust signals (Trustpilot ratings, BBB, financial strength)
+- Provider-specific comparison tables (unique differentiators)
+- Real-world scenarios with color-coded outcomes (green/amber/red)
+- Split CTAs (direct quote + comparison link)
+- Inline style override for CTA buttons in prose content
+
+**Key differentiators emphasized per provider:**
+- Cigna: Largest network (1.5M+), fastest claims (5-7 days)
+- Aetna: Integrated US network via CVS Health
+- BUPA: Mental health parity (no limits on therapy)
+- IMG: 50% deductible waiver for care outside US
+- Allianz: Moratorium underwriting for pre-existing conditions
+- GeoBlue: BCBS network access (US citizens only)
+- AXA: EU-regulated (French ACPR) for visa compliance
+- SafetyWing: Nomad Insurance (travel medical) vs Remote Health (full health)
+
+---
 
 ### February 1, 2026 - Long-Form Comparison Articles + CRO Template
 
@@ -573,7 +623,7 @@ These 21 countries have manually created pages with custom hero images:
 | Provider comparison pages | ~28 | Complete |
 | **Problem/solution guides** | **6** | **NEW (with hero images)** |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
-| Provider pages | 12 | Existing |
+| **Provider pages** | **8** | **Expanded to long-form (550-685 lines each)** |
 
 **Total pages:** ~2,280
 
@@ -642,6 +692,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **February 1, 2026 (Provider Pages):** Expanded all 8 provider review pages to long-form (550-685 lines each). Added 12-section structure, Quick Assessment, Real-World Scenarios (6 per page), FAQs (6 per page), split CTAs, and provider-specific differentiators. Key angles: Cigna (largest network), Aetna (US integration), BUPA (mental health), IMG (deductible waiver), Allianz (moratorium), GeoBlue (BCBS), AXA (EU-regulated), SafetyWing (Nomad vs Remote Health).
 - **January 30, 2026 (Programmatic Expansion):** Added 4 new programmatic page systems: (1) Country vs Country comparisons (29 pages), (2) Condition × Country pages (270 pages), (3) Enhanced CountryProviderPage template (171 pages), (4) Problem/solution guides (6 pages with hero images). Total now ~2,280 pages.
 - **January 30, 2026 (Batch 8):** Country-Persona Expansion Batch 8 (Europe Gaps: Luxembourg, Iceland, Andorra, Monaco, Liechtenstein, Cyprus, Malta, Finland, Romania, San Marino). 80 new pages, total now 728 (91 countries × 8 personas), 1,973 total pages.
 - **January 30, 2026 (Batch 7):** Country-Persona Expansion Batch 7 (Asia-Pacific). 72 new pages.

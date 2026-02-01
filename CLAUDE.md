@@ -102,6 +102,22 @@ Read `EDITORIAL.md` before writing or editing any content.
 
 Usage: Copy template, replace `{{PLACEHOLDER}}` values.
 
+**Provider Page Pattern** - All 8 provider review pages follow a consistent 12-section structure (~550-685 lines):
+1. Overview with Quick Facts box
+2. Quick Assessment (good fit / consider alternatives boxes)
+3. Plans and Coverage (with ComparisonTable)
+4. Network and Access (regional breakdown table)
+5. Pricing (deductible impact table)
+6. Real-World Scenarios (6 scenarios, color-coded outcomes)
+7. Pros and Cons (side-by-side grid)
+8. Claims and Service
+9. Who It's For (ideal / not ideal lists)
+10. Alternatives to Consider
+11. FAQs (6 questions in card format)
+12. Final Verdict
+
+Key CRO elements: trust signals, split CTAs with `style="color: white !important;"`, scenario outcome colors (text-green-700, text-amber-700, text-red-700).
+
 ## Progress Tracking
 
 See `docs/PROGRESS.md` for:
