@@ -5,163 +5,301 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
-  { id: 'plans-and-coverage', text: 'Plans and Coverage', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'pros-and-cons', text: 'Pros and Cons', level: 2 },
-  { id: 'claims-and-service', text: 'Claims and Service', level: 2 },
+  { id: 'quick-assessment', text: 'Quick Assessment', level: 2 },
+  { id: 'plans-coverage', text: 'Plans and Coverage', level: 2 },
+  { id: 'pricing-analysis', text: 'Pricing Analysis', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'customer-service', text: 'Customer Service', level: 2 },
+  { id: 'pros-cons', text: 'Pros and Cons', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-its-for', text: 'Who It\'s For', level: 2 },
-  { id: 'alternatives', text: 'Alternatives to Consider', level: 2 },
+  { id: 'how-it-compares', text: 'How It Compares', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
 const relatedLinks = [
   { title: 'BUPA vs Cigna', href: '/compare/bupa-global-vs-cigna-global' },
   { title: 'BUPA vs Allianz', href: '/compare/allianz-care-vs-bupa-global' },
-  { title: 'BUPA vs AXA', href: '/compare/axa-global-vs-bupa-global' },
+  { title: 'BUPA vs Aetna', href: '/compare/bupa-global-vs-aetna-international' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
-  { title: 'BUPA in the UK', href: '/countries/uk/insurance/bupa-global' },
-  { title: 'BUPA in Spain', href: '/countries/spain/insurance/bupa-global' },
+  { title: 'Insurance for Mental Health', href: '/insurance-for/mental-health' },
 ];
 
 const planColumns = [
-  { key: 'plan', header: 'Plan' },
-  { key: 'coverage', header: 'Coverage Level' },
-  { key: 'maternity', header: 'Maternity' },
-  { key: 'bestFor', header: 'Best For' },
+  { key: 'feature', header: 'Feature' },
+  { key: 'major', header: 'Major Medical' },
+  { key: 'select', header: 'Select' },
+  { key: 'premier', header: 'Premier' },
+  { key: 'elite', header: 'Elite' },
 ];
 
 const planRows = [
-  { plan: 'Major Medical', coverage: 'Emergencies only', maternity: 'No', bestFor: 'Catastrophic coverage' },
-  { plan: 'Select', coverage: 'Basic regional', maternity: 'No', bestFor: 'Budget-conscious' },
-  { plan: 'Premier', coverage: 'Comprehensive', maternity: 'Add-on', bestFor: 'Most expats' },
-  { plan: 'Elite', coverage: 'Premium', maternity: 'Included', bestFor: 'Full protection' },
+  { feature: 'Inpatient Hospital', major: 'Full coverage', select: 'Full coverage', premier: 'Full coverage', elite: 'Full coverage' },
+  { feature: 'Day Patient', major: 'Full coverage', select: 'Full coverage', premier: 'Full coverage', elite: 'Full coverage' },
+  { feature: 'Outpatient Care', major: 'Not included', select: 'Limited', premier: 'Full coverage', elite: 'Full coverage' },
+  { feature: 'Mental Health', major: 'Emergency only', select: 'Limited', premier: 'Full parity', elite: 'Full parity' },
+  { feature: 'Maternity', major: 'Not included', select: 'Not included', premier: 'Optional add-on', elite: 'Included' },
+  { feature: 'Dental', major: 'Not included', select: 'Not included', premier: 'Included', elite: 'Enhanced' },
+  { feature: 'Vision', major: 'Not included', select: 'Not included', premier: 'Included', elite: 'Enhanced' },
+  { feature: 'Wellness/Preventive', major: 'Not included', select: 'After 10 months', premier: 'Included', elite: 'Enhanced' },
+  { feature: 'Evacuation', major: 'Included', select: 'Included', premier: 'Included', elite: 'Inc. repatriation' },
+  { feature: 'Deductible', major: '~$6,300 fixed', select: 'Options available', premier: 'Options available', elite: 'Options available' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'select', header: 'Select' },
+  { key: 'premier', header: 'Premier' },
+  { key: 'elite', header: 'Elite' },
+];
+
+const pricingRows = [
+  { profile: 'Age 30, $500 deductible', select: '$180-240/mo', premier: '$280-360/mo', elite: '$380-480/mo' },
+  { profile: 'Age 40, $500 deductible', select: '$260-340/mo', premier: '$380-480/mo', elite: '$520-660/mo' },
+  { profile: 'Age 50, $500 deductible', select: '$380-480/mo', premier: '$520-660/mo', elite: '$720-900/mo' },
+  { profile: 'Age 60, $500 deductible', select: '$540-680/mo', premier: '$720-900/mo', elite: '$980-1,220/mo' },
+  { profile: 'Family of 4 (adults 35/35)', select: '$680-860/mo', premier: '$940-1,180/mo', elite: '$1,280-1,600/mo' },
+];
+
+const mentalHealthColumns = [
+  { key: 'aspect', header: 'Mental Health Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'competitors', header: 'Most Competitors' },
+];
+
+const mentalHealthRows = [
+  { aspect: 'Inpatient Treatment', bupa: 'Same limits as physical health', competitors: 'Often sub-limited or capped' },
+  { aspect: 'Outpatient Therapy', bupa: 'Same limits as physical health', competitors: 'Typically 20-30 visit cap' },
+  { aspect: 'ADHD Coverage', bupa: 'Covered (assessment + treatment)', competitors: 'Often excluded entirely' },
+  { aspect: 'Addiction Treatment', bupa: 'Covered (rehab included)', competitors: 'Usually excluded' },
+  { aspect: 'Self-Inflicted Injuries', bupa: 'Covered', competitors: 'Almost always excluded' },
+  { aspect: 'Waiting Period', bupa: 'Same as physical health', competitors: 'Often 2+ year waiting period' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'details', header: 'BUPA Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Submission Methods', details: 'MembersWorld app, online portal, direct billing' },
+  { aspect: 'Processing Time', details: '5-7 business days (routine), 24-48 hours (urgent)' },
+  { aspect: 'Direct Billing', details: '1.7M+ providers globally' },
+  { aspect: 'Pre-authorization', details: 'Required for planned hospitalization, some procedures' },
+  { aspect: 'Reimbursement', details: 'Bank transfer, multiple currencies supported' },
+  { aspect: 'Appeals Process', details: 'Formal appeals with independent medical review' },
+];
+
+const competitorColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'competitor', header: 'Key Difference' },
+];
+
+const competitorRows = [
+  { aspect: 'Mental Health', bupa: 'Full parity (no limits)', competitor: 'Best in class for mental health' },
+  { aspect: 'Pricing', bupa: 'Premium tier', competitor: 'Cigna/Allianz often cheaper' },
+  { aspect: 'Pre-existing Conditions', bupa: 'Individual assessment', competitor: 'More favorable than average' },
+  { aspect: 'Network Size', bupa: '1.7M+ providers', competitor: 'Comparable to Cigna/Aetna' },
+  { aspect: 'Maternity Wait', bupa: '18 months', competitor: 'Longer than most (typically 10-12)' },
+  { aspect: 'Customer Satisfaction', bupa: '4.4/5 Trustpilot', competitor: 'Above average ratings' },
 ];
 ---
 
 <PageShell
-  title="BUPA Global Review"
-  description="In-depth review of BUPA Global international health insurance. Coverage options, pricing, pros and cons for expats."
+  title="BUPA Global Review 2024: Comprehensive Analysis for Expats"
+  description="In-depth BUPA Global review covering plans, pricing, mental health parity, and real scenarios. Find out if BUPA's premium coverage is worth it for your expat needs."
   headline="BUPA Global International Health Insurance Review"
-  subheadline="A detailed look at BUPA Global's plans, pricing, and whether they might be right for your expat needs."
+  subheadline="The gold standard for mental health coverage. But premium pricing means it's not for everyone. Here's our honest assessment."
   tocItems={tocItems}
   relatedLinks={relatedLinks}
-  ctaButtonText="Get a BUPA Global Quote"
+  ctaButtonText="Get a BUPA Quote"
   ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/lifestyle/pre-existing-conditions.png"
 >
   <h2 id="overview">Overview</h2>
   <p>
-    BUPA Global is the international arm of Bupa, a healthcare company with over 75 years of history. Unlike most insurers, Bupa has no shareholders—they reinvest profits back into healthcare services. This structure has helped them build a reputation for quality coverage and customer care.
+    BUPA Global is the international arm of Bupa, a healthcare company with over 75 years of history and a unique structure: they have no shareholders. All profits are reinvested into healthcare services, which has helped them build a reputation for quality coverage and customer care rather than maximizing returns.
   </p>
   <p>
-    With a presence in over 190 countries and a network of 1.7 million healthcare providers, BUPA Global is one of the premium options in the international health insurance market. They're particularly well-regarded for comprehensive coverage and strong customer service.
+    With a presence in over 190 countries and a network of 1.7 million healthcare providers, BUPA Global is positioned as a premium option in the international health insurance market. Their standout feature is mental health parity—they treat mental health equally to physical health, with no separate limits or caps.
   </p>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
     <h3 class="text-lg font-semibold text-neutral-900 mb-3">Quick Facts</h3>
     <ul class="space-y-2 text-neutral-600">
       <li><strong>Headquarters:</strong> London, UK</li>
-      <li><strong>Founded:</strong> 1947 (75+ years)</li>
+      <li><strong>Founded:</strong> 1947 (75+ years in healthcare)</li>
+      <li><strong>Structure:</strong> No shareholders (mutual-like, reinvests profits)</li>
       <li><strong>Network Providers:</strong> 1.7 million+</li>
       <li><strong>Countries Covered:</strong> 190+</li>
       <li><strong>Plan Types:</strong> Major Medical, Select, Premier, Elite</li>
       <li><strong>Age Limit:</strong> Up to 74 to enroll</li>
       <li><strong>Trustpilot Rating:</strong> 4.4/5 stars</li>
+      <li><strong>Financial Rating:</strong> A (Excellent) - Standard & Poor's</li>
     </ul>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>Why No Shareholders Matters:</strong> Unlike publicly traded insurers who must balance member care with shareholder returns, BUPA reinvests profits into healthcare services. This structure means decisions are made for member benefit, not quarterly earnings. It's not a guarantee of better service, but it removes a common conflict of interest.
+    </p>
   </div>
 
   <CTABox
     title="Get a Personalized Quote"
-    description="See what BUPA Global would cost for your situation."
+    description="See what BUPA Global would cost for your specific situation."
     buttonText="Get Quote"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
-  <h2 id="plans-and-coverage">Plans and Coverage</h2>
+  <h2 id="quick-assessment">Quick Assessment: Is BUPA Global Right for You?</h2>
   <p>
-    BUPA Global offers four plan tiers, from basic catastrophic coverage to comprehensive premium protection. Each tier offers different levels of benefits and pricing.
+    Before diving into details, here's a quick framework to assess whether BUPA Global fits your needs.
   </p>
 
+  <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-green-900 mb-3">BUPA is likely a great fit if you:</h3>
+    <ul class="space-y-2 text-green-800">
+      <li>Need comprehensive mental health coverage (therapy, ADHD, addiction)</li>
+      <li>Have or anticipate mental health needs without arbitrary limits</li>
+      <li>Can afford premium pricing for premium coverage</li>
+      <li>Value customer service and claims experience over lowest price</li>
+      <li>Have pre-existing conditions (more favorable individual assessment)</li>
+      <li>Want a provider with a long, stable track record</li>
+      <li>Appreciate the no-shareholder structure</li>
+    </ul>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-3">Consider alternatives if you:</h3>
+    <ul class="space-y-2 text-amber-800">
+      <li>Are on a strict budget (Cigna/Allianz often cheaper for similar coverage)</li>
+      <li>Need maternity coverage soon (18-month waiting period)</li>
+      <li>Prioritize US coverage integration (Aetna is better)</li>
+      <li>Don't anticipate mental health needs (you're paying for a feature you won't use)</li>
+      <li>Want the absolute lowest premiums available</li>
+    </ul>
+  </div>
+
+  <h2 id="plans-coverage">Plans and Coverage</h2>
+  <p>
+    BUPA Global offers four plan tiers, from catastrophic coverage to comprehensive premium protection.
+  </p>
+
+  <h3>Plan Comparison</h3>
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={planColumns} rows={planRows} />
   </div>
 
   <h3>Major Medical</h3>
   <p>
-    The most affordable option, designed for catastrophic coverage only. It covers emergencies, major medical expenses, and evacuation but has a high deductible (around $6,300/£5,000) and doesn't cover routine care, wellness visits, or maternity.
+    The most affordable option, designed for catastrophic coverage only. It has a high fixed deductible (~$6,300/£5,000) and covers emergencies, major hospitalization, and evacuation. No routine care, wellness, or maternity. Best for healthy individuals who want protection against major medical events while paying out-of-pocket for routine care.
   </p>
 
   <h3>Select</h3>
   <p>
-    Basic coverage with regional (rather than worldwide) options. Covers health screenings and wellness after a 10-month waiting period, but excludes maternity, dental, and optical.
+    Basic coverage with regional (rather than worldwide) options available. Covers health screenings and wellness after a 10-month waiting period, but excludes maternity, dental, and optical. A step up from Major Medical for those who want some outpatient coverage.
   </p>
 
   <h3>Premier</h3>
   <p>
-    Comprehensive coverage suitable for most expats. Includes health screenings, vaccinations, dental, and optical. Maternity available as an add-on. Covers medical evacuation but not repatriation.
+    Comprehensive coverage suitable for most expats. Includes health screenings, vaccinations, dental, and optical. Maternity available as an add-on (with 18-month waiting period). This is the sweet spot for most expats who want full coverage without paying Elite prices.
   </p>
 
   <h3>Elite</h3>
   <p>
-    BUPA Global's most comprehensive plan. Includes everything in Premier plus:
+    BUPA Global's most comprehensive plan. Everything in Premier plus:
   </p>
   <ul>
-    <li>Routine maternity care (after waiting period)</li>
-    <li>Medical evacuation and repatriation</li>
-    <li>Complementary therapies</li>
-    <li>Enhanced wellness benefits</li>
+    <li>Maternity included by default (still has 18-month waiting period)</li>
+    <li>Medical evacuation AND repatriation of remains</li>
+    <li>Complementary therapies (acupuncture, chiropractic, etc.)</li>
+    <li>Enhanced wellness benefits and health screenings</li>
+    <li>Higher per-incident and annual limits</li>
   </ul>
 
-  <h3>Standout Features</h3>
-
-  <h4>Mental Health Parity</h4>
+  <h3>The Mental Health Parity Advantage</h3>
   <p>
-    BUPA Global treats mental health equally to physical health. Both annual and monetary limits for inpatient and day-patient mental health treatment match physical health coverage. They also cover ADHD, addiction treatment, and self-inflicted injuries—benefits often excluded by competitors.
+    This is BUPA Global's key differentiator. Unlike most insurers who sub-limit mental health to 20-30 therapy sessions or cap inpatient stays, BUPA treats mental health equally to physical health.
   </p>
 
-  <h4>Pre-Existing Conditions</h4>
-  <p>
-    BUPA Global takes a more favorable approach to pre-existing conditions than many competitors. Many conditions may be covered, subject to underwriting. Your health history is assessed individually rather than applying blanket exclusions.
-  </p>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={mentalHealthColumns} rows={mentalHealthRows} />
+  </div>
 
-  <h4>Digital Services</h4>
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>Real Impact:</strong> If you need intensive therapy (say, 50+ sessions for complex PTSD), most insurers cut you off at 20-30 visits. BUPA doesn't. If you need 90-day residential addiction treatment, most insurers exclude it. BUPA covers it. For anyone with serious mental health needs, this can be worth thousands in uncapped coverage.
+    </p>
+  </div>
+
+  <h3>Pre-Existing Conditions Approach</h3>
+  <p>
+    BUPA Global takes a more favorable approach than many competitors:
+  </p>
   <ul>
-    <li><strong>Global Virtual Care:</strong> 24/7 telemedicine through the MembersWorld app</li>
-    <li><strong>Second Medical Opinion:</strong> Expert review for serious, complex, or chronic conditions</li>
-    <li><strong>Claims via app:</strong> Submit and track claims digitally</li>
+    <li><strong>Individual Assessment:</strong> Each application is reviewed on its own merits, not blanket exclusions</li>
+    <li><strong>Potential Coverage:</strong> Many pre-existing conditions may be covered (subject to underwriting)</li>
+    <li><strong>Transparency:</strong> You'll know what's covered/excluded before committing</li>
+    <li><strong>No Moratorium Option:</strong> Unlike Allianz, BUPA doesn't offer moratorium underwriting</li>
   </ul>
 
   <h3>Waiting Periods</h3>
   <ul>
     <li><strong>Accidental dental:</strong> Immediate</li>
     <li><strong>Routine dental:</strong> 6 months</li>
-    <li><strong>Wellness checks:</strong> 10 months</li>
-    <li><strong>Maternity:</strong> 18 months</li>
+    <li><strong>Wellness/screenings:</strong> 10 months</li>
+    <li><strong>Maternity:</strong> 18 months (longer than most competitors)</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h2 id="pricing-analysis">Pricing Analysis</h2>
   <p>
-    BUPA Global is positioned as a premium provider, so expect higher prices than budget alternatives. However, their coverage quality and customer service often justify the cost.
+    BUPA Global is positioned as a premium provider. Expect higher prices than Cigna, Allianz, or IMG—but the mental health parity and customer service often justify the cost for those who need it.
   </p>
 
-  <h3>Estimated Monthly Premiums (Worldwide excluding USA)</h3>
-  <ul>
-    <li>Age 30, Premier plan: $200-350/month</li>
-    <li>Age 40, Premier plan: $300-450/month</li>
-    <li>Age 50, Premier plan: $400-600/month</li>
-    <li>Age 60, Premier plan: $550-800/month</li>
-  </ul>
+  <h3>Estimated Monthly Premiums (Worldwide Excluding USA)</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+  </div>
+
   <p>
-    <em>Estimates vary significantly based on coverage area, deductible, and add-ons. Major Medical plans cost considerably less; Elite plans cost more.</em>
+    <strong>Note:</strong> These are estimates for worldwide coverage excluding USA, with $500 deductible. Including USA adds 30-50% to premiums. Major Medical is significantly cheaper due to the high fixed deductible.
   </p>
 
   <h3>Ways to Reduce Premiums</h3>
   <ul>
-    <li><strong>Higher deductible:</strong> Major Medical's high deductible keeps premiums low</li>
-    <li><strong>Regional coverage:</strong> Select Europe or specific regions instead of worldwide</li>
+    <li><strong>Higher deductible:</strong> Moving from $500 to $2,500 can save 20-25%</li>
+    <li><strong>Regional coverage:</strong> Select Europe or Asia-Pacific instead of worldwide</li>
     <li><strong>Exclude US coverage:</strong> Significant savings if you won't visit the US</li>
-    <li><strong>No-claims discount:</strong> BUPA offers discounts for claim-free years</li>
+    <li><strong>No-claims discount:</strong> BUPA offers discounts for claim-free years (up to 10%)</li>
     <li><strong>Professional discounts:</strong> Doctors and dentists get 15% off</li>
+    <li><strong>Major Medical tier:</strong> If you just need catastrophic coverage, the high-deductible plan is much cheaper</li>
   </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="text-amber-800 text-sm">
+      <strong>Premium vs Value Math:</strong> BUPA Premier at $400/month vs Cigna Gold at $340/month is $720/year more. But if you use 40 therapy sessions annually that Cigna would cap at 20, BUPA's uncapped coverage could save you $4,000+ in out-of-pocket therapy costs. Know your needs.
+    </p>
+  </div>
+
+  <h3>5-Year Cost Projection</h3>
+  <p>
+    For a 40-year-old on Premier with $1,000 deductible:
+  </p>
+  <ul>
+    <li><strong>Year 1:</strong> ~$4,560 ($380/month)</li>
+    <li><strong>Year 2:</strong> ~$4,790 (5% increase)</li>
+    <li><strong>Year 3:</strong> ~$5,030 (age + inflation)</li>
+    <li><strong>Year 4:</strong> ~$5,280</li>
+    <li><strong>Year 5:</strong> ~$5,540</li>
+    <li><strong>5-Year Total:</strong> ~$25,200</li>
+  </ul>
+  <p>
+    Budget for 5-8% annual increases. No-claims discounts can offset some of this if you don't file claims.
+  </p>
 
   <CTABox
     title="See Your Actual Price"
@@ -170,114 +308,271 @@ const planRows = [
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="pros-and-cons">Pros and Cons</h2>
+  <h2 id="claims-experience">Claims Experience</h2>
+  <p>
+    BUPA Global's claims process is generally well-regarded, with their 4.4/5 Trustpilot rating reflecting positive member experiences.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Direct Billing Network</h3>
+  <p>
+    BUPA's 1.7 million provider network offers direct billing at most major hospitals worldwide:
+  </p>
+  <ul>
+    <li><strong>Process:</strong> Show your member card, hospital bills BUPA directly</li>
+    <li><strong>Benefit:</strong> No large out-of-pocket expenses while waiting for reimbursement</li>
+    <li><strong>Coverage:</strong> Most major international hospital groups participate</li>
+    <li><strong>Limitations:</strong> Some smaller clinics may require reimbursement</li>
+  </ul>
+
+  <h3>Pre-authorization Requirements</h3>
+  <p>
+    Pre-authorization is required for:
+  </p>
+  <ul>
+    <li>All planned/elective hospitalizations</li>
+    <li>Mental health inpatient stays</li>
+    <li>Advanced imaging (MRI, CT, PET scans)</li>
+    <li>Surgical procedures over certain thresholds</li>
+    <li>Cancer treatments and chemotherapy</li>
+    <li>Rehabilitation programs</li>
+  </ul>
+  <p>
+    Emergency care does not require pre-authorization, but you should notify BUPA within 48 hours.
+  </p>
+
+  <h3>Claims Processing Timeline</h3>
+  <ul>
+    <li><strong>Routine claims:</strong> 5-7 business days</li>
+    <li><strong>Urgent/emergency:</strong> 24-48 hours</li>
+    <li><strong>Complex cases:</strong> Up to 30 days (medical review)</li>
+    <li><strong>Reimbursement:</strong> Direct deposit in your preferred currency</li>
+  </ul>
+
+  <h3>Member Feedback</h3>
+  <p>
+    Customer reviews frequently praise claims processing. One reviewer noted: "All the claims are settled timely and have hardly any claim rejected in past 4 years." However, some reviews mention occasional administrative delays during initial onboarding.
+  </p>
+
+  <h2 id="customer-service">Customer Service</h2>
+  <p>
+    BUPA Global provides 24/7 multilingual support through a global team of advisers, doctors, and nurses.
+  </p>
+
+  <h3>Support Channels</h3>
+  <ul>
+    <li><strong>Phone:</strong> 24/7 global hotlines with regional numbers</li>
+    <li><strong>Email:</strong> Typically 24-48 hour response</li>
+    <li><strong>MembersWorld App:</strong> Claims, ID cards, provider search, telehealth</li>
+    <li><strong>Online Portal:</strong> Full account management</li>
+    <li><strong>Languages:</strong> English, Spanish, French, German, Arabic, Mandarin, more</li>
+  </ul>
+
+  <h3>Digital Services</h3>
+  <ul>
+    <li><strong>Global Virtual Care:</strong> 24/7 telemedicine through the MembersWorld app</li>
+    <li><strong>Second Medical Opinion:</strong> Expert review for serious, complex, or chronic conditions</li>
+    <li><strong>Digital ID Cards:</strong> Access your membership instantly</li>
+    <li><strong>Claims Tracking:</strong> Real-time status updates</li>
+    <li><strong>Provider Finder:</strong> Search 1.7M+ providers by location and specialty</li>
+  </ul>
+
+  <h3>Case Management</h3>
+  <p>
+    For complex medical situations, BUPA provides dedicated case managers who coordinate care across countries, arrange medical evacuations, facilitate second opinions, and navigate treatment options.
+  </p>
+
+  <h2 id="pros-cons">Pros and Cons</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-green-50 border border-green-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-green-900 mb-3">Pros</h3>
       <ul class="space-y-2 text-green-800">
-        <li>Excellent customer reviews (4.4/5 Trustpilot)</li>
-        <li>Mental health covered equally to physical</li>
-        <li>Pre-existing conditions often covered</li>
-        <li>Large global network (1.7M+ providers)</li>
-        <li>24/7 multilingual support team</li>
-        <li>Strong telemedicine and digital tools</li>
-        <li>Second Medical Opinion service included</li>
-        <li>No-claims discounts available</li>
-        <li>75+ years of healthcare experience</li>
+        <li>Mental health parity (no limits, same as physical)</li>
+        <li>ADHD, addiction, self-harm covered</li>
         <li>No shareholders (reinvests in healthcare)</li>
+        <li>Excellent customer reviews (4.4/5 Trustpilot)</li>
+        <li>Pre-existing conditions individually assessed</li>
+        <li>Large global network (1.7M+ providers)</li>
+        <li>24/7 multilingual support</li>
+        <li>Strong telemedicine and digital tools</li>
+        <li>Second Medical Opinion included</li>
+        <li>No-claims discounts available</li>
+        <li>75+ years healthcare experience</li>
+        <li>Professional discounts for doctors/dentists</li>
       </ul>
     </div>
     <div class="bg-red-50 border border-red-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-red-900 mb-3">Cons</h3>
       <ul class="space-y-2 text-red-800">
         <li>Premium pricing (not budget-friendly)</li>
-        <li>Long maternity waiting period (18 months)</li>
-        <li>Some admin/onboarding issues reported</li>
+        <li>18-month maternity waiting period (longest in market)</li>
+        <li>Some onboarding/admin delays reported</li>
+        <li>US coverage significantly increases costs</li>
+        <li>No moratorium underwriting option</li>
         <li>Benefit levels vary by country</li>
-        <li>Not the cheapest option available</li>
-        <li>Some waiting periods for routine benefits</li>
+        <li>Not the best value if you don't need mental health</li>
+        <li>Waiting periods for some routine benefits</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="claims-and-service">Claims and Service</h2>
-
-  <h3>Filing Claims</h3>
+  <h2 id="scenarios">Real-World Scenarios</h2>
   <p>
-    BUPA Global offers multiple ways to file claims:
-  </p>
-  <ul>
-    <li>MembersWorld mobile app</li>
-    <li>Online portal</li>
-    <li>Direct settlement with network providers</li>
-  </ul>
-  <p>
-    Customer reviews frequently praise their claims processing. One reviewer noted: "All the claims are settled timely and have hardly any claim rejected in past 4 years." The company reports efficient turnaround times for most claims.
+    Here's how BUPA Global performs in common expat situations:
   </p>
 
-  <h3>Customer Service</h3>
-  <p>
-    BUPA Global provides 24/7 support through a team of advisers, doctors, and nurses based around the world. They offer:
-  </p>
-  <ul>
-    <li>Multilingual support</li>
-    <li>Medical advice hotline</li>
-    <li>Treatment pre-authorization</li>
-    <li>Emergency evacuation coordination</li>
-  </ul>
-  <p>
-    Their 4.4/5 Trustpilot rating reflects generally positive customer experiences, though some reviews mention occasional administrative delays during onboarding.
-  </p>
+  <div class="space-y-6 my-8">
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 1: Expat with Depression Needs Intensive Therapy</h3>
+      <p class="text-neutral-600 mb-3">45-year-old in Singapore develops severe depression after job loss. Psychiatrist recommends twice-weekly therapy for 18 months (150+ sessions) plus medication.</p>
+      <p class="text-green-700 font-medium">Outcome: BUPA covers all 150+ sessions without limits. Psychiatrist visits, medications, and eventual tapering all covered. With Cigna's 30-session cap, this member would pay $15,000+ out-of-pocket. With BUPA, total out-of-pocket is deductible only.</p>
+    </div>
 
-  <h3>Pre-Existing Conditions</h3>
-  <p>
-    BUPA Global's approach to pre-existing conditions is more flexible than many competitors. They assess each applicant individually and may cover conditions that other insurers exclude. However, coverage is subject to underwriting, and some conditions may still be excluded or have waiting periods.
-  </p>
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 2: Family Planning Maternity Coverage</h3>
+      <p class="text-neutral-600 mb-3">Couple relocating to Portugal wants to have a baby within the next year.</p>
+      <p class="text-red-700 font-medium">Outcome: BUPA's 18-month maternity waiting period means first pregnancy won't be covered. Couple pays out-of-pocket for delivery (~$4,000-8,000 in Portugal) or chooses Allianz/Cigna with 10-12 month waiting periods instead.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 3: Adult ADHD Diagnosis and Treatment</h3>
+      <p class="text-neutral-600 mb-3">35-year-old expat in Germany suspects undiagnosed ADHD. Wants comprehensive assessment and treatment.</p>
+      <p class="text-green-700 font-medium">Outcome: BUPA covers full ADHD assessment ($2,000+), ongoing psychiatrist visits, and medication management. Most competitors exclude ADHD entirely or only cover childhood diagnoses. Member gets proper diagnosis and treatment without arbitrary exclusions.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 4: Pre-existing Condition Application</h3>
+      <p class="text-neutral-600 mb-3">50-year-old with controlled hypertension and past knee surgery applies for Premier coverage.</p>
+      <p class="text-amber-700 font-medium">Outcome: BUPA's individual underwriting assesses both conditions. Hypertension is covered with documentation of stable control. Knee is covered for new injuries but pre-existing joint issues excluded for 2 years. Better outcome than blanket exclusion policies.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 5: Budget-Conscious Healthy Expat</h3>
+      <p class="text-neutral-600 mb-3">28-year-old healthy digital nomad comparing BUPA Premier ($320/month) vs Cigna Gold ($260/month). No mental health history or anticipated needs.</p>
+      <p class="text-amber-700 font-medium">Outcome: For a healthy person without mental health needs, BUPA's premium pricing doesn't add enough value. The $720/year savings with Cigna makes more sense. Mental health parity is valuable only if you'll use it.</p>
+    </div>
+  </div>
 
   <h2 id="who-its-for">Who It's For</h2>
-  <p>
-    BUPA Global may be a good fit if you:
-  </p>
+
+  <h3>Ideal BUPA Global Members</h3>
   <ul>
-    <li>Want premium coverage with excellent service</li>
-    <li>Value mental health coverage parity</li>
-    <li>Have pre-existing conditions and want a fair assessment</li>
-    <li>Appreciate strong digital tools and telemedicine</li>
-    <li>Can afford higher premiums for quality coverage</li>
-    <li>Want a provider with a long, stable history</li>
-  </ul>
-  <p>
-    It may not be ideal if you:
-  </p>
-  <ul>
-    <li>Are on a tight budget</li>
-    <li>Need maternity coverage soon (18-month wait)</li>
-    <li>Want the absolute lowest premiums available</li>
-    <li>Prefer newer, more agile insurance providers</li>
+    <li><strong>Mental health priority:</strong> Anyone who needs or anticipates therapy, psychiatric care, ADHD treatment, or addiction support</li>
+    <li><strong>Quality over price:</strong> Those who value excellent service and are willing to pay premium</li>
+    <li><strong>Pre-existing conditions:</strong> BUPA's individual assessment may be more favorable than blanket exclusions</li>
+    <li><strong>Long-term expats:</strong> The no-shareholder structure and 75-year track record suggest stability</li>
+    <li><strong>Healthcare professionals:</strong> 15% discount for doctors and dentists</li>
+    <li><strong>Families with mental health history:</strong> Uncapped coverage protects against high therapy costs</li>
   </ul>
 
-  <h2 id="alternatives">Alternatives to Consider</h2>
-  <p>
-    If BUPA Global doesn't seem like the right fit, consider these alternatives:
-  </p>
+  <h3>Better Alternatives Exist If You:</h3>
   <ul>
-    <li><strong>Cigna Global:</strong> Similar quality, slightly lower prices, excellent network. <a href="/providers/cigna-global">Read our review</a></li>
-    <li><strong>Allianz Care:</strong> More flexible deductibles, competitive pricing. <a href="/providers/allianz-care">Read our review</a></li>
-    <li><strong>IMG Global:</strong> Budget-friendly option with solid coverage. <a href="/providers/img-global">Read our review</a></li>
+    <li><strong>Budget is priority:</strong> Cigna Global or Allianz Care offer similar coverage at lower prices</li>
+    <li><strong>Need maternity soon:</strong> Allianz (10 months) or Cigna (12 months) have shorter waits</li>
+    <li><strong>Need US coverage:</strong> Aetna International has better US network integration</li>
+    <li><strong>Are healthy with no mental health needs:</strong> You're paying premium for a feature you won't use</li>
+    <li><strong>Want moratorium underwriting:</strong> Allianz offers this option, BUPA doesn't</li>
   </ul>
 
-  <CTABox
-    title="Ready to Compare?"
-    description="See how BUPA Global compares to other options for your needs."
-    buttonText="Compare Plans"
-    buttonHref="/best/expat-health-insurance"
-    variant="highlight"
-  />
+  <h2 id="how-it-compares">How It Compares</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={competitorColumns} rows={competitorRows} />
+  </div>
+
+  <h3>BUPA vs Cigna Global</h3>
+  <p>
+    Cigna is typically 10-20% cheaper for similar coverage. BUPA wins decisively on mental health (Cigna caps at 30 outpatient visits). If mental health matters, BUPA is worth the premium. If not, Cigna offers better value.
+  </p>
+  <p><a href="/compare/bupa-global-vs-cigna-global">See full BUPA vs Cigna comparison →</a></p>
+
+  <h3>BUPA vs Allianz Care</h3>
+  <p>
+    Allianz is often cheaper and offers moratorium underwriting (pre-existing conditions covered after 2 claim-free years). BUPA has better mental health coverage and customer ratings. Choose Allianz for budget or moratorium; BUPA for mental health.
+  </p>
+  <p><a href="/compare/allianz-care-vs-bupa-global">See full BUPA vs Allianz comparison →</a></p>
+
+  <h3>BUPA vs Aetna International</h3>
+  <p>
+    Aetna has better US coverage integration (full Aetna domestic network). BUPA has better mental health. US expats should choose Aetna; mental health priority should choose BUPA.
+  </p>
+  <p><a href="/compare/bupa-global-vs-aetna-international">See full BUPA vs Aetna comparison →</a></p>
+
+  <h3>BUPA vs IMG Global</h3>
+  <p>
+    IMG is significantly cheaper but offers less comprehensive coverage and has mental health limitations. BUPA is the premium choice; IMG is the budget choice. Different markets entirely.
+  </p>
+  <p><a href="/compare/bupa-global-vs-img-global">See full BUPA vs IMG comparison →</a></p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What does "mental health parity" actually mean?</h3>
+      <p class="text-neutral-600">It means BUPA treats mental health claims the same as physical health claims. No separate caps, no visit limits, no waiting periods beyond the standard policy terms. If your plan covers unlimited physical therapy visits, it covers unlimited therapy sessions. Most insurers cap mental health at 20-30 visits annually.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Why is the maternity waiting period so long (18 months)?</h3>
+      <p class="text-neutral-600">BUPA's 18-month maternity wait is the longest in the market (Cigna is 12 months, Allianz is 10 months). This prevents people from enrolling just for pregnancy coverage. If you're planning to have a baby within 18 months, consider a competitor with a shorter waiting period.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">How does BUPA handle pre-existing conditions?</h3>
+      <p class="text-neutral-600">BUPA uses individual medical underwriting rather than blanket exclusions. They assess your specific health history and may cover conditions that other insurers exclude. However, some conditions may still be excluded or have waiting periods. You'll know what's covered before you commit.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Is BUPA worth the higher price?</h3>
+      <p class="text-neutral-600">It depends on your needs. If you need comprehensive mental health coverage, BUPA's parity model can save thousands compared to capped competitors. If you're healthy with no mental health needs, you're paying premium for a feature you won't use—Cigna or Allianz may offer better value.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What does "no shareholders" mean for me?</h3>
+      <p class="text-neutral-600">BUPA reinvests profits into healthcare services rather than paying dividends to shareholders. This removes the pressure to deny claims or cut costs to boost stock price. It's not a guarantee of better service, but it aligns BUPA's incentives more closely with member outcomes.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Does BUPA cover ADHD and addiction treatment?</h3>
+      <p class="text-neutral-600">Yes. BUPA covers ADHD assessment and ongoing treatment (medication, psychiatry) as well as addiction/rehabilitation programs. These are commonly excluded by other insurers. This coverage alone can justify the premium for those who need it.</p>
+    </div>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+  <p>
+    <strong>BUPA Global is the clear choice for expats who prioritize mental health coverage.</strong> Mental health parity, ADHD coverage, addiction treatment, and no visit limits make it the gold standard for comprehensive mental healthcare. The no-shareholder structure and 75-year track record add stability.
+  </p>
+  <p>
+    However, BUPA's premium pricing means it's not for everyone. If you're healthy, don't anticipate mental health needs, or are budget-conscious, you'll likely find better value with Cigna Global or Allianz Care. And the 18-month maternity waiting period is a dealbreaker for family planning.
+  </p>
+  <p>
+    <strong>Bottom line:</strong> For mental health, BUPA is unmatched. For everyone else, shop around and compare the premium against your actual needs.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for BUPA Global?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Get a personalized quote based on your specific needs and situation.</p>
+      <a href="/best/expat-health-insurance" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get a BUPA Quote →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want to Compare First?</h3>
+      <p class="text-neutral-600 text-sm mb-4">See how BUPA stacks up against alternatives before deciding.</p>
+      <a href="/compare/bupa-global-vs-cigna-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Compare BUPA vs Cigna →
+      </a>
+    </div>
+  </div>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change frequently. We are not affiliated with BUPA Global and are not insurance brokers. Verify all information directly with BUPA Global before purchasing.
+      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change. Always verify current information directly with BUPA Global before purchasing. We are not insurance brokers and do not sell insurance.
     </p>
   </div>
 </PageShell>

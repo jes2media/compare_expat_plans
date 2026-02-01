@@ -5,12 +5,17 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
-  { id: 'plans-and-coverage', text: 'Plans and Coverage', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'pros-and-cons', text: 'Pros and Cons', level: 2 },
-  { id: 'claims-and-service', text: 'Claims and Service', level: 2 },
+  { id: 'quick-assessment', text: 'Quick Assessment', level: 2 },
+  { id: 'plans-coverage', text: 'Plans and Coverage', level: 2 },
+  { id: 'pricing-analysis', text: 'Pricing Analysis', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'customer-service', text: 'Customer Service', level: 2 },
+  { id: 'pros-cons', text: 'Pros and Cons', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-its-for', text: 'Who It\'s For', level: 2 },
-  { id: 'alternatives', text: 'Alternatives to Consider', level: 2 },
+  { id: 'how-it-compares', text: 'How It Compares', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
 const relatedLinks = [
@@ -18,144 +23,272 @@ const relatedLinks = [
   { title: 'Aetna vs Cigna', href: '/compare/cigna-global-vs-aetna-international' },
   { title: 'Aetna vs BUPA', href: '/compare/bupa-global-vs-aetna-international' },
   { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
-  { title: 'Aetna in Mexico', href: '/countries/mexico/insurance/aetna-international' },
-  { title: 'Aetna in Spain', href: '/countries/spain/insurance/aetna-international' },
+  { title: 'Insurance for Americans', href: '/insurance-for/americans' },
 ];
 
 const planColumns = [
-  { key: 'plan', header: 'Plan' },
-  { key: 'coverage', header: 'Coverage' },
-  { key: 'annualMax', header: 'Annual Maximum' },
-  { key: 'bestFor', header: 'Best For' },
+  { key: 'feature', header: 'Feature' },
+  { key: 'pioneer', header: 'Pioneer' },
+  { key: 'prime', header: 'Pioneer Prime' },
+  { key: 'platinum', header: 'Pioneer Platinum' },
 ];
 
 const planRows = [
-  { plan: 'Pioneer', coverage: 'Inpatient + Emergency', annualMax: '$1M', bestFor: 'Major medical protection' },
-  { plan: 'Pioneer Prime', coverage: 'Pioneer + Outpatient', annualMax: '$2M', bestFor: 'Comprehensive care' },
-  { plan: 'Pioneer Platinum', coverage: 'Prime + Enhanced', annualMax: '$5M', bestFor: 'Premium coverage' },
-  { plan: 'Navigator', coverage: 'Flexible modular', annualMax: 'Up to $5M', bestFor: 'Customized coverage' },
+  { feature: 'Inpatient Hospital', pioneer: 'Full coverage', prime: 'Full coverage', platinum: 'Full coverage' },
+  { feature: 'Day Patient', pioneer: 'Full coverage', prime: 'Full coverage', platinum: 'Full coverage' },
+  { feature: 'Outpatient Care', pioneer: 'Not included', prime: 'Full coverage', platinum: 'Full coverage' },
+  { feature: 'Mental Health', pioneer: 'Inpatient only', prime: 'In + Outpatient', platinum: 'Enhanced coverage' },
+  { feature: 'Maternity', pioneer: 'Not included', prime: 'Optional add-on', platinum: 'Included' },
+  { feature: 'Dental', pioneer: 'Not included', prime: 'Optional add-on', platinum: 'Included' },
+  { feature: 'Vision', pioneer: 'Not included', prime: 'Optional add-on', platinum: 'Included' },
+  { feature: 'Wellness/Preventive', pioneer: 'Not included', prime: 'Basic', platinum: 'Comprehensive' },
+  { feature: 'Annual Maximum', pioneer: '$1M', prime: '$2M', platinum: '$5M' },
+  { feature: 'US Network Access', pioneer: 'Full Aetna network', prime: 'Full Aetna network', platinum: 'Full Aetna network' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'pioneer', header: 'Pioneer' },
+  { key: 'prime', header: 'Pioneer Prime' },
+  { key: 'platinum', header: 'Pioneer Platinum' },
+];
+
+const pricingRows = [
+  { profile: 'Age 30, $500 deductible', pioneer: '$180-220/mo', prime: '$280-340/mo', platinum: '$420-500/mo' },
+  { profile: 'Age 40, $500 deductible', pioneer: '$250-310/mo', prime: '$380-460/mo', platinum: '$560-680/mo' },
+  { profile: 'Age 50, $500 deductible', pioneer: '$380-460/mo', prime: '$520-640/mo', platinum: '$780-940/mo' },
+  { profile: 'Age 60, $500 deductible', pioneer: '$580-700/mo', prime: '$780-940/mo', platinum: '$1,100-1,320/mo' },
+  { profile: 'Family of 4 (adults 35/35)', pioneer: '$620-750/mo', prime: '$940-1,140/mo', platinum: '$1,400-1,680/mo' },
+];
+
+const usComparisonColumns = [
+  { key: 'aspect', header: 'US Coverage Aspect' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'competitors', header: 'Most Competitors' },
+];
+
+const usComparisonRows = [
+  { aspect: 'US Network Access', aetna: 'Full Aetna domestic network (1.7M+ providers)', competitors: 'Limited network or out-of-network only' },
+  { aspect: 'Direct Billing', aetna: 'Yes, at all Aetna network hospitals', competitors: 'Often requires reimbursement' },
+  { aspect: 'Pricing Model', aetna: 'Integrated - US included in base price', competitors: 'US coverage costs 40-60% extra' },
+  { aspect: 'Negotiated Rates', aetna: 'Aetna negotiated rates apply', competitors: 'May pay billed charges' },
+  { aspect: 'Coverage Limits', aetna: 'Same limits as international care', competitors: 'Often lower sub-limits for US' },
+  { aspect: 'Pre-authorization', aetna: 'Same process as international', competitors: 'Separate US requirements' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'details', header: 'Aetna International' },
+];
+
+const claimsRows = [
+  { aspect: 'Submission Methods', details: 'Online portal, mobile app, email, direct billing' },
+  { aspect: 'Processing Time', details: '5-10 business days (routine), 24-48 hours (urgent)' },
+  { aspect: 'Direct Billing', details: '1.7M+ providers globally including US Aetna network' },
+  { aspect: 'Pre-authorization', details: 'Required for planned hospitalization, some procedures' },
+  { aspect: 'Reimbursement', details: 'Bank transfer or check, multiple currencies' },
+  { aspect: 'Appeals Process', details: 'Formal appeals with medical review available' },
+];
+
+const competitorColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'competitor', header: 'Key Difference' },
+];
+
+const competitorRows = [
+  { aspect: 'US Coverage', aetna: 'Integrated Aetna network', competitor: 'Best for US access needs' },
+  { aspect: 'Pricing (with US)', aetna: 'Competitive with US included', competitor: 'Cheaper than adding US to others' },
+  { aspect: 'Pricing (no US)', aetna: 'Mid-premium range', competitor: 'Allianz/IMG often cheaper' },
+  { aspect: 'Network Size', aetna: '1.7M+ providers', competitor: 'Comparable to Cigna' },
+  { aspect: 'Mental Health', aetna: 'Good, in/outpatient', competitor: 'BUPA offers parity' },
+  { aspect: 'Customization', aetna: 'Navigator modular plans', competitor: 'More flexible than tiered-only' },
 ];
 ---
 
 <PageShell
-  title="Aetna International Review"
-  description="In-depth review of Aetna International health insurance. Coverage, pricing, pros and cons for expats needing US and global coverage."
+  title="Aetna International Review 2024: Comprehensive Analysis for Expats"
+  description="In-depth Aetna International review covering plans, pricing, US coverage advantage, and real scenarios. Find out if Aetna is right for your expat health insurance needs."
   headline="Aetna International Health Insurance Review"
-  subheadline="A detailed look at Aetna International's plans, pricing, and why it's the go-to choice for US expats needing seamless stateside coverage."
+  subheadline="The best choice for US expats who need seamless stateside coverage. But is it worth the premium if you don't need US access? Here's our honest assessment."
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Get an Aetna Quote"
   ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/lifestyle/pre-existing-conditions.png"
 >
   <h2 id="overview">Overview</h2>
   <p>
-    Aetna International is a division of Aetna, now part of CVS Health—one of the largest healthcare companies in the United States. For US expats, Aetna International offers something competitors struggle to match: seamless integration with the US healthcare system.
+    Aetna International is a division of Aetna, now part of CVS Health—one of the largest healthcare companies in the United States with $350+ billion in annual revenue. For US expats, Aetna International offers something competitors struggle to match: seamless integration with the US healthcare system.
   </p>
   <p>
-    If you're an American living abroad who needs to maintain access to US doctors and hospitals (whether for specialist care, family visits, or eventual repatriation), Aetna International should be on your shortlist.
+    If you're an American living abroad who needs to maintain access to US doctors and hospitals (whether for specialist care, family visits, or eventual repatriation), Aetna International should be on your shortlist. If you don't need US coverage, there are often cheaper alternatives.
   </p>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
     <h3 class="text-lg font-semibold text-neutral-900 mb-3">Quick Facts</h3>
     <ul class="space-y-2 text-neutral-600">
-      <li><strong>Parent Company:</strong> CVS Health / Aetna</li>
+      <li><strong>Parent Company:</strong> CVS Health / Aetna (Fortune 4 company)</li>
       <li><strong>Headquarters:</strong> London, UK (international operations)</li>
       <li><strong>Countries Covered:</strong> 190+</li>
-      <li><strong>Network Providers:</strong> 1.7 million+ (including US Aetna network)</li>
-      <li><strong>US Coverage:</strong> Full integration with domestic Aetna network</li>
-      <li><strong>Plan Types:</strong> Pioneer, Navigator series</li>
+      <li><strong>Network Providers:</strong> 1.7 million+ (including full US Aetna network)</li>
+      <li><strong>US Coverage:</strong> Integrated with domestic Aetna network</li>
+      <li><strong>Plan Types:</strong> Pioneer series (tiered), Navigator series (modular)</li>
+      <li><strong>Financial Rating:</strong> A (Excellent) - AM Best</li>
     </ul>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>Why CVS Health Ownership Matters:</strong> Aetna's acquisition by CVS Health in 2018 means your international insurer is backed by a $350B+ company with 300,000 employees and 9,900+ retail locations. This provides financial stability and, for US-based care, potential integration with CVS MinuteClinic and pharmacy services.
+    </p>
   </div>
 
   <CTABox
     title="Get a Personalized Quote"
-    description="See what Aetna International would cost for your situation."
+    description="See what Aetna International would cost for your specific situation."
     buttonText="Get Quote"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
-  <h2 id="plans-and-coverage">Plans and Coverage</h2>
+  <h2 id="quick-assessment">Quick Assessment: Is Aetna International Right for You?</h2>
   <p>
-    Aetna International offers two main product lines: the Pioneer series (tiered plans) and the Navigator series (modular/customizable plans).
+    Before diving into details, here's a quick framework to assess whether Aetna International fits your needs.
   </p>
 
+  <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-green-900 mb-3">Aetna is likely a great fit if you:</h3>
+    <ul class="space-y-2 text-green-800">
+      <li>Are a US citizen/resident living abroad</li>
+      <li>Need regular access to US healthcare (specialists, ongoing care)</li>
+      <li>Visit the US frequently for family or business</li>
+      <li>Plan to eventually repatriate to the US</li>
+      <li>Work for a US company with international assignments</li>
+      <li>Want one plan that works seamlessly in the US and abroad</li>
+      <li>Value direct billing at US hospitals without reimbursement hassles</li>
+    </ul>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-amber-900 mb-3">Consider alternatives if you:</h3>
+    <ul class="space-y-2 text-amber-800">
+      <li>Don't need US coverage (you'll pay for integration you won't use)</li>
+      <li>Are on a strict budget and prioritize lowest premiums</li>
+      <li>Are not connected to the US healthcare system</li>
+      <li>Prefer European-based insurers (Allianz, AXA, BUPA)</li>
+      <li>Need extensive mental health coverage (BUPA offers parity)</li>
+      <li>Have significant pre-existing conditions (strict underwriting)</li>
+    </ul>
+  </div>
+
+  <h2 id="plans-coverage">Plans and Coverage</h2>
+  <p>
+    Aetna International offers two main product lines: the <strong>Pioneer series</strong> (tiered plans for straightforward coverage) and the <strong>Navigator series</strong> (modular plans for customization).
+  </p>
+
+  <h3>Pioneer Series Comparison</h3>
   <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
     <ComparisonTable columns={planColumns} rows={planRows} />
   </div>
 
-  <h3>Pioneer Series</h3>
+  <h3>Pioneer Series Details</h3>
   <p>
     The Pioneer plans are straightforward tiered options:
   </p>
   <ul>
-    <li><strong>Pioneer:</strong> Inpatient, emergency, and medical evacuation. No outpatient.</li>
-    <li><strong>Pioneer Prime:</strong> Adds outpatient care, prescriptions, and wellness benefits.</li>
-    <li><strong>Pioneer Platinum:</strong> Enhanced limits, dental, vision, and maternity included.</li>
+    <li><strong>Pioneer:</strong> Hospital-focused coverage. Inpatient, emergency, cancer treatment, and medical evacuation. No outpatient care—best for those with local coverage for routine care who need major medical protection.</li>
+    <li><strong>Pioneer Prime:</strong> Comprehensive coverage. Adds outpatient care, prescriptions, and wellness benefits. The most popular choice for expats who want full coverage.</li>
+    <li><strong>Pioneer Platinum:</strong> Premium coverage. Enhanced limits ($5M), plus dental, vision, and maternity included by default. Wellness programs, health screenings, and higher per-incident limits.</li>
   </ul>
 
-  <h3>Navigator Series</h3>
+  <h3>Navigator Series (Modular Plans)</h3>
   <p>
     Navigator plans let you build your own coverage by selecting modules:
   </p>
   <ul>
-    <li>Core hospital coverage (required base)</li>
-    <li>Outpatient module</li>
-    <li>Dental module</li>
-    <li>Vision module</li>
-    <li>Maternity module</li>
-    <li>Wellness module</li>
+    <li><strong>Core Module (Required):</strong> Hospital coverage, emergency care, evacuation</li>
+    <li><strong>Outpatient Module:</strong> Doctor visits, diagnostics, prescriptions</li>
+    <li><strong>Dental Module:</strong> Preventive, basic, and major dental</li>
+    <li><strong>Vision Module:</strong> Eye exams, glasses, contacts</li>
+    <li><strong>Maternity Module:</strong> Prenatal, delivery, postnatal care</li>
+    <li><strong>Wellness Module:</strong> Health screenings, vaccinations</li>
   </ul>
   <p>
-    This modular approach is useful if you want comprehensive hospital coverage but don't need dental, or want to add maternity without upgrading your entire plan.
+    This modular approach is useful if you want comprehensive hospital coverage but don't need dental, or want to add maternity without upgrading your entire plan. However, adding multiple modules often approaches Pioneer Prime pricing anyway.
   </p>
-
-  <h3>Core Coverage (All Plans)</h3>
-  <ul>
-    <li>Hospital stays and surgeries</li>
-    <li>Emergency treatment worldwide</li>
-    <li>Cancer treatment and chronic disease management</li>
-    <li>Medical evacuation (up to $1M)</li>
-    <li>Repatriation of remains</li>
-    <li>Mental health coverage (inpatient)</li>
-  </ul>
 
   <h3>The US Coverage Advantage</h3>
   <p>
-    Unlike most international insurers that treat US coverage as an expensive add-on, Aetna International provides integrated access to Aetna's domestic US network. This means:
-  </p>
-  <ul>
-    <li>Direct billing at US hospitals and clinics</li>
-    <li>Access to Aetna's negotiated rates</li>
-    <li>No separate "US coverage" tier to purchase</li>
-    <li>Seamless care when visiting family or relocating back</li>
-  </ul>
-
-  <h2 id="pricing">Pricing</h2>
-  <p>
-    Aetna International pricing varies by age, plan tier, coverage area, and deductible. Plans including US coverage are priced accordingly but often more competitive than adding US coverage to other international plans.
-  </p>
-  <p>
-    <strong>Estimated monthly premiums (including US coverage):</strong>
-  </p>
-  <ul>
-    <li>Age 35, Pioneer Prime: $280-380/month</li>
-    <li>Age 45, Pioneer Prime: $380-500/month</li>
-    <li>Age 55, Pioneer Prime: $520-700/month</li>
-  </ul>
-  <p>
-    <strong>Excluding US coverage</strong> reduces premiums by approximately 30-40%.
-  </p>
-  <p>
-    <strong>Deductible options:</strong> $0, $250, $500, $1,000, $2,500, $5,000. Higher deductibles can reduce premiums by 15-30%.
+    This is Aetna International's key differentiator. Unlike most international insurers that treat US coverage as an expensive add-on with separate networks and limitations, Aetna International provides integrated access to Aetna's domestic US network.
   </p>
 
-  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-blue-900 mb-2">Price Comparison Note</h3>
-    <p class="text-blue-800">
-      When comparing Aetna to Cigna or Allianz, factor in the US coverage cost. Adding US coverage to those plans often costs 40-60% more. Aetna's integrated US pricing can make it more competitive for expats who need stateside access.
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={usComparisonColumns} rows={usComparisonRows} />
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="text-blue-800 text-sm">
+      <strong>Real Math:</strong> Adding US coverage to Cigna Global typically costs 40-50% more. If Cigna Global costs $400/month, adding US bumps it to $560-600/month. Aetna International's integrated pricing often comes in at $380-480/month for equivalent coverage with US included. Over 5 years, that's $4,800-7,200 in savings.
     </p>
   </div>
+
+  <h3>Coverage Limitations to Know</h3>
+  <ul>
+    <li><strong>Pre-existing Conditions:</strong> Full underwriting with exclusions or higher premiums for pre-existing conditions. No moratorium option.</li>
+    <li><strong>Maternity:</strong> 12-month waiting period on Pioneer Prime; included immediately on Platinum</li>
+    <li><strong>Mental Health:</strong> Good coverage but not parity. Inpatient typically unlimited, outpatient may have visit limits.</li>
+    <li><strong>Chronic Conditions:</strong> Covered after acceptance, but conditions that develop later are treated as new claims</li>
+  </ul>
+
+  <h2 id="pricing-analysis">Pricing Analysis</h2>
+  <p>
+    Aetna International pricing varies by age, plan tier, coverage area, and deductible. The key insight: plans including US coverage are often more competitive than adding US coverage to other international plans.
+  </p>
+
+  <h3>Estimated Monthly Premiums (Including US Coverage)</h3>
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+  </div>
+
+  <p>
+    <strong>Note:</strong> These are estimates based on worldwide coverage including the US, $500 deductible. Actual quotes vary by health history, exact location, and current market conditions.
+  </p>
+
+  <h3>Deductible Impact</h3>
+  <p>
+    Higher deductibles reduce premiums significantly:
+  </p>
+  <ul>
+    <li><strong>$0 deductible:</strong> Base premium (most expensive)</li>
+    <li><strong>$250 deductible:</strong> ~10% savings</li>
+    <li><strong>$500 deductible:</strong> ~15% savings</li>
+    <li><strong>$1,000 deductible:</strong> ~20% savings</li>
+    <li><strong>$2,500 deductible:</strong> ~25-30% savings</li>
+    <li><strong>$5,000 deductible:</strong> ~30-35% savings</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="text-amber-800 text-sm">
+      <strong>Excluding US Coverage:</strong> If you don't need US access, removing it typically reduces premiums by 30-40%. But at that point, Allianz Care or IMG Global may offer better value since you're not benefiting from Aetna's integrated US network.
+    </p>
+  </div>
+
+  <h3>5-Year Cost Projection</h3>
+  <p>
+    For a 40-year-old on Pioneer Prime with $1,000 deductible:
+  </p>
+  <ul>
+    <li><strong>Year 1:</strong> ~$4,800 ($400/month)</li>
+    <li><strong>Year 2:</strong> ~$5,040 (5% increase)</li>
+    <li><strong>Year 3:</strong> ~$5,290 (age + inflation)</li>
+    <li><strong>Year 4:</strong> ~$5,560</li>
+    <li><strong>Year 5:</strong> ~$5,840</li>
+    <li><strong>5-Year Total:</strong> ~$26,530</li>
+  </ul>
+  <p>
+    Budget for 5-8% annual increases due to age, medical inflation, and claims history.
+  </p>
 
   <CTABox
     title="See Your Actual Price"
@@ -164,111 +297,263 @@ const planRows = [
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="pros-and-cons">Pros and Cons</h2>
+  <h2 id="claims-experience">Claims Experience</h2>
+  <p>
+    Aetna International's claims process is generally efficient, benefiting from Aetna's established infrastructure.
+  </p>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+  </div>
+
+  <h3>Direct Billing Network</h3>
+  <p>
+    Aetna's direct billing network is a major advantage:
+  </p>
+  <ul>
+    <li><strong>US:</strong> Full access to 1.7M+ Aetna network providers with direct billing</li>
+    <li><strong>International:</strong> Partnerships with major hospital groups worldwide</li>
+    <li><strong>Process:</strong> Show your member card, hospital bills Aetna directly</li>
+    <li><strong>Benefit:</strong> No large out-of-pocket expenses while waiting for reimbursement</li>
+  </ul>
+
+  <h3>Pre-authorization Requirements</h3>
+  <p>
+    Pre-authorization is required for:
+  </p>
+  <ul>
+    <li>All planned/elective hospitalizations</li>
+    <li>Advanced imaging (MRI, CT, PET scans)</li>
+    <li>Surgical procedures over certain thresholds</li>
+    <li>Cancer treatments and chemotherapy</li>
+    <li>Mental health inpatient stays</li>
+  </ul>
+  <p>
+    Emergency care does not require pre-authorization, but you should notify Aetna within 48 hours of emergency admission.
+  </p>
+
+  <h3>Claims Processing Timeline</h3>
+  <ul>
+    <li><strong>Routine claims:</strong> 5-10 business days</li>
+    <li><strong>Urgent/emergency:</strong> 24-48 hours</li>
+    <li><strong>Complex cases:</strong> Up to 30 days (medical review)</li>
+    <li><strong>Reimbursement method:</strong> Direct deposit or check in your currency</li>
+  </ul>
+
+  <h2 id="customer-service">Customer Service</h2>
+  <p>
+    Aetna International provides 24/7 multilingual support, though quality can vary based on complexity.
+  </p>
+
+  <h3>Support Channels</h3>
+  <ul>
+    <li><strong>Phone:</strong> 24/7 global hotlines with regional numbers</li>
+    <li><strong>Email:</strong> Typically 24-48 hour response</li>
+    <li><strong>Online Portal:</strong> Claims, ID cards, provider search, documents</li>
+    <li><strong>Mobile App:</strong> Full functionality including claims submission</li>
+    <li><strong>Languages:</strong> English, Spanish, French, Mandarin, Arabic, more</li>
+  </ul>
+
+  <h3>Member Tools</h3>
+  <ul>
+    <li>Online provider search (global + US Aetna networks)</li>
+    <li>Digital ID cards</li>
+    <li>Claims tracking and history</li>
+    <li>Pre-authorization requests</li>
+    <li>Benefit summaries and EOBs</li>
+    <li>Telehealth services (select plans)</li>
+  </ul>
+
+  <h3>Case Management</h3>
+  <p>
+    For complex medical situations, Aetna provides dedicated case managers who coordinate care across countries, arrange medical evacuations, and navigate treatment options.
+  </p>
+
+  <h2 id="pros-cons">Pros and Cons</h2>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
     <div class="bg-green-50 border border-green-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-green-900 mb-3">Pros</h3>
       <ul class="space-y-2 text-green-800">
         <li>Best-in-class US coverage integration</li>
-        <li>Access to 1.7M+ providers including US Aetna network</li>
+        <li>Access to 1.7M+ providers including full US Aetna network</li>
+        <li>CVS Health backing ($350B+ company)</li>
+        <li>Direct billing at US hospitals (no reimbursement wait)</li>
         <li>Modular Navigator plans for customization</li>
+        <li>Competitive pricing when US coverage is needed</li>
         <li>Strong corporate/employer plan options</li>
-        <li>CVS Health backing (financial stability)</li>
         <li>Good mental health coverage</li>
         <li>24/7 multilingual support</li>
+        <li>Robust mobile app and online tools</li>
       </ul>
     </div>
     <div class="bg-red-50 border border-red-200 rounded-lg p-6">
       <h3 class="text-lg font-semibold text-red-900 mb-3">Cons</h3>
       <ul class="space-y-2 text-red-800">
-        <li>Higher premiums than some competitors</li>
-        <li>Less competitive without US coverage needs</li>
+        <li>Premium pricing if you don't need US coverage</li>
         <li>Pre-existing conditions typically excluded</li>
-        <li>Maternity has 12-month waiting period</li>
+        <li>No moratorium underwriting option</li>
+        <li>Maternity has 12-month waiting period (except Platinum)</li>
+        <li>Mental health has visit limits (not parity)</li>
+        <li>Less competitive for non-US expats</li>
         <li>Some plans have area-of-coverage restrictions</li>
         <li>Less brand recognition outside US market</li>
       </ul>
     </div>
   </div>
 
-  <h2 id="claims-and-service">Claims and Service</h2>
-
-  <h3>Filing Claims</h3>
+  <h2 id="scenarios">Real-World Scenarios</h2>
   <p>
-    Aetna International offers multiple claims submission options:
-  </p>
-  <ul>
-    <li>Online member portal</li>
-    <li>Mobile app (Aetna International)</li>
-    <li>Email submission</li>
-    <li>Direct billing at network providers</li>
-  </ul>
-  <p>
-    Claims are typically processed within 5-10 business days. Direct billing is available at network hospitals worldwide, including the full US Aetna network.
+    Here's how Aetna International performs in common expat situations:
   </p>
 
-  <h3>Customer Service</h3>
-  <p>
-    24/7 support is available via phone, email, and online chat. Support is offered in multiple languages including English, Spanish, French, and Mandarin.
-  </p>
-  <p>
-    Aetna International also provides dedicated case management for complex medical situations and coordinates care across countries when needed.
-  </p>
+  <div class="space-y-6 my-8">
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 1: US Expat in Spain Needs Cancer Treatment</h3>
+      <p class="text-neutral-600 mb-3">American living in Barcelona is diagnosed with breast cancer. She wants treatment at MD Anderson in Houston where her oncologist practices.</p>
+      <p class="text-green-700 font-medium">Outcome: Aetna covers treatment at MD Anderson at Aetna network rates with direct billing. No out-of-pocket for $180,000 in treatment. Care coordination between Spanish diagnosis and US treatment handled by case manager.</p>
+    </div>
 
-  <h3>Member Tools</h3>
-  <ul>
-    <li>Online provider search (global + US networks)</li>
-    <li>Digital ID cards</li>
-    <li>Claims tracking</li>
-    <li>Pre-authorization requests</li>
-    <li>Telehealth services (select plans)</li>
-  </ul>
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 2: Digital Nomad with Chronic Condition</h3>
+      <p class="text-neutral-600 mb-3">45-year-old with Type 2 diabetes applies for Pioneer Prime coverage.</p>
+      <p class="text-amber-700 font-medium">Outcome: Aetna accepts application but excludes diabetes-related claims for 2 years. Insulin and monitoring supplies not covered during exclusion period. All other coverage applies normally. Member pays ~$200/month extra for individual diabetes coverage locally.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 3: Family Relocation with Pregnant Wife</h3>
+      <p class="text-neutral-600 mb-3">US family relocating to Singapore. Wife is 4 months pregnant at enrollment.</p>
+      <p class="text-red-700 font-medium">Outcome: Maternity coverage denied due to 12-month waiting period. Current pregnancy is a pre-existing condition. Family enrolls in Pioneer Prime for other coverage, pays for Singapore hospital delivery out-of-pocket (~$8,000). Future pregnancies will be covered after waiting period.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 4: Annual US Visit for Specialist Care</h3>
+      <p class="text-neutral-600 mb-3">Expat in Costa Rica returns to the US annually for cardiac checkups with his long-time cardiologist in Miami.</p>
+      <p class="text-green-700 font-medium">Outcome: Annual cardiology visits, stress tests, and echocardiograms covered at Aetna in-network rates. Direct billing means no reimbursement hassle. Total out-of-pocket: $50 copay per visit.</p>
+    </div>
+
+    <div class="border border-neutral-200 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Scenario 5: European Expat Comparing Options</h3>
+      <p class="text-neutral-600 mb-3">German citizen moving to Thailand. No US ties. Comparing Aetna vs Allianz Care.</p>
+      <p class="text-amber-700 font-medium">Outcome: Aetna quoted at $380/month. Allianz Care (excluding US) quoted at $280/month for comparable coverage. Without US coverage needs, Allianz offers better value. German expat chooses Allianz and saves $1,200/year.</p>
+    </div>
+  </div>
 
   <h2 id="who-its-for">Who It's For</h2>
-  <p>
-    Aetna International is a strong choice if you:
-  </p>
+
+  <h3>Ideal Aetna International Members</h3>
   <ul>
-    <li>Are a US citizen/resident living abroad</li>
-    <li>Need regular access to US healthcare</li>
-    <li>Visit the US frequently for family or business</li>
-    <li>Plan to eventually repatriate to the US</li>
-    <li>Work for a US company with international assignments</li>
-    <li>Want one plan that works seamlessly in both locations</li>
-  </ul>
-  <p>
-    It may not be ideal if you:
-  </p>
-  <ul>
-    <li>Don't need US coverage (other plans may be cheaper)</li>
-    <li>Are on a strict budget</li>
-    <li>Are not connected to the US healthcare system</li>
-    <li>Prefer European-based insurers (for EU expats)</li>
+    <li><strong>US citizens abroad:</strong> The integrated US network is the primary value proposition</li>
+    <li><strong>Corporate assignees:</strong> Aetna's group plans are popular with US multinationals</li>
+    <li><strong>Frequent US visitors:</strong> Those who return to the US regularly for family or business</li>
+    <li><strong>Future repatriates:</strong> Planning to move back to the US eventually</li>
+    <li><strong>US medical continuity:</strong> Want to keep US specialists for ongoing conditions</li>
+    <li><strong>Families with US ties:</strong> Kids or parents in the US who may need coordinated care</li>
   </ul>
 
-  <h2 id="alternatives">Alternatives to Consider</h2>
-  <p>
-    Depending on your needs, these alternatives might be worth comparing:
-  </p>
+  <h3>Better Alternatives Exist If You:</h3>
   <ul>
-    <li><strong>Cigna Global:</strong> Similar network size, strong service, but US coverage costs more. <a href="/providers/cigna-global">Read our review</a></li>
-    <li><strong>GeoBlue:</strong> Another US-focused option with Blue Cross network access. Good for Americans who want domestic continuity.</li>
-    <li><strong>Allianz Care:</strong> Better value if you don't need US coverage. EU-based. <a href="/providers/allianz-care">Read our review</a></li>
-    <li><strong>BUPA Global:</strong> Premium option with mental health parity. <a href="/providers/bupa-global">Read our review</a></li>
+    <li><strong>Don't need US coverage:</strong> Allianz Care, IMG Global, or AXA often cheaper</li>
+    <li><strong>Prioritize mental health:</strong> BUPA Global offers mental health parity</li>
+    <li><strong>Have pre-existing conditions:</strong> Allianz moratorium underwriting may be more forgiving</li>
+    <li><strong>Want lowest price:</strong> SafetyWing or local plans if you're healthy and low-risk</li>
+    <li><strong>Are EU-focused:</strong> European insurers may offer better EU-specific networks</li>
   </ul>
 
-  <CTABox
-    title="Ready to Compare?"
-    description="See how Aetna International stacks up for your specific needs."
-    buttonText="Compare Plans"
-    buttonHref="/best/expat-health-insurance"
-    variant="highlight"
-  />
+  <h2 id="how-it-compares">How It Compares</h2>
+
+  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+    <ComparisonTable columns={competitorColumns} rows={competitorRows} />
+  </div>
+
+  <h3>Aetna vs Cigna Global</h3>
+  <p>
+    Both are strong choices, but Aetna wins on US coverage value. Cigna charges a significant premium to add US coverage, while Aetna integrates it. If you need US access, Aetna is typically cheaper for equivalent coverage. If you don't need US, Cigna and Aetna are comparable.
+  </p>
+  <p><a href="/compare/cigna-global-vs-aetna-international">See full Aetna vs Cigna comparison →</a></p>
+
+  <h3>Aetna vs GeoBlue</h3>
+  <p>
+    Both target US expats. GeoBlue offers Blue Cross Blue Shield network access, which is larger than Aetna in some regions. Aetna has stronger international infrastructure. GeoBlue may be cheaper for young, healthy individuals.
+  </p>
+  <p><a href="/compare/aetna-international-vs-geoblue">See full Aetna vs GeoBlue comparison →</a></p>
+
+  <h3>Aetna vs Allianz Care</h3>
+  <p>
+    Allianz is often cheaper for non-US coverage. Allianz offers moratorium underwriting (pre-existing conditions covered after 2 claim-free years), which Aetna doesn't. Choose Aetna for US access, Allianz for EU focus or budget priority.
+  </p>
+
+  <h3>Aetna vs BUPA Global</h3>
+  <p>
+    BUPA is premium-priced but offers mental health parity (no visit limits). Aetna is more competitive on price with better US integration. Choose BUPA if mental health coverage is a priority; Aetna if US access matters more.
+  </p>
+  <p><a href="/compare/bupa-global-vs-aetna-international">See full Aetna vs BUPA comparison →</a></p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I use my US doctors with Aetna International?</h3>
+      <p class="text-neutral-600">Yes. Aetna International members have full access to Aetna's domestic US network of 1.7 million+ providers. Your existing Aetna network doctors will accept your international plan with direct billing.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">How does Aetna handle pre-existing conditions?</h3>
+      <p class="text-neutral-600">Aetna uses full medical underwriting. Pre-existing conditions are typically excluded from coverage, sometimes permanently, sometimes for a defined period (2+ years). There's no moratorium option where conditions become covered after claim-free years.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between Pioneer and Navigator plans?</h3>
+      <p class="text-neutral-600">Pioneer plans are tiered (basic/mid/premium) with set benefit packages. Navigator plans are modular—you start with core hospital coverage and add modules (outpatient, dental, maternity, etc.) as needed. Navigator offers more customization but can become complex.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Is maternity covered?</h3>
+      <p class="text-neutral-600">Maternity is available but has a 12-month waiting period on Pioneer and Pioneer Prime. Pioneer Platinum includes maternity from day one. The waiting period means you must be enrolled for 12 months before pregnancy-related claims are covered.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">Can I exclude US coverage to save money?</h3>
+      <p class="text-neutral-600">Yes. Excluding US coverage reduces premiums by approximately 30-40%. However, without US coverage, Aetna's main advantage disappears. At that point, Allianz Care or IMG Global may offer better value for pure international coverage.</p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="font-semibold text-neutral-900 mb-2">How does the CVS Health connection benefit me?</h3>
+      <p class="text-neutral-600">CVS Health's $350B+ backing provides financial stability. In the US, you may benefit from CVS MinuteClinic access and CVS pharmacy integration. The main benefit is knowing your insurer won't go bankrupt.</p>
+    </div>
+  </div>
+
+  <h2 id="verdict">Our Verdict</h2>
+  <p>
+    <strong>Aetna International is the clear choice for US expats who need seamless stateside coverage.</strong> The integrated Aetna network, direct billing at US hospitals, and competitive pricing (when US coverage is included) make it the best value for Americans abroad.
+  </p>
+  <p>
+    However, if you don't need US coverage, Aetna loses much of its competitive advantage. European expats or those with no US ties will likely find better value with Allianz Care, IMG Global, or AXA. And if mental health coverage is a priority, BUPA Global's parity model may be worth the premium.
+  </p>
+  <p>
+    <strong>Bottom line:</strong> For US expats, Aetna International is excellent. For everyone else, shop around.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Ready for Aetna International?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Get a personalized quote based on your specific needs and situation.</p>
+      <a href="/best/expat-health-insurance" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Get an Aetna Quote →
+      </a>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want to Compare First?</h3>
+      <p class="text-neutral-600 text-sm mb-4">See how Aetna stacks up against alternatives before deciding.</p>
+      <a href="/compare/cigna-global-vs-aetna-international" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        Compare Aetna vs Cigna →
+      </a>
+    </div>
+  </div>
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change. We are not affiliated with Aetna International and are not insurance brokers. Verify all information directly with Aetna before purchasing.
+      <strong>Disclaimer:</strong> This review is for informational purposes only. Plan details, pricing, and availability change. Always verify current information directly with Aetna International before purchasing. We are not insurance brokers and do not sell insurance.
     </p>
   </div>
 </PageShell>
