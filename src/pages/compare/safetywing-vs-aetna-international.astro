@@ -5,10 +5,15 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
+  { id: 'product-difference', text: 'Understanding the Product Difference', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'us-coverage', text: 'US Coverage Deep Dive', level: 2 },
+  { id: 'pricing', text: 'Pricing Analysis', level: 2 },
+  { id: 'network-claims', text: 'Networks and Claims', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
@@ -21,215 +26,503 @@ const relatedLinks = [
 ];
 
 const coverageColumns = [
-  { key: 'feature', header: 'Feature' },
+  { key: 'feature', header: 'Coverage Area' },
   { key: 'safetywing', header: 'SafetyWing' },
   { key: 'aetna', header: 'Aetna International' },
 ];
 
 const coverageRows = [
   { feature: 'Product Type', safetywing: 'Travel Medical', aetna: 'Health Insurance' },
-  { feature: 'Inpatient Care', safetywing: '$250K limit', aetna: '$1M-$5M' },
-  { feature: 'Outpatient Care', safetywing: 'Limited', aetna: 'Comprehensive' },
-  { feature: 'Mental Health', safetywing: 'Not covered', aetna: 'Covered' },
-  { feature: 'Maternity', safetywing: 'Not covered', aetna: 'Optional' },
-  { feature: 'Dental', safetywing: 'Emergency only', aetna: 'Optional' },
-  { feature: 'Pre-existing Conditions', safetywing: 'Not covered', aetna: 'Underwritten' },
-  { feature: 'US Coverage', safetywing: 'Limited ($50K)', aetna: 'Integrated (1.7M+ providers)' },
-  { feature: 'Medical Evacuation', safetywing: '$100K', aetna: 'Included' },
-  { feature: 'Routine Care', safetywing: 'Not covered', aetna: 'Covered' },
+  { feature: 'Maximum Coverage', safetywing: '$250,000', aetna: '$1M–$5M+' },
+  { feature: 'Inpatient Hospital', safetywing: 'Emergency only', aetna: 'Full coverage' },
+  { feature: 'Outpatient Care', safetywing: 'Limited to emergencies', aetna: 'Full coverage' },
+  { feature: 'Mental Health', safetywing: 'Not covered', aetna: 'Comprehensive' },
+  { feature: 'Maternity', safetywing: 'Not covered', aetna: 'Optional add-on' },
+  { feature: 'Pre-Existing Conditions', safetywing: 'Excluded', aetna: 'Underwritten coverage' },
+  { feature: 'Routine Checkups', safetywing: 'Not covered', aetna: 'Included' },
+  { feature: 'Chronic Conditions', safetywing: 'Not covered', aetna: 'Covered' },
+  { feature: 'Prescription Drugs', safetywing: 'Emergency only', aetna: 'Covered (CVS integration)' },
+  { feature: 'Dental', safetywing: 'Emergency ($1K max)', aetna: 'Optional add-on' },
+  { feature: 'Medical Evacuation', safetywing: '$100,000', aetna: 'Included' },
+];
+
+const usColumns = [
+  { key: 'aspect', header: 'US Coverage Aspect' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'aetna', header: 'Aetna International' },
+];
+
+const usRows = [
+  { aspect: 'US Coverage Limit', safetywing: '$50,000 maximum', aetna: 'Full plan limits ($1M–$5M+)' },
+  { aspect: 'Provider Network', safetywing: 'Limited/reimbursement', aetna: '1.7M+ Aetna providers' },
+  { aspect: 'Direct Billing', safetywing: 'Rarely available', aetna: 'Widely available' },
+  { aspect: 'Prescription Coverage', safetywing: 'Emergency only', aetna: 'CVS/Caremark integration' },
+  { aspect: 'Specialist Access', safetywing: 'Not covered', aetna: 'Full access with referral' },
+  { aspect: 'Home Country Visits', safetywing: '30 days/90 days max', aetna: 'Full coverage during visits' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
   { key: 'safetywing', header: 'SafetyWing' },
   { key: 'aetna', header: 'Aetna International' },
+  { key: 'difference', header: 'Monthly Gap' },
 ];
 
 const pricingRows = [
-  { profile: 'Single, Age 30', safetywing: '$45-55/mo', aetna: '$180-250/mo' },
-  { profile: 'Single, Age 45', safetywing: '$80-100/mo', aetna: '$300-400/mo' },
-  { profile: 'Couple, Age 35', safetywing: '$90-110/mo', aetna: '$360-500/mo' },
-  { profile: 'Family of 4', safetywing: '$150-200/mo', aetna: '$600-850/mo' },
+  { profile: 'Single, Age 25', safetywing: '$42/mo', aetna: '$150–200/mo', difference: '$108–158/mo' },
+  { profile: 'Single, Age 30', safetywing: '$45/mo', aetna: '$180–250/mo', difference: '$135–205/mo' },
+  { profile: 'Single, Age 40', safetywing: '$64/mo', aetna: '$250–350/mo', difference: '$186–286/mo' },
+  { profile: 'Single, Age 50', safetywing: '$89/mo', aetna: '$350–480/mo', difference: '$261–391/mo' },
+  { profile: 'Couple, Age 35', safetywing: '$90/mo', aetna: '$360–500/mo', difference: '$270–410/mo' },
+  { profile: 'Family of 4', safetywing: '$150/mo', aetna: '$600–850/mo', difference: '$450–700/mo' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'aetna', header: 'Aetna International' },
+];
+
+const claimsRows = [
+  { aspect: 'Direct Billing', safetywing: 'Limited availability', aetna: 'Extensive (1.7M+ US providers)' },
+  { aspect: 'Reimbursement Time', safetywing: '7–14 business days', aetna: '5–10 business days' },
+  { aspect: 'Claims Portal', safetywing: 'Basic online submission', aetna: 'Full-featured Aetna portal' },
+  { aspect: 'Mobile App', safetywing: 'Basic app', aetna: 'Comprehensive Aetna app' },
+  { aspect: '24/7 Support', safetywing: 'Chat-based', aetna: 'Phone and digital' },
+  { aspect: 'Case Management', safetywing: 'Not available', aetna: 'Dedicated for complex cases' },
 ];
 ---
 
 <PageShell
-  title="SafetyWing vs Aetna International"
-  description="Compare SafetyWing and Aetna International. Budget nomad travel medical vs premium US-integrated health insurance."
-  headline="SafetyWing vs Aetna International: Nomad Budget vs Premium Coverage"
-  subheadline="Fundamentally different products at very different price points. Here's what you're actually getting."
+  title="SafetyWing vs Aetna International: Nomad Budget vs US Premium"
+  description="Compare SafetyWing and Aetna International for US expats. Budget travel medical vs CVS-backed health insurance with 1.7M+ US providers."
+  headline="SafetyWing vs Aetna International: Nomad Budget vs Premium US Coverage"
+  subheadline="Fundamentally different products. One costs 75% less. Here's what you're actually giving up."
   heroBackgroundImage="/images/compare/safetywing-vs-aetna-hero-bg.png"
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
-  ctaButtonText="Get Quotes from Both"
+  ctaButtonText="Compare Your Options"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    SafetyWing and Aetna International are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    SafetyWing and Aetna International represent opposite ends of the expat insurance spectrum. One is a venture-backed startup offering $45/month travel medical insurance. The other is a CVS Health subsidiary providing comprehensive health insurance with access to 1.7 million US providers.
   </p>
   <p>
-    SafetyWing is a modern insurance option designed specifically for digital nomads and remote workers. Their main subscription-based model with no long-term commitment required. They're particularly popular among digital nomads, remote workers, and location-independent professionals, with very affordable monthly subscription starting around $40/month.
+    <strong>SafetyWing</strong> is travel medical insurance designed for digital nomads. It covers emergencies and unexpected illness at an extremely affordable price. It's explicitly not health insurance—mental health, chronic conditions, routine care, and maternity are not covered. For healthy young travelers who just need a safety net, it's excellent value.
   </p>
   <p>
-    Aetna International is backed by CVS Health, offering plans designed for globally mobile individuals. They're known for their integration with US healthcare system and strong employer-sponsored options. They tend to attract US-based companies with international employees and American expats, offering mid-range pricing with good corporate plan options.
+    <strong>Aetna International</strong> is comprehensive health insurance backed by CVS Health. They offer full medical coverage including mental health, chronic conditions, preventive care, and seamless integration with US healthcare. For American expats who return to the US regularly or want premium coverage, Aetna provides healthcare continuity.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    The price difference is dramatic: SafetyWing costs roughly 75% less than Aetna. But you're comparing travel medical insurance to health insurance—fundamentally different products with different purposes.
+  </p>
+
+  <div class="bg-amber-50 border border-amber-300 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">The US Coverage Gap</p>
+    <p class="text-amber-900 text-sm mb-0">
+      If you're a US citizen who returns home regularly, this comparison hinges on US coverage. SafetyWing caps US coverage at $50,000 with limited provider access. Aetna provides full plan limits ($1M–$5M+) with 1.7M+ in-network providers. A single serious medical event in the US could exceed SafetyWing's entire US benefit.
+    </p>
+  </div>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+  <p>
+    Don't have time for the full analysis? Here's the essential decision framework.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Travel medical insurance</li>
-        <li>Budget-friendly ($45-55/mo)</li>
-        <li>Emergency and acute care focus</li>
-        <li>Popular with digital nomads</li>
-        <li>Flexible subscription model</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose SafetyWing If:</h3>
+      <ul class="space-y-2 text-neutral-700 mb-0">
+        <li>✓ You're young and healthy with no ongoing care needs</li>
+        <li>✓ You only need emergency/accident coverage</li>
+        <li>✓ Budget is your primary constraint</li>
+        <li>✓ You rarely or never return to the US</li>
+        <li>✓ You have no pre-existing conditions</li>
+        <li>✓ You don't need mental health coverage</li>
+        <li>✓ You understand and accept the coverage limits</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Comprehensive health insurance</li>
-        <li>Premium pricing ($180-250/mo)</li>
-        <li>Full healthcare coverage</li>
-        <li>US network (1.7M+ providers)</li>
-        <li>Mental health and maternity options</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Aetna International If:</h3>
+      <ul class="space-y-2 text-neutral-700 mb-0">
+        <li>✓ You're a US citizen who returns home regularly</li>
+        <li>✓ You want comprehensive healthcare coverage</li>
+        <li>✓ You have or may develop chronic conditions</li>
+        <li>✓ Mental health coverage matters to you</li>
+        <li>✓ You want seamless US provider access (1.7M+)</li>
+        <li>✓ You value CVS prescription integration</li>
+        <li>✓ You need actual health insurance, not travel medical</li>
       </ul>
     </div>
   </div>
 
   <CTABox
-    title="Understand Your Options"
-    description="Get quotes from both to see the actual price difference for your needs."
-    buttonText="Get Free Quotes"
-    buttonHref="/best/expat-health-insurance"
+    title="US Expat?"
+    description="If you return to the US regularly, proper health insurance matters more than you might think."
+    buttonText="Compare US Expat Options"
+    buttonHref="/best/us-expat-insurance"
     variant="highlight"
   />
 
-  <h2 id="coverage-comparison">Coverage Comparison</h2>
+  <h2 id="product-difference">Understanding the Product Difference</h2>
   <p>
-    The coverage gap reflects the fundamental difference between travel medical and health insurance.
+    Before comparing features, understand that these are fundamentally different products:
   </p>
 
-  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
-    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
-  </div>
-
+  <h3>SafetyWing: Travel Medical Insurance</h3>
   <p>
-    <strong>Key differences:</strong>
+    SafetyWing provides travel medical insurance—coverage for emergencies and unexpected acute illness while traveling. This means:
   </p>
   <ul>
-    <li><strong>Product type:</strong> SafetyWing is travel medical (emergencies); Aetna is health insurance (comprehensive care)</li>
-    <li><strong>Pre-existing conditions:</strong> SafetyWing excludes them entirely; Aetna can cover with underwriting</li>
-    <li><strong>Mental health:</strong> Not covered by SafetyWing; included with Aetna</li>
-    <li><strong>Routine care:</strong> SafetyWing doesn't cover checkups or preventive care; Aetna does</li>
-    <li><strong>US coverage:</strong> SafetyWing has a $50K cap with limited providers; Aetna has full access to 1.7M+ providers</li>
-    <li><strong>Limits:</strong> SafetyWing caps at $250K total; Aetna offers $1M-$5M</li>
+    <li><strong>Emergency focus:</strong> Covers accidents, sudden illness, and medical emergencies</li>
+    <li><strong>No chronic care:</strong> Pre-existing conditions and ongoing treatment needs are excluded</li>
+    <li><strong>No routine care:</strong> Checkups, preventive screenings, and wellness visits aren't covered</li>
+    <li><strong>No mental health:</strong> Therapy, counseling, and psychiatric care aren't covered</li>
+    <li><strong>Coverage limits:</strong> $250,000 maximum globally, only $50,000 in the US</li>
+    <li><strong>Subscription flexibility:</strong> Cancel anytime, no long-term commitment</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h3>Aetna International: Comprehensive Health Insurance</h3>
   <p>
-    SafetyWing costs roughly 75% less than Aetna International. The price difference reflects vastly different coverage levels.
-  </p>
-
-  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
-    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
-  </div>
-
-  <p>
-    <strong>Notes on pricing:</strong>
+    Aetna International provides actual health insurance backed by CVS Health. This means:
   </p>
   <ul>
-    <li>SafetyWing's low price reflects limited coverage scope</li>
-    <li>Aetna's premium buys comprehensive, ongoing healthcare</li>
-    <li>SafetyWing has no deductible for most services (small copays instead)</li>
-    <li>Aetna offers deductible options to reduce premiums</li>
-    <li>The 4x price difference comes with 4x+ more coverage</li>
+    <li><strong>Comprehensive coverage:</strong> Hospital, outpatient, preventive, mental health, chronic conditions—the full spectrum</li>
+    <li><strong>Pre-existing conditions:</strong> Can be covered through underwriting (medical history review)</li>
+    <li><strong>US integration:</strong> Access to 1.7M+ Aetna network providers when you're in the US</li>
+    <li><strong>CVS/Caremark:</strong> Prescription drug coverage through CVS pharmacy network</li>
+    <li><strong>Higher limits:</strong> $1M–$5M+ coverage depending on plan tier</li>
+    <li><strong>Annual commitment:</strong> Standard 12-month policy terms</li>
+  </ul>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">The CVS Health Advantage</h3>
+    <p class="text-neutral-700 mb-0">
+      Aetna's acquisition by CVS Health in 2018 created unique benefits for US expats. Your international health insurance integrates with CVS MinuteClinic for walk-in care, CVS pharmacy for prescriptions, and Aetna's existing network of 1.7M+ providers. No other international insurer offers this level of US healthcare integration.
+    </p>
+  </div>
+
+  <h2 id="coverage-comparison">Coverage Comparison</h2>
+  <p>
+    The coverage gap reflects the fundamental difference between travel medical insurance and health insurance.
+  </p>
+
+  <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+  <h3>What This Means in Practice</h3>
+  <ul>
+    <li><strong>Motorcycle accident in Thailand:</strong> Both cover emergency care and hospitalization</li>
+    <li><strong>Food poisoning requiring ER visit:</strong> Both cover it</li>
+    <li><strong>Annual physical exam:</strong> Aetna covers it; SafetyWing doesn't</li>
+    <li><strong>Anxiety or depression treatment:</strong> Aetna covers therapy and medication; SafetyWing covers neither</li>
+    <li><strong>Managing diabetes abroad:</strong> Aetna covers ongoing care; SafetyWing covers only acute emergencies</li>
+    <li><strong>Blood pressure medication refills:</strong> Aetna covers them; SafetyWing doesn't</li>
+    <li><strong>Pregnancy and delivery:</strong> Aetna offers maternity add-on; SafetyWing excludes maternity</li>
+  </ul>
+
+  <h2 id="us-coverage">US Coverage Deep Dive</h2>
+  <p>
+    For US citizens, the US coverage difference is critical. American healthcare costs can bankrupt you without proper coverage.
+  </p>
+
+  <ComparisonTable columns={usColumns} rows={usRows} />
+
+  <h3>The $50,000 US Limit Problem</h3>
+  <p>
+    SafetyWing caps US coverage at $50,000. Here's what that means:
+  </p>
+  <ul>
+    <li><strong>Average 3-day hospital stay in the US:</strong> $30,000–$50,000</li>
+    <li><strong>Emergency appendectomy:</strong> $30,000–$80,000</li>
+    <li><strong>Heart attack treatment:</strong> $50,000–$150,000+</li>
+    <li><strong>Car accident with surgery:</strong> $100,000–$500,000+</li>
+    <li><strong>Cancer treatment:</strong> $150,000–$1,000,000+</li>
+  </ul>
+  <p>
+    A single serious medical event during a US visit could exhaust SafetyWing's entire US benefit. If you spend significant time in the US, this cap creates real financial risk.
+  </p>
+
+  <div class="bg-red-50 border border-red-300 rounded-lg p-4 my-6">
+    <p class="font-semibold text-red-800 mb-2">US Healthcare Cost Reality</p>
+    <p class="text-red-900 text-sm mb-0">
+      The US has the most expensive healthcare in the world. A single ambulance ride can cost $2,000–$5,000. An ER visit averages $2,200 before treatment. SafetyWing's $50,000 US cap might cover one moderate emergency—but not a serious one.
+    </p>
+  </div>
+
+  <h3>Aetna's US Network Advantage</h3>
+  <p>
+    Aetna International provides full access to Aetna's domestic US network:
+  </p>
+  <ul>
+    <li><strong>1.7M+ providers:</strong> Doctors, specialists, hospitals, and clinics nationwide</li>
+    <li><strong>Direct billing:</strong> Aetna pays providers directly—no upfront costs</li>
+    <li><strong>CVS MinuteClinic:</strong> Walk-in care at 1,100+ CVS locations</li>
+    <li><strong>CVS pharmacy:</strong> Prescription coverage at 9,900+ CVS locations</li>
+    <li><strong>Telehealth:</strong> Virtual doctor visits through Aetna's platforms</li>
+    <li><strong>Full plan limits:</strong> Your $1M–$5M+ limit applies in the US, not a $50K cap</li>
   </ul>
 
   <CTABox
-    title="What's the Right Investment?"
-    description="Your health needs determine whether budget or premium makes sense."
-    buttonText="Get a Quote"
-    buttonHref="/best/expat-health-insurance"
+    title="Return to the US Often?"
+    description="If you visit the US regularly, proper US coverage could save you from financial catastrophe."
+    buttonText="View US Expat Plans"
+    buttonHref="/best/us-expat-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>Provider Networks</h3>
+  <h2 id="pricing">Pricing Analysis</h2>
   <p>
-    <strong>Aetna International</strong> provides access to Aetna's massive US network (1.7M+ providers) plus international coverage. Direct billing is common and straightforward.
-  </p>
-  <p>
-    <strong>SafetyWing</strong> works primarily on reimbursement. Some hospitals may direct bill, but you'll often pay upfront and claim back. The US network is limited.
+    SafetyWing costs approximately 75% less than Aetna International. The price difference is dramatic—but so is the coverage difference.
   </p>
 
-  <h3>Claims Process</h3>
+  <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+  <h3>Understanding the Price Gap</h3>
   <p>
-    Aetna has an established healthcare infrastructure with polished digital tools. SafetyWing's process is simpler—submit receipts online—but may require more upfront payment.
+    Why does Aetna cost 4x more than SafetyWing? Because you're buying fundamentally different products:
+  </p>
+  <ul>
+    <li><strong>The $135–205/month gap (age 30)</strong> pays for comprehensive healthcare vs emergency-only coverage</li>
+    <li><strong>US network access:</strong> Building and maintaining relationships with 1.7M providers costs money</li>
+    <li><strong>Mental health coverage:</strong> Aetna covers therapy, medication, and psychiatric care that SafetyWing excludes</li>
+    <li><strong>Chronic condition management:</strong> Ongoing care for conditions like diabetes costs significantly more to insure</li>
+    <li><strong>CVS integration:</strong> Prescription drug coverage and pharmacy network access add value</li>
+    <li><strong>Higher coverage limits:</strong> $1M–$5M+ vs $250,000 maximum</li>
+  </ul>
+
+  <h3>When SafetyWing's Price Makes Sense</h3>
+  <p>
+    SafetyWing's pricing is excellent if you genuinely only need emergency coverage:
+  </p>
+  <ul>
+    <li>You're healthy with no prescriptions or ongoing care needs</li>
+    <li>You never or rarely return to the US</li>
+    <li>You're comfortable paying out-of-pocket for routine care</li>
+    <li>You have savings to cover gaps in coverage</li>
+    <li>You accept the $250,000 global / $50,000 US limits</li>
+  </ul>
+
+  <h3>Annual Cost Comparison</h3>
+  <p>
+    For a 30-year-old single expat:
+  </p>
+  <ul>
+    <li><strong>SafetyWing:</strong> ~$540/year</li>
+    <li><strong>Aetna International:</strong> ~$2,160–$3,000/year</li>
+    <li><strong>Annual savings with SafetyWing:</strong> ~$1,620–$2,460</li>
+  </ul>
+  <p>
+    Over 5 years, that's $8,000–$12,000 in premium savings. But one serious US medical event could cost more than those savings.
   </p>
 
-  <h3>Customer Support</h3>
+  <h2 id="network-claims">Provider Networks and Claims</h2>
   <p>
-    Aetna offers comprehensive support with established customer service. SafetyWing provides chat-based support suited to their tech-savvy nomad audience.
+    How easily can you access care and get reimbursed? The experience differs significantly.
   </p>
+
+  <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+
+  <h3>SafetyWing Claims Experience</h3>
+  <p>
+    SafetyWing's process is simple but basic:
+  </p>
+  <ul>
+    <li><strong>Primarily reimbursement:</strong> You pay for care upfront, then submit claims</li>
+    <li><strong>Online submission:</strong> Upload receipts through their website or app</li>
+    <li><strong>Chat support:</strong> Customer service via chat, suited to their tech-savvy audience</li>
+    <li><strong>No case management:</strong> For complex medical situations, you're largely on your own</li>
+    <li><strong>Simple claims:</strong> Since coverage is limited to emergencies, claims are usually straightforward</li>
+  </ul>
+
+  <h3>Aetna International Claims Experience</h3>
+  <p>
+    Aetna leverages its massive US infrastructure:
+  </p>
+  <ul>
+    <li><strong>Direct billing:</strong> At 1.7M+ US providers, Aetna pays directly—no upfront costs</li>
+    <li><strong>International network:</strong> Direct billing available at major international hospitals</li>
+    <li><strong>Digital tools:</strong> Full-featured Aetna member portal and mobile app</li>
+    <li><strong>24/7 support:</strong> Phone and digital support with medical professionals on staff</li>
+    <li><strong>Case managers:</strong> Dedicated support for complex medical situations</li>
+    <li><strong>Pre-authorization:</strong> Aetna can coordinate and pre-approve major procedures</li>
+  </ul>
+
+  <h2 id="scenarios">Real-World Scenarios</h2>
+  <p>
+    Let's walk through specific situations to see how each plan performs.
+  </p>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 1: Emergency Surgery in Mexico</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're living in Mexico City when you need emergency gallbladder surgery. Total cost: $8,000.</p>
+      <p class="text-neutral-600 mb-2"><strong>SafetyWing:</strong> Covered as emergency. You pay $250 deductible, SafetyWing reimburses ~$7,750. You may need to pay upfront and file for reimbursement.</p>
+      <p class="text-neutral-600 mb-0"><strong>Aetna:</strong> Covered. Direct billing likely available at major Mexico City hospitals. You pay any applicable deductible/coinsurance per your plan.</p>
+      <p class="text-green-700 font-medium mt-2">Winner: Both handle this well—it's a straightforward emergency.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 2: Car Accident During US Visit</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're visiting family in the US when you're in a car accident. You need surgery and 5 days hospitalization. Total cost: $180,000.</p>
+      <p class="text-neutral-600 mb-2"><strong>SafetyWing:</strong> US coverage capped at $50,000. You're personally responsible for $130,000. This could mean bankruptcy or decades of debt.</p>
+      <p class="text-neutral-600 mb-0"><strong>Aetna:</strong> Covered under your full plan limit ($1M–$5M+). Direct billing at in-network hospital. You pay your deductible/coinsurance. Financial catastrophe avoided.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: Aetna—this is exactly why US coverage limits matter.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 3: Developing Anxiety Abroad</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You've been abroad for 8 months and are struggling with anxiety. You need therapy and possibly medication.</p>
+      <p class="text-neutral-600 mb-2"><strong>SafetyWing:</strong> Not covered. Mental health is explicitly excluded. You pay 100% out-of-pocket: therapy ($80–200/session), medication ($20–100/month).</p>
+      <p class="text-neutral-600 mb-0"><strong>Aetna:</strong> Mental health coverage included. You can see a therapist, get prescribed medication, and access ongoing support. Network providers available in many countries.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: Aetna—mental health coverage matters for long-term expats.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 4: The Healthy Nomad in Southeast Asia</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're 27, healthy, bouncing between Thailand, Vietnam, and Bali. You never visit the US and haven't seen a doctor in years.</p>
+      <p class="text-neutral-600 mb-2"><strong>SafetyWing:</strong> Emergency coverage for accidents and sudden illness. Cost: ~$42/month. Annual: ~$504.</p>
+      <p class="text-neutral-600 mb-0"><strong>Aetna:</strong> Comprehensive coverage you may never use. Cost: ~$150–200/month. Annual: ~$1,800–$2,400.</p>
+      <p class="text-amber-700 font-medium mt-2">Winner: SafetyWing—if you truly only need emergency coverage and never visit the US, you'd save ~$1,300–$1,900/year.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 5: US Expat Returning for Holidays</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're a 35-year-old American living in Portugal, but you return to the US for 2-3 weeks twice a year to visit family.</p>
+      <p class="text-neutral-600 mb-2"><strong>SafetyWing:</strong> US coverage limited to $50,000 during visits. Limited provider network. A single emergency could exceed this cap.</p>
+      <p class="text-neutral-600 mb-0"><strong>Aetna:</strong> Full coverage during US visits. Access to 1.7M providers, CVS pharmacies, and MinuteClinics. Pick up prescriptions, see doctors, handle any medical needs seamlessly.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: Aetna—US visits create real risk that SafetyWing's $50K cap doesn't adequately address.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
+  <p>
+    Based on our analysis, here's detailed guidance on who each product serves best.
+  </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose SafetyWing If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're a healthy digital nomad</li>
-        <li>You only need emergency coverage</li>
-        <li>Budget is your primary concern</li>
-        <li>You have no pre-existing conditions</li>
-        <li>You don't need mental health or maternity</li>
-        <li>You're comfortable with coverage gaps</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing Is Right For:</h3>
+      <ul class="space-y-3 text-neutral-700">
+        <li><strong>Non-US citizens or US citizens who never return:</strong> The $50K US cap doesn't matter if you're never in the US</li>
+        <li><strong>Young, healthy travelers:</strong> If you genuinely only need emergency coverage and have no ongoing health needs</li>
+        <li><strong>Budget-constrained nomads:</strong> When $45/month is what you can afford and you accept the limitations</li>
+        <li><strong>Short-term travelers:</strong> If you're traveling for months, not years, and have home-country coverage to return to</li>
+        <li><strong>Those comfortable with risk:</strong> If you have savings to cover uncovered situations and understand the gaps</li>
+        <li><strong>Digital nomads in low-cost countries:</strong> Where out-of-pocket healthcare costs are affordable</li>
       </ul>
     </div>
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Aetna International If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>You're a US citizen abroad</li>
-        <li>You need comprehensive healthcare</li>
-        <li>You have pre-existing conditions</li>
-        <li>Mental health coverage matters</li>
-        <li>You return to the US regularly</li>
-        <li>You want true health insurance, not travel coverage</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International Is Right For:</h3>
+      <ul class="space-y-3 text-neutral-700">
+        <li><strong>US citizens who return home regularly:</strong> The 1.7M provider network and full US coverage eliminates the $50K cap risk</li>
+        <li><strong>Anyone with chronic conditions:</strong> Ongoing care needs require actual health insurance, not travel medical</li>
+        <li><strong>Those who value mental health coverage:</strong> If you have or might need therapy, counseling, or psychiatric care</li>
+        <li><strong>Families planning children:</strong> Maternity coverage options that SafetyWing doesn't offer</li>
+        <li><strong>Long-term expats:</strong> If you're settling abroad for years, comprehensive coverage makes more sense</li>
+        <li><strong>Those who want prescription continuity:</strong> CVS integration for managing medications across borders</li>
+        <li><strong>Risk-averse individuals:</strong> If financial protection matters more than saving on premiums</li>
       </ul>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I use SafetyWing in the US if I'm not a US citizen?</h3>
+      <p class="text-neutral-600 mb-0">
+        Yes, but US coverage is still limited to $50,000 maximum. For non-US citizens visiting the US, this cap applies the same way. If you're planning significant time in the US, consider whether this limit is adequate given American healthcare costs.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Does Aetna International cover me in my home country?</h3>
+      <p class="text-neutral-600 mb-0">
+        For US citizens, yes—Aetna International provides full access to the US Aetna network during home visits. This is one of their key advantages. For non-US home countries, coverage varies by plan—some include home country, others exclude it.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What if I'm healthy now but develop a condition later?</h3>
+      <p class="text-neutral-600 mb-0">
+        With SafetyWing, any condition that develops becomes something you manage out-of-pocket—ongoing treatment isn't covered. With Aetna, conditions that develop while you're insured are covered for ongoing management. This is a fundamental difference between travel medical and health insurance.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I switch from SafetyWing to Aetna later?</h3>
+      <p class="text-neutral-600 mb-0">
+        Yes, but conditions that develop while on SafetyWing become pre-existing conditions for Aetna, subject to underwriting review. It's harder to get comprehensive coverage after you already need it. If you think you'll want health insurance eventually, consider starting sooner while you're healthier.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How does Aetna's CVS integration actually work?</h3>
+      <p class="text-neutral-600 mb-0">
+        When you're in the US, you can fill prescriptions at any CVS pharmacy using your Aetna card. You can also visit CVS MinuteClinic locations for walk-in care like vaccinations, minor illness treatment, and health screenings. It's seamless healthcare access across 9,900+ CVS locations.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is SafetyWing legitimate? It seems too cheap.</h3>
+      <p class="text-neutral-600 mb-0">
+        SafetyWing is legitimate and has served 175,000+ customers since 2017. The low price reflects limited coverage scope—emergency travel medical, not comprehensive health insurance. They use Tokio Marine as their claims administrator. The price is appropriate for what they offer; just understand what they don't cover.
+      </p>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    This isn't really an apples-to-apples comparison—it's apples to oranges.
-  </p>
-  <p>
-    <strong>SafetyWing</strong> serves a specific need well: affordable emergency coverage for healthy nomads who accept limited benefits. If you're young, healthy, have no pre-existing conditions, and just need a safety net for accidents or acute illness, SafetyWing delivers reasonable value.
-  </p>
-  <p>
-    <strong>Aetna International</strong> is actual health insurance. It covers ongoing healthcare needs, mental health, potential maternity, pre-existing conditions, and integrates seamlessly with US healthcare. The premium is 4x higher because you get dramatically more coverage.
-  </p>
-  <p>
-    The question isn't which is "better"—it's what you actually need. Emergency coverage for a healthy 28-year-old? SafetyWing works. Comprehensive healthcare for an expat with any complexity? Aetna is the appropriate choice.
+    This comparison isn't about which is "better"—it's about understanding you're choosing between fundamentally different products.
   </p>
 
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing: Budget Emergency Coverage</h3>
+    <p class="text-neutral-700 mb-0">
+      SafetyWing excels at what it offers: affordable emergency coverage for healthy travelers. If you're young, healthy, never visit the US, and just need a safety net for accidents and sudden illness, SafetyWing provides excellent value at $45/month. But be realistic: if you have any ongoing health needs, take any medications, or return to the US regularly, SafetyWing has significant gaps that could cost you.
+    </p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International: US-Integrated Health Insurance</h3>
+    <p class="text-neutral-700 mb-0">
+      Aetna International provides comprehensive health insurance with unmatched US integration. For American expats who return home regularly, the 1.7M provider network and CVS integration make healthcare seamless. For anyone with chronic conditions, mental health needs, or who wants proper health insurance rather than travel medical, Aetna delivers the coverage you'd expect from a major health insurer.
+    </p>
+  </div>
+
+  <p>
+    <strong>The key question for US citizens:</strong> "How often do I return to the US, and what would happen if I had a medical emergency there?" If SafetyWing's $50,000 US cap makes you nervous, that's your answer—you need proper health insurance like Aetna.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Just Need Emergency Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">SafetyWing offers affordable travel medical for healthy nomads who rarely visit the US.</p>
+      <a href="/providers/safetywing" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View SafetyWing Plans →
+      </a>
+    </div>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need US Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Aetna provides comprehensive health insurance with 1.7M+ US providers and CVS integration.</p>
+      <a href="/providers/aetna-international" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View Aetna Plans →
+      </a>
+    </div>
+  </div>
+
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes to see the actual difference for your situation."
-    buttonText="Compare Plans Now"
+    title="Still Deciding?"
+    description="Compare all expat health insurance options to find the right coverage for your situation."
+    buttonText="Compare All Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
-    <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change. We are not insurance brokers. Verify all information with the providers before purchasing.
+    <p class="text-sm text-neutral-600 mb-0">
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan features change regularly. We are not insurance brokers or licensed agents. Always verify current information directly with SafetyWing and Aetna International before making purchasing decisions. Consider consulting with a licensed insurance professional for personalized advice.
     </p>
   </div>
 </PageShell>

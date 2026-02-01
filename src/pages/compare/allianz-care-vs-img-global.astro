@@ -5,10 +5,15 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'mental-health-maternity', text: 'Mental Health and Maternity', level: 2 },
+  { id: 'deductible-strategy', text: 'The Deductible Strategy', level: 2 },
+  { id: 'pricing', text: 'Pricing Analysis', level: 2 },
+  { id: 'network-claims', text: 'Networks and Claims', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
@@ -21,216 +26,536 @@ const relatedLinks = [
 ];
 
 const coverageColumns = [
-  { key: 'feature', header: 'Feature' },
+  { key: 'feature', header: 'Coverage Area' },
   { key: 'allianz', header: 'Allianz Care' },
   { key: 'img', header: 'IMG Global' },
 ];
 
 const coverageRows = [
-  { feature: 'Inpatient Care', allianz: true, img: true },
-  { feature: 'Outpatient Care', allianz: true, img: true },
-  { feature: 'Annual Maximum', allianz: '$1M - $3M', img: '$1M - $8M' },
-  { feature: 'Mental Health', allianz: 'Good coverage', img: 'Limited' },
-  { feature: 'Maternity', allianz: 'Up to $30,000', img: 'Limited ($5-10K)' },
-  { feature: 'Dental', allianz: 'Add-on', img: 'Add-on' },
-  { feature: 'Medical Evacuation', allianz: true, img: '$500,000' },
-  { feature: 'Deductible Options', allianz: '$0 - $5,000', img: '$0 - $25,000' },
-  { feature: 'Direct Billing Network', allianz: '2M+ providers', img: 'Smaller network' },
+  { feature: 'Annual Maximum', allianz: '€1.35M–€3M', img: '$1M–$8M' },
+  { feature: 'Inpatient Hospital', allianz: 'Full coverage', img: 'Full coverage' },
+  { feature: 'Outpatient Care', allianz: 'Full coverage', img: 'Full coverage' },
+  { feature: 'Mental Health', allianz: 'Comprehensive', img: 'Limited coverage' },
+  { feature: 'Maternity', allianz: 'Up to €30,000', img: '$5,000–$10,000' },
+  { feature: 'Pre-Existing Conditions', allianz: 'Moratorium underwriting', img: 'Usually excluded' },
+  { feature: 'Routine Checkups', allianz: 'Included', img: 'Varies by plan' },
   { feature: 'Wellness Programs', allianz: 'Included', img: 'Limited' },
+  { feature: 'Dental', allianz: 'Optional add-on', img: 'Optional add-on' },
+  { feature: 'Vision', allianz: 'Optional add-on', img: 'Optional add-on' },
+  { feature: 'Medical Evacuation', allianz: 'Included', img: '$500,000' },
+  { feature: 'Deductible Range', allianz: '€0–€5,000', img: '$0–$25,000' },
+];
+
+const mentalMaternityColumns = [
+  { key: 'aspect', header: 'Coverage Aspect' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'img', header: 'IMG Global' },
+];
+
+const mentalMaternityRows = [
+  { aspect: 'Outpatient Mental Health', allianz: 'Covered (limits vary by plan)', img: 'Limited or excluded' },
+  { aspect: 'Inpatient Psychiatric', allianz: 'Covered', img: 'Limited' },
+  { aspect: 'Therapy Sessions', allianz: 'Covered', img: 'Often excluded' },
+  { aspect: 'Psychiatric Medication', allianz: 'Covered', img: 'Limited' },
+  { aspect: 'Maternity Maximum', allianz: 'Up to €30,000', img: '$5,000–$10,000' },
+  { aspect: 'Maternity Waiting Period', allianz: '10–12 months', img: '12 months' },
+  { aspect: 'Complications of Pregnancy', allianz: 'Covered separately', img: 'Covered' },
+  { aspect: 'Newborn Coverage', allianz: '30 days automatic', img: 'Varies' },
+];
+
+const deductibleColumns = [
+  { key: 'deductible', header: 'Deductible' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'img', header: 'IMG Global' },
+  { key: 'imgOutsideUS', header: 'IMG Outside US*' },
+];
+
+const deductibleRows = [
+  { deductible: '$0', allianz: 'Available', img: 'Available', imgOutsideUS: '$0' },
+  { deductible: '$500', allianz: 'Available', img: 'Available', imgOutsideUS: '$250' },
+  { deductible: '$1,000', allianz: 'Available', img: 'Available', imgOutsideUS: '$500' },
+  { deductible: '$2,500', allianz: 'Available', img: 'Available', imgOutsideUS: '$1,250' },
+  { deductible: '$5,000', allianz: 'Maximum', img: 'Available', imgOutsideUS: '$2,500' },
+  { deductible: '$10,000', allianz: 'Not available', img: 'Available', imgOutsideUS: '$5,000' },
+  { deductible: '$25,000', allianz: 'Not available', img: 'Available', imgOutsideUS: '$12,500' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
   { key: 'allianz', header: 'Allianz Care' },
   { key: 'img', header: 'IMG Global' },
+  { key: 'savings', header: 'IMG Savings' },
 ];
 
 const pricingRows = [
-  { profile: 'Single, Age 30', allianz: '$130-180/mo', img: '$75-120/mo' },
-  { profile: 'Single, Age 45', allianz: '$200-280/mo', img: '$120-180/mo' },
-  { profile: 'Couple, Age 35', allianz: '$260-360/mo', img: '$150-220/mo' },
-  { profile: 'Family of 4', allianz: '$400-600/mo', img: '$280-400/mo' },
+  { profile: 'Single, Age 30 (low deductible)', allianz: '€130–180/mo', img: '$120–160/mo', savings: '~10–20%' },
+  { profile: 'Single, Age 30 (high deductible)', allianz: '€80–120/mo', img: '$60–90/mo', savings: '~25–35%' },
+  { profile: 'Single, Age 45 (low deductible)', allianz: '€200–280/mo', img: '$160–220/mo', savings: '~15–25%' },
+  { profile: 'Single, Age 45 (high deductible)', allianz: '€130–180/mo', img: '$90–140/mo', savings: '~30–40%' },
+  { profile: 'Couple, Age 35', allianz: '€260–360/mo', img: '$150–220/mo', savings: '~35–45%' },
+  { profile: 'Family of 4', allianz: '€400–600/mo', img: '$280–400/mo', savings: '~30–35%' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'img', header: 'IMG Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Direct Billing Network', allianz: '2M+ providers globally', img: 'Smaller network' },
+  { aspect: 'Reimbursement Time', allianz: '5–7 business days', img: '5–10 business days' },
+  { aspect: 'Claims Portal', allianz: 'MyHealth portal/app', img: 'Online portal/app' },
+  { aspect: 'Mobile App', allianz: 'Full-featured', img: 'Good functionality' },
+  { aspect: '24/7 Support', allianz: 'Multilingual (15+)', img: 'English primary' },
+  { aspect: 'Trustpilot Rating', allianz: '~4.0/5', img: '4.6/5' },
 ];
 ---
 
 <PageShell
-  title="Allianz Care vs IMG Global"
-  description="Compare Allianz Care and IMG Global international health insurance. See coverage, pricing, and which provider offers better value."
-  headline="Allianz Care vs IMG Global: Mid-Range vs Budget Coverage"
-  subheadline="Established European insurer versus budget-friendly American provider. Here's how they compare."
+  title="Allianz Care vs IMG Global: Mid-Range vs Budget Comprehensive"
+  description="Compare Allianz Care and IMG Global international health insurance. Strong mental health and maternity vs budget-friendly high-deductible options."
+  headline="Allianz Care vs IMG Global: Comprehensive vs Budget Coverage"
+  subheadline="German insurance giant vs budget-friendly American provider. Both offer real health insurance—but with significant trade-offs."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
-  ctaButtonText="Get Quotes from Both"
+  ctaButtonText="Compare Your Options"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    Allianz Care and IMG Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    Allianz Care and IMG Global both offer legitimate international health insurance—not travel medical—but they target different markets. Allianz provides comprehensive coverage with strong mental health and maternity benefits. IMG offers lower premiums with flexible high-deductible options for budget-conscious expats.
   </p>
   <p>
-    Allianz Care is backed by German insurance giant Allianz, offering flexible and competitively priced plans. Their main plan customization and competitive pricing, often 10-15% cheaper than comparable options. They're particularly popular among cost-conscious expats who value flexibility, with competitive rates with good coverage options.
+    <strong>Allianz Care</strong> is backed by Allianz SE, the German insurance giant with €1.1+ trillion in assets. They offer comprehensive international health plans with strong mental health coverage, maternity benefits up to €30,000, and a direct billing network of 2 million+ providers. Their plans tend to be mid-range priced with premium features.
   </p>
   <p>
-    IMG Global is offering affordable international health insurance with flexible options. They're known for their budget-friendly plans that still provide solid coverage. They tend to attract budget-conscious expats and digital nomads, offering lower premiums with higher deductible options available.
+    <strong>IMG Global</strong> is an American insurer known for budget-friendly international health plans. They offer deductibles up to $25,000 (the highest in the industry) and a unique 50% deductible waiver for care received outside the US. Their Trustpilot rating of 4.6/5 demonstrates reliable claims payment despite lower prices.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    The price difference ranges from 15–40% depending on plan configuration, with IMG consistently cheaper. But that gap comes with trade-offs in mental health coverage, maternity benefits, and network size.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-blue-800 mb-2">IMG's 50% Deductible Waiver</p>
+    <p class="text-blue-900 text-sm mb-0">
+      IMG Global offers a unique feature: your deductible is reduced by 50% for care received outside the United States. A $10,000 deductible becomes effectively $5,000 for international care. For expats living outside the US, this makes IMG's high-deductible plans particularly attractive.
+    </p>
+  </div>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+  <p>
+    Short on time? Here's the essential decision framework.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Allianz Care</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li><strong>Network:</strong> 2M+ providers globally</li>
-        <li>Flexible plan tiers (Essential to Platinum)</li>
-        <li>Strong mental health coverage</li>
-        <li>Established global brand</li>
-        <li>Up to 60% savings with high deductible</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Allianz Care If:</h3>
+      <ul class="space-y-2 text-neutral-700 mb-0">
+        <li>✓ Mental health coverage is important to you</li>
+        <li>✓ You need strong maternity benefits (up to €30K)</li>
+        <li>✓ You have pre-existing conditions to cover</li>
+        <li>✓ You prefer a larger direct billing network</li>
+        <li>✓ You want wellness programs included</li>
+        <li>✓ You're based in Europe (strong network)</li>
+        <li>✓ Multilingual support matters (15+ languages)</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li><strong>Trustpilot:</strong> 4.6/5 stars</li>
-        <li>Lowest premiums in category</li>
-        <li>Deductibles up to $25,000 available</li>
-        <li>50% deductible waived outside US</li>
-        <li>High coverage limits ($8M)</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose IMG Global If:</h3>
+      <ul class="space-y-2 text-neutral-700 mb-0">
+        <li>✓ Minimizing premium cost is your priority</li>
+        <li>✓ You're healthy and rarely use healthcare</li>
+        <li>✓ You can manage a high deductible ($5K–$25K)</li>
+        <li>✓ You live outside the US (50% deductible waiver)</li>
+        <li>✓ You don't need extensive mental health coverage</li>
+        <li>✓ Maternity coverage isn't critical</li>
+        <li>✓ You're comfortable with smaller direct billing network</li>
       </ul>
     </div>
   </div>
 
   <CTABox
-    title="Compare Both Providers"
-    description="Get quotes from Allianz Care and IMG Global for your situation."
-    buttonText="Get Free Quotes"
+    title="Budget vs Benefits"
+    description="The right choice depends on your health needs and how you use healthcare."
+    buttonText="Compare Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    Both providers cover the essentials, but Allianz Care offers more comprehensive benefits while IMG Global focuses on core medical coverage at lower prices.
+    Both providers offer comprehensive international health insurance. The differences are in the details—particularly mental health, maternity, and deductible flexibility.
   </p>
 
-  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
-    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
-  </div>
+  <ComparisonTable columns={coverageColumns} rows={coverageRows} />
 
-  <h3>Key Differences</h3>
+  <h3>Key Differences Explained</h3>
   <ul>
-    <li><strong>Annual maximum:</strong> IMG Global offers higher limits ($8M vs $3M) on top plans.</li>
-    <li><strong>Mental health:</strong> Allianz Care provides better mental health coverage. IMG Global's is more limited.</li>
-    <li><strong>Maternity:</strong> Allianz Care offers significantly higher maternity limits ($30,000 vs $5-10,000).</li>
-    <li><strong>Deductible range:</strong> IMG Global goes up to $25,000 for maximum premium savings. Allianz caps at $5,000.</li>
-    <li><strong>Network size:</strong> Allianz Care has a larger direct-billing network (2M+ vs smaller).</li>
-    <li><strong>Wellness:</strong> Allianz Care includes more wellness and preventive programs.</li>
+    <li><strong>Annual maximum:</strong> IMG offers higher limits ($8M vs €3M), though both are adequate for virtually any medical situation</li>
+    <li><strong>Mental health:</strong> Allianz provides comprehensive mental health coverage; IMG's is limited—a significant gap if you need therapy or psychiatric care</li>
+    <li><strong>Maternity:</strong> Allianz offers up to €30,000 for maternity; IMG caps at $5,000–$10,000—a major difference if you're planning a family</li>
+    <li><strong>Pre-existing conditions:</strong> Allianz uses moratorium underwriting (conditions can be covered after 2 years treatment-free); IMG typically excludes them</li>
+    <li><strong>Deductible range:</strong> IMG goes up to $25,000 for maximum premium savings; Allianz caps at €5,000</li>
+    <li><strong>Network size:</strong> Allianz has 2M+ providers for direct billing; IMG's network is smaller, meaning more reimbursement claims</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h2 id="mental-health-maternity">Mental Health and Maternity: The Coverage Gap</h2>
   <p>
-    IMG Global is significantly cheaper than Allianz Care — often 30-40% less for similar deductible levels. The gap widens with IMG's ultra-high deductible options.
+    The most significant differences between these providers are in mental health and maternity coverage. If either matters to you, this section is critical.
   </p>
 
-  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
-    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+  <ComparisonTable columns={mentalMaternityColumns} rows={mentalMaternityRows} />
+
+  <h3>Mental Health Coverage</h3>
+  <p>
+    <strong>Allianz Care</strong> treats mental health as a core part of healthcare:
+  </p>
+  <ul>
+    <li>Outpatient therapy sessions covered (limits vary by plan tier)</li>
+    <li>Inpatient psychiatric hospitalization covered</li>
+    <li>Psychiatric medication covered</li>
+    <li>Access to mental health providers in their global network</li>
+  </ul>
+  <p>
+    <strong>IMG Global</strong> has limited mental health coverage:
+  </p>
+  <ul>
+    <li>Coverage is often limited or excluded depending on plan</li>
+    <li>Outpatient therapy may not be covered</li>
+    <li>Inpatient psychiatric care may have lower limits</li>
+    <li>Check specific plan documents carefully</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-300 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">If You Need Mental Health Coverage</p>
+    <p class="text-amber-900 text-sm mb-0">
+      If you currently see a therapist, take psychiatric medication, or anticipate needing mental health support while abroad, Allianz Care is the safer choice. IMG Global's limited mental health coverage could leave you paying hundreds or thousands out-of-pocket for therapy and medication.
+    </p>
   </div>
 
+  <h3>Maternity Coverage</h3>
   <p>
-    <em>Prices based on moderate deductible plans excluding US coverage. IMG Global prices can be significantly lower with higher deductibles.</em>
+    <strong>Allianz Care</strong> offers strong maternity benefits:
+  </p>
+  <ul>
+    <li>Coverage up to €30,000 for pregnancy and delivery</li>
+    <li>10–12 month waiting period</li>
+    <li>Complications of pregnancy often covered separately (no waiting period)</li>
+    <li>Newborn covered automatically for first 30 days</li>
+  </ul>
+  <p>
+    <strong>IMG Global</strong> has limited maternity:
+  </p>
+  <ul>
+    <li>Coverage capped at $5,000–$10,000</li>
+    <li>12 month waiting period</li>
+    <li>Complications of pregnancy covered</li>
+    <li>Limited for planned pregnancies—the cap may not cover delivery costs</li>
+  </ul>
+  <p>
+    <strong>Reality check:</strong> Hospital delivery costs range from $3,000–$15,000+ depending on country. Allianz's €30,000 covers most scenarios comfortably. IMG's $5,000–$10,000 might not cover a standard delivery, especially with complications.
   </p>
 
-  <h3>Notes on Pricing</h3>
+  <h2 id="deductible-strategy">The Deductible Strategy</h2>
+  <p>
+    IMG Global offers the widest deductible range in international health insurance—up to $25,000. Combined with their 50% international deductible waiver, this creates significant premium savings for healthy expats.
+  </p>
+
+  <ComparisonTable columns={deductibleColumns} rows={deductibleRows} />
+
+  <p class="text-sm text-neutral-600 italic">*IMG's 50% deductible waiver applies to medical care received outside the United States</p>
+
+  <h3>How the 50% Waiver Works</h3>
+  <p>
+    IMG Global reduces your deductible by 50% for care received outside the US:
+  </p>
   <ul>
-    <li>IMG Global with a $5,000+ deductible can cost 50%+ less than these estimates</li>
-    <li>Allianz Care's high-deductible options bring prices closer to IMG</li>
-    <li>IMG's 50% deductible waiver outside US adds value for non-US care</li>
-    <li>Both charge significantly more for US coverage</li>
+    <li><strong>$5,000 deductible:</strong> You pay $2,500 before coverage kicks in for international care</li>
+    <li><strong>$10,000 deductible:</strong> You pay $5,000 for international care</li>
+    <li><strong>$25,000 deductible:</strong> You pay $12,500 for international care</li>
+  </ul>
+  <p>
+    For expats living outside the US who rarely need US healthcare, this effectively doubles the value of high-deductible plans. You get catastrophic coverage at very low premiums while the halved deductible makes the plan more usable for significant but non-catastrophic events.
+  </p>
+
+  <h3>High-Deductible Strategy</h3>
+  <p>
+    High-deductible plans work well if you:
+  </p>
+  <ul>
+    <li>Are healthy and rarely need medical care beyond emergencies</li>
+    <li>Have savings to cover the deductible if needed</li>
+    <li>Live in a country with affordable healthcare (paying out-of-pocket for routine care)</li>
+    <li>Want insurance primarily for catastrophic events</li>
+  </ul>
+  <p>
+    High-deductible plans are risky if you:
+  </p>
+  <ul>
+    <li>Have ongoing health conditions requiring regular care</li>
+    <li>Don't have savings to cover a large deductible</li>
+    <li>Prefer predictable healthcare costs</li>
   </ul>
 
   <CTABox
-    title="Get Your Actual Price"
+    title="Calculate Your Savings"
     description="See how much you could save with different deductible options."
     buttonText="Get a Quote"
     buttonHref="/best/budget-expat-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>Provider Networks</h3>
+  <h2 id="pricing">Pricing Analysis</h2>
   <p>
-    <strong>Allianz Care</strong> has a network of over 2 million providers worldwide, with particularly strong coverage in Europe and Asia. Direct billing is widely available.
-  </p>
-  <p>
-    <strong>IMG Global</strong> has a smaller direct-billing network, meaning you may pay upfront and file for reimbursement more often. However, you can see any licensed provider.
+    IMG Global is consistently 15–40% cheaper than Allianz Care, with the gap widening at higher deductible levels. Here's how the pricing compares across different profiles.
   </p>
 
-  <h3>Claims Process</h3>
+  <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+  <h3>Understanding the Price Gap</h3>
   <p>
-    <strong>Allianz Care</strong> processes most claims within 5 business days through their MyHealth portal and app.
+    IMG Global costs less because they:
   </p>
+  <ul>
+    <li>Offer limited mental health coverage (expensive to insure)</li>
+    <li>Cap maternity benefits at $5,000–$10,000 (pregnancy is costly)</li>
+    <li>Typically exclude pre-existing conditions (reduces risk)</li>
+    <li>Maintain a smaller direct billing network (lower administrative costs)</li>
+    <li>Offer ultra-high deductibles that shift more costs to members</li>
+  </ul>
   <p>
-    <strong>IMG Global</strong> has a strong claims reputation (4.6/5 Trustpilot) with typical processing in 5-10 business days. Their mobile app allows easy claim submission.
+    Allianz Care costs more because they:
+  </p>
+  <ul>
+    <li>Include comprehensive mental health coverage</li>
+    <li>Offer strong maternity benefits (up to €30,000)</li>
+    <li>Cover pre-existing conditions after moratorium period</li>
+    <li>Maintain a 2M+ provider direct billing network</li>
+    <li>Include wellness programs and preventive care</li>
+    <li>Provide multilingual support (15+ languages)</li>
+  </ul>
+
+  <h3>5-Year Cost Comparison</h3>
+  <p>
+    For a healthy 35-year-old single expat with high deductible plans:
+  </p>
+  <ul>
+    <li><strong>Allianz Care:</strong> ~€1,800/year × 5 = €9,000</li>
+    <li><strong>IMG Global:</strong> ~$1,200/year × 5 = $6,000</li>
+    <li><strong>5-year savings with IMG:</strong> ~$3,000–$4,000</li>
+  </ul>
+  <p>
+    However, if you need mental health care or become pregnant, Allianz's coverage could save you more than the premium difference.
   </p>
 
-  <h3>Customer Service</h3>
+  <h2 id="network-claims">Provider Networks and Claims</h2>
   <p>
-    Both offer 24/7 support. Allianz Care has multilingual assistance lines. IMG Global is known for responsive customer service with high satisfaction ratings.
+    Allianz Care has a significantly larger direct billing network, while IMG Global compensates with strong claims service and their 4.6/5 Trustpilot rating.
   </p>
+
+  <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+
+  <h3>Allianz Care Claims Experience</h3>
+  <ul>
+    <li><strong>2M+ providers:</strong> Extensive direct billing network, especially strong in Europe</li>
+    <li><strong>MyHealth portal:</strong> Full-featured claims submission and policy management</li>
+    <li><strong>Fast processing:</strong> Most claims processed in 5–7 business days</li>
+    <li><strong>Multilingual support:</strong> 15+ languages with specialists who understand local healthcare systems</li>
+    <li><strong>Hospital coordination:</strong> Pre-authorization and direct payment for planned procedures</li>
+  </ul>
+
+  <h3>IMG Global Claims Experience</h3>
+  <ul>
+    <li><strong>Smaller network:</strong> Less direct billing availability—expect to pay and claim more often</li>
+    <li><strong>4.6/5 Trustpilot:</strong> Excellent claims reputation despite budget pricing</li>
+    <li><strong>Online portal/app:</strong> Good functionality for claims submission</li>
+    <li><strong>Processing time:</strong> 5–10 business days for most claims</li>
+    <li><strong>Any provider:</strong> You can see any licensed provider worldwide and claim reimbursement</li>
+  </ul>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG's Trustpilot Advantage</h3>
+    <p class="text-neutral-600 mb-0">
+      IMG Global's 4.6/5 Trustpilot rating is notable for a budget insurer. Customers consistently praise reliable claims payment and responsive service. This suggests IMG prioritizes claims satisfaction even while offering lower premiums—an important consideration when choosing budget insurance.
+    </p>
+  </div>
+
+  <h2 id="scenarios">Real-World Scenarios</h2>
+  <p>
+    Let's walk through specific situations to see how each plan performs in practice.
+  </p>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 1: Emergency Hospitalization in Spain</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're living in Barcelona when you need emergency surgery. Hospital bill: €15,000.</p>
+      <p class="text-neutral-600 mb-2"><strong>Allianz Care (€1,000 deductible):</strong> Direct billing likely at major Barcelona hospitals. You pay €1,000 deductible, Allianz pays €14,000 directly.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global ($2,500 deductible):</strong> Outside US, deductible is $1,250 (50% waiver). You may pay upfront and claim reimbursement. IMG pays ~$13,750 after deductible.</p>
+      <p class="text-green-700 font-medium mt-2">Winner: Both handle this well. Allianz has easier direct billing; IMG has lower effective deductible.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 2: Ongoing Therapy for Anxiety</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You've been abroad 6 months and are struggling with anxiety. You need weekly therapy ($150/session) and medication ($80/month).</p>
+      <p class="text-neutral-600 mb-2"><strong>Allianz Care:</strong> Mental health coverage kicks in. Therapy sessions covered (with limits depending on plan tier). Medication covered. Annual cost to you: deductible + any copays.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global:</strong> Limited or no coverage for outpatient mental health. You likely pay 100% out-of-pocket: ~$8,500/year for weekly therapy + medication.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: Allianz Care—mental health coverage saves thousands annually.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 3: Having a Baby Abroad</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're planning to have a baby while living in Portugal. Estimated delivery cost: €8,000 for uncomplicated birth.</p>
+      <p class="text-neutral-600 mb-2"><strong>Allianz Care:</strong> Maternity benefit up to €30,000 after waiting period. €8,000 delivery fully covered. Newborn automatically covered for 30 days.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global:</strong> Maternity capped at $5,000–$10,000 after waiting period. €8,000 delivery may not be fully covered, depending on plan. You could owe €3,000–€5,000+ out-of-pocket.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: Allianz Care—€30K maternity benefit vs $5K–$10K cap makes a real difference.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 4: The Healthy Budget Expat</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're 32, healthy, no pre-existing conditions, no plans for children, and comfortable with high deductibles. You live in Thailand where healthcare is affordable.</p>
+      <p class="text-neutral-600 mb-2"><strong>Allianz Care (€5,000 deductible):</strong> Comprehensive coverage at ~€100/month. Annual: ~€1,200.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global ($10,000 deductible):</strong> Coverage with effective $5,000 international deductible at ~$70/month. Annual: ~$840.</p>
+      <p class="text-amber-700 font-medium mt-2">Winner: IMG Global—you save ~$360/year and the 50% deductible waiver makes the high deductible manageable.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 5: Pre-Existing Condition Management</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You have well-controlled Type 2 diabetes that hasn't required treatment changes in 3 years. You need ongoing medication and monitoring.</p>
+      <p class="text-neutral-600 mb-2"><strong>Allianz Care:</strong> Moratorium underwriting may cover diabetes after 2 years treatment-free. If eligible, ongoing care is covered. Direct billing network makes pharmacy access easier.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global:</strong> Pre-existing conditions typically excluded permanently. Diabetes management paid 100% out-of-pocket forever.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: Allianz Care—moratorium underwriting offers a path to coverage that IMG doesn't.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
+  <p>
+    Based on our analysis, here's detailed guidance on who each provider serves best.
+  </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose Allianz Care If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Mental health coverage is important</li>
-        <li>You may need maternity benefits</li>
-        <li>You prefer a large direct-billing network</li>
-        <li>Wellness programs add value for you</li>
-        <li>You're based in Europe or Asia</li>
-        <li>You want mid-range comprehensive coverage</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Allianz Care Is Right For:</h3>
+      <ul class="space-y-3 text-neutral-700">
+        <li><strong>Anyone needing mental health coverage:</strong> If you see a therapist, take psychiatric medication, or value having this safety net</li>
+        <li><strong>Families planning children:</strong> The €30,000 maternity benefit vs $5K–$10K cap is a major difference</li>
+        <li><strong>Those with pre-existing conditions:</strong> Moratorium underwriting offers potential coverage after 2 years</li>
+        <li><strong>Europe-based expats:</strong> Strong network and multilingual support across EU countries</li>
+        <li><strong>Those who prefer direct billing:</strong> 2M+ provider network means less upfront payment</li>
+        <li><strong>Risk-averse individuals:</strong> Comprehensive coverage with fewer gaps provides peace of mind</li>
       </ul>
     </div>
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose IMG Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Lowest premium is your priority</li>
-        <li>You're healthy and rarely use healthcare</li>
-        <li>You can handle a high deductible</li>
-        <li>You don't need maternity coverage</li>
-        <li>You want high coverage limits</li>
-        <li>You're comfortable with reimbursement claims</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global Is Right For:</h3>
+      <ul class="space-y-3 text-neutral-700">
+        <li><strong>Healthy expats who rarely use healthcare:</strong> Maximum premium savings when you don't need extensive coverage</li>
+        <li><strong>Those comfortable with high deductibles:</strong> $10K–$25K deductibles (halved internationally) for lowest premiums</li>
+        <li><strong>Expats outside the US:</strong> The 50% deductible waiver makes high-deductible plans much more attractive</li>
+        <li><strong>Those who don't need mental health coverage:</strong> No gap to worry about if you won't use it</li>
+        <li><strong>Those not planning children:</strong> Limited maternity doesn't matter if you don't need it</li>
+        <li><strong>Budget-conscious expats:</strong> When premium cost is the primary constraint</li>
+        <li><strong>Those comfortable with reimbursement:</strong> Smaller network means more pay-and-claim situations</li>
       </ul>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How does Allianz's moratorium underwriting work?</h3>
+      <p class="text-neutral-600 mb-0">
+        With moratorium underwriting, pre-existing conditions aren't covered initially. However, if you go 2 years without treatment for a condition, it can become covered. This offers a path to coverage that full medical underwriting (which may permanently exclude conditions) doesn't provide.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Does IMG's 50% deductible waiver apply to all care outside the US?</h3>
+      <p class="text-neutral-600 mb-0">
+        Yes, for most IMG Global plans, medical care received outside the United States has the deductible reduced by 50%. This applies to routine care, emergencies, hospitalization—any covered medical expense. Verify this feature on your specific plan, as terms can vary.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I switch between Allianz and IMG later?</h3>
+      <p class="text-neutral-600 mb-0">
+        Yes, but conditions that develop while insured with one company may be treated as pre-existing by the other. If you develop a chronic condition on IMG (which may not cover it) and try to switch to Allianz, that condition would be subject to Allianz's moratorium period. Consider your long-term health needs when choosing.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Which has better customer service?</h3>
+      <p class="text-neutral-600 mb-0">
+        IMG Global has a higher Trustpilot rating (4.6 vs ~4.0), suggesting strong customer satisfaction despite lower prices. However, Allianz offers multilingual support in 15+ languages, which matters if you're not comfortable conducting insurance business in English. Both are reputable with established claims processes.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What if I need care in the US with IMG?</h3>
+      <p class="text-neutral-600 mb-0">
+        IMG Global covers US care, but the 50% deductible waiver doesn't apply. You'd pay your full deductible for US care. If you spend significant time in the US or have a high deductible, this could be expensive. The waiver is specifically designed to benefit expats living outside the US.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Are wellness checkups covered by both?</h3>
+      <p class="text-neutral-600 mb-0">
+        Allianz Care includes wellness programs and preventive care in most plans. IMG Global's preventive care coverage varies by plan tier and is generally more limited. If annual checkups and screenings matter to you, verify specific coverage before purchasing.
+      </p>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    This comparison is about value versus price.
-  </p>
-  <p>
-    <strong>Choose Allianz Care</strong> if you want well-rounded international coverage with strong mental health benefits, better maternity, and a large direct-billing network. You'll pay more, but you get more.
-  </p>
-  <p>
-    <strong>Choose IMG Global</strong> if minimizing premium costs is your main goal and you're healthy enough to accept a high deductible. Their 4.6/5 Trustpilot rating shows they pay claims reliably despite the lower prices.
-  </p>
-  <p>
-    For young, healthy expats who primarily need catastrophic coverage, IMG Global offers excellent value. For those who want comprehensive benefits and may actually use their insurance regularly, Allianz Care is worth the premium.
+    This comparison comes down to what you're willing to trade for lower premiums.
   </p>
 
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">Allianz Care: Comprehensive with Strong Benefits</h3>
+    <p class="text-neutral-700 mb-0">
+      Allianz Care is the choice when mental health, maternity, or pre-existing conditions matter. Their €30,000 maternity benefit, comprehensive mental health coverage, and moratorium underwriting for pre-existing conditions justify the higher premiums for those who need these features. The 2M+ provider network and multilingual support add convenience, especially in Europe.
+    </p>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global: Budget-Friendly with Smart Features</h3>
+    <p class="text-neutral-700 mb-0">
+      IMG Global is the choice when you're healthy, budget-conscious, and don't need extensive mental health or maternity coverage. Their 50% deductible waiver for international care and ultra-high deductible options create significant savings. The 4.6/5 Trustpilot rating proves they pay claims reliably despite lower prices. For healthy expats primarily living outside the US, IMG offers excellent value.
+    </p>
+  </div>
+
+  <p>
+    <strong>The honest question:</strong> "Do I need mental health coverage or might I have children while abroad?" If yes to either, Allianz Care's higher premiums are likely worth it. If you're healthy, don't need these benefits, and want to minimize costs, IMG Global delivers solid international health insurance at budget-friendly prices.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need Comprehensive Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">Allianz Care offers strong mental health, maternity, and pre-existing condition coverage.</p>
+      <a href="/providers/allianz-care" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View Allianz Care Plans →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want Budget-Friendly Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">IMG Global offers high-deductible options with 50% waiver for international care.</p>
+      <a href="/providers/img-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View IMG Global Plans →
+      </a>
+    </div>
+  </div>
+
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific needs."
-    buttonText="Compare Plans Now"
+    title="Still Deciding?"
+    description="Compare all international health insurance options based on your specific needs."
+    buttonText="Compare All Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
-    <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change frequently. We are not insurance brokers. Verify all information with the providers before purchasing.
+    <p class="text-sm text-neutral-600 mb-0">
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan features change regularly. We are not insurance brokers or licensed agents. Always verify current information directly with Allianz Care and IMG Global before making purchasing decisions. Consider consulting with a licensed insurance professional for personalized advice.
     </p>
   </div>
 </PageShell>

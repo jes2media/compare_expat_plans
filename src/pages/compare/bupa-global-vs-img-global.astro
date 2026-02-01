@@ -5,10 +5,16 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
   { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
   { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
-  { id: 'pricing', text: 'Pricing', level: 2 },
-  { id: 'network-and-claims', text: 'Network and Claims', level: 2 },
+  { id: 'mental-health-parity', text: 'Mental Health: The Parity Difference', level: 2 },
+  { id: 'pre-existing-maternity', text: 'Pre-Existing Conditions and Maternity', level: 2 },
+  { id: 'pricing', text: 'Pricing Analysis', level: 2 },
+  { id: 'five-year-math', text: 'The 5-Year Math', level: 2 },
+  { id: 'network-claims', text: 'Networks and Claims', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
   { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
   { id: 'verdict', text: 'Our Verdict', level: 2 },
 ];
 
@@ -16,237 +22,579 @@ const relatedLinks = [
   { title: 'BUPA Global Review', href: '/providers/bupa-global' },
   { title: 'IMG Global Review', href: '/providers/img-global' },
   { title: 'Best Budget Insurance', href: '/best/budget-expat-insurance' },
+  { title: 'Best Premium Insurance', href: '/best/premium-expat-insurance' },
   { title: 'Thailand Insurance Guide', href: '/countries/thailand/insurance' },
-  { title: 'UK Insurance Guide', href: '/countries/uk/insurance' },
 ];
 
 const coverageColumns = [
-  { key: 'feature', header: 'Feature' },
+  { key: 'feature', header: 'Coverage Area' },
   { key: 'bupa', header: 'BUPA Global' },
   { key: 'img', header: 'IMG Global' },
 ];
 
 const coverageRows = [
-  { feature: 'Inpatient Care', bupa: true, img: true },
-  { feature: 'Outpatient Care', bupa: true, img: true },
-  { feature: 'Annual Maximum', bupa: 'Unlimited', img: '$1M - $8M' },
-  { feature: 'Mental Health', bupa: 'Full parity', img: 'Limited' },
-  { feature: 'Maternity', bupa: 'Up to $75,000', img: 'Limited ($5-10K)' },
-  { feature: 'Dental', bupa: 'Included (Premier+)', img: 'Add-on' },
-  { feature: 'Vision', bupa: 'Included (Premier+)', img: 'Add-on' },
-  { feature: 'Medical Evacuation', bupa: true, img: '$500,000' },
-  { feature: 'Pre-existing Conditions', bupa: 'Often covered', img: 'Usually excluded' },
-  { feature: 'No-Claims Discount', bupa: true, img: false },
+  { feature: 'Annual Maximum', bupa: 'Unlimited', img: '$1M–$8M' },
+  { feature: 'Inpatient Hospital', bupa: 'Full coverage', img: 'Full coverage' },
+  { feature: 'Outpatient Care', bupa: 'Full coverage', img: 'Full coverage' },
+  { feature: 'Mental Health', bupa: 'Full parity with physical', img: 'Limited coverage' },
+  { feature: 'Maternity', bupa: 'Up to $75,000', img: '$5,000–$10,000' },
+  { feature: 'Pre-Existing Conditions', bupa: 'Often covered from day one', img: 'Usually excluded' },
+  { feature: 'Dental', bupa: 'Included (Premier+)', img: 'Optional add-on' },
+  { feature: 'Vision', bupa: 'Included (Premier+)', img: 'Optional add-on' },
+  { feature: 'Wellness/Preventive', bupa: 'Comprehensive', img: 'Limited' },
+  { feature: 'Medical Evacuation', bupa: 'Unlimited', img: '$500,000' },
+  { feature: 'No-Claims Discount', bupa: 'Yes', img: 'No' },
+  { feature: 'Deductible Range', bupa: '$0–$5,000', img: '$0–$25,000' },
+];
+
+const mentalHealthColumns = [
+  { key: 'aspect', header: 'Mental Health Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'img', header: 'IMG Global' },
+];
+
+const mentalHealthRows = [
+  { aspect: 'Coverage Philosophy', bupa: 'Parity with physical health', img: 'Limited/supplementary' },
+  { aspect: 'Outpatient Therapy', bupa: 'Covered same as physical', img: 'Often excluded or capped' },
+  { aspect: 'Inpatient Psychiatric', bupa: 'Full coverage', img: 'Limited coverage' },
+  { aspect: 'Session Limits', bupa: 'Higher/no limits', img: 'Lower limits if covered' },
+  { aspect: 'Psychiatric Medication', bupa: 'Covered', img: 'Limited' },
+  { aspect: 'Waiting Period', bupa: 'Standard policy waiting', img: 'Varies by plan' },
+];
+
+const maternityColumns = [
+  { key: 'aspect', header: 'Maternity Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'img', header: 'IMG Global' },
+];
+
+const maternityRows = [
+  { aspect: 'Maximum Benefit', bupa: 'Up to $75,000', img: '$5,000–$10,000' },
+  { aspect: 'Waiting Period', bupa: '12 months', img: '12 months' },
+  { aspect: 'Prenatal Care', bupa: 'Covered', img: 'Limited' },
+  { aspect: 'Delivery (Normal)', bupa: 'Covered', img: 'Subject to cap' },
+  { aspect: 'C-Section', bupa: 'Covered', img: 'Subject to cap' },
+  { aspect: 'Complications', bupa: 'Covered separately', img: 'Covered' },
+  { aspect: 'Newborn Coverage', bupa: '30 days automatic', img: 'Varies' },
 ];
 
 const pricingColumns = [
   { key: 'profile', header: 'Profile' },
   { key: 'bupa', header: 'BUPA Global' },
   { key: 'img', header: 'IMG Global' },
+  { key: 'savings', header: 'Annual IMG Savings' },
 ];
 
 const pricingRows = [
-  { profile: 'Single, Age 30', bupa: '$200-300/mo', img: '$75-120/mo' },
-  { profile: 'Single, Age 45', bupa: '$350-450/mo', img: '$120-180/mo' },
-  { profile: 'Couple, Age 35', bupa: '$400-550/mo', img: '$150-220/mo' },
-  { profile: 'Family of 4', bupa: '$700-950/mo', img: '$280-400/mo' },
+  { profile: 'Single, Age 30', bupa: '$200–300/mo', img: '$75–120/mo', savings: '$1,500–2,160/yr' },
+  { profile: 'Single, Age 35', bupa: '$250–350/mo', img: '$90–140/mo', savings: '$1,920–2,520/yr' },
+  { profile: 'Single, Age 45', bupa: '$350–450/mo', img: '$120–180/mo', savings: '$2,760–3,240/yr' },
+  { profile: 'Couple, Age 35', bupa: '$400–550/mo', img: '$150–220/mo', savings: '$3,000–3,960/yr' },
+  { profile: 'Family of 4', bupa: '$700–950/mo', img: '$280–400/mo', savings: '$5,040–6,600/yr' },
+];
+
+const claimsColumns = [
+  { key: 'aspect', header: 'Claims Aspect' },
+  { key: 'bupa', header: 'BUPA Global' },
+  { key: 'img', header: 'IMG Global' },
+];
+
+const claimsRows = [
+  { aspect: 'Direct Billing Network', bupa: '1.7M+ providers', img: 'Smaller network' },
+  { aspect: 'Reimbursement Time', bupa: '5–7 business days', img: '5–10 business days' },
+  { aspect: 'Claims Portal', bupa: 'MembersWorld portal/app', img: 'Online portal/app' },
+  { aspect: 'In-House Medical Team', bupa: 'Yes', img: 'No' },
+  { aspect: '24/7 Support', bupa: 'Multilingual', img: 'English primary' },
+  { aspect: 'Trustpilot Rating', bupa: '4.4/5', img: '4.6/5' },
 ];
 ---
 
 <PageShell
-  title="BUPA Global vs IMG Global"
-  description="Compare BUPA Global and IMG Global international health insurance. Premium coverage versus budget-friendly options — see which fits your needs."
+  title="BUPA Global vs IMG Global: Premium vs Budget International Insurance"
+  description="Compare BUPA Global and IMG Global international health insurance. Mental health parity and $75K maternity vs budget-friendly high-deductible plans."
   headline="BUPA Global vs IMG Global: Premium vs Budget Coverage"
-  subheadline="The most comprehensive option versus the most affordable. Here's how these opposite ends of the spectrum compare."
+  subheadline="The most comprehensive option versus the most affordable. Here's what you're trading for those savings."
   heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
-  ctaButtonText="Get Quotes from Both"
+  ctaButtonText="Compare Your Options"
   ctaButtonHref="/best/expat-health-insurance"
 >
-    <h2 id="overview">Overview</h2>
+  <h2 id="overview">Overview</h2>
   <p>
-    Bupa Global and IMG Global are both popular choices for international health insurance, but they serve different needs. Understanding their key differences will help you choose the right coverage for your situation abroad.
+    BUPA Global and IMG Global represent opposite ends of the international health insurance spectrum. BUPA offers unlimited coverage with mental health parity and $75,000 maternity benefits. IMG offers budget-friendly premiums with high-deductible options and a 50% deductible waiver for international care.
   </p>
   <p>
-    Bupa Global is a UK-based insurer with a strong reputation in international health coverage. Their main comprehensive coverage and a solid reputation for claims handling. They're particularly popular among expats who want reliable coverage from an established brand, with mid-to-premium range with good value for the coverage provided.
+    <strong>BUPA Global</strong> is a UK-based premium insurer known for treating mental health equal to physical health—a rare feature in international insurance. They often cover pre-existing conditions from day one, offer unlimited annual coverage, and include dental and vision in top-tier plans. Their pricing reflects this comprehensive approach.
   </p>
   <p>
-    IMG Global is offering affordable international health insurance with flexible options. They're known for their budget-friendly plans that still provide solid coverage. They tend to attract budget-conscious expats and digital nomads, offering lower premiums with higher deductible options available.
+    <strong>IMG Global</strong> is an American insurer focused on affordable international coverage. They offer deductibles up to $25,000, a unique 50% deductible waiver for care outside the US, and maintain strong customer satisfaction (4.6/5 Trustpilot). They achieve lower prices by limiting mental health, capping maternity, and typically excluding pre-existing conditions.
   </p>
   <p>
-    This comparison breaks down the key differences between these two providers so you can make an informed decision. We'll cover coverage options, pricing estimates, network access, claims processes, and help you determine which one makes more sense for your specific needs and budget.
+    The price difference is dramatic: IMG costs 50–70% less than BUPA. Over 5 years, a 35-year-old could save $9,000+ choosing IMG over BUPA. But that savings comes with significant trade-offs in mental health coverage, maternity benefits, and pre-existing condition handling.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-blue-800 mb-2">BUPA's Mental Health Parity</p>
+    <p class="text-blue-900 text-sm mb-0">
+      BUPA Global treats mental health conditions equally to physical health conditions—same coverage limits, same access, same treatment. This "mental health parity" is rare in international insurance and can save thousands annually if you need therapy, counseling, or psychiatric care abroad.
+    </p>
+  </div>
+
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+  <p>
+    Short on time? Here's the essential decision framework.
   </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li><strong>Trustpilot:</strong> 4.4/5 stars</li>
-        <li>Mental health parity (equal to physical)</li>
-        <li>Pre-existing conditions often covered</li>
-        <li>Dental/vision included in top tiers</li>
-        <li>No-claims discount available</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose BUPA Global If:</h3>
+      <ul class="space-y-2 text-neutral-700 mb-0">
+        <li>✓ Mental health coverage is essential</li>
+        <li>✓ You have pre-existing conditions</li>
+        <li>✓ You need strong maternity benefits ($75K)</li>
+        <li>✓ You want dental and vision included</li>
+        <li>✓ All-inclusive coverage gives you peace of mind</li>
+        <li>✓ Budget is flexible for premium protection</li>
+        <li>✓ You value no-claims discounts over time</li>
       </ul>
     </div>
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li><strong>Trustpilot:</strong> 4.6/5 stars</li>
-        <li>Lowest premiums in category</li>
-        <li>Deductibles up to $25,000 available</li>
-        <li>50% deductible waived outside US</li>
-        <li>High coverage limits ($8M)</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose IMG Global If:</h3>
+      <ul class="space-y-2 text-neutral-700 mb-0">
+        <li>✓ Minimizing premium cost is priority #1</li>
+        <li>✓ You're young and healthy</li>
+        <li>✓ You have no pre-existing conditions</li>
+        <li>✓ Mental health coverage isn't critical for you</li>
+        <li>✓ You're not planning to have children</li>
+        <li>✓ You can handle a high deductible</li>
+        <li>✓ You live outside the US (50% deductible waiver)</li>
       </ul>
     </div>
   </div>
 
-  <p>
-    The price difference is dramatic — IMG Global can cost 50-70% less than BUPA Global. The question is what you're giving up for those savings.
-  </p>
-
   <CTABox
-    title="Compare Both Providers"
-    description="Get quotes from BUPA Global and IMG Global for your situation."
-    buttonText="Get Free Quotes"
+    title="Premium vs Budget"
+    description="The right choice depends on your health needs, not just your budget."
+    buttonText="Compare Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <h2 id="coverage-comparison">Coverage Comparison</h2>
   <p>
-    This comparison highlights the premium vs budget trade-off clearly. BUPA Global includes benefits that IMG Global either limits or charges extra for.
+    This comparison highlights the premium vs budget trade-off clearly. BUPA Global includes benefits that IMG Global either limits, caps, or charges extra for.
   </p>
 
-  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
-    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
-  </div>
+  <ComparisonTable columns={coverageColumns} rows={coverageRows} />
 
-  <h3>Key Differences</h3>
+  <h3>Key Differences Explained</h3>
   <ul>
-    <li><strong>Mental health:</strong> BUPA Global treats mental health equally to physical health. IMG Global's coverage is more limited — a significant gap if mental health care matters to you.</li>
-    <li><strong>Pre-existing conditions:</strong> BUPA Global often covers pre-existing conditions from the start. IMG Global typically excludes them.</li>
-    <li><strong>Maternity:</strong> BUPA Global offers up to $75,000 for maternity. IMG Global's coverage is limited to $5-10,000.</li>
-    <li><strong>Dental/vision:</strong> Included in BUPA's Premier and Elite plans. Add-on with IMG Global.</li>
-    <li><strong>No-claims discount:</strong> BUPA rewards claim-free years. IMG does not.</li>
-    <li><strong>Coverage limits:</strong> BUPA offers unlimited coverage. IMG caps at $8M (still very high).</li>
+    <li><strong>Mental health:</strong> BUPA treats mental health equally to physical health. IMG's coverage is limited—a critical gap if you need therapy or psychiatric care</li>
+    <li><strong>Pre-existing conditions:</strong> BUPA often covers pre-existing conditions from day one (subject to underwriting). IMG typically excludes them permanently</li>
+    <li><strong>Maternity:</strong> BUPA offers up to $75,000. IMG caps at $5,000–$10,000. This is a 7–15x difference</li>
+    <li><strong>Dental/vision:</strong> Included in BUPA's Premier and Elite plans. Add-on cost with IMG</li>
+    <li><strong>Annual maximum:</strong> BUPA offers unlimited coverage. IMG caps at $8M (still extremely high)</li>
+    <li><strong>No-claims discount:</strong> BUPA rewards claim-free years with lower premiums. IMG doesn't offer this</li>
+    <li><strong>Deductible range:</strong> IMG goes up to $25,000 for maximum savings. BUPA caps at $5,000</li>
   </ul>
 
-  <h2 id="pricing">Pricing</h2>
+  <h2 id="mental-health-parity">Mental Health: The Parity Difference</h2>
   <p>
-    The price difference is substantial. BUPA Global typically costs 2-3x more than IMG Global for comparable age profiles.
+    BUPA Global's mental health parity is their standout feature. Here's what that means in practice.
   </p>
 
-  <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
-    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
-  </div>
+  <ComparisonTable columns={mentalHealthColumns} rows={mentalHealthRows} />
 
+  <h3>What "Mental Health Parity" Actually Means</h3>
   <p>
-    <em>Prices based on comprehensive plans excluding US coverage. IMG Global prices can be significantly lower with higher deductibles.</em>
-  </p>
-
-  <h3>The Math</h3>
-  <p>
-    For a 35-year-old single expat, the annual difference is roughly:
+    When BUPA says they offer mental health parity, they mean:
   </p>
   <ul>
-    <li>BUPA Global: ~$3,000/year</li>
-    <li>IMG Global: ~$1,200/year</li>
-    <li>Savings with IMG: ~$1,800/year</li>
+    <li><strong>Same coverage limits:</strong> If your plan covers $2M in physical health care, it covers $2M in mental health care</li>
+    <li><strong>Same access:</strong> No separate authorization process or additional hoops for mental health</li>
+    <li><strong>Same network:</strong> Mental health providers are part of the standard network</li>
+    <li><strong>No artificial caps:</strong> No "12 sessions per year" limits that many insurers impose</li>
+    <li><strong>Medication coverage:</strong> Psychiatric medications covered like any other prescription</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-300 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">The Cost of No Mental Health Coverage</p>
+    <p class="text-amber-900 text-sm mb-0">
+      If you need weekly therapy at $150/session plus psychiatric medication at $100/month, that's ~$9,000/year out-of-pocket with IMG Global. With BUPA Global's parity coverage, you'd pay only your standard deductible and any copays. The premium difference between BUPA and IMG is roughly $1,800–$2,500/year for a 35-year-old—much less than the potential out-of-pocket mental health costs.
+    </p>
+  </div>
+
+  <h3>IMG Global Mental Health Reality</h3>
+  <p>
+    IMG Global's mental health coverage is limited:
+  </p>
+  <ul>
+    <li>Outpatient therapy often excluded or severely capped</li>
+    <li>Lower limits for inpatient psychiatric care than physical health</li>
+    <li>Session limits (e.g., 20 sessions/year) if covered at all</li>
+    <li>Some plans exclude mental health entirely</li>
+    <li>Check specific plan documents—coverage varies significantly</li>
   </ul>
   <p>
-    Over 5 years, that's $9,000 in premium savings. The question is whether BUPA's additional benefits are worth that difference for your situation.
+    If mental health support matters to you, BUPA Global is the safer choice. If you're confident you won't need mental health care, IMG's limited coverage may not affect you.
+  </p>
+
+  <h2 id="pre-existing-maternity">Pre-Existing Conditions and Maternity</h2>
+  <p>
+    Beyond mental health, the biggest coverage gaps are in pre-existing conditions and maternity benefits.
+  </p>
+
+  <h3>Pre-Existing Conditions</h3>
+  <p>
+    <strong>BUPA Global</strong> often covers pre-existing conditions from day one:
+  </p>
+  <ul>
+    <li>Subject to medical underwriting during application</li>
+    <li>Stable, well-managed conditions often accepted</li>
+    <li>Some conditions may have waiting periods or loadings (premium increases)</li>
+    <li>Continuation of care is a BUPA priority</li>
+  </ul>
+  <p>
+    <strong>IMG Global</strong> typically excludes pre-existing conditions:
+  </p>
+  <ul>
+    <li>Conditions you have before purchasing are usually excluded permanently</li>
+    <li>Limited options for coverage even after waiting periods</li>
+    <li>Any condition requiring ongoing treatment remains your out-of-pocket cost</li>
+  </ul>
+
+  <h3>Maternity Coverage Comparison</h3>
+
+  <ComparisonTable columns={maternityColumns} rows={maternityRows} />
+
+  <h3>The Maternity Math</h3>
+  <p>
+    Hospital delivery costs vary significantly by country:
+  </p>
+  <ul>
+    <li><strong>Thailand (private hospital):</strong> $3,000–$8,000</li>
+    <li><strong>Spain (private):</strong> €4,000–€10,000</li>
+    <li><strong>UK (private):</strong> £5,000–£15,000</li>
+    <li><strong>US:</strong> $10,000–$30,000+</li>
+    <li><strong>C-section adds:</strong> $3,000–$15,000+ depending on country</li>
+  </ul>
+  <p>
+    IMG Global's $5,000–$10,000 cap might cover a straightforward delivery in Thailand or Portugal. But complications, C-sections, or delivery in expensive countries could leave you with significant out-of-pocket costs. BUPA Global's $75,000 covers virtually any delivery scenario.
   </p>
 
   <CTABox
-    title="Get Your Actual Price"
-    description="See the real difference for your age, location, and needs."
-    buttonText="Get a Quote"
+    title="Planning a Family?"
+    description="If pregnancy is in your future, maternity coverage limits matter significantly."
+    buttonText="Compare Maternity Options"
     buttonHref="/best/expat-health-insurance"
   />
 
-  <h2 id="network-and-claims">Network and Claims</h2>
-
-  <h3>Provider Networks</h3>
+  <h2 id="pricing">Pricing Analysis</h2>
   <p>
-    <strong>BUPA Global</strong> offers access to 1.7 million providers globally with good direct-billing availability in major hospitals.
-  </p>
-  <p>
-    <strong>IMG Global</strong> has a smaller direct-billing network. You may need to pay upfront and claim reimbursement more often, though you can see any licensed provider.
+    BUPA Global typically costs 2–3x more than IMG Global. Here's how the pricing compares across different profiles.
   </p>
 
-  <h3>Claims Process</h3>
+  <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+  <h3>Understanding the Price Gap</h3>
   <p>
-    <strong>BUPA Global</strong> has a strong claims reputation with fast settlements and few rejections. Their MembersWorld app handles digital claims.
+    IMG Global costs less because they:
   </p>
+  <ul>
+    <li>Limit mental health coverage (expensive to insure)</li>
+    <li>Cap maternity at $5,000–$10,000 (pregnancy is costly)</li>
+    <li>Exclude pre-existing conditions (reduces risk)</li>
+    <li>Don't include dental/vision in base plans</li>
+    <li>Offer ultra-high deductibles ($10K–$25K) that shift costs to members</li>
+    <li>Have a smaller direct billing network (lower administrative costs)</li>
+  </ul>
   <p>
-    <strong>IMG Global</strong> actually edges BUPA on Trustpilot (4.6 vs 4.4), with customers praising reliable claim payments despite the lower premiums.
+    BUPA Global costs more because they:
+  </p>
+  <ul>
+    <li>Offer mental health parity with physical health</li>
+    <li>Provide $75,000 maternity benefits</li>
+    <li>Often cover pre-existing conditions</li>
+    <li>Include dental/vision in top-tier plans</li>
+    <li>Offer unlimited annual coverage</li>
+    <li>Maintain a 1.7M+ provider network</li>
+    <li>Employ in-house medical teams</li>
+  </ul>
+
+  <h2 id="five-year-math">The 5-Year Math</h2>
+  <p>
+    Let's calculate the long-term cost difference and when BUPA's premium coverage pays off.
   </p>
 
-  <h3>Customer Service</h3>
+  <h3>Base Premium Comparison (Age 35, Single)</h3>
+  <ul>
+    <li><strong>BUPA Global:</strong> ~$300/month = $3,600/year = $18,000 over 5 years</li>
+    <li><strong>IMG Global:</strong> ~$115/month = $1,380/year = $6,900 over 5 years</li>
+    <li><strong>5-year savings with IMG:</strong> ~$11,100</li>
+  </ul>
+
+  <h3>When BUPA Pays Off</h3>
   <p>
-    Both offer 24/7 multilingual support. BUPA Global includes access to in-house medical professionals. IMG Global is known for responsive service.
+    Despite the higher premiums, BUPA Global is actually cheaper if you need:
   </p>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6">
+    <h4 class="font-semibold text-neutral-900 mb-3">Mental Health Care</h4>
+    <ul class="text-neutral-600 mb-0">
+      <li>Weekly therapy ($150/session) + medication ($100/month) = ~$9,000/year</li>
+      <li>5-year cost with IMG (out-of-pocket): $45,000</li>
+      <li>5-year cost with BUPA (covered): deductible + copays, perhaps $2,000 total</li>
+      <li><strong>BUPA saves you: ~$43,000 over 5 years</strong></li>
+    </ul>
+  </div>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6">
+    <h4 class="font-semibold text-neutral-900 mb-3">Having a Baby</h4>
+    <ul class="text-neutral-600 mb-0">
+      <li>Hospital delivery with minor complications: $12,000</li>
+      <li>IMG Global coverage: $5,000–$10,000 → you owe $2,000–$7,000</li>
+      <li>BUPA Global coverage: $75,000 → fully covered (minus deductible)</li>
+      <li><strong>BUPA saves you: $2,000–$7,000 per pregnancy</strong></li>
+    </ul>
+  </div>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6">
+    <h4 class="font-semibold text-neutral-900 mb-3">Pre-Existing Condition Management</h4>
+    <ul class="text-neutral-600 mb-0">
+      <li>Managing diabetes: medication ($200/mo) + quarterly checkups ($150) = ~$3,000/year</li>
+      <li>5-year cost with IMG (out-of-pocket): $15,000</li>
+      <li>5-year cost with BUPA (often covered): standard deductible/copays, perhaps $1,500</li>
+      <li><strong>BUPA saves you: ~$13,500 over 5 years</strong></li>
+    </ul>
+  </div>
+
+  <h3>When IMG Global Makes Sense</h3>
+  <p>
+    IMG Global's $11,100 savings over 5 years is real money if you're:
+  </p>
+  <ul>
+    <li>Healthy with no pre-existing conditions</li>
+    <li>Not planning to have children</li>
+    <li>Confident you won't need mental health care</li>
+    <li>Comfortable with high deductibles and potential out-of-pocket costs</li>
+    <li>Living outside the US (benefiting from the 50% deductible waiver)</li>
+  </ul>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">IMG's 50% Deductible Waiver</p>
+    <p class="text-amber-900 text-sm mb-0">
+      IMG Global reduces your deductible by 50% for care outside the US. A $10,000 deductible becomes effectively $5,000 for international care. Combined with their already lower premiums, this makes IMG particularly attractive for healthy expats living outside the United States.
+    </p>
+  </div>
+
+  <h2 id="network-claims">Provider Networks and Claims</h2>
+  <p>
+    BUPA Global has a larger direct billing network, while IMG Global compensates with strong customer service ratings.
+  </p>
+
+  <ComparisonTable columns={claimsColumns} rows={claimsRows} />
+
+  <h3>BUPA Global Claims Experience</h3>
+  <ul>
+    <li><strong>1.7M+ providers:</strong> Extensive direct billing network globally</li>
+    <li><strong>MembersWorld:</strong> Full-featured portal and app for claims, ID cards, and policy management</li>
+    <li><strong>In-house medical team:</strong> BUPA employs medical professionals who can advise on treatment options</li>
+    <li><strong>Fast processing:</strong> Most claims processed in 5–7 business days</li>
+    <li><strong>24/7 multilingual support:</strong> Help in multiple languages worldwide</li>
+  </ul>
+
+  <h3>IMG Global Claims Experience</h3>
+  <ul>
+    <li><strong>Smaller network:</strong> Less direct billing—expect to pay and claim more often</li>
+    <li><strong>4.6/5 Trustpilot:</strong> Higher customer satisfaction rating than BUPA (4.4/5)</li>
+    <li><strong>Online portal/app:</strong> Good functionality for claims and policy management</li>
+    <li><strong>Processing time:</strong> 5–10 business days typical</li>
+    <li><strong>Any provider:</strong> Can see any licensed provider and claim reimbursement</li>
+  </ul>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">The Trustpilot Paradox</h3>
+    <p class="text-neutral-600 mb-0">
+      IMG Global has a higher Trustpilot rating (4.6) than BUPA Global (4.4) despite being the budget option. This suggests IMG delivers strong customer service and reliable claims payment even at lower price points. Don't assume cheaper means worse service—IMG has built a solid reputation for actually paying claims.
+    </p>
+  </div>
+
+  <h2 id="scenarios">Real-World Scenarios</h2>
+  <p>
+    Let's walk through specific situations to see how each plan performs.
+  </p>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 1: Emergency Surgery in Thailand</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You need emergency appendectomy at a Bangkok private hospital. Total bill: $15,000.</p>
+      <p class="text-neutral-600 mb-2"><strong>BUPA Global ($1,000 deductible):</strong> Direct billing likely at major Bangkok hospitals. You pay $1,000 deductible, BUPA pays $14,000 directly.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global ($5,000 deductible):</strong> Outside US, deductible is $2,500 (50% waiver). You may pay upfront and claim. IMG reimburses $12,500.</p>
+      <p class="text-green-700 font-medium mt-2">Winner: Both handle this well. BUPA has easier direct billing; IMG has competitive effective deductible with waiver.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 2: Depression Treatment Abroad</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You've been abroad a year and are struggling with depression. You need weekly therapy and antidepressants.</p>
+      <p class="text-neutral-600 mb-2"><strong>BUPA Global:</strong> Mental health parity means this is covered like physical illness. Weekly therapy + medication covered subject to deductible/copays. Annual cost to you: ~$500–1,500.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global:</strong> Mental health likely excluded or severely limited. You pay 100% out-of-pocket: ~$9,000/year for weekly therapy + medication.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: BUPA Global—mental health parity saves ~$7,500+ annually.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 3: Having a Baby in Spain</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're having a baby at a private hospital in Barcelona. Normal delivery with epidural: €8,000.</p>
+      <p class="text-neutral-600 mb-2"><strong>BUPA Global ($75K maternity):</strong> Fully covered after waiting period. €8,000 bill paid by BUPA minus your deductible.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global ($10K max maternity):</strong> €8,000 is within $10K cap—likely covered. But if complications arise adding €5,000, you'd owe the excess.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: BUPA Global—the $75K vs $10K cap provides significant safety margin for complications.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 4: Managing Pre-Existing Diabetes</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You have well-controlled Type 2 diabetes requiring medication and quarterly monitoring.</p>
+      <p class="text-neutral-600 mb-2"><strong>BUPA Global:</strong> After underwriting review, diabetes is often covered. Medication, checkups, and A1C tests covered. Annual cost: deductible + copays.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global:</strong> Pre-existing conditions typically excluded. All diabetes management paid 100% out-of-pocket: ~$3,000+/year.</p>
+      <p class="text-blue-700 font-medium mt-2">Winner: BUPA Global—covering pre-existing conditions can save thousands annually.</p>
+    </div>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Scenario 5: The Healthy 28-Year-Old</h3>
+      <p class="text-neutral-600 mb-2"><strong>Situation:</strong> You're 28, healthy, no pre-existing conditions, no plans for children, never needed therapy, living in Portugal.</p>
+      <p class="text-neutral-600 mb-2"><strong>BUPA Global:</strong> Comprehensive coverage at ~$220/month. Annual: ~$2,640. You have coverage you may never use.</p>
+      <p class="text-neutral-600 mb-0"><strong>IMG Global ($10K deductible):</strong> Solid coverage with 50% international deductible waiver at ~$80/month. Annual: ~$960.</p>
+      <p class="text-amber-700 font-medium mt-2">Winner: IMG Global—you save ~$1,680/year and the coverage gaps don't affect you.</p>
+    </div>
+  </div>
 
   <h2 id="who-should-choose">Who Should Choose Which</h2>
+  <p>
+    Based on our analysis, here's detailed guidance on who each provider serves best.
+  </p>
 
   <div class="grid md:grid-cols-2 gap-6 my-8">
-    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose BUPA Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Mental health coverage is essential</li>
-        <li>You have pre-existing conditions</li>
-        <li>You need strong maternity benefits</li>
-        <li>You want dental/vision included</li>
-        <li>All-inclusive coverage gives you peace of mind</li>
-        <li>Budget is flexible for premium protection</li>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global Is Right For:</h3>
+      <ul class="space-y-3 text-neutral-700">
+        <li><strong>Anyone who values mental health coverage:</strong> If you have any history of therapy, medication, or anticipate needing mental health support</li>
+        <li><strong>Those with pre-existing conditions:</strong> BUPA's day-one coverage potential is unique</li>
+        <li><strong>Families planning children:</strong> $75K maternity vs $5K–$10K cap is a 7–15x difference</li>
+        <li><strong>Those who want all-inclusive coverage:</strong> Dental, vision, wellness included in top tiers</li>
+        <li><strong>Long-term expats:</strong> No-claims discounts reward loyalty over time</li>
+        <li><strong>Risk-averse individuals:</strong> Unlimited coverage and comprehensive benefits provide peace of mind</li>
       </ul>
     </div>
-    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-neutral-900 mb-3">Choose IMG Global If:</h3>
-      <ul class="space-y-2 text-neutral-600">
-        <li>Minimizing premium cost is priority #1</li>
-        <li>You're young and healthy</li>
-        <li>You don't have pre-existing conditions</li>
-        <li>You don't need maternity coverage</li>
-        <li>Mental health coverage isn't critical</li>
-        <li>You can handle a high deductible</li>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global Is Right For:</h3>
+      <ul class="space-y-3 text-neutral-700">
+        <li><strong>Healthy young expats:</strong> Maximum premium savings when you don't need comprehensive coverage</li>
+        <li><strong>Those without pre-existing conditions:</strong> The exclusion doesn't matter if you don't have any</li>
+        <li><strong>Those not planning children:</strong> Limited maternity is irrelevant</li>
+        <li><strong>Those confident about mental health:</strong> If you've never needed therapy and don't expect to</li>
+        <li><strong>High-deductible tolerant:</strong> Comfortable with $10K–$25K deductibles (halved internationally)</li>
+        <li><strong>Budget-focused expats:</strong> When $11,000 in 5-year savings matters more than comprehensive coverage</li>
+        <li><strong>Expats outside the US:</strong> The 50% deductible waiver maximizes value</li>
       </ul>
+    </div>
+  </div>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How does BUPA's pre-existing condition coverage work?</h3>
+      <p class="text-neutral-600 mb-0">
+        BUPA uses medical underwriting—they review your health history during application. Well-controlled conditions are often covered from day one. Some conditions may have waiting periods or premium loadings. Unlike moratorium underwriting, you get clarity upfront about what's covered rather than waiting 2 years to find out.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What does "mental health parity" actually guarantee?</h3>
+      <p class="text-neutral-600 mb-0">
+        BUPA's mental health parity means mental health conditions are covered under the same terms as physical health—same coverage limits, same access, same network. There are no separate "mental health maximums" or session limits that many insurers impose. If your plan covers $2M in physical health care, it covers $2M in mental health care.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Can I upgrade from IMG to BUPA later?</h3>
+      <p class="text-neutral-600 mb-0">
+        Yes, but conditions that develop while on IMG become pre-existing conditions for BUPA. If you develop depression on IMG (which may not cover it) and want to switch to BUPA, that depression would be subject to BUPA's underwriting process. Consider your long-term health trajectory when choosing.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">How does BUPA's no-claims discount work?</h3>
+      <p class="text-neutral-600 mb-0">
+        BUPA rewards claim-free years with premium discounts. The exact discount varies but can reach 10–20% off your renewal premium after several claim-free years. This makes BUPA increasingly cost-effective for healthy members over time, partially offsetting their higher base premiums.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Is IMG Global reliable for large claims?</h3>
+      <p class="text-neutral-600 mb-0">
+        IMG Global's 4.6/5 Trustpilot rating suggests strong claims satisfaction. Customers report reliable payment even for significant claims. The budget pricing doesn't mean they avoid paying—it means they limit what's covered (mental health, maternity, pre-existing conditions) to keep costs down while reliably covering what's included.
+      </p>
+    </div>
+
+    <div class="border-b border-neutral-200 pb-4">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">What if I need US care with IMG Global?</h3>
+      <p class="text-neutral-600 mb-0">
+        IMG Global covers US care, but the 50% deductible waiver doesn't apply. You pay your full deductible for US care. If you have a $10,000 deductible, that's $10,000 out-of-pocket before coverage starts for US treatment (versus $5,000 for international care). Plan accordingly if you spend time in the US.
+      </p>
     </div>
   </div>
 
   <h2 id="verdict">Our Verdict</h2>
   <p>
-    This isn't a close comparison — it's a choice between two fundamentally different products.
-  </p>
-  <p>
-    <strong>Choose BUPA Global</strong> if you want true comprehensive coverage with no gaps. Their mental health parity, pre-existing condition handling, and all-inclusive benefits justify the premium for people who need these features.
-  </p>
-  <p>
-    <strong>Choose IMG Global</strong> if you're healthy, young, and primarily want protection against catastrophic medical costs. Their 4.6/5 Trustpilot rating proves you can trust them to pay claims despite the low prices.
-  </p>
-  <p>
-    For most healthy expats under 40 without complex health needs, IMG Global offers excellent value. For anyone with pre-existing conditions, mental health concerns, or family planning needs, BUPA Global is worth the investment.
+    This isn't a close comparison—it's a choice between two fundamentally different approaches to international health insurance.
   </p>
 
-  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
-    <h3 class="text-lg font-semibold text-amber-900 mb-2">Consider Your Actual Needs</h3>
-    <p class="text-amber-800">
-      Don't pay for benefits you won't use, but don't skimp on coverage you need. If you have any history of mental health treatment, pre-existing conditions, or might have children, BUPA's higher premiums could save you money in the long run.
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">BUPA Global: Premium Coverage with No Gaps</h3>
+    <p class="text-neutral-700 mb-0">
+      BUPA Global is the choice when you want comprehensive coverage without worrying about gaps. Their mental health parity, pre-existing condition acceptance, and $75,000 maternity benefit provide peace of mind that budget insurers can't match. Yes, you'll pay more—potentially $11,000+ more over 5 years—but you'll never face a situation where something important isn't covered.
     </p>
   </div>
 
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">IMG Global: Budget Coverage for Healthy Expats</h3>
+    <p class="text-neutral-700 mb-0">
+      IMG Global is the choice when you're healthy, don't have complex health needs, and want to minimize insurance costs. Their 50% deductible waiver for international care, high-deductible options, and 4.6/5 Trustpilot rating prove you can get reliable international health insurance at budget prices. The coverage gaps in mental health, maternity, and pre-existing conditions only matter if you need those benefits.
+    </p>
+  </div>
+
+  <p>
+    <strong>The honest assessment:</strong> If you have any history of mental health treatment, any pre-existing conditions, or might have children while abroad, BUPA Global's higher premiums could save you far more than they cost. If you're young, healthy, have no pre-existing conditions, and want primarily catastrophic coverage, IMG Global delivers solid international health insurance at remarkable prices.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-4 my-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Need Premium Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">BUPA Global offers mental health parity, pre-existing condition coverage, and $75K maternity.</p>
+      <a href="/providers/bupa-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View BUPA Global Plans →
+      </a>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+      <h3 class="text-lg font-semibold text-neutral-900 mb-2">Want Budget Coverage?</h3>
+      <p class="text-neutral-600 text-sm mb-4">IMG Global offers 50% deductible waiver and high-deductible options at budget prices.</p>
+      <a href="/providers/img-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">
+        View IMG Global Plans →
+      </a>
+    </div>
+  </div>
+
   <CTABox
-    title="Ready to Decide?"
-    description="Compare quotes from both providers based on your specific situation."
-    buttonText="Compare Plans Now"
+    title="Still Deciding?"
+    description="Compare all international health insurance options to find the right balance of coverage and cost."
+    buttonText="Compare All Options"
     buttonHref="/best/expat-health-insurance"
     variant="highlight"
   />
 
   <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
-    <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage, and plan details change frequently. We are not insurance brokers. Verify all information with the providers before purchasing.
+    <p class="text-sm text-neutral-600 mb-0">
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan features change regularly. We are not insurance brokers or licensed agents. Always verify current information directly with BUPA Global and IMG Global before making purchasing decisions. Consider consulting with a licensed insurance professional for personalized advice.
     </p>
   </div>
 </PageShell>
