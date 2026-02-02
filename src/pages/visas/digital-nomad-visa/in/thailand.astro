@@ -1,0 +1,540 @@
+---
+/**
+ * Thailand Digital Nomad Visa (LTR) - Long-form CRO-optimized page
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
+  { id: 'visa-options', text: 'Visa Options Compared', level: 2 },
+  { id: 'ltr-requirements', text: 'LTR Visa Requirements', level: 2 },
+  { id: 'insurance-requirements', text: 'Insurance Requirements', level: 2 },
+  { id: 'recommended-providers', text: 'Recommended Providers', level: 2 },
+  { id: 'costs', text: 'Complete Cost Breakdown', level: 2 },
+  { id: 'application-process', text: 'Application Process', level: 2 },
+  { id: 'alternatives', text: 'Alternative Visa Options', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'healthcare', text: 'Healthcare in Thailand', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Thailand Insurance Guide', href: '/countries/thailand/insurance' },
+  { title: 'Indonesia DNV', href: '/visas/digital-nomad-visa/in/indonesia' },
+  { title: 'Best for Digital Nomads', href: '/insurance-for/digital-nomads' },
+  { title: 'Cigna Global Review', href: '/providers/cigna-global' },
+  { title: 'Compare All Plans', href: '/best/expat-health-insurance' },
+];
+
+// Visa options comparison
+const visaOptionsColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'ltr', header: 'LTR Visa' },
+  { key: 'elite', header: 'Thailand Elite' },
+  { key: 'tourist', header: 'Tourist Visa' },
+];
+
+const visaOptionsRows = [
+  { aspect: 'Duration', ltr: '5 years (renewable)', elite: '5-20 years', tourist: '60 days (+30 ext)' },
+  { aspect: 'Income Requirement', ltr: '$80,000/year', elite: 'None', tourist: 'None' },
+  { aspect: 'Cost', ltr: '~$1,400 (50,000 THB)', elite: '$16,000-60,000', tourist: '$40 + extensions' },
+  { aspect: 'Work Permitted', ltr: 'Yes (remote only)', elite: 'No', tourist: 'No (gray area)' },
+  { aspect: 'Multiple Entry', ltr: 'Yes', elite: 'Yes', tourist: 'Single/Multiple' },
+  { aspect: 'Insurance Required', ltr: 'Yes ($50K min)', elite: 'Recommended', tourist: 'No' },
+  { aspect: 'Best For', ltr: 'High earners', elite: 'Long-term, any income', tourist: 'Short stays' },
+];
+
+// LTR requirements
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'detail', header: 'Detail' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const requirementsRows = [
+  { requirement: 'Income', detail: '$80,000/year for 2 years', notes: 'Must show 2 years of tax returns' },
+  { requirement: 'OR Assets', detail: '$250,000+ in investments', notes: 'Alternative to income' },
+  { requirement: 'Employment', detail: 'Established company', notes: 'Public company OR $150M+ revenue' },
+  { requirement: 'Experience', detail: '5+ years in industry', notes: 'For experienced professionals' },
+  { requirement: 'Insurance', detail: '$50,000 minimum coverage', notes: 'Or Thai Social Security' },
+  { requirement: 'Criminal Record', detail: 'Clean background', notes: 'No serious offenses' },
+];
+
+// Insurance comparison
+const insuranceColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'type', header: 'Type' },
+  { key: 'accepted', header: 'Meets $50K?' },
+  { key: 'price', header: 'Monthly Cost' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const insuranceRows = [
+  { provider: 'Cigna Global', type: 'International', accepted: '✅ Yes', price: '$150-300', notes: 'Best overall' },
+  { provider: 'Allianz Care', type: 'International', accepted: '✅ Yes', price: '$130-250', notes: 'Strong Asia network' },
+  { provider: 'BUPA Global', type: 'International', accepted: '✅ Yes', price: '$180-350', notes: 'Premium option' },
+  { provider: 'Pacific Cross', type: 'Regional', accepted: '✅ Yes', price: '$100-200', notes: 'Thailand specialist' },
+  { provider: 'AXA Thailand', type: 'Local', accepted: '✅ Yes', price: '$80-150', notes: 'Thai insurer' },
+  { provider: 'SafetyWing', type: 'Travel Medical', accepted: '⚠️ Check limits', price: '$45-80', notes: 'May meet minimum' },
+];
+
+// Cost breakdown
+const costColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'frequency', header: 'Frequency' },
+];
+
+const costRows = [
+  { item: 'LTR Visa Fee', amount: '50,000 THB (~$1,400)', frequency: 'Every 5 years' },
+  { item: 'BOI Application', amount: 'Free', frequency: 'One-time' },
+  { item: 'Medical Exam', amount: '500-2,000 THB', frequency: 'One-time' },
+  { item: 'Document Legalization', amount: '$100-300', frequency: 'One-time' },
+  { item: 'Health Insurance', amount: '$100-300', frequency: 'Monthly' },
+  { item: '90-Day Reporting', amount: 'Free', frequency: 'Every 90 days' },
+  { item: 'Re-entry Permit', amount: 'Included', frequency: 'N/A (unlimited)' },
+];
+
+// Thailand Elite comparison
+const eliteColumns = [
+  { key: 'tier', header: 'Elite Tier' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'cost', header: 'Cost' },
+  { key: 'features', header: 'Key Features' },
+];
+
+const eliteRows = [
+  { tier: 'Elite Easy Access', duration: '5 years', cost: '600,000 THB (~$17,000)', features: 'Basic membership' },
+  { tier: 'Elite Superiority Extension', duration: '20 years', cost: '1,000,000 THB (~$28,000)', features: 'Best value per year' },
+  { tier: 'Elite Ultimate Privilege', duration: '20 years', cost: '2,140,000 THB (~$60,000)', features: 'Golf, spa, family options' },
+];
+---
+
+<PageShell
+  title="Thailand Digital Nomad Visa 2026: LTR Visa & Alternatives Guide"
+  description="Complete guide to Thailand's LTR (Long-Term Resident) visa for digital nomads. $80K income requirement, Thailand Elite alternatives, insurance, and how to stay legally."
+  headline="Thailand Digital Nomad Visa: LTR & Alternative Options"
+  subheadline="Thailand's LTR visa requires $80K income—too high for many nomads. Here's how to stay legally, with alternatives for every budget."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Thailand Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/countries/thailand-hero-bg.png"
+>
+
+  <!-- OVERVIEW -->
+  <h2 id="overview">Overview</h2>
+
+  <p>
+    Thailand is one of the world's most popular digital nomad destinations. Chiang Mai and Bangkok have thriving remote work communities, excellent internet, and low costs. But here's the problem: Thailand's official "digital nomad visa" (the LTR) requires $80,000/year income—too high for most nomads.
+  </p>
+
+  <p>
+    This guide covers the LTR visa for high earners, plus realistic alternatives for everyone else: Thailand Elite, tourist visa extensions, and the ED visa. We'll also explain insurance requirements and how to stay legal.
+  </p>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">LTR Visa Snapshot</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Official Name:</strong> Long-Term Resident (LTR) Visa</li>
+        <li><strong>Category:</strong> Work-from-Thailand</li>
+        <li><strong>Duration:</strong> 5 years (renewable)</li>
+        <li><strong>Income Requirement:</strong> $80,000/year</li>
+      </ul>
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Insurance Required:</strong> Yes ($50,000 minimum)</li>
+        <li><strong>Visa Fee:</strong> 50,000 THB (~$1,400)</li>
+        <li><strong>Processing:</strong> 20-30 working days</li>
+        <li><strong>Tax Rate:</strong> 17% flat (vs 35% normal)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">Reality Check</p>
+    <p class="text-amber-900 text-sm mb-0">
+      The $80,000/year requirement excludes most digital nomads. If you earn less, don't worry—Thailand Elite ($17,000 for 5 years) or tourist visa extensions are realistic alternatives. The LTR is designed for high-earning professionals and executives, not budget travelers.
+    </p>
+  </div>
+
+  <!-- QUICK DECISION GUIDE -->
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+
+  <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-green-900 mb-3">✅ LTR Visa If You...</h3>
+      <ul class="space-y-2 text-green-800 text-sm">
+        <li>• Earn $80,000+/year consistently</li>
+        <li>• Work for established company ($150M+ revenue or public)</li>
+        <li>• Have 5+ years professional experience</li>
+        <li>• Want 5-year legal status</li>
+        <li>• Value 17% flat tax rate</li>
+        <li>• Can afford $50K+ health insurance</li>
+      </ul>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-amber-900 mb-3">⚠️ Consider Alternatives If You...</h3>
+      <ul class="space-y-2 text-amber-800 text-sm">
+        <li>• Earn less than $80,000/year</li>
+        <li>• Work for small company or freelance</li>
+        <li>• Want lower upfront cost</li>
+        <li>• Only staying 3-12 months</li>
+        <li>• Prefer minimal paperwork</li>
+        <li>• Don't need legal work authorization</li>
+      </ul>
+    </div>
+  </div>
+
+  <CTABox
+    title="Need Insurance for Thailand?"
+    description="Compare plans meeting the $50,000 minimum for LTR visa or general coverage for long stays."
+    buttonText="Compare Thailand Plans →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- VISA OPTIONS COMPARED -->
+  <h2 id="visa-options">Visa Options Compared</h2>
+
+  <p>
+    Thailand has several visa options for long-term stays. Here's how they compare:
+  </p>
+
+  <ComparisonTable columns={visaOptionsColumns} rows={visaOptionsRows} />
+
+  <h3>Which Option is Right for You?</h3>
+
+  <ul>
+    <li><strong>LTR Visa:</strong> High earners ($80K+) who want legal work status and tax benefits</li>
+    <li><strong>Thailand Elite:</strong> Anyone wanting 5-20 year legal status without income proof</li>
+    <li><strong>Tourist Visa:</strong> Short stays (3-6 months) with extensions and border runs</li>
+    <li><strong>ED Visa:</strong> Language students (requires Thai lessons, 1-year stay)</li>
+  </ul>
+
+  <!-- LTR REQUIREMENTS -->
+  <h2 id="ltr-requirements">LTR Visa Requirements</h2>
+
+  <p>
+    The LTR "Work-from-Thailand" category has strict requirements. Here's what you need:
+  </p>
+
+  <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+  <h3>Income Verification</h3>
+
+  <p>
+    You must prove $80,000/year income for the past 2 years. This means tax returns, employment letters, and bank statements. Freelancers need to show consistent client income meeting this threshold.
+  </p>
+
+  <h3>Employer Requirements</h3>
+
+  <p>
+    Your employer must be "established"—either publicly listed OR have $150M+ annual revenue. This excludes most startups and small companies. If your employer doesn't qualify, you may need the "highly skilled professional" subcategory, which requires 5+ years experience in target industries.
+  </p>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">Freelancer Warning</p>
+    <p class="text-amber-900 text-sm mb-0">
+      Freelancers face extra hurdles. Without a qualifying employer, you need to prove 5+ years experience in a target industry AND $80K income. Many freelancers find Thailand Elite ($17K for 5 years) simpler even if they earn enough for LTR.
+    </p>
+  </div>
+
+  <!-- INSURANCE REQUIREMENTS -->
+  <h2 id="insurance-requirements">Insurance Requirements</h2>
+
+  <p>
+    The LTR visa requires health insurance with minimum $50,000 coverage OR enrollment in Thai Social Security. Most remote workers use international health insurance.
+  </p>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-green-800 mb-2">Good News: Flexible Requirements</p>
+    <p class="text-green-900 text-sm mb-0">
+      Thailand's $50,000 minimum is lower than many countries require. Most international health insurance plans meet this threshold. Even some travel medical policies (SafetyWing, World Nomads) may qualify—check your policy limits.
+    </p>
+  </div>
+
+  <h3>Which Providers Qualify?</h3>
+
+  <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+  <h3>Our Recommendations</h3>
+
+  <p>
+    <strong>Best overall:</strong> Cigna Global or Allianz Care—both have strong networks in Thailand and seamless claims at major Bangkok hospitals.
+  </p>
+
+  <p>
+    <strong>Thailand specialist:</strong> Pacific Cross specializes in Asia and offers excellent value for Thailand-focused coverage.
+  </p>
+
+  <p>
+    <strong>Budget option:</strong> Check if SafetyWing meets the $50K minimum. If so, it's the most affordable option. If not, AXA Thailand offers local coverage at reasonable prices.
+  </p>
+
+  <CTABox
+    title="Get Thailand Coverage"
+    description="Compare international health insurance meeting LTR visa requirements."
+    buttonText="Compare Plans Now →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- COSTS -->
+  <h2 id="costs">Complete Cost Breakdown</h2>
+
+  <ComparisonTable columns={costColumns} rows={costRows} />
+
+  <h3>LTR Total Cost (5 Years)</h3>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <ul class="space-y-2 text-neutral-700">
+      <li>Visa fee: $1,400</li>
+      <li>Documents: ~$300</li>
+      <li>Insurance (60 months): $6,000-18,000</li>
+      <li class="font-semibold pt-2 border-t">Total 5-year cost: $7,700-19,700</li>
+      <li class="text-sm text-neutral-500">($128-328/month average)</li>
+    </ul>
+  </div>
+
+  <p>
+    Compare this to Thailand Elite at $17,000 for 5 years ($283/month)—no income requirement, no employer verification, but no legal work status either.
+  </p>
+
+  <!-- APPLICATION PROCESS -->
+  <h2 id="application-process">Application Process</h2>
+
+  <ol>
+    <li><strong>Apply online through BOI</strong> — Thailand Board of Investment website. Submit documents: tax returns, employment verification, insurance proof, passport copy.</li>
+    <li><strong>Wait for BOI endorsement</strong> — 20-30 working days. BOI reviews your qualifications.</li>
+    <li><strong>Receive endorsement letter</strong> — If approved, BOI issues letter for visa application.</li>
+    <li><strong>Apply for LTR visa</strong> — At Thai embassy/consulate with endorsement letter. Pay 50,000 THB fee.</li>
+    <li><strong>Receive 5-year visa</strong> — Multiple entry, no need for re-entry permits.</li>
+    <li><strong>Report every 90 days</strong> — Required but can be done online.</li>
+  </ol>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-blue-800 mb-2">90-Day Reporting</p>
+    <p class="text-blue-900 text-sm mb-0">
+      All long-term visa holders must report their address to immigration every 90 days. This can be done online, by mail, or in person. Missing a report results in a 2,000 THB fine and can complicate renewals. Set calendar reminders.
+    </p>
+  </div>
+
+  <!-- ALTERNATIVES -->
+  <h2 id="alternatives">Alternative Visa Options</h2>
+
+  <h3>Thailand Elite: Best for Most Nomads</h3>
+
+  <p>
+    Thailand Elite is a membership program offering 5-20 year visas without income requirements. It's what most digital nomads actually use for long-term stays.
+  </p>
+
+  <ComparisonTable columns={eliteColumns} rows={eliteRows} />
+
+  <p>
+    <strong>Pros:</strong> No income proof, no employer verification, VIP immigration lanes, unlimited entries.
+  </p>
+
+  <p>
+    <strong>Cons:</strong> Expensive upfront ($17,000+), doesn't allow legal work (same gray area as tourist visa), non-refundable.
+  </p>
+
+  <h3>Tourist Visa Extensions</h3>
+
+  <p>
+    Many nomads use tourist visas with extensions. Enter visa-exempt (60 days) or with tourist visa (60 days), extend once (+30 days), then leave and re-enter. This works for 3-6 month stays but gets risky with repeated entries.
+  </p>
+
+  <p>
+    <strong>Warning:</strong> Immigration is increasingly strict about "visa runs." Multiple back-to-back tourist entries can result in denial of entry. This is not a sustainable long-term strategy.
+  </p>
+
+  <h3>ED Visa (Education)</h3>
+
+  <p>
+    The ED visa allows 1-year stays for language study. Enroll in Thai language classes (2-4 hours/week), get 1-year visa. Costs $500-1,500/year for classes plus visa fees.
+  </p>
+
+  <p>
+    <strong>Pros:</strong> Affordable, 1-year stay, actually learn Thai.
+  </p>
+
+  <p>
+    <strong>Cons:</strong> Must attend classes, doesn't permit work, immigration scrutinizing ED visa holders more closely.
+  </p>
+
+  <!-- SCENARIOS -->
+  <h2 id="scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-green-50 border-l-4 border-green-500 p-4">
+      <h4 class="font-semibold text-green-900">Scenario 1: Senior Engineer, Big Tech</h4>
+      <p class="text-green-800 text-sm mt-2">
+        James, 35, works remotely for Google earning $180,000/year. Easily qualifies for LTR. Gets Cigna Global ($200/month), applies through BOI, approved in 25 days. Now legally working from Chiang Mai with 17% tax rate. <strong class="text-green-700">Result: LTR Approved ✓</strong>
+      </p>
+    </div>
+
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+      <h4 class="font-semibold text-amber-900">Scenario 2: Freelance Designer, $50K Income</h4>
+      <p class="text-amber-800 text-sm mt-2">
+        Maria, 29, earns $50,000/year freelancing. Doesn't meet LTR income requirement. Buys Thailand Elite 5-year membership ($17,000). Gets SafetyWing insurance. Lives legally in Bangkok, works in gray area like most nomads. <strong class="text-amber-700">Result: Elite Visa, comfortable but not technically legal to work</strong>
+      </p>
+    </div>
+
+    <div class="bg-green-50 border-l-4 border-green-500 p-4">
+      <h4 class="font-semibold text-green-900">Scenario 3: Startup Employee, Growing Company</h4>
+      <p class="text-green-800 text-sm mt-2">
+        Alex, 32, works for a Series C startup (not yet $150M revenue) earning $95,000. Applies under "highly skilled professional" with 6 years experience in software development. BOI approves based on skills and income. <strong class="text-green-700">Result: LTR Approved ✓</strong>
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+      <h4 class="font-semibold text-red-900">Scenario 4: Too Many Tourist Visa Runs</h4>
+      <p class="text-red-800 text-sm mt-2">
+        Tom, 28, has been doing visa runs every 90 days for 2 years. On his 9th entry, immigration officer questions him extensively and denies entry. He's sent back on the next flight. <strong class="text-red-700">Result: Entry Denied ✗</strong>
+      </p>
+    </div>
+
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+      <h4 class="font-semibold text-amber-900">Scenario 5: ED Visa + Remote Work</h4>
+      <p class="text-amber-800 text-sm mt-2">
+        Sophie, 26, gets ED visa to study Thai ($800/year for classes). Works remotely for US company. Attends classes twice weekly. Immigration hasn't questioned her, but technically she's working on a non-work visa. <strong class="text-amber-700">Result: Working but in gray area</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- HEALTHCARE -->
+  <h2 id="healthcare">Healthcare in Thailand</h2>
+
+  <p>
+    Thailand has excellent private healthcare—it's a major medical tourism destination. Bangkok hospitals are world-class. Here's what to expect:
+  </p>
+
+  <h3>Top Hospitals</h3>
+
+  <ul>
+    <li><strong>Bumrungrad International</strong> — Bangkok's most famous hospital, JCI-accredited, hotel-like facilities</li>
+    <li><strong>BNH Hospital</strong> — Excellent specialists, popular with expats</li>
+    <li><strong>Samitivej</strong> — Multiple locations, strong pediatrics</li>
+    <li><strong>Bangkok Hospital</strong> — Large network across Thailand</li>
+  </ul>
+
+  <h3>Typical Costs (Without Insurance)</h3>
+
+  <ul>
+    <li>Doctor visit: 500-1,500 THB ($15-45)</li>
+    <li>Specialist consultation: 1,000-3,000 THB ($30-90)</li>
+    <li>Hospital room: 3,000-10,000 THB/night ($90-300)</li>
+    <li>Emergency room: 2,000-5,000 THB ($60-150)</li>
+  </ul>
+
+  <p>
+    Costs are 50-70% less than US/Europe for equivalent care. Many expats pay out of pocket for routine care and use insurance for major issues. With insurance, you get direct billing at most major hospitals.
+  </p>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-green-800 mb-2">Quality Assurance</p>
+    <p class="text-green-900 text-sm mb-0">
+      Bangkok hospitals are genuinely excellent. Bumrungrad sees 1+ million international patients yearly. Doctors often trained in US/UK. English is widely spoken. Don't let low prices make you doubt quality—Thailand's medical tourism industry exists because the care is world-class at a fraction of Western prices.
+    </p>
+  </div>
+
+  <CTABox
+    title="Get Covered in Thailand"
+    description="Compare international health insurance with direct billing at Bangkok's best hospitals."
+    buttonText="Compare Plans Now →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- FAQ -->
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div>
+      <h3>Is there a Thailand Digital Nomad Visa?</h3>
+      <p>
+        Sort of. The LTR "Work-from-Thailand" visa is Thailand's official option, but it requires $80,000/year income. For most nomads, Thailand Elite ($17K for 5 years) or tourist visa extensions are more realistic.
+      </p>
+    </div>
+
+    <div>
+      <h3>Can I work remotely in Thailand on a tourist visa?</h3>
+      <p>
+        Technically no—tourist visas don't permit work of any kind. In practice, remote work for foreign companies is common and rarely enforced. But it's a legal gray area. LTR is the only visa explicitly permitting remote work.
+      </p>
+    </div>
+
+    <div>
+      <h3>What's the difference between LTR and Thailand Elite?</h3>
+      <p>
+        LTR requires $80K income but allows legal work and offers 17% tax rate. Elite has no income requirement but doesn't permit work (same gray area as tourist visa). LTR costs $1,400; Elite costs $17,000+.
+      </p>
+    </div>
+
+    <div>
+      <h3>Will SafetyWing work for LTR visa insurance?</h3>
+      <p>
+        Possibly. LTR requires $50,000 minimum coverage. Check SafetyWing's policy limits—if it meets $50K, it may qualify. For long-term stays, comprehensive coverage is recommended regardless.
+      </p>
+    </div>
+
+    <div>
+      <h3>What is 90-day reporting?</h3>
+      <p>
+        All long-term visa holders must report their address to immigration every 90 days. Can be done online, by mail, or in person. Missing it results in 2,000 THB fine. It's annoying but not difficult.
+      </p>
+    </div>
+
+    <div>
+      <h3>Can I get permanent residency in Thailand?</h3>
+      <p>
+        Yes, but it's difficult. Requirements include 3+ consecutive years on non-immigrant visa, Thai language ability, and significant income/investment. Thailand doesn't offer citizenship through naturalization easily. Most expats remain on renewable visas indefinitely.
+      </p>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <h2 id="verdict">Final Verdict</h2>
+
+  <p>
+    Thailand's LTR visa is excellent for high earners ($80K+) who want legal work status and tax benefits. The application is straightforward, the 5-year duration is generous, and the 17% flat tax saves money.
+  </p>
+
+  <p>
+    For everyone else—which is most digital nomads—Thailand Elite is the practical choice. $17,000 for 5 years of legal residency, no income requirements, no employer verification. Yes, it's expensive upfront, but it's simpler than qualifying for LTR.
+  </p>
+
+  <p>
+    Tourist visa extensions work for shorter stays but aren't sustainable long-term. If Thailand is your base, invest in proper legal status through LTR (if you qualify) or Elite (if you don't).
+  </p>
+
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-8 not-prose">
+    <h3 class="text-lg font-semibold text-primary-900 mb-3">Bottom Line</h3>
+    <p class="text-primary-800 mb-4">
+      LTR is ideal for high earners ($80K+) wanting legal work status. Thailand Elite suits everyone else wanting long-term legal residency. Both require health insurance—get proper coverage before you arrive.
+    </p>
+    <a
+      href="/best/expat-health-insurance"
+      class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+      style="color: white !important;"
+    >
+      Compare Thailand Insurance Plans →
+    </a>
+  </div>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> Thai visa rules change frequently. This guide reflects our research as of the publication date. Verify current requirements with Thai immigration, BOI, or a qualified visa agent. We are not immigration advisors.
+    </p>
+  </div>
+
+</PageShell>

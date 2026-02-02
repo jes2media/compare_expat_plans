@@ -1,13 +1,13 @@
 # Project Progress Log
 
-Last updated: February 1, 2026
+Last updated: February 2, 2026
 
 ---
 
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,280
+**Total pages:** ~2,299
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -16,10 +16,60 @@ Last updated: February 1, 2026
 **Problem/solution guides:** 6 (with hero images)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
+**Visa × Country pages:** 19 (Digital Nomad Visa - first visa type)
 
 ---
 
 ## Completed Milestones
+
+### February 2, 2026 - Digital Nomad Visa × Country Pages (19 pages)
+
+#### Visa × Country Page System Launched
+Created the first visa type × country pages at `/visas/[visa-type]/in/[country]`:
+
+**Digital Nomad Visa pages completed (19 countries):**
+1. Spain - €2,520/month threshold, 5-year path to residency
+2. Portugal - €3,040/month, 4-year path to PR
+3. Thailand - 5-year LTR visa, $80,000 income or $250,000 assets
+4. Mexico - Residente Temporal, $2,700/month income
+5. Germany - Freelancer visa, health insurance mandatory
+6. Costa Rica - Rentista $2,500/month income
+7. UAE - 1-year remote work visa, mandatory SEHA insurance
+8. Croatia - €2,539/month, 1-year renewable
+9. Colombia - Digital Nomad Visa $3,000/month
+10. Indonesia - B211A visa, Second Home Visa 5-year option
+11. Estonia - Digital Nomad Visa €3,504/month
+12. Greece - €3,500/month, 2-year renewable
+13. Malta - Nomad Residence €2,700/month
+14. Italy - €28,000/year threshold (new 2024 launch)
+15. Hungary - White Card €2,000/month, online application
+16. Barbados - Welcome Stamp $50,000/year, Caribbean pioneer
+17. Czech Republic - Zivno freelance visa, strict insurance (PVZP/Maxima required)
+18. Malaysia - DE Rantau $24,000/year, digital/tech workers only
+19. Brazil - $1,500/month threshold (one of lowest), 2-year max
+
+**Page structure (12 sections, CRO-optimized):**
+- Overview with Quick Facts box
+- Quick Decision Guide (good fit / consider alternatives)
+- Official Requirements (eligibility, income, documents)
+- Insurance Requirements (mandatory vs optional, minimums)
+- Recommended Insurance Providers (ComparisonTable)
+- Costs Breakdown (visa fees, insurance, living costs)
+- Application Timeline (step-by-step with durations)
+- Real-World Scenarios (6 scenarios, color-coded outcomes)
+- Common Mistakes (5 warnings)
+- Healthcare System Access
+- FAQs (6 questions)
+- Final Verdict
+
+**Hero images generated:**
+- All 19 pages have country-themed hero backgrounds (flag colors at 50% opacity)
+- Generated via Ideogram API with 16:9 aspect ratio
+
+**Remaining DNV countries (14):**
+Latvia, Romania, Cyprus, South Korea, Taiwan, Sri Lanka, Argentina, Ecuador, Panama, Bahamas, Cayman Islands, Curaçao, Aruba, Jamaica
+
+---
 
 ### February 1, 2026 - Long-Form Provider Reviews (8 providers)
 
@@ -624,20 +674,28 @@ These 21 countries have manually created pages with custom hero images:
 | **Problem/solution guides** | **6** | **NEW (with hero images)** |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | **Provider pages** | **8** | **Expanded to long-form (550-685 lines each)** |
+| **Visa × Country pages** | **19** | **NEW (Digital Nomad Visa × 19 countries)** |
 
-**Total pages:** ~2,280
+**Total pages:** ~2,299
 
 ---
 
 ## Next Steps
 
 ### Immediate Priorities
-1. **More Programmatic Page Types** - Consider additional page combinations:
-   - Provider × Condition pages (how specific insurers handle specific conditions)
-   - Visa Type × Country pages (visa-specific insurance guidance)
-   - Age/Life Stage pages (seniors, young families)
+1. **Complete Digital Nomad Visa Pages** - 14 countries remaining:
+   - Latvia, Romania, Cyprus, South Korea, Taiwan, Sri Lanka
+   - Argentina, Ecuador, Panama, Bahamas, Cayman Islands, Curaçao, Aruba, Jamaica
+   - ~3 pages per batch with hero images
 
-2. **Continue Country-Persona Expansion** - ~92 countries remaining
+2. **Other Visa Type × Country Pages** - 5 more visa types to cover:
+   - Retirement Visa (20 countries planned)
+   - Student Visa (23 countries planned)
+   - Freelancer/Self-Employed Visa (9 countries planned)
+   - Investor/Entrepreneur Visa (16 countries planned)
+   - Work Permit (18 countries planned)
+
+3. **Continue Country-Persona Expansion** - ~92 countries remaining
    - Batch 9: Middle East (Qatar, Bahrain, Kuwait, Oman, Saudi Arabia, Jordan)
    - Batch 10: Africa (Morocco, Tunisia, Ghana, Egypt, Kenya, Nigeria)
    - Target: 8-10 countries per batch
@@ -692,6 +750,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **February 2, 2026 (Visa Pages):** Launched Visa × Country page system. Created 19 Digital Nomad Visa pages (Spain, Portugal, Thailand, Mexico, Germany, Costa Rica, UAE, Croatia, Colombia, Indonesia, Estonia, Greece, Malta, Italy, Hungary, Barbados, Czech Republic, Malaysia, Brazil). Each page has 12 CRO-optimized sections with hero background images. 14 DNV countries remaining, plus 5 other visa types planned.
 - **February 1, 2026 (Provider Pages):** Expanded all 8 provider review pages to long-form (550-685 lines each). Added 12-section structure, Quick Assessment, Real-World Scenarios (6 per page), FAQs (6 per page), split CTAs, and provider-specific differentiators. Key angles: Cigna (largest network), Aetna (US integration), BUPA (mental health), IMG (deductible waiver), Allianz (moratorium), GeoBlue (BCBS), AXA (EU-regulated), SafetyWing (Nomad vs Remote Health).
 - **January 30, 2026 (Programmatic Expansion):** Added 4 new programmatic page systems: (1) Country vs Country comparisons (29 pages), (2) Condition × Country pages (270 pages), (3) Enhanced CountryProviderPage template (171 pages), (4) Problem/solution guides (6 pages with hero images). Total now ~2,280 pages.
 - **January 30, 2026 (Batch 8):** Country-Persona Expansion Batch 8 (Europe Gaps: Luxembourg, Iceland, Andorra, Monaco, Liechtenstein, Cyprus, Malta, Finland, Romania, San Marino). 80 new pages, total now 728 (91 countries × 8 personas), 1,973 total pages.

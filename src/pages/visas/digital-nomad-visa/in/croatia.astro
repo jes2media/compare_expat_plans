@@ -1,0 +1,674 @@
+---
+/**
+ * Croatia Digital Nomad Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Croatia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Croatia Health Insurance Guide", href: "/countries/croatia/insurance" },
+  { title: "Insurance for Digital Nomads", href: "/insurance-for/digital-nomads" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Monthly Income", details: "HRK 17,500+ (~€2,300/month)", evidence: "Bank statements, employment contract" },
+  { requirement: "Remote Work", details: "Work for company outside Croatia", evidence: "Employment letter or client contracts" },
+  { requirement: "Health Insurance", details: "Mandatory coverage for stay", evidence: "Policy valid in Croatia" },
+  { requirement: "Accommodation", details: "Proof of housing in Croatia", evidence: "Rental contract or hotel booking" },
+  { requirement: "Clean Record", details: "No criminal history", evidence: "Police clearance certificate" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "minimum", header: "Croatia Requirement" },
+  { key: "why", header: "Why It Matters" },
+];
+
+const insuranceRows = [
+  { feature: "Medical Coverage", minimum: "€30,000+ (Schengen standard)", why: "EU minimum requirement" },
+  { feature: "Repatriation", minimum: "Required", why: "Return transport coverage" },
+  { feature: "Coverage Duration", minimum: "Full visa period", why: "No gaps allowed" },
+  { feature: "Emergency Care", minimum: "Included", why: "24/7 access required" },
+  { feature: "Croatia Territory", minimum: "Must cover Croatia", why: "EU/Schengen area included" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "SafetyWing", coverage: "$250,000", price: "$45-85", strengths: "Budget nomads, easy signup" },
+  { provider: "World Nomads", coverage: "$100,000", price: "$70-150", strengths: "Adventure activities" },
+  { provider: "Cigna Global", coverage: "€1,000,000+", price: "€180-350", strengths: "Comprehensive long-term" },
+  { provider: "Allianz Care", coverage: "€500,000+", price: "€150-300", strengths: "EU-focused coverage" },
+  { provider: "BUPA Global", coverage: "€2,000,000+", price: "€280-450", strengths: "Premium coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€55-80", notes: "Embassy/consulate fee" },
+  { item: "Residence Permit", amount: "€35-60", notes: "Upon arrival" },
+  { item: "Health Insurance (Annual)", amount: "€500-3,500", notes: "Varies by provider" },
+  { item: "Police Clearance", amount: "€20-50", notes: "From home country" },
+  { item: "Document Translation", amount: "€50-150", notes: "If required" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "1-2 weeks", location: "Home country" },
+  { step: "Submit application", duration: "1 day", location: "Croatian embassy or online" },
+  { step: "Processing", duration: "2-4 weeks", location: "Embassy/MUP" },
+  { step: "Receive approval", duration: "Via email/pickup", location: "Embassy" },
+  { step: "Enter Croatia", duration: "Within 90 days", location: "Any border" },
+  { step: "Register with police", duration: "Within 3 days", location: "Local police station" },
+];
+
+const cityColumns = [
+  { key: "city", header: "City" },
+  { key: "vibe", header: "Vibe" },
+  { key: "cost", header: "Monthly Cost" },
+  { key: "internet", header: "Internet" },
+];
+
+const cityRows = [
+  { city: "Zagreb", vibe: "Capital, cultural hub", cost: "€1,200-1,800", internet: "Excellent" },
+  { city: "Split", vibe: "Coastal, historic", cost: "€1,400-2,200", internet: "Very good" },
+  { city: "Dubrovnik", vibe: "Tourist hotspot, scenic", cost: "€1,800-2,800", internet: "Good" },
+  { city: "Rijeka", vibe: "Port city, affordable", cost: "€1,000-1,500", internet: "Very good" },
+  { city: "Zadar", vibe: "Coastal, balanced", cost: "€1,200-1,800", internet: "Good" },
+];
+---
+
+<PageShell
+  title="Croatia Digital Nomad Visa 2025: Insurance Requirements & Complete Guide"
+  description="Complete guide to Croatia's Digital Nomad Visa. Insurance requirements, €2,300 income threshold, Adriatic lifestyle, and application process."
+  headline="Croatia Digital Nomad Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working remotely from Croatia—insurance requirements, costs, and Adriatic Sea living."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Qualifying Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated January 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official MUP Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      EU/Schengen Member
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Croatia launched its Digital Nomad Visa in January 2021, becoming one of Europe's first countries to formally welcome remote workers. The visa offers up to one year of legal residency for those earning €2,300+ monthly from foreign employers—with stunning Adriatic coastline as your backdrop.
+    </p>
+
+    <p class="mb-4">
+      As an EU member (since 2013) and Schengen Area member (since 2023), Croatia gives you access to Europe's open borders while offering lower costs than Western Europe. The combination of Mediterranean lifestyle, affordable living, and excellent internet makes it a top choice for European-focused nomads.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Croatia Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Duration:</strong> Up to 1 year (not renewable, but can reapply after 6 months)</li>
+        <li>• <strong>Income requirement:</strong> HRK 17,500/month (~€2,300)</li>
+        <li>• <strong>Processing time:</strong> 2-4 weeks typical</li>
+        <li>• <strong>Insurance:</strong> Mandatory Schengen-compliant coverage</li>
+        <li>• <strong>Tax status:</strong> No Croatian income tax on foreign earnings</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Popular Cities for Digital Nomads</h3>
+
+    <ComparisonTable columns={cityColumns} rows={cityRows} />
+
+    <p class="mt-4">
+      Zagreb offers the best infrastructure and year-round lifestyle. Split and Dubrovnik are seasonal favorites with summer crowds and quieter winters. Rijeka is the affordable alternative with good connections.
+    </p>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Croatia is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You earn €2,300+/month from remote work</li>
+          <li>✓ You want Mediterranean lifestyle at lower cost</li>
+          <li>✓ You prefer European time zones</li>
+          <li>✓ You value Schengen access for travel</li>
+          <li>✓ You enjoy outdoor activities and nature</li>
+          <li>✓ You want safety and EU standards</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want to renew indefinitely (visa is 1-year max)</li>
+          <li>• You need year-round beach weather</li>
+          <li>• You're on a very tight budget</li>
+          <li>• You want a large digital nomad community</li>
+          <li>• You prefer Americas time zones</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Croatia's Digital Nomad Visa requirements are straightforward. The key is proving €2,300/month income and having proper health insurance.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Verification</h3>
+
+    <p class="mb-4">
+      The monthly income threshold is set at HRK 17,500 (approximately €2,300). You'll need to demonstrate:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Employment letter:</strong> Confirming remote work arrangement and salary</li>
+      <li><strong>Bank statements:</strong> 3-6 months showing regular deposits</li>
+      <li><strong>Employment contract:</strong> Showing terms and compensation</li>
+      <li><strong>For freelancers:</strong> Client contracts and income proof</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> The visa is for remote work with foreign employers only. You cannot work for Croatian clients or companies on this visa.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Document Checklist</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Valid passport (3+ months beyond intended stay)</li>
+      <li>Completed application form</li>
+      <li>Passport photos (biometric standards)</li>
+      <li>Proof of income (€2,300+/month)</li>
+      <li>Health insurance certificate</li>
+      <li>Proof of accommodation in Croatia</li>
+      <li>Police clearance (apostilled)</li>
+      <li>Employment contract or client agreements</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-blue-900 mb-2">EU/Schengen Standards Apply</h3>
+      <p class="text-blue-800">
+        Croatia is now part of the Schengen Area. Your health insurance must meet Schengen visa standards: minimum €30,000 coverage, repatriation, and coverage for the full stay period.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Health insurance is mandatory for the Croatia Digital Nomad Visa. As a Schengen country, Croatia requires coverage that meets EU standards.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Coverage Requirements</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Croatian Healthcare Context</h3>
+
+    <p class="mb-4">
+      Croatia has both public (HZZO) and private healthcare. Digital nomads typically rely on private care through international insurance:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Healthcare (HZZO)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Access:</strong> Not available to DN visa holders</li>
+          <li>• <strong>Emergency:</strong> Will treat, but will bill</li>
+          <li>• <strong>Quality:</strong> Good but variable</li>
+          <li>• <strong>Language:</strong> Croatian primarily</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Access:</strong> With international insurance</li>
+          <li>• <strong>Quality:</strong> Excellent in cities</li>
+          <li>• <strong>Language:</strong> English available</li>
+          <li>• <strong>Cost:</strong> Affordable by EU standards</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox variant="highlight">
+    <p class="mb-4">Need Schengen-compliant insurance for Croatia?</p>
+    <a href="/get-quotes" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors" style="color: #1d4ed8 !important;">
+      Compare Qualifying Plans →
+    </a>
+  </CTABox>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      These providers offer Schengen-compliant coverage suitable for Croatia's Digital Nomad Visa:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Nomads</h4>
+        <p class="text-neutral-600">SafetyWing at €40-75/month. Covers Schengen requirements and is widely accepted.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">EU-Focused Coverage</h4>
+        <p class="text-neutral-600">Allianz Care. Strong European network, straightforward claims process.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-Term Comprehensive</h4>
+        <p class="text-neutral-600">Cigna Global. Full global coverage with excellent customer service.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Adventure Activities</h4>
+        <p class="text-neutral-600">World Nomads. Covers sailing, hiking, and water sports common in Croatia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Croatia's visa fees are among the most affordable in Europe. The main costs are insurance and accommodation.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">First Year Total Cost Estimates</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">€650</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + basic nomad insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Standard Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + mid-tier coverage</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + premium global plan</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost of Living</h3>
+
+    <p class="mb-4">
+      Croatia is affordable by EU standards, though coastal areas are pricier in summer. Monthly budgets:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Budget:</strong> €1,200-1,500/month (shared housing, cooking)</li>
+      <li><strong>Comfortable:</strong> €1,800-2,500/month (own apartment, dining out)</li>
+      <li><strong>Premium:</strong> €3,000+/month (coastal apartment, full lifestyle)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Croatia's application process is relatively straightforward. You can apply at a Croatian embassy abroad or, for some nationalities, online through the MUP portal.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Documentation</h4>
+          <p class="text-neutral-600">Prepare all required documents: income proof, insurance, accommodation, police clearance. Get apostilles where required.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Apply at your nearest Croatian embassy/consulate or through the MUP online portal (if eligible). Pay the application fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing typically takes 2-4 weeks. You may be contacted for additional documentation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enter Croatia</h4>
+          <p class="text-neutral-600">Once approved, you have 90 days to enter Croatia. Bring all original documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with Police</h4>
+          <p class="text-neutral-600">Within 3 days of arrival, register at your local police station. Your landlord may do this for you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Pro tip:</strong> Zagreb embassies tend to process faster. If you're already in Europe, some nomads visit Croatia on a tourist visa first, then apply for the DN visa from a nearby country.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out with Croatia's Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer, €4,000/month</h3>
+        <p class="text-neutral-600 mb-4">Remote employee for German company, wants coastal European lifestyle.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 3 weeks. Income well above threshold, straightforward documentation.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Developer, €3,000/month</h3>
+        <p class="text-neutral-600 mb-4">Multiple international clients, looking for Schengen base.</p>
+        <p class="text-green-700 font-medium">✓ Approved. Provided 3 client contracts and 6 months bank statements.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Writer, €2,000/month</h3>
+        <p class="text-neutral-600 mb-4">Employed by US company, just under threshold.</p>
+        <p class="text-red-700 font-medium">✗ Denied. €300 below income requirement. Advised to negotiate raise or take side clients.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple, €5,000/month combined</h3>
+        <p class="text-neutral-600 mb-4">Both remote workers, want to share an apartment in Split.</p>
+        <p class="text-amber-700 font-medium">△ Each needed to apply separately and meet €2,300 threshold individually.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager, €3,500/month</h3>
+        <p class="text-neutral-600 mb-4">Works for UK agency, wants to experience Adriatic summer.</p>
+        <p class="text-green-700 font-medium">✓ Approved. Applied in April, arrived in May for the season.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Startup Founder, variable income</h3>
+        <p class="text-neutral-600 mb-4">Some months €5,000, others €1,500. Averaging €2,500.</p>
+        <p class="text-amber-700 font-medium">△ Conditional. Had to show 6-month average and €10,000 savings as backup.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox>
+    <p class="mb-4">Compare insurance plans for your Croatia move—get quotes in minutes.</p>
+    <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+      Get Insurance Quotes →
+    </a>
+  </CTABox>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thinking You Can Renew</h3>
+        <p class="text-neutral-600">The Croatia DN visa is NOT renewable. After 12 months, you must leave for 6 months before reapplying. Plan accordingly.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Insurance</h3>
+        <p class="text-neutral-600">Travel insurance or basic nomad plans may not meet Schengen standards. Ensure €30,000+ coverage with repatriation included.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing Police Registration</h3>
+        <p class="text-neutral-600">You must register with local police within 3 days of arrival. Hotels do this automatically; for apartments, ensure your landlord handles it or go yourself.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Working with Croatian Clients</h3>
+        <p class="text-neutral-600">The DN visa only covers remote work for foreign employers. Taking Croatian clients requires a different work permit.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Summer Accommodation Prices</h3>
+        <p class="text-neutral-600">Coastal rentals can triple in summer. Lock in long-term contracts early or base yourself in Zagreb where prices are stable year-round.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring the Income Threshold</h3>
+        <p class="text-neutral-600">€2,300 is firm. If you're just under, authorities won't round up. Build savings proof or increase income before applying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Croatia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Croatia</h2>
+
+    <p class="mb-4">
+      Croatia has a solid healthcare system with both public and private options. As a digital nomad, you'll rely on private care through your international insurance.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality by City</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Zagreb:</strong> Best hospitals and specialist access. Multiple private clinics with English speakers.</li>
+      <li><strong>Split:</strong> Good regional hospital, several private clinics catering to tourists and expats.</li>
+      <li><strong>Dubrovnik:</strong> Smaller hospital, private clinics available. More limited for complex care.</li>
+      <li><strong>Rijeka:</strong> Clinical Hospital Centre is excellent. Good balance of quality and cost.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Recommended Private Facilities</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Poliklinika Sunce</strong> (Zagreb) - Comprehensive private clinic</li>
+      <li><strong>Poliklinika Bonifarm</strong> (Zagreb) - Multi-specialty center</li>
+      <li><strong>Medico Polyclinic</strong> (Split) - English-speaking staff</li>
+      <li><strong>Dental clinics</strong> - Croatia is a dental tourism destination; quality at 50-70% of Western prices</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Sample Healthcare Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP visit (private):</strong> €30-60</li>
+      <li><strong>Specialist consultation:</strong> €50-100</li>
+      <li><strong>Emergency room:</strong> €100-300</li>
+      <li><strong>Dental cleaning:</strong> €40-70</li>
+    </ul>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I really not renew the visa?</h3>
+        <p class="text-neutral-600">
+          Correct. The Croatia DN visa is capped at 12 months and cannot be renewed. After your year ends, you must leave and wait 6 months before applying again. This is a significant limitation compared to other countries.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I pay Croatian taxes?</h3>
+        <p class="text-neutral-600">
+          No. Digital nomads on this visa are explicitly exempt from Croatian income tax on foreign earnings. You may still have tax obligations in your home country.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I travel in the Schengen Area?</h3>
+        <p class="text-neutral-600">
+          Yes. Since Croatia joined Schengen in 2023, your residence permit allows travel throughout the 27-country Schengen zone. This is a major benefit for European exploration.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about the seasons?</h3>
+        <p class="text-neutral-600">
+          Coastal Croatia is seasonal. Summers (June-August) are crowded and expensive. Shoulder seasons (April-May, September-October) offer best value. Winters are quiet with some closures. Zagreb is consistent year-round.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is the internet reliable?</h3>
+        <p class="text-neutral-600">
+          Yes, generally. Zagreb has excellent fiber coverage. Coastal cities have good infrastructure in tourist areas. Remote islands may have spotty connectivity. Always test before committing to long-term housing.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family?</h3>
+        <p class="text-neutral-600">
+          Yes, dependents can accompany you. Spouses may apply separately if they meet income requirements. Children can be included in your application. Budget for additional insurance costs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Croatia's Digital Nomad Visa is ideal for a focused year of Mediterranean living with Schengen access. The €2,300/month threshold is achievable for most professional remote workers, and the visa process is straightforward.
+    </p>
+
+    <p class="mb-4">
+      The major limitation is the non-renewable nature of the visa. After 12 months, you must leave for 6 months before reapplying. This makes Croatia better for a defined stint rather than permanent relocation.
+    </p>
+
+    <p class="mb-6">
+      For those who want EU access, Mediterranean lifestyle, and affordable living by European standards, Croatia delivers. The Adriatic coast is stunning, Zagreb is underrated, and the digital nomad infrastructure continues to grow.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Croatia's DN visa offers a year of Adriatic living with Schengen mobility and tax-free foreign income. Get proper Schengen-compliant insurance (€40-150/month), meet the €2,300 income threshold, and enjoy one of Europe's most beautiful countries.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Insurance Plans for Croatia →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/croatia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Croatia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Croatia</p>
+      </a>
+      <a href="/insurance-for/digital-nomads" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Digital Nomads</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for location-independent workers</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative EU destination with renewable visa</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

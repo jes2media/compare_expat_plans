@@ -1,0 +1,705 @@
+---
+/**
+ * Colombia Digital Nomad Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Colombia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Colombia Health Insurance Guide", href: "/countries/colombia/insurance" },
+  { title: "Insurance for Digital Nomads", href: "/insurance-for/digital-nomads" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Monthly Income", details: "3x Colombian minimum wage (~$900 USD)", evidence: "Bank statements, employment letter" },
+  { requirement: "Remote Work", details: "Work for company outside Colombia", evidence: "Employment contract or client agreements" },
+  { requirement: "Health Insurance", details: "Mandatory coverage for visa duration", evidence: "Policy covering Colombia" },
+  { requirement: "Valid Passport", details: "6+ months validity", evidence: "Passport scan" },
+  { requirement: "No Criminal Record", details: "Clean background", evidence: "Police clearance (apostilled)" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "minimum", header: "Colombia Requirement" },
+  { key: "why", header: "Why It Matters" },
+];
+
+const insuranceRows = [
+  { feature: "Medical Coverage", minimum: "$50,000+ recommended", why: "Private hospital coverage" },
+  { feature: "Coverage Duration", minimum: "Full visa period (2 years)", why: "Must match visa length" },
+  { feature: "Emergency Care", minimum: "Included", why: "24/7 emergency access" },
+  { feature: "Repatriation", minimum: "Recommended", why: "Medical evacuation if needed" },
+  { feature: "Colombia Coverage", minimum: "Required", why: "Must explicitly cover Colombia" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "SafetyWing", coverage: "$250,000", price: "$45-85", strengths: "Budget nomads, easy signup" },
+  { provider: "World Nomads", coverage: "$100,000", price: "$70-150", strengths: "Adventure activities" },
+  { provider: "Cigna Global", coverage: "$1,000,000+", price: "$180-350", strengths: "Comprehensive long-term" },
+  { provider: "SURA (Local)", coverage: "Varies", price: "$50-150", strengths: "Colombian network, EPS access" },
+  { provider: "IMG Global", coverage: "$500,000", price: "$100-250", strengths: "Americas coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (USD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "$52 (study fee)", notes: "Paid to Cancillería" },
+  { item: "Visa Issuance Fee", amount: "$177", notes: "Upon approval" },
+  { item: "Cédula de Extranjería", amount: "$75-100", notes: "Foreign ID card" },
+  { item: "Health Insurance (Annual)", amount: "$540-2,500", notes: "International or local" },
+  { item: "Apostille/Translation", amount: "$50-150", notes: "If documents need authentication" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Register online", duration: "1 hour", location: "Cancillería portal" },
+  { step: "Upload documents", duration: "1-2 days", location: "Online" },
+  { step: "Processing", duration: "5-30 business days", location: "Cancillería" },
+  { step: "Receive visa", duration: "Via email", location: "E-visa" },
+  { step: "Enter Colombia", duration: "Within validity", location: "Any airport" },
+  { step: "Apply for Cédula", duration: "Within 15 days", location: "Migración Colombia" },
+];
+
+const cityColumns = [
+  { key: "city", header: "City" },
+  { key: "vibe", header: "Vibe" },
+  { key: "cost", header: "Monthly Cost" },
+  { key: "climate", header: "Climate" },
+];
+
+const cityRows = [
+  { city: "Medellín", vibe: "Innovation hub, eternal spring", cost: "$1,200-2,000", climate: "72°F year-round" },
+  { city: "Bogotá", vibe: "Capital, cultural center", cost: "$1,000-1,800", climate: "Cool, 60°F average" },
+  { city: "Cartagena", vibe: "Beach, historic", cost: "$1,500-2,500", climate: "Hot, 85°F+" },
+  { city: "Cali", vibe: "Salsa capital, affordable", cost: "$900-1,500", climate: "Warm, 75°F" },
+  { city: "Santa Marta", vibe: "Beach, mountains nearby", cost: "$1,000-1,800", climate: "Hot, 85°F" },
+];
+---
+
+<PageShell
+  title="Colombia Digital Nomad Visa 2025: Insurance Requirements & Complete Guide"
+  description="Complete guide to Colombia's Digital Nomad Visa. Low income requirements, 2-year duration, Medellín lifestyle, and application process."
+  headline="Colombia Digital Nomad Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working remotely from Colombia—insurance requirements, costs, and the vibrant nomad lifestyle."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Qualifying Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/countries/colombia-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated January 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Cancillería Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      2,000+ Expats Helped
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Colombia launched its Digital Nomad Visa (Visa V - Nómadas Digitales) in October 2022, quickly becoming one of the most popular options for remote workers in Latin America. With a low income threshold (~$900/month), 2-year duration, and vibrant cities like Medellín and Bogotá, it's ideal for nomads seeking affordability and culture.
+    </p>
+
+    <p class="mb-4">
+      Colombia offers what many nomads want: low cost of living, excellent weather (Medellín's eternal spring is legendary), growing tech infrastructure, and a welcoming culture. The visa process is entirely online and relatively fast.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Colombia Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Duration:</strong> 2 years (renewable)</li>
+        <li>• <strong>Income requirement:</strong> ~$900 USD/month (3x minimum wage)</li>
+        <li>• <strong>Processing time:</strong> 5-30 business days</li>
+        <li>• <strong>Insurance:</strong> Mandatory for full visa period</li>
+        <li>• <strong>Tax status:</strong> No Colombian income tax on foreign earnings (first 4 years)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Popular Cities for Digital Nomads</h3>
+
+    <ComparisonTable columns={cityColumns} rows={cityRows} />
+
+    <p class="mt-4">
+      Medellín dominates the nomad scene with perfect weather, affordable living, and a massive expat community. Bogotá offers more culture and nightlife. Cartagena and Santa Marta provide beach lifestyle at higher costs.
+    </p>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Colombia is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want ultra-low cost of living</li>
+          <li>✓ You work Americas time zones</li>
+          <li>✓ You enjoy vibrant culture and nightlife</li>
+          <li>✓ You value perfect weather (Medellín)</li>
+          <li>✓ You want a large digital nomad community</li>
+          <li>✓ You appreciate excellent coffee and food</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Safety is your top priority</li>
+          <li>• You don't speak or want to learn Spanish</li>
+          <li>• You prefer European culture</li>
+          <li>• You want beaches (coastal cities are hotter/pricier)</li>
+          <li>• You need world-class healthcare infrastructure</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Colombia has one of the lowest income thresholds for digital nomad visas worldwide. The requirement is 3x the Colombian minimum wage, which equals approximately $900 USD/month.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Verification</h3>
+
+    <p class="mb-4">
+      The income threshold is tied to Colombia's minimum wage and updates annually. Current requirement is approximately 3,600,000 COP monthly (~$900 USD). You'll need:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Employment letter:</strong> Stating role, salary, and remote work arrangement</li>
+      <li><strong>Bank statements:</strong> 3 months showing consistent income</li>
+      <li><strong>Employment contract:</strong> Showing terms and compensation</li>
+      <li><strong>For freelancers:</strong> Client contracts and invoices</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Low Threshold Advantage:</strong> At ~$900/month, Colombia is accessible to most remote workers. However, living comfortably in Medellín typically requires $1,500-2,000/month.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Document Checklist</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Valid passport (6+ months validity)</li>
+      <li>Passport photo (white background, no glasses)</li>
+      <li>Proof of income (letter + bank statements)</li>
+      <li>Health insurance certificate (covering Colombia)</li>
+      <li>Employment contract or client agreements</li>
+      <li>Application form (completed online)</li>
+      <li>Motivation letter (explaining your plans)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-blue-900 mb-2">Mandatory Coverage</h3>
+      <p class="text-blue-800">
+        Health insurance is <strong>required</strong> for the Colombia Digital Nomad Visa. Your policy must cover the full visa duration (up to 2 years) and explicitly include Colombia as a covered territory.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Colombia's insurance requirements are flexible compared to European countries. Most international health insurance policies qualify, as long as they cover Colombia and match your visa duration.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Coverage Requirements</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">International vs Local Insurance</h3>
+
+    <p class="mb-4">
+      You have two main options: international insurance or local Colombian coverage (EPS):
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">International Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Providers:</strong> SafetyWing, Cigna, IMG</li>
+          <li>• <strong>Cost:</strong> $45-350/month</li>
+          <li>• <strong>Pros:</strong> Global coverage, easy claims</li>
+          <li>• <strong>Cons:</strong> May need to pay upfront</li>
+          <li>• <strong>Best for:</strong> New arrivals, travelers</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Local EPS (Prepagada)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Providers:</strong> SURA, Sanitas, Colsanitas</li>
+          <li>• <strong>Cost:</strong> $50-150/month</li>
+          <li>• <strong>Pros:</strong> Deep local network, low copays</li>
+          <li>• <strong>Cons:</strong> Colombia only, Spanish needed</li>
+          <li>• <strong>Best for:</strong> Long-term residents</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mb-4">
+      Many nomads start with international insurance for the visa application, then add local EPS coverage once settled for better local access and lower costs.
+    </p>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox variant="highlight">
+    <p class="mb-4">Ready to find insurance for your Colombia visa?</p>
+    <a href="/get-quotes" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors" style="color: #1d4ed8 !important;">
+      Compare Qualifying Plans →
+    </a>
+  </CTABox>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      These providers work well for Colombia's Digital Nomad Visa:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget Nomads</h4>
+        <p class="text-neutral-600">SafetyWing at $45-85/month. Popular in the Colombia nomad community, easy online signup.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-Term Residents</h4>
+        <p class="text-neutral-600">SURA prepagada + international backup. Best local network with affordable premiums.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Comprehensive Coverage</h4>
+        <p class="text-neutral-600">Cigna Global. Full worldwide coverage including trips back to US/Europe.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Adventure Activities</h4>
+        <p class="text-neutral-600">World Nomads. Covers paragliding, hiking, and adventure sports popular in Colombia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Colombia's visa fees are among the lowest globally. The main costs are insurance and living expenses.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">First Year Total Cost Estimates</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$850</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + SafetyWing annual</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Standard Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$1,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + mid-tier coverage</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + comprehensive global</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost of Living</h3>
+
+    <p class="mb-4">
+      Colombia is very affordable. Monthly budgets in Medellín:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Budget:</strong> $1,000-1,300/month (shared housing, local food)</li>
+      <li><strong>Comfortable:</strong> $1,500-2,000/month (own apartment, dining out)</li>
+      <li><strong>Premium:</strong> $2,500-3,500/month (El Poblado, full lifestyle)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Colombia's entire visa process is online through the Cancillería (Ministry of Foreign Affairs) portal. No embassy visits required.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Create Cancillería Account</h4>
+          <p class="text-neutral-600">Register at tramitesmre.cancilleria.gov.co. Complete your profile with passport information.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Start Visa Application</h4>
+          <p class="text-neutral-600">Select "Visa V - Nómadas Digitales" and begin the application. Pay the $52 study fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Upload Documents</h4>
+          <p class="text-neutral-600">Upload all required documents in PDF format. Ensure file sizes meet requirements.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing typically takes 5-30 business days. You may be asked for additional documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive E-Visa</h4>
+          <p class="text-neutral-600">Upon approval, pay the $177 issuance fee. Your e-visa is emailed as a PDF.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get Cédula de Extranjería</h4>
+          <p class="text-neutral-600">Within 15 days of arrival, apply for your foreign ID card at Migración Colombia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Pro tip:</strong> The Cancillería portal can be glitchy. Use Chrome, clear cache if issues arise, and apply during Colombian business hours for best results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out with Colombia's Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer, $5,000/month</h3>
+        <p class="text-neutral-600 mb-4">Remote employee for US startup, wants Medellín lifestyle.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 10 days. Income far exceeds threshold, straightforward process.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Writer, $1,200/month</h3>
+        <p class="text-neutral-600 mb-4">Multiple international clients, wants affordable base.</p>
+        <p class="text-green-700 font-medium">✓ Approved. Provided 3 client contracts and bank statements showing deposits.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Virtual Assistant, $700/month</h3>
+        <p class="text-neutral-600 mb-4">Works for Australian agency, below threshold.</p>
+        <p class="text-red-700 font-medium">✗ Denied. Income below 3x minimum wage. Advised to take additional clients.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Digital Marketer, $3,000/month</h3>
+        <p class="text-neutral-600 mb-4">Agency owner with US clients, wants Colombia tax benefits.</p>
+        <p class="text-green-700 font-medium">✓ Approved. Used business bank statements and client contracts as proof.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple, $2,500/month combined</h3>
+        <p class="text-neutral-600 mb-4">Both remote workers, want to apply together.</p>
+        <p class="text-amber-700 font-medium">△ Applied separately. One met threshold ($1,500), other used spouse's income as supplement.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Crypto Trader, variable income</h3>
+        <p class="text-neutral-600 mb-4">High net worth but irregular traditional income.</p>
+        <p class="text-amber-700 font-medium">△ Conditional. Had to show consistent withdrawals to bank account as "income."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox>
+    <p class="mb-4">Compare insurance plans for your Colombia visa—get quotes in minutes.</p>
+    <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+      Get Insurance Quotes →
+    </a>
+  </CTABox>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insurance Not Covering 2 Years</h3>
+        <p class="text-neutral-600">Your policy must cover the full visa duration (up to 2 years). Monthly nomad insurance that can be cancelled won't work—you need proof of committed coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 15-Day Cédula Deadline</h3>
+        <p class="text-neutral-600">You must apply for your Cédula de Extranjería within 15 days of arrival. Miss this and you'll face fines and complications.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Wrong Photo Format</h3>
+        <p class="text-neutral-600">Photos must be white background, no glasses, specific dimensions. The portal rejects non-compliant photos—get it right the first time.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Portal Technical Issues</h3>
+        <p class="text-neutral-600">The Cancillería website is notoriously buggy. Use Chrome, clear cookies, try during Colombian business hours. Save progress frequently.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring Security Precautions</h3>
+        <p class="text-neutral-600">Colombia is generally safe in tourist areas, but petty crime exists. Avoid flashy displays of wealth, use Uber instead of street taxis, stay aware.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Learning Any Spanish</h3>
+        <p class="text-neutral-600">English is limited outside tourist bubbles. Basic Spanish makes life significantly easier and opens doors to better experiences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Colombia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Colombia</h2>
+
+    <p class="mb-4">
+      Colombia's healthcare system is ranked among the best in Latin America. Private care is affordable and high quality, especially in major cities.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Tiers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">EPS (Prepagada) - Private</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• SURA, Sanitas, Colsanitas, Coomeva</li>
+          <li>• $50-150/month premiums</li>
+          <li>• Low copays ($2-10 per visit)</li>
+          <li>• Modern facilities, short waits</li>
+          <li>• Some English-speaking doctors</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">International Insurance</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• Access to top private hospitals</li>
+          <li>• Direct billing in some cases</li>
+          <li>• Coverage beyond Colombia</li>
+          <li>• English customer service</li>
+          <li>• Easier claims process</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Top Hospitals</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Clínica Las Américas</strong> (Medellín) - JCI accredited, full-service</li>
+      <li><strong>Hospital Pablo Tobón Uribe</strong> (Medellín) - Top-rated, research hospital</li>
+      <li><strong>Fundación Santa Fe</strong> (Bogotá) - Premium care, international patients</li>
+      <li><strong>Clínica del Country</strong> (Bogotá) - Excellent specialists</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Sample Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP visit (private):</strong> $15-40</li>
+      <li><strong>Specialist:</strong> $30-80</li>
+      <li><strong>Dental cleaning:</strong> $20-40</li>
+      <li><strong>MRI scan:</strong> $100-300</li>
+    </ul>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I pay Colombian taxes on my foreign income?</h3>
+        <p class="text-neutral-600">
+          No, not initially. As a non-resident for tax purposes (first 183 days), you're only taxed on Colombian-source income. After 4 years of residency, you may become a tax resident. Consult a tax professional for your situation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I renew the Digital Nomad Visa?</h3>
+        <p class="text-neutral-600">
+          Yes. The visa can be renewed for additional 2-year periods. Start the renewal process 2-3 months before expiry to avoid gaps.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Colombia safe for digital nomads?</h3>
+        <p class="text-neutral-600">
+          Generally yes, in tourist and expat areas. Medellín, Bogotá's nice neighborhoods, and coastal tourist towns are safe with normal precautions. Avoid isolated areas at night, don't flash valuables, use Uber/inDrive instead of street taxis.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the digital nomad community like?</h3>
+        <p class="text-neutral-600">
+          Large and active, especially in Medellín. Coworking spaces (Selina, WeWork, local spots), weekly meetups, Facebook groups, and plenty of other nomads. It's one of the world's most established nomad scenes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I open a Colombian bank account?</h3>
+        <p class="text-neutral-600">
+          Yes, with your Cédula de Extranjería. Bancolombia and Davivienda are nomad-friendly. You'll need your cédula, passport, and sometimes proof of income. Digital banks like Nequi work with just a passport initially.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How's the internet in Colombia?</h3>
+        <p class="text-neutral-600">
+          Excellent in major cities. Medellín has reliable fiber connections (100+ Mbps common). Coworking spaces and cafes have solid backup connections. Rural and some coastal areas may have issues.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Colombia's Digital Nomad Visa is one of the world's best deals for remote workers. The low income threshold (~$900/month), 2-year duration, and online application make it highly accessible. Medellín offers perfect weather, affordable living, and an established nomad community.
+    </p>
+
+    <p class="mb-4">
+      The main trade-offs are safety considerations (manageable with awareness) and the need for at least basic Spanish. If you're looking for the best value in the digital nomad visa market, Colombia is hard to beat.
+    </p>
+
+    <p class="mb-6">
+      For nomads working Americas time zones who want vibrant culture, warm people, and low costs, Colombia delivers. The healthcare is surprisingly good, the food is excellent, and the coffee is world-class.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Colombia's DN visa offers 2 years of legal residency at the lowest income threshold available (~$900/month). Get proper health insurance ($45-150/month), complete the online application, and enjoy one of the world's most affordable and vibrant nomad destinations.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Insurance Plans for Colombia →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/colombia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Colombia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Colombia</p>
+      </a>
+      <a href="/insurance-for/digital-nomads" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Digital Nomads</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for location-independent workers</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/mexico" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Mexico Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative Americas destination with easy access</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

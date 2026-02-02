@@ -1,0 +1,460 @@
+---
+/**
+ * VisaCountryPage.astro
+ *
+ * Template for visa × country pages like /visas/digital-nomad-visa/in/spain
+ * Focus: How to get [visa] in [country] and what insurance you need
+ */
+
+import Layout from '../layouts/Layout.astro';
+import CTABox from '../components/CTABox.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import StickySidebar from '../components/StickySidebar.astro';
+import Disclosure from '../components/Disclosure.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+
+import type { Country } from '../data/types';
+import type { VisaType } from '../data/visaTypes';
+import type { VisaCountryEntry } from '../data/visaCountryMatrix';
+import { getProviderBySlug } from '../data/providers';
+import { getRegionForCountry } from '../data/regions';
+
+interface Props {
+  country: Country;
+  visaType: VisaType;
+  entry: VisaCountryEntry;
+}
+
+const { country, visaType, entry } = Astro.props;
+
+// Get provider details for recommendations
+const recommendedProviders = entry.recommendedProviders
+  .map(slug => getProviderBySlug(slug))
+  .filter(Boolean)
+  .slice(0, 4);
+
+// Get region for country
+const region = getRegionForCountry(country.slug);
+
+// Generate TOC items
+const tocItems = [
+  { id: 'overview', text: `${visaType.name} in ${country.name}`, level: 2 },
+  { id: 'requirements', text: 'Visa Requirements', level: 2 },
+  { id: 'insurance-requirements', text: 'Insurance Requirements', level: 2 },
+  { id: 'recommended-plans', text: 'Recommended Insurance Plans', level: 2 },
+  { id: 'application', text: 'Application Process', level: 2 },
+  { id: 'healthcare', text: 'Healthcare Access', level: 2 },
+  { id: 'costs', text: 'Costs Breakdown', level: 2 },
+  { id: 'mistakes', text: 'Common Mistakes', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+// Author info
+const author = {
+  name: 'John Spencer',
+  bio: 'John Spencer is the founder of Compare Expat Plans, focusing on clear, neutral information to help people find health coverage abroad.',
+  image: '/images/john-spencer.png',
+};
+
+// Sidebar links
+const sidebarLinks = [
+  ...(region ? [{ title: `More in ${region.name}`, href: `/regions/${region.slug}` }] : []),
+  { title: `${country.name} Insurance Guide`, href: `/countries/${country.slug}/insurance` },
+  { title: `All ${visaType.name} Countries`, href: visaType.href },
+  { title: 'Compare All Plans', href: '/best/expat-health-insurance' },
+];
+
+// Add provider links
+recommendedProviders.slice(0, 2).forEach(p => {
+  if (p) {
+    sidebarLinks.push({
+      title: `${p.name} Review`,
+      href: `/providers/${p.slug}`
+    });
+  }
+});
+
+// Meta
+const pageTitle = `${visaType.name} in ${country.name}: Insurance Requirements (2026 Guide)`;
+const pageDescription = `Everything you need to know about health insurance for ${country.name}'s ${entry.officialVisaName}. Requirements, costs, recommended providers, and application tips.`;
+
+// Breadcrumb schema
+const siteUrl = "https://compareexpatplans.com";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Visas", "item": `${siteUrl}/visas` },
+    { "@type": "ListItem", "position": 3, "name": visaType.name, "item": `${siteUrl}${visaType.href}` },
+    { "@type": "ListItem", "position": 4, "name": country.name },
+  ],
+};
+
+// Provider table data
+const providerColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'type', header: 'Type' },
+  { key: 'price', header: 'From' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const providerRows = recommendedProviders.map(p => ({
+  provider: p?.name || '',
+  type: p?.type || 'International',
+  price: p?.startingPrice || 'Varies',
+  notes: p?.type === 'local' ? `${country.name} only` : 'Worldwide coverage',
+}));
+
+// Hero image
+const heroImage = country.heroImage || '/images/countries/default-hero-bg.png';
+---
+
+<Layout title={pageTitle} description={pageDescription} ogType="article">
+  <!-- Structured Data -->
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- HERO SECTION -->
+  <section
+    class="relative py-10 lg:py-14 border-b border-neutral-200"
+    style={`background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.95)), url('${heroImage}'); background-size: cover; background-position: center;`}
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-primary-600 mb-2">
+          <a href={visaType.href} class="hover:underline">{visaType.name}</a>
+          {' → '}
+          <span>{country.name}</span>
+        </p>
+        <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          {visaType.name} in {country.name}: Insurance Requirements
+        </h1>
+
+        <p class="text-lg text-neutral-600 mb-6">
+          Complete guide to health insurance for {country.name}'s {entry.officialVisaName}—requirements, costs, and which providers qualify.
+        </p>
+
+        <!-- Quick Facts Box -->
+        <div class="bg-white border border-neutral-200 rounded-lg p-5 mb-6">
+          <h3 class="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">Quick Facts</h3>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <span class="text-neutral-500">Official Name:</span>
+              <span class="block font-medium text-neutral-900">{entry.officialVisaName}</span>
+            </div>
+            <div>
+              <span class="text-neutral-500">Duration:</span>
+              <span class="block font-medium text-neutral-900">{entry.duration.initial}{entry.duration.renewable ? ' (renewable)' : ''}</span>
+            </div>
+            {entry.requirements.incomeMinimum && (
+              <div>
+                <span class="text-neutral-500">Income Required:</span>
+                <span class="block font-medium text-neutral-900">{entry.requirements.incomeMinimum}</span>
+              </div>
+            )}
+            <div>
+              <span class="text-neutral-500">Insurance Required:</span>
+              <span class="block font-medium text-neutral-900">{entry.requirements.insuranceRequired ? 'Yes' : 'No'}</span>
+            </div>
+            <div>
+              <span class="text-neutral-500">Visa Fee:</span>
+              <span class="block font-medium text-neutral-900">{entry.costs.visaFee}</span>
+            </div>
+            <div>
+              <span class="text-neutral-500">Insurance Cost:</span>
+              <span class="block font-medium text-neutral-900">{entry.costs.insuranceRange}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <a
+            href="/best/expat-health-insurance"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+            style="color: white !important;"
+          >
+            Compare Qualifying Plans
+          </a>
+          <a
+            href={`/countries/${country.slug}/insurance`}
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-600 hover:text-primary-700 border border-primary-200 rounded-lg transition-colors bg-white"
+          >
+            Full {country.name} Guide
+          </a>
+        </div>
+        <Disclosure />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex gap-12">
+      <!-- Main Content -->
+      <article class="flex-1 min-w-0">
+
+        <!-- TOP META -->
+        <div class="mb-8">
+          <AuthorBox
+            name={author.name}
+            bio={author.bio}
+            image={author.image}
+          />
+        </div>
+
+        <!-- TOC (Mobile) -->
+        <div class="lg:hidden mb-8">
+          <TableOfContents items={tocItems} />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="prose prose-neutral max-w-none">
+
+          <h2 id="overview">{visaType.name} in {country.name}</h2>
+
+          <p>
+            {country.name}'s {entry.officialVisaName} is designed for {visaType.description.toLowerCase()}
+            {entry.duration.maxStay && ` You can stay for ${entry.duration.maxStay.toLowerCase()}.`}
+          </p>
+
+          <p>
+            <strong>The key insurance question:</strong> {visaType.concerns[0]} This guide answers that and more—covering exactly what coverage you need, which providers qualify, and how much to budget.
+          </p>
+
+          <!-- Requirements Section -->
+          <h2 id="requirements">Visa Requirements</h2>
+
+          {entry.requirements.incomeMinimum && (
+            <p>
+              <strong>Income requirement:</strong> {entry.requirements.incomeMinimum}. You'll need to provide proof of consistent income at or above this level.
+            </p>
+          )}
+
+          {entry.requirements.savingsMinimum && (
+            <p>
+              <strong>Savings alternative:</strong> {entry.requirements.savingsMinimum} in savings can substitute for ongoing income in some cases.
+            </p>
+          )}
+
+          <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-3">Additional Requirements</h3>
+            <ul class="space-y-2">
+              {entry.requirements.additionalRequirements.map(req => (
+                <li class="flex items-start gap-2 text-neutral-700">
+                  <svg class="w-5 h-5 text-neutral-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{req}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Insurance Requirements Section (THE KEY SECTION) -->
+          <h2 id="insurance-requirements">Insurance Requirements</h2>
+
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-primary-900 mb-2">
+              {entry.requirements.insuranceRequired ? 'Insurance is REQUIRED' : 'Insurance is Recommended'}
+            </h3>
+            {entry.requirements.insuranceMinimum && (
+              <p class="text-primary-800 mb-2">
+                <strong>Minimum requirement:</strong> {entry.requirements.insuranceMinimum}
+              </p>
+            )}
+          </div>
+
+          <p>
+            {entry.insuranceNotes}
+          </p>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6 not-prose">
+            <h3 class="text-lg font-semibold text-amber-900 mb-2">Key Insurance Considerations</h3>
+            <ul class="space-y-2">
+              {entry.keyConsiderations.map(consideration => (
+                <li class="flex items-start gap-2 text-amber-800">
+                  <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{consideration}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <CTABox
+            title={`Insurance for ${country.name}'s ${visaType.name}`}
+            description="Compare plans that meet the visa requirements."
+            buttonText="Compare Qualifying Plans"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
+
+          <!-- Recommended Plans -->
+          <h2 id="recommended-plans">Recommended Insurance Plans</h2>
+
+          <p>
+            These providers offer plans that meet {country.name}'s {entry.officialVisaName} insurance requirements:
+          </p>
+        </div>
+
+        <!-- Provider Table -->
+        <div class="my-8 border border-neutral-200 rounded-lg overflow-hidden">
+          <ComparisonTable columns={providerColumns} rows={providerRows} />
+        </div>
+
+        <div class="prose prose-neutral max-w-none">
+          {recommendedProviders.slice(0, 3).map((provider) => (
+            <div class="mb-6">
+              <h3>{provider?.name}</h3>
+              <p>
+                {provider?.type === 'international'
+                  ? `${provider?.name} offers comprehensive international coverage accepted for ${country.name}'s ${visaType.singular}. Worldwide coverage means you stay protected if you travel or relocate.`
+                  : `${provider?.name} is a local ${country.name} insurer, often cheaper than international options but only covers you within ${country.name}.`
+                }
+              </p>
+              <p>
+                <a href={`/providers/${provider?.slug}`}>
+                  {provider?.name} Review →
+                </a>
+                {' | '}
+                <a href={`/countries/${country.slug}/insurance/${provider?.slug}`}>
+                  {provider?.name} in {country.name} →
+                </a>
+              </p>
+            </div>
+          ))}
+
+          <!-- Application Process -->
+          <h2 id="application">Application Process</h2>
+
+          <p>
+            Here's the step-by-step process for {country.name}'s {entry.officialVisaName}:
+          </p>
+
+          <ol class="space-y-4 my-6">
+            {entry.applicationProcess.map((step, index) => (
+              <li class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-700 rounded-full flex items-center justify-center font-semibold text-sm">
+                  {index + 1}
+                </span>
+                <span class="text-neutral-700 pt-1">{step}</span>
+              </li>
+            ))}
+          </ol>
+
+          <!-- Healthcare Access -->
+          <h2 id="healthcare">Healthcare Access with This Visa</h2>
+
+          <p>
+            {entry.healthcareAccess}
+          </p>
+
+          <!-- Costs -->
+          <h2 id="costs">Costs Breakdown</h2>
+
+          <div class="grid md:grid-cols-2 gap-4 my-6 not-prose">
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-5">
+              <h4 class="font-semibold text-neutral-900 mb-2">Visa Costs</h4>
+              <p class="text-sm text-neutral-600">
+                {entry.costs.visaFee}
+              </p>
+            </div>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-5">
+              <h4 class="font-semibold text-neutral-900 mb-2">Insurance Costs</h4>
+              <p class="text-sm text-neutral-600">
+                {entry.costs.insuranceRange}
+              </p>
+            </div>
+          </div>
+
+          <p>
+            Budget for insurance as an ongoing expense—it's required throughout your stay, not just for the visa application.
+          </p>
+
+          <!-- Common Mistakes -->
+          <h2 id="mistakes">Common Mistakes to Avoid</h2>
+
+          <p>
+            Don't make these errors when applying for {country.name}'s {entry.officialVisaName}:
+          </p>
+
+          {entry.commonMistakes.map(mistake => (
+            <div class="bg-red-50 border-l-4 border-red-400 p-4 my-4 not-prose">
+              <p class="text-red-800 text-sm">{mistake}</p>
+            </div>
+          ))}
+
+          <CTABox
+            title="Get the Right Coverage"
+            description={`Don't risk your ${visaType.singular} application with inadequate insurance.`}
+            buttonText="Compare Plans Now"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
+
+          <!-- FAQs -->
+          <h2 id="faqs">Frequently Asked Questions</h2>
+
+          {entry.faqs.map(faq => (
+            <div class="mb-6">
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </div>
+          ))}
+
+          <CTABox
+            title={`Ready for ${country.name}?`}
+            description="Compare insurance plans that meet visa requirements."
+            buttonText="Compare Plans"
+            buttonHref="/best/expat-health-insurance"
+            variant="highlight"
+            showDisclosure={false}
+          />
+        </div>
+
+        <!-- Related Pages -->
+        <div class="mt-10 pt-8 border-t border-neutral-200">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-4">Related Guides</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a
+              href={`/countries/${country.slug}/insurance`}
+              class="block bg-white border border-neutral-200 rounded-lg p-4 hover:border-primary-300 hover:shadow-md transition-all"
+            >
+              <h4 class="font-semibold text-neutral-900">{country.name} Insurance Guide</h4>
+              <p class="text-sm text-primary-600 mt-1">Full overview →</p>
+            </a>
+            <a
+              href={visaType.href}
+              class="block bg-white border border-neutral-200 rounded-lg p-4 hover:border-primary-300 hover:shadow-md transition-all"
+            >
+              <h4 class="font-semibold text-neutral-900">{visaType.name} Countries</h4>
+              <p class="text-sm text-primary-600 mt-1">Compare destinations →</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+          <p class="text-sm text-neutral-600">
+            <strong>Disclaimer:</strong> Visa requirements and insurance rules change frequently. This guide reflects our research as of the publication date. Always verify current requirements with official government sources and consulates before applying. We are not immigration lawyers or insurance brokers.
+          </p>
+        </div>
+      </article>
+
+      <!-- Sticky Sidebar (Desktop) -->
+      <StickySidebar
+        ctaTitle={`${visaType.name} in ${country.name}`}
+        ctaDescription="Find qualifying insurance coverage."
+        ctaButtonText="Compare Plans"
+        ctaButtonHref="/best/expat-health-insurance"
+        relatedLinks={sidebarLinks}
+      />
+    </div>
+  </div>
+</Layout>

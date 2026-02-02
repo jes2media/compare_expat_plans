@@ -1,0 +1,50 @@
+---
+/**
+ * Dynamic route for visa × country pages.
+ *
+ * Generates pages like:
+ * - /visas/digital-nomad-visa/in/spain
+ * - /visas/retirement-visa/in/portugal
+ * - /visas/student-visa/in/germany
+ *
+ * Provides visa-specific insurance guidance for each country.
+ */
+
+import VisaCountryPage from '../../../../templates/VisaCountryPage.astro';
+import { getVisaTypeBySlug } from '../../../../data/visaTypes';
+import { getCountryBySlug } from '../../../../data/countries';
+import { getAllVisaCountryPairs, getVisaCountryEntry } from '../../../../data/visaCountryMatrix';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allPairs = getAllVisaCountryPairs();
+
+  const paths = allPairs
+    .map(({ visaSlug, countrySlug }) => {
+      const visaType = getVisaTypeBySlug(visaSlug);
+      const country = getCountryBySlug(countrySlug);
+      const entry = getVisaCountryEntry(visaSlug, countrySlug);
+
+      if (!visaType || !country || !entry) return null;
+
+      return {
+        params: {
+          visaType: visaSlug,
+          country: countrySlug,
+        },
+        props: {
+          visaType,
+          country,
+          entry,
+        },
+      };
+    })
+    .filter(Boolean);
+
+  return paths;
+};
+
+const { visaType, country, entry } = Astro.props;
+---
+
+<VisaCountryPage visaType={visaType} country={country} entry={entry} />

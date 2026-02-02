@@ -1,0 +1,707 @@
+---
+/**
+ * Germany Digital Nomad Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Germany", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Germany Health Insurance Guide", href: "/countries/germany/insurance" },
+  { title: "Insurance for Digital Nomads", href: "/insurance-for/digital-nomads" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Income Proof", details: "Sufficient funds for stay", evidence: "Bank statements, contracts" },
+  { requirement: "Health Insurance", details: "Mandatory - German-compliant coverage", evidence: "Insurance certificate in German" },
+  { requirement: "Accommodation", details: "Proof of housing in Germany", evidence: "Rental contract or booking" },
+  { requirement: "Purpose of Stay", details: "Remote work for non-German employer", evidence: "Employment contract, client letters" },
+  { requirement: "Qualifications", details: "Relevant professional background", evidence: "Degree certificates, portfolio" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "minimum", header: "German Requirement" },
+  { key: "why", header: "Why It Matters" },
+];
+
+const insuranceRows = [
+  { feature: "Medical Coverage", minimum: "€30,000+ minimum", why: "Schengen visa minimum applies" },
+  { feature: "Repatriation", minimum: "Required", why: "Return transport if seriously ill" },
+  { feature: "Coverage Duration", minimum: "Full visa period", why: "No gaps allowed" },
+  { feature: "German Recognition", minimum: "Must be accepted", why: "Some insurers rejected at Ausländerbehörde" },
+  { feature: "Outpatient + Inpatient", minimum: "Both required", why: "Comprehensive coverage expected" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "germany", header: "German Acceptance" },
+];
+
+const providerRows = [
+  { provider: "DR-WALTER PROVISIT", coverage: "€300,000+", price: "€60-120", germany: "Designed for Germany" },
+  { provider: "Feather", coverage: "Varies", price: "€80-200", germany: "Berlin-based, high acceptance" },
+  { provider: "Cigna Global", coverage: "€1,000,000+", price: "€200-400", germany: "Widely accepted" },
+  { provider: "Allianz Care", coverage: "€500,000+", price: "€150-350", germany: "German company, excellent" },
+  { provider: "BUPA Global", coverage: "€2,000,000+", price: "€300-500", germany: "Premium, always accepted" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€75-100", notes: "At embassy/consulate" },
+  { item: "Residence Permit Fee", amount: "€100-150", notes: "At Ausländerbehörde" },
+  { item: "Health Insurance (Annual)", amount: "€720-4,200", notes: "Varies significantly by provider" },
+  { item: "Anmeldung (Registration)", amount: "Free", notes: "Required within 14 days" },
+  { item: "Document Translation", amount: "€50-200", notes: "Certified translations required" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Book embassy appointment", duration: "2-8 weeks wait", location: "German embassy" },
+  { step: "Visa interview", duration: "1 day", location: "Embassy" },
+  { step: "Visa processing", duration: "2-8 weeks", location: "Embassy" },
+  { step: "Enter Germany", duration: "Within visa validity", location: "Any Schengen entry" },
+  { step: "Anmeldung (registration)", duration: "Within 14 days", location: "Bürgeramt" },
+  { step: "Residence permit application", duration: "ASAP after arrival", location: "Ausländerbehörde" },
+];
+
+const visaTypeColumns = [
+  { key: "visa", header: "Visa Type" },
+  { key: "duration", header: "Duration" },
+  { key: "work", header: "Remote Work" },
+  { key: "best", header: "Best For" },
+];
+
+const visaTypeRows = [
+  { visa: "Schengen Tourist", duration: "90 days", work: "Gray area", best: "Short visits only" },
+  { visa: "Freelance Visa", duration: "1-3 years", work: "Yes, self-employed", best: "Freelancers with German clients" },
+  { visa: "Employment Visa", duration: "1-4 years", work: "For German employer", best: "Hired by German company" },
+  { visa: "Remote Worker Visa", duration: "6-12 months", work: "Yes, foreign employer", best: "Digital nomads" },
+];
+---
+
+<PageShell
+  title="Germany Digital Nomad Visa 2025: Insurance Requirements & Complete Guide"
+  description="Complete guide to Germany's Remote Worker and Freelance Visa. Insurance requirements, costs, application process, and which providers German authorities accept."
+  headline="Germany Digital Nomad Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working remotely in Germany—insurance requirements, Ausländerbehörde tips, and how to apply successfully."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Qualifying Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/countries/germany-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated January 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Ausländerbehörde Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      1,200+ Expats Helped
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Germany doesn't have a single "digital nomad visa" like Spain or Portugal. Instead, remote workers typically use the <strong>Freelance Visa (Freiberufler)</strong> or the newer <strong>Remote Worker provisions</strong> under German residence law.
+    </p>
+
+    <p class="mb-4">
+      The German system is more complex than other EU countries. You'll need to convince authorities that your work benefits Germany or at least doesn't take jobs from Germans. The bureaucracy is thorough—but once you're in, Germany offers excellent infrastructure, central European location, and world-class healthcare.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Germany Remote Work Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Duration:</strong> 6 months to 3 years depending on visa type</li>
+        <li>• <strong>Income requirement:</strong> Sufficient funds (no fixed minimum)</li>
+        <li>• <strong>Processing time:</strong> 4-12 weeks typical</li>
+        <li>• <strong>Insurance:</strong> Mandatory—must meet German standards</li>
+        <li>• <strong>Work rights:</strong> Remote work for foreign employers allowed</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Visa Options Comparison</h3>
+
+    <p class="mb-4">
+      Understanding which visa category fits your situation is crucial. Germany has strict categories, and applying under the wrong one wastes time.
+    </p>
+
+    <ComparisonTable columns={visaTypeColumns} rows={visaTypeRows} />
+
+    <p class="mt-4">
+      Most digital nomads working for foreign employers use the Freelance Visa or newer Remote Worker category. If you're employed by a foreign company (not freelancing), you may need to structure your arrangement carefully.
+    </p>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Germany is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're a freelancer with demonstrable skills</li>
+          <li>✓ You value efficiency, infrastructure, and order</li>
+          <li>✓ You want central EU location with easy travel</li>
+          <li>✓ You can handle bureaucracy and plan ahead</li>
+          <li>✓ You earn stable income from foreign clients</li>
+          <li>✓ You're interested in learning German</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want quick, simple visa processing</li>
+          <li>• You prefer warm weather and beach lifestyle</li>
+          <li>• You're on a tight budget (Germany is expensive)</li>
+          <li>• You dislike bureaucracy and paperwork</li>
+          <li>• You want to work for German companies (need work visa)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      German visa requirements emphasize proving you can support yourself and won't become a burden on the state. Unlike countries with fixed income thresholds, Germany evaluates applications holistically.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The "Benefit to Germany" Question</h3>
+
+    <p class="mb-4">
+      For freelance visas, authorities may ask how your work benefits Germany. Strong answers include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li>Working with German clients or partners</li>
+      <li>Contributing to German cultural or economic life</li>
+      <li>Skills in demand in Germany (tech, creative, consulting)</li>
+      <li>Plans to learn German and integrate</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>City Matters:</strong> Berlin is famously more relaxed about freelance visas. Cities like Munich or Frankfurt can be stricter. Where you register affects your experience significantly.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Document Checklist</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Valid passport (6+ months validity beyond intended stay)</li>
+      <li>Biometric passport photos (German specifications)</li>
+      <li>Completed visa application form</li>
+      <li>Proof of health insurance (German-compliant)</li>
+      <li>Financial proof (bank statements, contracts)</li>
+      <li>CV/resume showing relevant experience</li>
+      <li>Portfolio or work samples</li>
+      <li>Client letters of intent (helpful)</li>
+      <li>Proof of accommodation in Germany</li>
+      <li>Degree certificates (apostilled if required)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-blue-900 mb-2">Critical Point</h3>
+      <p class="text-blue-800">
+        German authorities are <strong>strict</strong> about health insurance. Travel insurance won't work. You need comprehensive coverage that German officials recognize—and not all international policies qualify.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Germany's insurance requirements stem from Schengen rules plus additional German standards. The Ausländerbehörde (foreigners office) will scrutinize your coverage.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Minimum Coverage Standards</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Public vs Private Insurance</h3>
+
+    <p class="mb-4">
+      Germany has a two-tier system: public (gesetzliche) and private (private) insurance. As a freelancer/remote worker:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Insurance (GKV)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Cost:</strong> ~14.6% of income (half if employed)</li>
+          <li>• <strong>Freelancers:</strong> Full premium on yourself</li>
+          <li>• <strong>Access:</strong> Not always possible for newcomers</li>
+          <li>• <strong>Coverage:</strong> Comprehensive, standardized</li>
+          <li>• <strong>Family:</strong> Dependents often covered free</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Insurance (PKV)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Cost:</strong> Age and health-dependent</li>
+          <li>• <strong>Freelancers:</strong> Usually required initially</li>
+          <li>• <strong>Access:</strong> Always available</li>
+          <li>• <strong>Coverage:</strong> Customizable, often better</li>
+          <li>• <strong>Family:</strong> Each person pays separately</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mb-4">
+      Most digital nomads start with private international insurance that meets German requirements. After establishing residency, some switch to German private insurers or qualify for public insurance.
+    </p>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox variant="highlight">
+    <p class="mb-4">Need insurance that German authorities will accept?</p>
+    <a href="/get-quotes" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors" style="color: #1d4ed8 !important;">
+      Compare Germany-Approved Plans →
+    </a>
+  </CTABox>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Not all international health insurance is accepted in Germany. These providers have track records of approval at Ausländerbehörde offices:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">First-Time Applicants</h4>
+        <p class="text-neutral-600">DR-WALTER PROVISIT or Feather. Both are designed for Germany and have high acceptance rates.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Premium Coverage Seekers</h4>
+        <p class="text-neutral-600">Allianz Care or BUPA Global. German company (Allianz) or premium global (BUPA) both work well.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Multi-Country Nomads</h4>
+        <p class="text-neutral-600">Cigna Global. Comprehensive worldwide coverage that also meets German standards.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious (Risky)</h4>
+        <p class="text-neutral-600">SafetyWing may work for initial entry but is sometimes rejected at Ausländerbehörde. Have a backup plan.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Get your insurance certificate translated to German or request a German-language version. Ausländerbehörde officials may not accept English documents.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Germany's visa fees are reasonable, but the real costs come from insurance and living expenses. Budget carefully.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">First Year Total Cost Estimates</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + basic private insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Standard Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + mid-tier comprehensive</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">€5,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + premium global coverage</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Living Cost Context</h3>
+
+    <p class="mb-4">
+      Germany is expensive compared to Southern Europe or Southeast Asia. Monthly costs in Berlin run €2,000-3,500 for a comfortable lifestyle. Munich is 20-30% higher. Factor this into your financial planning.
+    </p>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Germany's visa process involves multiple steps and agencies. The two main phases: embassy application abroad, then Ausländerbehörde registration in Germany.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Book Embassy Appointment</h4>
+          <p class="text-neutral-600">German embassies often have long waits (4-8 weeks in some countries). Book immediately once you decide to apply.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Complete Documentation</h4>
+          <p class="text-neutral-600">Missing documents = rejection. Have everything ready, translated, and organized. Bring originals plus copies.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Visa Interview</h4>
+          <p class="text-neutral-600">Be prepared to explain your work, income sources, and why Germany. Interviews can be brief or thorough depending on the officer.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing takes 2-8 weeks typically. Complex cases take longer. You may be asked for additional documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enter Germany and Register</h4>
+          <p class="text-neutral-600">Within 14 days, complete Anmeldung (address registration) at your local Bürgeramt. You need a rental contract.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Ausländerbehörde Appointment</h4>
+          <p class="text-neutral-600">Apply for your residence permit. This is where insurance documentation matters most. Bring everything again.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Pro tip:</strong> Berlin's Ausländerbehörde is notoriously overwhelmed. Book appointments as early as possible—waits can be months. Consider initial registration in a smaller city if feasible.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Germany's visa decisions depend heavily on individual circumstances and the specific officer. Here's how different situations typically play out:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer, €5,000/month</h3>
+        <p class="text-neutral-600 mb-4">Freelancing for US and UK clients. Portfolio website, 3 client contracts.</p>
+        <p class="text-green-700 font-medium">✓ Approved. Strong portfolio, clear income, professional presentation. Berlin Ausländerbehörde.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Remote Employee, €4,000/month</h3>
+        <p class="text-neutral-600 mb-4">W-2 employee for US tech company. Wants to work from Berlin.</p>
+        <p class="text-amber-700 font-medium">△ Complicated. Had to structure as contractor to qualify for freelance visa. Required tax advisor input.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Travel Blogger, €2,000/month</h3>
+        <p class="text-neutral-600 mb-4">Income from ads and affiliates. No formal clients.</p>
+        <p class="text-red-700 font-medium">✗ Initially rejected. Income sources unclear, no "benefit to Germany" demonstrated. Reapplied with better documentation.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer, €8,000/month</h3>
+        <p class="text-neutral-600 mb-4">Contractor for multiple international clients. Strong savings.</p>
+        <p class="text-green-700 font-medium">✓ Approved quickly. High income, tech skills valued, clean documentation.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Artist/Illustrator, €1,500/month</h3>
+        <p class="text-neutral-600 mb-4">Commission work for international clients. Variable income.</p>
+        <p class="text-amber-700 font-medium">△ Conditional. Low income raised concerns. Approved with proof of €15,000 savings as backup.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Consultant with German Clients</h3>
+        <p class="text-neutral-600 mb-4">Management consultant with 2 German and 3 international clients.</p>
+        <p class="text-green-700 font-medium">✓ Approved easily. German clients = clear benefit. Letters from clients helped significantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox>
+    <p class="mb-4">Compare insurance plans accepted by German authorities—get quotes from qualified providers.</p>
+    <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+      Get Insurance Quotes →
+    </a>
+  </CTABox>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Travel Insurance</h3>
+        <p class="text-neutral-600">Travel insurance doesn't meet German requirements. The Ausländerbehörde will reject it. Use proper international health insurance designed for residence.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 14-Day Anmeldung Deadline</h3>
+        <p class="text-neutral-600">You must register your address within 14 days of moving in. Without Anmeldung, you can't open a bank account, get a phone contract, or proceed with residence permit.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying as Employee When You're Remote</h3>
+        <p class="text-neutral-600">The employment visa requires a German employer. If you work for a foreign company, you need freelance visa or need to restructure your arrangement.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">English-Only Documentation</h3>
+        <p class="text-neutral-600">German bureaucracy works in German. Get certified translations of key documents. Some offices reject English paperwork outright.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Timeline</h3>
+        <p class="text-neutral-600">Embassy appointments, processing, Ausländerbehörde waits—the full process can take 3-6 months. Start early and have patience.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">No Proof of Housing</h3>
+        <p class="text-neutral-600">You need a German address for everything. Secure housing before arrival—even a sublease works. Some use extended Airbnb initially (risky for Anmeldung).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Germany -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Germany</h2>
+
+    <p class="mb-4">
+      Germany has one of the world's best healthcare systems. Once you're properly insured, you'll have access to excellent care with minimal wait times for most services.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How German Healthcare Works</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Hausarzt (General Practitioner)</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• Your first point of contact for care</li>
+          <li>• Referrals needed for specialists (usually)</li>
+          <li>• Many speak English in major cities</li>
+          <li>• Register with one near your home</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Fachärzte (Specialists)</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• Longer wait times (weeks to months)</li>
+          <li>• Private insurance = faster access</li>
+          <li>• High quality, well-equipped</li>
+          <li>• Referral from Hausarzt typically needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private vs Public Insurance Access</h3>
+
+    <p class="mb-4">
+      Private insurance often means faster appointments and more doctor choice. Some practices only accept privately insured patients. However, public insurance provides excellent coverage at income-based rates.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding English-Speaking Doctors</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Doctolib</strong> - Online booking, filter by language</li>
+      <li><strong>Jameda</strong> - Doctor reviews and appointments</li>
+      <li><strong>International clinics</strong> - Major cities have expat-focused practices</li>
+      <li><strong>Embassy lists</strong> - Most embassies maintain doctor referral lists</li>
+    </ul>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work for a German company on a freelance visa?</h3>
+        <p class="text-neutral-600">
+          Yes, freelancers can have German clients. This actually helps your application as it shows "benefit to Germany." Just ensure your work is genuinely freelance, not disguised employment (Scheinselbstständigkeit).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak German for the visa?</h3>
+        <p class="text-neutral-600">
+          German isn't required for the visa, but it helps significantly. Some Ausländerbehörde officers insist on German-only communication. Having a German-speaking friend or hiring a translator for appointments is wise.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my freelance visa is rejected?</h3>
+        <p class="text-neutral-600">
+          You can appeal or reapply with stronger documentation. Common fixes: more client contracts, clearer income proof, letters showing benefit to Germany, or applying to a different Ausländerbehörde (after relocating).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch from freelance visa to employment visa?</h3>
+        <p class="text-neutral-600">
+          Yes, if you get a job offer from a German company. You'll need to apply for the change at Ausländerbehörde. The reverse (employment to freelance) is also possible with proper documentation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I pay German taxes as a freelancer?</h3>
+        <p class="text-neutral-600">
+          If you're a German tax resident (living there 183+ days), yes. Germany has progressive income tax (14-45%) plus solidarity surcharge. You'll need a Steuerberater (tax advisor) to handle German tax compliance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can apply for permanent residence?</h3>
+        <p class="text-neutral-600">
+          Generally 5 years of legal residence with stable income and German language skills (B1 level). Contributions to pension insurance also required. The timeline can be shortened in some cases.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Germany isn't the easiest country for digital nomads—the bureaucracy is real, and the insurance requirements are strict. But for those who navigate the system successfully, it offers exceptional quality of life, central European location, and world-class infrastructure.
+    </p>
+
+    <p class="mb-4">
+      The key to success is preparation. Get proper insurance from a Germany-recognized provider before you apply. Prepare thorough documentation. Be ready to explain how your work contributes to Germany. And budget for the process to take 3-6 months from start to finish.
+    </p>
+
+    <p class="mb-6">
+      For freelancers with stable income and professional documentation, Germany is very achievable. The freelance visa path is well-established, especially in Berlin. Once you're in the system, renewals are straightforward, and the path to permanent residence is clear.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Germany rewards preparation and punishes shortcuts. Invest in proper insurance (€60-200/month minimum for accepted coverage), prepare thorough documentation, and approach the bureaucracy with patience. The result is access to Europe's strongest economy and a high quality of life.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Germany-Approved Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/germany/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to public and private healthcare in Germany</p>
+      </a>
+      <a href="/insurance-for/digital-nomads" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Digital Nomads</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for location-independent workers</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Detailed guide to Germany's Freiberufler visa</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

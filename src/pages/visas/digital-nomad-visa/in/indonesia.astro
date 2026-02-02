@@ -1,0 +1,707 @@
+---
+/**
+ * Indonesia Digital Nomad Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Indonesia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Indonesia Health Insurance Guide", href: "/countries/indonesia/insurance" },
+  { title: "Insurance for Digital Nomads", href: "/insurance-for/digital-nomads" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Annual Income", details: "$60,000 USD minimum (B211A Remote Worker)", evidence: "Bank statements, tax returns" },
+  { requirement: "Employment", details: "Work for company outside Indonesia", evidence: "Employment letter" },
+  { requirement: "Health Insurance", details: "Mandatory coverage", evidence: "Policy valid in Indonesia" },
+  { requirement: "Valid Passport", details: "6+ months validity", evidence: "Passport scan" },
+  { requirement: "Return/Onward Ticket", details: "Proof of exit", evidence: "Flight booking" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "minimum", header: "Indonesia Requirement" },
+  { key: "why", header: "Why It Matters" },
+];
+
+const insuranceRows = [
+  { feature: "Medical Coverage", minimum: "$50,000+ recommended", why: "Private hospital costs" },
+  { feature: "Emergency Evacuation", minimum: "Essential", why: "May need Singapore/Bangkok medevac" },
+  { feature: "Coverage Area", minimum: "Indonesia + Singapore", why: "Singapore for serious care" },
+  { feature: "Outpatient Care", minimum: "Included", why: "Dengue, food illness common" },
+  { feature: "COVID Coverage", minimum: "Still required", why: "Entry requirement" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "SafetyWing", coverage: "$250,000", price: "$45-85", strengths: "Budget nomads, popular in Bali" },
+  { provider: "World Nomads", coverage: "$100,000", price: "$70-150", strengths: "Surfing, diving coverage" },
+  { provider: "Cigna Global", coverage: "$1,000,000+", price: "$180-400", strengths: "Singapore network access" },
+  { provider: "April International", coverage: "$500,000", price: "$100-250", strengths: "Asia-Pacific focus" },
+  { provider: "BUPA Global", coverage: "$2,000,000+", price: "$300-550", strengths: "Premium global coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (USD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "B211A Visa (6 months)", amount: "$300-500", notes: "Through agent recommended" },
+  { item: "Visa Extension (60 days)", amount: "$50-100 each", notes: "Multiple extensions possible" },
+  { item: "Second Home Visa (5 years)", amount: "$3,000-5,000", notes: "Premium option" },
+  { item: "Health Insurance (Annual)", amount: "$540-3,500", notes: "International coverage" },
+  { item: "Agent Fees", amount: "$50-200", notes: "For visa processing help" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Apply for e-visa/B211A", duration: "3-7 days", location: "Online or through agent" },
+  { step: "Receive approval", duration: "Via email", location: "Digital" },
+  { step: "Enter Indonesia", duration: "Within 90 days", location: "Any international airport" },
+  { step: "Convert to stay permit", duration: "Within 30 days", location: "Immigration office" },
+  { step: "First extension", duration: "Before 60 days", location: "Immigration or agent" },
+  { step: "Subsequent extensions", duration: "Every 60 days", location: "Immigration or agent" },
+];
+
+const visaColumns = [
+  { key: "visa", header: "Visa Type" },
+  { key: "duration", header: "Duration" },
+  { key: "income", header: "Income Req" },
+  { key: "best", header: "Best For" },
+];
+
+const visaRows = [
+  { visa: "Visa on Arrival", duration: "30-60 days", income: "None", best: "Short stays, testing Indonesia" },
+  { visa: "B211A Social/Business", duration: "60 days + extensions", income: "None formal", best: "Most digital nomads" },
+  { visa: "B211A Remote Worker", duration: "6 months", income: "$60,000/year", best: "High-income nomads" },
+  { visa: "Second Home Visa", duration: "5-10 years", income: "$130,000 savings", best: "Long-term commitment" },
+];
+
+const locationColumns = [
+  { key: "location", header: "Location" },
+  { key: "vibe", header: "Vibe" },
+  { key: "cost", header: "Monthly Cost" },
+  { key: "internet", header: "Internet" },
+];
+
+const locationRows = [
+  { location: "Canggu, Bali", vibe: "Nomad central, surfing", cost: "$1,200-2,500", internet: "Good (variable)" },
+  { location: "Ubud, Bali", vibe: "Spiritual, wellness", cost: "$1,000-2,000", internet: "Good" },
+  { location: "Seminyak, Bali", vibe: "Upscale, beaches", cost: "$1,500-3,000", internet: "Good" },
+  { location: "Jakarta", vibe: "Business, urban", cost: "$1,200-2,500", internet: "Excellent" },
+  { location: "Lombok", vibe: "Quieter, surfing", cost: "$800-1,500", internet: "Variable" },
+];
+---
+
+<PageShell
+  title="Indonesia Digital Nomad Visa 2025: Insurance Requirements & Complete Guide"
+  description="Complete guide to Indonesia's Digital Nomad Visa options including B211A and Second Home Visa. Bali living, insurance requirements, and application process."
+  headline="Indonesia Digital Nomad Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working remotely from Bali and Indonesia—visa options, insurance requirements, and island living."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Qualifying Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/countries/indonesia-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated January 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Indonesian Immigration
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      3,000+ Expats Helped
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Indonesia—specifically Bali—has been the world's top digital nomad destination for years, operating in a visa gray area. In 2022, Indonesia finally introduced official pathways for remote workers: the <strong>B211A Remote Worker visa</strong> and the premium <strong>Second Home Visa</strong>.
+    </p>
+
+    <p class="mb-4">
+      The reality on the ground is more nuanced. Most nomads in Bali still use the standard B211A Social/Business visa with extensions, as the formal Remote Worker visa has a $60,000/year income requirement. Understanding your options is key to staying legally and stress-free.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Indonesia for Digital Nomads</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Main options:</strong> B211A visa (most common), Second Home Visa (premium)</li>
+        <li>• <strong>Income requirement:</strong> $60,000/year (Remote Worker) or none (standard B211A)</li>
+        <li>• <strong>Duration:</strong> 60 days + unlimited extensions (B211A) or 5-10 years (Second Home)</li>
+        <li>• <strong>Insurance:</strong> Required but loosely enforced</li>
+        <li>• <strong>Tax status:</strong> Complex—stay under 183 days to avoid residency questions</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Visa Options Comparison</h3>
+
+    <ComparisonTable columns={visaColumns} rows={visaRows} />
+
+    <p class="mt-4">
+      The B211A Social/Business visa is the practical choice for most nomads. It requires a sponsor (usually an agent or Indonesian contact) and can be extended indefinitely, 60 days at a time.
+    </p>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Indonesia/Bali is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want the world's largest nomad community</li>
+          <li>✓ You love tropical beach/surf lifestyle</li>
+          <li>✓ You can handle visa admin (extensions every 60 days)</li>
+          <li>✓ You work APAC, Europe, or flexible hours</li>
+          <li>✓ You want ultra-affordable living</li>
+          <li>✓ You enjoy wellness, yoga, and spiritual culture</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need Americas time zone alignment</li>
+          <li>• You want first-world infrastructure and healthcare</li>
+          <li>• You prefer predictable, multi-year visas</li>
+          <li>• You're uncomfortable with visa gray areas</li>
+          <li>• You need reliable fast internet consistently</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Indonesia has multiple visa pathways for digital nomads. Here are the requirements for the main options:
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">B211A Remote Worker Visa (Official DN Visa)</h3>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Standard B211A (What Most Nomads Use)</h3>
+
+    <p class="mb-4">
+      The standard B211A Social/Business visa has no income requirement and is what most Bali nomads actually use:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Sponsor:</strong> Indonesian citizen or company (agents arrange this)</li>
+      <li><strong>Passport:</strong> 6+ months validity, 2+ blank pages</li>
+      <li><strong>Photo:</strong> Passport-style, white background</li>
+      <li><strong>Return flight:</strong> Proof of exit from Indonesia</li>
+      <li><strong>Insurance:</strong> Technically required, loosely checked</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Gray Area Reality:</strong> Most nomads work remotely on B211A without the formal Remote Worker designation. This is tolerated but technically not the visa's purpose. The formal Remote Worker visa exists but requires $60k+ income.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Second Home Visa (Premium Option)</h3>
+
+    <p class="mb-4">
+      For high-income nomads seeking long-term stability:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>5-10 year visa validity</li>
+      <li>$130,000+ in savings required (or $2,000/month pension)</li>
+      <li>Health insurance mandatory</li>
+      <li>No income requirement beyond savings proof</li>
+      <li>Multiple entry, unlimited stays</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-blue-900 mb-2">Required But Often Unchecked</h3>
+      <p class="text-blue-800">
+        Indonesia officially requires health insurance for visa applications, but enforcement is inconsistent. That said, having proper insurance is <strong>essential</strong> given Indonesia's healthcare limitations.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      While visa enforcement may be lax, Indonesia's healthcare system makes insurance genuinely important—not just a bureaucratic requirement. Serious medical issues often require evacuation to Singapore.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Insurance Matters in Indonesia</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Critical: Emergency Evacuation</h3>
+
+    <p class="mb-4">
+      For serious medical emergencies, you may need evacuation to Singapore—a 2-hour flight with world-class hospitals. This can cost $15,000-50,000+ without insurance. Ensure your policy includes:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li>Medical evacuation coverage ($100,000+ recommended)</li>
+      <li>Singapore and Bangkok in the coverage area</li>
+      <li>Air ambulance provisions</li>
+      <li>Repatriation to home country</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Common Bali Health Issues</h3>
+
+    <p class="mb-4">
+      Your insurance will likely be used for:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Dengue fever:</strong> Common, mosquito-borne, can require hospitalization</li>
+      <li><strong>Bali belly:</strong> Food/water-related illness</li>
+      <li><strong>Motorbike accidents:</strong> Extremely common among tourists</li>
+      <li><strong>Surfing injuries:</strong> Reef cuts, sprains, fractures</li>
+    </ul>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox variant="highlight">
+    <p class="mb-4">Don't risk Indonesia without proper coverage—especially evacuation.</p>
+    <a href="/get-quotes" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors" style="color: #1d4ed8 !important;">
+      Compare Plans with Evacuation →
+    </a>
+  </CTABox>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      These providers are popular among the Bali digital nomad community:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget Nomads</h4>
+        <p class="text-neutral-600">SafetyWing at $45-85/month. The most popular choice in Bali's nomad community. Covers most common issues.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Surfers & Divers</h4>
+        <p class="text-neutral-600">World Nomads. Specifically covers adventure activities that generic policies exclude.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Evacuation Coverage</h4>
+        <p class="text-neutral-600">Cigna Global or BUPA Global. Premium but includes robust Singapore evacuation options.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-Term Residents</h4>
+        <p class="text-neutral-600">April International. Asia-Pacific focused with good regional network.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Motorbike Warning:</strong> Many policies exclude motorbike accidents or require a valid license. Check your policy carefully—this is the #1 cause of tourist injuries in Bali.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Indonesian visa costs are moderate, but frequent extensions add up. Many nomads use agents for convenience.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">First Year Total Cost Estimates</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$1,200</p>
+        <p class="text-sm text-neutral-500 mt-2">B211A + extensions + basic insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Standard Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">B211A + agent + mid-tier insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Second Home Visa</p>
+        <p class="text-3xl font-bold text-neutral-900">$5,500</p>
+        <p class="text-sm text-neutral-500 mt-2">5-year visa + premium insurance</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Popular Locations & Costs</h3>
+
+    <ComparisonTable columns={locationColumns} rows={locationRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-6 mb-3">Monthly Living Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Budget:</strong> $800-1,200/month (shared villa, local food, motorbike)</li>
+      <li><strong>Comfortable:</strong> $1,500-2,500/month (own space, coworking, eating out)</li>
+      <li><strong>Premium:</strong> $3,000-5,000/month (pool villa, fine dining, driver)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Most nomads use a visa agent for the B211A process. It's affordable ($50-200), removes the sponsor requirement, and handles the bureaucracy.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide (B211A with Agent)</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Contact a Visa Agent</h4>
+          <p class="text-neutral-600">Research recommended agents (ask in Bali nomad groups). Send passport scan, photo, and flight details.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Pay and Wait</h4>
+          <p class="text-neutral-600">Agent submits application. Approval typically comes in 3-7 days via email.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enter Indonesia</h4>
+          <p class="text-neutral-600">Show your visa approval at immigration. You'll get a 60-day stamp.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Handle Extensions</h4>
+          <p class="text-neutral-600">Before 60 days, apply for extension (another 60 days). Repeat indefinitely. Agent handles this easily.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Pro tip:</strong> Book extensions 2+ weeks before expiry. Late extensions risk overstay fines. Set calendar reminders.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different nomad situations typically work in Indonesia:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Developer, $8,000/month</h3>
+        <p class="text-neutral-600 mb-4">Remote for US startup, wants to surf and work from Canggu.</p>
+        <p class="text-green-700 font-medium">✓ Could qualify for Remote Worker visa but uses standard B211A for simplicity. Living the dream in Bali.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Designer, $3,500/month</h3>
+        <p class="text-neutral-600 mb-4">Various international clients, wants affordable tropical base.</p>
+        <p class="text-green-700 font-medium">✓ B211A with extensions. Under Remote Worker threshold but B211A works fine.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Retiree with savings</h3>
+        <p class="text-neutral-600 mb-4">$200,000 in investments, wants to split time between Bali and home.</p>
+        <p class="text-green-700 font-medium">✓ Perfect for Second Home Visa. 5-year validity, no extension hassle.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Creator, $1,500/month</h3>
+        <p class="text-neutral-600 mb-4">Growing YouTube channel, budget-conscious, loves Bali lifestyle.</p>
+        <p class="text-amber-700 font-medium">△ B211A works fine. Low income but no formal requirement. Lives very comfortably on this budget.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple wanting to stay long-term</h3>
+        <p class="text-neutral-600 mb-4">Both remote workers, tired of extensions every 60 days.</p>
+        <p class="text-amber-700 font-medium">△ Two B211As with agent-managed extensions. Or do visa runs every 6 months to reset.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US teacher wanting remote work</h3>
+        <p class="text-neutral-600 mb-4">Teaching English online, $2,000/month, wants beach life.</p>
+        <p class="text-green-700 font-medium">✓ B211A no problem. Teaching for foreign platform, not Indonesian students.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox>
+    <p class="mb-4">Compare insurance plans for your Indonesia adventure—get quotes in minutes.</p>
+    <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+      Get Insurance Quotes →
+    </a>
+  </CTABox>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Overstaying Your Visa</h3>
+        <p class="text-neutral-600">Overstay fines are $100/day, plus potential deportation and entry bans. Set extension reminders 2+ weeks ahead. Never cut it close.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Riding Motorbikes Without License</h3>
+        <p class="text-neutral-600">Many insurance policies void coverage without a valid motorcycle license. Get an International Driving Permit before arrival, or a local license in Bali.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Insurance</h3>
+        <p class="text-neutral-600">Hospital bills, dengue treatment, or Singapore medevac can be catastrophic without insurance. The $50-100/month is essential, not optional.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Cheap Unknown Agents</h3>
+        <p class="text-neutral-600">Scam visa agents exist. Use agents recommended in established nomad communities. Pay a bit more for reliability.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Western Infrastructure</h3>
+        <p class="text-neutral-600">Power outages, slow internet days, and traffic are real. Have backup plans for important calls. Starlink is becoming popular.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Tax Residency Issues</h3>
+        <p class="text-neutral-600">Staying 183+ days may trigger Indonesian tax residency. Track your days carefully or plan exit trips to stay under the threshold.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Indonesia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Indonesia</h2>
+
+    <p class="mb-4">
+      Indonesia's healthcare is developing but limited compared to Western countries or Singapore. Private facilities in Bali can handle routine care; serious issues often require evacuation.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Tiers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Bali Private Hospitals</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• BIMC Hospital (Kuta, Nusa Dua) - Best in Bali</li>
+          <li>• Siloam Hospital - Modern, good specialists</li>
+          <li>• Kasih Ibu Hospital - Affordable option</li>
+          <li>• English-speaking staff available</li>
+          <li>• Good for routine and moderate care</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Singapore Evacuation</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• 2-hour flight from Bali</li>
+          <li>• World-class hospitals (Mount Elizabeth, etc.)</li>
+          <li>• Complex surgeries, cancer treatment</li>
+          <li>• Air ambulance: $15,000-50,000+</li>
+          <li>• Standard for serious emergencies</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Common Medical Situations</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Bali belly:</strong> Treatable locally, IV rehydration common</li>
+      <li><strong>Dengue fever:</strong> Local treatment adequate, may need hospitalization</li>
+      <li><strong>Motorbike accidents:</strong> Depends on severity, serious cases need Singapore</li>
+      <li><strong>Dental:</strong> Good affordable options in Bali</li>
+      <li><strong>Complex surgery:</strong> Singapore recommended</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Sample Costs (Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP visit:</strong> $30-60</li>
+      <li><strong>Emergency room:</strong> $100-500</li>
+      <li><strong>Dengue hospitalization:</strong> $500-2,000</li>
+      <li><strong>Singapore evacuation:</strong> $15,000-50,000+</li>
+    </ul>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is it legal to work remotely on a B211A visa?</h3>
+        <p class="text-neutral-600">
+          Gray area. The B211A is technically for social/business visits, not work. The dedicated Remote Worker visa exists but has $60k income requirements. In practice, thousands of nomads work remotely on B211A without issues.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I pay Indonesian taxes?</h3>
+        <p class="text-neutral-600">
+          If you stay 183+ days per year, you may become a tax resident. Most nomads track their days and do visa runs or leave before hitting the threshold. Consult a tax professional for your situation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long can I stay in Indonesia?</h3>
+        <p class="text-neutral-600">
+          With B211A and extensions, theoretically indefinitely. Each extension is 60 days. Some nomads have been in Bali for years this way. The Second Home Visa offers 5-10 years for those with savings.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How reliable is the internet?</h3>
+        <p class="text-neutral-600">
+          Variable. Canggu and Seminyak have decent fiber in many villas. Coworking spaces are reliable. Outages happen. Many nomads use Starlink or mobile hotspot backup for important calls.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Should I use a visa agent?</h3>
+        <p class="text-neutral-600">
+          For B211A, yes. Agents provide the required sponsor, handle paperwork, and manage extensions. It's $50-200 for significant convenience. Ask for recommendations in Bali nomad groups.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Bali safe?</h3>
+        <p class="text-neutral-600">
+          Generally yes. Petty theft exists (secure belongings on motorbikes). Traffic is the main danger—motorbike accidents are extremely common. The biggest health risks are dengue and contaminated water/food.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Indonesia—specifically Bali—offers the world's largest and most established digital nomad community. The visa situation is imperfect (60-day extension cycles, gray areas), but thousands navigate it successfully. The lifestyle is unbeatable: tropical weather, affordable living, surf breaks, wellness culture.
+    </p>
+
+    <p class="mb-4">
+      Insurance is genuinely critical here, not just paperwork. Dengue fever, motorbike accidents, and limited local healthcare make proper coverage essential. Get a policy with strong evacuation benefits to Singapore.
+    </p>
+
+    <p class="mb-6">
+      For nomads who can handle the administrative overhead and embrace the island pace, Bali delivers a lifestyle that's hard to match anywhere else. Just go in with realistic expectations about infrastructure and visa bureaucracy.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Indonesia offers unbeatable lifestyle value for digital nomads willing to navigate the visa process. Get proper insurance with evacuation coverage ($50-150/month), use a reliable visa agent, and enjoy one of the world's best nomad destinations.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Insurance Plans for Indonesia →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/indonesia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Indonesia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Indonesia</p>
+      </a>
+      <a href="/insurance-for/digital-nomads" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Digital Nomads</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for location-independent workers</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/thailand" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Thailand Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative Southeast Asia destination</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

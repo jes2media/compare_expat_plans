@@ -44,6 +44,7 @@ Requires `IDEOGRAM_API_KEY` in `.env` or `Ideogram.env`.
 
 **Page types**:
 - `/countries/[country]/insurance` - Country-specific guides (Spain, Portugal, Mexico, Thailand, Costa Rica, France)
+- `/visas/[visa-type]/in/[country]` - Visa-specific insurance guides (Digital Nomad, Retirement, Student, etc.)
 - `/providers/[provider]` - Insurance provider reviews
 - `/best/[category]` - Comparison/ranking pages
 - `/insurance-for/[audience]` - Audience-specific guides
@@ -117,6 +118,25 @@ Usage: Copy template, replace `{{PLACEHOLDER}}` values.
 12. Final Verdict
 
 Key CRO elements: trust signals, split CTAs with `style="color: white !important;"`, scenario outcome colors (text-green-700, text-amber-700, text-red-700).
+
+**Visa × Country Page Pattern** - Digital Nomad Visa and other visa type pages at `/visas/[visa-type]/in/[country]`:
+- Route: `src/pages/visas/[visa-type]/in/[country].astro`
+- Data: `src/data/visaCountryMatrix.ts` (visa availability and requirements)
+- 12-section structure (~500-600 lines):
+  1. Overview with Quick Facts box
+  2. Quick Decision Guide (good fit / consider alternatives)
+  3. Official Requirements (eligibility, income, documents)
+  4. Insurance Requirements (mandatory vs optional, minimums)
+  5. Recommended Insurance Providers (ComparisonTable)
+  6. Costs Breakdown (visa fees, insurance, living costs)
+  7. Application Timeline (step-by-step)
+  8. Real-World Scenarios (6 scenarios, color-coded)
+  9. Common Mistakes (5 warnings)
+  10. Healthcare System Access
+  11. FAQs (6 questions)
+  12. Final Verdict
+- Uses PageShell with `heroImage="/images/countries/[country]-hero-bg.png"`
+- Note: Czech Republic requires PVZP/Maxima insurance (SafetyWing NOT accepted)
 
 ## Progress Tracking
 

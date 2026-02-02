@@ -1,0 +1,644 @@
+---
+/**
+ * Spain Digital Nomad Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
+  { id: 'requirements', text: 'Visa Requirements', level: 2 },
+  { id: 'insurance-requirements', text: 'Insurance Requirements', level: 2 },
+  { id: 'recommended-providers', text: 'Recommended Providers', level: 2 },
+  { id: 'costs', text: 'Complete Cost Breakdown', level: 2 },
+  { id: 'application-process', text: 'Application Process', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'mistakes', text: 'Common Mistakes', level: 2 },
+  { id: 'healthcare', text: 'Healthcare Access', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Spain Insurance Guide', href: '/countries/spain/insurance' },
+  { title: 'Portugal DNV', href: '/visas/digital-nomad-visa/in/portugal' },
+  { title: 'Best for Digital Nomads', href: '/insurance-for/digital-nomads' },
+  { title: 'Cigna Global Review', href: '/providers/cigna-global' },
+  { title: 'Compare All Plans', href: '/best/expat-health-insurance' },
+];
+
+// Requirements table
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'detail', header: 'Detail' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const requirementsRows = [
+  { requirement: 'Income', detail: '€2,200/month (€26,400/year)', notes: 'Must show consistent income for 12 months' },
+  { requirement: 'Health Insurance', detail: 'Full coverage (cobertura completa)', notes: 'Travel medical NOT accepted' },
+  { requirement: 'Remote Work Proof', detail: 'Contract or client letters', notes: 'Must work for non-Spanish company' },
+  { requirement: 'Spanish Client Limit', detail: 'Max 20% of income', notes: 'Cannot primarily serve Spanish clients' },
+  { requirement: 'Criminal Record', detail: 'Clean record certificate', notes: 'Apostilled and translated' },
+  { requirement: 'Qualifications', detail: '3+ years experience OR degree', notes: 'In your professional field' },
+];
+
+// Insurance comparison table
+const insuranceColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'type', header: 'Type' },
+  { key: 'accepted', header: 'Accepted for DNV?' },
+  { key: 'price', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage Area' },
+];
+
+const insuranceRows = [
+  { provider: 'Cigna Global', type: 'International', accepted: '✅ Yes', price: '€150-300', coverage: 'Worldwide' },
+  { provider: 'Allianz Care', type: 'International', accepted: '✅ Yes', price: '€130-280', coverage: 'Worldwide' },
+  { provider: 'BUPA Global', type: 'International', accepted: '✅ Yes', price: '€180-350', coverage: 'Worldwide' },
+  { provider: 'Sanitas', type: 'Spanish Private', accepted: '✅ Yes', price: '€60-120', coverage: 'Spain only' },
+  { provider: 'Adeslas', type: 'Spanish Private', accepted: '✅ Yes', price: '€50-100', coverage: 'Spain only' },
+  { provider: 'SafetyWing', type: 'Travel Medical', accepted: '❌ No', price: '€45-80', coverage: 'Worldwide' },
+  { provider: 'World Nomads', type: 'Travel Medical', accepted: '❌ No', price: '€50-90', coverage: 'Worldwide' },
+];
+
+// Cost breakdown table
+const costColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'frequency', header: 'Frequency' },
+];
+
+const costRows = [
+  { item: 'Visa Application Fee', amount: '€80', frequency: 'One-time' },
+  { item: 'TIE Card (Residence Card)', amount: '€16', frequency: 'One-time' },
+  { item: 'Document Apostilles', amount: '€50-150', frequency: 'One-time' },
+  { item: 'Translations', amount: '€100-300', frequency: 'One-time' },
+  { item: 'Health Insurance (International)', amount: '€150-300', frequency: 'Monthly' },
+  { item: 'Health Insurance (Spanish)', amount: '€60-120', frequency: 'Monthly' },
+  { item: 'NIE/Tax Registration', amount: '€10-15', frequency: 'One-time' },
+];
+
+// Timeline table
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const timelineRows = [
+  { step: 'Document Gathering', duration: '2-4 weeks', notes: 'Apostilles, translations, insurance' },
+  { step: 'Application Submission', duration: '1 day', notes: 'At consulate or in Spain' },
+  { step: 'Processing Time', duration: '20-45 days', notes: 'Official: 20 working days' },
+  { step: 'TIE Card Appointment', duration: '2-4 weeks wait', notes: 'After visa approval' },
+  { step: 'TIE Card Issuance', duration: '4-6 weeks', notes: 'After biometrics' },
+  { step: 'Total Timeline', duration: '2-4 months', notes: 'Start to finish' },
+];
+
+// Provider comparison table
+const providerCompareColumns = [
+  { key: 'factor', header: 'Factor' },
+  { key: 'international', header: 'International Insurance' },
+  { key: 'spanish', header: 'Spanish Private' },
+];
+
+const providerCompareRows = [
+  { factor: 'Monthly Cost', international: '€150-300', spanish: '€60-120' },
+  { factor: 'Coverage Area', international: 'Worldwide', spanish: 'Spain only' },
+  { factor: 'Pre-existing Conditions', international: 'Waiting periods apply', spanish: 'Often excluded' },
+  { factor: 'Claims Language', international: 'English available', spanish: 'Spanish primarily' },
+  { factor: 'Portability', international: 'Keep if you leave Spain', spanish: 'Cancel if you leave' },
+  { factor: 'Best For', international: 'Travelers, uncertain stays', spanish: 'Long-term, Spain-focused' },
+];
+---
+
+<PageShell
+  title="Spain Digital Nomad Visa 2026: Insurance Requirements & Complete Guide"
+  description="Complete guide to Spain's Digital Nomad Visa (Visado de Nómada Digital). Insurance requirements, costs, application process, and which providers are accepted."
+  headline="Spain Digital Nomad Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about the Visado de Nómada Digital—insurance requirements, costs, and how to apply successfully."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Qualifying Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/countries/spain-hero-bg.png"
+>
+
+  <!-- OVERVIEW -->
+  <h2 id="overview">Overview</h2>
+
+  <p>
+    Spain's Digital Nomad Visa (Visado de Nómada Digital) launched in January 2023 as part of the Startup Law. It allows remote workers employed by non-Spanish companies to live legally in Spain for up to 5 years. The visa has quickly become one of Europe's most popular options for location-independent professionals.
+  </p>
+
+  <p>
+    The key requirement that trips up most applicants? <strong>Health insurance.</strong> Spain requires "cobertura completa" (full coverage)—and travel medical insurance like SafetyWing or World Nomads doesn't qualify. This guide explains exactly what insurance you need and which providers are accepted.
+  </p>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">Visa Snapshot</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Official Name:</strong> Visado de Nómada Digital</li>
+        <li><strong>Launched:</strong> January 2023</li>
+        <li><strong>Duration:</strong> 1 year (renewable to 5 years)</li>
+        <li><strong>Income Requirement:</strong> €2,200/month</li>
+      </ul>
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Insurance Required:</strong> Yes (full coverage)</li>
+        <li><strong>Visa Fee:</strong> €80 + €16 TIE card</li>
+        <li><strong>Processing Time:</strong> 20-45 working days</li>
+        <li><strong>Path to Residency:</strong> Yes (after 5 years)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-green-800 mb-2">Why Spain?</p>
+    <p class="text-green-900 text-sm mb-0">
+      Spain offers one of Europe's most straightforward paths from digital nomad to permanent resident. After 5 years, you can apply for permanent residency—and citizenship after 10 years (2 years for Latin American nationals). Combined with excellent weather, affordable healthcare, and vibrant expat communities in Barcelona, Madrid, and Valencia, Spain is a top-tier destination for remote workers.
+    </p>
+  </div>
+
+  <!-- QUICK DECISION GUIDE -->
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+
+  <p>
+    Not sure if Spain's Digital Nomad Visa is right for you? Here's a quick assessment based on your situation.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-green-900 mb-3">✅ Good Fit If You...</h3>
+      <ul class="space-y-2 text-green-800 text-sm">
+        <li>• Earn €2,200+/month consistently from remote work</li>
+        <li>• Work for a company outside Spain (or are self-employed)</li>
+        <li>• Can afford €100-300/month for qualifying health insurance</li>
+        <li>• Want a clear path to EU permanent residency</li>
+        <li>• Plan to stay in Spain long-term (1-5 years)</li>
+        <li>• Are comfortable with some bureaucracy</li>
+      </ul>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-amber-900 mb-3">⚠️ Consider Alternatives If You...</h3>
+      <ul class="space-y-2 text-amber-800 text-sm">
+        <li>• Earn less than €2,200/month</li>
+        <li>• Want to work for Spanish clients (over 20%)</li>
+        <li>• Prefer minimal paperwork (Portugal may be easier)</li>
+        <li>• Only plan to stay 3-6 months (tourist visa works)</li>
+        <li>• Want the cheapest possible path (Croatia is cheaper)</li>
+        <li>• Need immediate public healthcare access</li>
+      </ul>
+    </div>
+  </div>
+
+  <CTABox
+    title="Need Insurance for Spain's DNV?"
+    description="Compare plans that meet Spain's 'full coverage' requirement. Get quotes in minutes."
+    buttonText="Compare Qualifying Plans →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- REQUIREMENTS -->
+  <h2 id="requirements">Visa Requirements</h2>
+
+  <p>
+    Spain's Digital Nomad Visa has specific requirements you must meet. The income threshold is straightforward, but the insurance and documentation requirements need careful attention.
+  </p>
+
+  <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+  <h3>Income Verification</h3>
+
+  <p>
+    You need to prove €2,200/month (about $2,400 USD) in income. Spain wants to see consistent earnings, not a one-time spike. Prepare 12 months of bank statements showing regular deposits at or above this level.
+  </p>
+
+  <p>
+    <strong>Self-employed?</strong> Provide client contracts, invoices, and bank statements showing payments. Multiple clients strengthen your application—it shows income stability.
+  </p>
+
+  <p>
+    <strong>Variable income?</strong> If some months fall below €2,200, your average should still meet the threshold. Alternatively, show savings of €26,400+ (one year's worth) as a buffer.
+  </p>
+
+  <h3>The 20% Spanish Client Rule</h3>
+
+  <p>
+    You cannot earn more than 20% of your income from Spanish clients. This visa is for people working remotely for foreign companies—not freelancers primarily serving the Spanish market. If you want to work mainly with Spanish clients, you need a different visa (autónomo).
+  </p>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">Document Tip</p>
+    <p class="text-amber-900 text-sm mb-0">
+      All non-Spanish documents must be apostilled and translated by a sworn translator. Budget €100-300 for translations and allow 2-4 weeks for apostilles from your home country. Start this process early—it's often the biggest delay.
+    </p>
+  </div>
+
+  <!-- INSURANCE REQUIREMENTS (KEY SECTION) -->
+  <h2 id="insurance-requirements">Insurance Requirements</h2>
+
+  <p>
+    This is where most applications fail. Spain requires "cobertura completa" (full coverage) health insurance—and travel medical insurance doesn't qualify. Let's be specific about what works and what doesn't.
+  </p>
+
+  <div class="bg-red-50 border border-red-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-red-800 mb-2">⚠️ Travel Medical Insurance is NOT Accepted</p>
+    <p class="text-red-900 text-sm mb-0">
+      SafetyWing, World Nomads, and similar travel medical policies do NOT meet Spain's requirements. These policies explicitly state they don't cover visa requirements. Applying with travel insurance will result in rejection—don't waste your application fee.
+    </p>
+  </div>
+
+  <h3>What "Full Coverage" Means</h3>
+
+  <p>
+    Spanish authorities require insurance that covers:
+  </p>
+
+  <ul>
+    <li><strong>Hospitalization</strong> — Inpatient care for illness or injury</li>
+    <li><strong>Outpatient care</strong> — Doctor visits, specialists, diagnostics</li>
+    <li><strong>Emergency care</strong> — 24/7 emergency treatment</li>
+    <li><strong>Repatriation</strong> — Medical evacuation if needed</li>
+    <li><strong>Full visa duration</strong> — Coverage for the entire 1-year period (no gaps)</li>
+  </ul>
+
+  <p>
+    The policy must specifically cover Spain, have no major exclusions for routine care, and be issued by a legitimate insurance company (not a discount card or limited benefit plan).
+  </p>
+
+  <h3>Which Providers Are Accepted?</h3>
+
+  <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+  <h3>International vs Spanish Insurance</h3>
+
+  <p>
+    You have two main options: international health insurance (Cigna, Allianz, BUPA) or Spanish private insurance (Sanitas, Adeslas). Here's how they compare:
+  </p>
+
+  <ComparisonTable columns={providerCompareColumns} rows={providerCompareRows} />
+
+  <p>
+    <strong>Our recommendation:</strong> If you're certain you'll stay in Spain long-term and rarely travel, Spanish private insurance is more economical. If you might relocate, travel frequently, or want English-language support, international insurance is worth the premium.
+  </p>
+
+  <CTABox
+    title="Get Insurance That Qualifies"
+    description="Don't risk rejection. Compare international health insurance plans accepted for Spain's DNV."
+    buttonText="Compare Plans Now →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- RECOMMENDED PROVIDERS -->
+  <h2 id="recommended-providers">Recommended Insurance Providers</h2>
+
+  <p>
+    Based on acceptance rates, coverage quality, and expat feedback, here are our top picks for Spain's Digital Nomad Visa:
+  </p>
+
+  <h3>Best Overall: Cigna Global</h3>
+
+  <p>
+    Cigna Global is the gold standard for expat health insurance. Their plans are universally accepted for visa applications, claims processing is fast (5-7 days), and their network includes major Spanish hospitals. Expect to pay €150-300/month depending on your age and coverage level.
+  </p>
+
+  <ul>
+    <li><strong>Pros:</strong> Accepted everywhere, fast claims, excellent network</li>
+    <li><strong>Cons:</strong> Higher price than Spanish insurers</li>
+    <li><strong>Best for:</strong> Those who want zero visa application risk</li>
+  </ul>
+
+  <h3>Best Value: Allianz Care</h3>
+
+  <p>
+    Allianz Care offers similar coverage to Cigna at slightly lower prices. Their European focus means strong networks in Spain. High-deductible options can reduce premiums significantly for healthy applicants.
+  </p>
+
+  <ul>
+    <li><strong>Pros:</strong> Lower premiums, strong EU network, flexible deductibles</li>
+    <li><strong>Cons:</strong> Claims can be slower than Cigna</li>
+    <li><strong>Best for:</strong> Budget-conscious applicants wanting international coverage</li>
+  </ul>
+
+  <h3>Best Budget Option: Sanitas</h3>
+
+  <p>
+    Sanitas is Spain's largest private health insurer. Plans start at €60-80/month—half the cost of international options. Coverage is excellent within Spain, and they're fully accepted for visa applications.
+  </p>
+
+  <ul>
+    <li><strong>Pros:</strong> Lowest cost, widely accepted, good Spanish network</li>
+    <li><strong>Cons:</strong> Spain-only coverage, Spanish-language support</li>
+    <li><strong>Best for:</strong> Those committed to staying in Spain who want to minimize costs</li>
+  </ul>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-blue-800 mb-2">Pro Tip: Get Insurance Before Applying</p>
+    <p class="text-blue-900 text-sm mb-0">
+      Purchase your insurance policy before submitting your visa application. You'll need to provide the insurance certificate as part of your documentation. Some applicants get quotes first, but don't wait—insurers can take 1-2 weeks to issue policies.
+    </p>
+  </div>
+
+  <!-- COSTS -->
+  <h2 id="costs">Complete Cost Breakdown</h2>
+
+  <p>
+    Here's what you'll actually spend to get Spain's Digital Nomad Visa, from application to arrival.
+  </p>
+
+  <ComparisonTable columns={costColumns} rows={costRows} />
+
+  <h3>Total First-Year Costs</h3>
+
+  <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="text-lg font-semibold text-neutral-900 mb-3">Budget Path (Spanish Insurance)</h4>
+      <ul class="space-y-2 text-neutral-700 text-sm">
+        <li>Visa fees: ~€100</li>
+        <li>Documents: ~€200</li>
+        <li>Insurance (12 months): ~€1,000</li>
+        <li class="font-semibold pt-2 border-t">Total: ~€1,300/year</li>
+      </ul>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="text-lg font-semibold text-neutral-900 mb-3">Premium Path (International Insurance)</h4>
+      <ul class="space-y-2 text-neutral-700 text-sm">
+        <li>Visa fees: ~€100</li>
+        <li>Documents: ~€200</li>
+        <li>Insurance (12 months): ~€2,400</li>
+        <li class="font-semibold pt-2 border-t">Total: ~€2,700/year</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    The visa itself is cheap (€96 total). Insurance is your main ongoing cost. Budget €720-2,880/year depending on your choice of provider and coverage level.
+  </p>
+
+  <!-- APPLICATION PROCESS -->
+  <h2 id="application-process">Application Process</h2>
+
+  <p>
+    You can apply for Spain's Digital Nomad Visa either from your home country (at a Spanish consulate) or from within Spain (if you entered on a tourist visa). Here's the step-by-step process.
+  </p>
+
+  <h3>Option 1: Apply from Your Home Country</h3>
+
+  <ol>
+    <li><strong>Gather documents</strong> — Passport, income proof (12 months bank statements), employment contract or client letters, criminal record certificate (apostilled), health insurance certificate</li>
+    <li><strong>Get apostilles and translations</strong> — All non-Spanish documents need apostilles from your country and sworn translations into Spanish</li>
+    <li><strong>Book consulate appointment</strong> — Schedule a visa appointment at your nearest Spanish consulate</li>
+    <li><strong>Submit application</strong> — Attend appointment, submit documents, pay €80 fee</li>
+    <li><strong>Wait for processing</strong> — Official time is 20 working days, but expect 30-45 days</li>
+    <li><strong>Receive visa</strong> — Visa is stamped in your passport</li>
+    <li><strong>Enter Spain and get TIE</strong> — Within 30 days of arrival, apply for TIE card (residence card) at local police station</li>
+  </ol>
+
+  <h3>Option 2: Apply from Within Spain</h3>
+
+  <ol>
+    <li><strong>Enter Spain on tourist visa</strong> — You have 90 days as a US/UK/Canadian citizen</li>
+    <li><strong>Gather documents</strong> — Same as above, but you can get some documents locally</li>
+    <li><strong>Apply at Extranjería office</strong> — Submit application within 60 days of arrival</li>
+    <li><strong>Wait for processing</strong> — Similar timeline (20-45 days)</li>
+    <li><strong>Receive approval and get TIE</strong> — Schedule biometrics appointment for residence card</li>
+  </ol>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">60-Day Warning</p>
+    <p class="text-amber-900 text-sm mb-0">
+      If applying from within Spain, you MUST submit your application within 60 days of arrival. This deadline is strict. If you miss it, you'll need to leave Spain and apply from a consulate abroad. Don't procrastinate—start gathering documents before you arrive.
+    </p>
+  </div>
+
+  <h3>Expected Timeline</h3>
+
+  <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+  <!-- REAL-WORLD SCENARIOS -->
+  <h2 id="scenarios">Real-World Scenarios</h2>
+
+  <p>
+    How does Spain's Digital Nomad Visa work in practice? Here are common scenarios and outcomes.
+  </p>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-green-50 border-l-4 border-green-500 p-4">
+      <h4 class="font-semibold text-green-900">Scenario 1: Remote Employee, US Company</h4>
+      <p class="text-green-800 text-sm mt-2">
+        Sarah, 32, works remotely for a US tech company earning $5,000/month. She gets Cigna Global insurance (€180/month), gathers her documents, and applies at the Spanish consulate in New York. Approved in 25 days. <strong class="text-green-700">Result: Approved ✓</strong>
+      </p>
+    </div>
+
+    <div class="bg-green-50 border-l-4 border-green-500 p-4">
+      <h4 class="font-semibold text-green-900">Scenario 2: Freelancer, Multiple Clients</h4>
+      <p class="text-green-800 text-sm mt-2">
+        Marco, 28, is a freelance designer with clients in the UK, Germany, and Australia. He earns €3,500/month average. He gets Sanitas Spanish insurance (€70/month) and provides 12 months of invoices and bank statements. <strong class="text-green-700">Result: Approved ✓</strong>
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+      <h4 class="font-semibold text-red-900">Scenario 3: SafetyWing Insurance</h4>
+      <p class="text-red-800 text-sm mt-2">
+        Tom, 35, applies with SafetyWing Nomad Insurance thinking it's "international health insurance." His application is rejected. He has to reapply with proper insurance, losing 2 months and paying another application fee. <strong class="text-red-700">Result: Rejected ✗</strong>
+      </p>
+    </div>
+
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+      <h4 class="font-semibold text-amber-900">Scenario 4: Income Just at Threshold</h4>
+      <p class="text-amber-800 text-sm mt-2">
+        Lisa, 29, earns €2,300/month—just above the minimum. Some months she earned €1,800. She includes bank statements showing €28,000 in savings as a buffer. The consulate accepts her application after requesting additional documentation. <strong class="text-amber-700">Result: Approved (with extra scrutiny)</strong>
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+      <h4 class="font-semibold text-red-900">Scenario 5: Missed 60-Day Deadline</h4>
+      <p class="text-red-800 text-sm mt-2">
+        James, 40, enters Spain on a tourist visa planning to apply for the DNV. He gets distracted and doesn't submit until day 75. His application is rejected for missing the deadline. He must leave Spain and apply from abroad. <strong class="text-red-700">Result: Rejected ✗</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- COMMON MISTAKES -->
+  <h2 id="mistakes">Common Mistakes to Avoid</h2>
+
+  <p>
+    Learn from others' expensive errors. These are the mistakes we see most often with Spain's Digital Nomad Visa applications.
+  </p>
+
+  <div class="space-y-4 my-8">
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Using Travel Medical Insurance</p>
+      <p class="text-red-700 text-sm mt-1">
+        SafetyWing, World Nomads, and similar policies are NOT accepted. Period. They explicitly state they don't cover visa requirements. You need annual health insurance, not travel medical.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Missing the 60-Day Window</p>
+      <p class="text-red-700 text-sm mt-1">
+        If applying from within Spain, you must submit within 60 days of arrival. There's no extension. Miss it and you'll need to leave Spain and apply from a consulate abroad.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Incomplete Document Apostilles</p>
+      <p class="text-red-700 text-sm mt-1">
+        Every foreign document needs an apostille from your home country AND a sworn translation. Missing apostilles = rejected application. Start this process 4+ weeks before applying.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Inconsistent Income Documentation</p>
+      <p class="text-red-700 text-sm mt-1">
+        Bank statements must match your claimed income. If your contract says €3,000/month but deposits show €2,000, you'll face questions. Ensure everything aligns.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Working for Spanish Clients Over 20%</p>
+      <p class="text-red-700 text-sm mt-1">
+        The DNV is for remote workers serving non-Spanish clients. If you work primarily with Spanish businesses, you need the autónomo (self-employed) visa instead.
+      </p>
+    </div>
+  </div>
+
+  <CTABox
+    title="Don't Make the Insurance Mistake"
+    description="Get proper coverage before you apply. Compare international health insurance plans accepted for Spain's DNV."
+    buttonText="Compare Qualifying Plans →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- HEALTHCARE ACCESS -->
+  <h2 id="healthcare">Healthcare Access in Spain</h2>
+
+  <p>
+    What healthcare can you actually access with the Digital Nomad Visa? The answer is more limited than many expect.
+  </p>
+
+  <h3>Public Healthcare: Not Automatically Included</h3>
+
+  <p>
+    Digital Nomad Visa holders do NOT have automatic access to Spain's public healthcare system (Sistema Nacional de Salud). Unlike employed residents who contribute to Social Security, DNV holders aren't enrolled in the public system by default.
+  </p>
+
+  <p>
+    You may gain access after becoming a tax resident and contributing to Social Security for 6+ months—but this isn't guaranteed. Until then, you rely entirely on your private insurance.
+  </p>
+
+  <h3>Private Healthcare: Your Primary Option</h3>
+
+  <p>
+    Spain has excellent private healthcare. Major cities have modern hospitals, English-speaking doctors, and short wait times. Your insurance (international or Spanish) will cover care at private facilities.
+  </p>
+
+  <ul>
+    <li><strong>Doctor visits:</strong> €50-100 private (often same-day)</li>
+    <li><strong>Specialist consultations:</strong> €100-200 private</li>
+    <li><strong>Hospital stays:</strong> €200-500/night private</li>
+    <li><strong>Emergency room:</strong> €100-300 private (public ER is free for emergencies)</li>
+  </ul>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-blue-800 mb-2">Emergency Care Exception</p>
+    <p class="text-blue-900 text-sm mb-0">
+      Public emergency rooms (Urgencias) will treat anyone regardless of insurance status. You won't be turned away in an emergency. However, follow-up care and non-emergency treatment require private insurance or payment.
+    </p>
+  </div>
+
+  <!-- FAQ -->
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div>
+      <h3>Will SafetyWing be accepted for Spain's Digital Nomad Visa?</h3>
+      <p>
+        No. SafetyWing is travel medical insurance, not comprehensive health insurance. Spanish authorities require "cobertura completa" (full coverage). SafetyWing explicitly states they don't cover visa requirements. Applications with SafetyWing are rejected.
+      </p>
+    </div>
+
+    <div>
+      <h3>Can I use Spanish public healthcare with the DNV?</h3>
+      <p>
+        Not initially. DNV holders aren't automatically enrolled in the public system. You must maintain private insurance. After becoming a tax resident and contributing to Social Security for 6+ months, you may qualify—but it's not guaranteed.
+      </p>
+    </div>
+
+    <div>
+      <h3>Is Spanish or international insurance better?</h3>
+      <p>
+        Spanish insurance (Sanitas, Adeslas) is cheaper (€60-120/month) but only covers Spain. International insurance (Cigna, Allianz) costs more (€150-300/month) but covers you worldwide. Choose Spanish if you're staying put, international if you travel.
+      </p>
+    </div>
+
+    <div>
+      <h3>What if my income varies month to month?</h3>
+      <p>
+        Your average should meet the €2,200 threshold. If some months fall below, show savings of €26,400+ as a buffer. Freelancers with variable income should emphasize their 12-month average and provide multiple client contracts to show stability.
+      </p>
+    </div>
+
+    <div>
+      <h3>Can my family join me on the DNV?</h3>
+      <p>
+        Yes. Spouses and children can apply as dependents. Each needs their own health insurance. Income requirements increase: add 75% (€1,650) for a spouse and 25% (€550) per child. So a family of four needs about €4,400/month.
+      </p>
+    </div>
+
+    <div>
+      <h3>Does the DNV lead to permanent residency?</h3>
+      <p>
+        Yes. After 5 years of continuous legal residence, you can apply for permanent residency. After 10 years (2 years for Latin American nationals), you can apply for Spanish citizenship. This is one of Spain's most attractive features.
+      </p>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <h2 id="verdict">Final Verdict</h2>
+
+  <p>
+    Spain's Digital Nomad Visa is one of Europe's best options for remote workers. The income requirement (€2,200/month) is accessible, the path to residency is clear, and Spain offers an excellent quality of life.
+  </p>
+
+  <p>
+    The main hurdle is health insurance. Don't make the common mistake of applying with travel medical insurance—it will be rejected. Budget €100-300/month for proper coverage from an international or Spanish insurer.
+  </p>
+
+  <p>
+    If you earn the income threshold, can afford qualifying insurance, and want a long-term European base, Spain's DNV is an excellent choice. The bureaucracy is manageable, and the payoff—legal residency in one of Europe's most livable countries—is worth it.
+  </p>
+
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-8 not-prose">
+    <h3 class="text-lg font-semibold text-primary-900 mb-3">Bottom Line</h3>
+    <p class="text-primary-800 mb-4">
+      Spain's Digital Nomad Visa is ideal for remote workers earning €2,200+/month who want a clear path to EU residency. Don't risk rejection—get proper health insurance before you apply.
+    </p>
+    <a
+      href="/best/expat-health-insurance"
+      class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+      style="color: white !important;"
+    >
+      Compare Qualifying Insurance Plans →
+    </a>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> Visa requirements change. This guide reflects our research as of the publication date. Always verify current requirements with Spanish consulates and official government sources. We are not immigration lawyers or insurance brokers. This is informational content, not legal or professional advice.
+    </p>
+  </div>
+
+</PageShell>

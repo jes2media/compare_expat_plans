@@ -1,0 +1,545 @@
+---
+/**
+ * Portugal Digital Nomad Visa - Long-form CRO-optimized page
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'quick-decision', text: 'Quick Decision Guide', level: 2 },
+  { id: 'd7-vs-d8', text: 'D7 vs D8 Visa', level: 2 },
+  { id: 'requirements', text: 'Visa Requirements', level: 2 },
+  { id: 'insurance-requirements', text: 'Insurance Requirements', level: 2 },
+  { id: 'recommended-providers', text: 'Recommended Providers', level: 2 },
+  { id: 'costs', text: 'Complete Cost Breakdown', level: 2 },
+  { id: 'application-process', text: 'Application Process', level: 2 },
+  { id: 'nhr-tax', text: 'NHR Tax Benefits', level: 2 },
+  { id: 'scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'mistakes', text: 'Common Mistakes', level: 2 },
+  { id: 'faq', text: 'FAQ', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Portugal Insurance Guide', href: '/countries/portugal/insurance' },
+  { title: 'Spain DNV', href: '/visas/digital-nomad-visa/in/spain' },
+  { title: 'Best for Digital Nomads', href: '/insurance-for/digital-nomads' },
+  { title: 'Allianz Care Review', href: '/providers/allianz-care' },
+  { title: 'Compare All Plans', href: '/best/expat-health-insurance' },
+];
+
+// Requirements table
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'detail', header: 'Detail' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const requirementsRows = [
+  { requirement: 'Income', detail: '€3,040/month (4x minimum wage)', notes: 'Higher than Spain\'s €2,200' },
+  { requirement: 'Health Insurance', detail: 'Coverage valid in Portugal', notes: 'Less strict than Spain' },
+  { requirement: 'Remote Work Proof', detail: 'Employment contract or client proof', notes: 'For non-Portuguese employer' },
+  { requirement: 'Accommodation', detail: 'Proof of housing in Portugal', notes: 'Rental contract or ownership' },
+  { requirement: 'Criminal Record', detail: 'Clean record certificate', notes: 'From country of residence' },
+  { requirement: 'Tax Registration', detail: 'NIF (Portuguese tax number)', notes: 'Can get before or after arrival' },
+];
+
+// D7 vs D8 comparison
+const visaCompareColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'd7', header: 'D7 Visa (Passive Income)' },
+  { key: 'd8', header: 'D8 Visa (Digital Nomad)' },
+];
+
+const visaCompareRows = [
+  { aspect: 'Income Type', d7: 'Passive (pension, investments, rent)', d8: 'Active (remote employment/freelance)' },
+  { aspect: 'Income Minimum', d7: '€760/month', d8: '€3,040/month' },
+  { aspect: 'Work Allowed', d7: 'Limited (passive income focus)', d8: 'Yes (remote for foreign employer)' },
+  { aspect: 'Best For', d7: 'Retirees, investors', d8: 'Remote workers, freelancers' },
+  { aspect: 'Processing Time', d7: '2-4 months', d8: '2-3 months' },
+  { aspect: 'Path to Citizenship', d7: '5 years', d8: '5 years' },
+];
+
+// Insurance comparison
+const insuranceColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'type', header: 'Type' },
+  { key: 'accepted', header: 'Accepted?' },
+  { key: 'price', header: 'Monthly Cost' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const insuranceRows = [
+  { provider: 'Cigna Global', type: 'International', accepted: '✅ Yes', price: '€150-280', notes: 'Best overall' },
+  { provider: 'Allianz Care', type: 'International', accepted: '✅ Yes', price: '€120-250', notes: 'Best value' },
+  { provider: 'BUPA Global', type: 'International', accepted: '✅ Yes', price: '€170-320', notes: 'Premium option' },
+  { provider: 'SafetyWing', type: 'Travel Medical', accepted: '⚠️ Maybe', price: '€45-80', notes: 'Initial visa only' },
+  { provider: 'IMG Global', type: 'International', accepted: '✅ Yes', price: '€100-200', notes: 'Good mid-range' },
+  { provider: 'Médis', type: 'Portuguese', accepted: '✅ Yes', price: '€50-100', notes: 'Local option' },
+];
+
+// Cost breakdown
+const costColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'frequency', header: 'Frequency' },
+];
+
+const costRows = [
+  { item: 'D8 Visa Application', amount: '€90', frequency: 'One-time' },
+  { item: 'Residence Permit', amount: '€72', frequency: 'One-time' },
+  { item: 'Document Translations', amount: '€100-250', frequency: 'One-time' },
+  { item: 'Criminal Record Apostille', amount: '€50-100', frequency: 'One-time' },
+  { item: 'NIF Registration', amount: 'Free-€50', frequency: 'One-time' },
+  { item: 'Health Insurance', amount: '€80-280', frequency: 'Monthly' },
+  { item: 'SEF Appointment Fee', amount: '€50', frequency: 'One-time' },
+];
+
+// Timeline
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const timelineRows = [
+  { step: 'NIF Application', duration: '1-2 weeks', notes: 'Can do remotely with fiscal representative' },
+  { step: 'Document Gathering', duration: '2-4 weeks', notes: 'Translations, apostilles' },
+  { step: 'Visa Application', duration: '1 day', notes: 'At Portuguese consulate' },
+  { step: 'Visa Processing', duration: '2-3 months', notes: 'Often the longest wait' },
+  { step: 'Enter Portugal', duration: 'Within 4 months', notes: 'After visa approval' },
+  { step: 'Residence Permit (AIMA)', duration: '2-6 months', notes: 'Formerly SEF, major backlog' },
+  { step: 'Total Timeline', duration: '4-8 months', notes: 'Start to residence card' },
+];
+---
+
+<PageShell
+  title="Portugal Digital Nomad Visa 2026: D8 Visa Requirements & Insurance Guide"
+  description="Complete guide to Portugal's D8 Digital Nomad Visa. Requirements, insurance, NHR tax benefits, and path to EU citizenship in 5 years."
+  headline="Portugal Digital Nomad Visa (D8): Complete Guide"
+  subheadline="Higher income requirement than Spain, but faster path to EU citizenship and major tax benefits. Here's everything you need to know."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Qualifying Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/countries/portugal-hero-bg.png"
+>
+
+  <!-- OVERVIEW -->
+  <h2 id="overview">Overview</h2>
+
+  <p>
+    Portugal's Digital Nomad Visa (officially the D8 visa for remote workers) launched in late 2022. It allows remote workers earning at least €3,040/month to live legally in Portugal while working for non-Portuguese employers. The visa offers a clear path to permanent residency and EU citizenship.
+  </p>
+
+  <p>
+    Portugal's main advantages over Spain? Faster citizenship (5 years vs 10), the NHR tax regime offering significant tax benefits, and generally easier bureaucracy. The tradeoff is a higher income requirement—€3,040/month vs Spain's €2,200.
+  </p>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 my-8">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-3">Visa Snapshot</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Official Name:</strong> D8 Visa (Remote Workers)</li>
+        <li><strong>Launched:</strong> October 2022</li>
+        <li><strong>Duration:</strong> 1 year → 2 year residence permit</li>
+        <li><strong>Income Requirement:</strong> €3,040/month</li>
+      </ul>
+      <ul class="space-y-2 text-neutral-600">
+        <li><strong>Insurance Required:</strong> Yes</li>
+        <li><strong>Visa Fee:</strong> €90 + €72 residence</li>
+        <li><strong>Processing Time:</strong> 2-3 months</li>
+        <li><strong>Path to Citizenship:</strong> 5 years</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bg-green-50 border border-green-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-green-800 mb-2">Why Portugal?</p>
+    <p class="text-green-900 text-sm mb-0">
+      Portugal offers one of the fastest paths to EU citizenship—just 5 years of residence. The NHR tax regime can reduce your tax burden significantly for 10 years. Add excellent weather, affordable cost of living (outside Lisbon), and a large English-speaking expat community, and Portugal is a top choice for long-term digital nomads.
+    </p>
+  </div>
+
+  <!-- QUICK DECISION GUIDE -->
+  <h2 id="quick-decision">Quick Decision Guide</h2>
+
+  <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-green-900 mb-3">✅ Good Fit If You...</h3>
+      <ul class="space-y-2 text-green-800 text-sm">
+        <li>• Earn €3,040+/month consistently</li>
+        <li>• Want EU citizenship in 5 years</li>
+        <li>• Can benefit from NHR tax regime</li>
+        <li>• Work remotely for non-Portuguese company</li>
+        <li>• Want access to Schengen Area</li>
+        <li>• Prefer milder bureaucracy than Spain</li>
+      </ul>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-amber-900 mb-3">⚠️ Consider Alternatives If You...</h3>
+      <ul class="space-y-2 text-amber-800 text-sm">
+        <li>• Earn less than €3,040/month (Spain is €2,200)</li>
+        <li>• Have passive income only (D7 visa is better)</li>
+        <li>• Want cheaper cost of living (try Colombia)</li>
+        <li>• Need immediate public healthcare</li>
+        <li>• Can't wait 2-6 months for residence permit</li>
+        <li>• Prefer larger cities (Madrid > Lisbon)</li>
+      </ul>
+    </div>
+  </div>
+
+  <CTABox
+    title="Need Insurance for Portugal's D8 Visa?"
+    description="Compare plans accepted for the Digital Nomad Visa. Get quotes in minutes."
+    buttonText="Compare Qualifying Plans →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- D7 VS D8 -->
+  <h2 id="d7-vs-d8">D7 vs D8 Visa: Which One?</h2>
+
+  <p>
+    Portugal has two main visa options for location-independent workers. Choosing the wrong one wastes time and money. Here's the difference:
+  </p>
+
+  <ComparisonTable columns={visaCompareColumns} rows={visaCompareRows} />
+
+  <p>
+    <strong>Bottom line:</strong> If you work remotely for salary or freelance income, use the D8. If you live off investments, rental income, or pension, use the D7. The D7's lower income requirement (€760/month) is tempting, but it's meant for passive income—applying with active work income may cause problems.
+  </p>
+
+  <!-- REQUIREMENTS -->
+  <h2 id="requirements">Visa Requirements</h2>
+
+  <p>
+    Portugal's D8 visa requirements are straightforward but the income threshold is higher than most European digital nomad visas.
+  </p>
+
+  <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+  <h3>The €3,040 Income Requirement</h3>
+
+  <p>
+    Portugal requires 4x the Portuguese minimum wage—currently €3,040/month (about $3,300 USD). This is significantly higher than Spain (€2,200) or Croatia (€2,539). You'll need bank statements showing consistent income at this level.
+  </p>
+
+  <p>
+    <strong>Freelancers:</strong> Provide client contracts, invoices, and bank statements. Variable income is okay if your average meets the threshold. Having multiple clients strengthens your application.
+  </p>
+
+  <h3>Accommodation Proof</h3>
+
+  <p>
+    Unlike Spain, Portugal requires proof of accommodation before visa approval. This can be a rental contract, property deed, or hotel booking for initial stay plus a letter explaining your housing plan. Many applicants secure short-term rentals through Airbnb or local agencies.
+  </p>
+
+  <!-- INSURANCE REQUIREMENTS -->
+  <h2 id="insurance-requirements">Insurance Requirements</h2>
+
+  <p>
+    Portugal's insurance requirements are less strict than Spain's. You need health insurance valid in Portugal, but the definition of "valid" has more flexibility.
+  </p>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-blue-800 mb-2">Good News: More Flexibility</p>
+    <p class="text-blue-900 text-sm mb-0">
+      Unlike Spain (which explicitly rejects travel medical insurance), Portugal's requirements are less defined. Some applicants have successfully used SafetyWing for the initial visa. However, for the residence permit stage, more comprehensive coverage is recommended.
+    </p>
+  </div>
+
+  <h3>Which Providers Are Accepted?</h3>
+
+  <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+  <h3>Our Recommendation</h3>
+
+  <p>
+    For the visa application, you might get away with travel medical insurance. But for the residence permit (and your own protection), upgrade to proper international health insurance. Portugal's public healthcare has long waits—you'll want private coverage anyway.
+  </p>
+
+  <p>
+    <strong>Best value:</strong> Allianz Care offers strong European coverage at reasonable prices. <strong>Best overall:</strong> Cigna Global if budget allows. <strong>Budget option:</strong> IMG Global for solid mid-range coverage.
+  </p>
+
+  <CTABox
+    title="Get Covered for Portugal"
+    description="Compare international health insurance accepted for Portugal's D8 visa."
+    buttonText="Compare Plans Now →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- RECOMMENDED PROVIDERS -->
+  <h2 id="recommended-providers">Recommended Insurance Providers</h2>
+
+  <h3>Best Overall: Cigna Global</h3>
+
+  <p>
+    Cigna Global provides comprehensive coverage accepted universally for visa applications. Strong network in Portugal including major hospitals in Lisbon and Porto. Fast claims processing (5-7 days). Expect €150-280/month.
+  </p>
+
+  <h3>Best Value: Allianz Care</h3>
+
+  <p>
+    Allianz Care offers excellent European coverage at lower prices than Cigna. High-deductible options can reduce premiums significantly. Good choice for healthy applicants who want to minimize costs while maintaining quality coverage. €120-250/month.
+  </p>
+
+  <h3>Budget Option: IMG Global</h3>
+
+  <p>
+    IMG Global provides solid international coverage at mid-range prices. Their 50% deductible waiver for care outside the US is a nice perk. Good option if Cigna and Allianz are beyond budget. €100-200/month.
+  </p>
+
+  <!-- COSTS -->
+  <h2 id="costs">Complete Cost Breakdown</h2>
+
+  <ComparisonTable columns={costColumns} rows={costRows} />
+
+  <h3>Total First-Year Costs</h3>
+
+  <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="text-lg font-semibold text-neutral-900 mb-3">Budget Path</h4>
+      <ul class="space-y-2 text-neutral-700 text-sm">
+        <li>Visa & permits: ~€250</li>
+        <li>Documents: ~€200</li>
+        <li>Insurance (12 months): ~€1,200</li>
+        <li class="font-semibold pt-2 border-t">Total: ~€1,650/year</li>
+      </ul>
+    </div>
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+      <h4 class="text-lg font-semibold text-neutral-900 mb-3">Premium Path</h4>
+      <ul class="space-y-2 text-neutral-700 text-sm">
+        <li>Visa & permits: ~€250</li>
+        <li>Documents: ~€200</li>
+        <li>Insurance (12 months): ~€3,000</li>
+        <li class="font-semibold pt-2 border-t">Total: ~€3,450/year</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- APPLICATION PROCESS -->
+  <h2 id="application-process">Application Process</h2>
+
+  <h3>Step-by-Step Process</h3>
+
+  <ol>
+    <li><strong>Get your NIF</strong> — Portuguese tax number. Can be done remotely through a fiscal representative (€50-150) or in person at a Finanças office (free).</li>
+    <li><strong>Gather documents</strong> — Passport, income proof, insurance, criminal record (apostilled), accommodation proof, employment/freelance documentation.</li>
+    <li><strong>Apply at consulate</strong> — Submit D8 visa application at Portuguese consulate in your country. Pay €90 fee.</li>
+    <li><strong>Wait for processing</strong> — 2-3 months typically. Some consulates are faster.</li>
+    <li><strong>Enter Portugal</strong> — Within 4 months of visa approval.</li>
+    <li><strong>Apply for residence permit</strong> — Schedule appointment with AIMA (formerly SEF). This is currently backlogged 2-6 months.</li>
+    <li><strong>Receive residence card</strong> — Valid for 2 years, renewable.</li>
+  </ol>
+
+  <h3>Expected Timeline</h3>
+
+  <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+    <p class="font-semibold text-amber-800 mb-2">AIMA Backlog Warning</p>
+    <p class="text-amber-900 text-sm mb-0">
+      Portugal's immigration agency (AIMA, formerly SEF) has a significant backlog. After arriving, you may wait 2-6 months for your residence permit appointment. Your visa stamp allows you to stay legally during this time, but it can be frustrating. Budget extra time.
+    </p>
+  </div>
+
+  <!-- NHR TAX BENEFITS -->
+  <h2 id="nhr-tax">NHR Tax Benefits</h2>
+
+  <p>
+    Portugal's Non-Habitual Resident (NHR) tax regime is a major draw. It offers significant tax benefits for 10 years—but you must apply within 12 months of becoming a tax resident.
+  </p>
+
+  <h3>Key NHR Benefits</h3>
+
+  <ul>
+    <li><strong>20% flat tax</strong> on Portuguese-source income from "high value" activities (includes most tech/professional work)</li>
+    <li><strong>Potential exemption</strong> on foreign-source income if taxed in the source country</li>
+    <li><strong>No wealth tax</strong> — Portugal doesn't tax assets</li>
+    <li><strong>10-year duration</strong> — Benefits last a full decade</li>
+  </ul>
+
+  <p>
+    <strong>Important:</strong> NHR rules changed in 2024. New applicants face some restrictions compared to earlier versions. Consult a Portuguese tax advisor for your specific situation—the savings can be significant.
+  </p>
+
+  <!-- SCENARIOS -->
+  <h2 id="scenarios">Real-World Scenarios</h2>
+
+  <div class="space-y-6 my-8">
+    <div class="bg-green-50 border-l-4 border-green-500 p-4">
+      <h4 class="font-semibold text-green-900">Scenario 1: Tech Employee, US Company</h4>
+      <p class="text-green-800 text-sm mt-2">
+        Alex, 29, works remotely for a San Francisco startup earning $6,000/month. Gets Allianz Care (€150/month), applies at Lisbon consulate in San Francisco. Approved in 6 weeks. Applies for NHR within 3 months of arrival. <strong class="text-green-700">Result: Approved ✓</strong>
+      </p>
+    </div>
+
+    <div class="bg-green-50 border-l-4 border-green-500 p-4">
+      <h4 class="font-semibold text-green-900">Scenario 2: Freelance Designer</h4>
+      <p class="text-green-800 text-sm mt-2">
+        Maria, 34, freelances for clients in UK and Germany, earning €4,500/month average. Provides 12 months of invoices and bank statements. Gets Cigna Global insurance. <strong class="text-green-700">Result: Approved ✓</strong>
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+      <h4 class="font-semibold text-red-900">Scenario 3: Applied with D7 Instead of D8</h4>
+      <p class="text-red-800 text-sm mt-2">
+        Tom, 31, earns €4,000/month from freelancing but applied for D7 (passive income visa) because of the lower threshold. Consulate questions his income type. Application delayed 3 months for clarification. <strong class="text-red-700">Result: Delayed, eventually approved after switching to D8</strong>
+      </p>
+    </div>
+
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+      <h4 class="font-semibold text-amber-900">Scenario 4: Income Just at Threshold</h4>
+      <p class="text-amber-800 text-sm mt-2">
+        Sophie, 27, earns exactly €3,100/month. Some months dip to €2,800. She provides 12-month average showing €3,050 and includes savings of €15,000. Consulate requests additional documentation but approves. <strong class="text-amber-700">Result: Approved (with extra scrutiny)</strong>
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+      <h4 class="font-semibold text-red-900">Scenario 5: Missed NHR Deadline</h4>
+      <p class="text-red-800 text-sm mt-2">
+        James, 40, gets his D8 visa and residence permit but forgets to apply for NHR status. 14 months later, he realizes his mistake. NHR deadline was 12 months from tax residency. He loses 10 years of tax benefits worth potentially €50,000+. <strong class="text-red-700">Result: Visa approved, but major tax loss ✗</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- COMMON MISTAKES -->
+  <h2 id="mistakes">Common Mistakes to Avoid</h2>
+
+  <div class="space-y-4 my-8">
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Confusing D7 and D8 Visas</p>
+      <p class="text-red-700 text-sm mt-1">
+        D7 is for passive income (investments, pensions). D8 is for active remote work. Applying for the wrong one causes delays. If you work, use D8.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Missing the NHR 12-Month Deadline</p>
+      <p class="text-red-700 text-sm mt-1">
+        You must apply for NHR status within 12 months of becoming a Portuguese tax resident. Miss this deadline and you lose 10 years of tax benefits. Set a reminder immediately.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Not Having Accommodation Proof</p>
+      <p class="text-red-700 text-sm mt-1">
+        Portugal requires accommodation proof before visa approval. Secure at least a short-term rental or hotel booking before applying. A letter of intent to rent isn't always sufficient.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Underestimating AIMA Backlog</p>
+      <p class="text-red-700 text-sm mt-1">
+        The residence permit process (AIMA) is severely backlogged. Budget 2-6 months after arrival. Your visa stamp is valid during this time, but don't plan on receiving your card quickly.
+      </p>
+    </div>
+
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="font-semibold text-red-800">❌ Relying Only on Travel Insurance Long-Term</p>
+      <p class="text-red-700 text-sm mt-1">
+        While Portugal may accept travel insurance for the initial visa, it's not adequate for long-term residence. Upgrade to proper international health insurance for the residence permit stage and your own protection.
+      </p>
+    </div>
+  </div>
+
+  <CTABox
+    title="Get Proper Coverage"
+    description="Don't risk your residence permit. Compare international health insurance for Portugal."
+    buttonText="Compare Plans Now →"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+    showDisclosure={false}
+  />
+
+  <!-- FAQ -->
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="space-y-6 my-8">
+    <div>
+      <h3>What's the difference between D7 and D8 visas?</h3>
+      <p>
+        D7 is for passive income (pensions, investments, rental income). D8 is for active remote work (employment or freelancing). D8 has a higher income requirement (€3,040 vs €760) but is designed for working professionals.
+      </p>
+    </div>
+
+    <div>
+      <h3>Is SafetyWing accepted for Portugal's D8 visa?</h3>
+      <p>
+        Possibly for the initial visa application—Portugal's requirements are less strict than Spain. However, for the residence permit stage and long-term protection, upgrade to proper international health insurance.
+      </p>
+    </div>
+
+    <div>
+      <h3>What is the NHR tax regime?</h3>
+      <p>
+        Non-Habitual Resident status offers 20% flat tax on Portuguese income and potential exemptions on foreign income for 10 years. You must apply within 12 months of becoming a tax resident. Consult a Portuguese tax advisor—benefits can be substantial.
+      </p>
+    </div>
+
+    <div>
+      <h3>How long until I can get Portuguese citizenship?</h3>
+      <p>
+        After 5 years of legal residence, you can apply for citizenship. You'll need to pass a basic Portuguese language test (A2 level). Portugal allows dual citizenship—you won't need to renounce your original nationality.
+      </p>
+    </div>
+
+    <div>
+      <h3>Can I access Portuguese public healthcare?</h3>
+      <p>
+        Yes, after getting your residence permit and NIF. Register at your local health center (Centro de Saúde). However, wait times can be long. Most expats maintain private insurance for faster access and English-speaking providers.
+      </p>
+    </div>
+
+    <div>
+      <h3>Can my family join me?</h3>
+      <p>
+        Yes. Spouses, children, and dependent parents can apply for family reunification. Income requirement increases by 50% for spouse and 30% per child. Each family member needs health insurance.
+      </p>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <h2 id="verdict">Final Verdict</h2>
+
+  <p>
+    Portugal's D8 Digital Nomad Visa is excellent for remote workers who can meet the €3,040 income threshold. The combination of EU residency, 5-year path to citizenship, NHR tax benefits, and quality of life makes Portugal a top-tier destination.
+  </p>
+
+  <p>
+    The main downsides are the higher income requirement (vs Spain) and the AIMA backlog delaying residence permits. If you can handle these, Portugal offers one of Europe's best packages for digital nomads.
+  </p>
+
+  <p>
+    Insurance requirements are more flexible than Spain, but don't cut corners. Get proper international health insurance for the residence permit stage—you'll need it for healthcare access anyway.
+  </p>
+
+  <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-8 not-prose">
+    <h3 class="text-lg font-semibold text-primary-900 mb-3">Bottom Line</h3>
+    <p class="text-primary-800 mb-4">
+      Portugal's D8 visa is ideal for remote workers earning €3,040+/month who want EU citizenship in 5 years and significant tax benefits. Insurance is required—get proper coverage before you apply.
+    </p>
+    <a
+      href="/best/expat-health-insurance"
+      class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+      style="color: white !important;"
+    >
+      Compare Qualifying Insurance Plans →
+    </a>
+  </div>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> Visa and tax requirements change frequently. This guide reflects our research as of the publication date. Verify current requirements with Portuguese consulates and official sources. We are not immigration lawyers or tax advisors.
+    </p>
+  </div>
+
+</PageShell>

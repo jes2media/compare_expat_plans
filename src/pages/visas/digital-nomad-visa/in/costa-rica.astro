@@ -1,0 +1,703 @@
+---
+/**
+ * Costa Rica Digital Nomad Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Costa Rica", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Costa Rica Health Insurance Guide", href: "/countries/costa-rica/insurance" },
+  { title: "Insurance for Digital Nomads", href: "/insurance-for/digital-nomads" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Monthly Income", details: "$3,000 USD/month minimum", evidence: "Bank statements, employment letter" },
+  { requirement: "Remote Work", details: "Work for company outside Costa Rica", evidence: "Employment contract or client agreements" },
+  { requirement: "Health Insurance", details: "Mandatory coverage for visa duration", evidence: "Policy covering Costa Rica" },
+  { requirement: "Clean Record", details: "No criminal background", evidence: "Police clearance certificate" },
+  { requirement: "Valid Passport", details: "6+ months validity", evidence: "Passport copy" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "minimum", header: "Costa Rica Requirement" },
+  { key: "why", header: "Why It Matters" },
+];
+
+const insuranceRows = [
+  { feature: "Medical Coverage", minimum: "$50,000+ recommended", why: "Private hospital costs in CR" },
+  { feature: "Coverage Duration", minimum: "Full visa period (1-2 years)", why: "Must match visa length" },
+  { feature: "COVID Coverage", minimum: "Required", why: "Pandemic-related care covered" },
+  { feature: "Emergency Evacuation", minimum: "Recommended", why: "Medevac to US if needed" },
+  { feature: "Outpatient Care", minimum: "Included", why: "Doctor visits, prescriptions" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "SafetyWing", coverage: "$250,000", price: "$45-85", strengths: "Budget nomads, easy signup" },
+  { provider: "World Nomads", coverage: "$100,000", price: "$70-150", strengths: "Adventure activities included" },
+  { provider: "Cigna Global", coverage: "$1,000,000+", price: "$200-400", strengths: "Comprehensive long-term" },
+  { provider: "IMG Global", coverage: "$500,000", price: "$100-250", strengths: "Good US network backup" },
+  { provider: "INS (Local)", coverage: "Varies", price: "$80-200", strengths: "Accepted by CAJA system" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (USD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "$100-250", notes: "Consulate dependent" },
+  { item: "Processing Fee", amount: "$50-100", notes: "Immigration processing" },
+  { item: "Health Insurance (Annual)", amount: "$540-3,000", notes: "Varies by age and coverage" },
+  { item: "Police Clearance", amount: "$50-150", notes: "Apostille may be required" },
+  { item: "Document Authentication", amount: "$100-300", notes: "Apostilles and translations" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Apostille documents", duration: "1-2 weeks", location: "Secretary of State/equivalent" },
+  { step: "Submit application", duration: "1 day", location: "Costa Rican consulate or online" },
+  { step: "Processing", duration: "2-4 weeks", location: "Immigration reviews" },
+  { step: "Receive approval", duration: "Via email", location: "Digital confirmation" },
+  { step: "Enter Costa Rica", duration: "Within 60 days of approval", location: "Any port of entry" },
+];
+
+const visaTypeColumns = [
+  { key: "visa", header: "Visa Type" },
+  { key: "duration", header: "Duration" },
+  { key: "work", header: "Remote Work" },
+  { key: "best", header: "Best For" },
+];
+
+const visaTypeRows = [
+  { visa: "Tourist Visa", duration: "90 days", work: "Gray area", best: "Short stays, testing CR" },
+  { visa: "Rentista Visa", duration: "2 years", work: "Investment only", best: "Those with $2,500/mo passive income" },
+  { visa: "Digital Nomad Visa", duration: "1-2 years", work: "Yes, foreign employers", best: "Remote workers, freelancers" },
+  { visa: "Pensionado Visa", duration: "2 years", work: "No", best: "Retirees with $1,000/mo pension" },
+];
+---
+
+<PageShell
+  title="Costa Rica Digital Nomad Visa 2025: Insurance Requirements & Complete Guide"
+  description="Complete guide to Costa Rica's Rentista Digital visa. Insurance requirements, $3,000 income threshold, and which providers qualify for the visa."
+  headline="Costa Rica Digital Nomad Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working remotely in Costa Rica—insurance requirements, costs, and the Pura Vida lifestyle."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Qualifying Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/countries/costa-rica-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated January 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official DGME Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      800+ Expats Helped
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Costa Rica launched its Digital Nomad Visa (officially "Rentista Digital") in 2021, making it one of the first Latin American countries to formally welcome remote workers. The visa offers 1-2 years of legal residency for those earning $3,000+ monthly from foreign employers.
+    </p>
+
+    <p class="mb-4">
+      Costa Rica combines Central American affordability with modern infrastructure, making it ideal for nomads who want beaches, mountains, and reliable internet without European prices. The "Pura Vida" lifestyle and stable democracy are major draws.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Costa Rica Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Duration:</strong> 1 year initially, renewable for 1 more year</li>
+        <li>• <strong>Income requirement:</strong> $3,000 USD/month minimum</li>
+        <li>• <strong>Processing time:</strong> 2-4 weeks typical</li>
+        <li>• <strong>Insurance:</strong> Mandatory for full visa period</li>
+        <li>• <strong>Tax status:</strong> No Costa Rican income tax on foreign earnings</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Visa Options Comparison</h3>
+
+    <p class="mb-4">
+      Costa Rica has several paths to residency. The Digital Nomad Visa is designed specifically for remote workers:
+    </p>
+
+    <ComparisonTable columns={visaTypeColumns} rows={visaTypeRows} />
+
+    <p class="mt-4">
+      The main difference from the tourist visa: legal status for 1-2 years, ability to open bank accounts, and clear work authorization. Many nomads initially test Costa Rica on tourist status before committing to the DN visa.
+    </p>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Costa Rica is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You earn $3,000+/month from remote work</li>
+          <li>✓ You want nature, beaches, and outdoor lifestyle</li>
+          <li>✓ You prefer Americas time zones</li>
+          <li>✓ You value eco-friendly, sustainable living</li>
+          <li>✓ You want stable democracy and safety</li>
+          <li>✓ You're comfortable with higher costs vs. other LATAM</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You earn under $3,000/month</li>
+          <li>• You want rock-bottom cost of living</li>
+          <li>• You prefer big city nightlife and culture</li>
+          <li>• You need European time zones</li>
+          <li>• You want straightforward path to citizenship</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Costa Rica's Digital Nomad Visa has clear requirements. The $3,000 income threshold is firm—you'll need to prove consistent earnings.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Verification</h3>
+
+    <p class="mb-4">
+      The $3,000/month requirement is strict. You'll need to show:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Employment letter:</strong> On company letterhead confirming remote work arrangement</li>
+      <li><strong>Bank statements:</strong> 3-6 months showing consistent deposits</li>
+      <li><strong>Contract:</strong> Employment or client contracts showing ongoing relationship</li>
+      <li><strong>Tax returns:</strong> May be requested to verify income history</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Freelancers:</strong> If you have variable income, show that your average exceeds $3,000. Multiple client contracts help demonstrate stable income streams.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Document Checklist</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Valid passport (6+ months validity)</li>
+      <li>Completed application form</li>
+      <li>Passport-sized photos (Costa Rica specifications)</li>
+      <li>Proof of income ($3,000/month)</li>
+      <li>Health insurance policy (full visa duration)</li>
+      <li>Police clearance certificate (apostilled)</li>
+      <li>Employment/client contracts</li>
+      <li>Recent bank statements</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-blue-900 mb-2">Mandatory Requirement</h3>
+      <p class="text-blue-800">
+        Health insurance is <strong>required</strong> for the Costa Rica Digital Nomad Visa. Your policy must cover the full duration of your stay and include COVID-19 coverage.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Costa Rica's insurance requirement is flexible compared to European countries. Most international health insurance policies are accepted, as long as they cover Costa Rica and your full visa period.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Coverage Requirements</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">CAJA vs Private Healthcare</h3>
+
+    <p class="mb-4">
+      Costa Rica has a public healthcare system (CAJA/CCSS) and private hospitals. As a digital nomad:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">CAJA (Public System)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Access:</strong> Not available to DN visa holders</li>
+          <li>• <strong>Note:</strong> Only for residents/citizens</li>
+          <li>• <strong>Emergency:</strong> Will treat emergencies</li>
+          <li>• <strong>Cost:</strong> N/A for nomads</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Access:</strong> Anyone with insurance/cash</li>
+          <li>• <strong>Quality:</strong> Excellent, especially in San José</li>
+          <li>• <strong>Language:</strong> English widely available</li>
+          <li>• <strong>Cost:</strong> 50-70% less than US prices</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mb-4">
+      Most digital nomads use private healthcare exclusively. Costa Rica has world-class private hospitals in the Central Valley (San José area) that cater to medical tourists and expats.
+    </p>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox variant="highlight">
+    <p class="mb-4">Ready to find insurance for your Costa Rica move?</p>
+    <a href="/get-quotes" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors" style="color: #1d4ed8 !important;">
+      Compare Qualifying Plans →
+    </a>
+  </CTABox>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Costa Rica accepts most international health insurance. These providers work well for digital nomads:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Nomads</h4>
+        <p class="text-neutral-600">SafetyWing at $45-85/month. Covers Costa Rica, easy online signup, includes COVID coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Adventure Seekers</h4>
+        <p class="text-neutral-600">World Nomads. Covers surfing, zip-lining, and adventure sports that Costa Rica is famous for.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-Term Residents</h4>
+        <p class="text-neutral-600">Cigna Global or IMG Global. Comprehensive coverage, good for those planning 2+ years.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">US Citizens</h4>
+        <p class="text-neutral-600">IMG Global with US network. If you'll travel back to the US regularly, having US coverage helps.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Costa Rica's visa fees are moderate. The real costs are insurance and the relatively higher cost of living compared to other Central American countries.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">First Year Total Cost Estimates</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$1,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + basic nomad insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Standard Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + comprehensive coverage</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Setup</p>
+        <p class="text-3xl font-bold text-neutral-900">$4,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + premium global plan</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost of Living Context</h3>
+
+    <p class="mb-4">
+      Costa Rica is more expensive than Mexico, Colombia, or Southeast Asia. Monthly budgets for digital nomads:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Budget:</strong> $1,500-2,000/month (shared housing, cooking at home)</li>
+      <li><strong>Comfortable:</strong> $2,500-3,500/month (own apartment, eating out)</li>
+      <li><strong>Premium:</strong> $4,000+/month (beach town, full amenities)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Costa Rica's Digital Nomad Visa can be applied for at a consulate abroad or online through the DGME (immigration) portal. The process is relatively straightforward.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather and Apostille Documents</h4>
+          <p class="text-neutral-600">Get your police clearance and have it apostilled. Prepare employment letter, bank statements, and insurance policy.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Purchase Insurance</h4>
+          <p class="text-neutral-600">Get health insurance covering your full intended stay (1-2 years). Ensure it includes COVID coverage and covers Costa Rica.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Apply through the DGME online portal or at a Costa Rican consulate. Pay application fees.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Approval</h4>
+          <p class="text-neutral-600">Processing typically takes 2-4 weeks. You may be asked for additional documentation during review.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enter Costa Rica</h4>
+          <p class="text-neutral-600">Once approved, you have 60 days to enter Costa Rica. Present your approval at immigration.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Local Registration</h4>
+          <p class="text-neutral-600">Register with local authorities and obtain your DIMEX (foreign resident ID) if staying long-term.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Pro tip:</strong> Many nomads enter on a tourist visa first to explore, then apply for the DN visa while visiting. You can start the process before arriving.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out with Costa Rica's Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Engineer, $7,000/month</h3>
+        <p class="text-neutral-600 mb-4">Remote employee for US company, wants to surf and code from Nosara.</p>
+        <p class="text-green-700 font-medium">✓ Approved easily. Income far exceeds threshold. Simple documentation.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Designer, $3,500/month</h3>
+        <p class="text-neutral-600 mb-4">Multiple international clients, variable monthly income.</p>
+        <p class="text-green-700 font-medium">✓ Approved. Provided 6 months of bank statements showing $3,000+ average.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Creator, $2,500/month</h3>
+        <p class="text-neutral-600 mb-4">YouTube and sponsorship income, growing channel.</p>
+        <p class="text-red-700 font-medium">✗ Denied. Below $3,000 threshold. Advised to reapply when income increases.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple, $5,000/month combined</h3>
+        <p class="text-neutral-600 mb-4">Both work remotely, want to share a jungle house in Uvita.</p>
+        <p class="text-amber-700 font-medium">△ Each needs to meet $3,000 threshold separately. One approved, other had to boost income proof.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Consultant, $8,000/month</h3>
+        <p class="text-neutral-600 mb-4">Self-employed, works with Fortune 500 clients, wants Central Valley base.</p>
+        <p class="text-green-700 font-medium">✓ Approved. Client contracts and bank statements showed consistent high income.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Teacher, $2,800/month</h3>
+        <p class="text-neutral-600 mb-4">Online English teacher, stable but below threshold.</p>
+        <p class="text-red-700 font-medium">✗ Denied. Close but below $3,000. Suggested taking additional students or tutoring gigs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox>
+    <p class="mb-4">Compare insurance plans for your Costa Rica move—get quotes in minutes.</p>
+    <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+      Get Insurance Quotes →
+    </a>
+  </CTABox>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insurance Too Short</h3>
+        <p class="text-neutral-600">Your insurance must cover the full visa duration (1-2 years). Monthly nomad insurance that can be cancelled won't work—you need proof of committed coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Income Proof</h3>
+        <p class="text-neutral-600">The $3,000 threshold is firm. Showing $2,900 average won't cut it. If you're close, wait until you can demonstrate consistent $3,000+ income.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing Apostille</h3>
+        <p class="text-neutral-600">Police clearance must be apostilled. Many countries require you to do this through your Secretary of State or equivalent. It adds 1-2 weeks to prep time.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying for Wrong Visa</h3>
+        <p class="text-neutral-600">The Rentista visa (passive income) and Digital Nomad visa are different. Make sure you're applying for the DN visa if you have employment income vs. investment income.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">No COVID Coverage</h3>
+        <p class="text-neutral-600">Costa Rica requires COVID coverage in your health insurance. Most modern policies include it, but verify before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting European Internet</h3>
+        <p class="text-neutral-600">Internet in beach towns can be inconsistent. Research connectivity in your target area. San José area has best infrastructure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Costa Rica -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Costa Rica</h2>
+
+    <p class="mb-4">
+      Costa Rica is known for excellent healthcare—it's a major medical tourism destination. As a digital nomad, you'll rely on private healthcare, which is high quality and affordable.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Tiers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Hospitals</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• CIMA Hospital (San José) - JCI accredited</li>
+          <li>• Clínica Bíblica - Excellent reputation</li>
+          <li>• Hospital Metropolitano - Modern facilities</li>
+          <li>• Prices 50-70% lower than US</li>
+          <li>• English widely spoken</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Clinics</h4>
+        <ul class="space-y-2 text-neutral-600 text-sm">
+          <li>• Available in most tourist areas</li>
+          <li>• Doctor visits: $40-80</li>
+          <li>• Same-day appointments common</li>
+          <li>• Basic procedures on-site</li>
+          <li>• Refer to hospitals for complex cases</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Sample Healthcare Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Doctor visit:</strong> $40-80</li>
+      <li><strong>Specialist consultation:</strong> $60-120</li>
+      <li><strong>Emergency room:</strong> $150-400</li>
+      <li><strong>MRI scan:</strong> $300-600</li>
+      <li><strong>Dental cleaning:</strong> $40-60</li>
+    </ul>
+
+    <p class="mb-4">
+      Many digital nomads save money by getting dental work, elective procedures, and specialist consultations in Costa Rica. The quality matches developed countries at a fraction of the cost.
+    </p>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I pay Costa Rican taxes on my foreign income?</h3>
+        <p class="text-neutral-600">
+          No. Costa Rica uses territorial taxation—income earned from foreign sources isn't taxed locally. Your $3,000+ from foreign employers remains untaxed by Costa Rica. You may still have tax obligations in your home country.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family on the Digital Nomad Visa?</h3>
+        <p class="text-neutral-600">
+          Yes. Dependents (spouse and children) can be included in your application. The $3,000 income requirement doesn't increase per dependent, but you'll need additional documentation for family members.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work for Costa Rican clients?</h3>
+        <p class="text-neutral-600">
+          The Digital Nomad Visa is for remote work with foreign employers. Working for Costa Rican clients or companies requires a different visa/work permit. Some nomads have foreign companies that happen to have Costa Rican customers—consult an immigration lawyer for gray areas.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the internet like in Costa Rica?</h3>
+        <p class="text-neutral-600">
+          Variable. San José and Central Valley have reliable fiber connections. Beach towns vary—some have excellent internet (Santa Teresa, Tamarindo) while others struggle (rural areas). Always verify connectivity before committing to long-term housing.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I convert to permanent residency?</h3>
+        <p class="text-neutral-600">
+          The Digital Nomad Visa doesn't directly lead to permanent residency. After 2 years, you'd need to apply through another category (Rentista, Pensionado, or investment). Costa Rica requires 3 years of legal residency before applying for permanent status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about the rainy season?</h3>
+        <p class="text-neutral-600">
+          Costa Rica has two seasons: dry (December-April) and green/rainy (May-November). The Pacific coast gets heavy afternoon rains in green season. The Caribbean has different patterns. Many nomads love the green season—fewer tourists, lush landscapes, lower prices.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Costa Rica's Digital Nomad Visa is a solid option for remote workers earning $3,000+ monthly who want the Pura Vida lifestyle. The combination of natural beauty, stable government, and good healthcare makes it a top Latin American destination.
+    </p>
+
+    <p class="mb-4">
+      The $3,000 income threshold is higher than some alternatives (Mexico, Colombia), but it's achievable for most professional remote workers. The mandatory insurance requirement is flexible—most international policies qualify.
+    </p>
+
+    <p class="mb-6">
+      For outdoor enthusiasts, surfers, and nature lovers, Costa Rica is hard to beat. The time zone works well for Americas-based work. If you're looking for ultra-cheap living or big-city vibes, consider alternatives. But for quality of life in a stable, beautiful country, Costa Rica delivers.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Costa Rica's Digital Nomad Visa offers 1-2 years of legal residency with straightforward requirements. The $3,000 income threshold filters for financially stable applicants. Get proper health insurance ($45-200/month), prepare your documentation, and enjoy one of the world's best expat destinations.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Insurance Plans for Costa Rica →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/costa-rica/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Costa Rica Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Costa Rica</p>
+      </a>
+      <a href="/insurance-for/digital-nomads" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Digital Nomads</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for location-independent workers</p>
+      </a>
+      <a href="/visas/retirement-visa/in/costa-rica" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Costa Rica Retirement Visa</h3>
+        <p class="text-neutral-600 text-sm">For retirees planning to settle in Costa Rica</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
