@@ -1,0 +1,736 @@
+---
+/**
+ * Canada Study Permit - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Permit Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Canada", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Canada Health Insurance Guide", href: "/countries/canada/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Letter of Acceptance", details: "From Designated Learning Institution (DLI)", evidence: "Official acceptance letter with DLI number" },
+  { requirement: "Proof of Funds", details: "C$20,635/year + tuition (outside Quebec)", evidence: "Bank statements, GIC, or sponsor letter" },
+  { requirement: "Intent to Leave", details: "Must demonstrate temporary stay", evidence: "Statement, ties to home country" },
+  { requirement: "Clean Record", details: "No criminal history", evidence: "Police certificate (if requested)" },
+  { requirement: "Medical Exam", details: "Required for 6+ month stays from certain countries", evidence: "Medical exam results (upfront or if requested)" },
+  { requirement: "Biometrics", details: "Required for most nationalities", evidence: "Biometric appointment completion" },
+];
+
+const provinceColumns = [
+  { key: "province", header: "Province" },
+  { key: "coverage", header: "Provincial Health Coverage" },
+  { key: "waitPeriod", header: "Wait Period" },
+  { key: "notes", header: "Notes" },
+];
+
+const provinceRows = [
+  { province: "British Columbia", coverage: "MSP covers students", waitPeriod: "3 months", notes: "Coverage after 3-month wait" },
+  { province: "Ontario", coverage: "OHIP - NOT for students", waitPeriod: "N/A", notes: "Must have private insurance" },
+  { province: "Quebec", coverage: "RAMQ - reciprocal only", waitPeriod: "Varies", notes: "Some countries have agreements" },
+  { province: "Alberta", coverage: "AHCIP covers students", waitPeriod: "3 months", notes: "Coverage after 3-month wait" },
+  { province: "Manitoba", coverage: "MHSAL covers students", waitPeriod: "None", notes: "Immediate coverage" },
+  { province: "Saskatchewan", coverage: "SHCP covers students", waitPeriod: "3 months", notes: "Coverage after 3-month wait" },
+  { province: "Nova Scotia", coverage: "MSI - limited student coverage", waitPeriod: "Varies", notes: "Check specific eligibility" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost (Students)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Guard.me", coverage: "C$2,000,000", price: "C$50-80", strengths: "Popular with Canadian DLIs" },
+  { provider: "Cigna Global", coverage: "C$1,000,000+", price: "C$80-150", strengths: "Comprehensive, mental health" },
+  { provider: "Allianz Care", coverage: "C$500,000+", price: "C$60-120", strengths: "Good value, travel coverage" },
+  { provider: "StudentSecure", coverage: "C$1,000,000", price: "C$40-70", strengths: "Budget-friendly, basic coverage" },
+  { provider: "University UHIP (Ontario)", coverage: "Varies", price: "C$70-100", strengths: "Mandatory at many Ontario schools" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (CAD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Study Permit Fee", amount: "C$150", notes: "Application fee" },
+  { item: "Biometrics Fee", amount: "C$85", notes: "One-time, valid 10 years" },
+  { item: "GIC (if used)", amount: "C$20,635", notes: "Refundable, returned monthly" },
+  { item: "Medical Exam", amount: "C$200-400", notes: "If required for nationality" },
+  { item: "Private Insurance (Ontario)", amount: "C$600-1,200/year", notes: "Required where no provincial coverage" },
+  { item: "English Test (IELTS)", amount: "C$310-350", notes: "Pre-application" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Receive university acceptance", duration: "Varies", location: "University" },
+  { step: "Pay tuition deposit", duration: "1-2 weeks", location: "University portal" },
+  { step: "Open GIC account (if using)", duration: "1-2 weeks", location: "Canadian bank" },
+  { step: "Gather documents", duration: "1-2 weeks", location: "Home country" },
+  { step: "Complete biometrics", duration: "1 day", location: "VAC or ASC" },
+  { step: "Submit online application", duration: "1-2 hours", location: "IRCC portal" },
+  { step: "Processing", duration: "4-16 weeks", location: "IRCC review" },
+  { step: "Receive approval letter (POE)", duration: "Email", location: "Online" },
+  { step: "Arrive, get permit stamped", duration: "At entry", location: "Canadian border" },
+];
+---
+
+<PageShell
+  title="Canada Study Permit 2026: Insurance, Requirements & Application Guide"
+  description="Complete guide to Canada's Study Permit. Provincial health coverage by province, financial requirements, GIC option, PGWP work permit, and step-by-step application process."
+  headline="Canada Study Permit: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in Canada—provincial health coverage variations, financial proof requirements, post-graduation work permit, and the complete application process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroBackgroundImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official IRCC Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      PGWP Pathway
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Canada is the world's top destination for international students, with over 1 million studying at Canadian institutions. The Study Permit provides access to excellent universities, generous post-graduation work rights (PGWP up to 3 years), and one of the clearest pathways to permanent residency.
+    </p>
+
+    <p class="mb-4">
+      Unlike the UK (single health surcharge) or Australia (mandatory OSHC), Canada's healthcare coverage varies dramatically by province. Some provinces cover international students under their provincial health plans; others (notably Ontario) don't. Understanding your province's rules is critical for insurance planning.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Canada Study Permit</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Permit type:</strong> Study Permit (not technically a visa)</li>
+        <li>• <strong>Healthcare:</strong> Provincial coverage varies—private insurance often required</li>
+        <li>• <strong>Work rights:</strong> 24 hours/week off-campus during term, unlimited during breaks</li>
+        <li>• <strong>Duration:</strong> Length of program + 90 days</li>
+        <li>• <strong>Post-study work:</strong> PGWP (1-3 years based on program length)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Study in Canada?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>PR pathway:</strong> Canadian Experience Class makes PR realistic after graduation</li>
+      <li><strong>PGWP:</strong> Up to 3-year open work permit after completing studies</li>
+      <li><strong>Quality education:</strong> 4 universities in global top 100 (Toronto, UBC, McGill, McMaster)</li>
+      <li><strong>Affordable tuition:</strong> Often lower than US/UK for comparable quality</li>
+      <li><strong>Safe and welcoming:</strong> Consistently ranked among safest, most livable countries</li>
+      <li><strong>Bilingual opportunity:</strong> Learn French in Quebec while studying</li>
+      <li><strong>Work opportunities:</strong> Strong economy, high wages for part-time work</li>
+      <li><strong>Cultural diversity:</strong> Highly multicultural society, especially in major cities</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Canada is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want a clear path to permanent residency</li>
+          <li>✓ You value post-graduation work rights (PGWP)</li>
+          <li>✓ You want quality education at moderate cost</li>
+          <li>✓ You prefer North American culture/timezone</li>
+          <li>✓ You want a safe, multicultural environment</li>
+          <li>✓ You're interested in learning French (Quebec)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You strongly dislike cold weather (winters are harsh)</li>
+          <li>• You want simpler healthcare (UK is more straightforward)</li>
+          <li>• You want warmer climate (Australia)</li>
+          <li>• You're studying in Ontario and want included coverage</li>
+          <li>• You prefer shorter degree programs (UK is faster)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>PR advantage:</strong> The Post-Graduation Work Permit (PGWP) leads to Canadian work experience, which earns significant points in Express Entry. Many graduates transition to permanent residency within 1-2 years of completing their PGWP. Canada is the most accessible major English-speaking country for immigration.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Permit Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Permit Requirements</h2>
+
+    <p class="mb-4">
+      The Study Permit requires acceptance at a Designated Learning Institution (DLI), proof of financial support, and demonstration that you'll leave Canada after your studies. Unlike the UK and Australia, Canada offers a Guaranteed Investment Certificate (GIC) option that simplifies financial proof.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Financial Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Outside Quebec</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Living costs:</strong> C$20,635/year</li>
+          <li>• <strong>Plus:</strong> First year tuition</li>
+          <li>• <strong>Spouse:</strong> +C$4,029/year</li>
+          <li>• <strong>Each child:</strong> +C$3,605/year</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Quebec</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Living costs:</strong> C$15,153/year</li>
+          <li>• <strong>Plus:</strong> First year tuition</li>
+          <li>• <strong>Additional:</strong> CAQ (Quebec Acceptance)</li>
+          <li>• <strong>French programs:</strong> Lower tuition available</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">GIC Option: Simplify Your Finances</h3>
+      <p class="text-green-800">
+        A Guaranteed Investment Certificate (GIC) is a C$20,635 deposit with a Canadian bank. It's returned to you monthly during your first year, providing living expenses. Many applicants prefer GIC because it streamlines the financial proof requirement—IRCC accepts it readily.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">English/French Requirements</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>English programs:</strong> IELTS 6.0-7.0 (varies by program)</li>
+      <li><strong>French programs:</strong> TEF, TCF, or DELF/DALF</li>
+      <li><strong>Accepted tests:</strong> IELTS, TOEFL, PTE, CELPIP, Duolingo (some schools)</li>
+      <li><strong>SDS countries:</strong> IELTS 6.0+ overall qualifies for faster processing</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Health Insurance Varies by Province</h3>
+      <p class="text-amber-800">
+        Unlike Australia's uniform OSHC or UK's IHS, Canada's healthcare is provincial. Some provinces cover international students; others don't. Ontario—where most international students study—does NOT cover students under OHIP. You must understand your specific province's rules.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Provincial Coverage for Students</h3>
+
+    <ComparisonTable columns={provinceColumns} rows={provinceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Scenarios by Province</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Ontario (OHIP Doesn't Cover Students)</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Provincial health insurance NOT available</li>
+          <li>✗ Must have private insurance for entire stay</li>
+          <li>→ Most universities require UHIP (university health plan)</li>
+          <li>→ Costs: C$700-1,200/year typically</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">BC, Alberta, Saskatchewan</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Provincial coverage available after 3-month wait</li>
+          <li>✓ Need private insurance for first 3 months only</li>
+          <li>→ Apply for MSP/AHCIP/SHCP upon arrival</li>
+          <li>→ Much lower long-term insurance costs</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What to Cover</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Hospital/emergency:</strong> Essential—Canadian healthcare is expensive without coverage</li>
+      <li><strong>Prescription drugs:</strong> Not fully covered even by provincial plans</li>
+      <li><strong>Dental:</strong> Rarely covered—budget separately or buy extended coverage</li>
+      <li><strong>Vision:</strong> Usually not covered—check if needed</li>
+      <li><strong>Mental health:</strong> Limited coverage—private plans often better</li>
+    </ul>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need health insurance for studying in Canada?"
+    description="Coverage varies by province—compare plans to find the right fit."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/get-quotes"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      If you're studying in Ontario or another province without student coverage, you'll need private insurance. Many universities mandate specific plans (UHIP in Ontario). If you have choice, here are recommended providers.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Ontario Students (UHIP Required)</h4>
+        <p class="text-neutral-600">Most Ontario universities require the University Health Insurance Plan (UHIP). You cannot opt out in favor of other insurance. Check your university's requirements—UHIP is typically arranged automatically with enrollment.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">BC/Alberta Students (3-Month Gap)</h4>
+        <p class="text-neutral-600">Get short-term private insurance for your first 3 months, then switch to provincial coverage (MSP/AHCIP). Guard.me and Allianz offer flexible short-term plans perfect for this transition period.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Mental Health Priority</h4>
+        <p class="text-neutral-600">If mental health coverage is important, Cigna Global and comprehensive UHIP plans offer better therapy and counseling coverage. Provincial plans have limited mental health services.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Students</h4>
+        <p class="text-neutral-600">StudentSecure and Guard.me basic plans offer affordable coverage for healthy students. In provinces with student coverage, you only need short-term insurance—significant savings over Ontario.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Canada's Study Permit fees are lower than many countries. The main costs are tuition (varies widely by program) and living expenses. The GIC option provides a structured way to demonstrate financial capacity while ensuring you have living funds.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Upfront Permit Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Basic Application</p>
+        <p class="text-3xl font-bold text-neutral-900">C$450</p>
+        <p class="text-sm text-neutral-500 mt-2">Permit + biometrics + English test</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">With GIC</p>
+        <p class="text-3xl font-bold text-neutral-900">C$21,100</p>
+        <p class="text-sm text-neutral-500 mt-2">Includes GIC (returned monthly)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Ontario (With Insurance)</p>
+        <p class="text-3xl font-bold text-neutral-900">C$1,300</p>
+        <p class="text-sm text-neutral-500 mt-2">Permit + UHIP (year 1)</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Annual Student Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Tuition (international):</strong> C$20,000-55,000/year (varies by program and university)</li>
+      <li><strong>Toronto/Vancouver living:</strong> C$18,000-25,000/year</li>
+      <li><strong>Other major cities:</strong> C$14,000-20,000/year</li>
+      <li><strong>Smaller cities:</strong> C$12,000-16,000/year</li>
+      <li><strong>Insurance (Ontario):</strong> C$700-1,200/year</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Work rights:</strong> You can work 24 hours/week off-campus during term (recently increased from 20) and unlimited during breaks. At minimum wage (C$15-17/hour depending on province), part-time work can cover significant living costs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Study Permit is applied for online through the IRCC (Immigration, Refugees and Citizenship Canada) portal. Note: you receive an approval letter, but the actual permit is stamped in your passport when you arrive in Canada.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Accept Offer from DLI</h4>
+          <p class="text-neutral-600">Accept your offer from a Designated Learning Institution. Verify the school's DLI number on the IRCC website. Pay the tuition deposit to receive your official Letter of Acceptance.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Financial Proof</h4>
+          <p class="text-neutral-600">Either show bank statements with tuition + C$20,635 living costs, or open a GIC with a Canadian bank (Scotia, BMO, CIBC, ICICI). GIC is often preferred as IRCC accepts it readily.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Quebec Only: Get CAQ</h4>
+          <p class="text-neutral-600">If studying in Quebec, you need a Certificat d'acceptation du Québec (CAQ) before applying for the Study Permit. Apply through Quebec immigration—processing takes 4-6 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Create Account & Apply Online</h4>
+          <p class="text-neutral-600">Create an IRCC online account and complete the Study Permit application. Upload Letter of Acceptance, financial proof, passport copy, photos, and statement of purpose.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Biometrics</h4>
+          <p class="text-neutral-600">After submitting, you'll receive a Biometric Instruction Letter. Book an appointment at a Visa Application Centre (VAC) to provide fingerprints and photo within 30 days.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Medical Exam (If Required)</h4>
+          <p class="text-neutral-600">Some nationalities require upfront medical exams. Check IRCC requirements for your country. If needed, complete the exam with a panel physician and submit results.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Approval & Travel</h4>
+          <p class="text-neutral-600">If approved, you receive a Port of Entry (POE) Letter of Introduction. This isn't the permit—the actual Study Permit is stamped in your passport when you arrive at the Canadian border.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>SDS faster processing:</strong> Students from certain countries (India, China, Philippines, Pakistan, etc.) with IELTS 6.0+ and a GIC can apply through the Student Direct Stream (SDS) for processing in about 20 days. Check if you're eligible.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for international students in Canada:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student in Toronto (Ontario)</h3>
+        <p class="text-neutral-600 mb-4">2-year program at University of Toronto.</p>
+        <p class="text-green-700 font-medium">✓ UHIP mandatory—C$756/year, arranged automatically by university. Covers hospital, doctors, some mental health. Had appendectomy—fully covered. Worth it for Ontario where OHIP doesn't apply.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Bachelor's Student in Vancouver (BC)</h3>
+        <p class="text-neutral-600 mb-4">4-year program at UBC.</p>
+        <p class="text-green-700 font-medium">✓ Got Guard.me for first 3 months (C$200), then switched to BC MSP (free for students). Huge savings compared to Ontario. MSP covers everything medical. Added extended health through university plan for dental/vision.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">PhD Student in Montreal (Quebec)</h3>
+        <p class="text-neutral-600 mb-4">4-year program at McGill, from France.</p>
+        <p class="text-green-700 font-medium">✓ France has reciprocal agreement with Quebec—RAMQ coverage from day one. Free healthcare. CAQ process added 6 weeks to timeline but worth it. Quebec tuition for French programs is lower too.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Student Needing Dental Work</h3>
+        <p class="text-neutral-600 mb-4">Graduate student, needed crowns.</p>
+        <p class="text-amber-700 font-medium">△ Basic UHIP doesn't cover dental. University offered extended health plan (extra C$300/year) with dental—covers 80% of basic work. Still paid C$400 out-of-pocket for crowns. Canadian dental is expensive.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">SDS Applicant from India</h3>
+        <p class="text-neutral-600 mb-4">Engineering master's at Waterloo, used GIC.</p>
+        <p class="text-green-700 font-medium">✓ Applied through Student Direct Stream with IELTS 6.5 and GIC. Permit approved in 18 days. GIC money returned monthly—helpful for living expenses. Fast track worth the extra planning.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Student Who Forgot Provincial Coverage</h3>
+        <p class="text-neutral-600 mb-4">Moving from Ontario school to Alberta school.</p>
+        <p class="text-red-700 font-medium">✗ Didn't realize Alberta covers students (unlike Ontario). Kept paying for private insurance unnecessarily for months. Research your new province's rules when transferring—could have saved C$500+.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Student Insurance Options"
+    description="Find coverage that meets your province's requirements."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/get-quotes"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Understanding Provincial Health Differences</h3>
+        <p class="text-neutral-600">Ontario doesn't cover students; BC does after 3 months. This dramatically affects your insurance costs. Research your specific province's rules before arrival—don't assume coverage is the same everywhere.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting Quebec CAQ</h3>
+        <p class="text-neutral-600">If studying in Quebec, you need a CAQ (Quebec acceptance certificate) before applying for the Study Permit. Processing takes 4-6 weeks. Forgetting this step delays your entire application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Weak Proof of Intent to Leave</h3>
+        <p class="text-neutral-600">Canada requires evidence you'll leave after studies—even though PGWP and PR are available. Explain your study plans, career goals, and ties to your home country clearly. Contradicting yourself raises red flags.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the SDS Option</h3>
+        <p class="text-neutral-600">If you're from an SDS-eligible country with IELTS 6.0+, the Student Direct Stream offers 20-day processing. Not using it when eligible means waiting months unnecessarily. Check eligibility early.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Applying for Provincial Coverage</h3>
+        <p class="text-neutral-600">In BC, Alberta, and other covering provinces, you must actively apply for provincial health coverage—it's not automatic. Apply immediately upon arrival or you'll face the full 3-month wait before starting the clock.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Canada -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Canada</h2>
+
+    <p class="mb-4">
+      Canada has universal healthcare for residents, but coverage varies by province and international students aren't always included. The quality is excellent, though wait times for non-urgent specialist care can be long. Understanding your province's system is essential.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Provincial Systems Overview</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">BC (MSP) - Covers Students</h4>
+        <p class="text-neutral-600">After 3-month wait, MSP covers doctor visits, hospital, most medical services. Free for students. Apply online through Health Insurance BC upon arrival. Very good coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Ontario (OHIP) - Does NOT Cover Students</h4>
+        <p class="text-neutral-600">International students are NOT eligible for OHIP. Must have private insurance (usually UHIP through your university) for entire stay. This is mandatory, not optional.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Quebec (RAMQ) - Reciprocal Agreements</h4>
+        <p class="text-neutral-600">RAMQ covers students from countries with reciprocal agreements (France, Belgium, Denmark, etc.). Others need private insurance. Check if your country has an agreement.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Alberta (AHCIP) - Covers Students</h4>
+        <p class="text-neutral-600">After 3-month wait, students are eligible. Similar coverage to BC. Apply through Alberta Health upon arrival. Good coverage once enrolled.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Typically Covered</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Usually Covered</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Doctor visits</li>
+          <li>✓ Hospital stays</li>
+          <li>✓ Surgery</li>
+          <li>✓ Lab tests</li>
+          <li>✓ X-rays, imaging</li>
+          <li>✓ Maternity care</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Usually NOT Covered</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Prescription drugs (partial)</li>
+          <li>• Dental</li>
+          <li>• Vision/glasses</li>
+          <li>• Physiotherapy</li>
+          <li>• Extended mental health</li>
+          <li>• Ambulance (varies)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>University health services:</strong> Most Canadian universities have on-campus health centres with doctors, nurses, and counselors. These often have shorter waits than external clinics and understand student needs. Use them for routine care and mental health support.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need health insurance for the Study Permit application?</h3>
+        <p class="text-neutral-600">
+          It's not a formal requirement for the permit itself, but you'll need coverage once in Canada. If studying in Ontario, your university will require UHIP proof. In other provinces, having a plan shows you're prepared—helpful for your application.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the GIC and should I get one?</h3>
+        <p class="text-neutral-600">
+          A Guaranteed Investment Certificate (GIC) is a C$20,635 deposit with a Canadian bank that's returned to you monthly. It's not mandatory, but IRCC accepts it readily as financial proof. Many applicants prefer it—simplifies the financial requirement and provides guaranteed living funds.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work on a Study Permit?</h3>
+        <p class="text-neutral-600">
+          Yes. You can work up to 24 hours/week off-campus during academic sessions and unlimited hours during scheduled breaks. You can also work on-campus with no hour limit. No separate work permit needed—it's included in your Study Permit conditions.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the Post-Graduation Work Permit (PGWP)?</h3>
+        <p class="text-neutral-600">
+          The PGWP allows you to work in Canada after graduation. Length depends on your program: 1-year PGWP for 8-month to 1-year programs; up to 3 years for 2+ year programs. It's an open work permit—work any job, any employer. Critical for PR pathway.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do I get permanent residency after studying?</h3>
+        <p class="text-neutral-600">
+          Most graduates use the Canadian Experience Class (CEC) through Express Entry. Work experience from your PGWP counts heavily. With 1+ year of skilled work experience and adequate English/French, many graduates qualify. Canada actively wants to retain international graduates.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family come with me?</h3>
+        <p class="text-neutral-600">
+          Spouses can apply for open work permits (can work any job). Children can attend school. You need to show additional financial capacity for dependents. Family members don't automatically get provincial health coverage—they may need private insurance depending on province.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Canada's Study Permit offers one of the clearest pathways from student to permanent resident in any major English-speaking country. The PGWP (up to 3 years) and Express Entry system create a genuine immigration pathway that attracts students worldwide.
+    </p>
+
+    <p class="mb-4">
+      The main complexity is healthcare—provincial coverage varies dramatically. If you're studying in Ontario, budget for mandatory private insurance. If you're in BC, Alberta, or Manitoba, you'll get provincial coverage (after any waiting period). Research your specific province before arrival.
+    </p>
+
+    <p class="mb-6">
+      For students serious about immigration, Canada is hard to beat. The combination of quality education, work rights, PGWP, and PR pathway makes it a strategic choice. Apply through SDS if eligible for faster processing, and use a GIC for straightforward financial proof.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Canada's Study Permit leads to the PGWP and a realistic PR pathway. Healthcare coverage varies by province—Ontario requires private insurance; BC/Alberta cover students after 3 months. Use GIC for easy financial proof and apply via SDS if eligible. For immigration-minded students, Canada is the top choice.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Student Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/canada/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Canada Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Canada</p>
+      </a>
+      <a href="/insurance-for/students" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Students Abroad</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for international students</p>
+      </a>
+      <a href="/visas/student-visa/in/uk" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with UK's Student Visa (NHS via IHS)</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

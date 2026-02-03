@@ -871,6 +871,246 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'The announced plan includes 5-year visa, no Indonesian income tax for 5 years, and ability to work remotely. Income requirements haven\'t been confirmed but likely around $1,500-2,000/month. Check current status before planning—implementation has been delayed multiple times.'
       }
     ]
+  },
+  // UK Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'uk',
+    officialVisaName: 'Student Visa (formerly Tier 4)',
+    requirements: {
+      incomeMinimum: '£1,334/month (London) or £1,023/month (outside)',
+      savingsMinimum: 'Tuition + 9 months living costs',
+      insuranceRequired: false,
+      insuranceMinimum: 'NHS access via Immigration Health Surcharge (£776/year)',
+      additionalRequirements: [
+        'CAS (Confirmation of Acceptance for Studies) from licensed sponsor',
+        'English language test (IELTS 5.5-7.0 depending on level)',
+        'TB test certificate (from certain countries)',
+        'Funds held for 28 consecutive days'
+      ]
+    },
+    duration: {
+      initial: 'Course length + wind-down period',
+      renewable: false,
+      maxStay: 'Course duration (can switch to Graduate Route after)'
+    },
+    applicationProcess: [
+      'Receive CAS from university',
+      'Complete online application at gov.uk',
+      'Pay visa fee (£490) and IHS (£776/year)',
+      'Book and attend biometric appointment',
+      'Wait 3-8 weeks for processing',
+      'Collect BRP within 10 days of arrival'
+    ],
+    insuranceNotes: 'The UK uses the Immigration Health Surcharge (IHS) instead of separate insurance. At £776/year, you get full NHS access—same as British residents. Private insurance is optional but useful for mental health (NHS waits are long), dental (partially covered), and faster specialist access.',
+    healthcareAccess: 'Full NHS access after paying IHS. Register with a GP upon arrival. Hospital care, GP visits, and most treatments are free. Prescriptions cost £9.90/item in England (free in Scotland, Wales, Northern Ireland). Dental is subsidized but not free.',
+    costs: {
+      visaFee: '£490 standard + £776/year IHS',
+      insuranceRange: '£0 mandatory (NHS via IHS), £50-150/month optional private'
+    },
+    recommendedProviders: ['bupa-global', 'cigna-global', 'allianz-care', 'img-global'],
+    keyConsiderations: [
+      'NHS access included via mandatory IHS—no separate insurance shopping required',
+      'Private insurance only needed for mental health, dental, or faster access',
+      'Graduate Route allows 2-3 years post-study work',
+      '20 hours/week work allowed during term',
+      'BRP collection required within 10 days of arrival'
+    ],
+    commonMistakes: [
+      'Not showing funds held for 28 consecutive days',
+      'Applying too late (visa centers overwhelmed in Aug-Sep)',
+      'Not registering with GP immediately upon arrival',
+      'Working more than 20 hours during term time',
+      'Forgetting to collect BRP within 10-day deadline'
+    ],
+    faqs: [
+      {
+        question: 'Do I need private health insurance for UK Student Visa?',
+        answer: 'No. The Immigration Health Surcharge (IHS) gives you full NHS access. Private insurance is optional—useful for mental health (NHS waits are long), dental coverage, and faster specialist access, but not required for the visa.'
+      },
+      {
+        question: 'What is the Immigration Health Surcharge?',
+        answer: 'The IHS is a mandatory fee (£776/year for students) paid with your visa application. It gives you the same NHS access as British residents. You pay upfront for your entire visa duration—e.g., £2,328 for a 3-year undergraduate degree.'
+      },
+      {
+        question: 'Can I work on a UK Student Visa?',
+        answer: 'Yes. Up to 20 hours/week during term time, unlimited during holidays. After completing your degree, apply for the Graduate Route (2 years for bachelor\'s/master\'s, 3 years for PhD) to work any job at any level.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes, via the Graduate Route visa. It allows 2 years post-study work for bachelor\'s/master\'s graduates, 3 years for PhD. You can work any job during this time, then potentially switch to a Skilled Worker visa.'
+      },
+      {
+        question: 'What does NHS cover for students?',
+        answer: 'GP visits, hospital treatment, emergency care, mental health services, and maternity care are free. Prescriptions cost £9.90/item in England (free elsewhere in UK). Dental is subsidized but not free. Eye tests are paid unless you\'re on benefits.'
+      },
+      {
+        question: 'How long does UK student visa processing take?',
+        answer: 'Standard processing is 3 weeks from biometrics. Priority service (£500 extra) takes 5 working days. Super priority (£1,000 extra) is next working day. Apply early—visa centers are very busy July-September.'
+      }
+    ]
+  },
+  // Australia Student Visa (Subclass 500)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'australia',
+    officialVisaName: 'Student Visa (Subclass 500)',
+    requirements: {
+      incomeMinimum: 'A$24,505/year living costs',
+      savingsMinimum: 'Tuition + living costs + travel',
+      insuranceRequired: true,
+      insuranceMinimum: 'OSHC (Overseas Student Health Cover) for entire visa',
+      additionalRequirements: [
+        'CoE (Confirmation of Enrolment) from CRICOS-registered institution',
+        'Genuine Temporary Entrant (GTE) statement',
+        'English language test (IELTS 5.5-7.0)',
+        'Health examination (some nationalities)',
+        'Police clearance (if requested)'
+      ]
+    },
+    duration: {
+      initial: 'Course length + extra time',
+      renewable: false,
+      maxStay: 'Course duration (then Temporary Graduate Visa)'
+    },
+    applicationProcess: [
+      'Accept university offer, pay deposit, receive CoE',
+      'Purchase OSHC for full visa duration',
+      'Create ImmiAccount and submit online application',
+      'Complete health examination if required',
+      'Provide police clearances if requested',
+      'Wait 4-12 weeks for processing',
+      'Receive electronic visa grant'
+    ],
+    insuranceNotes: 'OSHC is mandatory—no visa without it. Purchase from approved providers (Medibank, BUPA, Allianz, AHM, NIB, CBHS). All meet minimum standards. Covers hospital, GP visits, PBS prescriptions. Does NOT cover dental, optical, pre-existing conditions (12-month wait). Add extras cover if needed.',
+    healthcareAccess: 'OSHC provides Medicare-like benefits. Bulk-billing GPs mean no out-of-pocket for covered services. Hospital treatment in public hospitals covered. Private hospitals may have gap fees. Ambulance coverage varies by state. Serious cases may require Singapore evacuation.',
+    costs: {
+      visaFee: 'A$710',
+      insuranceRange: 'A$500-650/year singles OSHC'
+    },
+    recommendedProviders: ['allianz-care', 'bupa-global', 'cigna-global', 'medibank'],
+    keyConsiderations: [
+      'OSHC is mandatory and must cover entire visa—no gaps allowed',
+      'Dental/optical not covered—add extras or do before arrival',
+      '12-month wait for pre-existing conditions',
+      'Unlimited work hours (changed from 40 hours/fortnight in 2023)',
+      'Temporary Graduate Visa (2-4 years) available after completion'
+    ],
+    commonMistakes: [
+      'Letting OSHC lapse—visa condition breach, can lead to cancellation',
+      'Weak GTE statement—many rejections stem from unconvincing intent',
+      'Not buying OSHC extras for dental (Australian dental is expensive)',
+      'Insufficient financial evidence',
+      'Applying too late—processing can take 12 weeks'
+    ],
+    faqs: [
+      {
+        question: 'What is OSHC and is it mandatory?',
+        answer: 'Overseas Student Health Cover (OSHC) is government-mandated health insurance for international students. Yes, it\'s absolutely mandatory—you cannot get a student visa without it, and your visa can be cancelled if coverage lapses. Purchase from one of six approved providers.'
+      },
+      {
+        question: 'Which OSHC provider is best?',
+        answer: 'All six approved providers meet minimum government standards. Allianz (Peoplecare) is often cheapest. Medibank has the largest network. BUPA has good customer service. Compare prices—coverage is largely identical. Check if your university has a preferred provider discount.'
+      },
+      {
+        question: 'Does OSHC cover dental?',
+        answer: 'No. Basic OSHC does not cover dental or optical. Australian dental is expensive—a simple filling can cost A$200+. Either do dental work before leaving home, or add an OSHC extras package (about A$300-500/year) for partial dental coverage.'
+      },
+      {
+        question: 'Can I work unlimited hours on student visa?',
+        answer: 'Yes, since July 2023, student visa holders can work unlimited hours. This was previously limited to 40 hours per fortnight. Take advantage—Australian wages are high and work experience is valuable.'
+      },
+      {
+        question: 'What is the Temporary Graduate Visa?',
+        answer: 'After completing your studies, you can apply for the Temporary Graduate Visa (Subclass 485). Duration: 2 years for bachelor\'s, 3 years for master\'s coursework, 4 years for master\'s research/PhD. It\'s an open work permit—work any job. Great for gaining Australian experience and PR points.'
+      },
+      {
+        question: 'Do I need medical evacuation coverage?',
+        answer: 'Strongly recommended. While Bali and major cities have decent hospitals, serious emergencies often require evacuation to Singapore (3-hour flight). OSHC covers treatment in Australia, but evacuation coverage is valuable peace of mind.'
+      }
+    ]
+  },
+  // Canada Study Permit
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'canada',
+    officialVisaName: 'Study Permit',
+    requirements: {
+      incomeMinimum: 'C$20,635/year living costs (outside Quebec)',
+      savingsMinimum: 'Tuition + living costs (GIC option available)',
+      insuranceRequired: false,
+      insuranceMinimum: 'Varies by province—Ontario requires private, BC/Alberta cover students',
+      additionalRequirements: [
+        'Letter of Acceptance from DLI (Designated Learning Institution)',
+        'Proof of financial support (bank statements or GIC)',
+        'Genuine intent to leave Canada after studies',
+        'English/French language test',
+        'Biometrics',
+        'Medical exam (some nationalities)'
+      ]
+    },
+    duration: {
+      initial: 'Course length + 90 days',
+      renewable: true,
+      maxStay: 'Course duration (then PGWP available)'
+    },
+    applicationProcess: [
+      'Accept offer from DLI, pay deposit',
+      'Open GIC if using (C$20,635 deposit)',
+      'Get CAQ if studying in Quebec',
+      'Create IRCC account, submit online application',
+      'Complete biometrics within 30 days',
+      'Complete medical exam if required',
+      'Wait 4-16 weeks for processing',
+      'Receive approval letter, get permit stamped at border'
+    ],
+    insuranceNotes: 'Health coverage varies dramatically by province. Ontario does NOT cover students—UHIP mandatory. BC, Alberta, Manitoba cover students after 0-3 month wait. Quebec has reciprocal agreements with some countries. Research YOUR province\'s specific rules—this is critical.',
+    healthcareAccess: 'In covering provinces (BC, Alberta, Manitoba), you get provincial health coverage similar to residents. In Ontario, you rely entirely on private insurance (UHIP). Quality is excellent across Canada, but wait times for specialists can be long. University health centers are good for routine care.',
+    costs: {
+      visaFee: 'C$150 + C$85 biometrics',
+      insuranceRange: 'C$0-1,200/year depending on province'
+    },
+    recommendedProviders: ['guard-me', 'cigna-global', 'allianz-care', 'studentSecure'],
+    keyConsiderations: [
+      'Provincial health coverage varies—Ontario requires private insurance',
+      'GIC (C$20,635 deposit) simplifies financial proof',
+      'SDS (Student Direct Stream) offers faster processing for eligible countries',
+      'PGWP (Post-Graduation Work Permit) up to 3 years after completion',
+      'Clear pathway to PR through Canadian Experience Class'
+    ],
+    commonMistakes: [
+      'Not understanding provincial health coverage differences',
+      'Forgetting CAQ for Quebec studies',
+      'Weak proof of intent to leave (even though PR pathway exists)',
+      'Missing SDS eligibility (faster processing)',
+      'Not applying for provincial coverage when eligible'
+    ],
+    faqs: [
+      {
+        question: 'Do I need health insurance for Canada Study Permit?',
+        answer: 'It depends on your province. Ontario does NOT cover international students—you must have private insurance (usually UHIP through your university). BC, Alberta, Saskatchewan, and Manitoba cover students after 0-3 months. Research your specific province.'
+      },
+      {
+        question: 'What is a GIC and should I get one?',
+        answer: 'A Guaranteed Investment Certificate (GIC) is a C$20,635 deposit with a Canadian bank (Scotia, BMO, CIBC) that\'s returned to you monthly. It\'s not mandatory, but IRCC accepts it readily as financial proof. Many applicants prefer it—simplifies requirements and guarantees living funds.'
+      },
+      {
+        question: 'What is the PGWP?',
+        answer: 'The Post-Graduation Work Permit allows you to work in Canada after completing your studies. Duration: 1 year for 8-month to 1-year programs, up to 3 years for 2+ year programs. It\'s an open permit—work any job, any employer. Critical stepping stone to permanent residency.'
+      },
+      {
+        question: 'How do I get PR after studying in Canada?',
+        answer: 'Most graduates use the Canadian Experience Class (CEC) through Express Entry. Your PGWP work experience earns significant points. With 1+ year of skilled Canadian work experience and adequate English/French, many graduates qualify. Canada actively retains international graduates.'
+      },
+      {
+        question: 'What is the Student Direct Stream (SDS)?',
+        answer: 'SDS is a faster processing stream (about 20 days) for students from certain countries (India, China, Philippines, Pakistan, etc.) who have IELTS 6.0+ and a GIC. If eligible, definitely use it—standard processing can take months.'
+      },
+      {
+        question: 'Can I work on a Study Permit?',
+        answer: 'Yes. You can work up to 24 hours/week off-campus during academic sessions and unlimited hours during scheduled breaks. On-campus work has no hour limit. No separate work permit needed—included in your Study Permit conditions.'
+      }
+    ]
   }
 ];
 

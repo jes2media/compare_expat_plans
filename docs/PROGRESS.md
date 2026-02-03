@@ -7,7 +7,7 @@ Last updated: February 2, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,330
+**Total pages:** ~2,333
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -16,11 +16,45 @@ Last updated: February 2, 2026
 **Problem/solution guides:** 6 (with hero images)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
-**Visa × Country pages:** 50 (33 Digital Nomad Visa + 17 Retirement Visa)
+**Visa × Country pages:** 53 (33 Digital Nomad Visa + 17 Retirement Visa + 3 Student Visa)
 
 ---
 
 ## Completed Milestones
+
+### February 2, 2026 - Student Visa Pages Batch 1 (3 countries)
+
+#### Student Visa Pages Started (3 countries)
+First batch of Student Visa pages at `/visas/student-visa/in/[country]`:
+
+**Batch 1 - Top 3 Student Destinations:**
+1. **United Kingdom** - Student Visa (formerly Tier 4), NHS via Immigration Health Surcharge (£776/year), 20hr/week work, Graduate Route 2-3 years
+2. **Australia** - Student Visa (Subclass 500), mandatory OSHC, unlimited work hours, Temporary Graduate Visa 2-4 years
+3. **Canada** - Study Permit, provincial health varies (Ontario requires private, BC/Alberta cover students), GIC option, PGWP 1-3 years
+
+**Page structure (12 sections, CRO-optimized):**
+- Overview with Quick Facts box
+- Quick Decision Guide (good fit / consider alternatives)
+- Visa Requirements (with financial breakdown)
+- Insurance Requirements (country-specific: IHS/OSHC/provincial)
+- Recommended Insurance Providers (ComparisonTable)
+- Costs Breakdown (visa fees, insurance, living costs)
+- Application Process (step-by-step with timeline)
+- Real-World Scenarios (6 scenarios, color-coded outcomes)
+- Common Mistakes (5 warnings)
+- Healthcare System Access
+- FAQs (6 questions)
+- Final Verdict
+
+**Key differentiators emphasized:**
+- UK: IHS = NHS access, no separate insurance needed
+- Australia: OSHC mandatory, standardized coverage, add extras for dental
+- Canada: Provincial variation—research YOUR province's rules
+
+**Remaining Student Visa countries (19):**
+Germany, France, Spain, Italy, Netherlands, Ireland, New Zealand, Japan, South Korea, Singapore, Switzerland, Austria, Belgium, Sweden, Denmark, Norway, Czech Republic, Poland, Portugal
+
+---
 
 ### February 2, 2026 - Visa × Country Pages Complete (38 pages)
 
@@ -717,8 +751,9 @@ These 21 countries have manually created pages with custom hero images:
 | Provider pages | 8 | Expanded to long-form (550-685 lines each) |
 | **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
 | **Retirement Visa pages** | **17** | **Complete (17 countries across 4 batches)** |
+| **Student Visa pages** | **3** | **In Progress (Batch 1: UK, Australia, Canada)** |
 
-**Total pages:** ~2,330
+**Total pages:** ~2,333
 
 ---
 
@@ -731,8 +766,15 @@ These 21 countries have manually created pages with custom hero images:
    - Americas: Panama, Costa Rica, Mexico, Ecuador, Belize
    - Optional expansion: UAE, Cyprus, Colombia, Nicaragua, Cambodia
 
-2. **Other Visa Type × Country Pages** - 4 more visa types to cover:
-   - Student Visa (23 countries planned)
+2. **Student Visa Pages** - 19 countries remaining (3/22 complete):
+   - Batch 2: Germany, France, Netherlands (top EU destinations)
+   - Batch 3: Spain, Italy, Ireland (popular EU options)
+   - Batch 4: Japan, South Korea, Singapore (Asia)
+   - Batch 5: Switzerland, Austria, Belgium (premium EU)
+   - Batch 6: Sweden, Denmark, Norway (Nordics)
+   - Batch 7: New Zealand, Czech Republic, Poland, Portugal
+
+3. **Other Visa Type × Country Pages** - 3 more visa types to cover:
    - Freelancer/Self-Employed Visa (9 countries planned)
    - Investor/Entrepreneur Visa (16 countries planned)
    - Work Permit (18 countries planned)
@@ -792,6 +834,7 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
+- **February 2, 2026 (Student Visa Pages Batch 1):** Started Student Visa page expansion with first batch of 3 top destinations: UK (Student Visa with NHS via IHS £776/year), Australia (Subclass 500 with mandatory OSHC), Canada (Study Permit with provincial health variation). Each page follows 12-section CRO-optimized structure. Data entries added to visaCountryMatrix.ts. 19 countries remaining for Student Visa pages. Total visa pages: 53 (33 DNV + 17 Retirement + 3 Student).
 - **February 2, 2026 (Retirement Visa Pages Complete):** Completed 17 Retirement Visa pages across 4 batches. Batch 1 (Europe): Portugal, Spain, France, Italy, Greece. Batch 2 (Americas): Panama, Costa Rica, Mexico, Ecuador. Batch 3 (Asia-Pacific): Thailand, Malaysia, Philippines, Indonesia, Vietnam. Batch 4 (Mediterranean + Caribbean): Malta, Croatia, Belize. Each page features 12 CRO-optimized sections with requirements tables, insurance requirements, provider recommendations, cost breakdowns, real-world scenarios, and FAQs. Total visa pages: 50 (33 DNV + 17 Retirement).
 - **February 2, 2026 (DNV Complete + Retirement Started):** Completed all 33 Digital Nomad Visa pages. Added 14 countries in batches: Europe/Asia (Latvia, Romania, Cyprus, South Korea, Taiwan, Sri Lanka) and Americas/Caribbean (Argentina, Ecuador, Panama, Bahamas, Cayman Islands, Curaçao, Aruba, Jamaica). Created universal DNV hero image (laptop on beach cafe) for 11 newer pages. Started Retirement Visa pages with 5 European countries (Portugal, Spain, France, Italy, Greece). Total visa pages: 38.
 - **February 2, 2026 (Visa Pages):** Launched Visa × Country page system. Created 19 Digital Nomad Visa pages (Spain, Portugal, Thailand, Mexico, Germany, Costa Rica, UAE, Croatia, Colombia, Indonesia, Estonia, Greece, Malta, Italy, Hungary, Barbados, Czech Republic, Malaysia, Brazil). Each page has 12 CRO-optimized sections with hero background images.

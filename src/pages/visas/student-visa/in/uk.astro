@@ -1,0 +1,738 @@
+---
+/**
+ * UK Student Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in the UK", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "UK Health Insurance Guide", href: "/countries/uk/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "CAS Number", details: "Confirmation of Acceptance for Studies", evidence: "CAS reference number from licensed sponsor" },
+  { requirement: "English Language", details: "IELTS 5.5-7.0+ depending on course level", evidence: "Test certificate (IELTS, TOEFL, PTE)" },
+  { requirement: "Financial Proof", details: "£1,334/month (London) or £1,023/month (outside)", evidence: "Bank statements for 28+ consecutive days" },
+  { requirement: "Tuition Funds", details: "Course fees for first year (or full amount)", evidence: "Bank statements or sponsor letter" },
+  { requirement: "Valid Passport", details: "Valid for duration of studies", evidence: "Passport copy" },
+  { requirement: "TB Test", details: "Required from certain countries", evidence: "TB test certificate (if applicable)" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "ihs", header: "IHS (NHS Access)" },
+  { key: "private", header: "Private Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Cost", ihs: "£776/year (discounted student rate)", private: "£50-150/month" },
+  { feature: "GP Access", ihs: "Free (registration required)", private: "Private GP, no wait" },
+  { feature: "Hospital Care", ihs: "Free (may have waits)", private: "Private hospitals" },
+  { feature: "Mental Health", ihs: "NHS services (long waits)", private: "Faster access to therapy" },
+  { feature: "Dental", ihs: "Subsidized (not free)", private: "Usually included" },
+  { feature: "Prescriptions", ihs: "£9.90/item (free in Scotland/Wales)", private: "Usually covered" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost (Students)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", coverage: "£1,000,000+", price: "£80-150", strengths: "Comprehensive, mental health" },
+  { provider: "BUPA Global", coverage: "£500,000+", price: "£90-160", strengths: "UK network, no wait times" },
+  { provider: "Allianz Care", coverage: "£500,000+", price: "£70-130", strengths: "Good value, EU coverage" },
+  { provider: "IMG Global", coverage: "£500,000+", price: "£50-100", strengths: "Budget-friendly students" },
+  { provider: "SafetyWing", coverage: "$250,000", price: "£45-85", strengths: "Affordable, remote students" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (GBP)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "£490", notes: "Standard fee (outside UK)" },
+  { item: "Immigration Health Surcharge", amount: "£776/year", notes: "Discounted student rate" },
+  { item: "Priority Processing", amount: "£500", notes: "Optional, 5 working days" },
+  { item: "Super Priority", amount: "£1,000", notes: "Optional, next working day" },
+  { item: "TB Test (if required)", amount: "£50-150", notes: "From approved clinic" },
+  { item: "English Test (IELTS)", amount: "£170-210", notes: "Pre-application" },
+  { item: "Biometric Appointment", amount: "£0-80", notes: "Varies by location" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Receive university offer", duration: "Varies", location: "University/UCAS" },
+  { step: "Meet conditions, get CAS", duration: "1-4 weeks", location: "University" },
+  { step: "Gather financial documents", duration: "1-2 weeks", location: "Your bank" },
+  { step: "Complete online application", duration: "1-2 hours", location: "gov.uk" },
+  { step: "Pay fees (visa + IHS)", duration: "Same day", location: "Online" },
+  { step: "Biometric appointment", duration: "1 day", location: "Visa center" },
+  { step: "Processing", duration: "3-8 weeks", location: "UKVI review" },
+  { step: "Receive decision", duration: "Email", location: "Online" },
+  { step: "Collect BRP card", duration: "Within 10 days of arrival", location: "Post office or uni" },
+];
+---
+
+<PageShell
+  title="UK Student Visa 2026: Requirements, Insurance & Application Guide"
+  description="Complete guide to the UK Student Visa. Requirements, Immigration Health Surcharge, NHS access, financial proof, and step-by-step application process for international students."
+  headline="UK Student Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in the UK—visa requirements, NHS healthcare access via the Immigration Health Surcharge, financial proof, and the complete application process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroBackgroundImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official UKVI Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      NHS Access Included
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The UK remains one of the world's top destinations for international students, with over 680,000 studying at British universities. The UK Student Visa (formerly Tier 4) provides access to world-renowned institutions like Oxford, Cambridge, Imperial, and UCL, along with full NHS healthcare access through the Immigration Health Surcharge.
+    </p>
+
+    <p class="mb-4">
+      Unlike many countries where student health insurance is separate and complicated, the UK system is straightforward: pay the Immigration Health Surcharge (IHS) with your visa application, and you get the same NHS access as British residents. This makes healthcare planning simpler, though some students still opt for private insurance to avoid NHS wait times.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: UK Student Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Student Visa (replaced Tier 4 in 2020)</li>
+        <li>• <strong>Healthcare access:</strong> Full NHS via Immigration Health Surcharge (£776/year)</li>
+        <li>• <strong>Work rights:</strong> 20 hours/week during term, full-time during holidays</li>
+        <li>• <strong>Duration:</strong> Length of course + wind-down period</li>
+        <li>• <strong>Post-study work:</strong> Graduate Route (2-3 years) available after completion</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Study in the UK?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>World-class universities:</strong> 4 of the global top 10, 17 in the top 100</li>
+      <li><strong>Shorter degrees:</strong> 3-year undergraduate, 1-year master's (vs. 4/2 in US)</li>
+      <li><strong>NHS healthcare:</strong> Full access with IHS payment—no separate insurance needed</li>
+      <li><strong>Work rights:</strong> 20 hours/week during term helps offset costs</li>
+      <li><strong>Graduate Route:</strong> Stay 2-3 years after graduation to work</li>
+      <li><strong>English language:</strong> No translation barriers</li>
+      <li><strong>Cultural hub:</strong> London, Edinburgh, Manchester—diverse, vibrant cities</li>
+      <li><strong>Global recognition:</strong> UK degrees respected worldwide</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">UK is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want a globally recognized degree</li>
+          <li>✓ You prefer shorter degree programs</li>
+          <li>✓ You want straightforward healthcare (NHS)</li>
+          <li>✓ You want to work after graduation (Graduate Route)</li>
+          <li>✓ You value English-language instruction</li>
+          <li>✓ You want part-time work rights during studies</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Budget is your primary concern (Germany/France are cheaper)</li>
+          <li>• You want to stay long-term (Canada/Australia have easier PR)</li>
+          <li>• You prefer warmer climate</li>
+          <li>• You want free/low tuition (consider Germany, Norway)</li>
+          <li>• You need immediate family to join you easily</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Graduate Route advantage:</strong> After completing your degree, you can apply for the Graduate Route visa—2 years for bachelor's/master's, 3 years for PhD. This lets you work any job at any skill level while you gain UK experience and potentially transition to a Skilled Worker visa.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The UK Student Visa requires a CAS (Confirmation of Acceptance for Studies) from a licensed sponsor institution, proof of English language ability, and evidence you can support yourself financially.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Financial Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Studying in London</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Living costs:</strong> £1,334/month</li>
+          <li>• <strong>9-month course:</strong> £12,006</li>
+          <li>• <strong>Plus:</strong> First year tuition fees</li>
+          <li>• <strong>Total example (1-year MA):</strong> £27,000+</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Outside London</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Living costs:</strong> £1,023/month</li>
+          <li>• <strong>9-month course:</strong> £9,207</li>
+          <li>• <strong>Plus:</strong> First year tuition fees</li>
+          <li>• <strong>Total example (1-year MA):</strong> £22,000+</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>28-day rule:</strong> Your bank statements must show the required funds held for at least 28 consecutive days ending no more than 31 days before your application. This is strictly enforced—gaps or dips below the threshold can result in rejection.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">English Language Requirements</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Foundation/pre-sessional:</strong> IELTS 4.0-5.5 (varies by program)</li>
+      <li><strong>Undergraduate:</strong> IELTS 6.0-6.5 (most courses)</li>
+      <li><strong>Master's/PhD:</strong> IELTS 6.5-7.0+ (competitive programs higher)</li>
+      <li><strong>Accepted tests:</strong> IELTS Academic, TOEFL iBT, PTE Academic, Cambridge</li>
+      <li><strong>Exemptions:</strong> Nationals of majority English-speaking countries; degrees taught in English</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">NHS Access Through Immigration Health Surcharge</h3>
+      <p class="text-green-800">
+        Unlike most countries, the UK doesn't require separate health insurance for students. The Immigration Health Surcharge (IHS) of £776/year gives you full NHS access—the same healthcare available to British residents. This is mandatory and paid with your visa application.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The IHS covers GP visits, hospital care, and most treatments. However, dental care is only partially covered (subsidized, not free), prescriptions cost £9.90/item in England (free in Scotland, Wales, and Northern Ireland), and NHS mental health services often have long wait times.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">NHS vs. Private Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">When to Consider Private Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">NHS Only is Usually Fine If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're generally healthy</li>
+          <li>✓ You can wait for non-urgent care</li>
+          <li>✓ Budget is a priority</li>
+          <li>✓ You're in Scotland/Wales (free prescriptions)</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Add Private Insurance If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You need mental health support (NHS waits are long)</li>
+          <li>✓ You have ongoing health conditions</li>
+          <li>✓ You want dental coverage</li>
+          <li>✓ You prefer faster specialist access</li>
+          <li>✓ You travel frequently (UK + home country)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>University health services:</strong> Most UK universities have on-campus health centers that provide free services to students. These can handle routine care and mental health support, often with shorter waits than external NHS services.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need private insurance to supplement NHS coverage?"
+    description="Compare plans from top providers for students studying in the UK."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/get-quotes"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Since you'll have NHS access through IHS, private insurance is optional but valuable for faster care, mental health support, and dental coverage. These providers offer plans suitable for students.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Need</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Mental Health Priority</h4>
+        <p class="text-neutral-600">BUPA and Cigna offer the best mental health coverage for students. NHS counseling waits can exceed 6 months—private insurance provides faster access to therapy and psychiatry.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Students</h4>
+        <p class="text-neutral-600">SafetyWing and IMG Global offer affordable coverage for healthy students who want a safety net. Good for travel coverage and private GP access without breaking the bank.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Travel During Studies</h4>
+        <p class="text-neutral-600">If you'll travel frequently to Europe or home, Allianz Care and Cigna Global provide seamless international coverage. NHS only covers you in the UK.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global handles pre-existing conditions better than most. For chronic conditions requiring regular specialist care, private insurance reduces NHS wait times significantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The UK Student Visa involves several mandatory fees. The Immigration Health Surcharge is paid upfront for your entire visa duration—for a 3-year undergraduate degree, that's £2,328 in healthcare costs alone.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Upfront Visa Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">1-Year Master's</p>
+        <p class="text-3xl font-bold text-neutral-900">£1,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 1 year IHS</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">3-Year Undergraduate</p>
+        <p class="text-3xl font-bold text-neutral-900">£2,900</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 3 years IHS</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">4-Year PhD</p>
+        <p class="text-3xl font-bold text-neutral-900">£3,600</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 4 years IHS</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Annual Student Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Tuition (international):</strong> £12,000-38,000/year (varies by course and university)</li>
+      <li><strong>London living:</strong> £15,000-20,000/year (room, food, transport, social)</li>
+      <li><strong>Other cities:</strong> £10,000-15,000/year (Manchester, Edinburgh, Bristol, etc.)</li>
+      <li><strong>Optional private insurance:</strong> £600-1,500/year</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Work rights help:</strong> You can work up to 20 hours/week during term and full-time during holidays. At minimum wage (£11.44/hour for 21+), that's roughly £4,500/year—enough to cover most living cost increases.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The UK Student Visa application is done online through gov.uk. You'll need your CAS from the university, financial evidence, and identity documents. Most applications are decided within 3 weeks, but priority options are available for faster decisions.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Accept University Offer & Receive CAS</h4>
+          <p class="text-neutral-600">Once you've met all conditions (grades, English test), your university issues a CAS number. This 14-character code is essential—you can't apply without it. Check CAS details carefully for errors.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Financial Documents</h4>
+          <p class="text-neutral-600">Bank statements showing required funds (tuition + living costs) held for 28+ consecutive days. Statement date must be within 31 days of application. If parents are funding you, include relationship evidence.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Online Application</h4>
+          <p class="text-neutral-600">Apply at gov.uk/student-visa. Enter your CAS number, personal details, travel history, and immigration history. Be completely honest—discrepancies can lead to rejection or future visa issues.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Pay Visa Fee and IHS</h4>
+          <p class="text-neutral-600">Pay the £490 visa fee and Immigration Health Surcharge (£776/year × course length) online. Keep payment receipts. You can add priority processing (£500) or super priority (£1,000) for faster decisions.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Biometric Appointment</h4>
+          <p class="text-neutral-600">Book an appointment at a visa application center to provide fingerprints and photo. Bring your passport and appointment confirmation. Some countries offer "scan and send" for documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Decision</h4>
+          <p class="text-neutral-600">Standard processing is 3 weeks from biometrics. Priority is 5 working days, super priority is next working day. You'll receive an email when decided. If approved, your passport gets a vignette (entry sticker).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect BRP Card in UK</h4>
+          <p class="text-neutral-600">The passport vignette is valid for 90 days. Once in the UK, collect your Biometric Residence Permit (BRP) within 10 days—usually from your university or a designated post office. This is your ID for the duration of studies.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Earliest application:</strong> You can apply up to 6 months before your course starts. Apply early to avoid stress—visa centers get very busy in July-September.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for international students in the UK:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student from India, £18k/year budget</h3>
+        <p class="text-neutral-600 mb-4">1-year MSc at Manchester, living in student halls.</p>
+        <p class="text-green-700 font-medium">✓ NHS covers all health needs. Registered with campus GP, got flu jab free. Uses NHS for prescriptions (£9.90/item). No private insurance needed—healthy and manages fine.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Undergraduate from US, anxiety history</h3>
+        <p class="text-neutral-600 mb-4">3-year BA at Edinburgh, mental health concerns.</p>
+        <p class="text-amber-700 font-medium">△ Added BUPA student plan (£90/month) for mental health access. NHS counseling wait was 4 months—private got her seen in 2 weeks. Worth the cost for peace of mind. Scotland = free prescriptions bonus.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">PhD Student from Nigeria</h3>
+        <p class="text-neutral-600 mb-4">4-year funded PhD at Imperial, London-based.</p>
+        <p class="text-green-700 font-medium">✓ Stipend covers living costs. NHS handles everything—even got minor surgery covered completely. IHS feels expensive upfront (£3,100 for 4 years) but no insurance worries after that. Very satisfied.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Exchange Student from Germany, 1 semester</h3>
+        <p class="text-neutral-600 mb-4">6-month exchange, covered by EHIC equivalent.</p>
+        <p class="text-green-700 font-medium">✓ Still has GHIC (UK's post-Brexit EHIC equivalent for Europeans). Also paid IHS as required for visa. Effectively double-covered. No issues—used NHS for a cold, very easy.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Medical Student from Malaysia, 5-year program</h3>
+        <p class="text-neutral-600 mb-4">MBBS at King's College London, long program ahead.</p>
+        <p class="text-amber-700 font-medium">△ IHS cost is significant (£3,880 for 5 years) but NHS access is excellent. Gets clinical placement training in NHS hospitals. Added IMG Global for dental and visits home—NHS doesn't cover care abroad.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Self-funded Student, Limited Budget</h3>
+        <p class="text-neutral-600 mb-4">1-year MA at Leicester, tight finances.</p>
+        <p class="text-red-700 font-medium">✗ Tried to apply with bank statements showing funds for only 20 days. Rejected. Had to get family loan, wait for 28-day period, and reapply. Lost priority processing fee. Follow the rules exactly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Student Insurance Options"
+    description="Find the right coverage to supplement NHS during your UK studies."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/get-quotes"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Breaking the 28-Day Financial Rule</h3>
+        <p class="text-neutral-600">Funds must be held for 28 consecutive days, ending no more than 31 days before application. Even a single day with insufficient funds can result in rejection. Don't transfer money around during this period.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Too Late</h3>
+        <p class="text-neutral-600">Visa centers are overwhelmed in August-September. Apply as soon as you receive your CAS—you can apply up to 6 months before your course. Late applications risk missing enrollment deadlines.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Registering with a GP</h3>
+        <p class="text-neutral-600">NHS access requires GP registration. Do this in your first week—don't wait until you're sick. University health centers can register you immediately; external GPs may take longer.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Working More Than 20 Hours</h3>
+        <p class="text-neutral-600">During term time, you're limited to 20 hours/week. Exceeding this can result in visa revocation. Employers may check your visa status, and UKVI can request work records. Not worth the risk.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting to Collect BRP</h3>
+        <p class="text-neutral-600">You must collect your Biometric Residence Permit within 10 days of arrival. Missing this deadline can cause problems with bank accounts, renting, and future visa applications. Mark it in your calendar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in the UK -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in the UK</h2>
+
+    <p class="mb-4">
+      The NHS (National Health Service) is the UK's publicly funded healthcare system. As a student who's paid the Immigration Health Surcharge, you have the same access as British residents. Care is generally free at the point of use, though some services have charges.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered by NHS</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Free Services</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP consultations</li>
+          <li>✓ Hospital treatment (A&E, inpatient, outpatient)</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Sexual health clinics</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Vaccinations</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Paid/Partial Coverage</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Prescriptions: £9.90/item in England (free elsewhere)</li>
+          <li>• Dental: Subsidized, not free (£26-£320)</li>
+          <li>• Eye tests: £20-30 (free if on benefits)</li>
+          <li>• Glasses/contacts: Not covered</li>
+          <li>• Some travel vaccinations</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access NHS Services</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 1: Register with a GP</h4>
+        <p class="text-neutral-600">Find a GP surgery near your accommodation and register. University health centers can also register you. You'll need your BRP or passport and proof of address.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 2: Book Appointments</h4>
+        <p class="text-neutral-600">Call your GP surgery or use the NHS App to book appointments. Many surgeries offer same-day appointments for urgent issues. For non-urgent matters, waits can be 1-3 weeks.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 3: Emergency Care</h4>
+        <p class="text-neutral-600">For emergencies, go to A&E (Accident & Emergency) at any hospital or call 999. For urgent but non-emergency issues, call 111 for advice. Minor injuries units handle things like sprains and cuts.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">NHS Wait Times</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP appointment:</strong> Same day to 3 weeks (varies by surgery)</li>
+      <li><strong>Specialist referral:</strong> 2-18 weeks (target is 18 weeks for non-urgent)</li>
+      <li><strong>Mental health (NHS):</strong> 4-18 weeks for talking therapies</li>
+      <li><strong>A&E:</strong> Target is 4 hours; often longer in winter</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>NHS App:</strong> Download the NHS App to book GP appointments, order repeat prescriptions, view your health record, and access NHS 111 online. It's free and very useful for managing your healthcare.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need private health insurance for the UK Student Visa?</h3>
+        <p class="text-neutral-600">
+          No. The Immigration Health Surcharge (IHS) gives you NHS access, which satisfies the healthcare requirement. Private insurance is optional—useful for faster access, mental health, dental, or travel coverage, but not mandatory for the visa.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get an IHS refund if I leave early?</h3>
+        <p class="text-neutral-600">
+          Yes, you can apply for a refund of unused IHS if you leave the UK before your visa expires. The refund is for complete unused years only—no partial year refunds. Apply through the Home Office website after leaving.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I need care during holidays abroad?</h3>
+        <p class="text-neutral-600">
+          NHS only covers you in the UK. If you travel home or elsewhere during breaks, you'll need travel insurance or your home country's coverage. Some international student insurance plans cover you globally—check if this matters to you.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do I find an NHS dentist?</h3>
+        <p class="text-neutral-600">
+          NHS dental care is notoriously hard to access—many areas have no dentists accepting new NHS patients. Use the NHS website to search, or ask your university. Private dental is often the realistic option (£50-100 for checkup and cleaning).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I stay after graduation?</h3>
+        <p class="text-neutral-600">
+          Yes. The Graduate Route visa lets you stay 2 years after bachelor's/master's (3 years after PhD) to work at any skill level. After that, you'd need to switch to a Skilled Worker visa if you want to remain. This is one of the UK's biggest draws for students.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse/children come with me?</h3>
+        <p class="text-neutral-600">
+          Only if you're studying at RQF level 7+ (master's, PhD) for 9+ months, OR you're a government-sponsored student. Undergraduate students generally cannot bring dependents. Dependents must also pay IHS and meet financial requirements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The UK Student Visa offers straightforward healthcare through the Immigration Health Surcharge—pay upfront, get NHS access, no insurance shopping required. For most healthy students, NHS coverage is perfectly adequate, especially combined with university health services.
+    </p>
+
+    <p class="mb-4">
+      Private insurance makes sense in specific situations: mental health needs (NHS waits are long), pre-existing conditions requiring specialists, dental coverage, or frequent travel. But it's a nice-to-have, not a must-have.
+    </p>
+
+    <p class="mb-6">
+      The UK remains an excellent choice for international students despite costs. World-class universities, shorter degrees, work rights, and the Graduate Route pathway make it compelling. The healthcare system is a genuine advantage—simple, comprehensive, and integrated into the visa process.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The UK Student Visa includes NHS healthcare through the mandatory Immigration Health Surcharge. Most students don't need additional insurance. Consider private coverage only for mental health support, dental, or international travel—otherwise, the NHS has you covered.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Student Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/uk/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in the UK</p>
+      </a>
+      <a href="/insurance-for/students" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Students Abroad</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for international students</p>
+      </a>
+      <a href="/visas/student-visa/in/australia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Australia Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Australia's Student Visa (subclass 500)</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

@@ -1,0 +1,721 @@
+---
+/**
+ * Australia Student Visa (Subclass 500) - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended OSHC Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Australia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Australia Health Insurance Guide", href: "/countries/australia/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "CoE (Confirmation of Enrolment)", details: "From CRICOS-registered institution", evidence: "CoE letter with course details" },
+  { requirement: "OSHC (Health Insurance)", details: "Mandatory for entire visa period", evidence: "OSHC policy certificate" },
+  { requirement: "English Language", details: "IELTS 5.5-7.0+ depending on course", evidence: "Test results (IELTS, TOEFL, PTE)" },
+  { requirement: "Financial Capacity", details: "A$24,505/year + A$7,160 for dependents", evidence: "Bank statements, loan approval, or sponsor letter" },
+  { requirement: "Genuine Temporary Entrant", details: "Must demonstrate intention to leave", evidence: "Statement, ties to home country" },
+  { requirement: "Health & Character", details: "Medical exam, police clearance", evidence: "HAP ID, police certificates" },
+];
+
+const oshcColumns = [
+  { key: "provider", header: "OSHC Provider" },
+  { key: "singles", header: "Singles (Annual)" },
+  { key: "couples", header: "Couples (Annual)" },
+  { key: "family", header: "Family (Annual)" },
+];
+
+const oshcRows = [
+  { provider: "Medibank", singles: "A$550-650", couples: "A$2,800-3,200", family: "A$5,500-6,200" },
+  { provider: "Allianz Care (Peoplecare)", singles: "A$480-580", couples: "A$2,600-3,000", family: "A$5,200-5,800" },
+  { provider: "BUPA Australia", singles: "A$530-620", couples: "A$2,700-3,100", family: "A$5,400-6,000" },
+  { provider: "AHM (Medibank)", singles: "A$490-590", couples: "A$2,500-2,900", family: "A$5,100-5,600" },
+  { provider: "NIB", singles: "A$520-610", couples: "A$2,650-3,050", family: "A$5,300-5,900" },
+];
+
+const coverageColumns = [
+  { key: "service", header: "Service" },
+  { key: "oshc", header: "OSHC Coverage" },
+  { key: "notes", header: "Notes" },
+];
+
+const coverageRows = [
+  { service: "GP Visits", oshc: "100% of MBS fee", notes: "May have gap if doctor charges above MBS" },
+  { service: "Hospital (public)", oshc: "100% covered", notes: "Shared room, public hospital" },
+  { service: "Hospital (private)", oshc: "Partial", notes: "Gap fees likely, check policy" },
+  { service: "Prescription Medicine", oshc: "PBS subsidized", notes: "A$7.30 concession or A$30 general" },
+  { service: "Ambulance", oshc: "Varies by state", notes: "Some states include, others don't" },
+  { service: "Mental Health", oshc: "MBS-covered services", notes: "Limited sessions per year" },
+  { service: "Dental/Optical", oshc: "Not covered", notes: "Requires separate extras cover" },
+  { service: "Pre-existing Conditions", oshc: "12-month wait", notes: "Waiting period applies" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (AUD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "A$710", notes: "Base fee (2026)" },
+  { item: "OSHC (Annual)", amount: "A$500-650", notes: "Singles, varies by provider" },
+  { item: "Medical Examination", amount: "A$300-500", notes: "Required for many nationalities" },
+  { item: "Police Clearance", amount: "A$50-150", notes: "From home country" },
+  { item: "English Test (IELTS)", amount: "A$380-420", notes: "Pre-application" },
+  { item: "Biometrics", amount: "A$0-100", notes: "If required for your nationality" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Receive university offer", duration: "Varies", location: "University" },
+  { step: "Accept offer, pay deposit", duration: "1-2 weeks", location: "University portal" },
+  { step: "Receive CoE", duration: "1-5 days", location: "Email" },
+  { step: "Purchase OSHC", duration: "Same day", location: "OSHC provider" },
+  { step: "Create ImmiAccount", duration: "30 mins", location: "immi.homeaffairs.gov.au" },
+  { step: "Complete online application", duration: "1-2 hours", location: "ImmiAccount" },
+  { step: "Medical examination", duration: "1-2 weeks", location: "Panel physician" },
+  { step: "Submit police clearances", duration: "2-8 weeks", location: "Home country police" },
+  { step: "Processing", duration: "4-12 weeks", location: "DHA review" },
+  { step: "Visa grant", duration: "Email", location: "Online notification" },
+];
+---
+
+<PageShell
+  title="Australia Student Visa 2026: OSHC, Requirements & Application Guide"
+  description="Complete guide to Australia's Student Visa (Subclass 500). Mandatory OSHC health insurance, financial requirements, GTE statement, and step-by-step application process."
+  headline="Australia Student Visa: OSHC Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in Australia—mandatory OSHC health cover, financial capacity requirements, Genuine Temporary Entrant criteria, and the complete application process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroBackgroundImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official DHA Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      OSHC Mandatory
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Australia is the world's third most popular destination for international students, with over 670,000 studying at Australian institutions. The Student Visa (Subclass 500) provides access to world-class universities, post-study work rights, and one of the best quality-of-life countries globally.
+    </p>
+
+    <p class="mb-4">
+      Unlike the UK's single health surcharge, Australia requires you to purchase Overseas Student Health Cover (OSHC) from an approved private insurer. OSHC is mandatory—you cannot get a student visa without it. The good news: it's comprehensive, covering hospital, GP visits, and most medical services.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Australia Student Visa (Subclass 500)</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Student Visa (Subclass 500)</li>
+        <li>• <strong>Healthcare:</strong> Mandatory OSHC (Overseas Student Health Cover)</li>
+        <li>• <strong>Work rights:</strong> Unlimited hours (since July 2023)</li>
+        <li>• <strong>Duration:</strong> Length of course + extra time (varies)</li>
+        <li>• <strong>Post-study work:</strong> Temporary Graduate Visa (2-4 years)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Study in Australia?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Top universities:</strong> 7 in the global top 100 (Group of Eight)</li>
+      <li><strong>Post-study work:</strong> 2-4 years depending on qualification level</li>
+      <li><strong>Work rights:</strong> Unlimited work hours during studies</li>
+      <li><strong>PR pathway:</strong> Points-based immigration favors Australian graduates</li>
+      <li><strong>Quality of life:</strong> Safe cities, great weather, outdoor lifestyle</li>
+      <li><strong>English language:</strong> Native English-speaking country</li>
+      <li><strong>Diverse, multicultural:</strong> Large international communities</li>
+      <li><strong>Strong economy:</strong> High wages for part-time and graduate work</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Australia is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want generous post-study work rights</li>
+          <li>✓ You're interested in eventual permanent residency</li>
+          <li>✓ You want to work while studying (unlimited hours)</li>
+          <li>✓ You prefer warm climate and outdoor lifestyle</li>
+          <li>✓ You value safety and quality of life</li>
+          <li>✓ You want English-language education with diverse community</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Budget is your primary concern (Australia is expensive)</li>
+          <li>• You want to be close to Europe or Americas</li>
+          <li>• You prefer faster/shorter degree programs (UK is faster)</li>
+          <li>• You want free tuition (Germany, Norway)</li>
+          <li>• You have specific field needs not strong in Australia</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>PR pathway advantage:</strong> Australian graduates get extra points in the skilled migration program. Many students transition from Temporary Graduate Visa to permanent residency, especially in areas with skill shortages (healthcare, engineering, IT, education).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Subclass 500 visa requires enrolment at a CRICOS-registered institution, valid OSHC, financial capacity, English proficiency, and meeting the Genuine Temporary Entrant (GTE) requirement—demonstrating you intend to study genuinely and return home afterward.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Financial Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Single Student</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Living costs:</strong> A$24,505/year</li>
+          <li>• <strong>Plus:</strong> Course fees for first year</li>
+          <li>• <strong>Plus:</strong> OSHC for duration</li>
+          <li>• <strong>Plus:</strong> Return airfare (if requested)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">With Dependents</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Spouse:</strong> +A$8,574/year</li>
+          <li>• <strong>Each child:</strong> +A$3,670/year</li>
+          <li>• <strong>School-age children:</strong> +A$9,661/year school fees</li>
+          <li>• <strong>OSHC:</strong> Family OSHC required</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>GTE requirement:</strong> The Genuine Temporary Entrant criterion assesses whether you genuinely intend to study and will leave Australia after your course. Factors include ties to your home country, immigration history, and the value of the course to your future. Write a thoughtful statement explaining your genuine intentions.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">English Language Requirements</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Foundation/pathway:</strong> IELTS 5.5 overall (no band below 5.0)</li>
+      <li><strong>Undergraduate:</strong> IELTS 6.0-6.5 overall</li>
+      <li><strong>Master's:</strong> IELTS 6.5-7.0 overall</li>
+      <li><strong>PhD:</strong> IELTS 6.5-7.0 overall</li>
+      <li><strong>Accepted tests:</strong> IELTS Academic, TOEFL iBT, PTE Academic, Cambridge, OET</li>
+      <li><strong>Exemptions:</strong> Citizens of UK, Ireland, US, Canada, NZ (proof of English medium education also accepted)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">OSHC is Mandatory for Student Visa</h3>
+      <p class="text-red-800">
+        Overseas Student Health Cover (OSHC) is a legal requirement for the Subclass 500 visa. You cannot apply without it, and your visa can be cancelled if your OSHC lapses. You must maintain OSHC for the entire duration of your student visa—no gaps allowed.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      OSHC is provided by Australian government-approved private insurers. All OSHC policies must meet minimum standards set by the Department of Health, so coverage is relatively consistent across providers. The main differences are price, extras coverage, and customer service.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What OSHC Covers</h3>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Important OSHC Limitations</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Not Covered by OSHC</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Dental and optical</li>
+          <li>✗ Physiotherapy, chiropractic</li>
+          <li>✗ Pre-existing conditions (12-month wait)</li>
+          <li>✗ Cosmetic surgery</li>
+          <li>✗ Treatment outside Australia</li>
+          <li>✗ Travel insurance</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">OSHC Extras (Optional Add-on)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Dental check-ups and treatment</li>
+          <li>✓ Optical/glasses</li>
+          <li>✓ Physiotherapy</li>
+          <li>✓ Remedial massage</li>
+          <li>✓ Podiatry</li>
+          <li>✓ +A$300-500/year</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>University OSHC offers:</strong> Many universities have partnerships with specific OSHC providers and offer discounted rates. Check your university's recommendations—you may get a better deal through their preferred provider. Some universities arrange OSHC automatically with your enrolment.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need to compare OSHC providers?"
+    description="Find the best rates for mandatory student health cover in Australia."
+    buttonText="Compare OSHC Plans"
+    buttonHref="/get-quotes"
+  />
+
+  <!-- Section: Recommended OSHC Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended OSHC Providers</h2>
+
+    <p class="mb-4">
+      There are six approved OSHC providers in Australia. All meet minimum government standards, but prices and service vary. Most students save by choosing a competitively priced provider—coverage is largely the same.
+    </p>
+
+    <ComparisonTable columns={oshcColumns} rows={oshcRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Value: Allianz Care (Peoplecare)</h4>
+        <p class="text-neutral-600">Often the cheapest option with solid coverage. Good online claims system. Recommended for budget-conscious students who want standard OSHC without extras.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Network: Medibank</h4>
+        <p class="text-neutral-600">Largest health insurer in Australia with extensive provider network. Good for students who want access to many doctors and hospitals, especially in regional areas.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Service: BUPA Australia</h4>
+        <p class="text-neutral-600">Good customer service reputation and easy claims process. Slightly more expensive but offers reliable support when you need to make claims.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Want Extras: Any provider + extras cover</h4>
+        <p class="text-neutral-600">If you need dental, optical, or physio, add an extras package to your OSHC. About A$300-500/year extra but covers services OSHC doesn't include.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Switching providers:</strong> You can switch OSHC providers at any time (though some have minimum period requirements). If you find a better deal after arrival, you can transfer your cover—just ensure there's no gap in coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Australia is expensive compared to many study destinations, but high wages for part-time work help offset costs. With unlimited work hours now permitted, many students cover a significant portion of their living costs through employment.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Upfront Visa Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">1-Year Master's</p>
+        <p class="text-3xl font-bold text-neutral-900">A$1,700</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + OSHC + medical</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">3-Year Bachelor's</p>
+        <p class="text-3xl font-bold text-neutral-900">A$2,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 3yr OSHC + medical</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">4-Year PhD</p>
+        <p class="text-3xl font-bold text-neutral-900">A$3,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 4yr OSHC + medical</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Annual Student Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Tuition (international):</strong> A$20,000-50,000/year (varies by course)</li>
+      <li><strong>Sydney/Melbourne living:</strong> A$25,000-35,000/year</li>
+      <li><strong>Brisbane/Perth:</strong> A$20,000-28,000/year</li>
+      <li><strong>Adelaide/other cities:</strong> A$18,000-25,000/year</li>
+      <li><strong>OSHC:</strong> A$500-650/year (singles)</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Work opportunities:</strong> At minimum wage (A$23.23/hour), 20 hours/week earns roughly A$24,000/year—nearly covering the financial requirement. Many hospitality and retail jobs are available for students. Major cities have strong job markets.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Australian Student Visa is applied for online through ImmiAccount. You'll need your Confirmation of Enrolment (CoE), OSHC certificate, financial evidence, and may need to complete a medical examination and provide police clearances depending on your nationality and course.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Accept Offer & Pay Deposit</h4>
+          <p class="text-neutral-600">Accept your conditional or unconditional offer and pay the required deposit (usually one semester's fees). The university will then issue your Confirmation of Enrolment (CoE).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Purchase OSHC</h4>
+          <p class="text-neutral-600">Buy OSHC for your entire visa period from an approved provider. Many universities arrange this automatically—check if it's included in your offer. Keep the policy certificate for your visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Create ImmiAccount & Apply</h4>
+          <p class="text-neutral-600">Create an account at immi.homeaffairs.gov.au. Complete the online application, entering your CoE details, OSHC policy number, and uploading supporting documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Health Examination</h4>
+          <p class="text-neutral-600">If required (based on your nationality and course), complete a medical examination with a panel-approved physician. Generate your HAP ID through ImmiAccount and book the appointment.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Provide Police Clearances</h4>
+          <p class="text-neutral-600">If requested, obtain police clearance certificates from every country you've lived in for 12+ months in the past 10 years. Processing times vary—some countries take weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Decision</h4>
+          <p class="text-neutral-600">Processing typically takes 4-12 weeks. You can track status in ImmiAccount. The Department may request additional documents. Once approved, you'll receive a visa grant letter via email—no stamp needed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Label-free visa:</strong> Australian visas are electronic. You won't get a stamp or sticker—just an email notification. Airlines and immigration can verify your visa status electronically. Print your visa grant letter for your records.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for international students in Australia:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">IT Student from India, Melbourne</h3>
+        <p class="text-neutral-600 mb-4">2-year Master's at Monash, working part-time in retail.</p>
+        <p class="text-green-700 font-medium">✓ OSHC with Allianz (cheapest option). Used it for GP visits and a minor hospital procedure—no issues, fully covered. Working 25 hours/week covers rent. Planning to apply for Temporary Graduate Visa after completion.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Nursing Student from Philippines, Brisbane</h3>
+        <p class="text-neutral-600 mb-4">3-year Bachelor's at QUT, clinical placements required.</p>
+        <p class="text-green-700 font-medium">✓ Chose BUPA for better network in hospital areas. OSHC covered all clinical placement health checks. Nursing on skilled occupation list—strong PR pathway. Very happy with decision.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Student with Pre-existing Asthma, Sydney</h3>
+        <p class="text-neutral-600 mb-4">1-year MBA at UNSW, manages chronic condition.</p>
+        <p class="text-amber-700 font-medium">△ OSHC has 12-month waiting period for pre-existing conditions. Brought 6 months of medication from home, then paid out-of-pocket for GP and prescriptions until waiting period ended. Budget for this if you have chronic conditions.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Student Needing Dental Work</h3>
+        <p class="text-neutral-600 mb-4">3-year undergraduate, needed wisdom teeth removal.</p>
+        <p class="text-amber-700 font-medium">△ Standard OSHC doesn't cover dental. Paid A$2,000 out-of-pocket for extraction. Wish I'd bought OSHC extras (A$400/year) or done dental before leaving home. Australian dental is expensive.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Family with Child, Adelaide</h3>
+        <p class="text-neutral-600 mb-4">PhD student with spouse and toddler.</p>
+        <p class="text-amber-700 font-medium">△ Family OSHC costs A$5,500/year—significant expense. But it covered child's ear infection, spouse's pregnancy complications, and all GP visits. Worth it for peace of mind with family. Adelaide is more affordable than Sydney.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Student Who Let OSHC Lapse</h3>
+        <p class="text-neutral-600 mb-4">Forgot to renew OSHC during summer break.</p>
+        <p class="text-red-700 font-medium">✗ Visa condition breach—reported to DHA. Had to attend interview, show it was genuine oversight, and provide evidence of immediate OSHC purchase. Stressful and nearly resulted in visa cancellation. Set calendar reminders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare OSHC Providers"
+    description="Get the best rates and coverage for your Australian student visa."
+    buttonText="Get OSHC Quotes"
+    buttonHref="/get-quotes"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Letting OSHC Lapse</h3>
+        <p class="text-neutral-600">OSHC must cover your entire visa period with no gaps. A lapse is a visa condition breach that can lead to cancellation. Set renewal reminders at least a month before expiry. Some providers offer auto-renewal.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Weak Genuine Temporary Entrant (GTE) Statement</h3>
+        <p class="text-neutral-600">Many rejections stem from unconvincing GTE statements. Explain your genuine reasons for studying in Australia, ties to your home country, and realistic career plans after returning. Generic statements are red flags.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Financial Evidence</h3>
+        <p class="text-neutral-600">Show A$24,505/year living costs plus tuition and OSHC. Funds must be genuinely available to you—large unexplained deposits look suspicious. Provide clear evidence of funding source (savings, loans, sponsors).</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Buying OSHC Extras for Dental</h3>
+        <p class="text-neutral-600">Basic OSHC doesn't cover dental. Australian dental is expensive—a simple filling can be A$200+. If you need any dental work, either do it before leaving home or budget for OSHC extras cover.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Too Late</h3>
+        <p class="text-neutral-600">Processing times can stretch to 12 weeks. Apply as soon as you have your CoE—don't wait until the last minute. Medical exams and police clearances add time. Give yourself buffer for unexpected delays.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Australia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Australia</h2>
+
+    <p class="mb-4">
+      Australia has a dual healthcare system: Medicare (public) and private. International students aren't eligible for Medicare—OSHC fills this gap. The quality of care is excellent, though wait times for specialists through the public system can be long.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Use OSHC</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">GP Visits</h4>
+        <p class="text-neutral-600">Find a bulk-billing GP (charges Medicare/OSHC rate) for no out-of-pocket cost. Non-bulk-billing GPs may charge A$60-100, with OSHC reimbursing the MBS rate (about A$40). University health centers often bulk-bill students.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hospital Treatment</h4>
+        <p class="text-neutral-600">OSHC covers public hospital treatment as a private patient—meaning no wait list access but shared rooms. For private hospitals, check with your OSHC provider about gap fees. Emergency treatment is always covered.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Prescriptions</h4>
+        <p class="text-neutral-600">OSHC members get access to PBS (Pharmaceutical Benefits Scheme) pricing. Most medications cost A$7.30 (concession) or A$30 (general) per script. Without PBS, the same medications could cost hundreds.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Making Claims</h4>
+        <p class="text-neutral-600">Most providers have apps for instant claims—scan your receipt, get reimbursed within days. For hospital claims, the hospital usually bills OSHC directly. Keep all receipts and documentation.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding Healthcare</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>University health services:</strong> Free or low-cost, convenient, understand student needs</li>
+      <li><strong>Bulk-billing GPs:</strong> No out-of-pocket cost, search HealthEngine or HotDoc apps</li>
+      <li><strong>After-hours:</strong> Medical centres open evenings/weekends, or call Nurse-on-Call</li>
+      <li><strong>Emergency:</strong> Call 000 for ambulance, or go to hospital Emergency Department</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Ambulance coverage varies:</strong> In Queensland and Tasmania, ambulance is government-funded. In other states, OSHC may or may not cover ambulance—check your policy. Ambulance bills can be A$1,000+ without cover.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I choose any OSHC provider?</h3>
+        <p class="text-neutral-600">
+          Yes, from the six approved providers: Medibank, BUPA, Allianz (Peoplecare), AHM, NIB, and CBHS. All meet government minimum standards. Some universities have preferred providers with discounts—check before choosing.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if I have a pre-existing condition?</h3>
+        <p class="text-neutral-600">
+          OSHC has a 12-month waiting period for pre-existing conditions. You'll need to pay out-of-pocket for related treatment during this period. Bring sufficient medication from home and budget for private GP visits if needed.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does OSHC cover me when I travel home?</h3>
+        <p class="text-neutral-600">
+          No. OSHC only covers you in Australia. For international travel (including trips home), you need separate travel insurance. Some providers offer combined OSHC + travel packages.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work unlimited hours on a student visa?</h3>
+        <p class="text-neutral-600">
+          Yes, since July 2023, student visa holders can work unlimited hours. This is a significant change from the previous 40-hours-per-fortnight limit. Take advantage of this—Australian wages are high and help offset living costs.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the Temporary Graduate Visa?</h3>
+        <p class="text-neutral-600">
+          After completing your studies, you can apply for the Temporary Graduate Visa (Subclass 485). Duration: 2 years for bachelor's, 3 years for master's by coursework, 4 years for master's by research or PhD. You can work any job—great for gaining Australian experience.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family join me?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouses and children can apply as dependents on your student visa. They need their own OSHC (family policy), and you must meet higher financial requirements. Spouses get unlimited work rights too.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Australia's mandatory OSHC system provides comprehensive healthcare coverage for international students. Unlike systems where you're left to figure out insurance yourself, OSHC is standardized, government-regulated, and covers most medical needs. The main gap is dental—budget for extras cover or pre-departure dental work.
+    </p>
+
+    <p class="mb-4">
+      The biggest draws for Australia are the post-study work rights (2-4 years) and PR pathway potential. Combined with unlimited work hours during studies and high wages, Australia offers a genuine path to migration for those who want it. The costs are high, but the opportunities are real.
+    </p>
+
+    <p class="mb-6">
+      Apply early, write a strong GTE statement, and never let your OSHC lapse. Australia's visa process is straightforward but strict on compliance. Follow the rules, and you'll have access to excellent education, healthcare, and career opportunities.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Australia's Student Visa requires mandatory OSHC—comprehensive health coverage from approved providers. All OSHC policies meet minimum standards, so focus on price and service. Add extras for dental/optical. Never let coverage lapse. Post-study work rights make Australia one of the best long-term destinations for international students.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare OSHC Providers →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/australia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Australia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Australia</p>
+      </a>
+      <a href="/insurance-for/students" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Students Abroad</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for international students</p>
+      </a>
+      <a href="/visas/student-visa/in/canada" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Canada Study Permit</h3>
+        <p class="text-neutral-600 text-sm">Compare with Canada's study permit requirements</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
