@@ -1,0 +1,748 @@
+---
+/**
+ * Germany Student Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Germany", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Germany Health Insurance Guide", href: "/countries/germany/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "University Admission", details: "Zulassungsbescheid from German university", evidence: "Admission letter (original or certified copy)" },
+  { requirement: "Financial Proof", details: "€11,208/year (€934/month)", evidence: "Blocked account (Sperrkonto) statement" },
+  { requirement: "Health Insurance", details: "German-compliant public or private insurance", evidence: "Insurance confirmation letter" },
+  { requirement: "Language Proof", details: "German (TestDaF/DSH) or English (IELTS)", evidence: "Test certificate for program language" },
+  { requirement: "Academic Credentials", details: "Recognized prior qualifications", evidence: "Transcripts + diploma (translated & certified)" },
+  { requirement: "Accommodation", details: "At least initial address in Germany", evidence: "Rental contract or hosting confirmation" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "public", header: "Public (Gesetzliche)" },
+  { key: "private", header: "Private (Private)" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", public: "~€110/month (fixed)", private: "€80-150/month (age-dependent)" },
+  { feature: "Eligibility", public: "Students under 30, enrolled full-time", private: "Students 30+, or by choice if under 30" },
+  { feature: "Coverage", public: "Comprehensive + dental partial", private: "Varies by plan, often more flexible" },
+  { feature: "Providers", public: "TK, AOK, Barmer, DAK", private: "Allianz, DKV, Mawista, Care Concept" },
+  { feature: "Switching", public: "Easy to switch between public insurers", private: "Hard to switch back to public" },
+  { feature: "After Studies", public: "Continue if employed in Germany", private: "Must switch if employed below threshold" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "TK (Techniker)", type: "Public", price: "~€110", strengths: "Most popular, excellent app, English service" },
+  { provider: "AOK", type: "Public", price: "~€110", strengths: "Large network, regional offices" },
+  { provider: "Barmer", type: "Public", price: "~€110", strengths: "Good preventive care, mental health" },
+  { provider: "Mawista", type: "Private", price: "€80-120", strengths: "Students 30+, incoming students" },
+  { provider: "Care Concept", type: "Private", price: "€70-100", strengths: "Budget-friendly, basic coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€75", notes: "Paid at German embassy" },
+  { item: "Blocked Account Deposit", amount: "€11,208", notes: "Refundable living costs (€934/month)" },
+  { item: "Blocked Account Setup", amount: "€0-89", notes: "Varies by provider (Fintiba, Expatrio)" },
+  { item: "Semester Fee", amount: "€150-350", notes: "Per semester, includes transport ticket" },
+  { item: "Health Insurance", amount: "€110/month", notes: "Public insurance (mandatory)" },
+  { item: "Residence Permit", amount: "€100-110", notes: "After arrival, at Ausländerbehörde" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Receive university admission", duration: "Varies", location: "University / uni-assist" },
+  { step: "Open blocked account", duration: "1-2 weeks", location: "Online (Fintiba/Expatrio)" },
+  { step: "Purchase health insurance", duration: "1-2 days", location: "Online or in person" },
+  { step: "Schedule visa appointment", duration: "2-8 weeks wait", location: "German embassy/consulate" },
+  { step: "Attend visa interview", duration: "1 day", location: "German embassy/consulate" },
+  { step: "Visa processing", duration: "4-12 weeks", location: "German authorities" },
+  { step: "Arrive in Germany", duration: "-", location: "Airport" },
+  { step: "Register at Ausländerbehörde", duration: "Within 90 days", location: "Local foreigners office" },
+];
+---
+
+<PageShell
+  title="Germany Student Visa 2026: Requirements, Free Tuition & Insurance Guide"
+  description="Complete guide to the German Student Visa. Free tuition at public universities, blocked account requirements, German health insurance, and the 18-month job search visa after graduation."
+  headline="Germany Student Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in Germany—free tuition, blocked account (Sperrkonto), mandatory German health insurance, and the excellent 18-month post-study job search visa."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official DAAD Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Free Tuition at Public Universities
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Germany is one of the world's most attractive destinations for international students, and the reason is simple: <strong>tuition is free at public universities</strong>. Over 400,000 international students study in Germany, drawn by excellent education, affordable living costs, and exceptional post-graduation work opportunities.
+    </p>
+
+    <p class="mb-4">
+      The trade-off for free tuition? Germany requires proper health insurance—and not just any insurance. You'll need German-compliant coverage (public or private) that meets specific standards. International insurance plans like Cigna or SafetyWing won't be accepted for your residence permit.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Germany Student Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Tuition:</strong> FREE at public universities (only €150-350 semester fee)</li>
+        <li>• <strong>Insurance:</strong> German public (~€110/month) or approved private required</li>
+        <li>• <strong>Financial proof:</strong> €11,208 blocked account (Sperrkonto)</li>
+        <li>• <strong>Work rights:</strong> 120 full days or 240 half days per year</li>
+        <li>• <strong>Post-study:</strong> 18-month job search visa after graduation</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Study in Germany?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Free tuition:</strong> Public universities charge only a small semester fee</li>
+      <li><strong>Research excellence:</strong> Home to world-renowned institutions (TU Munich, LMU, Heidelberg)</li>
+      <li><strong>Engineering powerhouse:</strong> Best in class for STEM, automotive, and industrial engineering</li>
+      <li><strong>18-month job search:</strong> Generous post-study visa for finding work</li>
+      <li><strong>EU gateway:</strong> Study in the heart of Europe with easy travel</li>
+      <li><strong>Strong economy:</strong> Excellent job market, especially in tech and engineering</li>
+      <li><strong>Affordable living:</strong> €850-1,200/month in most cities (less than UK/US)</li>
+      <li><strong>Quality healthcare:</strong> German health insurance is comprehensive</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Germany is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want free or very low tuition</li>
+          <li>✓ You're studying STEM, engineering, or business</li>
+          <li>✓ You want to work in Germany after graduation</li>
+          <li>✓ You're willing to learn some German</li>
+          <li>✓ You value quality healthcare coverage</li>
+          <li>✓ You want access to the EU job market</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want all English, all the time (some German helps)</li>
+          <li>• You prefer warmer weather year-round</li>
+          <li>• You want simpler insurance (UK's IHS is easier)</li>
+          <li>• You're over 30 (public insurance becomes unavailable)</li>
+          <li>• You want a shorter degree (German bachelor's is 3+ years)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>18-month job search advantage:</strong> After graduating from a German university, you can stay for 18 months to find a job related to your studies. This is one of the most generous post-study work policies in the world—much better than the US or UK's previous offerings.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The German Student Visa requires admission to a recognized university, proof of financial means (blocked account), and valid German health insurance from day one.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The Blocked Account (Sperrkonto)</h3>
+
+    <p class="mb-4">
+      Germany requires international students to prove they can support themselves financially. The standard method is a <strong>blocked account (Sperrkonto)</strong>—a special German bank account where you deposit €11,208 (one year's living costs) and can only withdraw €934/month.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Fintiba</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Setup fee: €89</li>
+          <li>• Online process</li>
+          <li>• 2-3 days to set up</li>
+          <li>• English support</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Expatrio</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Setup fee: €49</li>
+          <li>• Online process</li>
+          <li>• 1-2 days to set up</li>
+          <li>• Insurance bundles available</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Deutsche Bank</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Setup fee: Free</li>
+          <li>• In-person or online</li>
+          <li>• Traditional bank</li>
+          <li>• Slower process</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Open your blocked account early:</strong> The transfer from your home bank to a German blocked account can take 1-2 weeks. Start this process as soon as you receive your admission letter—don't wait until your visa appointment is scheduled.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Language Requirements</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>German-taught programs:</strong> TestDaF (TDN 4) or DSH-2 required</li>
+      <li><strong>English-taught programs:</strong> IELTS 6.0-6.5 or TOEFL 80-100</li>
+      <li><strong>No test needed:</strong> Native English speakers from certain countries for English programs</li>
+      <li><strong>Preparatory courses:</strong> Studienkolleg available if you need language/academic preparation</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">International Insurance is NOT Accepted</h3>
+      <p class="text-red-800">
+        Germany does not accept international health insurance (Cigna, Allianz International, SafetyWing, etc.) for student residence permits. You must have either German public insurance (gesetzliche Krankenversicherung) or approved German private insurance (private Krankenversicherung). This is non-negotiable.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      For students under 30 enrolled full-time, German public health insurance is mandatory and affordable (~€110/month). It provides excellent, comprehensive coverage. Students over 30, or those who choose private insurance, have more flexibility but face different rules.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public vs. Private Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Which Should You Choose?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose Public Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're under 30 (mandatory anyway)</li>
+          <li>✓ You want predictable, fixed costs</li>
+          <li>✓ You might work in Germany after studies</li>
+          <li>✓ You want comprehensive coverage</li>
+          <li>✓ You prefer the security of the German system</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Insurance If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You're 30 or older (no choice—public unavailable)</li>
+          <li>✓ You want cheaper short-term coverage</li>
+          <li>✓ You plan to leave Germany after studies</li>
+          <li>✓ You need coverage before enrollment starts</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Age 30 cutoff:</strong> Once you turn 30, you can no longer join German public health insurance as a student. If you're approaching 30, enroll in public insurance before your birthday—you can continue coverage even after turning 30 if already enrolled.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need help choosing German health insurance?"
+    description="Compare TK, AOK, and private options for international students."
+    buttonText="Compare German Insurance Options"
+    buttonHref="/countries/germany/insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For students under 30, public insurance is mandatory and the best choice. TK (Techniker Krankenkasse) is the most popular among international students due to excellent English support. For students 30+, German private insurers offer compliant coverage.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Under 30, Full-Time Student</h4>
+        <p class="text-neutral-600">TK (Techniker) is the gold standard—best app, excellent English service, easy claims. AOK and Barmer are also excellent. All public insurers charge the same rate (~€110/month) with nearly identical coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">30 or Older</h4>
+        <p class="text-neutral-600">Mawista and Care Concept offer private insurance approved for student visas. Expect €80-150/month depending on age and coverage. These won't transition to regular employment insurance, so understand the limitations.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Just Arrived / Waiting for Enrollment</h4>
+        <p class="text-neutral-600">If you need coverage before your semester starts, Mawista or Care Concept can provide incoming insurance. Once enrolled, switch to public insurance (TK/AOK) for better long-term coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Planning to Stay After Studies</h4>
+        <p class="text-neutral-600">Strongly recommend public insurance (TK, AOK, Barmer). When you find employment, your public insurance continues seamlessly. Private insurance creates complications when transitioning to work visas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The big headline: tuition is free at German public universities. Your main costs are the blocked account (refundable living expenses), health insurance, and small fees.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Upfront Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Visa + Blocked Account</p>
+        <p class="text-3xl font-bold text-neutral-900">€11,400</p>
+        <p class="text-sm text-neutral-500 mt-2">€11,208 returned monthly</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Annual Tuition</p>
+        <p class="text-3xl font-bold text-green-600">€0</p>
+        <p class="text-sm text-neutral-500 mt-2">Public universities only</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Semester Fee</p>
+        <p class="text-3xl font-bold text-neutral-900">€150-350</p>
+        <p class="text-sm text-neutral-500 mt-2">Includes transport pass</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Living Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Health insurance:</strong> €110/month (public, mandatory)</li>
+      <li><strong>Rent:</strong> €350-700/month (student housing to private flat)</li>
+      <li><strong>Food:</strong> €200-300/month</li>
+      <li><strong>Transport:</strong> Often included in semester ticket</li>
+      <li><strong>Other:</strong> €100-200/month (phone, entertainment, misc)</li>
+      <li><strong>Total:</strong> €850-1,200/month in most cities</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Semester ticket bonus:</strong> Most German universities include a Semesterticket in your semester fee—unlimited public transport in the city and often the entire state. This alone can save €50-100/month compared to buying transport passes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The German student visa process involves getting university admission, arranging finances (blocked account), securing health insurance, and then applying for the visa. Processing times vary by embassy—some countries have long wait times for appointments.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get University Admission</h4>
+          <p class="text-neutral-600">Apply through uni-assist (for most universities) or directly to the university. You need an unconditional admission letter (Zulassungsbescheid) to apply for the visa. Conditional admissions don't work.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open Blocked Account</h4>
+          <p class="text-neutral-600">Create a Sperrkonto with Fintiba, Expatrio, or Deutsche Bank. Deposit €11,208 (takes 1-2 weeks to transfer internationally). You'll receive a confirmation letter for your visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Health Insurance</h4>
+          <p class="text-neutral-600">For under 30: Contact TK, AOK, or another public insurer to get a confirmation letter. For 30+: Purchase private insurance from Mawista or Care Concept. Have the confirmation ready for your visa appointment.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Schedule Visa Appointment</h4>
+          <p class="text-neutral-600">Book an appointment at the German embassy or consulate in your country. Wait times vary dramatically—some countries have 2-week waits, others 2+ months. Book as early as possible.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Visa Interview</h4>
+          <p class="text-neutral-600">Bring all documents: admission letter, blocked account confirmation, health insurance, passport, photos, completed application form. Pay the €75 fee. Interviews are usually straightforward if documents are complete.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Visa processing takes 4-12 weeks depending on your nationality and the embassy. You'll receive your passport back with a visa sticker allowing entry to Germany.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Register</h4>
+          <p class="text-neutral-600">Once in Germany, register your address at the Bürgeramt (citizens office) and apply for your residence permit at the Ausländerbehörde (foreigners office) within 90 days. Bring all documents again.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Start early:</strong> The entire process—from university application to visa approval—can take 4-6 months. Begin researching and applying to universities at least 8-12 months before your intended start date.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for international students in Germany:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student from India, 25 years old</h3>
+        <p class="text-neutral-600 mb-4">MS in Computer Science at TU Munich, living in shared flat.</p>
+        <p class="text-green-700 font-medium">✓ Enrolled in TK public insurance (€110/month). Free tuition—only pays €150 semester fee. Uses English for studies, learning German on the side. Plans to stay for 18-month job search visa. Total monthly cost: ~€950.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">PhD Candidate from Brazil, 32 years old</h3>
+        <p class="text-neutral-600 mb-4">Funded PhD at Max Planck Institute, Berlin.</p>
+        <p class="text-amber-700 font-medium">△ Over 30, so public insurance unavailable. Uses Mawista private insurance (€130/month). PhD stipend covers living costs. Wishes he'd started 3 years earlier for public insurance. Still much cheaper than US PhD.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Bachelor's Student from Nigeria, 19 years old</h3>
+        <p class="text-neutral-600 mb-4">Mechanical Engineering at RWTH Aachen, student dorm.</p>
+        <p class="text-green-700 font-medium">✓ Blocked account through Fintiba (€89 setup). TK insurance working great. Learning German intensively—most bachelor's courses in German. Dorm is affordable (€350/month). Works mini-job on weekends.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Exchange Student from US, 1 semester</h3>
+        <p class="text-neutral-600 mb-4">Study abroad semester at Heidelberg University.</p>
+        <p class="text-amber-700 font-medium">△ Had Cigna from home—rejected at Ausländerbehörde. Had to quickly get Care Concept private insurance. Lesson learned: international insurance doesn't work in Germany. Now sorted.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student, Career Changer, 29 years old</h3>
+        <p class="text-neutral-600 mb-4">MBA at WHU, private university with tuition.</p>
+        <p class="text-amber-700 font-medium">△ Private university means €40,000 tuition—very different from public. Enrolled in TK just before 30th birthday (smart). MBA opens doors to German consulting/industry. High investment but career pivot successful.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Student Who Didn't Prepare</h3>
+        <p class="text-neutral-600 mb-4">Underestimated German bureaucracy.</p>
+        <p class="text-red-700 font-medium">✗ Didn't open blocked account until 2 weeks before visa appointment. Transfer delayed—had to reschedule visa. Arrived late, missed orientation week. Applied for housing too late, spent first month in expensive Airbnb. Plan ahead.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare German Health Insurance"
+    description="Find the right coverage for your studies in Germany."
+    buttonText="Compare Insurance Options"
+    buttonHref="/countries/germany/insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Bringing International Insurance</h3>
+        <p class="text-neutral-600">The most common mistake. Cigna, Allianz International, SafetyWing, and other international insurers are NOT accepted for German residence permits. You must have German public or approved German private insurance. Don't waste time and money on the wrong coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Opening Blocked Account Too Late</h3>
+        <p class="text-neutral-600">International transfers to Sperrkonto accounts take 1-2 weeks. If you wait until your visa appointment is scheduled, you risk delays or having to reschedule. Open your blocked account immediately after receiving admission.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring German Language</h3>
+        <p class="text-neutral-600">Even for English-taught programs, daily life in Germany requires some German. Landlords, bureaucrats, shops, and social situations often involve German. Learning basics before arrival and continuing in Germany significantly improves your experience.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing Registration Deadlines</h3>
+        <p class="text-neutral-600">You must register at the Ausländerbehörde within 90 days of arrival. Missing this deadline creates serious problems for your legal status. Mark it in your calendar and gather documents early—German offices often have long wait times for appointments.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Waiting Until 30 for Insurance</h3>
+        <p class="text-neutral-600">If you're approaching 30, enroll in public insurance BEFORE your birthday. Once you're 30, public insurance becomes unavailable for students. If you're already enrolled before 30, you can continue coverage. Don't miss this deadline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Germany -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Germany</h2>
+
+    <p class="mb-4">
+      Germany has one of the world's best healthcare systems. With your student health insurance (public or approved private), you have access to excellent doctors, specialists, and hospitals. The system is efficient and high-quality.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered by Public Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Covered Services</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Doctor visits (GP and specialists)</li>
+          <li>✓ Hospital treatment</li>
+          <li>✓ Prescription medications (small copay)</li>
+          <li>✓ Mental health therapy</li>
+          <li>✓ Basic dental care</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Preventive checkups</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Partial or Extra Coverage</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Dental crowns/bridges (50-65% covered)</li>
+          <li>• Glasses/contacts (children only, mostly)</li>
+          <li>• Alternative medicine (limited)</li>
+          <li>• Single hospital rooms (extra insurance)</li>
+          <li>• Some vaccinations (travel vaccines)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 1: Get Your Insurance Card</h4>
+        <p class="text-neutral-600">After enrolling in public insurance (TK, AOK, etc.), you'll receive an electronic health card (Gesundheitskarte). This is your key to accessing healthcare—keep it with you.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 2: Find a Hausarzt (GP)</h4>
+        <p class="text-neutral-600">Register with a general practitioner in your area. While not mandatory, having a regular Hausarzt is practical. They coordinate your care and provide referrals to specialists.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 3: Book Appointments</h4>
+        <p class="text-neutral-600">Call the doctor's office directly or use the Doctolib app. Specialist appointments may have waits (2-6 weeks for non-urgent). For urgent issues, many cities have walk-in clinics.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 112 for ambulance/fire/emergency. Hospital emergency rooms (Notaufnahme) treat emergencies. For after-hours non-emergencies, call 116 117 for the doctor-on-call service.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>University health services:</strong> Most German universities have student health centers (Studentenwerk) offering medical and psychological support. These are often easier to access than external doctors and understand student-specific issues.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is tuition really free in Germany?</h3>
+        <p class="text-neutral-600">
+          Yes, at public universities. You only pay a semester fee (€150-350) covering administration, student union, and often a public transport pass. Private universities charge tuition (€10,000-40,000/year). About 90% of German students attend public universities.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I use Cigna, Allianz International, or SafetyWing in Germany?</h3>
+        <p class="text-neutral-600">
+          No. German authorities require insurance meeting German standards—either public (gesetzliche) or approved German private insurance. International plans are not accepted for residence permits. You must switch to German insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is a blocked account (Sperrkonto)?</h3>
+        <p class="text-neutral-600">
+          A blocked account is a special German bank account proving you can support yourself. You deposit €11,208 (one year's living costs) and can only withdraw €934/month. Providers include Fintiba (€89 fee), Expatrio (€49 fee), and Deutsche Bank (free but slower).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work while studying in Germany?</h3>
+        <p class="text-neutral-600">
+          Yes. International students can work 120 full days or 240 half days per year without a separate work permit. Mini-jobs (€538/month max) don't count toward this limit. During semester breaks, you can work full-time.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I stay after graduation?</h3>
+        <p class="text-neutral-600">
+          Yes—Germany offers an 18-month job-search visa after graduation, one of the most generous in the world. Find a job related to your studies, and you can switch to a work visa. This makes Germany excellent for building a career in Europe.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak German?</h3>
+        <p class="text-neutral-600">
+          For English-taught programs, German isn't required for admission. However, daily life (housing, bureaucracy, shopping, social) is easier with German. Many employers also prefer German speakers. Learning at least basics significantly improves your experience.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Germany offers one of the world's best deals for international students: free tuition at public universities, excellent education quality, affordable living costs, and an 18-month job-search visa after graduation. The trade-off is navigating German bureaucracy and meeting strict insurance requirements.
+    </p>
+
+    <p class="mb-4">
+      The insurance requirement is non-negotiable but straightforward: for students under 30, German public insurance (~€110/month) is mandatory and excellent. It provides comprehensive coverage with no deductibles for most services. For students 30+, approved private insurance fills the gap.
+    </p>
+
+    <p class="mb-6">
+      Don't make the mistake of bringing international insurance—it won't be accepted. Plan ahead, open your blocked account early, and enroll in German insurance before your visa appointment. The preparation is worth it for access to free, high-quality education in the heart of Europe.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Germany offers free tuition, excellent education, and strong career prospects. You must have German-compliant health insurance—public for under 30, approved private for 30+. International insurance won't work. Get the right coverage, and you'll have access to one of the world's best healthcare systems.
+      </p>
+      <a href="/countries/germany/insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare German Health Insurance →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/germany/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Germany</p>
+      </a>
+      <a href="/insurance-for/students" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Students Abroad</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for international students</p>
+      </a>
+      <a href="/visas/student-visa/in/france" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">France Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with France's student visa and Social Security</p>
+      </a>
+      <a href="/visas/student-visa/in/netherlands" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Netherlands' student visa and insurance</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

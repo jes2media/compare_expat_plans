@@ -1111,6 +1111,507 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'Yes. You can work up to 24 hours/week off-campus during academic sessions and unlimited hours during scheduled breaks. On-campus work has no hour limit. No separate work permit needed—included in your Study Permit conditions.'
       }
     ]
+  },
+  // Germany Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'germany',
+    officialVisaName: 'Visum zu Studienzwecken (Student Visa)',
+    requirements: {
+      incomeMinimum: '€11,208/year (blocked account) or €934/month',
+      savingsMinimum: '€11,208 in blocked account OR financial guarantee',
+      insuranceRequired: true,
+      insuranceMinimum: 'German-compliant health insurance (public or private)',
+      additionalRequirements: [
+        'University admission letter (Zulassungsbescheid)',
+        'German language proof (unless English-taught program)',
+        'Blocked account (Sperrkonto) with €11,208',
+        'Academic qualifications recognized in Germany',
+        'Proof of accommodation (at least initial address)',
+        'Health insurance valid from day 1'
+      ]
+    },
+    duration: {
+      initial: '1-2 years (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies + 18 months job search'
+    },
+    applicationProcess: [
+      'Receive university admission (Zulassungsbescheid)',
+      'Open blocked account (Fintiba, Expatrio, or Deutsche Bank)',
+      'Purchase German health insurance (public or private)',
+      'Schedule visa appointment at German embassy',
+      'Submit documents and attend interview',
+      'Wait 4-12 weeks for processing',
+      'Enter Germany and register at Ausländerbehörde within 90 days',
+      'Receive residence permit (Aufenthaltstitel)'
+    ],
+    insuranceNotes: 'Germany requires health insurance valid from your first day. Under 30 and enrolled full-time, you can join public insurance (gesetzliche Krankenversicherung) for about €110/month. Over 30 or not in public system, you need private insurance meeting German requirements. International insurance is NOT accepted for residence permits—you need German-compliant coverage.',
+    healthcareAccess: 'Once enrolled in German health insurance, you have full access to Germany\'s excellent healthcare system. Public insurance (TK, AOK, Barmer) covers most services with small copays. Doctors, specialists, and hospitals are high quality. Dental is partially covered.',
+    costs: {
+      visaFee: '€75 visa + residence permit fees',
+      insuranceRange: '€110/month (public) or €80-150/month (private under 30)'
+    },
+    recommendedProviders: ['tk-german-public', 'aok', 'barmer', 'allianz-care'],
+    keyConsiderations: [
+      'Tuition is FREE at public universities (only semester fee €150-350)',
+      'German public health insurance ~€110/month is mandatory and excellent',
+      'International insurance NOT accepted for residence permit',
+      'Blocked account (€11,208) required as financial proof',
+      '18-month job-search visa after graduation—excellent for staying',
+      'Learning German significantly improves experience and job prospects'
+    ],
+    commonMistakes: [
+      'Bringing international insurance instead of German-compliant coverage',
+      'Not opening blocked account early enough (takes 1-2 weeks)',
+      'Underestimating German language requirements for daily life',
+      'Missing residence permit registration deadline (90 days)',
+      'Not knowing public insurance is age-restricted (under 30 for students)'
+    ],
+    faqs: [
+      {
+        question: 'Is tuition really free in Germany?',
+        answer: 'Yes, at public universities! You only pay a semester fee (€150-350) covering administration and public transport. Private universities charge tuition. This makes Germany one of the most affordable destinations for quality education.'
+      },
+      {
+        question: 'What is a blocked account (Sperrkonto)?',
+        answer: 'A blocked account is a special German bank account where you deposit €11,208 (one year\'s living costs). You can only withdraw ~€934/month, proving you can support yourself. Open with Fintiba, Expatrio, or Deutsche Bank before your visa application.'
+      },
+      {
+        question: 'Can I use international health insurance in Germany?',
+        answer: 'No. German authorities require insurance meeting German standards. For students under 30, public insurance (TK, AOK, Barmer) is mandatory and affordable (~€110/month). Over 30, you need approved private insurance. Cigna or Allianz won\'t work for your residence permit.'
+      },
+      {
+        question: 'Can I work while studying in Germany?',
+        answer: 'Yes. Students can work 120 full days or 240 half days per year. During semester breaks, you can work full-time. Mini-jobs (€538/month max) are also allowed without counting toward limits. Income is taxed but students often fall below tax thresholds.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes! Germany offers an 18-month job-search visa after graduation—one of the most generous in the world. Find a job matching your degree, and you can switch to a work visa. This is a major advantage over many other countries.'
+      },
+      {
+        question: 'Do I need to speak German?',
+        answer: 'For English-taught programs, German isn\'t required for admission. But for daily life, some German helps enormously. Many programs are in German, requiring TestDaF or DSH certificates. Even for English programs, learning German improves job prospects and integration.'
+      }
+    ]
+  },
+  // France Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'france',
+    officialVisaName: 'Visa Long Séjour pour Études (VLS-TS)',
+    requirements: {
+      incomeMinimum: '€615/month minimum (SMIC-based)',
+      savingsMinimum: '€7,380/year minimum financial guarantee',
+      insuranceRequired: false,
+      insuranceMinimum: 'Social Security coverage after registration (CVEC)',
+      additionalRequirements: [
+        'University admission via Campus France or direct admission',
+        'Proof of accommodation in France',
+        'Financial proof (bank statements, sponsor letter, or scholarship)',
+        'French language proof (DELF/DALF/TCF) for French-taught programs',
+        'Previous academic transcripts and diplomas',
+        'Birth certificate (apostilled and translated)'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies + job search extension possible'
+    },
+    applicationProcess: [
+      'Create Campus France account and complete procedure',
+      'Receive university admission',
+      'Schedule visa appointment at French consulate',
+      'Submit documents: admission letter, finances, accommodation, insurance',
+      'Pay visa fee (€99)',
+      'Wait 2-6 weeks for processing',
+      'Enter France and validate VLS-TS online within 3 months',
+      'Pay CVEC (€100) and register with Social Security'
+    ],
+    insuranceNotes: 'France no longer requires separate student insurance—students are automatically enrolled in French Social Security (Sécurité Sociale) through the CVEC contribution (€100/year). This provides comprehensive healthcare coverage. Private insurance (mutuelle) is optional but recommended for better reimbursement rates and dental/optical coverage.',
+    healthcareAccess: 'After CVEC registration, you\'re covered by French Social Security. Coverage is approximately 70% of costs—you pay 30% out of pocket (ticket modérateur). Mutuelle (complementary insurance) covers the remaining 30% and adds dental/optical. Quality is excellent—France has one of the world\'s best healthcare systems.',
+    costs: {
+      visaFee: '€99 VLS-TS visa fee',
+      insuranceRange: '€100/year CVEC (mandatory) + €15-50/month mutuelle (optional)'
+    },
+    recommendedProviders: ['lmde', 'heyme', 'smerra', 'allianz-care'],
+    keyConsiderations: [
+      'Public university tuition very low (€170-380/year for EU, €2,770-3,770/year for non-EU)',
+      'French Social Security covers 70% of healthcare costs automatically',
+      'Mutuelle (top-up insurance) recommended for full coverage',
+      'CAF housing assistance (APL) available—can save €100-200/month',
+      'Campus France procedure mandatory for most nationalities',
+      'Job search visa (APS) available after graduation'
+    ],
+    commonMistakes: [
+      'Not completing Campus France procedure (required for most countries)',
+      'Forgetting to validate VLS-TS online within 3 months of arrival',
+      'Skipping mutuelle and facing 30% out-of-pocket costs',
+      'Not applying for CAF housing assistance (free money!)',
+      'Underestimating importance of French language for daily life'
+    ],
+    faqs: [
+      {
+        question: 'Do I need private health insurance for France student visa?',
+        answer: 'No. Since 2019, students are automatically covered by French Social Security via the CVEC contribution (€100/year). This replaces the old student insurance requirement. However, Social Security only covers 70%—a mutuelle (€15-50/month) covers the remaining 30% and is highly recommended.'
+      },
+      {
+        question: 'What is Campus France?',
+        answer: 'Campus France is the French government agency managing international student applications. Most non-EU students must complete the "Études en France" procedure through Campus France before applying for a visa. It validates your academic project and connects you with universities.'
+      },
+      {
+        question: 'What is a mutuelle and do I need one?',
+        answer: 'A mutuelle is complementary insurance covering the 30% not covered by Social Security (called ticket modérateur). Without it, you pay 30% of medical costs out of pocket. Student mutuelles like LMDE, HEYME, or SMERRA cost €15-50/month and are highly recommended.'
+      },
+      {
+        question: 'How much is tuition in France?',
+        answer: 'Very affordable. Public universities charge €170/year (licence), €243/year (master\'s), €380/year (doctorate) for EU students. Non-EU students pay €2,770-3,770/year at public universities—still far cheaper than UK, US, or Australia. Grandes écoles and private schools charge more.'
+      },
+      {
+        question: 'Can I work while studying in France?',
+        answer: 'Yes. Students can work up to 964 hours per year (about 20 hours/week). During summer, you can work full-time. No separate work permit needed—your student residence permit includes work authorization. The French minimum wage (SMIC) is €11.65/hour.'
+      },
+      {
+        question: 'What is the CAF housing benefit?',
+        answer: 'CAF (Caisse d\'Allocations Familiales) provides housing assistance (APL) to students regardless of nationality. Depending on your rent and location, you could receive €100-200/month. Apply at caf.fr after arrival—it\'s free money that many students miss.'
+      }
+    ]
+  },
+  // Netherlands Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'netherlands',
+    officialVisaName: 'MVV + Residence Permit for Study',
+    requirements: {
+      incomeMinimum: '€950/month (2024 amount, increases annually)',
+      savingsMinimum: '€11,400/year or proof of ongoing income',
+      insuranceRequired: true,
+      insuranceMinimum: 'Health insurance meeting Dutch requirements',
+      additionalRequirements: [
+        'Unconditional admission letter from Dutch institution',
+        'Proof of financial means (€11,400/year)',
+        'Valid passport (6+ months)',
+        'TB certificate (from certain countries)',
+        'Proof of accommodation (initial address)',
+        'English proficiency (IELTS 6.0-6.5 typically)',
+        'Nuffic credential evaluation (for non-EU degrees)'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies + 1 year job search (zoekjaar)'
+    },
+    applicationProcess: [
+      'Receive unconditional admission from Dutch university',
+      'University initiates MVV application on your behalf',
+      'Pay MVV fee (varies by institution)',
+      'Receive MVV approval and entry visa',
+      'Travel to Netherlands within 90 days',
+      'Register at municipality (gemeente) within 5 days',
+      'Collect residence permit from IND',
+      'Arrange Dutch health insurance'
+    ],
+    insuranceNotes: 'Non-EU students must have health insurance meeting Dutch requirements. If you work 32+ hours/month, you must join Dutch basic insurance (basisverzekering, ~€130/month). If you don\'t work (or work less), you can use international student insurance meeting minimum standards. Dutch insurance covers most care but has €385 deductible (eigen risico).',
+    healthcareAccess: 'With Dutch health insurance, you have full access to excellent healthcare. The system uses GPs (huisarts) as gatekeepers to specialists. Register with a huisarts upon arrival. Quality is high, wait times reasonable. Dental for adults is NOT covered—get separate insurance or pay out of pocket.',
+    costs: {
+      visaFee: '€210 MVV/residence permit (often paid via university)',
+      insuranceRange: '€50-80/month (student insurance) or €130+/month (Dutch basic)'
+    },
+    recommendedProviders: ['aon-student-insurance', 'oom-verzekeringen', 'cigna-global', 'allianz-care'],
+    keyConsiderations: [
+      'Most programs taught in English—Netherlands is very international',
+      'University handles visa application (MVV)—less paperwork for you',
+      'Dutch basic insurance required only if working 32+ hours/month',
+      'Zoekjaar (1-year job search visa) after graduation—great for staying',
+      '€385 annual deductible (eigen risico) before insurance pays',
+      'Dental NOT covered for adults—budget separately'
+    ],
+    commonMistakes: [
+      'Not arranging insurance before arrival (required from day 1)',
+      'Forgetting to register at municipality within 5 days',
+      'Not understanding working triggers Dutch insurance requirement',
+      'Skipping dental coverage (Dutch dental is expensive)',
+      'Underestimating housing difficulty (Amsterdam especially)'
+    ],
+    faqs: [
+      {
+        question: 'Do I need Dutch health insurance as a student?',
+        answer: 'It depends on whether you work. If you work 32+ hours/month, Dutch basic insurance (basisverzekering) is mandatory. If you don\'t work (or work less), you can use student insurance from providers like AON or OOM that meets Dutch requirements. Either way, you need valid insurance from day 1.'
+      },
+      {
+        question: 'What is the zoekjaar (orientation year)?',
+        answer: 'After graduating from a Dutch university, you can apply for the zoekjaar—a 1-year residence permit to find work. You can work any job while searching, and once you find employment matching your degree, you can switch to a work permit. It\'s a major advantage of studying in the Netherlands.'
+      },
+      {
+        question: 'What is the eigen risico (deductible)?',
+        answer: 'Dutch basic insurance has a mandatory €385 annual deductible (eigen risico). You pay the first €385 of covered care each year before insurance kicks in. GP visits are exempt from the deductible. Some insurers offer lower deductibles for higher premiums.'
+      },
+      {
+        question: 'How much is tuition in the Netherlands?',
+        answer: 'EU/EEA students pay the statutory rate: about €2,530/year. Non-EU students pay institutional rates: €8,000-20,000/year depending on program and university. Research universities and popular programs tend to be more expensive.'
+      },
+      {
+        question: 'Can I work while studying in the Netherlands?',
+        answer: 'Yes, but with conditions. Non-EU students need a work permit (TWV), which your employer must obtain. You can work up to 16 hours/week during the academic year or full-time during summer. Working 32+ hours/month triggers mandatory Dutch insurance. EU students have no restrictions.'
+      },
+      {
+        question: 'Is dental covered by Dutch insurance?',
+        answer: 'No. Dutch basic insurance does NOT cover dental care for adults (only children under 18). Dental treatment in the Netherlands is expensive—a basic checkup is €30-50, fillings €80-150+. Either get separate dental insurance (aanvullende verzekering) or budget for out-of-pocket costs.'
+      }
+    ]
+  },
+  // Spain Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'spain',
+    officialVisaName: 'Visado de Estudiante (Student Visa)',
+    requirements: {
+      incomeMinimum: '€600/month (100% IPREM)',
+      savingsMinimum: '€7,200/year minimum financial guarantee',
+      insuranceRequired: true,
+      insuranceMinimum: 'Full coverage, no copays, €30,000+ coverage',
+      additionalRequirements: [
+        'University admission letter',
+        'Proof of accommodation in Spain',
+        'Clean criminal record certificate',
+        'Medical certificate confirming no serious diseases',
+        'Private health insurance with no copays',
+        'Proof of financial means (€600/month)'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive university admission',
+      'Gather documents (criminal record, medical cert, finances)',
+      'Purchase Spanish-compliant health insurance',
+      'Schedule visa appointment at Spanish consulate',
+      'Submit application and attend interview',
+      'Wait 1-3 months for processing',
+      'Receive visa and travel to Spain',
+      'Register at local police station within 30 days',
+      'Apply for TIE (foreigner ID card)'
+    ],
+    insuranceNotes: 'Spain requires private health insurance with NO copays (sin copagos) and coverage of at least €30,000. The policy must be from an insurer operating in Spain. Spanish local insurers like Sanitas, ASSSA, and Adeslas are accepted, as are international insurers with Spanish presence like Cigna and Allianz.',
+    healthcareAccess: 'With valid private insurance, you have access to private healthcare in Spain. Students who work and pay into Social Security may also access the public system (SNS). Public healthcare in Spain is excellent but requires social security contributions.',
+    costs: {
+      visaFee: '€80 (short-stay) or €180 (long-stay)',
+      insuranceRange: '€50-150/month depending on coverage and age'
+    },
+    recommendedProviders: ['sanitas', 'asssa', 'adeslas', 'cigna-global', 'allianz-care'],
+    keyConsiderations: [
+      'Insurance must have NO copays (sin copagos) - many consulates reject policies with copays',
+      'Local Spanish insurers (Sanitas, ASSSA) are often cheaper than international',
+      'Public university tuition is very affordable (€700-1,500/year)',
+      'Student visa allows 30 hours/week work (vs 20 in most countries)',
+      'Can convert to work permit if employed after studies',
+      'TIE card required within 30 days of arrival'
+    ],
+    commonMistakes: [
+      'Buying insurance with copays (rejected by consulates)',
+      'Not getting insurance from Spain-operating insurer',
+      'Forgetting to apply for TIE within 30 days',
+      'Underestimating processing time (can take 3 months)',
+      'Not having criminal record certificate apostilled'
+    ],
+    faqs: [
+      {
+        question: 'Why does Spain require insurance with no copays?',
+        answer: 'Spanish consulates want to ensure students can access healthcare without financial barriers. Policies with copays (even small ones like €10/visit) are routinely rejected. Always confirm your policy is "sin copagos" (without copays).'
+      },
+      {
+        question: 'Can I use international insurance like Cigna or SafetyWing?',
+        answer: 'Cigna Global and Allianz Care work because they operate in Spain. SafetyWing and similar travel insurance are typically NOT accepted—they don\'t meet the "no copays" requirement and aren\'t registered in Spain. Use Spanish insurers or international insurers with Spanish presence.'
+      },
+      {
+        question: 'How much is tuition in Spain?',
+        answer: 'Very affordable at public universities: €700-1,500/year for EU students, €1,500-3,500/year for non-EU (varies by region—Madrid and Catalonia charge more). Private universities charge €5,000-20,000/year.'
+      },
+      {
+        question: 'Can I work while studying in Spain?',
+        answer: 'Yes, up to 30 hours/week (more generous than most countries). You need a work permit, but it\'s relatively easy to obtain as a student. Many students work part-time in hospitality, teaching English, or tourism.'
+      },
+      {
+        question: 'What is the TIE card?',
+        answer: 'The TIE (Tarjeta de Identidad de Extranjero) is your Spanish foreigner ID card. You must apply within 30 days of arrival at the local police station (Extranjería). It replaces the visa in your passport as proof of legal residence.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'You can apply to modify your student visa to a work permit if you find employment. Spain also allows changing to self-employment (autónomo) status. The process is bureaucratic but possible—many students transition successfully.'
+      }
+    ]
+  },
+  // Italy Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'italy',
+    officialVisaName: 'Visto per Studio (Student Visa)',
+    requirements: {
+      incomeMinimum: '€467/month (updated annually)',
+      savingsMinimum: '€5,600/year minimum',
+      insuranceRequired: true,
+      insuranceMinimum: 'Health insurance valid in Italy, covering medical treatment',
+      additionalRequirements: [
+        'University pre-enrollment or admission letter',
+        'Proof of accommodation in Italy',
+        'Proof of financial means (€467/month or €5,600/year)',
+        'Valid passport (3+ months beyond stay)',
+        'Return ticket or proof of funds for return',
+        'Health insurance covering Italy'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Apply to Italian university via Universitaly portal',
+      'Receive pre-enrollment confirmation',
+      'Gather required documents',
+      'Purchase health insurance valid in Italy',
+      'Apply for visa at Italian consulate',
+      'Wait 2-6 weeks for processing',
+      'Travel to Italy',
+      'Apply for Permesso di Soggiorno within 8 days',
+      'Complete university enrollment'
+    ],
+    insuranceNotes: 'Italy requires health insurance but is less strict than Spain about specific policy types. EU students can use EHIC. Non-EU students need private insurance or can enroll in the Italian National Health Service (SSN) for about €150/year after arrival—one of the best deals in Europe.',
+    healthcareAccess: 'Students can enroll in Italy\'s excellent public healthcare system (SSN) for approximately €150/year. This gives you access to the same healthcare as Italian citizens. Alternatively, use private insurance throughout your stay.',
+    costs: {
+      visaFee: '€50 (student visa)',
+      insuranceRange: '€150/year (SSN) or €50-100/month (private)'
+    },
+    recommendedProviders: ['italian-ssn', 'cigna-global', 'allianz-care', 'img-global'],
+    keyConsiderations: [
+      'SSN enrollment (€150/year) is exceptional value—full public healthcare access',
+      'Public university tuition is very low (€200-3,000/year based on income)',
+      'Many scholarships available for international students',
+      'Permesso di Soggiorno required within 8 days of arrival',
+      'Pre-enrollment via Universitaly portal required for most universities',
+      'Italian language often required for undergraduate programs'
+    ],
+    commonMistakes: [
+      'Not applying for Permesso di Soggiorno within 8 days',
+      'Skipping SSN enrollment (missing out on €150/year healthcare)',
+      'Not using Universitaly portal for pre-enrollment',
+      'Underestimating Italian language requirements',
+      'Missing scholarship application deadlines'
+    ],
+    faqs: [
+      {
+        question: 'What is the SSN and should I enroll?',
+        answer: 'The SSN (Servizio Sanitario Nazionale) is Italy\'s public health service. Students can enroll for about €150/year and get full access to public healthcare—doctor visits, hospital care, prescriptions. It\'s exceptional value and highly recommended over private insurance.'
+      },
+      {
+        question: 'How much is tuition in Italy?',
+        answer: 'Public universities charge €200-3,000/year based on family income (ISEE calculation). Many students from lower-income families pay under €500/year. Private universities charge €5,000-20,000/year. Italy is one of Europe\'s most affordable options.'
+      },
+      {
+        question: 'What is the Permesso di Soggiorno?',
+        answer: 'It\'s your residence permit. You must apply at the post office within 8 working days of arrival using the "kit" available at post offices. Missing this deadline can create problems with your legal status.'
+      },
+      {
+        question: 'Do I need to speak Italian?',
+        answer: 'For undergraduate programs, usually yes—most are taught in Italian. Master\'s programs increasingly offer English-taught options, especially in business, engineering, and design. Check your specific program\'s language requirements.'
+      },
+      {
+        question: 'Can I work while studying in Italy?',
+        answer: 'Yes, up to 20 hours/week during term and full-time during breaks. You don\'t need a separate work permit—your student permit allows part-time work. The Italian minimum wage isn\'t legally set but typically €7-9/hour in practice.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'You can convert your student permit to a work permit if you find employment within 12 months of graduation. Italy also offers an "attesa occupazione" (awaiting employment) permit for job searching after studies.'
+      }
+    ]
+  },
+  // Ireland Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'ireland',
+    officialVisaName: 'Study Visa / Stamp 2',
+    requirements: {
+      incomeMinimum: '€10,000/year (must show €10,000 immediately available)',
+      savingsMinimum: '€10,000 minimum in accessible funds',
+      insuranceRequired: true,
+      insuranceMinimum: 'Private medical insurance covering Ireland',
+      additionalRequirements: [
+        'Acceptance letter from Irish education provider',
+        'Evidence of €10,000 available funds',
+        'Private medical insurance',
+        'Evidence of tuition payment or ability to pay',
+        'Proof of English proficiency (IELTS 5.5-6.5)',
+        'Clean criminal record'
+      ]
+    },
+    duration: {
+      initial: '1 year (Stamp 2)',
+      renewable: true,
+      maxStay: '7 years for degree programs'
+    },
+    applicationProcess: [
+      'Receive acceptance from Irish institution',
+      'Pay tuition deposit (usually €6,000-10,000)',
+      'Apply for study visa online (AVATS system)',
+      'Attend biometrics appointment',
+      'Wait 4-8 weeks for decision',
+      'Travel to Ireland with visa',
+      'Register with immigration (GNIB/IRP) within 90 days',
+      'Receive Stamp 2 permission'
+    ],
+    insuranceNotes: 'Ireland requires private medical insurance but doesn\'t have strict requirements like Spain\'s "no copays" rule. Most international health insurance policies are accepted. Students cannot access the public HSE system unless they have habitual residence status (usually takes 1+ year).',
+    healthcareAccess: 'Private insurance is essential as students don\'t qualify for free public healthcare (HSE) initially. After establishing habitual residence (typically 1+ year), you may qualify for a medical card if income is low. Until then, rely on your private insurance.',
+    costs: {
+      visaFee: '€60 (single entry) or €100 (multi-entry)',
+      insuranceRange: '€80-200/month for comprehensive coverage'
+    },
+    recommendedProviders: ['irish-life-health', 'vhi', 'laya-healthcare', 'cigna-global', 'allianz-care'],
+    keyConsiderations: [
+      'English-speaking country—no language barrier',
+      'Strong tech and pharma industries for post-study employment',
+      'Stamp 1G allows 2 years post-study work for degree holders',
+      'Must show €10,000 available immediately (not just annual income)',
+      'Non-EU tuition is expensive (€10,000-25,000/year)',
+      'Part-time work allowed (20 hrs/week term, 40 hrs/week breaks)'
+    ],
+    commonMistakes: [
+      'Not having €10,000 immediately accessible (bank statement timing)',
+      'Forgetting to register with GNIB/IRP within 90 days',
+      'Not understanding tuition is due upfront (deposits required)',
+      'Assuming public healthcare access (you need private insurance)',
+      'Missing the Stamp 1G post-study work opportunity'
+    ],
+    faqs: [
+      {
+        question: 'Can I access Irish public healthcare (HSE)?',
+        answer: 'Not initially. Students don\'t qualify for free HSE healthcare until they establish "habitual residence" (typically after 1+ year). You must have private medical insurance from the start. After establishing residence, low-income students may qualify for a medical card.'
+      },
+      {
+        question: 'What is the €10,000 requirement?',
+        answer: 'Ireland requires evidence of €10,000 immediately available funds (not just income over time). Your bank statement should show €10,000 accessible. If parents are sponsoring, you need their bank statements plus a sponsorship letter.'
+      },
+      {
+        question: 'What is Stamp 1G?',
+        answer: 'Stamp 1G is a 2-year post-study work permission for graduates of degree programs (Level 8+). It allows you to work full-time while seeking employment in Ireland. One of the better post-study work options in Europe.'
+      },
+      {
+        question: 'How much is tuition in Ireland?',
+        answer: 'EU students: often free or €3,000/year (student contribution). Non-EU students: €10,000-25,000/year depending on program. Medicine and specialized programs cost more. Ireland is expensive for non-EU students compared to continental Europe.'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Yes. Stamp 2 allows 20 hours/week during term and 40 hours/week during holidays (June-September, December 15-January 15). Irish minimum wage is €12.70/hour (2024), among the highest in Europe.'
+      },
+      {
+        question: 'Is IELTS required?',
+        answer: 'Yes, for most non-native English speakers. Requirements vary: typically IELTS 5.5-6.0 for undergraduate, 6.5+ for postgraduate. Some universities accept other tests (TOEFL, Cambridge). Native English speakers from certain countries may be exempt.'
+      }
+    ]
   }
 ];
 

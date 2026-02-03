@@ -1,0 +1,739 @@
+---
+/**
+ * Italy Student Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Italy", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Italy Health Insurance Guide", href: "/countries/italy/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "University Enrollment", details: "Pre-enrollment via Universitaly portal", evidence: "Pre-enrollment confirmation" },
+  { requirement: "Financial Proof", details: "€467/month (~€5,600/year)", evidence: "Bank statements or sponsor declaration" },
+  { requirement: "Accommodation", details: "Proof of housing in Italy", evidence: "Rental contract or declaration of hospitality" },
+  { requirement: "Health Insurance", details: "Valid coverage in Italy", evidence: "Insurance certificate" },
+  { requirement: "Valid Passport", details: "3+ months beyond intended stay", evidence: "Passport" },
+  { requirement: "Return Means", details: "Return ticket or funds for return", evidence: "Ticket or bank statement" },
+];
+
+const insuranceColumns = [
+  { key: "option", header: "Option" },
+  { key: "cost", header: "Annual Cost" },
+  { key: "coverage", header: "Coverage" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { option: "SSN (Public Healthcare)", cost: "~€150/year", coverage: "Full public healthcare", notes: "Best value—same as Italian citizens" },
+  { option: "Private Insurance", cost: "€600-1,500/year", coverage: "Varies by plan", notes: "For visa, can switch to SSN after arrival" },
+  { option: "EHIC (EU students)", cost: "Free", coverage: "Emergency/necessary care", notes: "EU citizens only" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Italian SSN", type: "Public", price: "~€150/year", strengths: "Best value, full coverage, recommended" },
+  { provider: "Cigna Global", type: "International", price: "€100-180/mo", strengths: "Visa application, global coverage" },
+  { provider: "Allianz Care", type: "International", price: "€80-150/mo", strengths: "Good networks, EU coverage" },
+  { provider: "IMG Global", type: "International", price: "€50-100/mo", strengths: "Budget option for visa" },
+  { provider: "UnipolSai", type: "Italian Local", price: "€40-80/mo", strengths: "Local coverage, Italian support" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Fee", amount: "€50", notes: "Student visa application" },
+  { item: "Tuition (Public)", amount: "€200-3,000/year", notes: "Based on family income (ISEE)" },
+  { item: "SSN Enrollment", amount: "~€150/year", notes: "Public healthcare—highly recommended" },
+  { item: "Permesso di Soggiorno", amount: "€40-100", notes: "Residence permit fees" },
+  { item: "Private Insurance (if used)", amount: "€50-150/month", notes: "Only until SSN enrollment" },
+  { item: "Regional Tax", amount: "€120-200/year", notes: "Varies by region" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Pre-enroll via Universitaly", duration: "Varies by deadline", location: "Online (universitaly.it)" },
+  { step: "Receive pre-enrollment confirmation", duration: "2-4 weeks", location: "University" },
+  { step: "Gather documents", duration: "1-2 weeks", location: "Home country" },
+  { step: "Apply for visa at Italian consulate", duration: "1 day", location: "Italian consulate" },
+  { step: "Visa processing", duration: "2-6 weeks", location: "Italian authorities" },
+  { step: "Travel to Italy", duration: "-", location: "-" },
+  { step: "Apply for Permesso di Soggiorno", duration: "Within 8 days", location: "Post office (kit)" },
+  { step: "Enroll in SSN", duration: "After Permesso", location: "Local ASL office" },
+];
+---
+
+<PageShell
+  title="Italy Student Visa 2026: Requirements, SSN Healthcare & Application Guide"
+  description="Complete guide to the Italian Student Visa. €150/year SSN public healthcare, ultra-low tuition, Universitaly pre-enrollment, and step-by-step application process."
+  headline="Italy Student Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in Italy—€150/year public healthcare (SSN), income-based tuition as low as €200/year, Universitaly pre-enrollment, and the complete visa process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Universitaly Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      €150/year SSN Healthcare
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Italy offers one of Europe's best deals for international students: <strong>€150/year public healthcare</strong> through the SSN (national health service) and <strong>income-based tuition</strong> that can be as low as €200/year at public universities. Combined with world-class education in art, design, architecture, and business, Italy is hard to beat on value.
+    </p>
+
+    <p class="mb-4">
+      Unlike many countries where healthcare is complicated, Italy makes it simple: after arriving, students can enroll in the SSN for about €150/year and get the same healthcare coverage as Italian citizens. This is exceptional value compared to paying €100+/month for private insurance elsewhere.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Italy Student Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Healthcare:</strong> SSN enrollment ~€150/year—full public coverage</li>
+        <li>• <strong>Tuition:</strong> €200-3,000/year based on family income (ISEE)</li>
+        <li>• <strong>Financial proof:</strong> €467/month (~€5,600/year)</li>
+        <li>• <strong>Pre-enrollment:</strong> Via Universitaly portal (required)</li>
+        <li>• <strong>Permesso di Soggiorno:</strong> Apply within 8 days of arrival</li>
+        <li>• <strong>Work rights:</strong> 20 hours/week during term, full-time in breaks</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Study in Italy?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>€150/year healthcare:</strong> SSN gives you full public coverage—unbeatable value</li>
+      <li><strong>Ultra-low tuition:</strong> Income-based fees mean many pay under €500/year</li>
+      <li><strong>World-class programs:</strong> Art, design, architecture, fashion, music, culinary</li>
+      <li><strong>Rich culture:</strong> History, art, food—Italy is a living museum</li>
+      <li><strong>Affordable living:</strong> €700-1,000/month in most cities</li>
+      <li><strong>Central location:</strong> Easy access to rest of Europe</li>
+      <li><strong>Language opportunity:</strong> Learn Italian—beautiful and useful</li>
+      <li><strong>Post-study options:</strong> Can convert to work permit after graduation</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Italy is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want the cheapest healthcare option (€150/year SSN)</li>
+          <li>✓ You want low tuition based on income</li>
+          <li>✓ You're studying art, design, architecture, or fashion</li>
+          <li>✓ You want to immerse in Italian culture</li>
+          <li>✓ You appreciate history, food, and lifestyle</li>
+          <li>✓ You're willing to learn Italian</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want all English instruction (limited in Italy)</li>
+          <li>• You want faster post-study work path (Germany's 18 months)</li>
+          <li>• You prefer efficient bureaucracy (Italy is slow)</li>
+          <li>• You want strong tech industry (Netherlands, Germany better)</li>
+          <li>• You need everything in English from day one</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>SSN is the best healthcare deal in Europe:</strong> For ~€150/year, you get the same healthcare as Italian citizens—doctor visits, hospital care, prescriptions (with small copays). No other country offers this value. Don't skip SSN enrollment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Italian Student Visa requires pre-enrollment through the Universitaly portal, proof of financial means, and health insurance (which you can later convert to SSN after arrival).
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Universitaly Pre-Enrollment</h3>
+
+    <p class="mb-4">
+      Most international students must pre-enroll through the <strong>Universitaly portal</strong> (universitaly.it) before applying for a visa. This is Italy's centralized system for international student applications.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Deadline alert:</strong> Universitaly has specific deadlines for each intake (usually spring for fall enrollment). Check deadlines early—missing them can delay your studies by a full year. Some programs fill quickly.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
+
+    <p class="mb-4">
+      Italy requires proof of <strong>€467/month</strong> (approximately €5,600/year) to support yourself. This is lower than many European countries, making Italy accessible to more students.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Bank statements:</strong> Showing sufficient savings</li>
+      <li><strong>Scholarship letter:</strong> If receiving funding</li>
+      <li><strong>Sponsor declaration:</strong> Parents or guarantor (notarized)</li>
+      <li><strong>Combination:</strong> Partial personal funds plus sponsor</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">SSN Enrollment: The Smart Choice (~€150/year)</h3>
+      <p class="text-green-800">
+        After arriving in Italy, students can enroll in the SSN (Servizio Sanitario Nazionale) for approximately €150/year. This gives you the same healthcare coverage as Italian citizens—doctor visits, hospital care, specialists, prescriptions. It's by far the best value in Europe.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      For your <strong>visa application</strong>, you need health insurance. You can use private insurance initially, then switch to SSN after arrival. EU students can use EHIC for the visa and then decide on SSN or EHIC for ongoing coverage.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Options Compared</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Strategy: Private for Visa, SSN After Arrival</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Visa Application</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Get private insurance (Cigna, Allianz, IMG)</li>
+          <li>• Or Italian insurer if available</li>
+          <li>• Coverage for at least initial months</li>
+          <li>• Can be basic—just needs to satisfy visa requirement</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">After Arrival</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Enroll in SSN at local ASL office</li>
+          <li>• Pay ~€150 for the year</li>
+          <li>• Get tessera sanitaria (health card)</li>
+          <li>• Cancel or keep private insurance as backup</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Don't skip SSN:</strong> Some students keep paying for private insurance without realizing SSN is available. For €150/year, SSN provides comprehensive coverage. It's one of Italy's best features for students—take advantage of it.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Italy visa application?"
+    description="Get coverage for your visa, then switch to SSN after arrival."
+    buttonText="Compare Initial Coverage Options"
+    buttonHref="/countries/italy/insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For your visa, any reputable health insurance works. After arrival, SSN enrollment is strongly recommended for the best value.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Recommendations by Stage</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">After Arrival: Enroll in SSN</h4>
+        <p class="text-neutral-600">Once you have your Permesso di Soggiorno, go to your local ASL (health authority) office and enroll in SSN. Pay ~€150 for the year. You'll receive a tessera sanitaria (health card) and can register with a family doctor (medico di base).</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">For Visa Application: Budget Options</h4>
+        <p class="text-neutral-600">IMG Global and similar providers offer affordable coverage (~€50-100/month) sufficient for visa purposes. You only need this until you can enroll in SSN—usually a few weeks after arrival.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Traveling Often: Keep Private Insurance</h4>
+        <p class="text-neutral-600">SSN primarily covers you in Italy. If you'll travel frequently outside Italy, consider keeping basic international coverage (Cigna, Allianz) alongside SSN for travel protection.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">EU Students: EHIC Option</h4>
+        <p class="text-neutral-600">EU citizens can use EHIC (European Health Insurance Card) for visa and ongoing coverage. However, EHIC only covers "necessary" care, not routine care. Consider SSN enrollment anyway for comprehensive coverage at minimal cost.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Italy offers exceptional value. Public university tuition is income-based (many pay under €500/year), and SSN healthcare costs just ~€150/year. This makes Italy one of Europe's most affordable destinations.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Tuition: The ISEE System</h3>
+
+    <p class="mb-4">
+      Italian public universities use the <strong>ISEE</strong> system to calculate tuition based on family income. Students from lower-income families can pay as little as €200/year, while the maximum is around €3,000/year.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Low Income (ISEE)</p>
+        <p class="text-3xl font-bold text-green-600">€200-500</p>
+        <p class="text-sm text-neutral-500 mt-2">Per year</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Medium Income</p>
+        <p class="text-3xl font-bold text-neutral-900">€800-1,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Per year</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Higher Income</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,000-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Per year</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Living Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Milan/Rome (More Expensive)</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Rent: €500-800/month (room or small flat)</li>
+          <li>• Food: €200-300/month</li>
+          <li>• Transport: €22-35/month (student pass)</li>
+          <li>• SSN: ~€12/month (€150/year)</li>
+          <li>• Other: €100-200/month</li>
+          <li>• <strong>Total: €850-1,300/month</strong></li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Bologna, Florence, Turin</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Rent: €350-550/month</li>
+          <li>• Food: €150-250/month</li>
+          <li>• Transport: €20-30/month</li>
+          <li>• SSN: ~€12/month (€150/year)</li>
+          <li>• Other: €80-150/month</li>
+          <li>• <strong>Total: €650-950/month</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Scholarships and fee waivers:</strong> Many Italian universities offer scholarships and fee reductions for international students. The DSU (regional right to study) provides grants, housing subsidies, and meal vouchers for qualifying students. Apply early—these are competitive.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Italian student visa process involves pre-enrolling through Universitaly, applying for your visa, and then completing enrollment and residence permit after arrival.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Pre-Enroll via Universitaly</h4>
+          <p class="text-neutral-600">Create an account at universitaly.it and complete the pre-enrollment process. Upload required documents (transcripts, passport, language certificates). Pay attention to deadlines—they're strict.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Pre-Enrollment Confirmation</h4>
+          <p class="text-neutral-600">Once your application is processed, you'll receive a pre-enrollment confirmation. This document is required for your visa application. Some universities may require additional steps or entrance exams.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Documents and Get Insurance</h4>
+          <p class="text-neutral-600">Collect all required documents: passport, financial proof, accommodation proof, insurance certificate. Get health insurance for your visa—you can switch to SSN after arrival.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Visa</h4>
+          <p class="text-neutral-600">Apply at the Italian consulate in your country. Bring all documents and pay the €50 visa fee. Processing typically takes 2-6 weeks. Some consulates are faster than others.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Apply for Permesso di Soggiorno</h4>
+          <p class="text-neutral-600">Within 8 working days of arrival, go to the post office (Poste Italiane) to get the "kit" for your residence permit application. Fill it out, submit it, and attend the Questura appointment when scheduled.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete University Enrollment</h4>
+          <p class="text-neutral-600">Finalize your enrollment at the university (immatricolazione). Pay tuition fees, submit any remaining documents, and get your student card. This confirms your student status.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enroll in SSN</h4>
+          <p class="text-neutral-600">Once you have your Permesso di Soggiorno (or receipt), visit your local ASL (health authority) to enroll in SSN. Pay ~€150 for the year. You'll receive a tessera sanitaria and can choose a family doctor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mt-6">
+      <p class="text-red-800">
+        <strong>8-day deadline is strict:</strong> You must apply for your Permesso di Soggiorno within 8 working days of arrival. Missing this deadline can cause serious problems with your legal status. Go to the post office immediately after arriving.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for international students in Italy:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Architecture Student from Brazil, Florence</h3>
+        <p class="text-neutral-600 mb-4">Studying architecture at University of Florence.</p>
+        <p class="text-green-700 font-medium">✓ SSN enrollment was easy—€150 for the year. Tuition only €700 (ISEE-based). Florence is beautiful and inspiring for architecture. Learning Italian through daily life. Monthly costs around €800.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">MBA Student from India, Milan</h3>
+        <p class="text-neutral-600 mb-4">MBA at Bocconi University (private).</p>
+        <p class="text-amber-700 font-medium">△ Private university = higher tuition (€14,000/year). But enrolled in SSN for healthcare (€150/year instead of €1,500+ private). Milan is expensive but great for business networking. Worth the investment.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Exchange Student from Germany, Bologna</h3>
+        <p class="text-neutral-600 mb-4">Erasmus semester at University of Bologna.</p>
+        <p class="text-green-700 font-medium">✓ EU citizen—used EHIC for visa and initial coverage. Still enrolled in SSN for €150 to get a local doctor. Bologna is affordable, great food, vibrant student life. Italian improving every day.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Design Student from USA, Milan</h3>
+        <p class="text-neutral-600 mb-4">Fashion design at Politecnico di Milano.</p>
+        <p class="text-green-700 font-medium">✓ Public university, low tuition (€1,200/year). SSN healthcare working great. Milan is the fashion capital—amazing for networking. Working part-time at a design studio. Best decision ever.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">PhD Student from China, Rome</h3>
+        <p class="text-neutral-600 mb-4">Funded PhD at Sapienza University of Rome.</p>
+        <p class="text-green-700 font-medium">✓ PhD scholarship covers living costs. No tuition for PhD. SSN at €150/year is incredible value. Rome is expensive for rent but manageable with stipend. Research environment is excellent.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Student Who Skipped SSN</h3>
+        <p class="text-neutral-600 mb-4">Kept expensive private insurance instead of SSN.</p>
+        <p class="text-red-700 font-medium">✗ Paid €1,200/year for private insurance, didn't realize SSN was €150/year. Only discovered SSN in second year. Lost €1,000+ unnecessarily. Always ask about SSN enrollment immediately after arrival.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Italy Insurance Options"
+    description="Get coverage for your visa application, then switch to SSN."
+    buttonText="Compare Insurance Options"
+    buttonHref="/countries/italy/insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Applying for Permesso di Soggiorno Within 8 Days</h3>
+        <p class="text-neutral-600">You must apply at the post office within 8 working days of arrival. This is strictly enforced. Go to any Poste Italiane, ask for the "kit" for Permesso di Soggiorno, fill it out, and submit it. Missing this deadline creates serious legal problems.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping SSN Enrollment</h3>
+        <p class="text-neutral-600">Many students don't realize they can enroll in SSN for ~€150/year. Instead, they pay €100+/month for private insurance. SSN gives you the same healthcare as Italian citizens. Don't miss this—it's one of Italy's best benefits for students.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing Universitaly Deadlines</h3>
+        <p class="text-neutral-600">Universitaly has strict deadlines for pre-enrollment. Missing them can delay your studies by a full year. Check deadlines early (usually spring for fall enrollment) and complete your application well in advance.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Italian Language Needs</h3>
+        <p class="text-neutral-600">Many undergraduate programs are taught entirely in Italian. Even for English programs, daily life (bureaucracy, shopping, socializing) requires some Italian. Start learning before you arrive—it makes everything easier.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Applying for Scholarships</h3>
+        <p class="text-neutral-600">Italy offers significant scholarships and fee reductions through DSU (regional right to study) programs. These include grants, housing subsidies, and meal vouchers. Apply early—they're competitive and can dramatically reduce costs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Italy -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Italy</h2>
+
+    <p class="mb-4">
+      Italy has an excellent public healthcare system (SSN). Once enrolled, you have access to the same care as Italian citizens—doctor visits, hospital treatment, specialists, and prescriptions (with small copays called "ticket").
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What SSN Covers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Included in SSN</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Family doctor (medico di base) visits—free</li>
+          <li>✓ Hospital treatment</li>
+          <li>✓ Emergency care</li>
+          <li>✓ Specialist visits (with referral)</li>
+          <li>✓ Prescriptions (small copay)</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Mental healthcare</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Small Copays (Ticket)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Specialist visits: €10-50</li>
+          <li>• Lab tests: €10-40</li>
+          <li>• Prescriptions: €2-5 per item</li>
+          <li>• Some imaging (X-ray, MRI): €20-60</li>
+          <li>• Many exemptions for low-income students</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Use SSN Healthcare</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 1: Enroll at ASL</h4>
+        <p class="text-neutral-600">Visit your local ASL (Azienda Sanitaria Locale) with your Permesso di Soggiorno (or receipt), passport, tax code (codice fiscale), and proof of address. Pay ~€150 for annual enrollment.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 2: Choose a Family Doctor</h4>
+        <p class="text-neutral-600">Select a medico di base (family doctor) from the ASL list. This doctor is your first point of contact for all non-emergency health issues and provides referrals to specialists.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Step 3: Get Your Tessera Sanitaria</h4>
+        <p class="text-neutral-600">You'll receive a tessera sanitaria (health card). Bring this to all medical appointments. It contains your health number and is used for all SSN services.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 118 for emergencies or go to Pronto Soccorso (ER) at any hospital. Emergency care is free for everyone. For non-emergencies, see your family doctor first.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Copay exemptions:</strong> Students with low income may qualify for exemptions from copays (ticket). Ask at your ASL about esenzioni. This can make healthcare essentially free beyond the €150 annual SSN fee.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is SSN and should I enroll?</h3>
+        <p class="text-neutral-600">
+          SSN (Servizio Sanitario Nazionale) is Italy's public health service. Students can enroll for ~€150/year and receive full healthcare coverage—the same as Italian citizens. Yes, you should absolutely enroll. It's the best healthcare value in Europe.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How much is tuition in Italy?</h3>
+        <p class="text-neutral-600">
+          Public universities use income-based pricing (ISEE system). Low-income students may pay €200-500/year, middle-income €800-1,500/year, and higher-income up to €3,000/year. Many scholarships are available. Private universities charge €5,000-20,000/year.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the Permesso di Soggiorno?</h3>
+        <p class="text-neutral-600">
+          It's your residence permit. You must apply at the post office (Poste Italiane) within 8 working days of arrival using a "kit" available at post offices. Fill it out, submit it, and attend the Questura appointment when scheduled. Missing the deadline creates serious problems.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Italian?</h3>
+        <p class="text-neutral-600">
+          For undergraduate programs, usually yes—most are taught in Italian. Master's programs increasingly offer English options, especially in business, engineering, and design. Daily life (bureaucracy, housing, shopping) is much easier with some Italian.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work while studying?</h3>
+        <p class="text-neutral-600">
+          Yes. Students can work up to 20 hours/week during term and full-time during breaks. You don't need a separate work permit—your student permit allows part-time work. Italian wages are lower than Northern Europe but sufficient for part-time student income.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I stay after graduation?</h3>
+        <p class="text-neutral-600">
+          You can convert your student permit to a work permit if you find employment within 12 months of graduation. Italy also offers an "attesa occupazione" permit for job searching. The process is bureaucratic but possible for those willing to navigate Italian administration.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Italy offers one of Europe's best value propositions for students: €150/year SSN healthcare (full public coverage) and income-based tuition that can be as low as €200/year. Combined with world-class programs in art, design, and architecture, Italy is exceptional.
+    </p>
+
+    <p class="mb-4">
+      The key is understanding the system: get private insurance for your visa application, then enroll in SSN immediately after arrival. Don't make the mistake of paying €100+/month for private insurance when €150/year SSN is available.
+    </p>
+
+    <p class="mb-6">
+      Italy does require patience with bureaucracy, and Italian language skills help significantly. But for students willing to embrace the culture and navigate the system, the rewards—affordable education, excellent healthcare, and an unparalleled living experience—are worth it.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Italy's €150/year SSN healthcare is the best deal in Europe. Enroll immediately after receiving your Permesso di Soggiorno. Combined with income-based tuition (€200-3,000/year), Italy offers exceptional value for quality education. Don't skip SSN—it's one of Italy's greatest benefits for students.
+      </p>
+      <a href="/countries/italy/insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Italy Insurance Options →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/italy/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Italy Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Italy</p>
+      </a>
+      <a href="/insurance-for/students" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Students Abroad</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for international students</p>
+      </a>
+      <a href="/visas/student-visa/in/spain" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Spain's sin copagos requirements</p>
+      </a>
+      <a href="/visas/student-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's free tuition and public insurance</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
