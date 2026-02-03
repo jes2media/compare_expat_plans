@@ -7,7 +7,7 @@ Last updated: February 2, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,299
+**Total pages:** ~2,330
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -16,18 +16,18 @@ Last updated: February 2, 2026
 **Problem/solution guides:** 6 (with hero images)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
-**Visa × Country pages:** 19 (Digital Nomad Visa - first visa type)
+**Visa × Country pages:** 50 (33 Digital Nomad Visa + 17 Retirement Visa)
 
 ---
 
 ## Completed Milestones
 
-### February 2, 2026 - Digital Nomad Visa × Country Pages (19 pages)
+### February 2, 2026 - Visa × Country Pages Complete (38 pages)
 
-#### Visa × Country Page System Launched
-Created the first visa type × country pages at `/visas/[visa-type]/in/[country]`:
+#### Digital Nomad Visa Pages Complete (33 countries)
+All Digital Nomad Visa pages completed at `/visas/digital-nomad-visa/in/[country]`:
 
-**Digital Nomad Visa pages completed (19 countries):**
+**Batch 1 - Original 19 countries:**
 1. Spain - €2,520/month threshold, 5-year path to residency
 2. Portugal - €3,040/month, 4-year path to PR
 3. Thailand - 5-year LTR visa, $80,000 income or $250,000 assets
@@ -48,6 +48,54 @@ Created the first visa type × country pages at `/visas/[visa-type]/in/[country]
 18. Malaysia - DE Rantau $24,000/year, digital/tech workers only
 19. Brazil - $1,500/month threshold (one of lowest), 2-year max
 
+**Batch 2 - Europe & Asia (6 countries):**
+20. Latvia - €2,857/month, €42,500 insurance minimum (higher than Schengen), 1-year non-renewable
+21. Romania - €3,700/month, 1% micro-company tax, MedLife/Regina Maria private
+22. Cyprus - €3,500/month, GESY universal healthcare, non-dom tax benefits
+23. South Korea - Workcation Visa ~$2,500/month, NHIS after registration
+24. Taiwan - Gold Card $5,000/month or expertise, NHI after 6 months
+25. Sri Lanka - $2,000/month, post-crisis recovery, evacuation coverage essential
+
+**Batch 3 - Americas & Caribbean (8 countries):**
+26. Argentina - Digital Nomad Visa $1,500/month, peso volatility considerations
+27. Ecuador - $1,350/month, dollarized, affordable Cuenca/Quito living
+28. Panama - Friendly Nations Visa alternative, USD economy, Hub of Americas
+29. Bahamas - BEATS program $25 fee, no income tax, Nassau-centric healthcare
+30. Cayman Islands - Global Citizen Concierge $100k/year, zero taxes, 2-year permit
+31. Curaçao - @Home program ~$3,000/month, Dutch Caribbean, affordable
+32. Aruba - One Happy Workation free application, 90 days, no hurricanes
+33. Jamaica - $50,000/year, 1-2 years, reggae culture, Miami evacuation
+
+**Hero images:**
+- Universal DNV hero image created (laptop on beach cafe) for pages without country-specific images
+- Applied to 11 newer pages (Latvia, Romania, Cyprus, South Korea, Taiwan, Sri Lanka, Bahamas, Cayman Islands, Curaçao, Aruba, Jamaica)
+
+#### Retirement Visa Pages Complete (17 countries)
+Retirement Visa pages at `/visas/retirement-visa/in/[country]`:
+
+**Europe (7 countries):**
+1. Portugal - D7 Visa, €760/month passive income, 4-year path to PR
+2. Spain - Non-Lucrative Visa, €2,400/month, 5-year path to residency
+3. France - Long-Stay Visa, €1,500/month, access to French healthcare
+4. Italy - Elective Residence Visa, €31,000/year, dolce vita lifestyle
+5. Greece - €2,000/month passive income, affordable Mediterranean living
+6. Malta - Malta Retirement Programme, €8,500/year pension, 15% flat tax, English-speaking EU
+7. Croatia - Temporary residence, ~€1,500/month, EU/Schengen, Adriatic coast
+
+**Asia (5 countries):**
+8. Thailand - O-A/O-X visa, 50+ age, ฿800k deposit, mandatory insurance ฿40k OPD/฿400k IPD
+9. Malaysia - MM2H, RM500k deposit (50+), RM40k/month income, 2021 stricter requirements
+10. Philippines - SRRV, $10-20K refundable deposit, age 35+, English-speaking
+11. Indonesia - KITAS Lansia, age 55+, $1,500/month pension, mandatory insurance, Bali paradise
+12. Vietnam - No formal retirement visa, business visa workarounds, ultra-low cost of living
+
+**Americas (5 countries):**
+13. Panama - Pensionado, $1,000/month pension, famous discounts (25-50%), permanent residency
+14. Costa Rica - Pensionado $1,000/month, Rentista $2,500/month, mandatory CCSS healthcare
+15. Mexico - Residente Temporal ~$2,700/month, Permanente ~$4,000/month, no mandatory insurance
+16. Ecuador - Jubilado $1,100/month pension, USD economy, lowest cost of living in Americas
+17. Belize - QRP Programme, age 45+, $2,000/month, tax-free on foreign income, English-speaking Caribbean
+
 **Page structure (12 sections, CRO-optimized):**
 - Overview with Quick Facts box
 - Quick Decision Guide (good fit / consider alternatives)
@@ -61,13 +109,6 @@ Created the first visa type × country pages at `/visas/[visa-type]/in/[country]
 - Healthcare System Access
 - FAQs (6 questions)
 - Final Verdict
-
-**Hero images generated:**
-- All 19 pages have country-themed hero backgrounds (flag colors at 50% opacity)
-- Generated via Ideogram API with 16:9 aspect ratio
-
-**Remaining DNV countries (14):**
-Latvia, Romania, Cyprus, South Korea, Taiwan, Sri Lanka, Argentina, Ecuador, Panama, Bahamas, Cayman Islands, Curaçao, Aruba, Jamaica
 
 ---
 
@@ -665,31 +706,32 @@ These 21 countries have manually created pages with custom hero images:
 | Programmatic country pages | 162 | Generated (183 - 21 skip list) |
 | Handcrafted country-provider pages | 168 | Complete (21 countries × 8 providers) |
 | Programmatic country-provider pages | 648 | Generated (162 countries × 4 providers) |
-| **Country-persona pages** | **728** | **Complete (91 countries × 8 personas)** |
-| **Condition × Country pages** | **270** | **NEW (10 conditions × 27 countries)** |
-| **Country comparison pages** | **29** | **NEW (popular destination pairs)** |
+| Country-persona pages | 728 | Complete (91 countries × 8 personas) |
+| Condition × Country pages | 270 | Complete (10 conditions × 27 countries) |
+| Country comparison pages | 29 | Complete (popular destination pairs) |
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Provider comparison pages | ~28 | Complete |
-| **Problem/solution guides** | **6** | **NEW (with hero images)** |
+| Problem/solution guides | 6 | Complete (with hero images) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
-| **Provider pages** | **8** | **Expanded to long-form (550-685 lines each)** |
-| **Visa × Country pages** | **19** | **NEW (Digital Nomad Visa × 19 countries)** |
+| Provider pages | 8 | Expanded to long-form (550-685 lines each) |
+| **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
+| **Retirement Visa pages** | **17** | **Complete (17 countries across 4 batches)** |
 
-**Total pages:** ~2,299
+**Total pages:** ~2,330
 
 ---
 
 ## Next Steps
 
 ### Immediate Priorities
-1. **Complete Digital Nomad Visa Pages** - 14 countries remaining:
-   - Latvia, Romania, Cyprus, South Korea, Taiwan, Sri Lanka
-   - Argentina, Ecuador, Panama, Bahamas, Cayman Islands, Curaçao, Aruba, Jamaica
-   - ~3 pages per batch with hero images
+1. **Retirement Visa Pages Complete (17 countries)** ✓
+   - Europe: Portugal, Spain, France, Italy, Greece, Malta, Croatia
+   - Asia: Thailand, Malaysia, Philippines, Indonesia, Vietnam
+   - Americas: Panama, Costa Rica, Mexico, Ecuador, Belize
+   - Optional expansion: UAE, Cyprus, Colombia, Nicaragua, Cambodia
 
-2. **Other Visa Type × Country Pages** - 5 more visa types to cover:
-   - Retirement Visa (20 countries planned)
+2. **Other Visa Type × Country Pages** - 4 more visa types to cover:
    - Student Visa (23 countries planned)
    - Freelancer/Self-Employed Visa (9 countries planned)
    - Investor/Entrepreneur Visa (16 countries planned)
@@ -700,7 +742,7 @@ These 21 countries have manually created pages with custom hero images:
    - Batch 10: Africa (Morocco, Tunisia, Ghana, Egypt, Kenya, Nigeria)
    - Target: 8-10 countries per batch
 
-3. **Continue Tier 3 Country Refinement** - ~110 countries remaining with generic content
+4. **Continue Tier 3 Country Refinement** - ~110 countries remaining with generic content
    - African growth markets (Tunisia, Ghana, Senegal, Rwanda, Nigeria)
    - Middle East gaps (Saudi Arabia, Jordan, Lebanon)
    - Central Asia (Kazakhstan, Uzbekistan)
@@ -750,7 +792,9 @@ npx tsx scripts/bulk-generate/generate.ts
 
 ## Document History
 
-- **February 2, 2026 (Visa Pages):** Launched Visa × Country page system. Created 19 Digital Nomad Visa pages (Spain, Portugal, Thailand, Mexico, Germany, Costa Rica, UAE, Croatia, Colombia, Indonesia, Estonia, Greece, Malta, Italy, Hungary, Barbados, Czech Republic, Malaysia, Brazil). Each page has 12 CRO-optimized sections with hero background images. 14 DNV countries remaining, plus 5 other visa types planned.
+- **February 2, 2026 (Retirement Visa Pages Complete):** Completed 17 Retirement Visa pages across 4 batches. Batch 1 (Europe): Portugal, Spain, France, Italy, Greece. Batch 2 (Americas): Panama, Costa Rica, Mexico, Ecuador. Batch 3 (Asia-Pacific): Thailand, Malaysia, Philippines, Indonesia, Vietnam. Batch 4 (Mediterranean + Caribbean): Malta, Croatia, Belize. Each page features 12 CRO-optimized sections with requirements tables, insurance requirements, provider recommendations, cost breakdowns, real-world scenarios, and FAQs. Total visa pages: 50 (33 DNV + 17 Retirement).
+- **February 2, 2026 (DNV Complete + Retirement Started):** Completed all 33 Digital Nomad Visa pages. Added 14 countries in batches: Europe/Asia (Latvia, Romania, Cyprus, South Korea, Taiwan, Sri Lanka) and Americas/Caribbean (Argentina, Ecuador, Panama, Bahamas, Cayman Islands, Curaçao, Aruba, Jamaica). Created universal DNV hero image (laptop on beach cafe) for 11 newer pages. Started Retirement Visa pages with 5 European countries (Portugal, Spain, France, Italy, Greece). Total visa pages: 38.
+- **February 2, 2026 (Visa Pages):** Launched Visa × Country page system. Created 19 Digital Nomad Visa pages (Spain, Portugal, Thailand, Mexico, Germany, Costa Rica, UAE, Croatia, Colombia, Indonesia, Estonia, Greece, Malta, Italy, Hungary, Barbados, Czech Republic, Malaysia, Brazil). Each page has 12 CRO-optimized sections with hero background images.
 - **February 1, 2026 (Provider Pages):** Expanded all 8 provider review pages to long-form (550-685 lines each). Added 12-section structure, Quick Assessment, Real-World Scenarios (6 per page), FAQs (6 per page), split CTAs, and provider-specific differentiators. Key angles: Cigna (largest network), Aetna (US integration), BUPA (mental health), IMG (deductible waiver), Allianz (moratorium), GeoBlue (BCBS), AXA (EU-regulated), SafetyWing (Nomad vs Remote Health).
 - **January 30, 2026 (Programmatic Expansion):** Added 4 new programmatic page systems: (1) Country vs Country comparisons (29 pages), (2) Condition × Country pages (270 pages), (3) Enhanced CountryProviderPage template (171 pages), (4) Problem/solution guides (6 pages with hero images). Total now ~2,280 pages.
 - **January 30, 2026 (Batch 8):** Country-Persona Expansion Batch 8 (Europe Gaps: Luxembourg, Iceland, Andorra, Monaco, Liechtenstein, Cyprus, Malta, Finland, Romania, San Marino). 80 new pages, total now 728 (91 countries × 8 personas), 1,973 total pages.

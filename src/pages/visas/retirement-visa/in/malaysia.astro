@@ -1,0 +1,729 @@
+---
+/**
+ * Malaysia Retirement Visa (MM2H - Malaysia My Second Home) - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Malaysia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Malaysia Health Insurance Guide", href: "/countries/malaysia/insurance" },
+  { title: "Insurance for Retirees Abroad", href: "/insurance-for/retirees" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "under50", header: "Under 50" },
+  { key: "over50", header: "50 and Above" },
+];
+
+const requirementsRows = [
+  { requirement: "Fixed Deposit", under50: "RM1,000,000 (~$215,000)", over50: "RM500,000 (~$108,000)" },
+  { requirement: "Monthly Income", under50: "RM40,000/month (~$8,600)", over50: "RM40,000/month (~$8,600)" },
+  { requirement: "Liquid Assets", under50: "RM1,500,000 (~$323,000)", over50: "RM1,000,000 (~$215,000)" },
+  { requirement: "Health Insurance", under50: "Mandatory (35+)", over50: "Mandatory" },
+  { requirement: "Security Bond", under50: "RM200,000", over50: "RM200,000" },
+  { requirement: "Visa Duration", under50: "5 years renewable", over50: "5 years renewable" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "minimum", header: "MM2H Requirement" },
+  { key: "why", header: "Why It Matters" },
+];
+
+const insuranceRows = [
+  { feature: "Medical Coverage", minimum: "Required (no minimum stated)", why: "Mandatory for visa approval" },
+  { feature: "Coverage Territory", minimum: "Valid in Malaysia", why: "Must cover your stay" },
+  { feature: "Age Requirement", minimum: "Mandatory if 35+", why: "Required for application" },
+  { feature: "Provider", minimum: "Malaysian insurer preferred", why: "Immigration prefers local policies" },
+  { feature: "Duration", minimum: "Full visa period", why: "Must maintain coverage" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost (60-70 yr)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "AIA Malaysia", coverage: "RM1,000,000+", price: "$100-250", strengths: "Local, visa-compliant" },
+  { provider: "Great Eastern", coverage: "RM500,000+", price: "$90-220", strengths: "Established Malaysian insurer" },
+  { provider: "Prudential Malaysia", coverage: "RM500,000+", price: "$100-230", strengths: "Good hospital networks" },
+  { provider: "Cigna Global", coverage: "$1,000,000+", price: "$200-450", strengths: "Comprehensive, worldwide" },
+  { provider: "Allianz Care", coverage: "$500,000+", price: "$180-400", strengths: "International + Asia focus" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (USD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Application Fee", amount: "$1,200", notes: "Non-refundable processing" },
+  { item: "Approval Fee", amount: "$5,000-10,000", notes: "Main applicant" },
+  { item: "Security Bond", amount: "$43,000", notes: "RM200,000, refundable" },
+  { item: "Fixed Deposit (50+)", amount: "$108,000", notes: "RM500,000 minimum" },
+  { item: "Health Insurance (Annual)", amount: "$1,200-3,500", notes: "Age-dependent" },
+  { item: "Medical Exam", amount: "$50-100", notes: "Required for application" },
+  { item: "Visa Pass Fee (Annual)", amount: "$200", notes: "RM90 per person" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Submit through agent", duration: "1 day", location: "Online/MM2H agent" },
+  { step: "Initial processing", duration: "3-6 months", location: "MM2H Centre review" },
+  { step: "Conditional approval", duration: "Letter issued", location: "Email notification" },
+  { step: "Travel to Malaysia", duration: "Within 6 months", location: "Malaysia" },
+  { step: "Open bank account", duration: "1-2 weeks", location: "Malaysian bank" },
+  { step: "Fixed deposit placement", duration: "After account opens", location: "Malaysian bank" },
+  { step: "Medical exam & insurance", duration: "1-2 weeks", location: "Malaysia" },
+  { step: "Final visa endorsement", duration: "1-2 weeks", location: "MM2H Centre" },
+];
+---
+
+<PageShell
+  title="Malaysia MM2H Retirement Visa 2025: Requirements, Insurance & Application Guide"
+  description="Complete guide to Malaysia's MM2H (My Second Home) retirement visa. Updated 2021 requirements, financial thresholds, mandatory insurance, and what makes Malaysia attractive for retirees."
+  headline="Malaysia MM2H Retirement Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about Malaysia's My Second Home program—the updated requirements, mandatory insurance, financial thresholds, and why Malaysia remains popular despite stricter rules."
+  heroImage="/images/visas/digital-nomad-visa-hero-bg.png"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Retirement Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated January 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official MM2H Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      English-Speaking Country
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Malaysia's My Second Home (MM2H) program has been one of Asia's most popular retirement visas since its launch in 2002. The program offers long-term residency (5-year renewable visas) for foreigners who meet financial requirements. However, significant changes in 2021 substantially increased the financial thresholds.
+    </p>
+
+    <p class="mb-4">
+      Despite the higher requirements, Malaysia remains attractive for its English-speaking environment, excellent healthcare, modern infrastructure, and multicultural society. The combination of Asian affordability with British-influenced systems creates a comfortable retirement experience.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Malaysia MM2H</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> MM2H (My Second Home) long-term residency</li>
+        <li>• <strong>Duration:</strong> 5 years, renewable for 5 more</li>
+        <li>• <strong>Fixed deposit (50+):</strong> RM500,000 (~$108,000)</li>
+        <li>• <strong>Monthly income:</strong> RM40,000 (~$8,600) required</li>
+        <li>• <strong>Insurance:</strong> Mandatory for applicants 35+</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>2021 changes:</strong> Requirements increased significantly in 2021. Fixed deposits went from RM150,000 to RM500,000 (for 50+), and monthly income requirement increased to RM40,000 from RM10,000. Existing MM2H holders were grandfathered under old rules. Consider whether the new requirements fit your financial situation.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Malaysia for Retirement?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>English widely spoken:</strong> Former British colony, English is common</li>
+      <li><strong>Excellent healthcare:</strong> JCI-accredited hospitals, medical tourism hub</li>
+      <li><strong>Modern infrastructure:</strong> World-class airports, highways, internet</li>
+      <li><strong>Multicultural:</strong> Malay, Chinese, Indian, and expat communities</li>
+      <li><strong>Affordable:</strong> Lower costs than Singapore or Western countries</li>
+      <li><strong>Food paradise:</strong> Incredible diversity of cuisines</li>
+      <li><strong>Travel hub:</strong> Easy access to all of Southeast Asia</li>
+      <li><strong>No inheritance tax:</strong> Tax-friendly for wealth transfer</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">MM2H is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have substantial savings ($200,000+)</li>
+          <li>✓ You value English-speaking environment</li>
+          <li>✓ You want excellent healthcare at lower costs</li>
+          <li>✓ You appreciate multicultural, diverse society</li>
+          <li>✓ You enjoy modern amenities and infrastructure</li>
+          <li>✓ You want a base for exploring Asia</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You can't meet the new financial thresholds</li>
+          <li>• You want the absolute lowest cost of living</li>
+          <li>• You prefer Western climate or culture</li>
+          <li>• You want a path to citizenship (very difficult)</li>
+          <li>• You want to work in retirement (restricted)</li>
+          <li>• You prefer beach lifestyle (limited in Malaysia)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Alternative: Sarawak S-MM2H:</strong> The state of Sarawak (Malaysian Borneo) runs its own S-MM2H program with lower requirements than federal MM2H. Fixed deposit starts at RM150,000 with monthly income of RM7,000. Worth exploring if you're interested in Borneo.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The MM2H program has different requirements based on age. Those 50 and above have slightly lower fixed deposit requirements but the same high income threshold. The 2021 changes made this a program primarily for affluent retirees.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding the Financial Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Fixed Deposit (50+)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Amount:</strong> RM500,000 (~$108,000)</li>
+          <li>• <strong>Where:</strong> Malaysian bank</li>
+          <li>• <strong>Locked:</strong> First year, cannot withdraw</li>
+          <li>• <strong>After Year 1:</strong> Can withdraw up to RM150,000 for approved purposes</li>
+          <li>• <strong>Minimum maintained:</strong> RM350,000</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Income Requirement</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Amount:</strong> RM40,000/month (~$8,600)</li>
+          <li>• <strong>Proof:</strong> Bank statements, pension proof</li>
+          <li>• <strong>Source:</strong> Offshore income (not Malaysian)</li>
+          <li>• <strong>Consistency:</strong> 3-6 months statements</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+      <p class="text-red-800">
+        <strong>Reality check:</strong> The RM40,000/month ($8,600) income requirement is substantial—it's $103,000+ annually. This makes MM2H accessible mainly to affluent retirees, those with significant pensions, or those with substantial investment income. Compare with Thailand ($1,800/month) or Portugal ($825/month).
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Security Bond</h3>
+
+    <p class="mb-4">
+      MM2H requires a security bond of RM200,000 (~$43,000) in the form of an insurance bond or bank guarantee. This is refundable when you exit the program but represents additional capital you need to have available.
+    </p>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">Health Insurance Mandatory for 35+</h3>
+      <p class="text-red-800">
+        If you're 35 or older, health insurance from a Malaysian insurer is mandatory for MM2H approval. There's no specified minimum coverage amount, but immigration expects comprehensive medical coverage. International insurance may be accepted but Malaysian policies are preferred and cause fewer issues.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Malaysia's requirement is less prescriptive than Thailand's specific minimums, but you still need valid coverage. Immigration wants to see you won't burden the Malaysian healthcare system. Most MM2H applicants use Malaysian insurers for simplicity.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Coverage Specifications</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Malaysian Insurers (Recommended)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Straightforward visa acceptance</li>
+          <li>✓ Direct billing at Malaysian hospitals</li>
+          <li>✓ Local customer service</li>
+          <li>✓ AIA, Great Eastern, Prudential, Allianz Malaysia</li>
+          <li>△ Coverage only valid in Malaysia</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">International Insurers</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Worldwide coverage for travel</li>
+          <li>✓ Higher coverage limits</li>
+          <li>✓ Better pre-existing condition options</li>
+          <li>✓ Evacuation to Singapore or home country</li>
+          <li>△ May need additional documentation for visa</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Age limits:</strong> Malaysian insurers often have age limits (65-75 for new policies). If you're older, apply for insurance before you hit their cutoff. International insurers like Cigna and Allianz accept older applicants, making them valuable for 70+ retirees.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox variant="highlight">
+    <p class="mb-4">Need qualifying health insurance for Malaysia's MM2H visa?</p>
+    <a href="/get-quotes" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors" style="color: #1d4ed8 !important;">
+      Compare Retirement Insurance Plans →
+    </a>
+  </CTABox>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For MM2H, Malaysian insurers offer the smoothest approval process. However, international providers offer better coverage for those who travel frequently or want higher limits.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Easiest Visa Approval</h4>
+        <p class="text-neutral-600">AIA Malaysia or Great Eastern provide straightforward documentation that immigration accepts without questions. Best choice for hassle-free MM2H processing.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Travelers</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide worldwide coverage. Essential if you'll travel to Singapore, Thailand, or home country regularly. Worth the premium for peace of mind abroad.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">International providers offer better options for those with health conditions. Malaysian insurers often exclude pre-existing conditions entirely or at prohibitive premiums.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget Option</h4>
+        <p class="text-neutral-600">Great Eastern and Prudential Malaysia offer competitive rates for healthy applicants. Higher deductible plans reduce premiums while meeting MM2H requirements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      MM2H involves significant upfront costs—the fixed deposit, security bond, and application fees. However, daily living costs in Malaysia are very reasonable, making it affordable once established.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Upfront Capital Needed (50+)</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <ul class="space-y-2">
+        <li>• Fixed Deposit: <strong>$108,000</strong> (RM500,000)</li>
+        <li>• Security Bond: <strong>$43,000</strong> (RM200,000)</li>
+        <li>• Application + Approval Fees: <strong>$6,000-11,000</strong></li>
+        <li>• First Year Insurance: <strong>$1,500-3,500</strong></li>
+        <li class="pt-2 border-t border-neutral-300">• <strong>Total: ~$160,000-165,000</strong></li>
+      </ul>
+      <p class="text-sm text-neutral-500 mt-4">Note: Fixed deposit and security bond are recoverable when you exit the program.</p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost of Living</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Lifestyle</p>
+        <p class="text-3xl font-bold text-neutral-900">$1,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Basic condo, local food</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable</p>
+        <p class="text-3xl font-bold text-neutral-900">$2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Nice condo, dining out, car</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Upscale</p>
+        <p class="text-3xl font-bold text-neutral-900">$4,000+</p>
+        <p class="text-sm text-neutral-500 mt-2">Premium housing, full Western lifestyle</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost by Location</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Kuala Lumpur:</strong> $2,000-4,000/month (capital, most amenities)</li>
+      <li><strong>Penang:</strong> $1,500-3,000/month (island, food capital, expat-friendly)</li>
+      <li><strong>Johor Bahru:</strong> $1,500-2,500/month (near Singapore, affordable)</li>
+      <li><strong>Langkawi:</strong> $1,500-2,500/month (duty-free island)</li>
+      <li><strong>Ipoh:</strong> $1,200-2,000/month (affordable, less developed)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      MM2H applications go through the MM2H Centre, typically via an approved agent. The process takes several months and involves conditional approval followed by fulfilling requirements in Malaysia.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Choose an Approved Agent</h4>
+          <p class="text-neutral-600">While not mandatory, most applicants use approved MM2H agents. They handle paperwork, liaise with immigration, and know current requirements. Expect to pay $1,000-3,000 for their services.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Financial Documentation</h4>
+          <p class="text-neutral-600">Provide 3-6 months bank statements showing liquid assets of RM1,000,000+. Show monthly income of RM40,000+ from pension, investments, or offshore sources. Get documents notarized/apostilled as needed.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Your agent submits to the MM2H Centre. Processing takes 3-6 months currently. You'll receive conditional approval letter specifying requirements to complete in Malaysia.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Malaysia</h4>
+          <p class="text-neutral-600">Within 6 months of conditional approval, travel to Malaysia. You can enter on a tourist visa initially while completing requirements.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open Bank Account & Place Deposit</h4>
+          <p class="text-neutral-600">Open a Malaysian bank account and transfer the fixed deposit (RM500,000 for 50+). This must be in your name at a Malaysian bank.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Medical Exam & Insurance</h4>
+          <p class="text-neutral-600">Complete medical examination at an approved clinic. Purchase Malaysian health insurance if you're 35+. These are requirements for final visa endorsement.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Final Visa Endorsement</h4>
+          <p class="text-neutral-600">Once all requirements are met, your MM2H visa is endorsed in your passport. You receive a 5-year social visit pass, renewable for another 5 years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for those considering MM2H:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Retired Executive, $12,000/month</h3>
+        <p class="text-neutral-600 mb-4">Corporate pension plus investment income.</p>
+        <p class="text-green-700 font-medium">✓ Easily meets income requirement. Living in KL condo, member of golf club. Appreciates English-speaking environment and international schools for visiting grandchildren. MM2H was straightforward with agent help.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple, $9,000/month combined</h3>
+        <p class="text-neutral-600 mb-4">Two pensions, wanted English-speaking Asia.</p>
+        <p class="text-green-700 font-medium">✓ Met income threshold. Living in Penang, love the food scene and beach access. Healthcare excellent at Penang Adventist Hospital. Process took 5 months but worth it.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Retiree, 68, pre-existing diabetes</h3>
+        <p class="text-neutral-600 mb-4">Wanted affordable healthcare management.</p>
+        <p class="text-amber-700 font-medium">△ Malaysian insurance excluded diabetes. Uses Cigna international policy at higher cost ($350/month). But diabetes medications and monitoring are much cheaper than US. Overall healthcare costs down significantly.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Middle-income retiree, $4,000/month</h3>
+        <p class="text-neutral-600 mb-4">Social Security plus modest pension.</p>
+        <p class="text-red-700 font-medium">✗ Income below RM40,000 requirement. Could not qualify under new rules. Looked at Sarawak S-MM2H instead (lower requirements) or considered Thailand/Philippines with lower thresholds.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Early retiree, 55, investment income</h3>
+        <p class="text-neutral-600 mb-4">$150k/year from dividends and capital gains.</p>
+        <p class="text-green-700 font-medium">✓ Exceeded requirements easily. Fixed deposit earning better interest than home country. Using MM2H as Asia base while traveling the region. Appreciates Malaysia's stability and infrastructure.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Retiree wanting to work</h3>
+        <p class="text-neutral-600 mb-4">Wanted to do some consulting in retirement.</p>
+        <p class="text-amber-700 font-medium">△ MM2H allows up to 20 hours/week work with additional approval. Had to apply for permission, limited to certain sectors. More restrictive than expected—retirement visa, not work visa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox>
+    <p class="mb-4">Compare insurance plans for Malaysia's MM2H requirements.</p>
+    <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+      Get Insurance Quotes →
+    </a>
+  </CTABox>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Financial Requirements</h3>
+        <p class="text-neutral-600">The 2021 changes made MM2H much more expensive. You need proof of RM40,000/month income AND capital for fixed deposits and security bonds. Total capital commitment exceeds $150,000. Make sure you can meet this without financial strain.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Non-Malaysian Insurance Initially</h3>
+        <p class="text-neutral-600">While international insurance may be accepted, Malaysian insurers cause fewer questions during the approval process. Get a Malaysian policy first for visa purposes; you can add international coverage later if needed for travel.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Using an Agent</h3>
+        <p class="text-neutral-600">MM2H paperwork is complex and requirements change. Approved agents know current requirements, have relationships with the MM2H Centre, and can resolve issues. The $1,000-3,000 fee often saves frustration and delays.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Withdrawing Too Much from Fixed Deposit</h3>
+        <p class="text-neutral-600">After year one, you can withdraw up to RM150,000 for approved purposes (house, car, medical, education). But you must maintain RM350,000 minimum. Withdrawing more jeopardizes your visa status.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Easy PR/Citizenship</h3>
+        <p class="text-neutral-600">MM2H does not lead to permanent residency or citizenship. These are separate, difficult processes in Malaysia. If you want a path to citizenship, consider Portugal, Panama, or other countries with clearer pathways.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Malaysia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Malaysia</h2>
+
+    <p class="mb-4">
+      Malaysia is a medical tourism powerhouse with excellent private hospitals, many English-speaking doctors, and costs significantly lower than Western countries. The combination of quality and affordability is a major draw for retirees.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare System Overview</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Hospitals</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Cost:</strong> Heavily subsidized, very cheap</li>
+          <li>• <strong>Quality:</strong> Adequate to good</li>
+          <li>• <strong>Wait times:</strong> Can be long</li>
+          <li>• <strong>Language:</strong> Malay primarily</li>
+          <li>• <strong>MM2H access:</strong> Not entitled to subsidies</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Hospitals</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Cost:</strong> 50-70% less than US</li>
+          <li>• <strong>Quality:</strong> Excellent, JCI-accredited</li>
+          <li>• <strong>Wait times:</strong> Minimal</li>
+          <li>• <strong>Language:</strong> English common</li>
+          <li>• <strong>MM2H access:</strong> Full access with insurance</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Top Private Hospital Groups</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Prince Court Medical Centre</strong> - KL, JCI-accredited, premium facilities</li>
+      <li><strong>Gleneagles Hospital</strong> - KL and Penang, excellent reputation</li>
+      <li><strong>Pantai Hospital</strong> - Multiple locations nationwide</li>
+      <li><strong>Subang Jaya Medical Centre</strong> - Popular with expats</li>
+      <li><strong>Penang Adventist Hospital</strong> - Penang, English-speaking staff</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Sample Costs (Private, Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP visit:</strong> $15-30</li>
+      <li><strong>Specialist:</strong> $30-60</li>
+      <li><strong>MRI scan:</strong> $150-300</li>
+      <li><strong>Hospital room:</strong> $50-150/night</li>
+      <li><strong>Hip replacement:</strong> $8,000-12,000</li>
+      <li><strong>Heart bypass:</strong> $12,000-20,000</li>
+    </ul>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work on MM2H?</h3>
+        <p class="text-neutral-600">
+          Limited yes. MM2H holders can apply to work up to 20 hours per week in certain sectors. You need additional approval from the MM2H Centre. It's not automatic—you must apply and be approved for specific employment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I buy property in Malaysia?</h3>
+        <p class="text-neutral-600">
+          Yes, but with restrictions. MM2H holders can buy property above minimum thresholds (varies by state, typically RM500,000-1,000,000). You can also buy a house, not just condos. Property rules are more favorable than many Asian countries.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long must I stay in Malaysia?</h3>
+        <p class="text-neutral-600">
+          There's no minimum stay requirement for MM2H. You can use it as a base and travel freely. However, you should enter Malaysia at least once per year to maintain active status and avoid questions during renewal.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about the Sarawak S-MM2H?</h3>
+        <p class="text-neutral-600">
+          Sarawak runs its own program with lower requirements: RM150,000 fixed deposit and RM7,000/month income. However, you must live primarily in Sarawak (Malaysian Borneo). It's a good alternative if you can't meet federal MM2H requirements.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring domestic helpers?</h3>
+        <p class="text-neutral-600">
+          Yes, MM2H holders can bring one foreign domestic helper. You'll need to apply for their work permit separately. Many retirees employ Indonesian or Filipino helpers, which is common and affordable in Malaysia.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens to my fixed deposit if I leave?</h3>
+        <p class="text-neutral-600">
+          When you exit the MM2H program, your fixed deposit is returned in full. The security bond is also refundable. You'll need to formally cancel your MM2H status and return your pass before funds are released.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Malaysia's MM2H program remains attractive for its English-speaking environment, excellent healthcare, modern infrastructure, and multicultural appeal. However, the 2021 changes made it a program primarily for affluent retirees—you need significant income ($8,600+/month) and capital ($150,000+).
+    </p>
+
+    <p class="mb-4">
+      For those who meet the requirements, Malaysia offers an exceptional retirement experience. The combination of Asian affordability with British-influenced systems (English language, common law, driving on left) creates a comfortable transition for Western retirees.
+    </p>
+
+    <p class="mb-6">
+      If you can't meet the new requirements, consider alternatives: Sarawak's S-MM2H has lower thresholds, Thailand's retirement visa requires far less income, and the Philippines and Indonesia offer affordable options. MM2H is now positioned as a premium program for high-net-worth retirees.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        MM2H offers excellent value for affluent retirees seeking an English-speaking, modern Asian base with world-class healthcare. The high financial requirements ($8,600/month income, $150,000+ capital) make it suitable mainly for those with substantial pensions or investment income. If you qualify, it's one of Asia's best retirement options.
+      </p>
+      <a href="/get-quotes" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Insurance Plans for Malaysia →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/malaysia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Malaysia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Malaysia</p>
+      </a>
+      <a href="/insurance-for/retirees" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Retirees Abroad</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for international retirees</p>
+      </a>
+      <a href="/visas/retirement-visa/in/thailand" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Thailand Retirement Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Thailand's O-A visa (lower requirements)</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
