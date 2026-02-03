@@ -1612,6 +1612,291 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'Yes, for most non-native English speakers. Requirements vary: typically IELTS 5.5-6.0 for undergraduate, 6.5+ for postgraduate. Some universities accept other tests (TOEFL, Cambridge). Native English speakers from certain countries may be exempt.'
       }
     ]
+  },
+
+  // Japan - Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'japan',
+    officialVisaName: 'Student Visa (留学ビザ / Ryūgaku Visa)',
+    requirements: {
+      eligibility: [
+        'Acceptance from approved Japanese educational institution',
+        'Certificate of Eligibility (COE) from Immigration Bureau',
+        'Sufficient funds for living expenses',
+        'Academic qualifications for chosen program',
+        'Valid passport with blank pages',
+        'Clean criminal record'
+      ],
+      financial: {
+        minimumFunds: '¥1,500,000-2,000,000/year (~$10,000-13,000)',
+        proofRequired: ['Bank statements (3-6 months)', 'Sponsor letter if applicable', 'Certificate of deposit'],
+        notes: 'Financial requirements vary by school and sponsor. Sponsored students need guarantor letter.'
+      },
+      documents: [
+        'Certificate of Eligibility (COE)',
+        'Valid passport',
+        'Visa application form',
+        'Photo (4.5cm x 4.5cm)',
+        'Letter of acceptance from institution',
+        'Academic transcripts and diplomas',
+        'Financial proof documents',
+        'Sponsor/guarantor documents if applicable'
+      ]
+    },
+    duration: {
+      initial: '6 months to 4 years 3 months',
+      renewable: true,
+      maxStay: 'Duration of studies + extension possible'
+    },
+    applicationProcess: [
+      'Apply to Japanese school and receive acceptance',
+      'School applies for Certificate of Eligibility (COE) - 1-3 months',
+      'Receive COE from Immigration Bureau via school',
+      'Apply for student visa at Japanese embassy with COE',
+      'Visa issued within 5-7 working days',
+      'Arrive in Japan within 3 months of COE issuance',
+      'Register at local ward office within 14 days',
+      'Obtain residence card (Zairyu Card)'
+    ],
+    insuranceNotes: 'Japan requires all residents to enroll in National Health Insurance (NHI / Kokumin Kenko Hoken). This is mandatory for students staying 3+ months. NHI covers 70% of medical costs; you pay 30%. Monthly premiums are income-based and very affordable for students (often ¥1,500-2,000/month).',
+    healthcareAccess: 'Once enrolled in NHI, you have access to Japan\'s excellent healthcare system at 30% copay. Many universities also offer supplementary insurance to cover the 30% copay. Japanese healthcare quality is world-class, and costs are reasonable even at the 30% rate.',
+    costs: {
+      visaFee: '¥3,000 (~$20) for single entry, ¥6,000 (~$40) for multiple entry',
+      insuranceRange: '¥1,500-3,000/month (~$10-20) for NHI'
+    },
+    recommendedProviders: ['japan-nhi', 'university-supplementary', 'cigna-global', 'allianz-care'],
+    keyConsiderations: [
+      'NHI is mandatory—you cannot use only international insurance',
+      'Language schools require separate visa category (留学 for universities, others for language schools)',
+      'Part-time work requires separate "Permission to Engage in Activity Other than that Permitted" permit',
+      'Work limited to 28 hrs/week during school, 40 hrs/week during holidays',
+      'Japanese language ability helpful even for English programs',
+      'Designated Activities visa available post-graduation for job search'
+    ],
+    commonMistakes: [
+      'Not enrolling in NHI within 14 days of arrival (it\'s mandatory)',
+      'Working without the part-time work permit (serious visa violation)',
+      'Exceeding 28 hours/week work limit during term',
+      'Letting COE expire before arriving (valid only 3 months)',
+      'Not registering at ward office within 14 days'
+    ],
+    faqs: [
+      {
+        question: 'Is Japanese health insurance mandatory for students?',
+        answer: 'Yes. All residents staying 3+ months must enroll in National Health Insurance (NHI). You cannot substitute international insurance. Enroll at your local ward office within 14 days of arrival. Premiums are very affordable for students.'
+      },
+      {
+        question: 'How much does NHI cost for students?',
+        answer: 'NHI premiums are income-based. For students with minimal income, expect ¥1,500-3,000/month (~$10-20). This covers 70% of medical costs at any clinic or hospital. Many universities offer supplementary insurance to cover the remaining 30%.'
+      },
+      {
+        question: 'Can I work while studying in Japan?',
+        answer: 'Yes, but you need a "Permission to Engage in Activity Other than that Permitted" stamp in your passport. Apply at immigration after arrival. Limited to 28 hours/week during school, 40 hours/week during long holidays. Minimum wage varies by prefecture (¥900-1,100/hour).'
+      },
+      {
+        question: 'What is the Certificate of Eligibility (COE)?',
+        answer: 'The COE is issued by Japan Immigration Bureau and proves you meet entry requirements. Your school applies on your behalf. Processing takes 1-3 months. Once received, apply for the visa at your local Japanese embassy—this step is quick (5-7 days).'
+      },
+      {
+        question: 'Can I stay in Japan after graduation?',
+        answer: 'Yes. Graduates can apply for "Designated Activities" visa for job hunting (6 months to 1 year). Once employed, switch to work visa (Engineer/Specialist in Humanities, etc.). Japan is actively recruiting skilled foreign graduates.'
+      },
+      {
+        question: 'How much is tuition in Japan?',
+        answer: 'National universities: ¥535,800/year (~$3,600). Private universities: ¥800,000-1,500,000/year (~$5,400-10,000). Scholarships available through MEXT (full ride), JASSO, and universities. Japan is affordable compared to US/UK.'
+      }
+    ]
+  },
+
+  // South Korea - Student Visa (D-2)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'south-korea',
+    officialVisaName: 'Student Visa (D-2 Visa)',
+    requirements: {
+      eligibility: [
+        'Acceptance from accredited Korean higher education institution',
+        'High school diploma or higher (for undergraduate)',
+        'Bachelor\'s degree (for graduate programs)',
+        'Sufficient financial resources',
+        'Valid passport',
+        'Korean language proficiency (TOPIK 3+ for Korean-taught programs) or English proficiency'
+      ],
+      financial: {
+        minimumFunds: '$10,000+ in bank account or sponsorship',
+        proofRequired: ['Bank statement showing $10,000+', 'Sponsor financial documents', 'Scholarship letter if applicable'],
+        notes: 'Financial requirements vary. Some universities require tuition payment before visa application.'
+      },
+      documents: [
+        'Valid passport',
+        'Visa application form',
+        'Photo (3.5cm x 4.5cm, white background)',
+        'Certificate of Admission',
+        'Apostilled academic transcripts and diploma',
+        'Financial proof ($10,000+ or equivalent)',
+        'Proof of Korean/English proficiency',
+        'Standard Admission Letter from KEIS (Korean immigration system)'
+      ]
+    },
+    duration: {
+      initial: '6 months to 2 years',
+      renewable: true,
+      maxStay: 'Duration of academic program'
+    },
+    applicationProcess: [
+      'Apply to Korean university and receive admission',
+      'University issues Standard Admission Letter via KEIS',
+      'Gather required documents (apostille for some countries)',
+      'Apply for D-2 visa at Korean embassy/consulate',
+      'Visa processing takes 1-4 weeks',
+      'Arrive in Korea',
+      'Register as foreign resident (Alien Registration Card) within 90 days',
+      'Enroll in National Health Insurance within first semester'
+    ],
+    insuranceNotes: 'South Korea requires all international students to enroll in National Health Insurance (NHIS) as of 2021. This is mandatory and non-negotiable. Premiums are approximately ₩70,000-90,000/month (~$50-65). NHIS covers 70% of medical costs at Korean hospitals and clinics.',
+    healthcareAccess: 'With NHIS, you have access to Korea\'s excellent healthcare system at 30% copay. Korean healthcare is high-quality, efficient, and affordable. Many doctors in Seoul speak English. Some universities have on-campus health centers for basic care.',
+    costs: {
+      visaFee: '$50-90 depending on nationality and visa type',
+      insuranceRange: '₩70,000-90,000/month (~$50-65) for NHIS'
+    },
+    recommendedProviders: ['korea-nhis', 'samsung-fire-marine', 'cigna-global', 'allianz-care'],
+    keyConsiderations: [
+      'NHIS enrollment is mandatory—international insurance not accepted as substitute',
+      'D-2 visa is for degree programs; D-4 is for language school',
+      'TOPIK Level 3+ often required for Korean-taught programs',
+      'Part-time work allowed (20 hrs/week) after 6 months with permission',
+      'Korea is very affordable for students (especially outside Seoul)',
+      'Strong job market for graduates, especially in tech and teaching'
+    ],
+    commonMistakes: [
+      'Not enrolling in NHIS (mandatory since 2021)',
+      'Working without permission in first 6 months',
+      'Not getting Alien Registration Card within 90 days',
+      'Forgetting to apostille documents (required for some nationalities)',
+      'Underestimating Korean language requirements for daily life'
+    ],
+    faqs: [
+      {
+        question: 'Is Korean health insurance mandatory?',
+        answer: 'Yes. Since 2021, all international students must enroll in Korea\'s National Health Insurance System (NHIS). This is mandatory and you cannot substitute with international insurance. Premiums are ~₩70,000-90,000/month (~$50-65).'
+      },
+      {
+        question: 'How good is Korean healthcare?',
+        answer: 'Excellent. Korea has world-class hospitals with modern facilities. Wait times are short, and costs are reasonable with NHIS (30% copay). Many doctors in Seoul speak English. Korea is actually a medical tourism destination.'
+      },
+      {
+        question: 'Can I work while studying in Korea?',
+        answer: 'Yes, after your first semester (6 months). Apply for part-time work permission at immigration. Limited to 20 hours/week during term, more during holidays. Minimum wage is ₩9,860/hour (~$7.50) in 2024. Many students teach English or work in service jobs.'
+      },
+      {
+        question: 'What is the D-2 vs D-4 visa?',
+        answer: 'D-2 is for degree programs at universities (bachelor\'s, master\'s, PhD). D-4 is for Korean language programs, vocational training, or other non-degree studies. If you\'re attending a language school before university, you\'ll start with D-4, then switch to D-2.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Graduates can apply for D-10 (Job Seeking Visa) for 6 months to 2 years. Once employed, switch to E-7 (Professional Employment) or other work visa. Korea actively recruits skilled foreign graduates, especially in tech, engineering, and teaching.'
+      },
+      {
+        question: 'How much is tuition in Korea?',
+        answer: 'National universities: $2,000-5,000/semester. Private universities: $3,500-8,000/semester. Top universities (SKY) cost more. Many scholarships available: Korean Government Scholarship (KGSP), university scholarships, and NIIED. Living costs are low outside Seoul.'
+      }
+    ]
+  },
+
+  // Singapore - Student Pass
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'singapore',
+    officialVisaName: 'Student\'s Pass (STP)',
+    requirements: {
+      eligibility: [
+        'Acceptance from approved Singapore educational institution',
+        'Institution must be registered with Immigration & Checkpoints Authority (ICA)',
+        'Meet academic requirements for chosen program',
+        'Sufficient funds to support studies and living expenses',
+        'Valid passport with 6+ months validity',
+        'Good character and health'
+      ],
+      financial: {
+        minimumFunds: 'S$20,000-30,000/year (~$15,000-22,000)',
+        proofRequired: ['Bank statements', 'Sponsor letter if applicable', 'Scholarship documentation'],
+        notes: 'No official minimum, but sufficient funds for tuition + S$1,500-2,500/month living costs expected.'
+      },
+      documents: [
+        'Valid passport',
+        'Completed Form 16 (Student\'s Pass application)',
+        'Completed Form V36 (if applicable)',
+        'Recent passport photo',
+        'Letter of acceptance (In-Principle Approval from institution)',
+        'Academic transcripts and certificates',
+        'Financial proof documents',
+        'Medical examination results (for some nationalities)'
+      ]
+    },
+    duration: {
+      initial: 'Duration of course (typically 1-4 years)',
+      renewable: true,
+      maxStay: 'Duration of studies + extensions possible'
+    },
+    applicationProcess: [
+      'Apply to Singapore institution and receive acceptance',
+      'Institution applies for In-Principle Approval (IPA) via SOLAR system',
+      'Receive IPA letter via email (usually within 4 weeks)',
+      'Arrange accommodation and travel',
+      'Arrive in Singapore with IPA letter',
+      'Complete formalities at ICA within 2 weeks',
+      'Receive Student\'s Pass card',
+      'Register with institution'
+    ],
+    insuranceNotes: 'Singapore does not have mandatory national health insurance for students. However, most universities require students to purchase the school\'s health insurance plan or provide proof of equivalent coverage. International health insurance is widely accepted. Singapore healthcare is excellent but expensive without insurance.',
+    healthcareAccess: 'Singapore has world-class healthcare but it\'s expensive. Without insurance, basic GP visits cost S$30-50, hospital stays can cost S$300-1,000+/day. Most schools require insurance (S$50-200/semester through school plans). University health centers offer subsidized care for students.',
+    costs: {
+      visaFee: 'S$30 (IPA) + S$60 (Student\'s Pass issuance) = S$90 (~$67)',
+      insuranceRange: 'S$100-500/semester (~$75-375) for university plans'
+    },
+    recommendedProviders: ['university-health-plan', 'cigna-global', 'allianz-care', 'safetywing'],
+    keyConsiderations: [
+      'Singapore is expensive—budget S$1,500-2,500/month for living costs',
+      'English is the main language—no language barrier',
+      'Part-time work requires separate work pass (Training Work Permit)',
+      'Strict visa rules—maintain full-time enrollment',
+      'Excellent post-study work opportunities in finance and tech',
+      'No mandatory government health insurance—school insurance usually required'
+    ],
+    commonMistakes: [
+      'Underestimating living costs (Singapore is very expensive)',
+      'Working without proper work permit (serious violation)',
+      'Not completing ICA formalities within 2 weeks of arrival',
+      'Letting Student\'s Pass expire before renewal',
+      'Skipping required school health insurance enrollment'
+    ],
+    faqs: [
+      {
+        question: 'Is health insurance mandatory in Singapore?',
+        answer: 'There\'s no national mandatory insurance, but most universities require students to enroll in the school\'s health insurance plan or prove equivalent coverage. Costs are typically S$100-500/semester. Given Singapore\'s high medical costs, insurance is essential.'
+      },
+      {
+        question: 'How expensive is Singapore for students?',
+        answer: 'Very expensive. Budget S$1,500-2,500/month for living costs (accommodation, food, transport, personal). Accommodation is the biggest expense: S$500-1,500/month for shared rooms. Government subsidies make public university tuition reasonable for some students.'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Only with permission. Full-time students at approved institutions can work up to 16 hours/week during term (no separate permit needed). For more hours or vacation work, you need a Training Work Permit. Internships related to your studies are usually allowed.'
+      },
+      {
+        question: 'What is the SOLAR system?',
+        answer: 'SOLAR (Student\'s Pass Online Application & Registration) is ICA\'s online system for student pass applications. Your institution submits the application on your behalf. You\'ll receive the In-Principle Approval (IPA) via email, which you present when arriving in Singapore.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Graduates can apply for Long-Term Visit Pass (up to 1 year) to seek employment. Once you receive a job offer, switch to Employment Pass (EP) or S Pass depending on salary. Singapore actively recruits skilled graduates, especially in finance, tech, and engineering.'
+      },
+      {
+        question: 'How much is tuition in Singapore?',
+        answer: 'Public universities (with government tuition grant): S$8,000-15,000/year for international students. Private universities: S$15,000-30,000/year. The tuition grant requires a 3-year work commitment in Singapore after graduation. Without grant, fees are 2-3x higher.'
+      }
+    ]
   }
 ];
 

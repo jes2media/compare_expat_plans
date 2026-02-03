@@ -1,0 +1,501 @@
+---
+/**
+ * Japan Student Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Japan", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Japan Health Insurance Guide", href: "/countries/japan/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "University Admission", details: "Acceptance from approved Japanese institution", evidence: "Certificate of Admission from school" },
+  { requirement: "Certificate of Eligibility", details: "COE from Immigration Bureau (via school)", evidence: "Original COE document" },
+  { requirement: "Financial Proof", details: "¥1.5-2 million/year (~$10,000-13,000)", evidence: "Bank statements, sponsor letter" },
+  { requirement: "Academic Records", details: "Qualifications for chosen program", evidence: "Transcripts, diploma (translated)" },
+  { requirement: "Valid Passport", details: "6+ months validity, blank pages", evidence: "Passport" },
+  { requirement: "Photo", details: "4.5cm x 4.5cm, recent", evidence: "Passport photo" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "nhi", header: "NHI (Mandatory)" },
+  { key: "supplementary", header: "University Supplementary" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", nhi: "¥1,500-3,000 (~$10-20)", supplementary: "Often free or ¥500-1,000/year" },
+  { feature: "Coverage", nhi: "70% of medical costs", supplementary: "Remaining 30% copay" },
+  { feature: "Required?", nhi: "Yes—mandatory for all residents", supplementary: "Optional but highly recommended" },
+  { feature: "Enrollment", nhi: "Ward office within 14 days", supplementary: "Through university" },
+  { feature: "Hospitals", nhi: "All hospitals and clinics in Japan", supplementary: "Depends on policy" },
+  { feature: "Dental", nhi: "Covered at 70%", supplementary: "Varies" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Japan NHI", type: "Mandatory", price: "¥1,500-3,000", strengths: "Required for all students—excellent coverage" },
+  { provider: "University Insurance", type: "Supplementary", price: "Often free", strengths: "Covers 30% copay NHI doesn't" },
+  { provider: "JASSO Mutual Aid", type: "Supplementary", price: "¥1,500/year", strengths: "Accidents and liability coverage" },
+  { provider: "Cigna Global", type: "International", price: "$80-150", strengths: "Travel outside Japan, evacuation" },
+  { provider: "Allianz Care", type: "International", price: "$100-180", strengths: "Global coverage, repatriation" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "¥3,000-6,000 (~$20-40)", notes: "Single or multiple entry" },
+  { item: "COE Processing", amount: "Free", notes: "School applies on your behalf" },
+  { item: "National Health Insurance", amount: "¥1,500-3,000/month", notes: "Income-based, very low for students" },
+  { item: "University Tuition", amount: "¥535,800/year (national)", notes: "Private: ¥800,000-1,500,000/year" },
+  { item: "Residence Card", amount: "Free", notes: "Issued at airport or immigration" },
+  { item: "Living Costs", amount: "¥80,000-150,000/month", notes: "Tokyo higher, regional cities lower" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Receive university admission", duration: "Varies", location: "Direct or via application service" },
+  { step: "School applies for COE", duration: "1-3 months", location: "Japan Immigration Bureau" },
+  { step: "Receive COE via school", duration: "Included above", location: "Sent to you by mail/email" },
+  { step: "Apply for visa at embassy", duration: "5-7 working days", location: "Japanese embassy/consulate" },
+  { step: "Arrive in Japan", duration: "Within 3 months of COE", location: "Airport (get Residence Card)" },
+  { step: "Register at ward office", duration: "Within 14 days", location: "Local ward/city office" },
+  { step: "Enroll in NHI", duration: "Same visit", location: "Ward office" },
+];
+---
+
+<PageShell
+  title="Japan Student Visa 2026: Requirements, NHI Insurance & Application Guide"
+  description="Complete guide to Japan's Student Visa (留学ビザ). Affordable tuition, mandatory NHI enrollment, Certificate of Eligibility process, and post-graduation job opportunities."
+  headline="Japan Student Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in Japan—affordable tuition at national universities, mandatory National Health Insurance (NHI), COE application process, and job search visa after graduation."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Immigration Bureau Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Affordable National University Tuition
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Japan attracts over 300,000 international students annually, drawn by world-class universities, affordable tuition (especially at national universities), rich culture, and excellent post-graduation career opportunities. Japanese higher education combines traditional excellence with cutting-edge research in technology and science.
+    </p>
+
+    <p class="mb-4">
+      One thing sets Japan apart from many Western countries: <strong>mandatory National Health Insurance (NHI)</strong>. All residents—including students—must enroll within 14 days of arrival. The good news? Student premiums are remarkably affordable (often ¥1,500-3,000/month), and you get access to Japan's excellent healthcare system at just 30% copay.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">Quick Facts: Japan Student Visa</h3>
+      <ul class="space-y-1 text-primary-800">
+        <li>• <strong>Visa Type:</strong> Student Visa (留学ビザ / Ryūgaku Visa)</li>
+        <li>• <strong>Duration:</strong> 6 months to 4 years 3 months</li>
+        <li>• <strong>Health Insurance:</strong> NHI mandatory (~¥1,500-3,000/month)</li>
+        <li>• <strong>Work Rights:</strong> 28 hrs/week (with permit)</li>
+        <li>• <strong>Tuition:</strong> ¥535,800/year at national universities</li>
+        <li>• <strong>Processing:</strong> COE 1-3 months, then visa 5-7 days</li>
+        <li>• <strong>Post-Study:</strong> Designated Activities visa for job search</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">✓ Japan Is a Great Fit If You:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• Want affordable, high-quality education</li>
+          <li>• Are interested in Japanese language/culture</li>
+          <li>• Want to work in Japan after graduation</li>
+          <li>• Prefer a structured, safe society</li>
+          <li>• Are okay with mandatory NHI enrollment</li>
+          <li>• Want excellent healthcare at low cost</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">⚠ Consider Alternatives If You:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Don't want to learn any Japanese</li>
+          <li>• Need extensive part-time work income</li>
+          <li>• Prefer completely English-speaking environment</li>
+          <li>• Want European Schengen access</li>
+          <li>• Prefer to use only international insurance</li>
+          <li>• Need very flexible work hours while studying</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-6">
+      Japan's student visa process is straightforward but has a unique element: the <strong>Certificate of Eligibility (COE)</strong>. Your school applies for this on your behalf, and it takes 1-3 months. Once you have it, the actual visa issuance is quick (5-7 days).
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Key Point:</strong> The COE is the critical document. Your school handles this application—you just need to provide supporting documents. Once you receive the COE, apply for your visa immediately, as it's only valid for 3 months.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+      <p class="text-red-800">
+        <strong>⚠️ NHI is Mandatory:</strong> All residents in Japan (including students) must enroll in National Health Insurance within 14 days of arrival. International insurance is NOT accepted as a substitute. Failure to enroll is a violation of Japanese law.
+      </p>
+    </div>
+
+    <p class="mb-6">
+      The good news: NHI is excellent and affordable. Students typically pay ¥1,500-3,000/month (~$10-20), far less than comparable coverage elsewhere. NHI covers 70% of medical costs at any hospital or clinic in Japan. Many universities offer supplementary insurance (often free) to cover the remaining 30%.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Cost Comparison:</strong> German public insurance costs ~€110/month. Japanese NHI costs ~¥2,000/month (~$13). Japan offers some of the most affordable mandatory health insurance for international students anywhere in the developed world.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-6">
+      NHI is your primary coverage (mandatory). Beyond that, consider university supplementary insurance and optional international coverage for travel outside Japan.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <CTABox
+      title="Need Coverage for Travel Outside Japan?"
+      description="NHI only works in Japan. If you travel internationally, consider supplementary global coverage."
+      buttonText="Compare International Plans"
+      buttonHref="/best/expat-health-insurance"
+    />
+  </section>
+
+  <!-- Section: Costs -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-6">
+      Japan is surprisingly affordable for students. National university tuition is just ¥535,800/year (~$3,600), and living costs outside Tokyo are reasonable. Many scholarships are available.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Tokyo)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: ¥50,000-80,000 (~$340-540)</li>
+          <li>Food: ¥30,000-40,000 (~$200-270)</li>
+          <li>Transport: ¥5,000-10,000 (~$35-70)</li>
+          <li>NHI: ¥1,500-3,000 (~$10-20)</li>
+          <li>Phone/Internet: ¥5,000 (~$35)</li>
+          <li><strong>Total: ¥90,000-140,000/month</strong></li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Regional City)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: ¥25,000-45,000 (~$170-300)</li>
+          <li>Food: ¥25,000-35,000 (~$170-240)</li>
+          <li>Transport: ¥3,000-5,000 (~$20-35)</li>
+          <li>NHI: ¥1,500-3,000 (~$10-20)</li>
+          <li>Phone/Internet: ¥5,000 (~$35)</li>
+          <li><strong>Total: ¥60,000-95,000/month</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-6">
+      Japan's visa process has two phases: COE application (handled by your school, 1-3 months) and visa application (you apply at embassy, 5-7 days). Plan accordingly.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Timing Warning:</strong> The COE is only valid for 3 months. Once you receive it, apply for your visa promptly and plan your arrival. If the COE expires, you'll need to start over.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 1: Cold Requiring Doctor Visit</h4>
+        <p class="text-neutral-600 mb-2">You catch a bad cold and visit a local clinic for treatment.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> With NHI, you pay 30% of the bill. Total out-of-pocket: ¥1,000-2,000 (~$7-13) for consultation and medication. If you have university supplementary insurance, possibly ¥0.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 2: Sports Injury Requiring X-Ray</h4>
+        <p class="text-neutral-600 mb-2">You sprain your ankle playing sports and need an X-ray and treatment.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> NHI covers 70%. Your 30% share: ¥3,000-5,000 (~$20-35) for examination, X-ray, and treatment. Very affordable compared to US or UK costs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 3: Dental Cleaning</h4>
+        <p class="text-neutral-600 mb-2">You want a routine dental checkup and cleaning.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> Dental is covered under NHI at 70%. Cleaning and checkup: ¥1,500-3,000 (~$10-20) out of pocket. Much more affordable than most countries.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 4: Emergency Hospital Visit</h4>
+        <p class="text-neutral-600 mb-2">You have severe stomach pain and go to the emergency room at night.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> NHI covers 70%. ER visit, tests, and medication might total ¥15,000-30,000; you pay ¥4,500-9,000 (~$30-60). Night/weekend visits may have additional fees.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 5: Hospitalization for Surgery</h4>
+        <p class="text-neutral-600 mb-2">You need appendix surgery and a 5-day hospital stay.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> Total bill might be ¥300,000-500,000. NHI covers 70%, but there's also a monthly out-of-pocket cap (¥80,000-90,000 for most students). Your actual cost: capped at ~¥80,000 (~$540) even for major procedures.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 6: Trip to Korea, Get Sick</h4>
+        <p class="text-neutral-600 mb-2">You travel to Korea for vacation and need medical care there.</p>
+        <p class="text-red-700"><strong>Outcome:</strong> NHI does NOT cover you outside Japan. You pay full price. This is why supplementary international insurance is recommended for frequent travelers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Not Enrolling in NHI Within 14 Days</h4>
+          <p class="text-red-700">NHI enrollment is mandatory and legally required. Go to your ward office within 14 days of arrival. Bring your Residence Card and passport.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Working Without the Permit</h4>
+          <p class="text-red-700">Student visa doesn't automatically allow work. Apply for "Permission to Engage in Activity Other than that Permitted" at immigration. Working without this is a serious violation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Exceeding 28 Hours/Week</h4>
+          <p class="text-red-700">During school terms, you're limited to 28 hours/week. During long holidays (summer, winter), you can work 40 hours. Immigration takes this seriously.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Letting the COE Expire</h4>
+          <p class="text-red-700">The COE is only valid for 3 months. If you don't arrive in Japan within that window, it expires and you need to restart the process.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Not Registering at Ward Office</h4>
+          <p class="text-red-700">Within 14 days of arrival, register your address at the local ward office. This is separate from immigration registration and is required for NHI enrollment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Japan -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Japan</h2>
+
+    <p class="mb-4">
+      Japan has one of the world's best healthcare systems—high quality, efficient, and affordable with NHI. Medical facilities are modern, and care standards are excellent. While English-speaking doctors are common in major cities, bringing a translator to appointments in smaller cities can be helpful.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What NHI Covers</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>✓ Doctor consultations (70%)</li>
+          <li>✓ Hospital stays (70%)</li>
+          <li>✓ Surgery and procedures (70%)</li>
+          <li>✓ Prescription medications (70%)</li>
+          <li>✓ Dental care (70%)</li>
+          <li>✓ Mental health (70%)</li>
+          <li>✓ Maternity (70%)</li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What NHI Doesn't Cover</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>✗ Medical care outside Japan</li>
+          <li>✗ Cosmetic procedures</li>
+          <li>✗ Some advanced treatments</li>
+          <li>✗ Private hospital rooms (standard rooms are covered)</li>
+          <li>✗ Non-medically necessary items</li>
+          <li>✗ Travel insurance/evacuation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>High-Cost Medical Expense Benefit:</strong> Japan has a monthly out-of-pocket cap. For most students, if your 30% share exceeds ~¥80,000 in a month, you'll be refunded the excess. This protects against catastrophic costs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Is Japanese health insurance mandatory for students?</h4>
+        <p class="text-neutral-600">Yes. All residents staying 3+ months must enroll in National Health Insurance (NHI). You cannot substitute international insurance. Enroll at your local ward office within 14 days of arrival. Premiums are very affordable for students.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How much does NHI cost for students?</h4>
+        <p class="text-neutral-600">NHI premiums are income-based. For students with minimal income, expect ¥1,500-3,000/month (~$10-20). This covers 70% of medical costs at any clinic or hospital. Many universities offer supplementary insurance to cover the remaining 30%.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I work while studying in Japan?</h4>
+        <p class="text-neutral-600">Yes, but you need a "Permission to Engage in Activity Other than that Permitted" stamp in your passport. Apply at immigration after arrival. Limited to 28 hours/week during school, 40 hours/week during long holidays. Minimum wage varies by prefecture (¥900-1,100/hour).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What is the Certificate of Eligibility (COE)?</h4>
+        <p class="text-neutral-600">The COE is issued by Japan Immigration Bureau and proves you meet entry requirements. Your school applies on your behalf. Processing takes 1-3 months. Once received, apply for the visa at your local Japanese embassy—this step is quick (5-7 days).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I stay in Japan after graduation?</h4>
+        <p class="text-neutral-600">Yes. Graduates can apply for "Designated Activities" visa for job hunting (6 months to 1 year). Once employed, switch to work visa (Engineer/Specialist in Humanities, etc.). Japan is actively recruiting skilled foreign graduates.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How much is tuition in Japan?</h4>
+        <p class="text-neutral-600">National universities: ¥535,800/year (~$3,600). Private universities: ¥800,000-1,500,000/year (~$5,400-10,000). Scholarships available through MEXT (full ride), JASSO, and universities. Japan is affordable compared to US/UK.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Japan offers one of the best value propositions for international students: affordable tuition, world-class education, mandatory but cheap health insurance, and excellent post-graduation career prospects. The insurance requirement is actually a benefit—NHI provides comprehensive coverage at a fraction of what you'd pay elsewhere.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the COE processing time (plan 1-3 months ahead), the 28-hour work limit, and the language barrier for non-Japanese speakers (though English programs exist). If you're interested in Japanese culture, technology, or want to work in Japan after graduation, it's an excellent choice.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">The Bottom Line</h3>
+      <p class="text-primary-800">
+        Japan's student visa is straightforward (once you understand the COE process), and the mandatory NHI is one of the most affordable health insurance options for international students in any developed country. With tuition at just ~$3,600/year at national universities and excellent healthcare at 30% copay, Japan is hard to beat for value.
+      </p>
+    </div>
+
+    <CTABox
+      title="Planning to Study in Japan?"
+      description="NHI covers you in Japan, but consider supplementary coverage for travel. Compare international health insurance options."
+      buttonText="Compare Insurance Plans"
+      buttonHref="/best/expat-health-insurance"
+      variant="highlight"
+    />
+  </section>
+
+</PageShell>

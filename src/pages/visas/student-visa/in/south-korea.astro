@@ -1,0 +1,501 @@
+---
+/**
+ * South Korea Student Visa (D-2) - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in South Korea", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "South Korea Health Insurance Guide", href: "/countries/south-korea/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "University Admission", details: "Acceptance from accredited Korean institution", evidence: "Certificate of Admission" },
+  { requirement: "Financial Proof", details: "$10,000+ in bank account", evidence: "Bank statement, sponsor documents" },
+  { requirement: "Academic Records", details: "High school diploma (undergrad) or degree (grad)", evidence: "Apostilled transcripts and diploma" },
+  { requirement: "Language Proficiency", details: "TOPIK 3+ (Korean) or English proficiency", evidence: "Test score certificate" },
+  { requirement: "Valid Passport", details: "6+ months validity", evidence: "Passport" },
+  { requirement: "KEIS Approval", details: "Standard Admission Letter via KEIS system", evidence: "Letter from university" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "nhis", header: "NHIS (Mandatory)" },
+  { key: "private", header: "Private Supplementary" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", nhis: "₩70,000-90,000 (~$50-65)", private: "₩30,000-50,000 (~$20-35)" },
+  { feature: "Coverage", nhis: "70% of medical costs", private: "Remaining 30% + extras" },
+  { feature: "Required?", nhis: "Yes—mandatory since 2021", private: "Optional" },
+  { feature: "Enrollment", nhis: "Automatic via university", private: "Purchase separately" },
+  { feature: "Hospitals", nhis: "All NHIS-contracted facilities", private: "Varies by policy" },
+  { feature: "Dental", nhis: "Basic coverage (70%)", private: "Often better coverage" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Korea NHIS", type: "Mandatory", price: "₩70,000-90,000", strengths: "Required—excellent coverage at 70%" },
+  { provider: "Samsung Fire & Marine", type: "Private", price: "₩30,000-50,000", strengths: "Local provider, Korean-focused" },
+  { provider: "Meritz Fire", type: "Private", price: "₩25,000-45,000", strengths: "Supplementary coverage, affordable" },
+  { provider: "Cigna Global", type: "International", price: "$80-150", strengths: "Travel outside Korea, expat focus" },
+  { provider: "Allianz Care", type: "International", price: "$100-180", strengths: "Global coverage, repatriation" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "$50-90", notes: "Varies by nationality" },
+  { item: "NHIS Insurance", amount: "₩70,000-90,000/month", notes: "Mandatory (~$50-65)" },
+  { item: "University Tuition", amount: "$2,000-8,000/semester", notes: "National cheaper, private higher" },
+  { item: "Alien Registration Card", amount: "₩30,000 (~$22)", notes: "Within 90 days of arrival" },
+  { item: "Living Costs (Seoul)", amount: "₩1,000,000-1,500,000/month", notes: "~$750-1,100" },
+  { item: "Living Costs (Other Cities)", amount: "₩600,000-1,000,000/month", notes: "~$450-750" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Apply to university", duration: "2-4 months before", location: "Online/university portal" },
+  { step: "Receive admission + KEIS letter", duration: "4-8 weeks", location: "From university" },
+  { step: "Gather documents (apostille if needed)", duration: "1-2 weeks", location: "Your home country" },
+  { step: "Apply for D-2 visa", duration: "1-4 weeks processing", location: "Korean embassy/consulate" },
+  { step: "Arrive in Korea", duration: "-", location: "Airport" },
+  { step: "Get Alien Registration Card", duration: "Within 90 days", location: "Immigration office" },
+  { step: "Enroll in NHIS", duration: "First semester", location: "Via university" },
+];
+---
+
+<PageShell
+  title="South Korea Student Visa 2026: D-2 Requirements, NHIS Insurance & Guide"
+  description="Complete guide to South Korea's D-2 Student Visa. Mandatory NHIS enrollment, affordable tuition, K-culture immersion, and post-graduation work opportunities in Asia's tech hub."
+  headline="South Korea Student Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in South Korea—mandatory NHIS health insurance, affordable tuition, D-2 vs D-4 visas, and post-graduation job search visa."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official KEIS Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      NHIS Mandatory Since 2021
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      South Korea has become a top destination for international students, attracting over 160,000 students annually. The appeal is clear: world-class universities (including the prestigious "SKY" schools), affordable tuition compared to Western countries, vibrant K-culture, and excellent career prospects in Asia's tech and entertainment hub.
+    </p>
+
+    <p class="mb-4">
+      Since 2021, <strong>NHIS (National Health Insurance Service) enrollment is mandatory for all international students</strong>. This was a significant change—you can no longer rely solely on international insurance. The upside? NHIS provides excellent coverage at Korean hospitals with 70% of costs covered.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">Quick Facts: South Korea D-2 Student Visa</h3>
+      <ul class="space-y-1 text-primary-800">
+        <li>• <strong>Visa Type:</strong> D-2 (Degree Programs) or D-4 (Language/Non-degree)</li>
+        <li>• <strong>Duration:</strong> 6 months to 2 years (renewable)</li>
+        <li>• <strong>Health Insurance:</strong> NHIS mandatory (~₩70,000-90,000/month)</li>
+        <li>• <strong>Work Rights:</strong> 20 hrs/week after first 6 months (with permit)</li>
+        <li>• <strong>Tuition:</strong> $2,000-8,000/semester</li>
+        <li>• <strong>Processing:</strong> 1-4 weeks at embassy</li>
+        <li>• <strong>Post-Study:</strong> D-10 job search visa (6 months to 2 years)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">✓ South Korea Is a Great Fit If You:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• Want affordable, high-quality education in Asia</li>
+          <li>• Are interested in Korean language and culture</li>
+          <li>• Want to work in tech, entertainment, or teaching</li>
+          <li>• Prefer modern, efficient infrastructure</li>
+          <li>• Want excellent healthcare with mandatory insurance</li>
+          <li>• Like vibrant urban life and nightlife</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">⚠ Consider Alternatives If You:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Don't want to pay for mandatory NHIS</li>
+          <li>• Need to work immediately upon arrival</li>
+          <li>• Prefer entirely English-speaking environment</li>
+          <li>• Want European Schengen zone access</li>
+          <li>• Prefer rural or quieter lifestyle</li>
+          <li>• Need to maximize part-time work hours</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-6">
+      The D-2 visa is for degree programs at accredited Korean universities. If you're attending a language school first, you'll need a D-4 visa, then switch to D-2 when starting your degree. The KEIS (Korea Electronic Immigration Service) system streamlines applications.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Apostille Note:</strong> Some countries require apostilled documents. Check with your Korean embassy—this can take 1-2 weeks to arrange, so plan ahead.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+      <p class="text-red-800">
+        <strong>⚠️ NHIS is Mandatory (Since 2021):</strong> All international students must enroll in Korea's National Health Insurance System. International insurance is NOT accepted as a substitute. Your university will help you enroll during your first semester.
+      </p>
+    </div>
+
+    <p class="mb-6">
+      NHIS premiums for students are approximately ₩70,000-90,000/month (~$50-65). This covers 70% of medical costs at NHIS-contracted hospitals and clinics throughout Korea. The 30% copay is your responsibility, though private supplementary insurance can cover this.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Quality Alert:</strong> Korean healthcare is world-class. Many hospitals have state-of-the-art facilities, short wait times, and reasonable prices even at the 30% copay level. Korea is actually a medical tourism destination.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-6">
+      NHIS is mandatory and primary. You may want supplementary local insurance to cover the 30% copay, or international insurance for travel outside Korea.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <CTABox
+      title="Need Coverage for Travel Outside Korea?"
+      description="NHIS only works in South Korea. If you travel internationally, consider supplementary global coverage."
+      buttonText="Compare International Plans"
+      buttonHref="/best/expat-health-insurance"
+    />
+  </section>
+
+  <!-- Section: Costs -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-6">
+      Korea offers excellent value, especially outside Seoul. National university tuition is very affordable, and living costs are reasonable by developed country standards. Many scholarships are available.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Seoul)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: ₩500,000-800,000 (~$375-600)</li>
+          <li>Food: ₩300,000-400,000 (~$225-300)</li>
+          <li>Transport: ₩50,000-70,000 (~$40-55)</li>
+          <li>NHIS: ₩70,000-90,000 (~$50-65)</li>
+          <li>Phone/Internet: ₩50,000 (~$40)</li>
+          <li><strong>Total: ₩1,000,000-1,500,000/month</strong></li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Busan/Other Cities)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: ₩300,000-500,000 (~$225-375)</li>
+          <li>Food: ₩250,000-350,000 (~$190-265)</li>
+          <li>Transport: ₩40,000-60,000 (~$30-45)</li>
+          <li>NHIS: ₩70,000-90,000 (~$50-65)</li>
+          <li>Phone/Internet: ₩50,000 (~$40)</li>
+          <li><strong>Total: ₩700,000-1,100,000/month</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-6">
+      The D-2 visa process is relatively straightforward. Your university handles the KEIS registration, and you apply at your local Korean embassy with the required documents.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Alien Registration Card:</strong> This is essential—get it within 90 days of arrival at your local immigration office. You'll need it for banking, phone contracts, and many daily activities in Korea.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 1: Cold and Flu Treatment</h4>
+        <p class="text-neutral-600 mb-2">You catch a cold and visit a local clinic for treatment.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> With NHIS, you pay 30%. Total out-of-pocket: ₩10,000-20,000 (~$7-15) for consultation and medication. Korean clinics are efficient—expect minimal wait times.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 2: Specialist Consultation</h4>
+        <p class="text-neutral-600 mb-2">You need to see a dermatologist for a persistent skin issue.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> NHIS covers 70%. Your 30% share: ₩15,000-30,000 (~$11-22). Korean dermatology is world-renowned—you'll get excellent care at reasonable prices.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 3: Dental Work</h4>
+        <p class="text-neutral-600 mb-2">You need a filling for a cavity.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> Basic dental is covered by NHIS at 70%, but coverage varies by procedure. Filling: ₩30,000-50,000 (~$22-37) out of pocket. Consider supplementary dental insurance if you expect significant work.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 4: Emergency Room Visit</h4>
+        <p class="text-neutral-600 mb-2">You have a late-night emergency and need ER treatment.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> NHIS covers 70%. ER visit, tests, and treatment: your 30% might be ₩50,000-150,000 (~$37-110) depending on severity. Still far cheaper than US ER costs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 5: Hospital Stay</h4>
+        <p class="text-neutral-600 mb-2">You need surgery and a 3-day hospital stay.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> Total bill might be ₩2,000,000-5,000,000. With NHIS 70% coverage, your share: ₩600,000-1,500,000 (~$450-1,100). Supplementary insurance would reduce this significantly.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 6: Trip to Japan, Get Sick</h4>
+        <p class="text-neutral-600 mb-2">You travel to Japan for a trip and need medical care there.</p>
+        <p class="text-red-700"><strong>Outcome:</strong> NHIS does NOT cover you outside Korea. You pay full price (or use Japan's NHI if enrolled there). International travel insurance recommended for trips abroad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Not Enrolling in NHIS</h4>
+          <p class="text-red-700">Since 2021, NHIS is mandatory—no exceptions. Your university will help you enroll. Don't skip this thinking international insurance is enough.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Working in First 6 Months</h4>
+          <p class="text-red-700">D-2 visa holders cannot work during the first semester (6 months). After that, apply for part-time work permission. Working without permission is a serious violation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Missing Alien Registration Deadline</h4>
+          <p class="text-red-700">Get your Alien Registration Card within 90 days. You need it for everything—bank accounts, phone contracts, even some online shopping.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Not Getting Documents Apostilled</h4>
+          <p class="text-red-700">Some nationalities need apostilled documents. Check requirements with your Korean embassy early—apostille can take 1-2 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Underestimating Korean Language Needs</h4>
+          <p class="text-red-700">Even for English programs, daily life requires some Korean. Learn basics before arriving—it makes banking, shopping, and social life much easier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in South Korea -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in South Korea</h2>
+
+    <p class="mb-4">
+      South Korea has world-class healthcare—modern facilities, highly trained doctors, and efficient service. Wait times are short compared to many Western countries, and costs are reasonable even at the 30% copay level. Korea is actually a medical tourism destination, particularly for cosmetic and dental procedures.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What NHIS Covers</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>✓ Doctor consultations (70%)</li>
+          <li>✓ Hospital stays (70%)</li>
+          <li>✓ Surgery and procedures (70%)</li>
+          <li>✓ Prescription medications (70%)</li>
+          <li>✓ Basic dental care (70%)</li>
+          <li>✓ Mental health services (70%)</li>
+          <li>✓ Maternity care (70%)</li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What NHIS Doesn't Cover</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>✗ Medical care outside Korea</li>
+          <li>✗ Cosmetic procedures</li>
+          <li>✗ Some advanced dental work</li>
+          <li>✗ Private hospital rooms</li>
+          <li>✗ Non-covered medications</li>
+          <li>✗ Travel insurance/evacuation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>English-Speaking Doctors:</strong> Many doctors in Seoul speak English, especially at major hospitals like Severance, Samsung Medical Center, and Asan. University health centers often have English support for international students.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Is Korean health insurance mandatory?</h4>
+        <p class="text-neutral-600">Yes. Since 2021, all international students must enroll in Korea's National Health Insurance System (NHIS). This is mandatory and you cannot substitute with international insurance. Premiums are ~₩70,000-90,000/month (~$50-65).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How good is Korean healthcare?</h4>
+        <p class="text-neutral-600">Excellent. Korea has world-class hospitals with modern facilities. Wait times are short, and costs are reasonable with NHIS (30% copay). Many doctors in Seoul speak English. Korea is actually a medical tourism destination.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I work while studying in Korea?</h4>
+        <p class="text-neutral-600">Yes, after your first semester (6 months). Apply for part-time work permission at immigration. Limited to 20 hours/week during term, more during holidays. Minimum wage is ₩9,860/hour (~$7.50). Many students teach English or work in service jobs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What is the D-2 vs D-4 visa?</h4>
+        <p class="text-neutral-600">D-2 is for degree programs at universities (bachelor's, master's, PhD). D-4 is for Korean language programs, vocational training, or other non-degree studies. If you're attending a language school before university, you'll start with D-4, then switch to D-2.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I stay after graduation?</h4>
+        <p class="text-neutral-600">Yes. Graduates can apply for D-10 (Job Seeking Visa) for 6 months to 2 years. Once employed, switch to E-7 (Professional Employment) or other work visa. Korea actively recruits skilled foreign graduates, especially in tech, engineering, and teaching.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How much is tuition in Korea?</h4>
+        <p class="text-neutral-600">National universities: $2,000-5,000/semester. Private universities: $3,500-8,000/semester. Top universities (SKY) cost more. Many scholarships available: Korean Government Scholarship (KGSP), university scholarships, and NIIED. Living costs are low outside Seoul.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      South Korea offers an excellent combination of quality education, vibrant culture, and career opportunities—particularly in tech, entertainment, and teaching. The mandatory NHIS enrollment (since 2021) means you're guaranteed good healthcare coverage, though at an additional monthly cost compared to pre-2021 options.
+    </p>
+
+    <p class="mb-4">
+      The main considerations are the 6-month wait before you can work, the NHIS costs (~$50-65/month), and the language barrier outside English programs. If you're interested in Korean culture, want to work in Asia after graduation, or are targeting tech/entertainment industries, Korea is an excellent choice.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">The Bottom Line</h3>
+      <p class="text-primary-800">
+        South Korea's D-2 visa provides a clear path to studying in one of Asia's most dynamic countries. The mandatory NHIS ensures you have quality healthcare, and the post-graduation D-10 job search visa gives you time to find employment. At $2,000-8,000/semester for tuition and excellent infrastructure, Korea offers strong value for international students.
+      </p>
+    </div>
+
+    <CTABox
+      title="Planning to Study in South Korea?"
+      description="NHIS covers you in Korea, but consider supplementary coverage for the 30% copay and travel. Compare your options."
+      buttonText="Compare Insurance Plans"
+      buttonHref="/best/expat-health-insurance"
+      variant="highlight"
+    />
+  </section>
+
+</PageShell>
