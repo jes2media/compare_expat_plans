@@ -1,0 +1,518 @@
+---
+/**
+ * Belgium Student Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Belgium", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Belgium Health Insurance Guide", href: "/countries/belgium/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "University Admission", details: "Acceptance from recognized Belgian institution", evidence: "Letter of enrollment" },
+  { requirement: "Financial Proof", details: "€730/month (~€8,760/year)", evidence: "Bank statement, scholarship, or Annexe 32" },
+  { requirement: "Health Insurance", details: "Valid coverage for Belgium", evidence: "Insurance certificate" },
+  { requirement: "Valid Passport", details: "Valid for entire stay", evidence: "Passport" },
+  { requirement: "Medical Certificate", details: "Health clearance", evidence: "Doctor's certificate" },
+  { requirement: "Criminal Record", details: "Clean record certificate", evidence: "Police clearance (apostilled)" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "mutuelle", header: "Mutuelle (Required)" },
+  { key: "supplementary", header: "Supplementary" },
+];
+
+const insuranceRows = [
+  { feature: "Annual Cost", mutuelle: "€100-150/year", supplementary: "€100-300/year" },
+  { feature: "Coverage", mutuelle: "75-100% reimbursement (varies)", supplementary: "Better dental, private rooms" },
+  { feature: "Required?", mutuelle: "Yes—mandatory membership", supplementary: "Optional" },
+  { feature: "How It Works", mutuelle: "Pay upfront, get reimbursed", supplementary: "Additional benefits" },
+  { feature: "Providers", mutuelle: "CM, Mutualité Socialiste, Partenamut", supplementary: "Same + private insurers" },
+  { feature: "Sign-up", mutuelle: "After arrival, at mutuelle office", supplementary: "Through mutuelle or separately" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Annual Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "CM/MC (Christian Mutuality)", type: "Mutuelle", price: "€100-150", strengths: "Largest provider, good service" },
+  { provider: "Mutualité Socialiste", type: "Mutuelle", price: "€100-150", strengths: "Strong in Wallonia" },
+  { provider: "Partenamut", type: "Mutuelle", price: "€100-140", strengths: "Good digital tools" },
+  { provider: "Helan", type: "Mutuelle", price: "€100-150", strengths: "Strong in Flanders" },
+  { provider: "Cigna Global", type: "International", price: "$80-150/month", strengths: "Global coverage, travel" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€226", notes: "Type D visa" },
+  { item: "Mutuelle Membership", amount: "€100-150/year", notes: "Mandatory health fund" },
+  { item: "Tuition (EU)", amount: "€835-1,000/year", notes: "Varies by region" },
+  { item: "Tuition (Non-EU)", amount: "€835-4,175/year", notes: "Varies by program and region" },
+  { item: "Living Costs (Brussels)", amount: "€1,000-1,400/month", notes: "Including rent" },
+  { item: "Living Costs (Other)", amount: "€800-1,100/month", notes: "Leuven, Ghent, etc." },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Receive university admission", duration: "3-6 months before", location: "Belgian university" },
+  { step: "Gather documents (legalization)", duration: "2-4 weeks", location: "Your country" },
+  { step: "Apply for Type D visa", duration: "4-8 weeks processing", location: "Belgian embassy" },
+  { step: "Receive visa", duration: "Included above", location: "Belgian embassy" },
+  { step: "Arrive in Belgium", duration: "-", location: "Airport" },
+  { step: "Register at commune", duration: "Within 8 days", location: "Local commune/municipality" },
+  { step: "Receive residence card", duration: "2-4 weeks", location: "By mail/commune" },
+  { step: "Join mutuelle", duration: "After registration", location: "Mutuelle office" },
+];
+---
+
+<PageShell
+  title="Belgium Student Visa 2026: Requirements, Mutuelle Insurance & Application Guide"
+  description="Complete guide to Belgium's Student Visa (Type D). Affordable mutuelle health insurance, low tuition, central EU location, and post-graduation search year in Brussels—the EU capital."
+  headline="Belgium Student Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in Belgium—mutuelle health insurance system, affordable tuition across three regions (Flanders, Wallonia, Brussels), and the 12-month search year after graduation."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Immigration Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Mutuelle ~€100-150/year
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Belgium is a hidden gem for international students. Located at the heart of Europe, it offers affordable tuition (€835-4,175/year for non-EU), three distinct regions with different languages (Dutch, French, German), and Brussels—the de facto capital of the European Union. Over 50,000 international students study in Belgium annually.
+    </p>
+
+    <p class="mb-4">
+      Belgium's healthcare system uses <strong>mutualités/mutualiteiten</strong> (mutual health funds). You must join one after arrival, and membership costs only about €100-150/year. The system works on reimbursement: you pay upfront and get 75-100% back depending on the service. It's affordable and provides good coverage.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">Quick Facts: Belgium Student Visa</h3>
+      <ul class="space-y-1 text-primary-800">
+        <li>• <strong>Visa Type:</strong> Type D + Residence Permit (A Card)</li>
+        <li>• <strong>Duration:</strong> 1 year, renewable annually</li>
+        <li>• <strong>Health Insurance:</strong> Mutuelle membership (~€100-150/year)</li>
+        <li>• <strong>Work Rights:</strong> 20 hrs/week during term</li>
+        <li>• <strong>Tuition:</strong> €835-4,175/year (non-EU)</li>
+        <li>• <strong>Processing:</strong> 4-8 weeks</li>
+        <li>• <strong>Post-Study:</strong> 12-month search year</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">✓ Belgium Is a Great Fit If You:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• Want affordable tuition in Western Europe</li>
+          <li>• Are interested in EU institutions and international careers</li>
+          <li>• Want central location for European travel</li>
+          <li>• Speak French, Dutch, or want to learn</li>
+          <li>• Prefer multicultural, international environment</li>
+          <li>• Want good post-graduation job search options</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">⚠ Consider Alternatives If You:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Prefer sunny, warm climate</li>
+          <li>• Want entirely English-speaking environment</li>
+          <li>• Don't want to deal with reimbursement system</li>
+          <li>• Prefer simpler, single-language country</li>
+          <li>• Want mountains or dramatic landscapes</li>
+          <li>• Need very low cost of living</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-6">
+      Non-EU students need a Type D visa before arrival, then register for a residence permit (A card) after arriving. The financial requirement can be met through personal funds, scholarship, or an Annexe 32 sponsor guarantee.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Annexe 32:</strong> A Belgian resident or citizen can sign this document guaranteeing your financial support. This is a common option if you have family or contacts in Belgium. The sponsor takes legal responsibility for your living costs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <p class="text-green-800">
+        <strong>✓ Mutuelle Membership is Affordable:</strong> Unlike Switzerland or Germany, Belgian mutuelle membership costs only about €100-150/year. This is one of the most affordable health insurance systems in Western Europe. Join one after arrival.
+      </p>
+    </div>
+
+    <p class="mb-6">
+      Belgium's healthcare works on reimbursement. You pay the doctor/hospital, then submit receipts to your mutuelle for reimbursement (typically 75-100% depending on service). Pharmacies often apply the reimbursement directly. It takes some getting used to, but it's efficient.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>How Reimbursement Works:</strong> Visit doctor → Pay (e.g., €25) → Get attestation → Submit to mutuelle → Receive reimbursement (e.g., €19 back). Net cost: €6. Pharmacies often handle this automatically.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-6">
+      You must join a mutuelle. The major ones offer similar basic coverage (standardized by law). Choose based on location and language preference.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <div class="mt-6 bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+      <h4 class="font-semibold mb-2">Choosing by Region/Language</h4>
+      <ul class="text-sm space-y-1 text-neutral-700">
+        <li>• <strong>Flanders (Dutch):</strong> CM, Helan, Partena</li>
+        <li>• <strong>Wallonia (French):</strong> MC, Mutualité Socialiste, Partenamut</li>
+        <li>• <strong>Brussels (Bilingual):</strong> All mutuelles operate here</li>
+      </ul>
+    </div>
+
+    <CTABox
+      title="Need International Coverage Too?"
+      description="Mutuelles cover Belgium and EU emergencies. For extensive travel outside EU, consider supplementary international insurance."
+      buttonText="Compare Insurance Plans"
+      buttonHref="/best/expat-health-insurance"
+    />
+  </section>
+
+  <!-- Section: Costs -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-6">
+      Belgium offers good value, especially compared to UK or Netherlands. Tuition varies by region—Flanders is often cheapest. Brussels is more expensive for living but has more international opportunities.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Brussels)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: €500-700 (shared apartment)</li>
+          <li>Food: €200-300</li>
+          <li>Transport: €50 (student STIB pass)</li>
+          <li>Mutuelle: ~€10/month equivalent</li>
+          <li>Phone/Misc: €50-100</li>
+          <li><strong>Total: €900-1,200/month</strong></li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Leuven/Ghent)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: €350-500 (kot/student room)</li>
+          <li>Food: €180-250</li>
+          <li>Transport: €30-50 (bike + occasional)</li>
+          <li>Mutuelle: ~€10/month equivalent</li>
+          <li>Phone/Misc: €50-80</li>
+          <li><strong>Total: €700-1,000/month</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Annual Cost Estimate:</strong> Non-EU students: €10,000-16,000/year total (tuition + living + insurance). More affordable than UK (€20,000+) or Netherlands (€15,000-20,000).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-6">
+      Apply for Type D visa before arriving. After arrival, register at your commune (municipality) within 8 days. This is critical—don't miss this deadline.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <p class="text-red-800">
+        <strong>Critical: 8-Day Commune Registration!</strong> You MUST register at your local commune within 8 days of arrival. Bring passport, visa, proof of address, and enrollment letter. This starts the process for your residence card.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 1: GP Visit</h4>
+        <p class="text-neutral-600 mb-2">You have flu symptoms and visit a general practitioner.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> Pay €25-30 upfront. Submit attestation to mutuelle. Get ~€20-23 reimbursed within days. Net cost: €5-7. Very affordable.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 2: Prescription Medication</h4>
+        <p class="text-neutral-600 mb-2">Doctor prescribes antibiotics for an infection.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> At pharmacy, show mutuelle card. Reimbursement applied automatically. Pay only the non-reimbursed portion (often €1-5 for common medications).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 3: Specialist Visit</h4>
+        <p class="text-neutral-600 mb-2">You need to see a specialist for a persistent issue.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> Specialist costs €40-80. Reimbursement varies (50-75% typically for specialists). Net cost: €15-30. Referral from GP may improve reimbursement rate.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 4: Emergency Room</h4>
+        <p class="text-neutral-600 mb-2">You have a late-night emergency requiring ER treatment.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> ER visit and treatment might cost €100-200 upfront. Mutuelle reimburses 70-80%. Net cost: €30-50. Still much cheaper than US or UK private care.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 5: Hospital Stay</h4>
+        <p class="text-neutral-600 mb-2">You need surgery and 3 days in hospital.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> Hospital bill might be €500-1,500. Mutuelle covers most of it. You pay daily hospital fee (~€45/day) plus some co-pays. Total out-of-pocket: €150-300 typically.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 6: Trip to France, Get Sick</h4>
+        <p class="text-neutral-600 mb-2">You travel to France for a weekend and need medical care.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> Your mutuelle provides European Health Insurance Card (EHIC). Emergency care in France covered at local rates. Keep receipts for any reimbursement claims.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Missing 8-Day Commune Registration</h4>
+          <p class="text-red-700">You MUST register at your local commune within 8 days of arrival. This is strictly enforced. Missing this can complicate your residence permit application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Not Joining a Mutuelle</h4>
+          <p class="text-red-700">Mutuelle membership is mandatory for residents. Join one after registering at the commune. Without it, you'll pay full price for healthcare with no reimbursement.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Not Understanding Reimbursement System</h4>
+          <p class="text-red-700">Belgian healthcare requires paying upfront, then getting reimbursed. Keep all attestations and receipts. Submit them promptly. It's not complicated once you understand it.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Underestimating Language Needs</h4>
+          <p class="text-red-700">Outside Brussels and international programs, you'll need Dutch or French. Daily life—banking, housing, bureaucracy—is much easier with local language skills.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Missing Residence Permit Renewal</h4>
+          <p class="text-red-700">Your residence permit needs annual renewal. Apply before it expires. Keep track of deadlines—the commune will send reminders, but don't rely solely on them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Belgium -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Belgium</h2>
+
+    <p class="mb-4">
+      Belgian healthcare is high-quality with good accessibility. The reimbursement system means you have flexibility in choosing doctors and hospitals. Quality is consistent across the country, with excellent facilities in Brussels, Leuven, Ghent, and other cities.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What Mutuelle Covers (Reimbursement)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>✓ GP visits (75-100%)</li>
+          <li>✓ Specialist visits (50-75%)</li>
+          <li>✓ Hospital stays (large portion)</li>
+          <li>✓ Surgery and procedures</li>
+          <li>✓ Prescriptions (varies)</li>
+          <li>✓ Basic dental</li>
+          <li>✓ Mental health (partial)</li>
+          <li>✓ EU emergency coverage (EHIC)</li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Out-of-Pocket Costs</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>• GP visit: €5-10 after reimbursement</li>
+          <li>• Specialist: €15-30 after reimbursement</li>
+          <li>• Hospital daily fee: ~€45/day</li>
+          <li>• Some dental work</li>
+          <li>• Some prescriptions</li>
+          <li>• Private hospital rooms (supplementary)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Global Medical File (GMD):</strong> Register with one GP as your "huisarts/médecin de famille." This gives you better reimbursement rates and coordinated care. Highly recommended.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How does Belgian health insurance work?</h4>
+        <p class="text-neutral-600">You must join a mutuelle (mutualité/mutualiteit)—a non-profit health fund. Cost is ~€100-150/year. When you visit a doctor, you pay upfront and submit receipts for reimbursement (75-100% depending on service). Pharmacies often apply reimbursement directly.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How much is tuition in Belgium?</h4>
+        <p class="text-neutral-600">Very affordable. Non-EU students: €835-4,175/year depending on region and program. EU students: €835-1,000/year. Flanders (Dutch-speaking) tends to be cheapest. Some specialized programs cost more. Much cheaper than UK or Netherlands.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I work while studying in Belgium?</h4>
+        <p class="text-neutral-600">Yes. During term: 20 hours/week. During holidays: unlimited. No separate work permit needed—included in your student residence permit. Many students work in hospitality, retail, or university jobs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Which language should I learn?</h4>
+        <p class="text-neutral-600">Depends on where you study. Flanders: Dutch. Wallonia: French. Brussels: both work, but French is more common. Many international programs are in English, especially at master's level. Learning Dutch or French helps daily life significantly.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I stay after graduation?</h4>
+        <p class="text-neutral-600">Yes. Belgium offers a 12-month "search year" residence permit for graduates to find employment. If you find a job meeting criteria, you can switch to work permit. Brussels has a strong international job market, especially in EU institutions.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What is the Annexe 32?</h4>
+        <p class="text-neutral-600">A sponsorship undertaking where a Belgian resident/citizen guarantees financial support for your studies. This can substitute for showing personal funds. The sponsor takes legal responsibility for your costs if you can't support yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Belgium offers excellent value for international students: affordable tuition (€835-4,175/year), very cheap health insurance through mutuelles (~€100-150/year), and a central European location perfect for travel and career opportunities. The 12-month post-graduation search year and proximity to EU institutions make it attractive for international careers.
+    </p>
+
+    <p class="mb-4">
+      The main adjustment is the reimbursement-based healthcare system—you pay first, then get money back. Once you understand the process, it's straightforward and affordable. The multilingual environment (Dutch, French, German) can be challenging but also enriching.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">The Bottom Line</h3>
+      <p class="text-primary-800">
+        Belgium is an underrated choice for international students. Mutuelle membership at ~€100-150/year is one of Western Europe's most affordable health insurance options. Combined with low tuition and good post-graduation prospects in Brussels's international job market, Belgium offers strong value. Just remember: register at the commune within 8 days of arrival!
+      </p>
+    </div>
+
+    <CTABox
+      title="Planning to Study in Belgium?"
+      description="Join a mutuelle after arrival for affordable healthcare. Compare your options and understand the reimbursement system."
+      buttonText="Compare Insurance Options"
+      buttonHref="/best/expat-health-insurance"
+      variant="highlight"
+    />
+  </section>
+
+</PageShell>

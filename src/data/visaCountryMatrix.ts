@@ -1897,6 +1897,297 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'Public universities (with government tuition grant): S$8,000-15,000/year for international students. Private universities: S$15,000-30,000/year. The tuition grant requires a 3-year work commitment in Singapore after graduation. Without grant, fees are 2-3x higher.'
       }
     ]
+  },
+
+  // Switzerland - Student Visa (Permit B)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'switzerland',
+    officialVisaName: 'Student Residence Permit (Permit B)',
+    requirements: {
+      eligibility: [
+        'Acceptance from recognized Swiss educational institution',
+        'Proof of sufficient financial resources',
+        'Proof of accommodation in Switzerland',
+        'Valid passport',
+        'Clean criminal record',
+        'Commitment to leave Switzerland after studies'
+      ],
+      financial: {
+        minimumFunds: 'CHF 21,000/year (~$23,000) minimum',
+        proofRequired: ['Bank statements', 'Scholarship letter', 'Sponsor guarantee', 'Blocked account'],
+        notes: 'Must prove funds for entire study period. Cantonal requirements may vary slightly.'
+      },
+      documents: [
+        'Valid passport (6+ months validity)',
+        'Completed visa application form',
+        'Passport photos (Swiss specifications)',
+        'Letter of acceptance from Swiss institution',
+        'Proof of financial resources',
+        'Proof of accommodation',
+        'CV/resume',
+        'Motivation letter',
+        'Academic transcripts and diplomas',
+        'Language proficiency proof'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive acceptance from Swiss university',
+      'Gather all required documents',
+      'Apply for student visa at Swiss embassy (non-EU/EFTA)',
+      'Wait 8-12 weeks for visa processing',
+      'Arrive in Switzerland',
+      'Register with cantonal migration office within 14 days',
+      'Receive Permit B residence card',
+      'Register for mandatory health insurance within 3 months'
+    ],
+    insuranceNotes: 'Switzerland requires mandatory health insurance (Krankenversicherung/LAMal) for all residents including students. You must enroll within 3 months of arrival. Student premiums are approximately CHF 80-150/month for basic coverage. International insurance is NOT accepted—you must have Swiss-compliant coverage.',
+    healthcareAccess: 'Once enrolled in mandatory Swiss insurance, you have access to Switzerland\'s excellent healthcare system. Choose a deductible (CHF 300-2,500/year) to adjust premiums. Higher deductible = lower premium. Swiss healthcare is world-class but expensive; insurance makes it affordable.',
+    costs: {
+      visaFee: 'CHF 88 (~$97) for national visa',
+      insuranceRange: 'CHF 80-150/month for basic coverage (LAMal)'
+    },
+    recommendedProviders: ['swica', 'css', 'helsana', 'sanitas', 'groupe-mutuel'],
+    keyConsiderations: [
+      'Swiss health insurance is MANDATORY—international plans not accepted',
+      'Switzerland is very expensive (CHF 1,800-2,500/month living costs)',
+      'Tuition is affordable at public universities (CHF 500-2,000/semester)',
+      'Part-time work limited to 15 hrs/week during semester',
+      'Four official languages: German, French, Italian, Romansch',
+      'Not an EU member—separate visa rules apply'
+    ],
+    commonMistakes: [
+      'Not enrolling in Swiss health insurance within 3 months (mandatory)',
+      'Thinking international insurance is sufficient (it\'s not)',
+      'Underestimating living costs (Switzerland is very expensive)',
+      'Not registering with cantonal authorities within 14 days',
+      'Exceeding 15 hours/week work limit during semester'
+    ],
+    faqs: [
+      {
+        question: 'Is Swiss health insurance mandatory for students?',
+        answer: 'Yes. All residents including students must have Swiss-compliant health insurance (LAMal/KVG). You have 3 months from arrival to enroll. International insurance is NOT accepted. Student premiums are CHF 80-150/month depending on canton and deductible chosen.'
+      },
+      {
+        question: 'How expensive is Switzerland for students?',
+        answer: 'Very expensive. Budget CHF 1,800-2,500/month for living costs. Rent alone is CHF 600-1,200/month for a room. The good news: public university tuition is low (CHF 500-2,000/semester). Total annual cost: CHF 25,000-35,000 including tuition and living.'
+      },
+      {
+        question: 'Can I work while studying in Switzerland?',
+        answer: 'Yes, but limited. During semester: max 15 hours/week. During semester breaks: full-time allowed. EU/EFTA students have more flexibility. Work permit is part of your residence permit—no separate application needed.'
+      },
+      {
+        question: 'What is the deductible system in Swiss insurance?',
+        answer: 'You choose an annual deductible (franchise) from CHF 300 to CHF 2,500. Higher deductible = lower monthly premium. For healthy students who rarely need care, CHF 2,500 deductible saves money. If you expect medical needs, CHF 300 is safer.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'It\'s challenging. Switzerland is strict about post-study immigration. You can apply for a 6-month extension to job search, but finding a Swiss employer to sponsor you is difficult. Many graduates return home or move to EU countries.'
+      },
+      {
+        question: 'Which language should I learn?',
+        answer: 'Depends on your university location. Zurich/Bern: German. Geneva/Lausanne: French. Lugano: Italian. Many master\'s programs are in English, but daily life requires local language skills. German-speaking regions are largest.'
+      }
+    ]
+  },
+
+  // Austria - Student Visa (Aufenthaltsbewilligung Studierende)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'austria',
+    officialVisaName: 'Residence Permit Student (Aufenthaltsbewilligung Studierende)',
+    requirements: {
+      eligibility: [
+        'Acceptance from recognized Austrian educational institution',
+        'Proof of sufficient financial resources (€12,500/year for students under 24)',
+        'Proof of accommodation in Austria',
+        'Valid passport',
+        'Health insurance coverage',
+        'Clean criminal record'
+      ],
+      financial: {
+        minimumFunds: '€10,452/year (under 24) or €12,500/year (24+)',
+        proofRequired: ['Bank statements', 'Scholarship letter', 'Sponsor declaration', 'Blocked account'],
+        notes: 'Must prove resources for at least first year. Regular proof required for renewals.'
+      },
+      documents: [
+        'Valid passport',
+        'Completed application form',
+        'Passport photos (Austrian specifications)',
+        'Letter of admission from Austrian institution',
+        'Proof of financial resources',
+        'Proof of accommodation',
+        'Health insurance confirmation',
+        'Birth certificate (apostilled)',
+        'Criminal record certificate',
+        'Academic credentials'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies + extensions'
+    },
+    applicationProcess: [
+      'Receive admission from Austrian university',
+      'Apply for student visa at Austrian embassy (non-EU)',
+      'Wait 2-3 months for processing',
+      'Arrive in Austria with visa',
+      'Register residence (Meldezettel) within 3 days',
+      'Apply for residence permit at MA 35 (Vienna) or BH',
+      'Receive residence permit card',
+      'Arrange health insurance if not already covered'
+    ],
+    insuranceNotes: 'Students can access Austrian public health insurance (ÖGK) through the student self-insurance scheme for approximately €70/month. This is optional but highly recommended. Alternatively, private insurance meeting Austrian standards is accepted. EU/EEA students can use EHIC for initial period.',
+    healthcareAccess: 'With ÖGK student insurance (~€70/month), you have full access to Austria\'s excellent public healthcare system with minimal copays. Coverage includes GP visits, specialists, hospitals, and most prescriptions. Private insurance offers faster access to specialists.',
+    costs: {
+      visaFee: '€160 for residence permit application',
+      insuranceRange: '€70/month for ÖGK student self-insurance'
+    },
+    recommendedProviders: ['oegk', 'uniqa', 'wiener-staedtische', 'generali', 'allianz-austria'],
+    keyConsiderations: [
+      'Student self-insurance (ÖGK) is affordable at ~€70/month',
+      'Austria is more affordable than Switzerland or UK',
+      'Free tuition for EU students; ~€726/semester for non-EU',
+      'German language required for most programs',
+      'Part-time work allowed: 20 hrs/week',
+      'Vienna consistently ranked most livable city'
+    ],
+    commonMistakes: [
+      'Not registering residence (Meldezettel) within 3 days',
+      'Skipping ÖGK enrollment (it\'s the best value option)',
+      'Underestimating German language requirements',
+      'Not applying for residence permit promptly after arrival',
+      'Exceeding 20 hours/week work limit'
+    ],
+    faqs: [
+      {
+        question: 'Is health insurance mandatory in Austria?',
+        answer: 'Yes, you need health insurance to get a residence permit. The best option is ÖGK student self-insurance (~€70/month) which gives full public healthcare access. EU students can use EHIC initially, then switch to ÖGK. Private insurance is also accepted.'
+      },
+      {
+        question: 'How much does ÖGK student insurance cost?',
+        answer: 'Approximately €70/month for the student self-insurance scheme (Selbstversicherung für Studierende). This covers comprehensive healthcare including GP, specialists, hospital, prescriptions, and basic dental. One of the best value student insurance options in Europe.'
+      },
+      {
+        question: 'Can I work while studying in Austria?',
+        answer: 'Yes. Non-EU students can work up to 20 hours/week (10 hrs/week for language course students). No separate work permit needed—it\'s included in your residence permit. Summer jobs and internships have different rules.'
+      },
+      {
+        question: 'Is tuition free in Austria?',
+        answer: 'For EU/EEA students: essentially yes (only ~€20 student union fee). For non-EU students: €726.72/semester at public universities. Much more affordable than UK or US. Some programs charge higher fees.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Graduates can apply for "Rot-Weiß-Rot Karte" (job seeker permit) for 12 months. If you find qualifying employment, you can stay long-term. Austria actively recruits skilled graduates in shortage occupations.'
+      },
+      {
+        question: 'Do I need to speak German?',
+        answer: 'For most bachelor\'s programs: yes, German B2-C1 required. Master\'s programs increasingly offer English tracks. Daily life in Vienna is manageable with English, but German greatly improves your experience and job prospects.'
+      }
+    ]
+  },
+
+  // Belgium - Student Visa (Type D)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'belgium',
+    officialVisaName: 'Student Visa (Type D) + Residence Permit',
+    requirements: {
+      eligibility: [
+        'Acceptance from recognized Belgian educational institution',
+        'Proof of sufficient financial resources (€730/month minimum)',
+        'Valid passport',
+        'Health insurance coverage',
+        'Clean criminal record',
+        'Medical certificate'
+      ],
+      financial: {
+        minimumFunds: '€730/month (~€8,760/year)',
+        proofRequired: ['Bank statements', 'Scholarship letter', 'Sponsor undertaking (Annexe 32)', 'Blocked account'],
+        notes: 'Sponsor (Belgian resident/citizen) can sign Annexe 32 guaranteeing support. Otherwise, show personal funds.'
+      },
+      documents: [
+        'Valid passport (valid for entire stay)',
+        'Completed visa application form',
+        'Passport photos',
+        'Letter of enrollment/admission',
+        'Proof of financial resources or Annexe 32',
+        'Health insurance certificate',
+        'Medical certificate',
+        'Criminal record certificate (apostilled)',
+        'Academic credentials (legalized)',
+        'Proof of accommodation (optional but helpful)'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable annually)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive admission from Belgian institution',
+      'Gather all required documents',
+      'Apply for Type D visa at Belgian embassy',
+      'Wait 4-8 weeks for processing',
+      'Receive visa and travel to Belgium',
+      'Register at commune (municipality) within 8 days',
+      'Receive residence permit (A card)',
+      'Enroll in health insurance (mutuelle/mutualiteit)'
+    ],
+    insuranceNotes: 'Belgium has mandatory health insurance through mutualités/mutualiteiten (non-profit health funds). Students must register with one upon arrival. Cost is approximately €100-150/year for basic coverage, plus optional supplementary insurance. International students can often use their home country insurance initially, but must transition to Belgian system.',
+    healthcareAccess: 'Belgian healthcare operates on a reimbursement system. You pay upfront and get reimbursed 75-100% depending on service. Mutuelle membership is required. Quality is excellent with short wait times. Most doctors speak English in Brussels; Dutch/French elsewhere.',
+    costs: {
+      visaFee: '€226 for visa application',
+      insuranceRange: '€100-150/year for mutuelle + optional supplementary'
+    },
+    recommendedProviders: ['cm-mc', 'mutualite-socialiste', 'partenamut', 'helan', 'cigna-global'],
+    keyConsiderations: [
+      'Very affordable tuition (€835-4,175/year for non-EU)',
+      'Three regions: Flanders (Dutch), Wallonia (French), Brussels (bilingual)',
+      'Central EU location—easy travel to France, Germany, Netherlands, UK',
+      'Mutuelle (health fund) membership is mandatory',
+      'Part-time work allowed: 20 hrs/week during term',
+      'Brussels is EU capital with international job market'
+    ],
+    commonMistakes: [
+      'Not registering at commune within 8 days of arrival',
+      'Forgetting to join a mutuelle (health fund)',
+      'Not understanding reimbursement system (pay first, get refunded)',
+      'Underestimating language needs outside Brussels',
+      'Missing residence permit renewal deadline'
+    ],
+    faqs: [
+      {
+        question: 'How does Belgian health insurance work?',
+        answer: 'You must join a mutuelle (mutualité/mutualiteit)—a non-profit health fund. Cost is ~€100-150/year. When you visit a doctor, you pay upfront and submit receipts for reimbursement (75-100% depending on service). Pharmacies often apply reimbursement directly.'
+      },
+      {
+        question: 'How much is tuition in Belgium?',
+        answer: 'Very affordable. Non-EU students: €835-4,175/year depending on region and program. EU students: €835-1,000/year. Flanders (Dutch-speaking) tends to be cheapest. Some specialized programs cost more. Much cheaper than UK or Netherlands.'
+      },
+      {
+        question: 'Can I work while studying in Belgium?',
+        answer: 'Yes. During term: 20 hours/week. During holidays: unlimited. No separate work permit needed—included in your student residence permit. Many students work in hospitality, retail, or university jobs.'
+      },
+      {
+        question: 'Which language should I learn?',
+        answer: 'Depends on where you study. Flanders: Dutch. Wallonia: French. Brussels: both work, but French is more common. Many international programs are in English, especially at master\'s level. Learning Dutch or French helps daily life significantly.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Belgium offers a 12-month "search year" residence permit for graduates to find employment. If you find a job meeting criteria, you can switch to work permit. Brussels has a strong international job market, especially in EU institutions.'
+      },
+      {
+        question: 'What is the Annexe 32?',
+        answer: 'A sponsorship undertaking where a Belgian resident/citizen guarantees financial support for your studies. This can substitute for showing personal funds. The sponsor takes legal responsibility for your costs if you can\'t support yourself.'
+      }
+    ]
   }
 ];
 
