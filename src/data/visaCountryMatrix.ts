@@ -2854,6 +2854,390 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'SEF (Serviço de Estrangeiros e Fronteiras) is the immigration service. You apply for your residence permit through SEF after arriving. Book appointments early—they can be backlogged. SEF is being restructured, so processes may change.'
       }
     ]
+  },
+
+  // Finland - Student Visa (Residence Permit for Studies)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'finland',
+    officialVisaName: 'Residence Permit for Studies',
+    requirements: {
+      eligibility: [
+        'Acceptance to Finnish educational institution',
+        'Sufficient financial resources',
+        'Valid passport',
+        'Comprehensive health insurance',
+        'Study program must be full-time',
+        'Genuine intention to study'
+      ],
+      financial: {
+        minimumFunds: '€6,720/year (~€560/month) for living costs',
+        proofRequired: ['Bank statement', 'Scholarship letter', 'Sponsor guarantee'],
+        notes: 'Must show funds for one year. Lower than Norway but Finland is still expensive.'
+      },
+      documents: [
+        'Valid passport',
+        'Application form (online via Enter Finland)',
+        'Passport photo',
+        'Acceptance letter from Finnish institution',
+        'Proof of financial resources',
+        'Proof of comprehensive health insurance',
+        'Educational certificates',
+        'Proof of paid application fee'
+      ]
+    },
+    duration: {
+      initial: '1-2 years depending on program',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive acceptance from Finnish educational institution',
+      'Apply online via Enter Finland service',
+      'Pay application fee (€350)',
+      'Visit Finnish embassy/consulate for identification',
+      'Wait for processing (1-3 months)',
+      'Receive residence permit',
+      'Arrive in Finland',
+      'Register with Digital and Population Data Services Agency (DVV)',
+      'Apply for Finnish personal identity code'
+    ],
+    insuranceNotes: 'EU students: EHIC covers public healthcare. Non-EU students: comprehensive private insurance required initially. After registration with DVV and receiving Finnish personal ID, students may access KELA (social insurance) benefits including healthcare subsidies. Coverage requirements depend on study duration.',
+    healthcareAccess: 'After registering and receiving personal identity code, access Finnish public healthcare at subsidized rates. Student health service (FSHS/YTHS) available for degree students at very low cost (~€36/year). General healthcare has copays (GP: €20-40, hospital: €50/day) but high quality.',
+    costs: {
+      visaFee: '€350 application fee',
+      insuranceRange: '€300-600/year private insurance; FSHS ~€36/year for degree students'
+    },
+    recommendedProviders: ['finnish-student-health-fshs', 'kela-coverage', 'cigna-global', 'safetywing', 'allianz-care'],
+    keyConsiderations: [
+      'Tuition is FREE for EU/EEA students at public universities',
+      'Non-EU: €4,000-18,000/year tuition (many scholarships available)',
+      'High quality education—Finland ranked among best globally',
+      'Student health service (FSHS) is exceptional value at €36/year',
+      'Work allowed: unlimited during holidays, varies during term',
+      'Cold dark winters—be prepared for Nordic climate'
+    ],
+    commonMistakes: [
+      'Not having insurance before residence permit approval',
+      'Underestimating Finnish winter (prepare properly)',
+      'Not registering with DVV promptly after arrival',
+      'Missing FSHS enrollment deadline (important for cheap healthcare)',
+      'Not understanding that non-EU pay tuition (unlike Sweden/Norway)'
+    ],
+    faqs: [
+      {
+        question: 'Is tuition free in Finland?',
+        answer: 'For EU/EEA students: yes, free at public universities. For non-EU students: €4,000-18,000/year depending on program. However, many universities offer scholarships covering 50-100% of tuition for non-EU students.'
+      },
+      {
+        question: 'What is FSHS and how do I access it?',
+        answer: 'Finnish Student Health Service (FSHS/YTHS) provides healthcare to degree students for just €36/year. Covers GP visits, mental health, dental checkups, and more. Register at FSHS website after enrolling. One of the best deals in European student healthcare.'
+      },
+      {
+        question: 'How does Finnish healthcare work?',
+        answer: 'Public healthcare with copays: GP ~€20-40, specialist ~€40, hospital ~€50/day max. Quality is excellent. Annual copay cap: ~€700. After registration with DVV and personal ID, access public system. FSHS for students is even cheaper.'
+      },
+      {
+        question: 'Can I work while studying in Finland?',
+        answer: 'Yes. During term: average 30 hours/week. During holidays: unlimited. Many students work part-time. English-speaking jobs available in Helsinki, especially in tech. Wages: €10-15/hour for student jobs.'
+      },
+      {
+        question: 'How cold does Finland get?',
+        answer: 'Very cold. Helsinki winter: -5 to -15°C typical, can drop to -25°C. Northern Finland even colder. December-January has only 6 hours of daylight. Invest in proper winter clothing. The experience is unique but challenging for those from warm climates.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Finland offers 2-year job search residence permit after graduation. If you find work, switch to work-based permit. Pathway to permanent residence after 4 years. Finland actively wants to retain international graduates.'
+      }
+    ]
+  },
+
+  // Taiwan - Student Visa (Resident Visa for Study)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'taiwan',
+    officialVisaName: 'Resident Visa for Study',
+    requirements: {
+      eligibility: [
+        'Acceptance to recognized Taiwanese educational institution',
+        'Sufficient financial resources',
+        'Valid passport (6+ months validity)',
+        'Health certificate (TB test, physical exam)',
+        'Clean criminal record',
+        'Full-time enrolled student'
+      ],
+      financial: {
+        minimumFunds: 'NT$100,000 (~$3,100 USD) in savings or proof of sponsorship',
+        proofRequired: ['Bank statement', 'Scholarship letter', 'Sponsor affidavit'],
+        notes: 'Lower financial requirement than most Western countries. Sponsorship accepted.'
+      },
+      documents: [
+        'Valid passport',
+        'Completed application form',
+        'Passport photos',
+        'Admission letter from Taiwanese institution',
+        'Proof of financial support',
+        'Health certificate',
+        'Academic transcripts/diplomas',
+        'Criminal record check (notarized)'
+      ]
+    },
+    duration: {
+      initial: '6 months to 1 year',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive admission from Taiwanese university',
+      'Gather required documents (health certificate, criminal record)',
+      'Apply for resident visa at Taiwan embassy/consulate',
+      'Pay visa fee (~$95 USD)',
+      'Wait for processing (5-10 business days)',
+      'Receive visa',
+      'Arrive in Taiwan',
+      'Apply for Alien Resident Certificate (ARC) within 15 days',
+      'Enroll in National Health Insurance after 6 months'
+    ],
+    insuranceNotes: 'Private health insurance required for first 6 months in Taiwan. After 6 months of continuous residence with valid ARC, you MUST enroll in Taiwan National Health Insurance (NHI). NHI is mandatory, excellent, and very affordable (~NT$826/month for students).',
+    healthcareAccess: 'First 6 months: private insurance. After 6 months: mandatory NHI enrollment. NHI covers nearly everything—hospital, clinic, dental, traditional Chinese medicine—with very small copays (NT$50-300 per visit). Taiwan has world-class healthcare at budget prices.',
+    costs: {
+      visaFee: '~$95 USD for resident visa',
+      insuranceRange: 'First 6 months: ~$50-100/month private; After: ~NT$826/month (~$26 USD) for NHI'
+    },
+    recommendedProviders: ['taiwan-nhi', 'cigna-global', 'safetywing', 'allianz-care', 'img-global'],
+    keyConsiderations: [
+      'Tuition is very affordable: NT$25,000-55,000/semester (~$800-1,700 USD)',
+      'Living costs low: NT$10,000-15,000/month (~$300-500 USD)',
+      'NHI is one of the best healthcare systems globally at budget prices',
+      'Work allowed: up to 20 hours/week with work permit',
+      'Mandarin language study programs are excellent and popular',
+      'Safe, modern, and extremely convenient lifestyle'
+    ],
+    commonMistakes: [
+      'Not enrolling in NHI after 6 months (it becomes mandatory)',
+      'Not applying for ARC within 15 days of arrival',
+      'Working without proper work permit',
+      'Not getting health certificate before visa application',
+      'Underestimating how hot and humid Taiwan summers are'
+    ],
+    faqs: [
+      {
+        question: 'What is NHI and when do I get it?',
+        answer: 'Taiwan National Health Insurance (NHI) is mandatory government insurance. After 6 months continuous residence with ARC, you MUST enroll. Cost: ~NT$826/month (~$26 USD). Coverage: nearly everything—hospitals, clinics, dental, prescriptions, even traditional Chinese medicine. Copays: NT$50-300 per visit. It\'s exceptional value.'
+      },
+      {
+        question: 'How affordable is studying in Taiwan?',
+        answer: 'Very affordable. Tuition: $800-1,700/semester at public universities. Living costs: $300-500/month (more in Taipei). Food: street food meals $2-4. Taiwan offers excellent value with high quality of life.'
+      },
+      {
+        question: 'Can I work while studying in Taiwan?',
+        answer: 'Yes, but you need a work permit. After first semester with good grades, apply for work permit through your school. Limited to 20 hours/week during term. Wages: NT$176+/hour minimum wage. Teaching English is popular.'
+      },
+      {
+        question: 'Is Taiwan safe for international students?',
+        answer: 'Extremely safe. Taiwan consistently ranks among the safest countries globally. Low crime, efficient public transport, and very friendly to foreigners. LGBTQ+ friendly (first in Asia for marriage equality). Natural disaster preparedness is excellent.'
+      },
+      {
+        question: 'Do I need to speak Mandarin?',
+        answer: 'Depends on your program. Many undergraduate courses are in Mandarin. Growing number of English-taught programs, especially at graduate level. Taiwan is one of the best places to learn Mandarin—many students come specifically for language study.'
+      },
+      {
+        question: 'What is the ARC?',
+        answer: 'Alien Resident Certificate—Taiwan\'s residence card for foreigners. You must apply within 15 days of arrival at the National Immigration Agency. Cost: NT$1,000. The ARC is essential—needed for NHI, bank accounts, phone contracts, and proving residence status.'
+      }
+    ]
+  },
+
+  // Malaysia - Student Pass
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'malaysia',
+    officialVisaName: 'Student Pass',
+    requirements: {
+      eligibility: [
+        'Acceptance to Malaysian institution approved by EMGS',
+        'Valid passport (18+ months validity recommended)',
+        'Age 18-45 (varies by institution type)',
+        'Sufficient financial resources',
+        'Medical examination clearance',
+        'No criminal record'
+      ],
+      financial: {
+        minimumFunds: 'RM15,000-20,000 (~$3,200-4,300 USD) proof of funds',
+        proofRequired: ['Bank statement', 'Sponsor letter', 'Scholarship documentation'],
+        notes: 'Financial requirements vary by institution. Generally need proof of ability to cover tuition plus living expenses.'
+      },
+      documents: [
+        'Valid passport (18+ months validity)',
+        'EMGS online application',
+        'Offer letter from approved institution',
+        'Academic transcripts/certificates',
+        'Bank statements or financial guarantee',
+        'Medical examination results',
+        'Passport photos',
+        'Health insurance proof'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable annually)',
+      renewable: true,
+      maxStay: 'Duration of studies (up to program completion)'
+    },
+    applicationProcess: [
+      'Receive offer from EMGS-approved Malaysian institution',
+      'Institution initiates Student Pass application via EMGS',
+      'Submit required documents to institution',
+      'Pay EMGS processing fee (~RM1,860)',
+      'Complete medical examination',
+      'Wait for Visa Approval Letter (VAL) (2-4 weeks)',
+      'Obtain Single Entry Visa (SEV) at Malaysian embassy',
+      'Arrive in Malaysia',
+      'Complete immigration screening and receive Student Pass'
+    ],
+    insuranceNotes: 'Health insurance is required for Student Pass approval. Many institutions include basic insurance in fees. International students cannot access Malaysian public healthcare subsidies—private insurance is essential. Medical costs are affordable even without insurance, but coverage is important for major issues.',
+    healthcareAccess: 'International students use private healthcare or pay full price at public facilities. Private hospital visit: RM100-300 (~$22-65). Good quality private healthcare is very affordable compared to Western countries. Insurance recommended for major medical events.',
+    costs: {
+      visaFee: '~RM1,860 (~$400 USD) EMGS processing fee',
+      insuranceRange: 'RM500-1,500/year (~$110-325 USD) for student health insurance'
+    },
+    recommendedProviders: ['allianz-malaysia', 'axa-malaysia', 'cigna-global', 'safetywing', 'pacific-prime'],
+    keyConsiderations: [
+      'Tuition extremely affordable: RM15,000-40,000/year (~$3,200-8,600 USD)',
+      'Living costs very low: RM1,500-2,500/month (~$320-540 USD)',
+      'English widely spoken—many programs in English',
+      'Multicultural environment (Malay, Chinese, Indian, international)',
+      'Work allowed: 20 hours/week during semester breaks only',
+      'Gateway to ASEAN region—easy travel to Singapore, Thailand, Indonesia'
+    ],
+    commonMistakes: [
+      'Not using institution for EMGS application (you cannot apply directly)',
+      'Passport validity too short (need 18+ months recommended)',
+      'Not completing medical exam promptly (delays application)',
+      'Working during semester (only allowed during breaks)',
+      'Assuming public healthcare is free (internationals pay full price)'
+    ],
+    faqs: [
+      {
+        question: 'What is EMGS?',
+        answer: 'Education Malaysia Global Services—the government agency handling all international student visas. Your institution submits your Student Pass application through EMGS. You cannot apply directly. Processing: 2-4 weeks typically.'
+      },
+      {
+        question: 'How affordable is Malaysia for students?',
+        answer: 'Extremely affordable. Tuition: $3,200-8,600/year. Living costs: $320-540/month. Rent: $150-300/month for a room. Food: $3-6/meal. Malaysia offers excellent value—Western-quality education at Asian prices.'
+      },
+      {
+        question: 'Can I work while studying in Malaysia?',
+        answer: 'Limited. You can only work during semester breaks (not during term), maximum 20 hours/week, and only in approved sectors (restaurants, hotels, retail, etc.). Many students focus on studies and rely on savings/sponsorship.'
+      },
+      {
+        question: 'Is healthcare good in Malaysia?',
+        answer: 'Yes, especially private healthcare. Many doctors trained in UK/Australia. Private hospitals are modern and affordable—much cheaper than Western countries. A GP visit: RM50-100 (~$11-22). Specialist: RM100-300 (~$22-65). International students need insurance or pay out of pocket.'
+      },
+      {
+        question: 'What language are courses taught in?',
+        answer: 'Many programs are in English, especially at private universities and international branch campuses (Monash, Nottingham). Public universities may use Malay for some programs. English proficiency (IELTS/TOEFL) required for English programs.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Limited options compared to some countries. You can apply for employment pass if you find work, but the process is employer-driven. Some students transition to MM2H (Malaysia My Second Home) if eligible. Malaysia is improving post-study pathways.'
+      }
+    ]
+  },
+
+  // Thailand - Non-Immigrant ED Visa (Education)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'thailand',
+    officialVisaName: 'Non-Immigrant ED Visa (Education)',
+    requirements: {
+      eligibility: [
+        'Acceptance to Thai educational institution',
+        'Valid passport (6+ months validity)',
+        'Sufficient funds for stay',
+        'No criminal record',
+        'Health certificate may be required',
+        'Full-time enrollment'
+      ],
+      financial: {
+        minimumFunds: 'THB 500,000 (~$14,000 USD) in bank or proof of sponsorship',
+        proofRequired: ['Bank statement', 'Scholarship letter', 'Sponsor affidavit'],
+        notes: 'Financial requirements vary by embassy. Some are flexible with clear sponsorship. Can also show monthly income.'
+      },
+      documents: [
+        'Valid passport (6+ months validity)',
+        'Visa application form',
+        'Passport photos',
+        'Acceptance letter from Thai institution',
+        'Proof of financial means',
+        'Educational certificates',
+        'Criminal background check (some embassies)',
+        'Thai institution letter confirming enrollment'
+      ]
+    },
+    duration: {
+      initial: '90 days single entry (extendable) or 1 year multiple entry',
+      renewable: true,
+      maxStay: 'Duration of studies with extensions'
+    },
+    applicationProcess: [
+      'Receive acceptance from Thai educational institution',
+      'Institution provides supporting documents for visa',
+      'Apply for Non-Immigrant ED visa at Thai embassy/consulate',
+      'Pay visa fee (~$80 single entry, ~$200 multiple entry)',
+      'Wait for processing (3-5 business days)',
+      'Receive visa',
+      'Arrive in Thailand within visa validity',
+      'Report to immigration within 90 days',
+      'Extend visa at Thai immigration office as needed'
+    ],
+    insuranceNotes: 'Health insurance is highly recommended but not always strictly required for ED visa (depends on embassy). Many Thai language schools include basic insurance. For longer stays, comprehensive private insurance is essential as international students cannot access Thailand\'s universal coverage scheme.',
+    healthcareAccess: 'International students use private hospitals or pay out-of-pocket at public facilities. Private hospitals in Bangkok are world-class and affordable (Bumrungrad, Bangkok Hospital). GP visit: THB 500-1,500 (~$14-43). Thailand is a medical tourism destination—excellent care at reasonable prices.',
+    costs: {
+      visaFee: '~$80 single entry, ~$200 multiple entry',
+      insuranceRange: 'THB 10,000-25,000/year (~$280-700 USD) for comprehensive coverage'
+    },
+    recommendedProviders: ['pacific-cross-thailand', 'axa-thailand', 'cigna-global', 'safetywing', 'allianz-worldwide'],
+    keyConsiderations: [
+      'Very affordable living: THB 20,000-40,000/month (~$560-1,120 USD)',
+      'Thai language courses popular—ED visa available for language study',
+      'World-class private healthcare at affordable prices',
+      'Work NOT permitted on ED visa (strict enforcement)',
+      '90-day reporting required to immigration',
+      'Amazing food, culture, and beaches—great lifestyle'
+    ],
+    commonMistakes: [
+      'Working on ED visa (illegal and can result in deportation)',
+      'Missing 90-day immigration reporting (fines and problems)',
+      'Not extending visa before expiry (overstay penalties are serious)',
+      'Choosing unlicensed or poor-quality language schools',
+      'Assuming insurance is included (verify with school)'
+    ],
+    faqs: [
+      {
+        question: 'Can I work on a Thai ED visa?',
+        answer: 'No. Working on an ED visa is illegal and Thailand enforces this. Getting caught means fines, deportation, and potential ban. If you need to work, you need a different visa type (Non-Immigrant B with work permit).'
+      },
+      {
+        question: 'What is 90-day reporting?',
+        answer: 'Every 90 days, you must report your address to Thai immigration. Can be done in person, by mail, or online. Missing it results in a THB 2,000 fine. It\'s administrative but strictly enforced.'
+      },
+      {
+        question: 'How affordable is Thailand?',
+        answer: 'Very affordable. Monthly budget: $560-1,120 covers rent, food, transport comfortably. Bangkok more expensive, Chiang Mai cheaper. Street food: $1-3/meal. Rent: $200-500/month for a studio. One of the best value destinations globally.'
+      },
+      {
+        question: 'Is Thai healthcare good?',
+        answer: 'Private healthcare is excellent—Thailand is a major medical tourism destination. Bangkok hospitals like Bumrungrad are world-renowned. Very affordable: GP visit $14-43, dental cleaning $20-40. Insurance recommended for major issues but routine care is cheap.'
+      },
+      {
+        question: 'Can I study Thai language on ED visa?',
+        answer: 'Yes! ED visa is commonly used for Thai language study. Choose an accredited school—immigration cracks down on schools not providing real education. Language study is a legitimate and popular path. Minimum class hours required to maintain visa.'
+      },
+      {
+        question: 'What happens if I overstay?',
+        answer: 'Thailand has strict overstay penalties. Fine: THB 500/day (max THB 20,000). More than 90 days overstay: banned from entering Thailand (1-10 years depending on duration). Never overstay—extend your visa before it expires.'
+      }
+    ]
   }
 ];
 

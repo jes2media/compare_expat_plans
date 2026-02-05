@@ -1,0 +1,515 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/japan', label: 'Japan Student Visa' },
+  { href: '/visas/student-visa/in/south-korea', label: 'South Korea Student Visa' },
+  { href: '/visas/student-visa/in/singapore', label: 'Singapore Student Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Admission from recognized Taiwanese educational institution' },
+  { requirement: 'Financial Proof', details: 'NT$100,000 (~$3,100 USD) savings or sponsorship letter' },
+  { requirement: 'Health Certificate', details: 'Medical exam with TB test required' },
+  { requirement: 'Criminal Record', details: 'Police clearance certificate (notarized)' },
+  { requirement: 'Passport Validity', details: '6+ months beyond intended stay' },
+  { requirement: 'Visa Fee', details: '~$95 USD for resident visa' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'First 6 Months', requirement: 'Private insurance required (no NHI access)' },
+  { aspect: 'After 6 Months', requirement: 'NHI enrollment MANDATORY with valid ARC' },
+  { aspect: 'NHI Cost', requirement: '~NT$826/month (~$26 USD) for students' },
+  { aspect: 'NHI Coverage', requirement: 'Nearly everything: hospitals, clinics, dental, prescriptions' },
+  { aspect: 'Copays', requirement: 'NT$50-300 (~$1.50-9.50 USD) per visit' },
+  { aspect: 'Quality', requirement: 'World-class healthcare at budget prices' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'Taiwan NHI', monthly: '~$26', coverage: 'Near-universal', bestFor: 'After 6 months - mandatory and excellent' },
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'First 6 months, budget option' },
+  { provider: 'Cigna Global', monthly: '~$120-180', coverage: 'Comprehensive', bestFor: 'Premium coverage, chronic conditions' },
+  { provider: 'IMG Global', monthly: '~$80-120', coverage: '$1-5M', bestFor: 'High coverage limits first 6 months' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Fee', amount: '~$95 USD', notes: 'Resident visa for study' },
+  { item: 'ARC Application', amount: 'NT$1,000 (~$31)', notes: 'Alien Resident Certificate' },
+  { item: 'Private Insurance', amount: '$50-100/month', notes: 'First 6 months only' },
+  { item: 'NHI Insurance', amount: 'NT$826/month (~$26)', notes: 'After 6 months - mandatory' },
+  { item: 'Tuition (Public)', amount: 'NT$25,000-55,000/semester', notes: '~$800-1,700 USD per semester' },
+  { item: 'Living Costs', amount: 'NT$10,000-20,000/month', notes: '~$310-620 USD (Taipei higher)' },
+  { item: 'Accommodation', amount: 'NT$5,000-15,000/month', notes: 'Dorm ~$150, private ~$300-500 USD' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply directly or through Taiwan Scholarship Program' },
+  { step: '2. Gather Documents', duration: '2-4 weeks', details: 'Health certificate, criminal record, transcripts' },
+  { step: '3. Visa Application', duration: '5-10 business days', details: 'Apply at Taiwan embassy/representative office' },
+  { step: '4. Arrival + ARC', duration: 'Within 15 days', details: 'Apply for ARC at National Immigration Agency' },
+  { step: '5. Settle In', duration: '1-6 months', details: 'Bank account, phone, explore Taiwan' },
+  { step: '6. NHI Enrollment', duration: 'After 6 months', details: 'MANDATORY enrollment with valid ARC' },
+];
+---
+
+<PageShell
+  title="Taiwan Student Visa Insurance Requirements 2025 | Study in Taiwan Guide"
+  description="Complete guide to Taiwan student visa and NHI health insurance. Learn about the 6-month waiting period, mandatory NHI enrollment, and world-class healthcare at budget prices."
+  headline="Taiwan Student Visa & Insurance Guide"
+  subheadline="World-class healthcare at budget prices with mandatory NHI after 6 months"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: Taiwan Student Visa</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> Resident Visa for Study</div>
+        <div><strong>Duration:</strong> 6 months - 1 year (renewable)</div>
+        <div><strong>Processing Time:</strong> 5-10 business days</div>
+        <div><strong>Visa Fee:</strong> ~$95 USD</div>
+        <div><strong>Work Allowed:</strong> Up to 20 hours/week (with permit)</div>
+        <div><strong>Insurance:</strong> Private first 6 months, then NHI mandatory</div>
+        <div><strong>NHI Cost:</strong> ~$26/month (exceptional value)</div>
+        <div><strong>Living Cost:</strong> $310-620/month (very affordable)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      Taiwan is an increasingly popular destination for international students, offering a unique blend of Chinese culture, cutting-edge technology, and exceptional affordability. Whether you're studying Mandarin, pursuing a degree, or doing research, Taiwan provides outstanding value with high quality of life.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      The standout feature for students is Taiwan's National Health Insurance (NHI). After 6 months of residence with a valid ARC, you must enroll in NHI—and you'll be glad to. For just ~$26/month, you get access to one of the world's best healthcare systems: hospitals, clinics, dental, prescriptions, even traditional Chinese medicine, all with minimal copays.
+    </p>
+
+    <p class="text-neutral-600">
+      Taiwan is also one of Asia's safest countries, LGBTQ+ friendly (first in Asia for marriage equality), and offers incredible food, nature, and modern convenience. The combination of affordability, safety, and quality makes it a top choice for international students.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">Taiwan is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want to learn Mandarin (Taiwan is one of the best places)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Value excellent healthcare at very low cost (NHI ~$26/month)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want affordable living costs ($310-620/month)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Prioritize safety and convenience</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Love incredible food and vibrant culture</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need programs fully in English (many courses in Mandarin)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Can't handle hot, humid summers</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want global university name recognition</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need to work more than 20 hours/week</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Taiwan's student visa requirements are straightforward. The financial threshold is relatively low compared to Western countries, and sponsorship is accepted.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Pro Tip:</strong> Get your health certificate and criminal record check done early—these often take the longest. Some countries require notarized/apostilled documents. Check requirements for your specific embassy.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Taiwan has a unique two-phase insurance system for students. The first 6 months require private insurance; after that, NHI enrollment becomes mandatory—and you'll want it.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Taiwan NHI: One of the World's Best</h4>
+      <p class="text-green-800">
+        Taiwan's National Health Insurance covers nearly everything: hospital stays, clinic visits, dental, prescriptions, lab tests, even traditional Chinese medicine. Copays are tiny (NT$50-300 per visit, ~$1.50-9.50). For ~$26/month, you get coverage that rivals countries charging 10x more. It's exceptional value.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>6-Month Waiting Period:</strong> You cannot enroll in NHI until you've had a valid ARC (Alien Resident Certificate) for 6 consecutive months. Private insurance is essential during this period. Don't skip it—medical costs without insurance can be significant.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      For the first 6 months, you need private insurance. After that, NHI takes over as your primary coverage.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">First 6 Months Strategy</h4>
+        <p class="text-neutral-600 text-sm">
+          Use SafetyWing (~$56/month) or similar for the 6-month waiting period. Total cost: ~$336. Once NHI kicks in, cancel private insurance—NHI is superior and cheaper.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">After 6 Months</h4>
+        <p class="text-neutral-600 text-sm">
+          NHI becomes mandatory and primary. At ~$26/month with comprehensive coverage, there's no need for supplemental insurance unless you have very specific needs or travel frequently outside Taiwan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Taiwan's 6-Month Waiting Period"
+    description="Get coverage for your first 6 months before NHI enrollment. After that, ~$26/month NHI provides world-class coverage."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Taiwan offers exceptional value. Here's a realistic breakdown of what you'll spend as a student.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">City Cost Comparison</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Taipei:</strong> Most expensive (NT$15,000-25,000/month, ~$465-775)</li>
+        <li><strong>Taichung:</strong> Mid-range (NT$12,000-18,000/month, ~$370-560)</li>
+        <li><strong>Tainan, Kaohsiung:</strong> Affordable (NT$10,000-15,000/month, ~$310-465)</li>
+        <li><strong>Smaller cities:</strong> Very budget-friendly (NT$8,000-12,000/month)</li>
+      </ul>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Why Taiwan is Incredible Value</h4>
+      <p class="text-green-800 text-sm">
+        Street food meals: $2-4. Bubble tea: $1.50-3. Rent outside Taipei: $150-300/month. Public transport: $0.50-2 per trip. Combine with NHI at $26/month and quality education at $800-1,700/semester, and Taiwan offers one of the best student value propositions globally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Taiwan's visa process is relatively quick once you have all documents. The key is preparing health certificates and criminal records in advance.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Critical:</strong> You must apply for your ARC (Alien Resident Certificate) within 15 days of arrival at the National Immigration Agency. The ARC is essential—you need it for NHI, bank accounts, phone contracts, and more. Don't delay!
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Here's how healthcare works in common situations for students in Taiwan.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (After NHI)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a cold and need to see a doctor.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Walk into any NHI clinic. Copay: NT$50-150 (~$1.50-4.50). Often includes medication. Wait time: usually under 30 minutes. World-class efficiency.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (Before NHI)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same situation but you're in the 6-month waiting period.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Private insurance covers the visit. Out-of-pocket if uninsured: ~NT$500-1,000 (~$15-31). Still affordable but insurance recommended.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency (NHI)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You fall off a scooter and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to any hospital ER. NHI covers treatment. Copay: NT$300-550 (~$9-17) for ER. X-rays, treatment, medications all covered. Taiwan's hospitals are excellent.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dental Cleaning (NHI)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You want a routine dental checkup and cleaning.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> NHI covers dental. Copay: NT$50-100 (~$1.50-3). Basic cleanings and checkups included. Major procedures may have additional fees but are heavily subsidized.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Traditional Chinese Medicine</h4>
+        <p class="text-neutral-600 text-sm mb-2">You want to try acupuncture or herbal medicine.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> NHI covers traditional Chinese medicine! Copay: NT$50-100. A unique benefit—Taiwan is one of few places where TCM is covered by national insurance.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Prescription Medication</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need regular medication for allergies.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> NHI heavily subsidizes prescriptions. Common medications: NT$0-200 (~$0-6). Even chronic condition medications are affordable. Pharmacies everywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Applying for ARC Within 15 Days</h4>
+        <p class="text-red-800">You MUST apply for your Alien Resident Certificate within 15 days of arrival. The ARC is essential for NHI, banking, phone contracts, and legal status. Missing this deadline causes problems.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Skipping Insurance During the 6-Month Wait</h4>
+        <p class="text-red-800">No NHI access for 6 months means medical costs are on you. A hospital visit without insurance can cost thousands. Private insurance for 6 months costs ~$300-400—worth the peace of mind.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Enrolling in NHI After 6 Months</h4>
+        <p class="text-red-800">NHI enrollment becomes MANDATORY after 6 months with a valid ARC. It's also the best deal you'll get. Don't delay—enroll as soon as you're eligible.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Working Without a Work Permit</h4>
+        <p class="text-red-800">Your student visa doesn't automatically allow work. You need a work permit (applied through your school after first semester with good grades). Working illegally risks visa cancellation.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Underestimating Taiwan's Summer Heat</h4>
+        <p class="text-red-800">Taiwan is subtropical—summers are 35°C+ with extreme humidity. Air conditioning is essential. Budget for electricity in summer months. Many students from cooler climates struggle initially.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Taiwan's NHI is consistently ranked among the world's best healthcare systems. Once enrolled, you have access to exceptional care at minimal cost.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">National Health Insurance (NHI)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> ~NT$826/month (~$26 USD)</li>
+          <li>• <strong>Coverage:</strong> Hospitals, clinics, dental, prescriptions, TCM</li>
+          <li>• <strong>Copays:</strong> NT$50-300 per visit (~$1.50-9.50)</li>
+          <li>• <strong>Wait times:</strong> Usually same-day or next-day</li>
+          <li>• <strong>Quality:</strong> World-class, extremely efficient</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Before NHI (First 6 Months)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Option 1:</strong> Private insurance (recommended)</li>
+          <li>• <strong>Option 2:</strong> Pay out-of-pocket (risky)</li>
+          <li>• <strong>GP visit cost:</strong> ~NT$500-1,000 (~$15-31)</li>
+          <li>• <strong>Hospital:</strong> Can be expensive without insurance</li>
+          <li>• <strong>Duration:</strong> 6 months from ARC issuance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Healthcare Strategy for Taiwan</h4>
+      <p class="text-blue-800 text-sm">
+        1) Get private insurance before arrival for the 6-month wait. 2) Apply for ARC within 15 days of arrival. 3) After 6 months, enroll in NHI immediately. 4) Cancel private insurance once NHI is active. 5) Enjoy world-class healthcare at ~$26/month.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Need Insurance for Taiwan's Waiting Period?"
+    description="Compare private insurance options for your first 6 months. After that, NHI provides exceptional coverage at ~$26/month."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Why is there a 6-month waiting period for NHI?</h4>
+        <p class="text-neutral-600">Taiwan requires 6 months of continuous residence with a valid ARC before NHI enrollment to ensure you're genuinely residing in Taiwan. After 6 months, enrollment becomes mandatory. During the wait, you need private insurance.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is Taiwan NHI really that good?</h4>
+        <p class="text-neutral-600">Yes, genuinely. Taiwan's NHI is frequently cited as one of the world's best healthcare systems. For ~$26/month: hospital stays, clinic visits, dental, prescriptions, traditional Chinese medicine, lab tests—all with minimal copays. Wait times are usually same-day. It's exceptional value.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is the ARC and why is it important?</h4>
+        <p class="text-neutral-600">ARC (Alien Resident Certificate) is Taiwan's residence card for foreigners. You must apply within 15 days of arrival. It's essential for NHI enrollment, bank accounts, phone contracts, and proving your legal status. Cost: NT$1,000 (~$31).</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying in Taiwan?</h4>
+        <p class="text-neutral-600">Yes, but you need a work permit. After your first semester with good grades, apply through your school. Limit: 20 hours/week during term. Minimum wage: NT$176+/hour (~$5.50). Teaching English is popular. Working without permit risks visa problems.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is Taiwan safe?</h4>
+        <p class="text-neutral-600">Extremely safe. Taiwan consistently ranks among the world's safest countries. Low crime, efficient public transport, very friendly to foreigners. LGBTQ+ friendly (first in Asia for marriage equality). Typhoons and earthquakes occur but Taiwan has excellent preparedness systems.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Do I need to speak Mandarin?</h4>
+        <p class="text-neutral-600">Depends on your program. Many master's programs are in English. Undergraduate courses are often in Mandarin. Taiwan is one of the best places to learn Mandarin—many students come specifically for language study. English is limited outside major cities and universities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        Taiwan offers an exceptional combination of affordability, safety, culture, and world-class healthcare. The NHI system at ~$26/month is genuinely one of the world's best deals—comprehensive coverage with minimal copays and excellent quality.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The main consideration is the 6-month waiting period before NHI access. Budget ~$300-400 for private insurance during this time. Once you're in NHI, healthcare becomes essentially a non-concern—comprehensive coverage at pocket-change prices.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Use SafetyWing or similar (~$56/month) for the first 6 months. Apply for ARC within 15 days of arrival. Enroll in NHI as soon as eligible. Total insurance cost for a year: ~$336 (6 months private) + ~$156 (6 months NHI) = ~$492. Exceptional value for world-class coverage.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> Taiwan is ideal for students who want high quality of life at low cost, excellent healthcare, and a safe, welcoming environment. If you're learning Mandarin or interested in Asian studies, it's one of the best destinations globally. The 6-month NHI wait is minor compared to the outstanding benefits.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Taiwan Student Visa"
+    description="Find coverage for the 6-month NHI waiting period. After that, ~$26/month gets you world-class healthcare."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>

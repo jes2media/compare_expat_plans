@@ -1,0 +1,515 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/sweden', label: 'Sweden Student Visa' },
+  { href: '/visas/student-visa/in/norway', label: 'Norway Student Visa' },
+  { href: '/visas/student-visa/in/denmark', label: 'Denmark Student Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Admission to accredited Finnish educational institution (full-time)' },
+  { requirement: 'Financial Proof', details: '€6,720/year (~€560/month) - lower than Norway but strict verification' },
+  { requirement: 'Health Insurance', details: 'Comprehensive coverage required for residence permit' },
+  { requirement: 'Accommodation Proof', details: 'Not strictly required but helpful for application' },
+  { requirement: 'Passport Validity', details: 'Valid throughout intended stay' },
+  { requirement: 'Application Fee', details: '€350 processing fee' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory', requirement: 'Yes - required for residence permit' },
+  { aspect: 'Minimum Coverage', requirement: 'Comprehensive (€100,000+ for studies over 2 years)' },
+  { aspect: 'FSHS Access', requirement: 'Degree students: €36/year for excellent student health service' },
+  { aspect: 'Public Healthcare', requirement: 'Available after registration with DVV (copays apply)' },
+  { aspect: 'EU Students', requirement: 'EHIC provides basic public healthcare access' },
+  { aspect: 'Duration', requirement: 'Must cover entire study period' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'FSHS (Student Health)', monthly: '€36/year', coverage: 'Comprehensive student services', bestFor: 'Degree students - exceptional value' },
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'Initial residence permit application' },
+  { provider: 'Cigna Global', monthly: '~$120-180', coverage: 'Comprehensive', bestFor: 'Premium coverage, chronic conditions' },
+  { provider: 'KELA + Municipal', monthly: 'Subsidized', coverage: 'Public system', bestFor: 'After registration (long-term)' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Residence Permit Fee', amount: '€350', notes: 'One-time application fee' },
+  { item: 'Tuition (EU/EEA)', amount: '€0', notes: 'Free at public universities' },
+  { item: 'Tuition (Non-EU)', amount: '€4,000-18,000/year', notes: 'Scholarships often available (50-100%)' },
+  { item: 'FSHS Membership', amount: '€36/year', notes: 'Exceptional value student health service' },
+  { item: 'Private Insurance', amount: '€300-600/year', notes: 'Before FSHS/public access' },
+  { item: 'Living Costs', amount: '€700-1,200/month', notes: 'Helsinki higher, other cities cheaper' },
+  { item: 'Accommodation', amount: '€300-600/month', notes: 'Student housing €250-400, private €400-700' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply through Studyinfo.fi or directly to university' },
+  { step: '2. Receive Admission', duration: 'Spring (Jan intake) or Summer (Sept)', details: 'Acceptance letter from Finnish institution' },
+  { step: '3. Online Application', duration: '1-2 weeks', details: 'Apply via Enter Finland service' },
+  { step: '4. Embassy Visit', duration: '1-2 weeks', details: 'In-person identification verification' },
+  { step: '5. Processing', duration: '1-3 months', details: 'Wait for residence permit decision' },
+  { step: '6. DVV Registration', duration: 'After arrival', details: 'Register with Population Services for personal ID' },
+];
+---
+
+<PageShell
+  title="Finland Student Visa Insurance Requirements 2025 | Study in Finland Guide"
+  description="Complete guide to Finland student residence permit and health insurance. Learn about FSHS student health service, KELA, and comprehensive coverage requirements for studying in Finland."
+  headline="Finland Student Visa & Insurance Guide"
+  subheadline="World-class Nordic education with exceptional student health services"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: Finland Student Residence Permit</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Permit Type:</strong> Residence Permit for Studies</div>
+        <div><strong>Duration:</strong> 1-2 years (renewable)</div>
+        <div><strong>Processing Time:</strong> 1-3 months</div>
+        <div><strong>Application Fee:</strong> €350</div>
+        <div><strong>Work Allowed:</strong> Yes (hours vary by program)</div>
+        <div><strong>Insurance:</strong> Required; FSHS available for €36/year</div>
+        <div><strong>Schengen Access:</strong> Yes, travel within Schengen zone</div>
+        <div><strong>Tuition (EU):</strong> Free at public universities</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      Finland consistently ranks among the world's best countries for education quality, and for good reason. With its innovative teaching methods, strong research universities, and a society that values education deeply, Finland attracts students seeking academic excellence in a safe, modern environment.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      One of Finland's greatest advantages for students is the Finnish Student Health Service (FSHS/YTHS). For just €36 per year, degree students get access to comprehensive healthcare including GP visits, mental health services, dental checkups, and more. This is exceptional value unmatched almost anywhere globally.
+    </p>
+
+    <p class="text-neutral-600">
+      EU/EEA students enjoy free tuition at Finnish public universities. Non-EU students pay tuition (€4,000-18,000/year), but many universities offer generous scholarships covering 50-100% of fees. Combined with Finland's strong post-graduation pathways, it's an excellent long-term investment.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">Finland is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want world-class education (consistently top PISA rankings)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Value exceptional student healthcare (FSHS at €36/year)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Are EU/EEA citizen (free tuition at public universities)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Enjoy nature, saunas, and Nordic lifestyle</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Plan to work in tech, design, or engineering after graduation</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Can't handle extreme cold and dark winters</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want the lowest possible costs (Poland, Taiwan cheaper)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need programs primarily in English (Finnish/Swedish common)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer warm climates and vibrant nightlife</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      The Finnish residence permit for studies requires comprehensive documentation. The financial requirement (€6,720/year) is lower than Norway but still ensures students can support themselves in Finland's high-cost environment.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Pro Tip:</strong> Apply via Enter Finland online service, then verify your identity at a Finnish embassy. Processing is faster than many countries (1-3 months), but start early as demand is high.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Finland requires comprehensive health insurance for residence permit approval. However, once enrolled, degree students can access FSHS—one of the world's best student health services at an unbeatable price.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">FSHS: Finland's Hidden Gem</h4>
+      <p class="text-green-800">
+        The Finnish Student Health Service (FSHS/YTHS) costs just €36/year and covers GP visits, mental health counseling, dental checkups, physiotherapy, and more. This is available to all degree students at Finnish universities and universities of applied sciences. Register immediately upon enrollment.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Insurance for Permit Application:</strong> You need comprehensive private insurance to get your residence permit approved. Once in Finland and enrolled in FSHS, this becomes your primary coverage for routine care.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      For Finland, you'll likely use a combination: private insurance for the residence permit application, then FSHS for routine student healthcare, with public system access as backup.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">For Permit Application</h4>
+        <p class="text-neutral-600 text-sm">
+          Use SafetyWing (~$56/month) or similar international insurance for your residence permit application. Keep it active until you're enrolled and registered with FSHS.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">After Enrollment</h4>
+        <p class="text-neutral-600 text-sm">
+          Register for FSHS immediately (€36/year). This becomes your primary healthcare. Public system available for things FSHS doesn't cover. Consider travel insurance for trips outside Finland.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Finland Permit Application"
+    description="Find coverage that meets Finnish residence permit requirements. After enrollment, FSHS provides exceptional value at €36/year."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Finland is expensive for living costs but offers excellent value through free EU tuition and subsidized student services. Here's a realistic breakdown.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">City Cost Comparison</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Helsinki:</strong> Most expensive (~€1,000-1,200/month)</li>
+        <li><strong>Espoo, Tampere:</strong> Slightly cheaper (~€850-1,000/month)</li>
+        <li><strong>Turku, Oulu:</strong> More affordable (~€750-900/month)</li>
+        <li><strong>Smaller cities:</strong> Budget-friendly (~€650-800/month)</li>
+      </ul>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Non-EU Tuition Scholarships</h4>
+      <p class="text-green-800 text-sm">
+        Most Finnish universities offer tuition waivers (50-100%) for non-EU students based on academic merit. Apply for scholarships simultaneously with your program application. Many students pay little to no tuition even as non-EU citizens.
+      </p>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Finnish university applications typically have deadlines in January (for autumn start). Plan your timeline carefully.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> After arrival, register with DVV (Digital and Population Data Services Agency) to get your Finnish personal identity code. This is essential for FSHS registration, banking, and accessing many services.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Here's how healthcare works in common situations for students in Finland.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Routine GP Visit (FSHS)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a cold that won't go away and need medical advice.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Book via FSHS app/website. Often same-day or next-day. Free with your €36/year membership. Prescription if needed at subsidized pharmacy prices.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Mental Health Support (FSHS)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You're struggling with stress and seasonal darkness.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> FSHS provides mental health services—counseling, therapy, psychiatry. Included in €36/year membership. Finland takes mental health seriously. Wait times reasonable.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Emergency Room Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">You break your arm ice skating.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to public hospital emergency. With Finnish ID and registration, copay ~€50/day hospital. Excellent care. FSHS doesn't cover emergencies—public system does.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dental Checkup (FSHS)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You want a routine dental checkup and cleaning.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> FSHS includes basic dental care. Book via their system. Free checkups and subsidized treatments. Major procedures may have small fees.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Specialist Referral</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need to see a dermatologist for a skin condition.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> FSHS GP can refer to specialist. May wait 2-4 weeks. Alternatively, public system specialist: ~€40 copay. Private option: €80-150 but faster.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Weekend Trip to Estonia</h4>
+        <p class="text-neutral-600 text-sm mb-2">You visit Tallinn for the weekend and get food poisoning.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Apply for EHIC card (Finnish) for EU travel coverage. Emergency care covered. Consider travel insurance supplement for non-EU trips.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Missing FSHS Registration Deadline</h4>
+        <p class="text-red-800">FSHS registration has deadlines each semester. Don't miss them—this €36/year membership is exceptional value. Register as soon as you're enrolled.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Getting Finnish Personal ID Promptly</h4>
+        <p class="text-red-800">Register with DVV immediately after arrival. Your Finnish personal identity code is essential for healthcare, banking, phone contracts, and many services. Without it, you're limited.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Underestimating Finnish Winter</h4>
+        <p class="text-red-800">Finnish winters are extreme: -15°C to -25°C, with only 6 hours of daylight in December. Invest in proper clothing (€300-500 for good winter gear). Many students underestimate the psychological impact of darkness.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Assuming Non-EU Students Can't Afford Finland</h4>
+        <p class="text-red-800">Most Finnish universities offer 50-100% tuition scholarships for non-EU students based on merit. Apply for scholarships—many students study tuition-free regardless of nationality.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Having Insurance for Permit Application</h4>
+        <p class="text-red-800">You need comprehensive private insurance to get your residence permit approved. FSHS comes after enrollment—don't confuse the two. Get international insurance first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Finland has a layered healthcare system. As a student, you'll primarily use FSHS for routine care, with public healthcare as backup for emergencies and specialized needs.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">FSHS (Student Health Service)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> €36/year membership</li>
+          <li>• <strong>Services:</strong> GP, mental health, dental, physio</li>
+          <li>• <strong>Eligibility:</strong> Degree students at universities/UAS</li>
+          <li>• <strong>Quality:</strong> Excellent, student-focused</li>
+          <li>• <strong>Access:</strong> Online booking, often same-day</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Healthcare (Municipal)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> GP ~€20-40, hospital ~€50/day</li>
+          <li>• <strong>Annual cap:</strong> ~€700 maximum copays/year</li>
+          <li>• <strong>Access:</strong> After DVV registration + Finnish ID</li>
+          <li>• <strong>Quality:</strong> Excellent, especially hospitals</li>
+          <li>• <strong>Use for:</strong> Emergencies, specialists, hospitals</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Recommended Healthcare Strategy</h4>
+      <p class="text-blue-800 text-sm">
+        1) Get private insurance for residence permit application. 2) Arrive and register with DVV for Finnish ID. 3) Register for FSHS immediately upon enrollment (€36/year). 4) Use FSHS for routine care, public system for emergencies/specialists. 5) Get EHIC for EU travel coverage.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Need Insurance for Your Finland Permit Application?"
+    description="Compare international insurance options. Remember: FSHS provides exceptional student healthcare at €36/year once enrolled."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is tuition really free for EU students in Finland?</h4>
+        <p class="text-neutral-600">Yes. EU/EEA students pay no tuition at Finnish public universities. You only pay a student union fee (~€100/year) which includes FSHS membership. Non-EU students pay tuition but many receive 50-100% scholarships.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What exactly does FSHS cover for €36/year?</h4>
+        <p class="text-neutral-600">FSHS covers GP visits, mental health services (counseling, therapy, psychiatry), basic dental care, physiotherapy, health advice, and more. It's genuinely comprehensive for routine student health needs. Specialist referrals and emergency care go through the public system.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How cold does Finland actually get?</h4>
+        <p class="text-neutral-600">Very cold. Helsinki: -5 to -15°C in winter, occasionally -25°C. Northern Finland (Lapland): -20 to -40°C. December-January has only 6 hours of daylight in Helsinki, less in the north. It's beautiful but challenging. Good winter gear is essential (budget €300-500).</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying in Finland?</h4>
+        <p class="text-neutral-600">Yes. During holidays: unlimited hours. During term: averaging about 30 hours/week (varies by permit). Many students work part-time. English-speaking jobs available, especially in Helsinki tech sector. Minimum wage not set by law but collective agreements ~€10-15/hour.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What are my options after graduation?</h4>
+        <p class="text-neutral-600">Finland offers a 2-year job-seeking residence permit after graduation. If you find work, convert to work-based permit. After 4 years of residence, apply for permanent residence. Finland actively wants to retain international graduates, especially in tech and engineering.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Do I need to speak Finnish?</h4>
+        <p class="text-neutral-600">For many degree programs, no—English programs are common, especially at master's level. However, Finnish language skills significantly help with daily life, work opportunities, and integration. Most Finns speak excellent English, but learning Finnish opens more doors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        Finland offers world-class education, exceptional student healthcare (FSHS at €36/year), and a safe, innovative society. For EU students, free tuition makes it unbeatable. For non-EU students, generous scholarships often offset tuition costs entirely.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The main challenges are the cold, dark winters and higher living costs compared to Eastern Europe or Asia. If you can handle the climate and have access to scholarships (or are EU/EEA), Finland provides outstanding value. The FSHS student health service alone is worth the consideration—€36/year for comprehensive healthcare is extraordinary.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Use international insurance (SafetyWing ~$56/month or similar) for your residence permit application. Upon arrival, register with DVV immediately, then enroll in FSHS. This gives you €36/year healthcare plus public system backup—one of the best student healthcare situations globally.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> Finland is ideal for students who prioritize education quality, comprehensive healthcare, and post-graduation opportunities. The winter is real, but the rewards—academic excellence, FSHS, and strong career pathways—make Finland a top-tier destination.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Finland Student Permit"
+    description="Find coverage for your residence permit application. FSHS awaits at €36/year once enrolled."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>
