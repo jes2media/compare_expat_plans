@@ -1,0 +1,521 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/taiwan', label: 'Taiwan Student Visa' },
+  { href: '/visas/student-visa/in/japan', label: 'Japan Student Visa' },
+  { href: '/visas/student-visa/in/south-korea', label: 'South Korea Student Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Admission notice from Chinese institution' },
+  { requirement: 'JW201/JW202 Form', details: 'Visa application form from university (essential)' },
+  { requirement: 'Physical Examination', details: 'Foreigner Physical Examination Form (specific format)' },
+  { requirement: 'Financial Proof', details: 'RMB 20,000-50,000/year (~$2,800-7,000) or scholarship' },
+  { requirement: 'Passport Validity', details: '6+ months with blank visa pages' },
+  { requirement: 'Visa Fee', details: 'Varies by nationality ($30-180)' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory', requirement: 'Yes - required for visa/residence permit' },
+  { aspect: 'University Insurance', requirement: 'Basic plans ~RMB 400-800/year (~$55-110)' },
+  { aspect: 'Comprehensive Coverage', requirement: 'RMB 2,000-5,000/year (~$280-700) for international clinics' },
+  { aspect: 'CSC Scholarship', requirement: 'Includes health insurance' },
+  { aspect: 'Public Healthcare', requirement: 'Available but challenging (language, queues)' },
+  { aspect: 'International Clinics', requirement: 'Insurance essential for access (expensive without)' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'University Plan', monthly: 'RMB 35-70', coverage: 'Basic', bestFor: 'Meets visa requirements, budget option' },
+  { provider: 'Ping An Insurance', monthly: 'RMB 100-300', coverage: 'Comprehensive', bestFor: 'Major Chinese insurer, good network' },
+  { provider: 'Cigna Global', monthly: '$100-180', coverage: 'Premium', bestFor: 'International clinics, English support' },
+  { provider: 'Now Health', monthly: '$80-150', coverage: 'Comprehensive', bestFor: 'China specialist, expat-focused' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Fee', amount: '$30-180', notes: 'Varies by nationality' },
+  { item: 'Residence Permit', amount: 'RMB 400-800 (~$55-110)', notes: 'X1 holders convert within 30 days' },
+  { item: 'Health Insurance', amount: 'RMB 400-5,000/year', notes: '~$55-700 (basic to comprehensive)' },
+  { item: 'Tuition', amount: 'RMB 15,000-50,000/year', notes: '~$2,100-7,000 (varies by program)' },
+  { item: 'Living Costs', amount: 'RMB 2,000-8,000/month', notes: '~$280-1,120 (city dependent)' },
+  { item: 'Accommodation', amount: 'RMB 500-3,000/month', notes: 'Dorm RMB 500-1,500, private higher' },
+  { item: 'Food', amount: 'RMB 800-2,000/month', notes: 'Street food very cheap' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply to Chinese university or CSC' },
+  { step: '2. Receive JW201/JW202', duration: 'After admission', details: 'University sends essential visa form' },
+  { step: '3. Physical Examination', duration: '1-2 weeks', details: 'Use specific Foreigner Physical Exam Form' },
+  { step: '4. Visa Application', duration: '4-7 business days', details: 'Apply at Chinese embassy/consulate' },
+  { step: '5. Arrive in China', duration: 'Within visa validity', details: 'Register with police within 24 hours' },
+  { step: '6. Residence Permit (X1)', duration: 'Within 30 days', details: 'Convert X1 visa to residence permit' },
+];
+---
+
+<PageShell
+  title="China Student Visa Insurance Requirements 2025 | Study in China Guide"
+  description="Complete guide to China X1/X2 student visa and health insurance. Learn about CSC scholarship, JW201/JW202 forms, police registration, and affordable education in China."
+  headline="China Student Visa & Insurance Guide"
+  subheadline="Affordable education with CSC scholarships and unique cultural immersion"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: China Student Visa (X1/X2)</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Types:</strong> X1 (&gt;180 days), X2 (&lt;180 days)</div>
+        <div><strong>Duration:</strong> X1 requires residence permit conversion</div>
+        <div><strong>Processing Time:</strong> 4-7 business days</div>
+        <div><strong>Visa Fee:</strong> $30-180 (varies by nationality)</div>
+        <div><strong>Work Allowed:</strong> Limited internship/part-time (with permit)</div>
+        <div><strong>Insurance:</strong> Required</div>
+        <div><strong>Police Registration:</strong> Within 24 hours of arrival</div>
+        <div><strong>Living Cost:</strong> $280-1,120/month (very affordable)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      China offers an unparalleled combination of affordable education, rich cultural immersion, and career opportunities in the world's second-largest economy. With the Chinese Government Scholarship (CSC) providing full funding for many students, China has become a major destination for international education.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      Mandarin language programs are particularly popular—China is one of the best places to learn the world's most spoken language. Many universities also offer degree programs in English, especially at the master's and doctoral levels.
+    </p>
+
+    <p class="text-neutral-600">
+      <strong>Important:</strong> China has specific requirements including the JW201/JW202 form, a physical examination using the official form, and mandatory police registration within 24 hours of arrival. X1 visa holders must convert to a residence permit within 30 days. Follow these rules carefully.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">China is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want to learn Mandarin (best place globally)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Are eligible for CSC scholarship (full funding)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want very affordable education and living costs</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Interested in Chinese culture, history, and career opportunities</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Can adapt to different systems and environments</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need unrestricted internet (VPN required for many services)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want English-speaking daily life (limited outside universities)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer less bureaucratic systems</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Have concerns about air quality (varies by city)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      China has specific documentation requirements. The JW201/JW202 form and physical examination form are essential—don't skip these.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <h4 class="font-semibold text-amber-900 mb-2">X1 vs X2 Visa</h4>
+      <div class="text-amber-800 space-y-1">
+        <p><strong>X1 Visa:</strong> For studies longer than 180 days. Must convert to residence permit within 30 days of arrival.</p>
+        <p><strong>X2 Visa:</strong> For studies shorter than 180 days. No residence permit conversion needed.</p>
+        <p>Most degree students get X1. Language students may get either depending on program length.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Health insurance is required for China student visa. Most universities include basic coverage in fees. CSC scholarship includes comprehensive insurance. For access to English-speaking international clinics, consider upgrading.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">University vs. International Insurance</h4>
+      <p class="text-blue-800">
+        University insurance (~$55-110/year) meets visa requirements and covers basic care. For access to international clinics with English-speaking doctors, consider comprehensive international insurance (~$280-700/year). Beijing/Shanghai have excellent international clinics but they're expensive without good insurance.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>CSC Scholarship:</strong> Chinese Government Scholarship includes comprehensive health insurance covering outpatient, inpatient, and accident coverage. If you have CSC, you don't need additional insurance.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Choose based on your needs: university plan for visa compliance, or international provider for access to English-speaking clinics.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Budget Option</h4>
+        <p class="text-neutral-600 text-sm">
+          University insurance (~RMB 400-800/year) meets visa requirements. Public hospitals are affordable. Learn basic medical Chinese or bring a Chinese-speaking friend for hospital visits.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Premium Option</h4>
+        <p class="text-neutral-600 text-sm">
+          International insurance (Cigna, Now Health) gives access to international clinics like Beijing United, Shanghai United, Parkway. English-speaking doctors, Western standards, but expensive without insurance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for China Student Visa"
+    description="Find coverage that fits your needs—from basic visa compliance to international clinic access."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      China is very affordable, especially outside major cities. Here's a realistic breakdown.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">City Cost Comparison</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Beijing/Shanghai:</strong> Most expensive (RMB 4,000-8,000/month, ~$560-1,120)</li>
+        <li><strong>Guangzhou/Shenzhen:</strong> High (RMB 3,000-6,000/month, ~$420-840)</li>
+        <li><strong>Tier 2 cities (Chengdu, Xi'an, Hangzhou):</strong> Moderate (RMB 2,500-4,500/month)</li>
+        <li><strong>Smaller cities:</strong> Very affordable (RMB 2,000-3,000/month, ~$280-420)</li>
+      </ul>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">CSC Scholarship Value</h4>
+      <p class="text-green-800 text-sm">
+        CSC covers: tuition waiver, accommodation, monthly stipend (RMB 2,500-3,500/month depending on level), and health insurance. Total value: RMB 50,000-80,000+/year. Check eligibility through Chinese embassy or universities.
+      </p>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      China has specific procedural requirements. Follow them carefully—especially the physical examination and police registration.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <h4 class="font-semibold text-red-900 mb-2">Critical Requirements</h4>
+      <ul class="text-red-800 space-y-1">
+        <li><strong>Police Registration:</strong> Within 24 hours of EVERY address change. Hotels do this automatically. Private accommodation: you/landlord must register at local police station.</li>
+        <li><strong>Residence Permit (X1):</strong> Convert within 30 days of arrival or face penalties.</li>
+        <li><strong>Physical Exam:</strong> Use the specific Foreigner Physical Examination Form—other formats may not be accepted.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Healthcare in China varies widely by facility type. Here's what to expect.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Public Hospital Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a fever and visit a Chinese public hospital.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Very affordable (RMB 50-200 for consultation). Can be crowded and chaotic. Limited English. Bring Chinese-speaking friend or translation app. University health center is easier option for minor issues.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">International Clinic Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same fever, but you go to an international clinic.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> English-speaking doctors, Western standards, comfortable environment. Cost: RMB 800-2,000 (~$110-280) per visit. With international insurance: mostly covered. Without: very expensive.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency</h4>
+        <p class="text-neutral-600 text-sm mb-2">You break your arm playing basketball.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Go to nearest hospital emergency. Public: affordable but language barrier. International clinic: better experience but pricier. Insurance covers either way. Bring student ID and insurance card.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">University Health Center</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a cold and visit campus clinic.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Most universities have health centers for students. Basic care, often free or very cheap with student insurance. Good first stop for minor issues.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Traditional Chinese Medicine</h4>
+        <p class="text-neutral-600 text-sm mb-2">You want to try acupuncture or herbal medicine.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> TCM clinics everywhere. Very affordable: RMB 100-300 for treatment. Some insurance covers TCM. Unique cultural experience. Quality varies—ask for recommendations.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Prescription Medication</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need regular medication for a condition.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Pharmacies (药店) common. Many medications available without prescription. Very affordable. Bring English medication names or show packaging. Specialist medications may need hospital prescription.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Forgetting Police Registration (24 Hours!)</h4>
+        <p class="text-red-800">You MUST register with local police within 24 hours of arrival AND every time you change address. Hotels do this automatically. Private accommodation: you/landlord must register. Failure can cause serious visa problems.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Converting X1 to Residence Permit</h4>
+        <p class="text-red-800">X1 visa holders must apply for residence permit within 30 days of arrival. Missing this deadline results in penalties and complications. Start the process immediately.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Setting Up VPN Before Arrival</h4>
+        <p class="text-red-800">Google, Facebook, Instagram, WhatsApp, many news sites are blocked in China. Download and set up VPN before arriving—it's very difficult to do once in China. Essential for staying connected with home.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Using Wrong Physical Examination Form</h4>
+        <p class="text-red-800">China requires the specific "Foreigner Physical Examination Form." Other formats may be rejected. Download from the Chinese embassy or your university. Complete all tests specified.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Assuming English is Widely Spoken</h4>
+        <p class="text-red-800">Outside universities and international areas, English is limited. Learn basic Mandarin or use translation apps. Hospital visits especially challenging without Chinese language skills.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      China has extensive healthcare but quality and experience vary significantly between facility types. International students typically use university clinics for minor issues and international hospitals for serious care.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Hospitals</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> Very affordable (RMB 50-200 consultation)</li>
+          <li>• <strong>Quality:</strong> Variable, often crowded</li>
+          <li>• <strong>English:</strong> Limited</li>
+          <li>• <strong>Experience:</strong> Can be overwhelming</li>
+          <li>• <strong>Best for:</strong> Budget care, serious conditions</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">International Clinics</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> High (RMB 800-2,000+ per visit)</li>
+          <li>• <strong>Quality:</strong> Excellent, Western standards</li>
+          <li>• <strong>English:</strong> Fluent English-speaking doctors</li>
+          <li>• <strong>Examples:</strong> Beijing/Shanghai United, Parkway</li>
+          <li>• <strong>Best for:</strong> Comfortable care, complex issues</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Recommended Strategy</h4>
+      <p class="text-blue-800 text-sm">
+        Minor issues: university health center first. Moderate issues: public hospital with Chinese-speaking friend. Serious/complex issues: international clinic (ensure your insurance covers this). Learn basic medical Chinese vocabulary—it helps significantly.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Need Insurance for China Student Visa?"
+    description="Compare basic university plans vs. international coverage for clinic access."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is the CSC Scholarship?</h4>
+        <p class="text-neutral-600">Chinese Government Scholarship (CSC) covers tuition, accommodation, monthly stipend (RMB 2,500-3,500), and health insurance. Apply through Chinese embassies or directly through universities. Very competitive but extremely generous. Check if your country has a quota.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Do I really need to register with police within 24 hours?</h4>
+        <p class="text-neutral-600">Yes, strictly enforced. Every time you arrive or change address in China, register within 24 hours. Hotels do this automatically. Private accommodation: you/landlord must go to local police station. Failure causes visa problems.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What's the difference between X1 and X2 visa?</h4>
+        <p class="text-neutral-600">X1 is for studies over 180 days—you must convert to residence permit within 30 days of arrival. X2 is for studies under 180 days—no conversion needed. Most degree students get X1. Language courses vary.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Do I need VPN in China?</h4>
+        <p class="text-neutral-600">Almost certainly. Google, Gmail, Facebook, Instagram, WhatsApp, Twitter, many news sites are blocked. VPN is technically illegal but widely used by foreigners. Set up BEFORE arriving—very difficult to download VPN apps in China.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How affordable is China?</h4>
+        <p class="text-neutral-600">Very affordable outside Beijing/Shanghai. Monthly budget: RMB 2,000-4,000 (~$280-560) in smaller cities, RMB 4,000-8,000 (~$560-1,120) in major cities. Street food: RMB 10-30/meal. Dorm: RMB 500-1,500/month. Tuition: RMB 15,000-50,000/year.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is Chinese healthcare good?</h4>
+        <p class="text-neutral-600">Varies widely. Public hospitals: affordable but crowded, limited English. International clinics (Beijing/Shanghai): excellent quality, English-speaking, but expensive. University health centers: good for basic care. Insurance essential for international clinic access.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        China offers exceptional value for education—affordable tuition, low living costs, and the generous CSC scholarship program. For students wanting to learn Mandarin or experience Chinese culture firsthand, there's no substitute.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The main challenges are bureaucratic requirements (police registration, residence permit conversion), internet restrictions (VPN needed), and healthcare navigation (language barriers at public hospitals). These are manageable with preparation but require attention.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> University insurance meets visa requirements affordably. If you want access to international clinics with English-speaking doctors, upgrade to international insurance. CSC scholarship includes comprehensive coverage—no need for additional insurance if you have it.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> China is ideal for students seeking affordable education, Mandarin immersion, and unique cultural experience. Follow the rules (police registration, residence permit), set up VPN before arrival, and embrace the adventure. CSC scholarship makes it even more attractive for eligible students.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for China Student Visa"
+    description="Find coverage from basic visa compliance to international clinic access."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>

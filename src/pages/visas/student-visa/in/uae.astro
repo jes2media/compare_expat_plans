@@ -1,0 +1,515 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/singapore', label: 'Singapore Student Visa' },
+  { href: '/visas/student-visa/in/uk', label: 'UK Student Visa' },
+  { href: '/visas/student-visa/in/australia', label: 'Australia Student Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Admission to UAE-licensed educational institution' },
+  { requirement: 'Financial Proof', details: 'AED 50,000-100,000 (~$13,600-27,200) varies by emirate' },
+  { requirement: 'Medical Fitness', details: 'Medical examination required in UAE' },
+  { requirement: 'Health Insurance', details: 'MANDATORY - legally required for all UAE residents' },
+  { requirement: 'Passport Validity', details: '6+ months validity' },
+  { requirement: 'Visa Fee', details: 'AED 500-1,000 (~$136-272) processing fee' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory', requirement: 'Yes - LEGALLY REQUIRED for all UAE residents' },
+  { aspect: 'Dubai Requirements', requirement: 'Must be DHA-approved plan' },
+  { aspect: 'Abu Dhabi Requirements', requirement: 'Must be DOH/HAAD-approved plan' },
+  { aspect: 'Typical Cost', requirement: 'AED 2,000-8,000/year (~$545-2,180)' },
+  { aspect: 'University Plans', requirement: 'Many include basic coverage in fees' },
+  { aspect: 'Coverage Level', requirement: 'Minimum requirements set by emirate' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'Daman (Abu Dhabi)', monthly: 'AED 150-500', coverage: 'DOH-approved', bestFor: 'Abu Dhabi students (often required)' },
+  { provider: 'Oman Insurance', monthly: 'AED 200-600', coverage: 'Comprehensive', bestFor: 'Good network across UAE' },
+  { provider: 'Cigna UAE', monthly: 'AED 300-700', coverage: 'Comprehensive', bestFor: 'Premium coverage, international network' },
+  { provider: 'AXA Gulf', monthly: 'AED 250-600', coverage: 'Comprehensive', bestFor: 'Reliable, good claims process' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Processing', amount: 'AED 500-1,000 (~$136-272)', notes: 'Student residence visa' },
+  { item: 'Emirates ID', amount: 'AED 370 (~$100)', notes: 'Mandatory identification' },
+  { item: 'Health Insurance', amount: 'AED 2,000-8,000/year', notes: '~$545-2,180 (MANDATORY)' },
+  { item: 'Tuition', amount: 'AED 30,000-100,000+/year', notes: '~$8,200-27,200+ (varies widely)' },
+  { item: 'Living Costs', amount: 'AED 5,000-10,000/month', notes: '~$1,360-2,720 (expensive)' },
+  { item: 'Accommodation', amount: 'AED 2,000-5,000/month', notes: 'Shared room to studio' },
+  { item: 'Food', amount: 'AED 1,000-2,500/month', notes: 'Home cooking cheaper' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply to UAE institution' },
+  { step: '2. Receive Acceptance', duration: '2-4 weeks', details: 'Conditional/unconditional offer' },
+  { step: '3. Visa Sponsorship', duration: 'Institution initiates', details: 'University sponsors your visa' },
+  { step: '4. Entry Permit', duration: '1-2 weeks', details: 'Receive entry permit' },
+  { step: '5. Arrive + Medical', duration: 'In UAE', details: 'Complete medical fitness test' },
+  { step: '6. Emirates ID + Visa', duration: '1-2 weeks', details: 'Biometric registration, visa stamping' },
+];
+---
+
+<PageShell
+  title="UAE Student Visa Insurance Requirements 2025 | Study in Dubai & Abu Dhabi Guide"
+  description="Complete guide to UAE student visa and mandatory health insurance requirements. Learn about DHA/DOH-approved plans, costs, and studying at world-class universities in Dubai and Abu Dhabi."
+  headline="UAE Student Visa & Insurance Guide"
+  subheadline="World-class universities in Dubai and Abu Dhabi with mandatory health insurance"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: UAE Student Residence Visa</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> Student Residence Visa</div>
+        <div><strong>Duration:</strong> 1 year (renewable)</div>
+        <div><strong>Processing Time:</strong> 2-4 weeks</div>
+        <div><strong>Visa Fee:</strong> AED 500-1,000 (~$136-272)</div>
+        <div><strong>Work Allowed:</strong> Part-time with permission (15-20 hrs/week)</div>
+        <div><strong>Insurance:</strong> MANDATORY by law</div>
+        <div><strong>Income Tax:</strong> 0% (tax-free)</div>
+        <div><strong>Living Cost:</strong> $1,360-2,720/month (expensive)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      The UAE has transformed into a major education hub, hosting prestigious international branch campuses including NYU Abu Dhabi, Sorbonne University Abu Dhabi, and University of Birmingham Dubai. For students seeking world-class education in a modern, safe, and multicultural environment, UAE offers unique advantages.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      <strong>Critical:</strong> Health insurance is LEGALLY MANDATORY for all UAE residents, including students. Each emirate has specific requirements—Dubai requires DHA-approved plans, Abu Dhabi requires DOH-approved plans. Your university may include basic coverage in fees, but verify it meets legal requirements.
+    </p>
+
+    <p class="text-neutral-600">
+      The UAE is expensive compared to many student destinations, but offers tax-free part-time work income, exceptional safety, modern infrastructure, and unique career opportunities in finance, tech, and international business.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">UAE is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want international branch campus education (NYU, Sorbonne, etc.)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Value tax-free income from part-time work</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Prioritize safety and modern infrastructure</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want career opportunities in Gulf region</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Can afford higher living costs</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need budget-friendly education (UAE is expensive)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer liberal social environment</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Can't handle extreme heat (45°C+ summers)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want to work more than part-time hours</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      UAE student visa requirements are straightforward but include mandatory health insurance and medical fitness testing. Your university typically handles the sponsorship process.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <h4 class="font-semibold text-red-900 mb-2">Mandatory Insurance - No Exceptions</h4>
+      <p class="text-red-800">
+        UAE law requires ALL residents to have health insurance. This is not optional. Without valid insurance, you cannot complete your visa process. Budget for this—it's a significant cost (AED 2,000-8,000/year).
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      UAE has strict health insurance laws. Each emirate has specific requirements, and your insurance must be approved by the relevant health authority.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <h4 class="font-semibold text-amber-900 mb-2">Emirate-Specific Requirements</h4>
+      <div class="text-amber-800 space-y-2">
+        <p><strong>Dubai:</strong> Must have DHA (Dubai Health Authority) approved plan. Basic Essential Benefits Package (EBP) is minimum requirement.</p>
+        <p><strong>Abu Dhabi:</strong> Must have DOH (Department of Health, formerly HAAD) approved plan. Thiqa or compliant private insurance.</p>
+        <p><strong>Other Emirates:</strong> Requirements vary—check with your institution.</p>
+      </div>
+    </div>
+
+    <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>University Plans:</strong> Many universities include basic insurance in fees. Verify it meets your emirate's legal requirements and provides adequate coverage. You may want to upgrade for better benefits.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Choose providers approved by your emirate's health authority. Your university can often arrange compliant coverage.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Abu Dhabi Students</h4>
+        <p class="text-neutral-600 text-sm">
+          Daman is the dominant provider for DOH-compliant coverage. NYU Abu Dhabi and other institutions often arrange Daman coverage. Verify DOH approval before purchasing any plan.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dubai Students</h4>
+        <p class="text-neutral-600 text-sm">
+          Multiple providers offer DHA-approved plans. Oman Insurance, AXA, and Cigna all have DHA-compliant options. Ensure your plan includes the Essential Benefits Package.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Find UAE-Approved Student Insurance"
+    description="Health insurance is legally required in UAE. Find DHA or DOH-approved plans that meet visa requirements."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      UAE is expensive. Budget carefully—mandatory insurance adds significant cost on top of high tuition and living expenses.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <h4 class="font-semibold text-amber-900 mb-2">Budget Reality Check</h4>
+      <p class="text-amber-800 text-sm">
+        Total annual cost: AED 100,000-200,000+ (~$27,000-55,000+) including tuition, living, and insurance. UAE is comparable to UK/US costs but with tax-free part-time income. Ensure you have adequate funding before committing.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Tax-Free Advantage</h4>
+      <p class="text-green-800 text-sm">
+        Any income from part-time work is tax-free in UAE. Wages: AED 30-50/hour for student jobs. Full-time during holidays can help offset costs. This tax advantage is unique compared to most study destinations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Your university handles most of the visa sponsorship process. The key steps after arrival are the medical test and Emirates ID registration.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Emirates ID:</strong> This is your essential identification in UAE. Required for banking, phone contracts, and many services. Apply for it immediately after visa stamping—the process involves biometric registration.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      UAE healthcare is excellent but expensive without insurance. Here's how common situations work.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (With Insurance)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a cold and need to see a doctor.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Visit in-network clinic. Copay: AED 0-50 depending on plan. Quick service, modern facilities, English-speaking doctors standard.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (Without Insurance)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same situation but without coverage (which is illegal).</p>
+        <p class="text-red-700 text-sm"><strong>Outcome:</strong> Private clinic: AED 200-400 (~$55-110). Plus medications. Very expensive—this is why insurance is mandatory.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency</h4>
+        <p class="text-neutral-600 text-sm mb-2">You're in a car accident and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to any hospital ER. With insurance: covered (check for copay). Excellent care at Cleveland Clinic Abu Dhabi, Mediclinic, etc. Without insurance: bills can be thousands.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Specialist Consultation</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need to see a dermatologist.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> With insurance: referral from GP, specialist visit covered (copay varies). Without: AED 400-800 (~$110-220). UAE has excellent specialists.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Prescription Medication</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need regular medication for a condition.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Pharmacies well-stocked but medications expensive. Insurance typically covers medications with copay. Without: common drugs AED 50-200+.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Mental Health Support</h4>
+        <p class="text-neutral-600 text-sm mb-2">You want to see a therapist.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Check if your plan covers mental health (varies). Private therapy: AED 400-800/session (~$110-220). University counseling may be free. Limited compared to Western countries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Budgeting for Mandatory Insurance</h4>
+        <p class="text-red-800">Health insurance is REQUIRED by UAE law. Budget AED 2,000-8,000/year (~$545-2,180). This is a significant cost that many students underestimate. No insurance = no visa.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Underestimating Dubai/Abu Dhabi Costs</h4>
+        <p class="text-red-800">UAE is expensive. Monthly budget: AED 5,000-10,000+ (~$1,360-2,720). Rent, food, transport all cost more than most Asian destinations. Ensure adequate funding before committing.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Understanding Emirate-Specific Insurance</h4>
+        <p class="text-red-800">Dubai and Abu Dhabi have different insurance requirements. DHA-approved (Dubai) is not the same as DOH-approved (Abu Dhabi). Verify your plan is approved for your specific emirate.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Working More Than Allowed Hours</h4>
+        <p class="text-red-800">Student visa typically allows 15-20 hours/week during term. Exceeding this without permission violates visa conditions. UAE enforces immigration rules strictly.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Delaying Medical Fitness Test</h4>
+        <p class="text-red-800">The medical fitness test must be completed in UAE for your visa to be stamped. Schedule it promptly after arrival. Delays hold up your entire visa process.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      UAE has excellent healthcare—modern hospitals, internationally trained doctors, latest technology. But it's expensive. With mandatory insurance, you have access to quality care.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Quality:</strong> World-class (Cleveland Clinic, Mediclinic)</li>
+          <li>• <strong>With insurance:</strong> Copays AED 0-100 typically</li>
+          <li>• <strong>Without insurance:</strong> GP AED 200-400, specialist 400-800</li>
+          <li>• <strong>English:</strong> Widely spoken</li>
+          <li>• <strong>Wait times:</strong> Usually short</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Availability:</strong> Limited for non-Emiratis</li>
+          <li>• <strong>Cost:</strong> Lower than private but not subsidized</li>
+          <li>• <strong>Access:</strong> Typically requires specific insurance</li>
+          <li>• <strong>Quality:</strong> Good but private usually preferred</li>
+          <li>• <strong>For students:</strong> Private healthcare is the norm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Top Hospitals in UAE</h4>
+      <p class="text-blue-800 text-sm">
+        Abu Dhabi: Cleveland Clinic Abu Dhabi, Sheikh Khalifa Medical City, NMC. Dubai: Mediclinic, American Hospital, Saudi German Hospital. These are world-class facilities—with insurance, you have access to excellent care.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Need UAE-Approved Student Insurance?"
+    description="Health insurance is legally required. Find DHA or DOH-approved plans for your emirate."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is health insurance really mandatory in UAE?</h4>
+        <p class="text-neutral-600">Yes, absolutely. UAE law requires all residents, including students, to have health insurance. This is not optional. Without valid insurance, you cannot complete the visa process. Budget AED 2,000-8,000/year for coverage.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What's the difference between DHA and DOH insurance?</h4>
+        <p class="text-neutral-600">DHA (Dubai Health Authority) regulates insurance in Dubai. DOH (Department of Health, formerly HAAD) regulates Abu Dhabi. Each has approved providers and minimum requirements. Your insurance must be approved by the relevant authority for your emirate.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How expensive is UAE for students?</h4>
+        <p class="text-neutral-600">Expensive. Monthly budget: AED 5,000-10,000 (~$1,360-2,720). Tuition: AED 30,000-100,000+/year. Plus mandatory insurance. Total annual cost: $27,000-55,000+. However, part-time income is tax-free, which helps offset costs.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying in UAE?</h4>
+        <p class="text-neutral-600">Yes, with restrictions. Typically 15-20 hours/week during term, more during holidays. Need university permission. Income is TAX-FREE—a unique advantage. Wages: AED 30-50/hour for student jobs (retail, tutoring, hospitality).</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is the Emirates ID?</h4>
+        <p class="text-neutral-600">Emirates ID is a mandatory identification card for all UAE residents. You must apply shortly after visa stamping—involves biometric registration. It's needed for banking, phone contracts, and many services. Keep it with you always.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Which universities are in UAE?</h4>
+        <p class="text-neutral-600">Major institutions include: NYU Abu Dhabi, Sorbonne University Abu Dhabi, University of Birmingham Dubai, Heriot-Watt Dubai, American University of Sharjah, Khalifa University. Mix of international branches and strong local universities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        UAE offers world-class education at prestigious international branch campuses, excellent healthcare, modern infrastructure, and tax-free income opportunities. For students who can afford the high costs, it provides unique advantages and Gulf region career opportunities.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The critical factor is cost—UAE is expensive. Mandatory health insurance alone is AED 2,000-8,000/year. Combined with high tuition and living costs, total expenses rival UK/US. However, tax-free part-time income and exceptional safety/quality of life offset this for many students.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Budget for mandatory insurance before applying—it's non-negotiable. Verify your plan is approved for your specific emirate (DHA for Dubai, DOH for Abu Dhabi). University plans often meet minimum requirements; consider upgrading for better coverage.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> UAE is ideal for students seeking premium education, safety, and Gulf career opportunities who can afford higher costs. Mandatory insurance is a significant expense but provides access to excellent healthcare. Not budget-friendly, but offers unique value for the right students.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare UAE-Approved Student Insurance"
+    description="Find DHA or DOH-approved plans for your emirate. Health insurance is legally required—budget accordingly."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>

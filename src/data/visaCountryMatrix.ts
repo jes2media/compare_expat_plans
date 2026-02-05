@@ -3238,6 +3238,388 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'Thailand has strict overstay penalties. Fine: THB 500/day (max THB 20,000). More than 90 days overstay: banned from entering Thailand (1-10 years depending on duration). Never overstay—extend your visa before it expires.'
       }
     ]
+  },
+
+  // Hungary - Student Visa (Residence Permit for Study)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'hungary',
+    officialVisaName: 'Residence Permit for the Purpose of Studies',
+    requirements: {
+      eligibility: [
+        'Acceptance to accredited Hungarian higher education institution',
+        'Proof of sufficient financial means',
+        'Valid passport',
+        'Health insurance coverage',
+        'Clean criminal record',
+        'Proof of accommodation in Hungary'
+      ],
+      financial: {
+        minimumFunds: 'HUF 96,000/month (~€250) or equivalent for living expenses',
+        proofRequired: ['Bank statement', 'Scholarship letter', 'Sponsor declaration'],
+        notes: 'One of the lowest financial requirements in the EU. Stipendium Hungaricum covers many international students fully.'
+      },
+      documents: [
+        'Valid passport',
+        'Application form',
+        'Passport photos',
+        'Acceptance letter from Hungarian university',
+        'Proof of financial means',
+        'Proof of accommodation',
+        'Health insurance documentation',
+        'Criminal record certificate',
+        'Educational certificates (apostilled)'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive acceptance from Hungarian university',
+      'Gather required documents',
+      'Apply at Hungarian embassy/consulate',
+      'Pay application fee (~€60)',
+      'Attend interview if required',
+      'Wait for processing (15-30 days)',
+      'Receive residence permit',
+      'Register at local immigration office after arrival'
+    ],
+    insuranceNotes: 'EU students: EHIC provides access to Hungarian public healthcare. Non-EU students: comprehensive health insurance required. Hungary has an affordable private insurance market. Many universities offer student insurance packages. Public healthcare available after TAJ card registration.',
+    healthcareAccess: 'EU students use EHIC for public healthcare. Non-EU students need insurance initially; after TAJ card registration, may access public system. Public healthcare quality is acceptable. Private care affordable: GP visit HUF 10,000-20,000 (~€25-50). Budapest has good English-speaking doctors.',
+    costs: {
+      visaFee: '~€60 application fee',
+      insuranceRange: '€200-500/year for private insurance; public system after TAJ registration'
+    },
+    recommendedProviders: ['hungarian-public-healthcare', 'generali-hungary', 'allianz-hungary', 'cigna-global', 'safetywing'],
+    keyConsiderations: [
+      'One of the most affordable EU countries for students',
+      'Stipendium Hungaricum scholarship covers tuition + stipend for many nationalities',
+      'Growing number of English-taught programs',
+      'EU/Schengen membership—travel freely in Europe',
+      'Budapest is vibrant with excellent student life',
+      'Hungarian language is challenging but not required for English programs'
+    ],
+    commonMistakes: [
+      'Not applying for Stipendium Hungaricum (generous full scholarships available)',
+      'Underestimating document apostille requirements',
+      'Not registering at immigration office after arrival',
+      'Assuming all programs are in English (many in Hungarian)',
+      'Not getting TAJ card for public healthcare access'
+    ],
+    faqs: [
+      {
+        question: 'What is Stipendium Hungaricum?',
+        answer: 'A Hungarian government scholarship covering tuition, accommodation, and monthly stipend for students from partner countries. Highly competitive but very generous. Check if your country has an agreement with Hungary—it could mean free education plus living expenses.'
+      },
+      {
+        question: 'How affordable is Hungary?',
+        answer: 'One of the cheapest EU countries. Monthly budget: €400-700 including rent. Budapest slightly higher than smaller cities. Tuition (non-scholarship): €1,500-6,000/year. Compared to Western Europe, Hungary offers 50-70% savings.'
+      },
+      {
+        question: 'What healthcare do I get?',
+        answer: 'EU students: EHIC covers public healthcare. Non-EU: need insurance initially. After registering for TAJ card (social security number), access public healthcare. Private care is affordable—GP visit €25-50. Many English-speaking doctors in Budapest.'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Yes. EU students can work freely. Non-EU students can work up to 24 hours/week during term, full-time during holidays. No separate work permit needed with student residence permit.'
+      },
+      {
+        question: 'Do I need to speak Hungarian?',
+        answer: 'Not for English-taught programs. Many universities offer full degrees in English, especially at master\'s level. However, basic Hungarian helps with daily life—shopping, transportation, dealing with administration. Hungarian is notoriously difficult to learn.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Hungary offers a 9-month job-seeking residence permit after graduation. If you find employment, switch to work permit. After 5 years legal residence, apply for permanent residence. EU citizenship is possible after 8 years.'
+      }
+    ]
+  },
+
+  // UAE - Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'uae',
+    officialVisaName: 'Student Residence Visa',
+    requirements: {
+      eligibility: [
+        'Acceptance to UAE-licensed educational institution',
+        'Valid passport (6+ months validity)',
+        'Proof of financial support',
+        'Medical fitness test',
+        'Health insurance coverage',
+        'Security clearance'
+      ],
+      financial: {
+        minimumFunds: 'Varies by emirate; generally AED 50,000-100,000 (~$13,600-27,200) proof',
+        proofRequired: ['Bank statement', 'Sponsor letter', 'Scholarship documentation'],
+        notes: 'Financial requirements vary by institution and emirate. Some universities handle sponsorship.'
+      },
+      documents: [
+        'Valid passport',
+        'Passport photos (white background)',
+        'Acceptance letter from UAE institution',
+        'Academic certificates (attested)',
+        'Bank statements or sponsor letter',
+        'Medical fitness certificate',
+        'Health insurance proof',
+        'Emirates ID application'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive acceptance from UAE institution',
+      'Institution initiates visa sponsorship',
+      'Submit required documents',
+      'Complete medical fitness test in UAE',
+      'Obtain health insurance',
+      'Receive entry permit',
+      'Enter UAE and complete visa stamping',
+      'Apply for Emirates ID'
+    ],
+    insuranceNotes: 'Health insurance is MANDATORY in UAE—required by law for all residents including students. Many universities include basic insurance in fees. Dubai requires specific DHA-approved plans. Abu Dhabi requires HAAD-approved plans. Private healthcare is the norm; public facilities limited for non-Emiratis.',
+    healthcareAccess: 'UAE healthcare is primarily private and high quality but expensive. Insurance is mandatory. With insurance, good access to modern hospitals. Without insurance, costs are very high. Emergency care available but expect bills. Many top hospitals: Cleveland Clinic Abu Dhabi, Mediclinic, etc.',
+    costs: {
+      visaFee: 'AED 500-1,000 (~$136-272) for visa processing',
+      insuranceRange: 'AED 2,000-8,000/year (~$545-2,180) depending on coverage level'
+    },
+    recommendedProviders: ['daman-uae', 'oman-insurance', 'cigna-uae', 'axa-gulf', 'bupa-global'],
+    keyConsiderations: [
+      'World-class international branch campuses (NYU, Sorbonne, etc.)',
+      'Tax-free income if you work part-time',
+      'Very high living costs, especially in Dubai',
+      'Mandatory health insurance—factor into budget',
+      'Modern infrastructure and safe environment',
+      'Hot climate—summers reach 45°C+'
+    ],
+    commonMistakes: [
+      'Not budgeting for mandatory health insurance (significant cost)',
+      'Underestimating Dubai/Abu Dhabi living costs',
+      'Not completing medical fitness test promptly',
+      'Working more than allowed hours (strict enforcement)',
+      'Not understanding emirate-specific insurance requirements'
+    ],
+    faqs: [
+      {
+        question: 'Is health insurance mandatory in UAE?',
+        answer: 'Yes, absolutely. Health insurance is legally required for all UAE residents, including students. Dubai requires DHA-approved plans; Abu Dhabi requires HAAD/DOH-approved plans. Many universities include basic coverage in fees, but verify it meets legal requirements.'
+      },
+      {
+        question: 'How expensive is UAE for students?',
+        answer: 'Expensive. Monthly budget: AED 5,000-10,000 (~$1,360-2,720) depending on lifestyle and emirate. Accommodation is the biggest expense. Dubai is priciest; Sharjah and other emirates are cheaper. Tuition: AED 30,000-100,000+/year (~$8,200-27,200+).'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Yes, with restrictions. Students can work part-time (typically 15-20 hours/week) with university permission. Full-time during holidays. Income is tax-free. Many students work in retail, hospitality, or tutoring.'
+      },
+      {
+        question: 'What universities are in UAE?',
+        answer: 'UAE hosts many international branch campuses: NYU Abu Dhabi, Sorbonne University Abu Dhabi, Heriot-Watt Dubai, University of Birmingham Dubai, and more. Also strong local institutions like Khalifa University and American University of Sharjah.'
+      },
+      {
+        question: 'Is UAE healthcare good?',
+        answer: 'Excellent quality—modern facilities, internationally trained doctors. Cleveland Clinic Abu Dhabi, Mediclinic, and other top hospitals. However, it\'s expensive without insurance. With mandatory insurance, you have good access. Public facilities limited for non-Emiratis.'
+      },
+      {
+        question: 'What is Emirates ID?',
+        answer: 'Emirates ID is a mandatory identification card for all UAE residents. You must apply shortly after visa stamping. It\'s needed for banking, phone contracts, and many services. The process involves biometric registration.'
+      }
+    ]
+  },
+
+  // China - Student Visa (X1/X2)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'china',
+    officialVisaName: 'X1/X2 Student Visa',
+    requirements: {
+      eligibility: [
+        'Acceptance to Chinese educational institution',
+        'JW201 or JW202 form from Chinese university',
+        'Valid passport (6+ months validity)',
+        'Physical examination record (Foreigner Physical Examination Form)',
+        'Proof of financial support',
+        'Non-criminal record (for X1)'
+      ],
+      financial: {
+        minimumFunds: 'Varies; generally RMB 20,000-50,000/year (~$2,800-7,000) proof',
+        proofRequired: ['Bank statement', 'Scholarship letter', 'Sponsor declaration'],
+        notes: 'Chinese Government Scholarship (CSC) covers many students fully. Financial requirements flexible with scholarship.'
+      },
+      documents: [
+        'Valid passport',
+        'Visa application form',
+        'Passport photo',
+        'Admission notice from Chinese institution',
+        'JW201 or JW202 form',
+        'Foreigner Physical Examination Form',
+        'Proof of financial support',
+        'Non-criminal record certificate (X1 visa)'
+      ]
+    },
+    duration: {
+      initial: 'X1: >180 days study, X2: <180 days study',
+      renewable: true,
+      maxStay: 'Duration of studies (X1 requires residence permit conversion)'
+    },
+    applicationProcess: [
+      'Receive admission from Chinese university',
+      'Receive JW201/JW202 form',
+      'Complete physical examination in home country',
+      'Apply for X1 or X2 visa at Chinese embassy',
+      'Pay visa fee (varies by nationality)',
+      'Receive visa',
+      'Arrive in China',
+      'X1 holders: convert to residence permit within 30 days',
+      'Register with local police within 24 hours of arrival'
+    ],
+    insuranceNotes: 'Health insurance is required for student visa/residence permit. Many universities include basic insurance in fees (~RMB 400-800/year). China has public healthcare but foreigners typically use international clinics or private hospitals. Insurance essential for accessing quality English-speaking care.',
+    healthcareAccess: 'China has extensive healthcare but quality varies. International hospitals/clinics in major cities offer English-speaking care but are expensive. University health centers provide basic care. With insurance, access to international-standard facilities. Without insurance, public hospitals are affordable but challenging (language, queues).',
+    costs: {
+      visaFee: 'Varies by nationality ($30-180)',
+      insuranceRange: 'RMB 400-800/year (~$55-110) basic; RMB 2,000-5,000/year (~$280-700) comprehensive'
+    },
+    recommendedProviders: ['chinese-university-insurance', 'ping-an-insurance', 'cigna-global', 'allianz-worldwide', 'now-health'],
+    keyConsiderations: [
+      'Chinese Government Scholarship (CSC) offers full funding for many nationalities',
+      'Very affordable outside major cities (RMB 2,000-4,000/month living costs)',
+      'Mandarin language programs excellent and popular',
+      'Must register with police within 24 hours of every address change',
+      'Internet restrictions (VPN needed for many Western services)',
+      'Incredible cultural experience and career opportunities'
+    ],
+    commonMistakes: [
+      'Not completing physical examination before applying (specific form required)',
+      'Forgetting to register with police within 24 hours (strict requirement)',
+      'X1 holders not converting to residence permit within 30 days',
+      'Not getting VPN before arriving (difficult to set up in China)',
+      'Assuming English is widely spoken (limited outside major cities/universities)'
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between X1 and X2 visa?',
+        answer: 'X1 visa is for studies longer than 180 days—you must convert it to a residence permit within 30 days of arrival. X2 visa is for studies under 180 days and doesn\'t require residence permit conversion. Most degree students get X1.'
+      },
+      {
+        question: 'What is the Chinese Government Scholarship (CSC)?',
+        answer: 'A full scholarship covering tuition, accommodation, stipend, and insurance for international students. Very competitive but generous. Apply through Chinese embassies or directly through universities. Check if your country has a quota.'
+      },
+      {
+        question: 'How affordable is China?',
+        answer: 'Very affordable outside Beijing/Shanghai. Monthly budget: RMB 2,000-4,000 (~$280-560) in smaller cities; RMB 4,000-8,000 (~$560-1,120) in major cities. Dorm: RMB 500-1,500/month. Street food: RMB 10-30/meal. China offers excellent value.'
+      },
+      {
+        question: 'What is police registration?',
+        answer: 'Within 24 hours of arriving or changing address in China, you must register with local police. Hotels do this automatically. If staying in private accommodation, you/your landlord must register at the local police station. Failure to register can cause visa problems.'
+      },
+      {
+        question: 'Is healthcare good in China?',
+        answer: 'Varies widely. International hospitals in Beijing/Shanghai are excellent but expensive. Public hospitals are affordable but crowded, with limited English. University health centers handle basic needs. Insurance essential for accessing quality English-speaking care.'
+      },
+      {
+        question: 'Do I need VPN in China?',
+        answer: 'Probably. Many Western services are blocked: Google, Facebook, Instagram, WhatsApp, many news sites. VPN is technically illegal but widely used. Set up before arriving—it\'s difficult to download VPN apps in China. Essential for staying connected with home.'
+      }
+    ]
+  },
+
+  // India - Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'india',
+    officialVisaName: 'Student Visa (S Visa)',
+    requirements: {
+      eligibility: [
+        'Admission to recognized Indian educational institution',
+        'Valid passport (6+ months validity)',
+        'Proof of sufficient funds',
+        'Letter from institution confirming admission',
+        'Proof of accommodation',
+        'No adverse immigration history'
+      ],
+      financial: {
+        minimumFunds: 'Generally $10,000-15,000 USD proof of funds for living expenses',
+        proofRequired: ['Bank statement', 'Scholarship letter', 'Sponsor affidavit'],
+        notes: 'Requirements vary. ICCR scholarships (Indian Council for Cultural Relations) provide full funding for many nationalities.'
+      },
+      documents: [
+        'Valid passport',
+        'Online visa application form',
+        'Passport photos',
+        'Admission letter from Indian institution',
+        'Proof of financial support',
+        'Academic transcripts/certificates',
+        'Letter of recommendation (sometimes)',
+        'Proof of accommodation'
+      ]
+    },
+    duration: {
+      initial: 'Up to 5 years or duration of course',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive admission from Indian institution',
+      'Apply online via Indian Visa Online portal',
+      'Submit documents at Indian embassy/consulate or visa center',
+      'Pay visa fee (varies by nationality, ~$100-200)',
+      'Wait for processing (5-15 business days)',
+      'Receive visa',
+      'Arrive in India',
+      'Register with FRRO within 14 days (for stays over 180 days)'
+    ],
+    insuranceNotes: 'Health insurance is highly recommended but not always strictly mandatory for visa. Many Indian universities offer affordable group insurance. International students typically use private healthcare. India has excellent private hospitals at reasonable prices, but insurance important for major treatment.',
+    healthcareAccess: 'India has world-class private hospitals (Apollo, Fortis, Max) at affordable prices—India is a medical tourism destination. Public hospitals are very cheap but crowded and variable quality. Private care affordable: GP visit INR 500-1,500 (~$6-18). Insurance recommended for hospital stays.',
+    costs: {
+      visaFee: '~$100-200 depending on nationality',
+      insuranceRange: 'INR 5,000-20,000/year (~$60-240) for comprehensive coverage'
+    },
+    recommendedProviders: ['icici-lombard', 'star-health-india', 'cigna-global', 'safetywing', 'allianz-worldwide'],
+    keyConsiderations: [
+      'Extremely affordable: INR 15,000-30,000/month (~$180-360) living costs',
+      'World-class private healthcare at budget prices',
+      'ICCR scholarships available for many nationalities',
+      'Diverse educational offerings from IITs to yoga/Ayurveda',
+      'Visa allows multiple entries',
+      'Rich cultural experience but can be overwhelming initially'
+    ],
+    commonMistakes: [
+      'Not registering with FRRO within 14 days (for stays over 180 days)',
+      'Underestimating cultural adjustment period',
+      'Not having insurance for unexpected health issues',
+      'Choosing accommodation too far from institution (traffic can be severe)',
+      'Not getting vaccinations recommended for India'
+    ],
+    faqs: [
+      {
+        question: 'How affordable is India for students?',
+        answer: 'Extremely affordable. Monthly budget: INR 15,000-30,000 (~$180-360) covers accommodation, food, transport. Tuition varies widely: INR 50,000-500,000/year (~$600-6,000) depending on institution. Private rooms: INR 5,000-15,000/month. Meals: INR 50-200 (~$0.60-2.40).'
+      },
+      {
+        question: 'Is Indian healthcare good?',
+        answer: 'Private healthcare is excellent—India is a medical tourism destination. Apollo, Fortis, Max hospitals offer world-class care at fraction of Western prices. Public hospitals very cheap but crowded. GP visit: $6-18 private. Insurance recommended for hospital stays but routine care very affordable.'
+      },
+      {
+        question: 'What is FRRO registration?',
+        answer: 'Foreigners Regional Registration Office. If staying in India over 180 days, you must register within 14 days of arrival. Done online via FRRO portal, then visit may be required. Keep registration certificate—needed for visa extensions and exits.'
+      },
+      {
+        question: 'What scholarships are available?',
+        answer: 'ICCR (Indian Council for Cultural Relations) offers scholarships to students from many countries covering tuition, accommodation, and stipend. Various state and university scholarships also available. Check with Indian embassy and target institutions.'
+      },
+      {
+        question: 'Can I work while studying in India?',
+        answer: 'Student visa does NOT permit employment. Any work requires separate work visa/permit. Some institutions allow internships as part of curriculum. Generally, students rely on savings, scholarships, or family support.'
+      },
+      {
+        question: 'What vaccinations do I need?',
+        answer: 'Recommended: Hepatitis A & B, Typhoid, Tetanus, routine vaccines. Yellow fever certificate required if coming from endemic country. Malaria prophylaxis recommended for some regions. Consult travel clinic before departure. Health precautions important—food/water safety matters.'
+      }
+    ]
   }
 ];
 

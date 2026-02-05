@@ -1,0 +1,516 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/thailand', label: 'Thailand Student Visa' },
+  { href: '/visas/student-visa/in/malaysia', label: 'Malaysia Student Visa' },
+  { href: '/visas/student-visa/in/china', label: 'China Student Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Admission to recognized Indian educational institution' },
+  { requirement: 'Financial Proof', details: '$10,000-15,000 USD proof of funds (varies)' },
+  { requirement: 'Accommodation Proof', details: 'University hostel or confirmed housing' },
+  { requirement: 'Passport Validity', details: '6+ months validity' },
+  { requirement: 'Visa Fee', details: '~$100-200 (varies by nationality)' },
+  { requirement: 'Academic Documents', details: 'Transcripts, certificates, recommendation letters' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory', requirement: 'Highly recommended but not always strictly required' },
+  { aspect: 'Private Healthcare', requirement: 'World-class and affordable (medical tourism destination)' },
+  { aspect: 'Public Healthcare', requirement: 'Very cheap but crowded, variable quality' },
+  { aspect: 'Typical Cost', requirement: 'INR 5,000-20,000/year (~$60-240)' },
+  { aspect: 'ICCR Scholarship', requirement: 'May include insurance coverage' },
+  { aspect: 'Recommendation', requirement: 'Get insurance for hospital stays and emergencies' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'ICICI Lombard', monthly: 'INR 400-1,500', coverage: 'Comprehensive', bestFor: 'Major Indian insurer, wide network' },
+  { provider: 'Star Health', monthly: 'INR 500-1,200', coverage: 'Comprehensive', bestFor: 'Good student plans, affordable' },
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'International coverage, travel included' },
+  { provider: 'Cigna Global', monthly: '~$120-180', coverage: 'Premium', bestFor: 'Premium hospitals, chronic conditions' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Fee', amount: '$100-200', notes: 'Varies by nationality' },
+  { item: 'FRRO Registration', amount: 'Free', notes: 'Required for stays over 180 days' },
+  { item: 'Health Insurance', amount: 'INR 5,000-20,000/year', notes: '~$60-240 (recommended)' },
+  { item: 'Tuition', amount: 'INR 50,000-500,000/year', notes: '~$600-6,000 (varies widely)' },
+  { item: 'Living Costs', amount: 'INR 15,000-30,000/month', notes: '~$180-360 (extremely affordable)' },
+  { item: 'Accommodation', amount: 'INR 5,000-15,000/month', notes: 'Hostel INR 3,000-8,000, private higher' },
+  { item: 'Food', amount: 'INR 3,000-6,000/month', notes: 'Street food very cheap' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply directly or through ICCR' },
+  { step: '2. Receive Admission', duration: '2-4 weeks', details: 'Admission letter from institution' },
+  { step: '3. Online Visa Application', duration: '1-2 days', details: 'Apply via Indian Visa Online portal' },
+  { step: '4. Visa Processing', duration: '5-15 business days', details: 'At Indian embassy/visa center' },
+  { step: '5. Arrive in India', duration: 'Within visa validity', details: 'Begin your studies' },
+  { step: '6. FRRO Registration', duration: 'Within 14 days', details: 'Required for stays over 180 days' },
+];
+---
+
+<PageShell
+  title="India Student Visa Insurance Requirements 2025 | Study in India Guide"
+  description="Complete guide to India student visa (S Visa) and health insurance. Learn about ICCR scholarships, FRRO registration, and world-class healthcare at budget prices."
+  headline="India Student Visa & Insurance Guide"
+  subheadline="World-class private healthcare at budget prices with diverse educational offerings"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: India Student Visa (S Visa)</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> Student Visa (S Visa)</div>
+        <div><strong>Duration:</strong> Up to 5 years or course duration</div>
+        <div><strong>Processing Time:</strong> 5-15 business days</div>
+        <div><strong>Visa Fee:</strong> $100-200 (varies by nationality)</div>
+        <div><strong>Work Allowed:</strong> No (student visa doesn't permit work)</div>
+        <div><strong>Insurance:</strong> Highly recommended</div>
+        <div><strong>FRRO Registration:</strong> Within 14 days (for 180+ day stays)</div>
+        <div><strong>Living Cost:</strong> $180-360/month (extremely affordable)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      India offers an incredibly diverse educational landscape—from world-renowned IITs (Indian Institutes of Technology) to traditional yoga and Ayurveda programs. As one of the world's most affordable countries for international students, India provides exceptional value combined with rich cultural immersion.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      India is also a major medical tourism destination. Private hospitals like Apollo, Fortis, and Max offer world-class care at a fraction of Western prices. A GP visit costs $6-18, and even complex surgeries are remarkably affordable compared to the US or Europe.
+    </p>
+
+    <p class="text-neutral-600">
+      The ICCR (Indian Council for Cultural Relations) offers scholarships to students from many countries, covering tuition, accommodation, and stipend. Combined with India's low cost of living, studying in India can be remarkably economical.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">India is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want extremely affordable education and living costs</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Value world-class private healthcare at budget prices</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Interested in yoga, Ayurveda, or traditional practices</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want rich cultural immersion and diverse experiences</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Can adapt to a different pace and environment</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need to work while studying (not permitted on student visa)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer highly developed infrastructure throughout</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Have difficulty adjusting to very different environments</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer cooler climates (India can be very hot)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      India's student visa requirements are straightforward. The visa can be issued for up to 5 years or the duration of your course, whichever is shorter.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>FRRO Registration:</strong> If staying more than 180 days, you must register with FRRO (Foreigners Regional Registration Office) within 14 days of arrival. Done online via the FRRO portal. Keep the registration certificate—needed for visa extensions and exit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Health insurance is highly recommended but not always strictly mandatory for India student visa. However, given the potential for health issues in an unfamiliar environment, insurance is strongly advised.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Why Insurance Still Makes Sense</h4>
+      <p class="text-green-800">
+        India's private healthcare is affordable but hospital stays still cost money. Insurance (~$60-240/year) protects against unexpected expenses. Routine care is cheap out-of-pocket, but hospitalization for serious illness or accident can cost thousands without coverage.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Health Precautions:</strong> India requires different health preparations. Recommended vaccinations: Hepatitis A & B, Typhoid, Tetanus. Food and water safety matters—stomach issues are common for newcomers. Insurance provides peace of mind during adjustment period.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Indian insurers offer affordable coverage. International providers are good if you want premium hospital access or plan to travel outside India.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Budget Option</h4>
+        <p class="text-neutral-600 text-sm">
+          Indian insurers (ICICI Lombard, Star Health) at INR 5,000-15,000/year (~$60-180). Good network of hospitals. Routine care is cheap out-of-pocket anyway.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Premium Option</h4>
+        <p class="text-neutral-600 text-sm">
+          International providers (Cigna, SafetyWing) for access to premium hospitals and coverage outside India. Good if you have chronic conditions or plan regional travel.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for India Student Visa"
+    description="Find affordable coverage for peace of mind. Indian private healthcare is world-class at budget prices."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      India is one of the world's most affordable countries for students. Here's a realistic breakdown.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">City Cost Comparison</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Mumbai/Delhi:</strong> Most expensive (INR 25,000-40,000/month, ~$300-480)</li>
+        <li><strong>Bangalore/Chennai:</strong> Moderate (INR 20,000-30,000/month, ~$240-360)</li>
+        <li><strong>Hyderabad/Pune:</strong> Affordable (INR 15,000-25,000/month, ~$180-300)</li>
+        <li><strong>Smaller cities:</strong> Very affordable (INR 10,000-18,000/month, ~$120-220)</li>
+      </ul>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Incredible Value</h4>
+      <p class="text-green-800 text-sm">
+        Street food meal: $0.60-1.50. Restaurant meal: $2-5. Monthly room rent: $60-180. Public transport: $0.10-0.50 per trip. You can live comfortably on $200-350/month outside major cities—one of the world's best values.
+      </p>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      India's student visa process is relatively quick. Apply online and submit documents at the embassy or visa center.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <h4 class="font-semibold text-amber-900 mb-2">FRRO Registration</h4>
+      <p class="text-amber-800">
+        If staying over 180 days, register with FRRO within 14 days of arrival. Done online at indianfrro.gov.in, then you may need an in-person appointment. Keep the Registration Certificate—required for visa extensions and when leaving India.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      India's private healthcare is excellent and affordable. Here's what to expect.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Private Hospital GP Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a fever and visit a private hospital clinic.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Cost: INR 500-1,500 (~$6-18). Quick, professional, English-speaking doctors. Modern facilities at Apollo, Fortis, Max. Very affordable even without insurance.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Public Hospital Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same situation at a government hospital.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Almost free (INR 10-50). Very crowded, long waits, variable facilities. English may be limited. Best for budget constraints or unavoidable situations.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency</h4>
+        <p class="text-neutral-600 text-sm mb-2">You're in an accident and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to private hospital ER. Excellent care at Apollo, Fortis. Costs depend on treatment—can be INR 10,000-50,000+. Insurance covers this. India is a medical tourism destination for a reason.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Stomach Issues</h4>
+        <p class="text-neutral-600 text-sm mb-2">You get "Delhi belly"—common for newcomers.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Very common adjustment. Pharmacy (chemist) has OTC remedies: INR 50-200. If persistent, see doctor: INR 500-1,000. Usually resolves in days. Stay hydrated, avoid tap water, be careful with street food initially.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dental Care</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need a dental checkup.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> India has excellent, affordable dental care. Cleaning: INR 500-1,500 (~$6-18). Filling: INR 500-2,000 (~$6-24). Root canal: INR 3,000-8,000 (~$36-96). Fraction of Western prices.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Ayurvedic Treatment</h4>
+        <p class="text-neutral-600 text-sm mb-2">You want to try traditional Ayurvedic medicine.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> India is the home of Ayurveda. Consultations: INR 200-1,000. Treatments vary widely. Kerala is famous for authentic Ayurveda. Unique cultural and wellness experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Registering with FRRO</h4>
+        <p class="text-red-800">If staying over 180 days, FRRO registration is mandatory within 14 days. Failure can cause problems with visa extension and departure. Register online at indianfrro.gov.in and keep the certificate.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Skipping Vaccinations</h4>
+        <p class="text-red-800">Recommended: Hepatitis A & B, Typhoid, Tetanus, and routine vaccines. Malaria prophylaxis for some regions. Yellow fever certificate if coming from endemic area. Visit travel clinic before departure.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Underestimating Adjustment Period</h4>
+        <p class="text-red-800">India is intense—heat, crowds, different food, different pace. Stomach issues are common initially. Give yourself time to adjust. Stay hydrated, be careful with street food at first, get rest. Insurance provides peace of mind during this period.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Assuming You Can Work</h4>
+        <p class="text-red-800">India student visa does NOT permit employment. Any work requires separate work visa/permit. Some internships allowed as part of curriculum. Rely on savings, scholarships, or family support.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Skipping Insurance</h4>
+        <p class="text-red-800">While not always mandatory, insurance is strongly recommended. Routine care is cheap, but hospitalization can cost thousands. Insurance (~$60-240/year) is worth the peace of mind, especially during adjustment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      India is a major medical tourism destination—people fly in from around the world for affordable, high-quality treatment. Private hospitals are excellent; public hospitals are cheap but crowded.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Quality:</strong> World-class (Apollo, Fortis, Max, Manipal)</li>
+          <li>• <strong>GP visit:</strong> INR 500-1,500 (~$6-18)</li>
+          <li>• <strong>Specialist:</strong> INR 1,000-3,000 (~$12-36)</li>
+          <li>• <strong>English:</strong> Widely spoken</li>
+          <li>• <strong>Why affordable:</strong> Lower labor costs, not lower quality</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> Almost free (INR 10-50)</li>
+          <li>• <strong>Quality:</strong> Variable, can be good at top institutions</li>
+          <li>• <strong>Environment:</strong> Crowded, long waits</li>
+          <li>• <strong>English:</strong> Limited outside major cities</li>
+          <li>• <strong>Best for:</strong> Budget constraints, specific specialists</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Healthcare Strategy</h4>
+      <p class="text-blue-800 text-sm">
+        Use private hospitals for routine care—it's affordable and comfortable. Insurance (~$60-240/year) protects against hospitalization costs. Keep basic medications (stomach remedies, painkillers, rehydration salts) at home. Pharmacies (chemists) are everywhere and sell many medications without prescription.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Need Insurance for India Student Visa?"
+    description="Find affordable coverage for world-class Indian healthcare. Peace of mind for your study adventure."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is Indian healthcare really that good?</h4>
+        <p class="text-neutral-600">Private healthcare, yes—India is a major medical tourism destination. Hospitals like Apollo, Fortis, and Max offer world-class care with doctors trained internationally. Prices are 50-90% lower than US/Europe. Public hospitals are very cheap but crowded and variable.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is FRRO registration?</h4>
+        <p class="text-neutral-600">Foreigners Regional Registration Office. If staying over 180 days, register within 14 days of arrival at indianfrro.gov.in. Keep the Registration Certificate—needed for visa extensions and when leaving India. Don't skip this.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What vaccinations do I need?</h4>
+        <p class="text-neutral-600">Recommended: Hepatitis A & B, Typhoid, Tetanus, routine vaccines (MMR, polio). Malaria prophylaxis for some regions. Yellow fever certificate if coming from endemic country. Visit travel clinic 4-6 weeks before departure.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying in India?</h4>
+        <p class="text-neutral-600">No. India student visa does not permit employment. Any work requires separate work visa/permit. Some curriculum-based internships may be allowed. Students rely on savings, scholarships (ICCR), or family support.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How affordable is India really?</h4>
+        <p class="text-neutral-600">Extremely affordable. Monthly budget: $180-360 covers accommodation, food, transport comfortably. Street food meal: $0.60-1.50. Restaurant: $2-5. Room rent: $60-180. One of the world's most affordable student destinations.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is ICCR scholarship?</h4>
+        <p class="text-neutral-600">Indian Council for Cultural Relations offers scholarships to students from many countries. Covers tuition, accommodation allowance, monthly stipend, and sometimes insurance. Apply through Indian embassies. Check if your country has an agreement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        India offers unparalleled value: world-class private healthcare at budget prices, extremely affordable living costs, diverse educational options, and rich cultural immersion. For students seeking a transformative experience at minimal cost, India is hard to beat.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The main challenges are the adjustment period (different food, climate, pace), no work rights on student visa, and navigating a very different environment. These are manageable with preparation and open-mindedness, and for many, the cultural experience is the point.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Get health insurance (~$60-240/year) even though it's not strictly mandatory—peace of mind during adjustment is valuable. Get vaccinations before departure. Register with FRRO within 14 days. Private hospitals are affordable and excellent for any health needs.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> India is ideal for students seeking maximum value, cultural immersion, and unique experiences. World-class healthcare at $6-18 per GP visit, living costs under $300/month, and rich cultural offerings make it exceptional. Come with an open mind and reasonable health precautions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for India Student Visa"
+    description="Find affordable coverage for world-class Indian healthcare. Protect yourself during your study adventure."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>
