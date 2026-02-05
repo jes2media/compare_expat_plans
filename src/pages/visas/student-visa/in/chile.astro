@@ -1,0 +1,518 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/argentina', label: 'Argentina Student Visa' },
+  { href: '/visas/student-visa/in/spain', label: 'Spain Student Visa' },
+  { href: '/countries/chile/insurance', label: 'Chile Insurance Guide' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Letter from Chilean educational institution' },
+  { requirement: 'Financial Proof', details: 'USD 500-1,000/month or scholarship coverage' },
+  { requirement: 'Passport Validity', details: 'Valid passport' },
+  { requirement: 'Criminal Record', details: 'Police clearance certificate (apostilled)' },
+  { requirement: 'Health Certificate', details: 'Medical fitness certificate' },
+  { requirement: 'Health Insurance', details: 'Required for visa application' },
+  { requirement: 'Visa Fee', details: 'USD 100-200 depending on nationality' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory?', requirement: 'YES—required for visa application' },
+  { aspect: 'Public Option (FONASA)', requirement: 'Available to students with visa—7% contribution or fixed amount' },
+  { aspect: 'Private Option (ISAPRE)', requirement: 'Better coverage, shorter waits, more expensive' },
+  { aspect: 'International Insurance', requirement: 'Accepted if meeting requirements' },
+  { aspect: 'Cost Range', requirement: 'USD 400-1,200/year depending on coverage type' },
+  { aspect: 'Recommendation', requirement: 'FONASA + optional private supplement' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'FONASA (Public)', monthly: '7% income or ~$30-50', coverage: 'Comprehensive public', bestFor: 'Affordable access to public + some private' },
+  { provider: 'Consalud (ISAPRE)', monthly: 'CLP 50,000-100,000', coverage: 'Comprehensive private', bestFor: 'Better private hospital access' },
+  { provider: 'Banmédica (ISAPRE)', monthly: 'CLP 60,000-120,000', coverage: 'Premium', bestFor: 'Best private network, premium care' },
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'International travel coverage' },
+  { provider: 'Cigna Global', monthly: '~$100-150', coverage: 'Global', bestFor: 'Comprehensive international coverage' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Fee', amount: 'USD 100-200', notes: 'Depends on nationality' },
+  { item: 'RUT Registration', amount: 'Free', notes: 'Tax ID—needed for many services' },
+  { item: 'FONASA Contribution', amount: '7% or ~$30-50/month', notes: 'Public health insurance' },
+  { item: 'ISAPRE (Private)', amount: 'CLP 50,000-120,000/month', notes: '~$55-130/month optional upgrade' },
+  { item: 'Tuition', amount: 'CLP 2,500,000-7,000,000/year', notes: '~$2,700-7,600 depending on university' },
+  { item: 'Accommodation', amount: 'CLP 300,000-600,000/month', notes: '~$325-650 in Santiago' },
+  { item: 'Living Costs', amount: 'CLP 300,000-500,000/month', notes: '~$325-540 (food, transport, etc.)' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply to Chilean university' },
+  { step: '2. Gather Documents', duration: '2-4 weeks', details: 'Apostille certificates, get insurance' },
+  { step: '3. Visa Application', duration: '1-2 days', details: 'Apply at consulate or online' },
+  { step: '4. Processing', duration: '2-4 weeks', details: 'Wait for visa approval' },
+  { step: '5. Arrival in Chile', duration: 'After visa', details: 'Enter Chile with student visa' },
+  { step: '6. PDI Registration', duration: 'Within 30 days', details: 'Register with police (PDI)' },
+  { step: '7. RUT + Healthcare', duration: '1-2 weeks', details: 'Get RUT (tax ID) and register for FONASA' },
+];
+---
+
+<PageShell
+  title="Chile Student Visa Insurance Requirements 2025 | Study in Chile Guide"
+  description="Complete guide to Chile student visa and health insurance. Learn about FONASA public healthcare, top universities like PUC and Universidad de Chile, and living in one of South America's most stable countries."
+  headline="Chile Student Visa & Insurance Guide"
+  subheadline="Top universities in South America's most stable economy with dual healthcare system"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: Chile Student Visa</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> Student Residence Visa (Visa de Estudiante)</div>
+        <div><strong>Duration:</strong> 1 year (renewable)</div>
+        <div><strong>Processing Time:</strong> 2-4 weeks</div>
+        <div><strong>Visa Fee:</strong> USD 100-200</div>
+        <div><strong>Work Allowed:</strong> Up to 30 hours/week with authorization</div>
+        <div><strong>Insurance:</strong> REQUIRED for visa application</div>
+        <div><strong>Public Healthcare:</strong> FONASA available to students</div>
+        <div><strong>Living Cost:</strong> $650-1,200/month (moderate for region)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      Chile offers some of South America's best universities in the continent's most economically stable country. Pontificia Universidad Católica de Chile (PUC) and Universidad de Chile consistently rank among Latin America's top institutions, with growing international programs and research opportunities.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      The healthcare system is a major advantage: Chile has a dual public-private system with FONASA (public insurance) available to student visa holders. This provides affordable healthcare access with the option to upgrade to private ISAPREs for faster, more comfortable care. Santiago has world-class private hospitals like Clínica Alemana and Clínica Las Condes.
+    </p>
+
+    <p class="text-neutral-600">
+      Chile is more expensive than some South American neighbors (Argentina, Colombia) but offers greater stability, excellent infrastructure, and a high quality of life. The dramatic landscapes—from Atacama Desert to Patagonia—provide incredible travel opportunities during breaks.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">Chile is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want top-ranked universities (PUC, U de Chile)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Value economic and political stability</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want access to excellent healthcare (FONASA + private)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Love dramatic landscapes (desert, mountains, Patagonia)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Speak Spanish or willing to learn intensively</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need very cheap living costs (Chile is moderate, not cheap)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Don't speak Spanish (most programs in Spanish)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want free tuition (Chile charges; Argentina is free)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer tropical climates (Santiago can be cold in winter)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Chile's student visa requires health insurance proof upfront. The process is relatively straightforward, though Chilean bureaucracy can be slow. Ensure documents are apostilled as required.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Pro Tip:</strong> Start document preparation early. Apostille requirements can take time in your home country. Chile has increasingly moved processes online, but in-person steps may still be required.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Health insurance is REQUIRED for Chile student visa application. Once in Chile, you can enroll in FONASA (public system) or choose a private ISAPRE. Most students use FONASA for affordability.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">FONASA: Affordable Public Healthcare</h4>
+      <p class="text-green-800">
+        FONASA is Chile's public health insurance. Students can enroll with a 7% income contribution (or fixed amount if no income). FONASA gives access to public hospitals and many private providers at subsidized rates. It's the most affordable option and provides good coverage.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">ISAPRE: Private Alternative</h4>
+      <p class="text-blue-800">
+        ISAPREs are private health insurers offering better coverage, shorter waits, and access to premium hospitals. More expensive (CLP 50,000-120,000/month, ~$55-130) but provide higher quality care. Consider if you have ongoing health needs or prefer private facilities.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Chile's dual system gives you options: affordable FONASA or premium ISAPREs. International insurance works for visa application but FONASA/ISAPRE is better for ongoing care.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Best for Most Students</h4>
+        <p class="text-neutral-600 text-sm">
+          FONASA is the practical choice for most students. At 7% contribution (or ~$30-50/month fixed), you get comprehensive coverage including access to excellent public hospitals and subsidized private care. Add travel insurance for international trips.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">When to Choose ISAPRE</h4>
+        <p class="text-neutral-600 text-sm">
+          ISAPREs make sense if you have ongoing health conditions, prefer private hospitals exclusively, or want shorter wait times. Banmédica and Consalud are major providers. Budget CLP 50,000-100,000/month (~$55-110).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Chile Student Visa"
+    description="Health insurance required for visa. Compare FONASA, ISAPRE, and international options."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Chile is moderately expensive for South America—more than Argentina or Colombia, less than Brazil's major cities. Santiago costs are higher than elsewhere in Chile.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Monthly Budget Estimate (Santiago)</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Budget:</strong> CLP 600,000-800,000/month (~$650-870) - shared housing, cooking, limited extras</li>
+        <li><strong>Comfortable:</strong> CLP 900,000-1,100,000/month (~$980-1,200) - private room, eating out, entertainment</li>
+        <li><strong>Note:</strong> Valparaíso, Concepción are 20-30% cheaper than Santiago</li>
+      </ul>
+    </div>
+
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <h4 class="font-semibold text-amber-900 mb-2">Tuition Reality</h4>
+      <p class="text-amber-800 text-sm">
+        Unlike Argentina's free public universities, Chilean universities charge tuition. PUC and U de Chile: CLP 3,500,000-7,000,000/year (~$3,800-7,600). Scholarships available—research Becas Chile and university-specific financial aid.
+      </p>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Chile's visa process is relatively efficient. Plan for 3-4 months total including university application and document preparation.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Register with PDI (Policía de Investigaciones) within 30 days of arrival. Also get your RUT (tax ID number) quickly—you need it for FONASA enrollment, banking, and many services.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Here's how healthcare works in common situations for students in Chile.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (FONASA)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a cold and need to see a doctor.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Visit a CESFAM (public health center) with your FONASA card. Free or minimal copay. May have some wait. Private clinics also accept FONASA with higher copay but shorter waits.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (ISAPRE)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same situation with private ISAPRE.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Visit any network clinic. Minimal wait, nice facilities. Copay depends on plan—typically CLP 5,000-15,000 (~$5-16). Fast and convenient service.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency</h4>
+        <p class="text-neutral-600 text-sm mb-2">You're injured and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to nearest hospital ER. Public hospitals treat emergencies regardless of insurance. With FONASA, heavily subsidized. Private hospitals (Clínica Alemana, Las Condes) with ISAPRE—world-class care, covered by insurance.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Specialist Referral</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need to see a specialist.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> FONASA: referral through public system, longer waits for specialists. ISAPRE: direct access to specialists, shorter waits. Many students use FONASA for routine care but pay out-of-pocket for urgent specialist visits.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dental Care</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need dental work.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Basic dental covered by FONASA (limited). Private dental: CLP 25,000-50,000 (~$27-55) for cleaning. Major work can be expensive. Consider dental-specific coverage if you anticipate needs.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Mental Health Support</h4>
+        <p class="text-neutral-600 text-sm mb-2">You're dealing with stress or anxiety.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> University counseling usually available free. FONASA covers some mental health services. Private therapy: CLP 40,000-80,000/session (~$43-87). ISAPREs often have mental health coverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Underestimating Santiago Costs</h4>
+        <p class="text-red-800">Santiago is more expensive than most of South America. Budget CLP 700,000-1,000,000/month (~$760-1,090) minimum for comfortable living. Don't compare to Argentina or Colombia prices.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Learning Spanish</h4>
+        <p class="text-red-800">Most programs are in Spanish. Chilean Spanish has unique slang ("chilenismos") that can be challenging. Learn Spanish before arriving and prepare for the local accent. English-taught programs are rare.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Skipping PDI Registration</h4>
+        <p class="text-red-800">You must register with PDI (Policía de Investigaciones) within 30 days of arrival. This is a legal requirement. Also get your RUT (tax ID) quickly—needed for FONASA, banking, and many services.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Understanding FONASA vs ISAPRE</h4>
+        <p class="text-red-800">Research the dual system before choosing. FONASA is affordable and adequate for most students. ISAPREs cost more but offer better service. Don't assume one is clearly better—it depends on your needs and budget.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Expecting Fast Bureaucracy</h4>
+        <p class="text-red-800">Chilean bureaucracy can be slow. Processes that seem simple may take weeks. Build in extra time for visa processing, PDI registration, RUT application, and FONASA enrollment. Patience is essential.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Chile has one of Latin America's best healthcare systems with a dual public-private structure. Students have access to both FONASA (public) and ISAPRE (private) options.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">FONASA (Public)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> 7% income or ~$30-50/month fixed</li>
+          <li>• <strong>Coverage:</strong> Comprehensive public healthcare</li>
+          <li>• <strong>Access:</strong> Public hospitals + subsidized private</li>
+          <li>• <strong>Wait Times:</strong> Can be long for specialists</li>
+          <li>• <strong>Quality:</strong> Good—adequate for most needs</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">ISAPRE (Private)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> CLP 50,000-120,000/month (~$55-130)</li>
+          <li>• <strong>Coverage:</strong> Premium private healthcare</li>
+          <li>• <strong>Access:</strong> Clínica Alemana, Las Condes, etc.</li>
+          <li>• <strong>Wait Times:</strong> Minimal</li>
+          <li>• <strong>Quality:</strong> World-class</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Healthcare Strategy for Chile</h4>
+      <p class="text-blue-800 text-sm">
+        1) Enroll in FONASA after arrival—affordable and adequate. 2) Use CESFAM clinics for routine care. 3) For urgent specialist needs, consider paying out-of-pocket at private clinics (still affordable). 4) Upgrade to ISAPRE only if you have ongoing health needs or strong preference for private care.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Healthcare Coverage for Chile Studies"
+    description="FONASA provides affordable public coverage. Compare with private options and international insurance."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How expensive is Chile?</h4>
+        <p class="text-neutral-600">Moderately expensive for South America. Monthly budget: CLP 700,000-1,100,000 (~$760-1,200) in Santiago. Rent: CLP 300,000-600,000 for shared housing. Food reasonable at local restaurants. More expensive than Argentina/Colombia, cheaper than Brazil's major cities.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Do I need Spanish?</h4>
+        <p class="text-neutral-600">Yes. Most programs taught in Spanish. Some MBA/specialized programs in English. Chilean Spanish has unique slang and fast pace—can be challenging. Learn Spanish before arriving or plan intensive study upon arrival.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is FONASA vs ISAPRE?</h4>
+        <p class="text-neutral-600">FONASA: public health insurance, affordable (7% contribution), access to public hospitals and subsidized private care. ISAPRE: private insurers, better coverage, premium hospitals, more expensive. Most students use FONASA; ISAPRE for those who want/need private care exclusively.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying?</h4>
+        <p class="text-neutral-600">Student visa allows part-time work (up to 30 hours/week) with authorization from immigration. Full-time during holidays. Many students work in hospitality, teaching English, or startups. Santiago has an active job market for skilled workers.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How good is healthcare?</h4>
+        <p class="text-neutral-600">Excellent in Santiago. Clínica Alemana and Clínica Las Condes are world-class private hospitals. Public hospitals adequate for most needs. Healthcare infrastructure is the best in South America. With FONASA or ISAPRE, you have good access to quality care.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I stay after graduation?</h4>
+        <p class="text-neutral-600">Yes. Can apply for temporary residence for employment or start a business. Chile has a Tech Visa for startup/tech workers. Process not automatic but possible. Many international students transition to work visas after graduation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        Chile offers top-ranked universities in South America's most stable economy, with excellent healthcare infrastructure and stunning natural landscapes. PUC and Universidad de Chile provide quality education with growing international recognition.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The main considerations are cost (higher than neighbors), Spanish requirement, and tuition fees (unlike free Argentine universities). However, stability, quality of life, and healthcare access are significant advantages.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Enroll in FONASA upon arrival for affordable healthcare. Learn Spanish thoroughly. Budget CLP 800,000-1,000,000/month (~$870-1,090) for comfortable Santiago living. Research scholarships—Becas Chile and university aid can significantly reduce costs.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> Chile is ideal for students who want quality education in a stable, well-organized country with excellent healthcare. It's more expensive than Argentina but offers greater predictability and infrastructure. Spanish is essential. Best for those prioritizing stability and quality of life over lowest possible costs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Chile Student Visa"
+    description="Health insurance required for visa. FONASA provides affordable ongoing coverage. Compare your options."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>

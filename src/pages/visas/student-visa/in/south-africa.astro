@@ -1,0 +1,518 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/uk', label: 'UK Student Visa' },
+  { href: '/visas/student-visa/in/australia', label: 'Australia Student Visa' },
+  { href: '/countries/south-africa/insurance', label: 'South Africa Insurance Guide' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Letter from South African educational institution' },
+  { requirement: 'Financial Proof', details: 'ZAR 80,000-120,000/year (~$4,400-6,600 USD)' },
+  { requirement: 'Medical Certificate', details: 'Health exam less than 6 months old' },
+  { requirement: 'Radiological Report', details: 'Chest X-ray for TB screening' },
+  { requirement: 'Police Clearance', details: 'From home country (apostilled)' },
+  { requirement: 'Medical Insurance', details: 'MANDATORY—must cover hospitalization' },
+  { requirement: 'Visa Fee', details: 'ZAR 1,520 (~$83 USD)' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory?', requirement: 'YES—required for visa application' },
+  { aspect: 'Minimum Coverage', requirement: 'Must cover hospitalization and repatriation' },
+  { aspect: 'Local Options', requirement: 'Medical aid schemes (Discovery, Bonitas, Momentum)' },
+  { aspect: 'International Options', requirement: 'Global insurers accepted if meeting requirements' },
+  { aspect: 'Cost Range', requirement: 'ZAR 5,000-15,000/year (~$275-825)' },
+  { aspect: 'Recommendation', requirement: 'Medical aid essential for private healthcare access' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'Discovery Health', monthly: 'ZAR 1,000-2,500', coverage: 'Comprehensive', bestFor: 'Best overall, extensive network' },
+  { provider: 'Bonitas', monthly: 'ZAR 800-1,800', coverage: 'Good', bestFor: 'Value option, student-friendly' },
+  { provider: 'Momentum Health', monthly: 'ZAR 900-2,000', coverage: 'Comprehensive', bestFor: 'Good network, competitive rates' },
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'International students, travel coverage' },
+  { provider: 'Cigna Global', monthly: '~$100-150', coverage: 'Global', bestFor: 'Comprehensive international coverage' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Fee', amount: 'ZAR 1,520 (~$83)', notes: 'Study visa application' },
+  { item: 'Medical Exam', amount: 'ZAR 500-1,000', notes: 'Required health certificate' },
+  { item: 'Police Clearance', amount: 'Varies by country', notes: 'Often $20-50 USD equivalent' },
+  { item: 'Medical Aid', amount: 'ZAR 400-1,500/month', notes: '~$22-82/month—mandatory' },
+  { item: 'Tuition', amount: 'ZAR 40,000-100,000/year', notes: '~$2,200-5,500 depending on program' },
+  { item: 'Accommodation', amount: 'ZAR 4,000-8,000/month', notes: '~$220-440 (shared housing)' },
+  { item: 'Living Costs', amount: 'ZAR 4,000-7,000/month', notes: '~$220-385 (food, transport, etc.)' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply to South African university' },
+  { step: '2. Gather Documents', duration: '4-8 weeks', details: 'Medical exam, police clearance, X-ray' },
+  { step: '3. Get Insurance', duration: '1-2 weeks', details: 'Arrange medical aid or international coverage' },
+  { step: '4. Visa Application', duration: '1 day', details: 'Submit at embassy/VFS Global' },
+  { step: '5. Processing', duration: '8-12 weeks', details: 'Often takes longer—apply early' },
+  { step: '6. Arrival', duration: 'After approval', details: 'Collect visa and travel' },
+];
+---
+
+<PageShell
+  title="South Africa Student Visa Insurance Requirements 2025 | Study in South Africa Guide"
+  description="Complete guide to South Africa study visa and mandatory medical aid insurance. Learn about top African universities, affordable living, and healthcare access."
+  headline="South Africa Student Visa & Insurance Guide"
+  subheadline="Top African universities at affordable prices with mandatory medical insurance"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: South Africa Study Visa</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> Study Visa</div>
+        <div><strong>Duration:</strong> Duration of study program</div>
+        <div><strong>Processing Time:</strong> 8-12 weeks (often longer)</div>
+        <div><strong>Visa Fee:</strong> ZAR 1,520 (~$83 USD)</div>
+        <div><strong>Work Allowed:</strong> 20 hours/week term, full-time holidays</div>
+        <div><strong>Insurance:</strong> MANDATORY for visa application</div>
+        <div><strong>Language:</strong> English instruction widely available</div>
+        <div><strong>Living Cost:</strong> $440-825/month (very affordable)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      South Africa offers excellent value for international students, with top universities (UCT, Wits, Stellenbosch) at a fraction of Western costs. English-medium instruction is widely available, and the country provides a unique cultural experience combining African heritage with modern infrastructure.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      The key requirement is mandatory medical insurance—you cannot apply for a study visa without proof of coverage. South Africa has a two-tier healthcare system: public healthcare is free but underfunded, while private healthcare (accessible through medical aid schemes) is world-class.
+    </p>
+
+    <p class="text-neutral-600">
+      Living costs are very affordable by Western standards, making South Africa an attractive destination for students seeking quality education without massive debt. However, security concerns in some areas require careful research and common-sense precautions.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">South Africa is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want English-medium education at affordable prices</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Seek top African universities (UCT, Wits, Stellenbosch)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Value diverse, multicultural environments</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want to experience Africa with modern infrastructure</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Appreciate stunning natural beauty and wildlife</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Are concerned about safety (crime exists in some areas)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need quick visa processing (8-12+ weeks is standard)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want easy post-study work pathways (limited in SA)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer reliable public services (load shedding affects power)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      South Africa has specific visa requirements including mandatory medical insurance, health certification, and police clearance. Processing times are long—start early.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Processing times of 8-12 weeks are common, and delays are frequent. Apply at least 4-6 months before your intended start date. Missing documents will cause further delays.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Medical insurance is MANDATORY for South Africa study visa application. You must provide proof of coverage that includes hospitalization and repatriation.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <h4 class="font-semibold text-red-900 mb-2">No Insurance = No Visa</h4>
+      <p class="text-red-800">
+        You cannot apply for a South African study visa without proof of medical insurance. The policy must cover hospitalization and ideally include repatriation. Arrange this before starting your visa application.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Medical Aid vs International Insurance</h4>
+      <p class="text-green-800">
+        South African "medical aid" schemes (Discovery, Bonitas, etc.) give access to private hospitals and are excellent value. International insurance (Cigna, SafetyWing) is also accepted if it meets requirements. Medical aid is better for local care access.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      South African medical aid schemes offer excellent value and access to world-class private healthcare. International options work too but may have more limited local networks.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Why Medical Aid?</h4>
+        <p class="text-neutral-600 text-sm">
+          South African medical aid schemes give direct access to private hospitals (Netcare, Mediclinic, Life Healthcare). These are significantly better than public facilities. Discovery Health is the largest and most comprehensive.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">International Insurance</h4>
+        <p class="text-neutral-600 text-sm">
+          International insurers like Cigna or SafetyWing are accepted for visa purposes. Good for students who travel regionally. But for routine South African healthcare, local medical aid offers better value and access.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for South Africa Study Visa"
+    description="Mandatory medical insurance required for visa application. Compare medical aid and international options."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      South Africa offers excellent value compared to Western countries. Here's what to budget for your studies.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Excellent Value for Money</h4>
+      <p class="text-green-800 text-sm">
+        Monthly budget: ZAR 8,000-15,000 (~$440-825). Tuition: ZAR 40,000-100,000/year (~$2,200-5,500). Compare this to UK/US costs—South Africa offers quality education at a fraction of the price.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">City Cost Comparison</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Cape Town:</strong> Most expensive (but stunning), ZAR 10,000-15,000/month</li>
+        <li><strong>Johannesburg:</strong> Business hub, ZAR 8,000-12,000/month</li>
+        <li><strong>Pretoria:</strong> More affordable, ZAR 7,000-10,000/month</li>
+        <li><strong>Stellenbosch:</strong> Student-friendly, ZAR 7,000-10,000/month</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      South Africa's visa processing is notoriously slow. Plan well ahead and have all documents ready to avoid delays.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <p class="text-red-800">
+        <strong>Warning:</strong> 8-12 weeks is the official timeline, but delays are common. Some applications take 3-4 months. Apply as early as possible—ideally 6 months before your start date. VFS Global handles applications in many countries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Here's how healthcare works in common situations for students in South Africa.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (With Medical Aid)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a cold and need to see a doctor.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Visit a GP in your medical aid network. Cost: ZAR 0-200 copay depending on plan. Quick service at private practices. Prescription medications included or discounted.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (Public)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same situation using public healthcare.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Visit a public clinic—free but expect long waits. Quality varies significantly. Medication may need to be purchased separately. Not recommended if you have medical aid.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency (Private)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You're injured and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to Netcare, Mediclinic, or Life Healthcare ER. With medical aid, covered with minimal out-of-pocket. World-class facilities and care. This is why medical aid is essential.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency (Public)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same emergency, no medical aid.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Public hospitals will treat emergencies but facilities are often overcrowded and understaffed. Long waits except for true emergencies. Free but quality inconsistent.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dental Care</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need a dental checkup and cleaning.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Basic medical aid may not cover dental, or has limited benefits. Private dental: ZAR 400-800 for cleaning. Consider dental-specific coverage or budget for out-of-pocket.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Specialist Referral</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need to see a specialist for a chronic issue.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> With medical aid, referral to private specialist. Excellent specialists available in major cities. Some plans have specialist networks with negotiated rates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Underestimating Processing Time</h4>
+        <p class="text-red-800">South African visa processing takes 8-12 weeks minimum, often longer. Delays are common. Apply at least 4-6 months before your intended start date. Don't book flights until your visa is approved.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Applying Without Insurance</h4>
+        <p class="text-red-800">Medical insurance is mandatory—your application will be rejected without it. Arrange coverage before starting the visa process. Ensure it meets the requirements (hospitalization, repatriation).</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Forgetting the Chest X-Ray</h4>
+        <p class="text-red-800">South Africa requires a radiological report (chest X-ray) for TB screening. This is in addition to the medical certificate. Missing this document will delay your application.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Researching Safety</h4>
+        <p class="text-red-800">South Africa has safety concerns in certain areas. Research your specific city and neighborhood. Use common sense: avoid walking alone at night, use Uber/secure transport, stay aware of your surroundings. Most students study safely with proper precautions.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Choosing Cheap Insurance That Doesn't Meet Requirements</h4>
+        <p class="text-red-800">Your insurance must meet visa requirements—hospitalization coverage and ideally repatriation. Very cheap policies may not qualify. Check requirements carefully and ensure your policy meets them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      South Africa has a two-tier healthcare system. Private healthcare is world-class; public healthcare is free but underfunded. Medical aid is essential for quality care.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Access:</strong> Medical aid required</li>
+          <li>• <strong>Hospital Chains:</strong> Netcare, Mediclinic, Life Healthcare</li>
+          <li>• <strong>Quality:</strong> World-class, modern facilities</li>
+          <li>• <strong>GP Visit:</strong> ZAR 500-800 (~$28-44) without aid</li>
+          <li>• <strong>Specialists:</strong> Excellent availability in major cities</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> Free for all</li>
+          <li>• <strong>Quality:</strong> Variable, often understaffed</li>
+          <li>• <strong>Wait Times:</strong> Can be very long</li>
+          <li>• <strong>Facilities:</strong> Overcrowded in many areas</li>
+          <li>• <strong>Recommendation:</strong> Avoid if you have medical aid</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Healthcare Strategy for South Africa</h4>
+      <p class="text-blue-800 text-sm">
+        1) Get proper medical aid before arrival. 2) Use private healthcare for everything—it's what you're paying for. 3) Save public facilities only for absolute emergencies when nothing else is available. 4) Discovery Health offers the best network if you can afford it; Bonitas is good value for students.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Mandatory Insurance for South Africa Study Visa"
+    description="You cannot apply without proof of medical insurance. Compare medical aid and international options."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is South Africa safe for students?</h4>
+        <p class="text-neutral-600">Safety varies by area. Major cities have high crime rates in certain neighborhoods, but university areas are generally safer. Use common sense: avoid walking alone at night, use Uber/secure transport, stay in well-lit areas. Most students study safely with proper precautions.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is medical aid?</h4>
+        <p class="text-neutral-600">South African term for private health insurance. Required for visa and strongly recommended for quality care. Discovery Health is the largest; Bonitas and Momentum are good alternatives. Medical aid gives access to excellent private hospitals—far better than public facilities.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Why is a chest X-ray required?</h4>
+        <p class="text-neutral-600">South Africa screens for tuberculosis (TB) which is prevalent in the country. The chest X-ray (radiological report) is required as part of visa application, separate from the general medical certificate. Must be recent (within 6 months).</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying?</h4>
+        <p class="text-neutral-600">Yes. Study visa holders can work up to 20 hours/week during term, full-time during holidays. No separate work permit needed. Many students work part-time in hospitality, tutoring, or campus jobs.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How affordable is South Africa?</h4>
+        <p class="text-neutral-600">Very affordable by Western standards. Monthly budget: ZAR 8,000-15,000 (~$440-825). Rent: ZAR 4,000-8,000 for shared housing. Food affordable. Tuition: ZAR 40,000-100,000/year (~$2,200-5,500)—much cheaper than UK/US/Australia.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I stay after graduation?</h4>
+        <p class="text-neutral-600">Not automatically. Must apply for different visa category (work visa with job offer, or critical skills visa). South Africa doesn't have an automatic post-study work scheme like UK or Australia. Plan early if you want to stay—job market is competitive.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        South Africa offers excellent value for international students—top African universities at affordable prices, English instruction, and a unique cultural experience. The combination of quality education and low costs makes it attractive for budget-conscious students.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The main considerations are mandatory medical insurance (essential for visa and quality care), long visa processing times (apply early!), and security awareness in certain areas. With proper preparation and precautions, South Africa provides a rewarding study experience.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Get comprehensive medical aid (Discovery or Bonitas) before applying. Apply for visa 6+ months early. Research your specific city/university area for safety. Budget ZAR 10,000-15,000/month for comfortable living.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> South Africa is ideal for students who want quality English-medium education at affordable prices, are willing to take sensible security precautions, and want to experience Africa with modern infrastructure. Medical aid is non-negotiable—it's mandatory and essential for accessing good healthcare.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for South Africa Study Visa"
+    description="Medical insurance is mandatory for visa application. Find coverage that meets requirements and protects your health."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>

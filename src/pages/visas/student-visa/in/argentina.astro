@@ -1,0 +1,519 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/chile', label: 'Chile Student Visa' },
+  { href: '/visas/student-visa/in/spain', label: 'Spain Student Visa' },
+  { href: '/visas/digital-nomad-visa/in/argentina', label: 'Argentina Digital Nomad Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Enrollment', details: 'Proof of enrollment at Argentine educational institution' },
+  { requirement: 'Financial Proof', details: 'USD 1,000-1,500/month or scholarship coverage' },
+  { requirement: 'Passport Validity', details: 'Valid passport' },
+  { requirement: 'Criminal Record', details: 'Police clearance certificate (apostilled)' },
+  { requirement: 'Health Certificate', details: 'Medical fitness certificate' },
+  { requirement: 'Birth Certificate', details: 'Apostilled birth certificate' },
+  { requirement: 'Visa Fee', details: 'USD 100-250 depending on nationality (some visa-free)' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory?', requirement: 'NOT mandatory, but strongly recommended' },
+  { aspect: 'Public Healthcare', requirement: 'FREE for residents with DNI—includes students' },
+  { aspect: 'Public Quality', requirement: 'Variable—good in Buenos Aires, limited elsewhere' },
+  { aspect: 'Private Options', requirement: 'Prepagas like OSDE, Swiss Medical (affordable)' },
+  { aspect: 'Cost Range', requirement: 'USD 30-80/month for private prepaga' },
+  { aspect: 'Recommendation', requirement: 'Get private supplement—public has wait times' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'OSDE', monthly: 'USD 40-100', coverage: 'Comprehensive', bestFor: 'Best private option, wide network' },
+  { provider: 'Swiss Medical', monthly: 'USD 35-80', coverage: 'Comprehensive', bestFor: 'Good network, competitive rates' },
+  { provider: 'Galeno', monthly: 'USD 30-70', coverage: 'Good', bestFor: 'Budget private option' },
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'International travel coverage' },
+  { provider: 'Public Healthcare', monthly: 'Free', coverage: 'Basic-comprehensive', bestFor: 'Free option with DNI registration' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Fee', amount: 'USD 0-250', notes: 'Many nationalities visa-free or low cost' },
+  { item: 'DNI Registration', amount: 'ARS ~2,000', notes: 'National ID—essential for healthcare' },
+  { item: 'Tuition (Public)', amount: 'FREE', notes: 'Including for international students!' },
+  { item: 'Tuition (Private)', amount: 'USD 200-800/month', notes: 'Private universities vary widely' },
+  { item: 'Private Insurance', amount: 'USD 30-100/month', notes: 'Prepagas—optional but recommended' },
+  { item: 'Accommodation', amount: 'USD 200-500/month', notes: 'Room or apartment in Buenos Aires' },
+  { item: 'Living Costs', amount: 'USD 200-400/month', notes: 'Food, transport, entertainment' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Enrollment', duration: '3-6 months before', details: 'Apply to Argentine university (public is free!)' },
+  { step: '2. Gather Documents', duration: '2-4 weeks', details: 'Apostille criminal record, birth certificate' },
+  { step: '3. Visa Application', duration: 'Varies', details: 'At consulate or enter visa-free and regularize' },
+  { step: '4. Arrive in Argentina', duration: 'After enrollment', details: 'Enter Argentina' },
+  { step: '5. DNI Registration', duration: '1-2 weeks', details: 'Apply for student DNI at immigration' },
+  { step: '6. Healthcare Access', duration: 'After DNI', details: 'Free public healthcare with DNI' },
+];
+---
+
+<PageShell
+  title="Argentina Student Visa Insurance Requirements 2025 | Study in Argentina Guide"
+  description="Complete guide to studying in Argentina with FREE public university tuition. Learn about healthcare access, the blue dollar advantage, and why Argentina is incredibly affordable for international students."
+  headline="Argentina Student Visa & Insurance Guide"
+  subheadline="FREE university tuition and incredibly affordable living with foreign currency"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: Argentina Student Visa</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> Student Residence (Residencia para Estudiantes)</div>
+        <div><strong>Duration:</strong> 1 year (renewable)</div>
+        <div><strong>Processing:</strong> Varies by nationality (some visa-free)</div>
+        <div><strong>PUBLIC TUITION:</strong> FREE—for everyone including foreigners!</div>
+        <div><strong>Work Allowed:</strong> Yes, with student DNI</div>
+        <div><strong>Insurance:</strong> NOT mandatory—free public healthcare available</div>
+        <div><strong>Living Cost:</strong> $400-800/month (extremely affordable with USD/EUR)</div>
+        <div><strong>Language:</strong> Spanish essential for most programs</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      Argentina offers one of the world's best deals for international students: <strong>free public university tuition</strong>—including for foreigners. This isn't a scholarship; it's the law. Universidad de Buenos Aires (UBA), the top-ranked university in Latin America, charges zero tuition to all students regardless of nationality.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      Combined with the "blue dollar" exchange rate that makes foreign currency stretch incredibly far, Argentina is one of the most affordable study destinations globally. Monthly budgets of $400-800 cover rent, food, transport, and entertainment comfortably in Buenos Aires—one of the world's great cities.
+    </p>
+
+    <p class="text-neutral-600">
+      Healthcare is another advantage: public healthcare is free for residents with a DNI (national ID), which students can obtain. Quality private healthcare (prepagas) is also very affordable. The main requirement? Spanish proficiency—most programs are taught in Spanish.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">Argentina is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want FREE university tuition (public universities)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Have USD/EUR savings (incredible exchange rate advantage)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Speak Spanish or want to learn in immersion</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Love vibrant culture, nightlife, and amazing food</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want free public healthcare access</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Don't speak Spanish (essential for most programs)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need a globally recognized degree name</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer economic/political stability</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want easy post-study work pathways abroad</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Argentina has relatively flexible visa requirements. Many nationalities can enter visa-free and then regularize their status. The key is enrollment at an Argentine educational institution.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Visa-Free Entry</h4>
+      <p class="text-green-800">
+        Many nationalities (US, EU, UK, Australia, etc.) can enter Argentina visa-free and then apply for student residence from within the country. Check if your nationality qualifies—it simplifies the process significantly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Health insurance is NOT mandatory for Argentina student visa. Once you have your DNI (national ID), you get free access to Argentina's public healthcare system. However, private insurance is affordable and recommended for faster, more comfortable care.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Free Public Healthcare</h4>
+      <p class="text-green-800">
+        With your student DNI, you have access to Argentina's public healthcare system at no cost. This includes public hospitals (some excellent, like Hospital de Clínicas in Buenos Aires) and clinics. Quality varies, but basic care is covered.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Why Consider Private (Prepaga)?</h4>
+      <p class="text-blue-800">
+        Private "prepagas" like OSDE and Swiss Medical cost just $30-100/month and provide faster access, private hospitals, and more comfortable care. At these prices, it's worth considering—especially given the blue dollar advantage making USD go further.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      You have three options: free public healthcare, affordable Argentine prepagas, or international insurance. The blue dollar advantage makes private prepagas excellent value.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Best Strategy</h4>
+        <p class="text-neutral-600 text-sm">
+          Register for DNI to get free public healthcare. Add an affordable prepaga ($30-60/month) for private hospital access and faster care. Total healthcare cost: $30-60/month for comprehensive coverage.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">The Blue Dollar Advantage</h4>
+        <p class="text-neutral-600 text-sm">
+          The unofficial "blue dollar" exchange rate makes foreign currency worth 2-3x the official rate. A $50/month prepaga in Argentina costs you $50 USD but provides coverage worth much more in local purchasing power.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance Options for Argentina"
+    description="Free public healthcare available, but affordable private prepagas offer better access. Compare your options."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Argentina offers exceptional value for students with foreign currency. Free tuition + affordable living = one of the world's best student deals.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">The Free Tuition Reality</h4>
+      <p class="text-green-800 text-sm">
+        Argentine public universities charge ZERO tuition to all students—including international students. This is constitutional law, not a scholarship. UBA, the highest-ranked university in Latin America, is free. You only pay for materials, registration fees, and living expenses.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Monthly Budget Estimate (Blue Dollar Rate)</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Budget:</strong> $400-500/month - shared room, cooking at home, limited going out</li>
+        <li><strong>Comfortable:</strong> $600-800/month - private room, eating out, entertainment</li>
+        <li><strong>Well-off:</strong> $800-1,200/month - nice apartment, regular dining, travel</li>
+        <li><strong>Note:</strong> Exchange USD/EUR at blue rate for maximum value</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Argentina's process is relatively flexible. Many students enter visa-free and regularize status after enrollment.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Get your DNI as soon as possible after arrival. It's essential for healthcare access, banking, phone contracts, and proving legal status. Apply at the immigration office (Dirección Nacional de Migraciones).
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Here's how healthcare works in common situations for students in Argentina.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (Public)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a cold and need to see a doctor.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Visit a public hospital or CESAC (community health center) with your DNI. Free. May have some wait time. Basic care covered including common medications.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (Private Prepaga)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same situation with prepaga coverage.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Visit any network clinic. Little to no wait. Nice facilities. Copay: ARS 0-500 (~$0-0.50 at blue rate). Private prepagas make routine care very easy.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency (Public)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You're injured and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Public hospitals treat emergencies regardless of insurance. Free with DNI. Hospital de Clínicas in Buenos Aires has excellent emergency services. Care is good; facilities may be older.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Hospital Emergency (Private)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same emergency with prepaga.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to private hospital (Hospital Alemán, Hospital Británico, etc.). Modern facilities, shorter waits. Prepaga covers most costs. These are world-class private hospitals.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dental Care</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need a dental checkup.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Public dental clinics exist (free but limited). Private dental: ~$10-30 for cleaning at blue rate. Many students pay out-of-pocket—it's very affordable. Some prepagas include dental.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Prescription Medication</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need regular medication.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Common medications very affordable at pharmacies. Prepagas offer discounts. Even without insurance, most prescriptions cost $5-20 at blue rate. Argentina has strong generic medication availability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Learning Spanish Before Arriving</h4>
+        <p class="text-red-800">Most university programs are taught in Spanish. Very few English options exist. Daily life also requires Spanish. Learn at least intermediate Spanish before arriving—or plan to study intensively upon arrival.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Using Official Exchange Rate</h4>
+        <p class="text-red-800">The official exchange rate is much worse than the "blue dollar" (informal rate). Exchange your foreign currency through Western Union, exchange houses (cuevas), or crypto platforms—not banks or official channels. This can double your purchasing power.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Skipping DNI Registration</h4>
+        <p class="text-red-800">The DNI (national ID) is essential for healthcare access, banking, phone contracts, and many services. Register at immigration as soon as you have your student status. Without it, you can't access free public healthcare.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Expecting Everything in English</h4>
+        <p class="text-red-800">Argentina is Spanish-speaking. Universities, hospitals, government offices, and most daily interactions are in Spanish. English proficiency is lower than you might expect. Spanish is essential, not optional.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Bringing USD/EUR Cash</h4>
+        <p class="text-red-800">Credit cards often use the official rate (bad). Foreign ATM withdrawals have fees and poor rates. Bring USD or EUR cash and exchange at blue rate. This is essential for maximizing your budget.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Argentina has a mixed healthcare system. Public healthcare is free for residents (including students with DNI). Private prepagas offer higher quality at affordable prices.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> Free with DNI</li>
+          <li>• <strong>Quality:</strong> Variable—good in Buenos Aires</li>
+          <li>• <strong>Wait Times:</strong> Can be long for non-emergencies</li>
+          <li>• <strong>Best Hospitals:</strong> Hospital de Clínicas, Hospital Argerich</li>
+          <li>• <strong>Coverage:</strong> Comprehensive including medications</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare (Prepagas)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> $30-100/month (excellent value)</li>
+          <li>• <strong>Quality:</strong> World-class private hospitals</li>
+          <li>• <strong>Wait Times:</strong> Minimal</li>
+          <li>• <strong>Best Hospitals:</strong> Hospital Alemán, Hospital Británico</li>
+          <li>• <strong>Providers:</strong> OSDE, Swiss Medical, Galeno</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Healthcare Strategy for Argentina</h4>
+      <p class="text-blue-800 text-sm">
+        1) Register for DNI immediately—free public healthcare. 2) Consider affordable prepaga ($30-60/month) for private access. 3) Use public system for basic care, private for anything complex. 4) At blue dollar rates, even paying out-of-pocket is very affordable.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Healthcare Options in Argentina"
+    description="Free public healthcare with DNI, plus affordable private prepagas. Both options are excellent value."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is university really free?</h4>
+        <p class="text-neutral-600">Yes! Argentine public universities charge NO tuition to anyone—including international students. This is written into Argentina's constitution. UBA (Universidad de Buenos Aires), ranked #1 in Latin America, is completely free. You only pay for materials, registration fees, and living expenses.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What is the blue dollar?</h4>
+        <p class="text-neutral-600">The informal exchange rate, significantly higher than the official rate. Example: if official is 350 pesos/dollar, blue might be 900+. Most foreigners exchange at blue rate for much better value. Use Western Union, exchange houses, or crypto. Essential for maximizing your budget.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Do I need to speak Spanish?</h4>
+        <p class="text-neutral-600">Yes. Most university programs are in Spanish. Daily life requires Spanish. Very few English-taught programs exist. Learn at least intermediate Spanish before arriving, or plan intensive study upon arrival. Buenos Aires has many Spanish schools.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How is healthcare?</h4>
+        <p class="text-neutral-600">Public healthcare is free for residents with DNI. Quality varies—excellent in Buenos Aires public hospitals. Private prepagas ($30-100/month) provide world-class care at Hospital Alemán, Hospital Británico, etc. Both systems work well.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How affordable is Argentina?</h4>
+        <p class="text-neutral-600">Extremely affordable with foreign currency at blue rate. Monthly budget: $400-800 covers rent, food, transport, entertainment comfortably. Rent: $200-500 for room/apartment. Meals at restaurants: $3-8. One of the best value destinations globally.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying?</h4>
+        <p class="text-neutral-600">Yes, with student DNI. No formal hour restrictions like some countries. Many students work part-time in hospitality, teaching English, or remote work. Job market is challenging due to economic situation, but foreign language skills are valuable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        Argentina offers an unbeatable combination: free university tuition at excellent institutions + extremely affordable living costs when exchanging at blue dollar rate + free public healthcare. For students with foreign currency savings, it's one of the best value propositions globally.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The main requirement is Spanish proficiency—this is non-negotiable for most programs. Economic instability is a reality but actually benefits foreign students (better exchange rates). Buenos Aires is a world-class city with incredible culture, food, and nightlife.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Learn Spanish before arrival. Bring USD/EUR cash and exchange at blue rate. Register for DNI immediately for free healthcare. Consider an affordable prepaga ($30-60/month) for better access. Budget $500-800/month for comfortable living.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> Argentina is ideal for Spanish-speaking students (or those willing to learn) who want free quality education in an incredible city at extremely low cost. If you have USD/EUR savings and speak Spanish, Argentina offers one of the world's best student experiences per dollar spent.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Planning to Study in Argentina?"
+    description="Free public healthcare available, affordable private options too. Compare your insurance options."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>

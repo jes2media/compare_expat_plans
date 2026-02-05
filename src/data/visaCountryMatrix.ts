@@ -3620,6 +3620,391 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'Recommended: Hepatitis A & B, Typhoid, Tetanus, routine vaccines. Yellow fever certificate required if coming from endemic country. Malaria prophylaxis recommended for some regions. Consult travel clinic before departure. Health precautions important—food/water safety matters.'
       }
     ]
+  },
+
+  // Hong Kong - Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'hong-kong',
+    officialVisaName: 'Student Visa / Entry Permit',
+    requirements: {
+      eligibility: [
+        'Acceptance from accredited Hong Kong educational institution',
+        'Valid passport (6+ months validity)',
+        'Proof of sufficient financial means',
+        'No criminal record',
+        'Confirmation that studies are full-time',
+        'Local sponsor (usually the institution)'
+      ],
+      financial: {
+        minimumFunds: 'HKD 100,000-150,000/year (~$12,800-19,200 USD) for living expenses',
+        proofRequired: ['Bank statements', 'Financial guarantee', 'Scholarship letter if applicable'],
+        notes: 'Hong Kong is expensive. Budget realistically—accommodation alone is HKD 5,000-10,000/month for shared housing.'
+      },
+      documents: [
+        'Valid passport',
+        'Completed visa application form (ID995A)',
+        'Passport photos',
+        'Acceptance letter from institution',
+        'Academic transcripts and certificates',
+        'Proof of financial support',
+        'Sponsor form from institution',
+        'Travel document photocopy'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies + time for job seeking'
+    },
+    applicationProcess: [
+      'Receive offer from Hong Kong institution',
+      'Institution sponsors your visa application',
+      'Submit application to Immigration Department',
+      'Pay visa fee (HKD 230)',
+      'Wait for processing (4-6 weeks)',
+      'Receive visa label',
+      'Enter Hong Kong and activate visa',
+      'Apply for HKID card within 30 days'
+    ],
+    insuranceNotes: 'No mandatory insurance requirement for student visa, BUT highly recommended. Hong Kong public healthcare (HA) available but expensive for non-residents. Most universities offer student insurance plans. Private healthcare is world-class but very expensive without insurance.',
+    healthcareAccess: 'Public hospitals (Hospital Authority) charge non-residents higher rates. Private healthcare excellent but expensive—GP visit HKD 300-800 (~$38-102). Most students use university health services + supplementary insurance. Emergency care available at A&E departments.',
+    costs: {
+      visaFee: 'HKD 230 (~$30 USD)',
+      insuranceRange: 'HKD 3,000-10,000/year (~$385-1,280) for comprehensive coverage'
+    },
+    recommendedProviders: ['bupa-hong-kong', 'cigna-hong-kong', 'axa-hong-kong', 'safetywing', 'allianz-care'],
+    keyConsiderations: [
+      'World-class universities (HKU, CUHK, HKUST in global top 100)',
+      'High cost of living—one of the most expensive cities globally',
+      'English widely used in academics and business',
+      'Gateway to Mainland China and Asia-Pacific',
+      'IANG scheme allows 2-year job search after graduation',
+      'Political situation has evolved—research current conditions'
+    ],
+    commonMistakes: [
+      'Underestimating living costs (accommodation is extremely expensive)',
+      'Not getting health insurance (public hospital rates for non-residents are high)',
+      'Missing HKID registration deadline (required within 30 days)',
+      'Not understanding part-time work rules (restrictions apply)',
+      'Assuming Mandarin is sufficient (Cantonese is the local language)'
+    ],
+    faqs: [
+      {
+        question: 'How expensive is Hong Kong?',
+        answer: 'Very expensive. Monthly budget: HKD 10,000-20,000 (~$1,280-2,560) minimum. Rent alone: HKD 5,000-12,000 for shared housing. Food: HKD 3,000-6,000. Public transport affordable (MTR + buses). Plan for HKD 150,000-200,000/year total.'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Yes, with restrictions. During term: campus employment or internships related to studies (up to 20 hours/week). During summer: can work full-time. Must get approval from Immigration Department for off-campus work.'
+      },
+      {
+        question: 'What is IANG?',
+        answer: 'Immigration Arrangements for Non-local Graduates. Allows graduates to stay 2 years to seek employment in Hong Kong without other restrictions. Very attractive post-study pathway. No sponsorship needed—you have 2 years to find work.'
+      },
+      {
+        question: 'Do I need Cantonese?',
+        answer: 'For studying: no, university courses often in English. For daily life: helpful but not essential in urban areas. Many people speak English. Mandarin increasingly useful. Basic Cantonese appreciated but not required.'
+      },
+      {
+        question: 'How is healthcare access?',
+        answer: 'Public hospitals have higher rates for non-permanent residents. Private healthcare excellent but expensive. Most universities offer health services and insurance packages. Recommended to have comprehensive insurance—GP visits HKD 300-800, hospital stays very costly.'
+      },
+      {
+        question: 'Can I travel to Mainland China?',
+        answer: 'You need a separate visa for Mainland China. Hong Kong student visa does not grant China access. Apply for China visa from Hong Kong (relatively easy). Border to Shenzhen accessible. Many students visit Mainland during studies.'
+      }
+    ]
+  },
+
+  // South Africa - Student Visa (Study Visa)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'south-africa',
+    officialVisaName: 'Study Visa',
+    requirements: {
+      eligibility: [
+        'Acceptance at South African educational institution',
+        'Valid passport (30+ days beyond intended stay)',
+        'Proof of sufficient financial means',
+        'Medical certificate',
+        'Radiological report',
+        'Police clearance certificate',
+        'Medical insurance coverage'
+      ],
+      financial: {
+        minimumFunds: 'ZAR 80,000-120,000/year (~$4,400-6,600 USD) proof of funds',
+        proofRequired: ['Bank statements (3 months)', 'Scholarship letter', 'Financial guarantee/sponsor affidavit'],
+        notes: 'South Africa is affordable compared to Western countries. Proof of funds for tuition + living expenses required.'
+      },
+      documents: [
+        'Valid passport',
+        'Completed visa application form (DHA-1738)',
+        'Passport photos',
+        'Acceptance letter from institution',
+        'Proof of medical cover',
+        'Proof of financial means',
+        'Medical certificate (less than 6 months old)',
+        'Radiological report (chest X-ray)',
+        'Police clearance from home country',
+        'Return ticket or proof of funds for return'
+      ]
+    },
+    duration: {
+      initial: 'Duration of study program',
+      renewable: true,
+      maxStay: 'Duration of studies (renewable annually)'
+    },
+    applicationProcess: [
+      'Receive acceptance from South African institution',
+      'Gather all required documents',
+      'Get medical exam and chest X-ray',
+      'Obtain police clearance certificate',
+      'Apply at South African embassy/consulate or VFS Global',
+      'Pay visa fee (~ZAR 1,520)',
+      'Submit biometrics',
+      'Wait for processing (8-12 weeks)',
+      'Collect visa and travel'
+    ],
+    insuranceNotes: 'Medical insurance is MANDATORY for study visa application. Must cover hospitalization, including repatriation. South African public healthcare is free but underfunded. Private healthcare excellent but expensive. Comprehensive insurance strongly recommended.',
+    healthcareAccess: 'Two-tier system: public healthcare free but overcrowded and underfunded. Private healthcare world-class (Netcare, Mediclinic, Life Healthcare chains). With medical aid/insurance, access excellent private facilities. GP visit: ZAR 500-800 private (~$28-44). Insurance essential for quality care.',
+    costs: {
+      visaFee: 'ZAR 1,520 (~$83 USD)',
+      insuranceRange: 'ZAR 5,000-15,000/year (~$275-825) for comprehensive medical aid'
+    },
+    recommendedProviders: ['discovery-health', 'bonitas', 'momentum-health', 'cigna-global', 'safetywing'],
+    keyConsiderations: [
+      'Top universities in Africa (UCT, Wits, Stellenbosch)',
+      'English-language instruction widespread',
+      'Very affordable living costs compared to Western countries',
+      'Security concerns in some areas—research carefully',
+      'Mandatory medical insurance for visa',
+      'Stunning natural beauty and wildlife experiences'
+    ],
+    commonMistakes: [
+      'Underestimating processing time (8-12 weeks or longer)',
+      'Not getting insurance before applying (mandatory)',
+      'Missing radiological report requirement (chest X-ray)',
+      'Not researching safety in specific areas',
+      'Choosing cheap insurance that doesn\'t meet visa requirements'
+    ],
+    faqs: [
+      {
+        question: 'How affordable is South Africa?',
+        answer: 'Very affordable by Western standards. Monthly budget: ZAR 8,000-15,000 (~$440-825). Rent: ZAR 4,000-8,000 for shared housing. Food: ZAR 2,000-4,000. Tuition: ZAR 40,000-100,000/year (~$2,200-5,500) depending on program.'
+      },
+      {
+        question: 'Is South Africa safe for students?',
+        answer: 'Safety varies significantly by area. Major cities have high crime rates in certain neighborhoods. University areas generally safer. Use common sense: avoid walking alone at night, use Uber/secure transport, stay in well-lit areas. Most students study safely with proper precautions.'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Yes. Study visa holders can work up to 20 hours/week during term, full-time during holidays. No separate work permit needed. Many students work part-time in hospitality, tutoring, or campus jobs.'
+      },
+      {
+        question: 'What is medical aid?',
+        answer: 'South African term for private health insurance. Required for visa and strongly recommended. Discovery Health, Bonitas, Momentum are major providers. Medical aid gives access to private hospitals (far better than public). International insurance also accepted if it meets requirements.'
+      },
+      {
+        question: 'Why is a chest X-ray required?',
+        answer: 'South Africa screens for tuberculosis (TB) which is prevalent in the country. Chest X-ray (radiological report) required as part of visa application. Must be recent (within 6 months). Standard requirement for most long-stay visas.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Not automatically. Must apply for different visa category (work visa with job offer, or critical skills visa). Some programs offer post-study work endorsement. Plan early if you want to stay—job market competitive and visa process can be lengthy.'
+      }
+    ]
+  },
+
+  // Argentina - Student Visa (Student Residence)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'argentina',
+    officialVisaName: 'Student Residence Visa (Residencia para Estudiantes)',
+    requirements: {
+      eligibility: [
+        'Enrollment at Argentine educational institution',
+        'Valid passport',
+        'Proof of financial means',
+        'Clean criminal record',
+        'Health certificate',
+        'Proof of accommodation'
+      ],
+      financial: {
+        minimumFunds: 'USD 1,000-1,500/month proof or scholarship covering expenses',
+        proofRequired: ['Bank statements', 'Scholarship letter', 'Sponsor declaration'],
+        notes: 'Argentina is affordable but peso volatility means USD savings helpful. Public universities are FREE for all students including foreigners.'
+      },
+      documents: [
+        'Valid passport',
+        'Visa application form',
+        'Passport photos',
+        'Enrollment certificate from institution',
+        'Proof of financial means',
+        'Criminal record certificate (apostilled)',
+        'Health certificate',
+        'Birth certificate (apostilled)',
+        'Proof of accommodation'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive enrollment from Argentine institution',
+      'Gather required documents (apostille as needed)',
+      'Apply at Argentine consulate (some countries visa-free entry)',
+      'Pay visa fee if applicable',
+      'Enter Argentina and register with immigration (DNI)',
+      'Obtain student DNI (national ID)',
+      'Renew annually while studying'
+    ],
+    insuranceNotes: 'No mandatory insurance for student visa, BUT strongly recommended. Argentina has free public healthcare accessible to residents. Quality varies significantly. Private healthcare affordable and higher quality. International students often use combination of public + private insurance.',
+    healthcareAccess: 'Public healthcare is FREE and accessible to residents (including students with DNI). Quality varies—good in Buenos Aires, more limited elsewhere. Private healthcare affordable: GP visit ARS 10,000-25,000 (~$10-25 at blue rate). Recommend basic private insurance as supplement to public system.',
+    costs: {
+      visaFee: 'USD 100-250 depending on nationality (some countries visa-free)',
+      insuranceRange: 'USD 300-800/year for private supplementary insurance'
+    },
+    recommendedProviders: ['osde-argentina', 'swiss-medical', 'galeno', 'safetywing', 'cigna-global'],
+    keyConsiderations: [
+      'Public universities are FREE—including for international students',
+      'Peso volatility means dollar/euro savings stretch far',
+      'Spanish language essential for most programs',
+      'Buenos Aires has excellent cultural scene and nightlife',
+      'Free public healthcare available with DNI',
+      'Strong in social sciences, medicine, and arts programs'
+    ],
+    commonMistakes: [
+      'Not learning Spanish before arriving (essential for daily life and most programs)',
+      'Misunderstanding currency exchange rates (blue dollar vs official)',
+      'Skipping DNI registration (needed for healthcare, banking, etc.)',
+      'Assuming all universities teach in English (rare)',
+      'Not bringing USD/EUR cash (exchange rate benefits)'
+    ],
+    faqs: [
+      {
+        question: 'Is university really free?',
+        answer: 'Yes! Argentine public universities (UBA, UNC, etc.) charge NO tuition—even for international students. You only pay for materials, registration fees, and living expenses. This is written into the Argentine constitution. Quality is good, especially UBA which ranks highly in Latin America.'
+      },
+      {
+        question: 'Do I need to speak Spanish?',
+        answer: 'For most programs, yes. Very few programs taught in English. Basic Spanish needed for daily life. Consider Spanish course before or upon arrival. Buenos Aires has many Spanish schools. Immersion helps—you\'ll learn quickly living there.'
+      },
+      {
+        question: 'What is the blue dollar?',
+        answer: 'Informal exchange rate significantly higher than official rate. Most foreigners exchange USD/EUR at blue rate for much better value. Example: if official is 350 pesos/dollar, blue might be 900+. Effectively makes Argentina very cheap for those with foreign currency. Use Western Union or exchange houses.'
+      },
+      {
+        question: 'How is healthcare?',
+        answer: 'Public healthcare is FREE for residents with DNI. Quality adequate for basic care, excellent in Buenos Aires public hospitals. Private healthcare (prepagas like OSDE, Swiss Medical) affordable and higher quality—USD 30-80/month. Many students use both systems.'
+      },
+      {
+        question: 'How affordable is Argentina?',
+        answer: 'Extremely affordable with foreign currency. Monthly budget: USD 400-800 covers rent, food, transport comfortably. Rent: USD 200-500 for room/apartment. Meals: USD 3-8 at restaurants. One of the best value study destinations globally due to currency situation.'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Yes, with student DNI. No formal hour restrictions like some countries. Many students work part-time in hospitality, teaching English, remote work. Job market challenging due to economic situation, but foreign language skills valuable.'
+      }
+    ]
+  },
+
+  // Chile - Student Visa (Student Residence Visa)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'chile',
+    officialVisaName: 'Student Residence Visa (Visa de Estudiante)',
+    requirements: {
+      eligibility: [
+        'Acceptance at Chilean educational institution',
+        'Valid passport',
+        'Proof of financial means',
+        'Clean criminal record',
+        'Health certificate',
+        'Health insurance coverage'
+      ],
+      financial: {
+        minimumFunds: 'USD 500-1,000/month proof or scholarship covering expenses',
+        proofRequired: ['Bank statements', 'Scholarship letter', 'Sponsor affidavit'],
+        notes: 'Chile is more expensive than other South American countries but still affordable. Budget realistically for Santiago living costs.'
+      },
+      documents: [
+        'Valid passport',
+        'Visa application form',
+        'Passport photos',
+        'Acceptance letter from institution',
+        'Proof of financial means',
+        'Criminal record certificate (apostilled)',
+        'Health certificate',
+        'Birth certificate (apostilled)',
+        'Health insurance proof'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive acceptance from Chilean institution',
+      'Gather required documents',
+      'Apply at Chilean consulate or online',
+      'Pay visa fee (USD 100-200)',
+      'Wait for processing (2-4 weeks)',
+      'Enter Chile with student visa',
+      'Register with PDI (Policía de Investigaciones)',
+      'Obtain RUT (tax ID) and health card'
+    ],
+    insuranceNotes: 'Health insurance required for student visa application. Chile has public (FONASA) and private (ISAPRE) healthcare systems. International students can join FONASA with student visa. Many universities offer student insurance. Private insurance recommended for better access.',
+    healthcareAccess: 'Public system (FONASA) accessible to student visa holders—affordable and adequate. Private system (ISAPRE) better quality, shorter waits. Private clinics in Santiago excellent: Clínica Alemana, Clínica Las Condes world-class. GP visit: CLP 25,000-50,000 (~$27-55) private. FONASA much cheaper.',
+    costs: {
+      visaFee: 'USD 100-200 depending on nationality',
+      insuranceRange: 'USD 400-1,200/year for health coverage (FONASA contribution or private)'
+    },
+    recommendedProviders: ['fonasa-chile', 'consalud', 'banmedica', 'cigna-global', 'safetywing'],
+    keyConsiderations: [
+      'Strong universities (PUC, Universidad de Chile highly ranked)',
+      'More expensive than other South American countries',
+      'Relatively stable economy and society',
+      'Spanish essential—few English programs',
+      'Santiago has excellent healthcare infrastructure',
+      'Dramatic landscapes—desert, mountains, Patagonia'
+    ],
+    commonMistakes: [
+      'Underestimating Santiago living costs (not as cheap as neighbors)',
+      'Not learning Spanish (essential for studies and life)',
+      'Skipping PDI registration after arrival',
+      'Not understanding FONASA vs ISAPRE healthcare options',
+      'Assuming processes are fast (Chilean bureaucracy can be slow)'
+    ],
+    faqs: [
+      {
+        question: 'How expensive is Chile?',
+        answer: 'Moderately expensive for South America. Monthly budget: USD 800-1,500 in Santiago. Rent: USD 400-800 for room/apartment. Food: USD 200-400. Public transport good and affordable. Outside Santiago generally cheaper. Not as budget-friendly as Argentina or Colombia.'
+      },
+      {
+        question: 'Do I need Spanish?',
+        answer: 'Yes. Most programs taught in Spanish. English programs rare (some MBA/specialized courses). Chilean Spanish has unique accent and slang. Language courses available. Daily life requires basic Spanish. Consider intensive Spanish course first.'
+      },
+      {
+        question: 'What is FONASA vs ISAPRE?',
+        answer: 'FONASA: public health insurance, affordable, accessible to student visa holders (7% income contribution or fixed amount). ISAPRE: private insurers, better coverage and shorter waits, more expensive. Most students use FONASA for basic coverage, some add private insurance for better access.'
+      },
+      {
+        question: 'Can I work while studying?',
+        answer: 'Student visa allows part-time work (up to 30 hours/week). Need authorization from immigration. Full-time work during holidays permitted. Many students work in hospitality, teaching English, or startups. Santiago has active job market for skilled workers.'
+      },
+      {
+        question: 'How is healthcare quality?',
+        answer: 'Excellent in Santiago—Clínica Alemana and Clínica Las Condes are world-class. Public hospitals adequate but longer waits. Healthcare infrastructure best in South America. With FONASA, basic care affordable. Private insurance/ISAPRE provides faster, more comfortable care.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Can apply for temporary residence for job seeking or if you find employment. Chile has Tech Visa for startup/tech workers. Process not automatic but possible. Many international students transition to work visas after graduation.'
+      }
+    ]
   }
 ];
 
