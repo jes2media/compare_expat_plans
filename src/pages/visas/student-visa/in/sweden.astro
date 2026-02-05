@@ -1,0 +1,501 @@
+---
+/**
+ * Sweden Student Visa - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Sweden", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Sweden Health Insurance Guide", href: "/countries/sweden/insurance" },
+  { title: "Insurance for Students Abroad", href: "/insurance-for/students" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "University Admission", details: "Full-time studies at Swedish university", evidence: "Letter of acceptance" },
+  { requirement: "Financial Proof", details: "SEK 9,450/month (~€850)", evidence: "Bank statements, scholarship" },
+  { requirement: "Health Insurance", details: "Comprehensive coverage (if <1 year)", evidence: "Insurance certificate" },
+  { requirement: "Tuition Payment", details: "Non-EU students must pay before applying", evidence: "Payment confirmation" },
+  { requirement: "Valid Passport", details: "Valid for entire study period", evidence: "Passport" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "swedish", header: "Swedish Public (1+ year)" },
+  { key: "private", header: "Private (required <1 year)" },
+];
+
+const insuranceRows = [
+  { feature: "Cost", swedish: "Free (after personnummer)", private: "€50-150/month" },
+  { feature: "Coverage", swedish: "Comprehensive, small patient fees", private: "Varies by plan" },
+  { feature: "Required?", swedish: "Automatic after 1+ year enrollment", private: "Mandatory for <1 year studies" },
+  { feature: "Annual Cap", swedish: "SEK 1,300/year patient fee cap", private: "Depends on plan" },
+  { feature: "Dental", swedish: "Subsidized under 24, discount after", private: "Usually extra" },
+  { feature: "Access", swedish: "All public healthcare facilities", private: "Varies" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Swedish Public Healthcare", type: "Public", price: "Free", strengths: "1+ year students—automatic after personnummer" },
+  { provider: "Kammarkollegiet (FAS)", type: "Government", price: "Free", strengths: "Exchange students—arranged by university" },
+  { provider: "Cigna Global", type: "International", price: "$100-200/month", strengths: "Short-term students, global coverage" },
+  { provider: "SafetyWing", type: "International", price: "$45-85/month", strengths: "Budget option for <1 year" },
+  { provider: "Allianz Care", type: "International", price: "$100-180/month", strengths: "Comprehensive private coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Application Fee", amount: "SEK 1,500 (~€130)", notes: "Residence permit" },
+  { item: "Tuition (EU)", amount: "FREE", notes: "No tuition for EU/EEA students" },
+  { item: "Tuition (Non-EU)", amount: "SEK 80,000-295,000/year", notes: "~€7,500-27,000 depending on program" },
+  { item: "Healthcare", amount: "Free (1+ year)", notes: "Small patient fees, max SEK 1,300/year" },
+  { item: "Living Costs", amount: "SEK 9,450/month", notes: "~€850/month minimum required" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Receive university admission", duration: "3-6 months before", location: "Universityadmissions.se" },
+  { step: "Pay tuition (non-EU)", duration: "Before application", location: "University" },
+  { step: "Apply online for residence permit", duration: "2-4 months processing", location: "Migrationsverket.se" },
+  { step: "Submit biometrics", duration: "After application", location: "Embassy/consulate" },
+  { step: "Receive residence permit", duration: "-", location: "Embassy" },
+  { step: "Arrive in Sweden", duration: "-", location: "Airport" },
+  { step: "Register with Tax Agency", duration: "ASAP after arrival", location: "Skatteverket" },
+  { step: "Receive personnummer", duration: "2-8 weeks", location: "By mail" },
+];
+---
+
+<PageShell
+  title="Sweden Student Visa 2026: Requirements, Free Healthcare & Application Guide"
+  description="Complete guide to Sweden's Student Residence Permit. Free healthcare with personnummer, free tuition for EU students, unlimited work rights, and 9-month post-graduation job search."
+  headline="Sweden Student Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about studying in Sweden—free healthcare once registered, free tuition for EU students, unlimited work rights, and the essential personnummer that unlocks Swedish life."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Migrationsverket Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Free Healthcare (1+ Year Studies)
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Sweden combines world-class education with a generous welfare system that extends to international students. For programs lasting 1 year or longer, you're entitled to Swedish public healthcare—essentially free with small patient fees capped at SEK 1,300/year (~€115). Add free tuition for EU students and unlimited work rights, and Sweden becomes very attractive.
+    </p>
+
+    <p class="mb-4">
+      The key to Swedish life is the <strong>personnummer</strong>—your Swedish personal ID number. Once you have it, everything becomes easier: healthcare, banking, phone contracts, even renting. Without it, you're locked out of much of Swedish society. Get it as soon as possible after arrival.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">Quick Facts: Sweden Student Visa</h3>
+      <ul class="space-y-1 text-primary-800">
+        <li>• <strong>Permit Type:</strong> Residence Permit for Studies</li>
+        <li>• <strong>Duration:</strong> Length of studies (1 year initially)</li>
+        <li>• <strong>Health Insurance:</strong> Free (1+ year) or private required (&lt;1 year)</li>
+        <li>• <strong>Work Rights:</strong> Unlimited—no restrictions!</li>
+        <li>• <strong>Tuition:</strong> Free (EU) or SEK 80,000-295,000/year (non-EU)</li>
+        <li>• <strong>Processing:</strong> 2-4 months</li>
+        <li>• <strong>Post-Study:</strong> 9-month job search extension</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">✓ Sweden Is a Great Fit If You:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• Want free/affordable healthcare as a student</li>
+          <li>• Are EU and want free tuition</li>
+          <li>• Want unlimited work rights while studying</li>
+          <li>• Appreciate design, innovation, and sustainability</li>
+          <li>• Like nature and outdoor activities</li>
+          <li>• Can handle dark, cold winters</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">⚠ Consider Alternatives If You:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Struggle with seasonal depression (winters are dark)</li>
+          <li>• Want low living costs</li>
+          <li>• Need healthcare immediately (personnummer takes time)</li>
+          <li>• Are non-EU and budget-constrained (tuition is high)</li>
+          <li>• Prefer warmer climate</li>
+          <li>• Want easy social integration (Swedes can be reserved)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-6">
+      Apply online through Migrationsverket (Swedish Migration Agency). Non-EU students must pay tuition BEFORE applying for the permit. Processing takes 2-4 months—start early.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Financial Requirement:</strong> SEK 9,450/month (~€850) is the minimum. This must cover living costs—rent, food, transport. Sweden is expensive; budget more if possible.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <p class="text-green-800">
+        <strong>✓ Free Healthcare for 1+ Year Studies:</strong> Once you have a personnummer and are enrolled in a program lasting 1 year or longer, you're entitled to Swedish public healthcare. Patient fees are capped at SEK 1,300/year (~€115). This is one of the best student healthcare deals in Europe.
+      </p>
+    </div>
+
+    <p class="mb-6">
+      The catch: you need a personnummer first, which takes 2-8 weeks after arrival. Until then—and for programs shorter than 1 year—you need comprehensive private health insurance.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Under 1 Year?</strong> Students on programs shorter than 1 year must have comprehensive health insurance from their home country. This is strictly required for your residence permit. EU students can use EHIC but should have supplementary coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-6">
+      For 1+ year studies, Swedish public healthcare is your primary coverage. For shorter programs or before your personnummer arrives, you'll need private insurance.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <CTABox
+      title="Studying Less Than 1 Year?"
+      description="You need comprehensive health insurance for your residence permit. Compare international options for Sweden."
+      buttonText="Compare Insurance Plans"
+      buttonHref="/best/expat-health-insurance"
+    />
+  </section>
+
+  <!-- Section: Costs -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-6">
+      Sweden is expensive—among the highest in Europe. The good news: healthcare and (for EU students) tuition are free. The challenge is living costs.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Stockholm)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: SEK 5,000-8,000 (~€450-720)</li>
+          <li>Food: SEK 2,500-3,500 (~€230-320)</li>
+          <li>Transport: SEK 650 (student card)</li>
+          <li>Healthcare: SEK 0-100 (small copays)</li>
+          <li>Phone/Misc: SEK 500-1,000</li>
+          <li><strong>Total: SEK 9,000-13,500/month</strong></li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Monthly Budget (Smaller Cities)</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Rent: SEK 3,500-5,500 (~€320-500)</li>
+          <li>Food: SEK 2,000-3,000 (~€180-270)</li>
+          <li>Transport: SEK 500-600</li>
+          <li>Healthcare: SEK 0-100</li>
+          <li>Phone/Misc: SEK 500-800</li>
+          <li><strong>Total: SEK 7,000-10,500/month</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-6">
+      Apply online at Migrationsverket.se. Non-EU students: pay tuition first. Processing takes 2-4 months, so apply as soon as you're admitted.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <p class="text-red-800">
+        <strong>Priority: Get Your Personnummer!</strong> Register with Skatteverket (Tax Agency) immediately after arrival. The personnummer takes 2-8 weeks but is essential for healthcare, banking, phone contracts, and more. Without it, Swedish life is very difficult.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 1: GP Visit for Cold</h4>
+        <p class="text-neutral-600 mb-2">You have cold symptoms and visit a vårdcentral (health center).</p>
+        <p class="text-green-700"><strong>Outcome:</strong> With personnummer, pay ~SEK 200 (~€18) patient fee. Prescriptions: SEK 0-250 depending on medication. Annual cap: SEK 1,300 for all visits. Excellent care.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 2: Urgent Care Visit</h4>
+        <p class="text-neutral-600 mb-2">You need urgent care for a minor injury.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> Visit närakut (urgent care). Fee: SEK 200-400. X-rays, treatment included. If you've hit the SEK 1,300 cap, it's free. Swedish urgent care is efficient.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 3: Emergency Room</h4>
+        <p class="text-neutral-600 mb-2">You have a serious injury requiring ER treatment.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> ER (akutmottagning) fee: SEK 400 (~€36). All treatment, tests, and care included. If admitted, hospital stay is ~SEK 110/day. Very affordable for comprehensive emergency care.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 4: Dental Checkup</h4>
+        <p class="text-neutral-600 mb-2">You want a routine dental cleaning and checkup.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> Under 24: free or heavily subsidized. 24+: subsidized but you pay a significant portion (~SEK 500-1,500 for checkup/cleaning). Dental isn't fully free like medical care.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 5: Before Personnummer Arrives</h4>
+        <p class="text-neutral-600 mb-2">You get sick in your first weeks before receiving personnummer.</p>
+        <p class="text-amber-700"><strong>Outcome:</strong> Use your private insurance (required for permit anyway) or EHIC if EU. You may need to pay full cost and claim reimbursement. Avoid this by having good private coverage initially.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Scenario 6: Trip to Norway, Get Sick</h4>
+        <p class="text-neutral-600 mb-2">You travel to Norway and need medical care.</p>
+        <p class="text-green-700"><strong>Outcome:</strong> Once enrolled in Swedish healthcare, you get EU health card (EU-kort). Works in all EU/EEA countries. Emergency care covered at local rates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-red-900">No Insurance for Short Programs</h4>
+          <p class="text-red-700">Students studying less than 1 year MUST have comprehensive health insurance. This is required for your residence permit. Don't assume Swedish healthcare will cover you automatically.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Delaying Personnummer Registration</h4>
+          <p class="text-red-700">Register with Skatteverket immediately after arrival. The personnummer takes weeks to arrive, and without it you can't access healthcare, open a bank account, or get a phone contract.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Underestimating Living Costs</h4>
+          <p class="text-red-700">SEK 9,450/month is the minimum—many students need more, especially in Stockholm. Budget realistically. Work can supplement income, but don't rely on it entirely.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Not Paying Tuition Before Permit Application (Non-EU)</h4>
+          <p class="text-red-700">Non-EU students must pay tuition BEFORE applying for residence permit. If you apply without payment confirmation, your application will be delayed or rejected.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="text-red-600 font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-red-900">Underestimating Dark Winters</h4>
+          <p class="text-red-700">Swedish winters are DARK—Stockholm gets ~6 hours daylight in December, northern Sweden even less. Many students struggle with this. Consider light therapy, vitamin D, and staying active.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Sweden -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Sweden</h2>
+
+    <p class="mb-4">
+      Swedish healthcare is excellent, publicly funded, and largely free for residents—including students with personnummer studying 1+ years. The system uses patient fees (patientavgift) with an annual cap, making it very affordable.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What Swedish Healthcare Covers</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>✓ GP visits (vårdcentral): ~SEK 200</li>
+          <li>✓ Specialist visits: ~SEK 400</li>
+          <li>✓ Hospital stays: ~SEK 110/day</li>
+          <li>✓ Emergency care: ~SEK 400</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Prescriptions (subsidized)</li>
+          <li>✓ Annual cap: SEK 1,300 for visits</li>
+          <li>✓ Prescription cap: SEK 2,850/year</li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What's Not Fully Covered</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>• Dental (subsidized but not free for 24+)</li>
+          <li>• Glasses/contacts</li>
+          <li>• Physiotherapy (partially subsidized)</li>
+          <li>• Alternative medicine</li>
+          <li>• Private healthcare</li>
+          <li>• Some elective procedures</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Under 24 Dental Benefit:</strong> In Sweden, dental care is free until age 24. If you're under 24, take advantage of this—get checkups and any needed work done while it's free!
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Is health insurance included for students in Sweden?</h4>
+        <p class="text-neutral-600">For 1+ year programs: yes, once you have a personnummer (Swedish ID), you access public healthcare with small patient fees (max SEK 1,300/year). For shorter programs: you must have comprehensive private insurance. EU students can use EHIC.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How much is tuition in Sweden?</h4>
+        <p class="text-neutral-600">EU/EEA students: FREE. Non-EU students: SEK 80,000-295,000/year (~€7,500-27,000) depending on program. STEM and medical programs cost more. Scholarships available through Swedish Institute and universities.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I work while studying in Sweden?</h4>
+        <p class="text-neutral-600">Yes! Students with residence permits can work unlimited hours. No separate work permit needed. This is one of Sweden's advantages—many students work part-time to offset high living costs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">What is the personnummer?</h4>
+        <p class="text-neutral-600">Swedish personal identity number—essential for healthcare, banking, phone contracts, and more. Register with Swedish Tax Agency (Skatteverket) after arrival. Processing takes 2-8 weeks. Life is difficult without it, so apply immediately.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Can I stay after graduation?</h4>
+        <p class="text-neutral-600">Yes. Sweden offers a 9-month extension for job seeking after graduation. If you find employment meeting salary thresholds, you can get a work permit. Sweden actively recruits skilled graduates, especially in tech and engineering.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">How dark are Swedish winters?</h4>
+        <p class="text-neutral-600">Very dark in northern Sweden (polar night). Stockholm gets ~6 hours daylight in December. Many students struggle with this—take it seriously. Light therapy lamps and staying active help. Summers compensate with near-24-hour daylight.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Sweden offers an exceptional package for international students: free healthcare (with personnummer), free tuition for EU students, unlimited work rights, and a 9-month post-graduation job search period. The main challenges are high living costs and dark winters.
+    </p>
+
+    <p class="mb-4">
+      The healthcare system is genuinely excellent once you're in it—the challenge is getting your personnummer promptly. Register with Skatteverket immediately upon arrival. For programs under 1 year, comprehensive private insurance is mandatory.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-2">The Bottom Line</h3>
+      <p class="text-primary-800">
+        Sweden is ideal for students who want excellent free healthcare, value work-life balance, and can handle the climate. The personnummer is your key to Swedish life—get it ASAP. EU students get the best deal with free tuition; non-EU students pay significant fees but gain access to the same benefits.
+      </p>
+    </div>
+
+    <CTABox
+      title="Planning to Study in Sweden?"
+      description="For 1+ year studies, Swedish healthcare covers you. For shorter programs or the initial weeks, you need comprehensive insurance."
+      buttonText="Compare Insurance Options"
+      buttonHref="/best/expat-health-insurance"
+      variant="highlight"
+    />
+  </section>
+
+</PageShell>

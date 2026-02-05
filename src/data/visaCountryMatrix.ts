@@ -2188,6 +2188,285 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'A sponsorship undertaking where a Belgian resident/citizen guarantees financial support for your studies. This can substitute for showing personal funds. The sponsor takes legal responsibility for your costs if you can\'t support yourself.'
       }
     ]
+  },
+
+  // Sweden - Student Residence Permit
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'sweden',
+    officialVisaName: 'Residence Permit for Studies (Uppehållstillstånd för studier)',
+    requirements: {
+      eligibility: [
+        'Acceptance to full-time studies at Swedish university',
+        'Proof of comprehensive health insurance',
+        'Proof of sufficient funds for living expenses',
+        'Valid passport',
+        'Payment of tuition fees (non-EU students)'
+      ],
+      financial: {
+        minimumFunds: 'SEK 9,450/month (~€850) for living expenses',
+        proofRequired: ['Bank statements', 'Scholarship letter', 'Sponsor guarantee'],
+        notes: 'Must prove funds for entire first year. CSN (Swedish student aid) not available to non-EU students initially.'
+      },
+      documents: [
+        'Valid passport',
+        'Letter of acceptance from Swedish university',
+        'Proof of paid tuition (non-EU)',
+        'Proof of comprehensive health insurance',
+        'Proof of financial support (SEK 9,450/month)',
+        'Passport photos',
+        'Completed online application'
+      ]
+    },
+    duration: {
+      initial: 'Length of studies (max 1 year initially)',
+      renewable: true,
+      maxStay: 'Duration of study program'
+    },
+    applicationProcess: [
+      'Receive admission from Swedish university',
+      'Pay tuition fees (non-EU students)',
+      'Apply online via Swedish Migration Agency website',
+      'Pay application fee (SEK 1,500)',
+      'Submit biometrics at embassy/consulate',
+      'Wait 2-4 months for decision',
+      'Receive residence permit card',
+      'Arrive in Sweden and register with Swedish Tax Agency'
+    ],
+    insuranceNotes: 'Non-EU students studying less than 1 year must have comprehensive health insurance from home country. Students studying 1+ year are automatically covered by Swedish healthcare (once registered with Tax Agency and assigned personnummer). EU students use EHIC initially, then get Swedish coverage.',
+    healthcareAccess: 'Once you have a personnummer (personal ID) and are registered for 1+ year studies, you access Swedish healthcare on same terms as residents. Patient fees are capped at SEK 1,300/year. Before personnummer, use your comprehensive insurance or EHIC (EU students).',
+    costs: {
+      visaFee: 'SEK 1,500 (~€130) application fee',
+      insuranceRange: 'Free after personnummer registration (1+ year studies) or private insurance required'
+    },
+    recommendedProviders: ['swedish-public-healthcare', 'kammarkollegiet-fk', 'cigna-global', 'safetywing'],
+    keyConsiderations: [
+      'EU students: free tuition. Non-EU: SEK 80,000-295,000/year (~€7,500-27,000)',
+      'Swedish healthcare is essentially free once you have personnummer',
+      'High living costs—SEK 9,450/month minimum required',
+      'Work permitted without restrictions once permit granted',
+      'English widely spoken—many programs in English',
+      'Dark winters can be challenging—consider this seriously'
+    ],
+    commonMistakes: [
+      'Not having comprehensive insurance for studies under 1 year',
+      'Underestimating how long personnummer takes (can be weeks/months)',
+      'Not registering with Tax Agency promptly after arrival',
+      'Underestimating living costs (Sweden is expensive)',
+      'Not paying tuition before applying for permit (non-EU)'
+    ],
+    faqs: [
+      {
+        question: 'Is health insurance included for students in Sweden?',
+        answer: 'For 1+ year programs: yes, once you have a personnummer (Swedish ID), you access public healthcare with small patient fees (max SEK 1,300/year). For shorter programs: you must have comprehensive private insurance. EU students can use EHIC.'
+      },
+      {
+        question: 'How much is tuition in Sweden?',
+        answer: 'EU/EEA students: FREE. Non-EU students: SEK 80,000-295,000/year (~€7,500-27,000) depending on program. STEM and medical programs cost more. Scholarships available through Swedish Institute and universities.'
+      },
+      {
+        question: 'Can I work while studying in Sweden?',
+        answer: 'Yes! Students with residence permits can work unlimited hours. No separate work permit needed. This is one of Sweden\'s advantages—many students work part-time to offset high living costs.'
+      },
+      {
+        question: 'What is the personnummer?',
+        answer: 'Swedish personal identity number—essential for healthcare, banking, phone contracts, and more. Register with Swedish Tax Agency (Skatteverket) after arrival. Processing takes 2-8 weeks. Life is difficult without it, so apply immediately.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Sweden offers a 9-month extension for job seeking after graduation. If you find employment meeting salary thresholds, you can get a work permit. Sweden actively recruits skilled graduates, especially in tech and engineering.'
+      },
+      {
+        question: 'How dark are Swedish winters?',
+        answer: 'Very dark in northern Sweden (polar night). Stockholm gets ~6 hours daylight in December. Many students struggle with this—take it seriously. Light therapy lamps and staying active help. Summers compensate with near-24-hour daylight.'
+      }
+    ]
+  },
+
+  // Denmark - Student Residence Permit
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'denmark',
+    officialVisaName: 'Residence Permit for Studies (Opholdstilladelse til studier)',
+    requirements: {
+      eligibility: [
+        'Acceptance to full-time higher education in Denmark',
+        'Proof of sufficient financial resources',
+        'Valid passport',
+        'Health insurance (non-EU for first period)',
+        'Tuition payment confirmation (non-EU)'
+      ],
+      financial: {
+        minimumFunds: 'DKK 6,397/month (~€860) for living expenses',
+        proofRequired: ['Bank statements showing funds', 'Scholarship documentation', 'Loan approval'],
+        notes: 'Must demonstrate funds for entire study period or at least first year.'
+      },
+      documents: [
+        'Valid passport',
+        'Letter of admission from Danish institution',
+        'Proof of tuition payment (non-EU)',
+        'Documentation of financial resources',
+        'Health insurance proof (initial period)',
+        'Passport photo',
+        'Completed application via newtodenmark.dk'
+      ]
+    },
+    duration: {
+      initial: 'Duration of studies',
+      renewable: true,
+      maxStay: 'Length of study program + possible extensions'
+    },
+    applicationProcess: [
+      'Receive admission from Danish university',
+      'Pay tuition (non-EU students)',
+      'Apply online at newtodenmark.dk',
+      'Pay application fee (DKK 2,000-2,500)',
+      'Submit biometrics at embassy/application center',
+      'Wait 1-2 months for processing',
+      'Receive residence permit',
+      'Register with CPR (Civil Registration) after arrival'
+    ],
+    insuranceNotes: 'EU students use EHIC, then get Danish health card (sundhedskort). Non-EU students need private insurance until they receive CPR number and Danish health card (typically takes a few weeks). Once registered, Danish public healthcare is free.',
+    healthcareAccess: 'After CPR registration, you receive a Danish health card (sundhedskort) giving access to free public healthcare. GP visits, hospital care, and most treatments are free. You choose a GP in your area. Dental and some services not covered.',
+    costs: {
+      visaFee: 'DKK 2,000-2,500 (~€270-335) application fee',
+      insuranceRange: 'Free after CPR registration; private insurance needed initially (~€50-100/month)'
+    },
+    recommendedProviders: ['danish-public-healthcare', 'cigna-global', 'allianz-care', 'safetywing'],
+    keyConsiderations: [
+      'EU students: free tuition. Non-EU: DKK 45,000-120,000/year (~€6,000-16,000)',
+      'Danish healthcare is free once you have CPR number',
+      'Very high living costs—Denmark is expensive',
+      'Work allowed: 20 hrs/week during semester, full-time in summer',
+      'English widely spoken—many English-taught programs',
+      'Hygge culture and high quality of life'
+    ],
+    commonMistakes: [
+      'Not having insurance for the period before CPR registration',
+      'Underestimating Danish living costs (Copenhagen especially)',
+      'Not registering for CPR promptly after arrival',
+      'Expecting to survive without a bike (cycling is essential)',
+      'Underestimating the cold and dark winters'
+    ],
+    faqs: [
+      {
+        question: 'Is healthcare free for students in Denmark?',
+        answer: 'Yes, once you have a CPR number and Danish health card (sundhedskort). Registration takes a few weeks after arrival. Until then, EU students use EHIC; non-EU students need private insurance. After registration, GP visits and hospital care are free.'
+      },
+      {
+        question: 'How much is tuition in Denmark?',
+        answer: 'EU/EEA students: FREE. Non-EU students: DKK 45,000-120,000/year (~€6,000-16,000). Some programs (business, technical) cost more. Scholarships available but competitive.'
+      },
+      {
+        question: 'Can I work while studying in Denmark?',
+        answer: 'Yes. During semester: 20 hours/week. June-August and December: full-time allowed. No separate work permit needed. Many students work to offset Denmark\'s high living costs. Minimum wage is high (~DKK 120/hour).'
+      },
+      {
+        question: 'What is the CPR number?',
+        answer: 'Civil Personal Registration number—your Danish ID. Essential for healthcare, banking, employment, phone contracts. Register at your local Citizen Service Centre after arrival. Processing: 1-3 weeks typically.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Denmark offers a 6-month "establishment card" for job seeking after graduation. Can be extended to 3 years if you find qualifying work. Pay Limit scheme allows staying if earning above DKK 465,000/year.'
+      },
+      {
+        question: 'How expensive is Copenhagen?',
+        answer: 'Very expensive. Budget DKK 8,000-12,000/month minimum (€1,100-1,600). Rent alone: DKK 5,000-8,000 for a room. Smaller cities (Aarhus, Odense) are cheaper. Student housing (kollegium) is much more affordable if you can get it.'
+      }
+    ]
+  },
+
+  // Norway - Student Residence Permit
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'norway',
+    officialVisaName: 'Student Residence Permit (Oppholdstillatelse for studier)',
+    requirements: {
+      eligibility: [
+        'Admission to approved Norwegian educational institution',
+        'Proof of full financing for living expenses and tuition',
+        'Valid passport',
+        'Housing arrangement in Norway',
+        'Health insurance (until enrolled in Norwegian system)'
+      ],
+      financial: {
+        minimumFunds: 'NOK 137,907/year (~€12,000) for living expenses (2024 rate)',
+        proofRequired: ['Bank account in own name with full amount', 'Norwegian bank account or blocked account', 'Scholarship proof'],
+        notes: 'Full amount must be available, not income over time. Can be Norwegian bank account, blocked account, or scholarship.'
+      },
+      documents: [
+        'Valid passport',
+        'Letter of admission from Norwegian institution',
+        'Proof of full financing (NOK 137,907)',
+        'Proof of housing arrangement',
+        'Health insurance documentation',
+        'Passport photo',
+        'Completed online application via UDI'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive admission from Norwegian institution',
+      'Prepare financial documentation (full amount)',
+      'Apply online at UDI (Norwegian immigration)',
+      'Pay application fee (NOK 6,300)',
+      'Submit biometrics at embassy/police station',
+      'Wait 1-3 months for processing',
+      'Receive residence permit',
+      'Register with Norwegian Tax Administration after arrival'
+    ],
+    insuranceNotes: 'Students enrolled in programs lasting 1+ year are entitled to Norwegian public healthcare (Helfo). You need a D-number or Norwegian ID number first. Until then, have private insurance. EU students can use EHIC. Norwegian healthcare has small copays but is largely free.',
+    healthcareAccess: 'After registering and receiving D-number/ID number, you access Norwegian public healthcare. GP visits have copay of ~NOK 160-200 (~€14-18). Hospital stays: NOK 200/day. Annual cap: NOK 3,165 (~€275). Very affordable for comprehensive care.',
+    costs: {
+      visaFee: 'NOK 6,300 (~€550) application fee',
+      insuranceRange: 'Minimal copays with Norwegian healthcare; private insurance ~€50-100/month before registration'
+    },
+    recommendedProviders: ['norwegian-public-helfo', 'cigna-global', 'allianz-care', 'safetywing'],
+    keyConsiderations: [
+      'Tuition is FREE at public universities—even for non-EU students!',
+      'Extremely high living costs—NOK 137,907/year minimum required',
+      'Must prove FULL financing upfront (not monthly income)',
+      'Work allowed: 20 hrs/week during semester, full-time in holidays',
+      'Spectacular nature—fjords, northern lights, midnight sun',
+      'Norwegian healthcare has small copays but excellent coverage'
+    ],
+    commonMistakes: [
+      'Not having the FULL funding amount available (it\'s strictly checked)',
+      'Underestimating Norwegian living costs (highest in Europe)',
+      'Not arranging housing before applying (required)',
+      'Not having insurance before D-number registration',
+      'Thinking high costs mean better job availability (it\'s still competitive)'
+    ],
+    faqs: [
+      {
+        question: 'Is tuition really free in Norway?',
+        answer: 'Yes! Norwegian public universities charge no tuition—even for international students. You only pay a small semester fee (NOK 300-600). This is unique in the world. The catch: you must prove NOK 137,907/year for living costs, and Norway is VERY expensive.'
+      },
+      {
+        question: 'How does Norwegian healthcare work for students?',
+        answer: 'After registering and getting a D-number (takes a few weeks), you access public healthcare with small copays: GP ~NOK 160-200, hospital ~NOK 200/day. Annual cap is NOK 3,165. Coverage is excellent. Until D-number: use private insurance or EHIC.'
+      },
+      {
+        question: 'How expensive is Norway really?',
+        answer: 'The most expensive country in Europe. Budget NOK 12,000-15,000/month minimum (€1,000-1,300). Rent in Oslo: NOK 6,000-10,000/month for a room. Food is expensive. Alcohol is very expensive. Student housing helps significantly.'
+      },
+      {
+        question: 'Can I work while studying in Norway?',
+        answer: 'Yes. During semester: 20 hours/week. During semester breaks: full-time. No separate work permit needed. Wages are high (NOK 150-200/hour common for student jobs) but so are costs. Many students work to supplement savings.'
+      },
+      {
+        question: 'What is the D-number?',
+        answer: 'Temporary Norwegian identification number for people not permanently resident. You need it for healthcare, banking, employment. Register at the Tax Office after arrival. Processing: 2-4 weeks. Once you\'ve been in Norway longer, you get a full national ID number.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Graduates can apply for a 1-year job seeker permit. If you find skilled employment, you can get a work permit. Norway also has a skilled worker immigration program. The job market is good for tech, engineering, and oil/energy sectors.'
+      }
+    ]
   }
 ];
 
