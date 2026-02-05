@@ -1,0 +1,514 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/czech-republic', label: 'Czech Republic Student Visa' },
+  { href: '/visas/student-visa/in/germany', label: 'Germany Student Visa' },
+  { href: '/visas/student-visa/in/netherlands', label: 'Netherlands Student Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/insurance-for/students-abroad', label: 'Student Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Unconditional acceptance letter from Polish accredited university' },
+  { requirement: 'Financial Proof', details: '~PLN 776/month (~€175) - one of lowest in EU' },
+  { requirement: 'Health Insurance', details: 'Valid coverage for duration of studies (international accepted)' },
+  { requirement: 'Accommodation Proof', details: 'Dormitory assignment or rental contract' },
+  { requirement: 'Passport Validity', details: 'Valid 3+ months beyond intended stay' },
+  { requirement: 'Application Fee', details: 'PLN 680 (~€150) for national visa' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory', requirement: 'Yes - required for visa application' },
+  { aspect: 'Minimum Coverage', requirement: '€30,000 (Schengen requirement)' },
+  { aspect: 'International Accepted', requirement: 'Yes - unlike Czech Republic, international insurance is valid' },
+  { aspect: 'NFZ Option', requirement: 'Available after ZUS registration (voluntary ~PLN 55/month)' },
+  { aspect: 'Emergency Repatriation', requirement: 'Must be included for visa approval' },
+  { aspect: 'Coverage Duration', requirement: 'Must cover entire study period' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'Budget-conscious, accepted for Polish visa' },
+  { provider: 'Cigna Global', monthly: '~$120-180', coverage: 'Comprehensive', bestFor: 'Full coverage, chronic conditions' },
+  { provider: 'IMG Global', monthly: '~$80-120', coverage: '$1-5M', bestFor: 'High coverage limits' },
+  { provider: 'NFZ Voluntary', monthly: '~PLN 55 (~€12)', coverage: 'Public system', bestFor: 'After ZUS registration, long-term' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Application Fee', amount: 'PLN 680 (~€150)', notes: 'National D visa' },
+  { item: 'Residence Card', amount: 'PLN 100 (~€22)', notes: 'If staying 3+ months' },
+  { item: 'Health Insurance', amount: '€40-120/month', notes: 'International or NFZ voluntary' },
+  { item: 'Tuition (Public)', amount: '€0-3,000/year', notes: 'Free for EU, varies for non-EU' },
+  { item: 'Tuition (Private)', amount: '€2,000-8,000/year', notes: 'English programs often at private unis' },
+  { item: 'Living Costs', amount: '€500-800/month', notes: 'Warsaw higher, smaller cities cheaper' },
+  { item: 'Accommodation', amount: '€150-400/month', notes: 'Dormitory €100-150, private €250-400' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '2-4 months before', details: 'Apply to Polish university, await acceptance' },
+  { step: '2. Gather Documents', duration: '2-3 weeks', details: 'Financial proof, insurance, accommodation' },
+  { step: '3. Visa Appointment', duration: '1-4 weeks wait', details: 'Book at Polish embassy/consulate' },
+  { step: '4. Visa Processing', duration: '15-45 days', details: 'Standard Schengen processing time' },
+  { step: '5. Arrival Registration', duration: 'Within 4 days', details: 'Register at local Civil Registry Office' },
+  { step: '6. Residence Card', duration: '1-2 months', details: 'Apply at Voivodeship Office if staying 90+ days' },
+];
+---
+
+<PageShell
+  title="Poland Student Visa Insurance Requirements 2025 | Study in Poland Guide"
+  description="Complete guide to Poland student visa requirements and health insurance for international students. Compare affordable insurance options for one of Europe's most budget-friendly study destinations."
+  headline="Poland Student Visa & Insurance Guide"
+  subheadline="Study in one of Europe's most affordable countries with the right health coverage"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: Poland Student Visa</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> National D Visa (Student)</div>
+        <div><strong>Duration:</strong> Up to 1 year, renewable</div>
+        <div><strong>Processing Time:</strong> 15-45 days</div>
+        <div><strong>Application Fee:</strong> PLN 680 (~€150)</div>
+        <div><strong>Work Allowed:</strong> Yes, full-time during summer, part-time during studies</div>
+        <div><strong>Insurance:</strong> Mandatory, international accepted</div>
+        <div><strong>Schengen Access:</strong> Yes, travel within Schengen zone</div>
+        <div><strong>Living Cost:</strong> €500-800/month (very affordable)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      Poland has emerged as one of Europe's most attractive destinations for international students, offering quality education at a fraction of the cost of Western European countries. With over 80,000 international students, Poland combines affordable tuition, low living costs, and straightforward visa requirements.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      Unlike neighboring Czech Republic, Poland accepts international health insurance for visa purposes, giving students more flexibility in choosing coverage. This makes it easier to arrange insurance before arrival and maintain coverage that works across Europe.
+    </p>
+
+    <p class="text-neutral-600">
+      As an EU and Schengen member, Poland offers students the ability to travel freely throughout Europe while studying, making it an excellent base for exploring the continent.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">Poland is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want affordable European education (tuition often under €3,000/year)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Prefer budget-friendly living costs (€500-800/month)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want international insurance to be accepted (unlike Czech Republic)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Plan to work while studying (generous work rights)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want to explore Europe (Schengen access)</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want English as the primary language (most programs in Polish)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer warmer climates (Polish winters are cold)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need top global university rankings (Poland improving but not Oxbridge)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want free tuition (only EU citizens get free public education)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      The Poland National D Visa for students has relatively straightforward requirements compared to other EU countries. The financial threshold is one of the lowest in Europe, making Poland accessible to students from various backgrounds.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Pro Tip:</strong> Poland's financial requirement of ~PLN 776/month (€175) is significantly lower than Germany (€11,904/year blocked account) or Netherlands (€13,000/year). This makes Poland one of the most accessible EU study destinations financially.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Health insurance is mandatory for Poland student visa applications. Unlike Czech Republic (which requires specific local insurers), Poland accepts international health insurance policies as long as they meet Schengen requirements.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Good News:</strong> Poland accepts international insurance (SafetyWing, Cigna, IMG, etc.) for visa purposes. This gives you more flexibility than Czech Republic, which requires only PVZP or Maxima local insurance.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>NFZ Option:</strong> After registering with ZUS (Social Insurance Institution), you can join NFZ voluntarily for ~PLN 55/month (~€12). This is extremely affordable but takes time to set up, so keep international insurance initially.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Poland accepts a wide range of international insurers. Here are the options that meet visa requirements and provide good value for students.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">For Budget-Conscious Students</h4>
+        <p class="text-neutral-600 text-sm">
+          SafetyWing at ~$56/month is accepted for Polish visa applications and offers good coverage for the price. Ideal for students prioritizing affordability.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">For Long-Term Students</h4>
+        <p class="text-neutral-600 text-sm">
+          Consider starting with international insurance, then switching to NFZ voluntary coverage (~€12/month) after ZUS registration for maximum savings.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Student Insurance for Poland"
+    description="Find affordable coverage that meets Polish visa requirements. International insurance accepted."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Poland offers exceptional value for international students. Here's a realistic breakdown of costs you can expect.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Cost Comparison</h4>
+      <p class="text-green-800 text-sm">
+        Total annual cost in Poland: €8,000-15,000 (including tuition). Compare to UK (€25,000-40,000), Netherlands (€15,000-25,000), or Germany (€10,000-15,000 with free tuition). Poland is one of Europe's most affordable study destinations.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">City Cost Comparison</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Warsaw:</strong> Most expensive (~€800/month living costs)</li>
+        <li><strong>Krakow:</strong> Mid-range (~€650/month)</li>
+        <li><strong>Wroclaw, Poznan:</strong> Affordable (~€550/month)</li>
+        <li><strong>Smaller cities (Lublin, Lodz):</strong> Budget-friendly (~€450/month)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Plan your Poland student visa application carefully. Starting 4-6 months before your intended study date is recommended.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Apply for your residence card (Karta Pobytu) immediately after arriving if you plan to stay more than 90 days. The process takes 1-2 months but you can stay legally while it's being processed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Here's how insurance works in common situations students face in Poland.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Emergency Room Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">You break your wrist playing sports and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> International insurance covers treatment at private hospital (~€200-400). NFZ covers public hospital (free but longer wait).</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Routine Doctor Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a persistent cough and need to see a GP.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Private clinic visit ~€25-50 (often covered by insurance). NFZ: free but may wait 1-2 weeks for non-urgent.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Prescription Medication</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need antibiotics for an infection.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Most medications very affordable in Poland (€5-20). NFZ provides further discounts on many drugs.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Dental Emergency</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need an emergency tooth extraction.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Basic dental: €30-80 private. NFZ covers basic emergency dental. Check if your insurance includes dental (many student plans don't).</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Weekend Trip to Germany</h4>
+        <p class="text-neutral-600 text-sm mb-2">You visit Berlin for the weekend and have a medical issue.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> International insurance (SafetyWing, Cigna) covers you. NFZ: EHIC card needed for EU travel coverage.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Mental Health Support</h4>
+        <p class="text-neutral-600 text-sm mb-2">You experience anxiety and want to see a therapist.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Private therapy: €30-60/session (affordable by European standards). NFZ: very limited, long waits. University counseling often free.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Assuming Czech Republic Rules Apply</h4>
+        <p class="text-red-800">Poland and Czech Republic have different insurance requirements. Czech Republic requires specific local insurers (PVZP/Maxima). Poland accepts international insurance. Don't confuse them.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Getting Insurance Before Visa Application</h4>
+        <p class="text-red-800">You must have insurance proof when applying for your visa, not after. Purchase coverage before your visa appointment.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Missing the 4-Day Registration Deadline</h4>
+        <p class="text-red-800">You must register at the local Civil Registry Office within 4 days of arrival. Missing this can cause problems with your residence card application.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Considering NFZ for Long-Term Savings</h4>
+        <p class="text-red-800">At ~€12/month, voluntary NFZ membership is incredibly cheap. Many students don't realize they can access the public system after ZUS registration.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Forgetting Schengen Minimum Requirements</h4>
+        <p class="text-red-800">Your insurance must have minimum €30,000 coverage and include emergency repatriation. Verify your policy meets Schengen requirements before applying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Poland's healthcare system (NFZ - Narodowy Fundusz Zdrowia) provides universal coverage for registered members. As a student, you have several pathways to access healthcare.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Public Healthcare (NFZ)</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Voluntary membership:</strong> ~PLN 55/month (~€12)</li>
+          <li>• <strong>Coverage:</strong> GP visits, specialists, hospital care</li>
+          <li>• <strong>Wait times:</strong> Can be long for non-urgent care</li>
+          <li>• <strong>Quality:</strong> Good for emergency, variable for routine</li>
+          <li>• <strong>Registration:</strong> Through ZUS (Social Insurance)</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> €25-80 per visit (affordable)</li>
+          <li>• <strong>Availability:</strong> Same-day appointments common</li>
+          <li>• <strong>English:</strong> More English-speaking staff</li>
+          <li>• <strong>Quality:</strong> Modern facilities, shorter waits</li>
+          <li>• <strong>Major chains:</strong> LUX MED, Medicover, ENEL-MED</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Recommended Strategy</h4>
+      <p class="text-blue-800 text-sm">
+        Start with international insurance for visa application and initial months. Once settled, register with ZUS and get NFZ voluntary membership (~€12/month) for local coverage. Keep international insurance for travel and as backup.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Ready to Compare Insurance Options?"
+    description="Find the right coverage for studying in Poland. International insurance accepted, starting from ~$56/month."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Does Poland accept SafetyWing insurance for student visas?</h4>
+        <p class="text-neutral-600">Yes, Poland accepts international insurance including SafetyWing, unlike Czech Republic which only accepts PVZP or Maxima. Ensure your policy meets Schengen requirements (€30,000 minimum, repatriation coverage).</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How much does NFZ voluntary membership cost?</h4>
+        <p class="text-neutral-600">NFZ voluntary membership costs approximately PLN 55/month (~€12). This is calculated as a percentage of the average salary. It's one of the most affordable public health insurance options in Europe.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I work while studying in Poland?</h4>
+        <p class="text-neutral-600">Yes, international students can work full-time during summer holidays and part-time during the academic year without needing a separate work permit. This is more generous than many EU countries.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is English widely spoken in Polish hospitals?</h4>
+        <p class="text-neutral-600">English proficiency varies. Private clinics (LUX MED, Medicover) typically have English-speaking staff. Public hospitals in major cities may have some English speakers, but it's not guaranteed. Consider using Google Translate or bringing a Polish-speaking friend.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What happens if my insurance lapses during studies?</h4>
+        <p class="text-neutral-600">Maintaining valid insurance is a visa condition. If your insurance lapses, you could face issues with residence card renewal. Set reminders to renew before expiry and keep proof of continuous coverage.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is Poland cheaper than Germany for studying?</h4>
+        <p class="text-neutral-600">Yes, significantly. While Germany has free tuition, living costs are higher (€10,000-15,000/year). Poland total costs are €8,000-15,000/year including tuition. Poland's financial requirements are also much lower (~€175/month vs ~€992/month for Germany).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        Poland offers exceptional value for international students seeking European education at affordable prices. Unlike Czech Republic, Poland accepts international insurance, giving you flexibility in choosing coverage that fits your needs and budget.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The combination of low tuition (often under €3,000/year for non-EU), affordable living costs (€500-800/month), and generous work rights makes Poland one of Europe's most accessible study destinations. The NFZ voluntary option at ~€12/month is remarkably cheap for long-term students.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Start with international insurance like SafetyWing (~$56/month) for your visa application and first semester. Once settled and registered with ZUS, add NFZ voluntary coverage for local healthcare access. This hybrid approach gives you both international flexibility and local affordability.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> Poland is excellent for budget-conscious students who want quality European education without the Western European price tag. International insurance is accepted, the process is straightforward, and the post-graduation opportunities are growing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Poland Students"
+    description="Find affordable international insurance that meets Polish visa requirements. Compare top providers starting from ~$56/month."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>

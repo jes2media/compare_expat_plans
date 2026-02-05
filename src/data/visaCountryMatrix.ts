@@ -2467,6 +2467,393 @@ export const visaCountryMatrix: VisaCountryEntry[] = [
         answer: 'Yes. Graduates can apply for a 1-year job seeker permit. If you find skilled employment, you can get a work permit. Norway also has a skilled worker immigration program. The job market is good for tech, engineering, and oil/energy sectors.'
       }
     ]
+  },
+
+  // New Zealand - Student Visa
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'new-zealand',
+    officialVisaName: 'Fee Paying Student Visa',
+    requirements: {
+      eligibility: [
+        'Offer of place from approved New Zealand education provider',
+        'Evidence of sufficient funds for tuition and living costs',
+        'Valid passport',
+        'Good health and character',
+        'Genuine intention to study',
+        'Return travel arrangements or sufficient funds for return'
+      ],
+      financial: {
+        minimumFunds: 'NZ$20,000/year (~$12,000 USD) for living costs + tuition',
+        proofRequired: ['Bank statements', 'Scholarship letter', 'Financial undertaking from sponsor'],
+        notes: 'Must show funds for living expenses plus full tuition. Sponsorship declarations accepted.'
+      },
+      documents: [
+        'Valid passport',
+        'Offer of place from education provider',
+        'Evidence of tuition payment or financial guarantee',
+        'Evidence of funds for living costs (NZ$20,000/year)',
+        'Evidence of accommodation arrangements',
+        'Return travel or funds for return',
+        'Police certificate (if staying 24+ months)',
+        'Medical certificate (if staying 6+ months)'
+      ]
+    },
+    duration: {
+      initial: 'Length of course (up to 4 years)',
+      renewable: true,
+      maxStay: 'Duration of studies + possible extensions'
+    },
+    applicationProcess: [
+      'Receive offer of place from NZ education provider',
+      'Pay tuition or arrange financial guarantee',
+      'Apply online through Immigration New Zealand',
+      'Pay visa fee (NZ$375)',
+      'Provide biometrics if required',
+      'Wait 4-6 weeks for processing',
+      'Receive visa',
+      'Arrange travel and accommodation',
+      'Arrive in New Zealand'
+    ],
+    insuranceNotes: 'New Zealand REQUIRES all international students to have approved medical and travel insurance for the duration of their visa. This is strictly enforced—you cannot get a student visa without it. Most education providers have approved insurance schemes, or you can arrange your own compliant policy.',
+    healthcareAccess: 'International students do NOT have access to free public healthcare in New Zealand (unlike residents). Your mandatory insurance covers medical costs. Some emergency treatment may be free, but most healthcare requires insurance or out-of-pocket payment.',
+    costs: {
+      visaFee: 'NZ$375 (~$225 USD) online application',
+      insuranceRange: 'NZ$500-700/year (~$300-420 USD) for approved student insurance'
+    },
+    recommendedProviders: ['studentsafe', 'orbis', 'southern-cross', 'cigna-global', 'allianz-care'],
+    keyConsiderations: [
+      'Health insurance is MANDATORY—no visa without it',
+      'Students can work 20 hrs/week during term, full-time during holidays',
+      'Post-study work visa available (1-3 years depending on qualification)',
+      'English-speaking country with high quality of life',
+      'Relatively high tuition (NZ$22,000-50,000/year)',
+      'Beautiful nature but geographically isolated'
+    ],
+    commonMistakes: [
+      'Not having approved health insurance (visa will be declined)',
+      'Underestimating costs (NZ is expensive)',
+      'Not arranging accommodation before arrival',
+      'Assuming public healthcare access (students don\'t qualify)',
+      'Not understanding post-study work visa options'
+    ],
+    faqs: [
+      {
+        question: 'Is health insurance mandatory in New Zealand?',
+        answer: 'Yes, absolutely. All international students MUST have approved medical and travel insurance. This is a visa requirement—without it, your visa will be declined. Most education providers offer approved schemes, typically NZ$500-700/year.'
+      },
+      {
+        question: 'Can I access public healthcare in New Zealand?',
+        answer: 'No. Unlike residents, international students do not qualify for free public healthcare. Some emergency treatment may be covered, but you need insurance for all other medical care. This is why insurance is mandatory.'
+      },
+      {
+        question: 'Can I work while studying in New Zealand?',
+        answer: 'Yes. During term: 20 hours/week. During scheduled holidays: full-time. PhD and research master\'s students can work unlimited hours. Work rights are included in your student visa.'
+      },
+      {
+        question: 'How much is tuition in New Zealand?',
+        answer: 'Varies widely: NZ$22,000-50,000/year (~$13,000-30,000 USD) depending on program. Medical and engineering programs cost more. Scholarships available but competitive.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes! New Zealand offers excellent post-study work visas. Bachelor\'s: 3-year open work visa. Master\'s/PhD: 3-year open work visa. Partner can also get work visa. One of the better post-study pathways globally.'
+      },
+      {
+        question: 'What insurance do I need?',
+        answer: 'You need medical and travel insurance that meets Immigration NZ requirements. Most providers: Studentsafe, Orbis, Southern Cross, or international providers with NZ-compliant policies. Your education provider likely has a recommended/required scheme.'
+      }
+    ]
+  },
+
+  // Czech Republic - Student Visa (Long-term Visa for Study)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'czech-republic',
+    officialVisaName: 'Long-term Visa for the Purpose of Study',
+    requirements: {
+      eligibility: [
+        'Acceptance to accredited Czech educational institution',
+        'Proof of sufficient financial means',
+        'Comprehensive health insurance (PVZP or Maxima required)',
+        'Clean criminal record',
+        'Valid passport',
+        'Accommodation in Czech Republic'
+      ],
+      financial: {
+        minimumFunds: 'CZK 103,200/year (~€4,100) or half minimum wage equivalent',
+        proofRequired: ['Bank statement', 'Scholarship letter', 'Sponsor declaration'],
+        notes: 'Must show funds for first year of study. Lower than Western Europe but strictly verified.'
+      },
+      documents: [
+        'Valid passport',
+        'Application form',
+        'Passport photos',
+        'Confirmation of study acceptance',
+        'Proof of accommodation',
+        'Proof of financial means',
+        'Criminal record extract',
+        'PVZP or Maxima health insurance confirmation',
+        'Educational documents (verified)'
+      ]
+    },
+    duration: {
+      initial: '1 year (renewable)',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive acceptance from Czech university',
+      'Purchase required PVZP or Maxima health insurance',
+      'Gather all documents (some need official verification)',
+      'Apply at Czech embassy in person',
+      'Pay visa fee',
+      'Wait 60-90 days for processing',
+      'Receive long-term visa',
+      'Arrive in Czech Republic',
+      'Register with Foreign Police within 3 days'
+    ],
+    insuranceNotes: 'Czech Republic has STRICT insurance requirements. For long-term visas, you MUST have comprehensive insurance from PVZP (Pojišťovna VZP) or Maxima pojišťovna. International insurance like Cigna or SafetyWing is NOT accepted. This is non-negotiable for visa approval.',
+    healthcareAccess: 'With PVZP/Maxima insurance, you have coverage for healthcare in Czech Republic. These are comprehensive policies covering hospitalization, outpatient care, and emergencies. Czech healthcare quality is good with modern facilities, especially in Prague.',
+    costs: {
+      visaFee: 'CZK 2,500 (~€100) for long-term visa',
+      insuranceRange: 'CZK 8,000-15,000/year (~€320-600) for PVZP/Maxima'
+    },
+    recommendedProviders: ['pvzp', 'maxima'],
+    keyConsiderations: [
+      'ONLY PVZP or Maxima insurance accepted—international insurance NOT valid',
+      'Very affordable living costs compared to Western Europe',
+      'Many English-taught programs available',
+      'Free or low tuition for Czech-language programs',
+      'Central European location—easy travel to Germany, Austria, Poland',
+      'Must register with Foreign Police within 3 days of arrival'
+    ],
+    commonMistakes: [
+      'Buying international insurance instead of PVZP/Maxima (visa will be rejected)',
+      'Not registering with Foreign Police within 3 days',
+      'Underestimating document verification requirements',
+      'Not starting visa process early enough (60-90 days processing)',
+      'Assuming English is widely spoken outside Prague (learn basic Czech)'
+    ],
+    faqs: [
+      {
+        question: 'Why can I only use PVZP or Maxima insurance?',
+        answer: 'Czech immigration law specifically requires comprehensive insurance from providers authorized for long-term visa purposes. Only PVZP and Maxima meet these requirements. International insurers like Cigna, Allianz, or SafetyWing are NOT accepted, regardless of coverage level.'
+      },
+      {
+        question: 'How much does PVZP/Maxima insurance cost?',
+        answer: 'Approximately CZK 8,000-15,000/year (~€320-600). This covers comprehensive healthcare including hospitalization. Much cheaper than Western European insurance. Purchase before your visa appointment.'
+      },
+      {
+        question: 'Is tuition free in Czech Republic?',
+        answer: 'For Czech-language programs: yes, tuition is free at public universities. For English-taught programs: typically €2,000-10,000/year. Medical programs cost more. Overall very affordable compared to UK or Western Europe.'
+      },
+      {
+        question: 'Can I work while studying in Czech Republic?',
+        answer: 'Yes. Students can work up to 20 hours/week during term (more during breaks). No separate work permit needed. Czech minimum wage is lower than Western Europe but so are living costs.'
+      },
+      {
+        question: 'What is the Foreign Police registration?',
+        answer: 'You must register your presence with the Foreign Police (Cizinecká policie) within 3 working days of arrival. Bring passport, visa, proof of accommodation. Hotels do this automatically; private accommodation requires personal registration.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Graduates can apply for a long-term residence permit to seek employment (9 months). If you find a job, you can get a work permit or employee card. Czech Republic is increasingly open to skilled graduates staying.'
+      }
+    ]
+  },
+
+  // Poland - National Visa (Type D) for Studies
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'poland',
+    officialVisaName: 'National Visa Type D for Studies',
+    requirements: {
+      eligibility: [
+        'Acceptance to Polish higher education institution',
+        'Proof of sufficient financial means',
+        'Health insurance valid in Poland',
+        'Valid passport',
+        'Accommodation arrangements',
+        'Tuition paid or payment confirmation'
+      ],
+      financial: {
+        minimumFunds: 'PLN 776/month (~€170) or equivalent annual proof',
+        proofRequired: ['Bank statement', 'Scholarship proof', 'Sponsor declaration'],
+        notes: 'Very affordable requirements. Must show funds for study period or first year minimum.'
+      },
+      documents: [
+        'Valid passport',
+        'Visa application form',
+        'Passport photo',
+        'Letter of acceptance from Polish university',
+        'Proof of paid tuition or payment arrangement',
+        'Proof of financial means',
+        'Health insurance certificate',
+        'Proof of accommodation',
+        'Travel itinerary'
+      ]
+    },
+    duration: {
+      initial: 'Up to 1 year (national visa), then temporary residence permit',
+      renewable: true,
+      maxStay: 'Duration of studies'
+    },
+    applicationProcess: [
+      'Receive acceptance from Polish university',
+      'Pay tuition deposit or full fees',
+      'Obtain health insurance valid in Poland',
+      'Apply at Polish embassy/consulate',
+      'Pay visa fee (~€80)',
+      'Wait 15-30 days for processing',
+      'Receive national visa',
+      'Arrive in Poland',
+      'Apply for temporary residence permit for longer stays'
+    ],
+    insuranceNotes: 'Poland requires health insurance valid in Poland. EU students can use EHIC. Non-EU students need comprehensive insurance—international policies are generally accepted (unlike Czech Republic). Student insurance from Polish providers (PZU, etc.) or international providers both work.',
+    healthcareAccess: 'Students with valid insurance can access Polish healthcare. EU students with EHIC get public healthcare. Non-EU students use their insurance for private care or can voluntarily join NFZ (public system) for ~PLN 55/month. Polish healthcare is improving rapidly.',
+    costs: {
+      visaFee: '€80 for national visa',
+      insuranceRange: 'PLN 600-1,500/year (~€130-330) for student insurance'
+    },
+    recommendedProviders: ['pzu', 'warta', 'cigna-global', 'safetywing', 'allianz-care'],
+    keyConsiderations: [
+      'One of Europe\'s most affordable countries for students',
+      'International insurance is accepted (unlike Czech Republic)',
+      'Many English-taught programs, especially in major cities',
+      'EU member—Schengen travel access',
+      'Rapidly developing economy with growing opportunities',
+      'Rich history and culture, vibrant student cities'
+    ],
+    commonMistakes: [
+      'Not applying for temporary residence permit after arrival (for stays over 1 year)',
+      'Underestimating Polish winters (very cold)',
+      'Assuming everyone speaks English outside major cities',
+      'Not registering accommodation within required timeframe',
+      'Missing visa renewal deadlines'
+    ],
+    faqs: [
+      {
+        question: 'What insurance do I need for Poland?',
+        answer: 'EU students: EHIC covers you for public healthcare. Non-EU students: comprehensive health insurance valid in Poland. Unlike Czech Republic, Poland accepts international insurance providers. Cost: PLN 600-1,500/year (~€130-330).'
+      },
+      {
+        question: 'How affordable is Poland for students?',
+        answer: 'Very affordable. Living costs: €400-700/month including rent. Tuition: free for Polish-language programs, €2,000-6,000/year for English programs. One of Europe\'s best value destinations for students.'
+      },
+      {
+        question: 'Can I work while studying in Poland?',
+        answer: 'Yes. EU students: no restrictions. Non-EU students: can work without permit if studying full-time. Many students work part-time, especially in cities like Warsaw, Krakow, and Wroclaw.'
+      },
+      {
+        question: 'What is the temporary residence permit?',
+        answer: 'For stays longer than your initial visa (usually 1+ year), apply for a temporary residence permit after arrival. This gives you a residency card and longer-term status. Apply at the voivodeship (regional) office.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Graduates can apply for temporary residence to seek employment (1 year). If you find a job, you can get a work permit. Poland increasingly welcomes skilled graduates, especially in IT and business.'
+      },
+      {
+        question: 'Is Poland in the EU/Schengen?',
+        answer: 'Yes to both. As an EU member and Schengen country, studying in Poland gives you easy access to travel throughout Europe. Your residence permit allows Schengen-wide travel (90 days in other countries).'
+      }
+    ]
+  },
+
+  // Portugal - Student Visa (Visto de Estudo)
+  {
+    visaSlug: 'student-visa',
+    countrySlug: 'portugal',
+    officialVisaName: 'Study Visa (Visto de Estudo) / Residence Permit for Study',
+    requirements: {
+      eligibility: [
+        'Acceptance from Portuguese educational institution',
+        'Proof of sufficient financial means',
+        'Health insurance coverage',
+        'Clean criminal record',
+        'Valid passport',
+        'Accommodation in Portugal'
+      ],
+      financial: {
+        minimumFunds: '€760/month (~€9,120/year) or Portuguese minimum wage equivalent',
+        proofRequired: ['Bank statements', 'Scholarship proof', 'Sponsor declaration'],
+        notes: 'Must demonstrate funds for entire study period or first year. Scholarship counts toward requirement.'
+      },
+      documents: [
+        'Valid passport (6+ months validity)',
+        'Visa application form',
+        'Passport photos',
+        'Proof of enrollment/acceptance',
+        'Proof of accommodation',
+        'Proof of financial means',
+        'Health insurance certificate',
+        'Criminal record certificate',
+        'Proof of paid tuition or payment arrangement'
+      ]
+    },
+    duration: {
+      initial: 'Duration of course (residence permit)',
+      renewable: true,
+      maxStay: 'Duration of studies + extensions'
+    },
+    applicationProcess: [
+      'Receive acceptance from Portuguese university',
+      'Gather required documents',
+      'Apply for study visa at Portuguese embassy/consulate',
+      'Pay visa fee (~€90)',
+      'Wait 2-4 weeks for processing',
+      'Receive visa',
+      'Arrive in Portugal',
+      'Apply for residence permit at SEF within 3 months',
+      'Receive residence card'
+    ],
+    insuranceNotes: 'Portugal requires health insurance for student visa. EU students can use EHIC and access Portuguese public healthcare (SNS). Non-EU students need comprehensive private insurance initially; after residence permit, may access SNS. International insurance widely accepted for visa purposes.',
+    healthcareAccess: 'EU students: EHIC gives access to public healthcare (SNS). Non-EU students: use private insurance initially. After obtaining residence permit and registering with health center, non-EU students may access SNS (public healthcare). SNS is affordable with small copays.',
+    costs: {
+      visaFee: '~€90 for study visa',
+      insuranceRange: '€300-600/year for private insurance; SNS is nearly free once eligible'
+    },
+    recommendedProviders: ['portuguese-sns', 'medis', 'multicare', 'cigna-global', 'safetywing'],
+    keyConsiderations: [
+      'Affordable living costs by Western European standards',
+      'Growing tech hub (Lisbon) with international community',
+      'Excellent weather and quality of life',
+      'Portuguese language helpful but English programs available',
+      'Path to EU citizenship (5 years residence)',
+      'Non-EU students may access SNS after residence permit'
+    ],
+    commonMistakes: [
+      'Not applying for residence permit within 3 months of arrival',
+      'Underestimating Lisbon/Porto housing costs (rising rapidly)',
+      'Not learning basic Portuguese (helpful for daily life and healthcare)',
+      'Missing SEF appointment deadlines',
+      'Assuming all healthcare is free immediately (need proper registration)'
+    ],
+    faqs: [
+      {
+        question: 'What insurance do I need for Portugal?',
+        answer: 'EU students: EHIC gives public healthcare access. Non-EU students: private insurance for visa, then may access public system (SNS) after residence permit. International insurance accepted for visa application. Costs: €300-600/year private, nearly free SNS.'
+      },
+      {
+        question: 'How affordable is Portugal?',
+        answer: 'Moderate by Western European standards. Living costs: €700-1,200/month (Lisbon higher, smaller cities cheaper). Tuition: EU students pay ~€700-1,500/year, non-EU ~€3,000-8,000/year. Housing is the main expense.'
+      },
+      {
+        question: 'Can I work while studying in Portugal?',
+        answer: 'Yes. Students can work part-time (20 hrs/week during term, full-time during holidays). No separate work permit needed with student residence. Good opportunities in tourism, tech, and English teaching.'
+      },
+      {
+        question: 'Can I access Portuguese public healthcare?',
+        answer: 'EU students: yes, via EHIC. Non-EU students: after obtaining residence permit, register at local health center (centro de saúde) to access SNS. Public healthcare has small copays (€4-15 for GP visits). Quality is good.'
+      },
+      {
+        question: 'Can I stay after graduation?',
+        answer: 'Yes. Portugal offers a post-study job search residence permit. If you find employment, you can switch to work permit. After 5 years legal residence, you can apply for permanent residence or citizenship (Portuguese citizenship is valuable—EU passport).'
+      },
+      {
+        question: 'What is SEF?',
+        answer: 'SEF (Serviço de Estrangeiros e Fronteiras) is the immigration service. You apply for your residence permit through SEF after arriving. Book appointments early—they can be backlogged. SEF is being restructured, so processes may change.'
+      }
+    ]
   }
 ];
 

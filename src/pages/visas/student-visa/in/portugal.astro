@@ -1,0 +1,522 @@
+---
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'quick-decision', label: 'Quick Decision Guide' },
+  { id: 'requirements', label: 'Official Requirements' },
+  { id: 'insurance-requirements', label: 'Insurance Requirements' },
+  { id: 'recommended-providers', label: 'Recommended Providers' },
+  { id: 'costs', label: 'Costs Breakdown' },
+  { id: 'application-timeline', label: 'Application Timeline' },
+  { id: 'scenarios', label: 'Real-World Scenarios' },
+  { id: 'common-mistakes', label: 'Common Mistakes' },
+  { id: 'healthcare-access', label: 'Healthcare Access' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'verdict', label: 'Final Verdict' },
+];
+
+const relatedLinks = [
+  { href: '/visas/student-visa/in/spain', label: 'Spain Student Visa' },
+  { href: '/visas/student-visa/in/france', label: 'France Student Visa' },
+  { href: '/visas/student-visa/in/italy', label: 'Italy Student Visa' },
+  { href: '/best/expat-health-insurance', label: 'Compare Expat Insurance' },
+  { href: '/countries/portugal/insurance', label: 'Portugal Insurance Guide' },
+];
+
+const requirementsColumns = [
+  { key: 'requirement', header: 'Requirement' },
+  { key: 'details', header: 'Details' },
+];
+
+const requirementsRows = [
+  { requirement: 'University Acceptance', details: 'Acceptance letter from Portuguese institution (public or private)' },
+  { requirement: 'Financial Proof', details: '~€760/month (Portuguese minimum wage) or equivalent savings' },
+  { requirement: 'Health Insurance', details: 'Valid travel/health insurance covering Portugal' },
+  { requirement: 'Accommodation Proof', details: 'Rental contract, dormitory confirmation, or host letter' },
+  { requirement: 'Passport Validity', details: 'Valid 3+ months beyond visa validity' },
+  { requirement: 'Application Fee', details: '€90 for residence visa' },
+];
+
+const insuranceColumns = [
+  { key: 'aspect', header: 'Insurance Aspect' },
+  { key: 'requirement', header: 'Requirement' },
+];
+
+const insuranceRows = [
+  { aspect: 'Mandatory', requirement: 'Yes - for initial visa application' },
+  { aspect: 'Minimum Coverage', requirement: '€30,000 (Schengen requirement)' },
+  { aspect: 'International Accepted', requirement: 'Yes - any policy meeting Schengen requirements' },
+  { aspect: 'SNS Access', requirement: 'Free public healthcare after residence permit + registration' },
+  { aspect: 'Emergency Repatriation', requirement: 'Must be included in policy' },
+  { aspect: 'After Residence Permit', requirement: 'SNS provides free/low-cost care (insurance becomes optional)' },
+];
+
+const providersColumns = [
+  { key: 'provider', header: 'Provider' },
+  { key: 'monthly', header: 'Monthly Cost' },
+  { key: 'coverage', header: 'Coverage' },
+  { key: 'bestFor', header: 'Best For' },
+];
+
+const providersRows = [
+  { provider: 'SafetyWing', monthly: '~$56', coverage: '$250,000', bestFor: 'Initial visa application, budget option' },
+  { provider: 'Cigna Global', monthly: '~$120-180', coverage: 'Comprehensive', bestFor: 'Premium coverage, chronic conditions' },
+  { provider: 'IMG Global', monthly: '~$80-120', coverage: '$1-5M', bestFor: 'High coverage limits' },
+  { provider: 'SNS (Public)', monthly: 'Free', coverage: 'Full public system', bestFor: 'After residence permit (long-term)' },
+];
+
+const costsColumns = [
+  { key: 'item', header: 'Cost Item' },
+  { key: 'amount', header: 'Amount' },
+  { key: 'notes', header: 'Notes' },
+];
+
+const costsRows = [
+  { item: 'Visa Application Fee', amount: '€90', notes: 'Residence visa (D4)' },
+  { item: 'Residence Permit', amount: '€83', notes: 'Annual renewal' },
+  { item: 'Health Insurance', amount: '€50-150/month', notes: 'Until SNS registration' },
+  { item: 'Tuition (Public)', amount: '€697-1,500/year', notes: 'EU and non-EU similar rates' },
+  { item: 'Tuition (Private)', amount: '€3,000-12,000/year', notes: 'Business schools higher' },
+  { item: 'Living Costs', amount: '€700-1,200/month', notes: 'Lisbon/Porto higher, smaller cities cheaper' },
+  { item: 'Accommodation', amount: '€300-600/month', notes: 'Shared rooms €250-350, studios €500+' },
+];
+
+const timelineColumns = [
+  { key: 'step', header: 'Step' },
+  { key: 'duration', header: 'Duration' },
+  { key: 'details', header: 'Details' },
+];
+
+const timelineRows = [
+  { step: '1. University Application', duration: '3-6 months before', details: 'Apply to Portuguese institution' },
+  { step: '2. Gather Documents', duration: '2-4 weeks', details: 'Financial proof, insurance, accommodation' },
+  { step: '3. Visa Appointment', duration: '2-6 weeks wait', details: 'Book at Portuguese embassy/consulate' },
+  { step: '4. Visa Processing', duration: '30-60 days', details: 'Portugal often slower than 15-day Schengen standard' },
+  { step: '5. Arrival + Registration', duration: 'Within 3 days', details: 'Register with SEF (immigration) office' },
+  { step: '6. Residence Permit', duration: '2-4 months', details: 'Apply at local SEF or AIMA office' },
+];
+---
+
+<PageShell
+  title="Portugal Student Visa Insurance Requirements 2025 | Study in Portugal Guide"
+  description="Complete guide to Portugal student visa requirements and health insurance for international students. Free SNS healthcare access after residence permit. Compare insurance options."
+  headline="Portugal Student Visa & Insurance Guide"
+  subheadline="Study in Europe's sunniest country with free public healthcare access"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Student Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroImage="/images/visas/student-visa-hero-bg.png"
+>
+  <!-- Overview Section -->
+  <section id="overview" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Overview</h2>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-primary-900 mb-4">Quick Facts: Portugal Student Visa</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div><strong>Visa Type:</strong> Residence Visa D4 (Study)</div>
+        <div><strong>Duration:</strong> 4 months initial, then residence permit</div>
+        <div><strong>Processing Time:</strong> 30-60 days</div>
+        <div><strong>Application Fee:</strong> €90</div>
+        <div><strong>Work Allowed:</strong> Yes, part-time (20 hours/week)</div>
+        <div><strong>Insurance:</strong> Required initially, SNS free after permit</div>
+        <div><strong>Schengen Access:</strong> Yes, travel within Schengen zone</div>
+        <div><strong>Path to Citizenship:</strong> 5 years (one of Europe's fastest)</div>
+      </div>
+    </div>
+
+    <p class="text-lg text-neutral-700 mb-4">
+      Portugal has become one of Europe's most popular student destinations, combining affordable tuition, year-round sunshine, and a clear path to EU citizenship. The Portuguese public university system offers quality education at remarkably low costs—even for non-EU students.
+    </p>
+
+    <p class="text-neutral-600 mb-4">
+      A major advantage of studying in Portugal is access to the SNS (Serviço Nacional de Saúde), Portugal's public healthcare system. After obtaining your residence permit and registering with a local health center, you can access free or very low-cost healthcare—making Portugal one of the best value destinations for international students.
+    </p>
+
+    <p class="text-neutral-600">
+      With English programs increasingly available, a thriving international student community, and one of Europe's most welcoming immigration policies, Portugal offers an exceptional study abroad experience.
+    </p>
+  </section>
+
+  <!-- Quick Decision Guide -->
+  <section id="quick-decision" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-green-900 mb-4">Portugal is a Great Fit If You...</h3>
+        <ul class="space-y-2 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want free public healthcare after residence permit</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Value warm climate and coastal lifestyle</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Consider staying in Europe long-term (5-year citizenship path)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Want affordable public university tuition (€700-1,500/year)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span>Enjoy vibrant student cities (Lisbon, Porto, Coimbra)</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-amber-900 mb-4">Consider Alternatives If You...</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Need lowest possible costs (Poland, Czech Republic cheaper)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Require fast visa processing (Portugal can be slow)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Prefer cooler climates (hot summers in Portugal)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 mt-1">→</span>
+            <span>Want courses primarily in English (many programs in Portuguese)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Requirements -->
+  <section id="requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Official Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      The Portuguese D4 (Study) visa has moderate requirements. The financial threshold is based on the Portuguese minimum wage, making it accessible while ensuring students can support themselves.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Pro Tip:</strong> Portugal's visa processing can take longer than the standard Schengen 15 days—plan for 30-60 days. Apply early and don't book non-refundable flights until you have your visa.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance Requirements -->
+  <section id="insurance-requirements" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Insurance Requirements</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Health insurance is mandatory for your initial visa application, but Portugal offers a significant advantage: once you have your residence permit and register with a local health center, you gain access to free SNS public healthcare.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">SNS Healthcare Access</h4>
+      <p class="text-green-800">
+        After getting your residence permit, register at your local Centro de Saúde (health center) for a Número de Utente (patient number). This gives you access to free GP visits, reduced-cost specialists, and subsidized prescriptions. This is one of Portugal's biggest advantages for students.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Transition Period:</strong> Keep your international insurance active until your SNS registration is complete. The residence permit process can take 2-4 months, and SNS registration adds another 2-4 weeks.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recommended Providers -->
+  <section id="recommended-providers" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Recommended Insurance Providers</h2>
+
+    <p class="text-neutral-600 mb-6">
+      For the visa application and initial months before SNS access, here are recommended insurance options for international students in Portugal.
+    </p>
+
+    <ComparisonTable columns={providersColumns} rows={providersRows} />
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Short-Term Strategy</h4>
+        <p class="text-neutral-600 text-sm">
+          Use SafetyWing (~$56/month) for visa application and first 3-4 months. Cancel once SNS is active—no need for expensive long-term international insurance.
+        </p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Premium Coverage Option</h4>
+        <p class="text-neutral-600 text-sm">
+          Consider Cigna or IMG if you have pre-existing conditions or want private hospital access alongside SNS. The SNS is good but can have wait times for specialists.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Student Insurance for Portugal"
+    description="Find affordable coverage for your visa application. Free SNS access comes after your residence permit."
+    buttonText="Compare Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+
+  <!-- Costs Breakdown -->
+  <section id="costs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Costs Breakdown</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Portugal offers affordable education by Western European standards, though living costs have risen in Lisbon and Porto. Here's a realistic breakdown.
+    </p>
+
+    <ComparisonTable columns={costsColumns} rows={costsRows} />
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">City Cost Comparison</h4>
+      <ul class="text-blue-800 text-sm space-y-1">
+        <li><strong>Lisbon:</strong> Most expensive (~€1,000-1,200/month)</li>
+        <li><strong>Porto:</strong> Second most expensive (~€800-1,000/month)</li>
+        <li><strong>Coimbra:</strong> Classic university town (~€650-800/month)</li>
+        <li><strong>Braga, Évora, Faro:</strong> More affordable (~€550-700/month)</li>
+      </ul>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">Why Portugal is Great Value</h4>
+      <p class="text-green-800 text-sm">
+        Portuguese public universities charge similar fees to EU and non-EU students (€697-1,500/year)—unlike UK or Netherlands where non-EU pays much more. Combined with free SNS healthcare after residence permit, Portugal offers excellent value.
+      </p>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section id="application-timeline" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Application Timeline</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Portugal's visa process can be slower than other Schengen countries. Start 4-6 months before your intended arrival date.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Portugal recently transitioned from SEF to AIMA (Agency for Integration, Migration, and Asylum). Processing times may be longer during this transition period. Check current wait times at your local AIMA office.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Real-World Scenarios</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Here's how insurance and healthcare work in common situations students face in Portugal.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (After SNS Registration)</h4>
+        <p class="text-neutral-600 text-sm mb-2">You have a persistent cold and need to see a doctor.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Book appointment at Centro de Saúde. Free with Número de Utente. May wait 1-3 days for non-urgent.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">GP Visit (Before SNS Registration)</h4>
+        <p class="text-neutral-600 text-sm mb-2">Same scenario but you're still waiting for residence permit.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> Private clinic €40-60. International insurance should cover. Keep receipts for reimbursement.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Emergency Room Visit</h4>
+        <p class="text-neutral-600 text-sm mb-2">You fall off a scooter and need emergency care.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Go to Urgências (emergency). Free for SNS-registered students. Small fee (€15-20) for walk-in without appointment.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Specialist Referral</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need to see a dermatologist for a skin condition.</p>
+        <p class="text-amber-700 text-sm"><strong>Outcome:</strong> SNS: GP refers you, may wait 2-6 months. Private: €50-80, same week. Consider supplementing SNS with private for non-urgent specialists.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Prescription Medication</h4>
+        <p class="text-neutral-600 text-sm mb-2">You need regular medication for allergies.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> SNS subsidizes many medications. Generic antihistamines €5-10/month. Some medications 50-80% covered.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Weekend in Spain</h4>
+        <p class="text-neutral-600 text-sm mb-2">You visit Madrid for the weekend and twist your ankle.</p>
+        <p class="text-green-700 text-sm"><strong>Outcome:</strong> Apply for EHIC/CESD card with SNS registration. Covers emergency care across EU. Keep international insurance as backup.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section id="common-mistakes" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-4">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Canceling Insurance Before SNS Registration</h4>
+        <p class="text-red-800">Don't cancel your international insurance immediately after arriving. The residence permit process takes 2-4 months, and SNS registration adds more time. Maintain coverage until you have your Número de Utente.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Underestimating Lisbon Housing Costs</h4>
+        <p class="text-red-800">Lisbon housing has become very expensive. A shared room can cost €350-500/month. Start your housing search early and consider other cities like Coimbra or Braga for significant savings.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Not Registering for SNS Immediately</h4>
+        <p class="text-red-800">As soon as you have your residence permit, register at your local Centro de Saúde. The Número de Utente takes time to process, so start early to minimize the gap in free healthcare access.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Expecting Fast Visa Processing</h4>
+        <p class="text-red-800">Portugal often exceeds the 15-day Schengen standard. Plan for 30-60 days processing time. Apply at least 3-4 months before your intended start date.</p>
+      </div>
+
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <h4 class="font-semibold text-red-900 mb-2">❌ Missing the 3-Day Registration Deadline</h4>
+        <p class="text-red-800">You must register with the local authorities within 3 days of arrival. This is different from the residence permit application—it's a simple registration of your address.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare Access -->
+  <section id="healthcare-access" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Healthcare System Access</h2>
+
+    <p class="text-neutral-600 mb-6">
+      Portugal's SNS (Serviço Nacional de Saúde) provides universal healthcare coverage. As a student with a residence permit, you're entitled to the same access as Portuguese citizens.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">SNS Public Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> Free GP visits with Número de Utente</li>
+          <li>• <strong>Emergency:</strong> €15-20 for urgências (ER) visit</li>
+          <li>• <strong>Specialists:</strong> Free via GP referral (may have waits)</li>
+          <li>• <strong>Prescriptions:</strong> Many medications subsidized</li>
+          <li>• <strong>Coverage:</strong> Comprehensive including hospital care</li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• <strong>Cost:</strong> €40-80 per consultation</li>
+          <li>• <strong>Availability:</strong> Same-day or next-day appointments</li>
+          <li>• <strong>English:</strong> Better English proficiency</li>
+          <li>• <strong>Providers:</strong> CUF, Hospital da Luz, Lusíadas</li>
+          <li>• <strong>When to use:</strong> Urgent specialists, faster service</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h4 class="font-semibold text-blue-900 mb-2">Recommended Strategy</h4>
+      <p class="text-blue-800 text-sm">
+        1) Get international insurance for visa application. 2) Apply for residence permit immediately on arrival. 3) Register for SNS once permit is approved. 4) Keep travel insurance for trips outside Portugal. 5) Consider private clinics for non-urgent specialists if SNS waits are long.
+      </p>
+    </div>
+
+    <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+      <h4 class="font-semibold text-green-900 mb-2">EHIC/CESD Card</h4>
+      <p class="text-green-800 text-sm">
+        After SNS registration, apply for the European Health Insurance Card (EHIC/CESD). This covers emergency medical treatment across all EU/EEA countries—essential for weekend trips around Europe.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Need Insurance for Your Portugal Visa Application?"
+    description="Compare options for the initial visa period. Remember: SNS provides free healthcare once you have your residence permit."
+    buttonText="View Insurance Comparison"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- FAQs -->
+  <section id="faqs" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Do I really get free healthcare with the residence permit?</h4>
+        <p class="text-neutral-600">Yes. Once you have your residence permit and register at a Centro de Saúde for your Número de Utente (patient number), you're entitled to the same SNS coverage as Portuguese citizens. GP visits are free, and most other services have minimal fees or are free.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">How long do I need private insurance?</h4>
+        <p class="text-neutral-600">Typically 4-6 months: 2-4 months for residence permit processing, plus 2-4 weeks for SNS registration. Start with 6 months of international insurance to be safe, and you can cancel early if SNS registration completes faster.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is SafetyWing accepted for Portugal student visa?</h4>
+        <p class="text-neutral-600">Yes, SafetyWing and other international insurers meeting Schengen requirements (€30,000 coverage, repatriation) are accepted for Portugal visa applications. Unlike Czech Republic, Portugal doesn't require specific local insurers.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Can I get Portuguese citizenship through studying?</h4>
+        <p class="text-neutral-600">Yes, Portugal has one of Europe's most accessible citizenship paths. After 5 years of legal residence (including student years) and passing a basic Portuguese language test (A2 level), you can apply for citizenship. This makes Portugal attractive for those considering long-term European residence.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">What's the difference between SEF and AIMA?</h4>
+        <p class="text-neutral-600">SEF (Serviço de Estrangeiros e Fronteiras) was Portugal's immigration service until 2023. It has been replaced by AIMA (Agency for Integration, Migration, and Asylum). The processes are similar, but expect some administrative delays during the transition.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-2">Is Portugal cheaper than Spain for studying?</h4>
+        <p class="text-neutral-600">Generally yes. Portuguese public universities charge €697-1,500/year for most programs (similar for EU and non-EU). Spain charges €700-2,000/year for EU but significantly more for non-EU students. Living costs are similar, though Portugal outside Lisbon/Porto is often cheaper than Barcelona/Madrid.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="mb-12">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">Final Verdict</h2>
+
+    <div class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-lg p-6">
+      <p class="text-lg text-primary-900 mb-4">
+        Portugal stands out as one of Europe's best value destinations for international students. The combination of affordable tuition, free SNS healthcare after residence permit, and a 5-year path to EU citizenship makes it exceptionally attractive for long-term planners.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        The visa process is more bureaucratic and slower than some countries, but the benefits are worth the wait. Once you're registered with the SNS, you'll have comprehensive healthcare coverage at no additional cost—something few other study destinations offer to international students.
+      </p>
+
+      <p class="text-primary-800 mb-4">
+        <strong>Our recommendation:</strong> Use affordable international insurance like SafetyWing (~$56/month) for your visa application and initial 4-6 months. Prioritize your residence permit application immediately upon arrival, then register for SNS as soon as possible. This hybrid approach minimizes costs while ensuring continuous coverage.
+      </p>
+
+      <div class="mt-4 pt-4 border-t border-primary-200">
+        <p class="text-sm text-primary-700">
+          <strong>Bottom Line:</strong> Portugal is ideal for students who value lifestyle (sunshine, beaches, culture), want free healthcare access, and are considering long-term European residence. The slower bureaucracy is a trade-off for the exceptional benefits once established.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Compare Insurance for Portugal Student Visa"
+    description="Find coverage that meets visa requirements. Remember: free SNS healthcare awaits after your residence permit."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+    variant="highlight"
+  />
+</PageShell>
