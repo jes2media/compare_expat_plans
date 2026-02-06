@@ -7,7 +7,7 @@ Last updated: February 5, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,364
+**Total pages:** ~2,373
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -16,7 +16,7 @@ Last updated: February 5, 2026
 **Problem/solution guides:** 6 (with hero images)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
-**Visa × Country pages:** 84 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa)
+**Visa × Country pages:** 93 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa)
 
 ---
 
@@ -63,6 +63,31 @@ Completed all Student Visa pages at `/visas/student-visa/in/[country]`:
 
 **Total Student Visa pages: 34**
 **Total Visa × Country pages: 84** (33 DNV + 17 Retirement + 34 Student)
+
+---
+
+### February 5, 2026 - Freelancer/Self-Employed Visa Pages Complete (9 countries)
+
+#### Freelancer Visa Pages Created
+New visa type pages at `/visas/freelancer-visa/in/[country]`:
+
+**Batch 1 (Top EU destinations):**
+- Germany (Freiberufler/Selbstständige visa, no minimum income, KSK for artists)
+- Netherlands (DAFT Treaty for US/Japan, points system, €4,500 investment)
+- Czech Republic (Živnostenský list, PVZP/Maxima insurance ONLY)
+
+**Batch 2 (Southern Europe):**
+- Spain (Autónomo visa, €2,400/month, Seguridad Social)
+- Portugal (D7 visa, €870/month minimum, NHR tax regime)
+- France (Auto-Entrepreneur, €77,700 revenue limit, URSSAF)
+
+**Batch 3 (Other key markets):**
+- Austria (RWR Card points system, SVS mandatory ~27%)
+- UAE (Free Zone permits, tax-free, 2-4 week processing)
+- Estonia (e-Residency + OÜ, Digital Nomad Visa, startup hub)
+
+**Total Freelancer Visa pages: 9**
+**Total Visa × Country pages: 93** (33 DNV + 17 Retirement + 34 Student + 9 Freelancer)
 
 ---
 
@@ -796,8 +821,9 @@ These 21 countries have manually created pages with custom hero images:
 | **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
 | **Retirement Visa pages** | **17** | **Complete (17 countries across 4 batches)** |
 | **Student Visa pages** | **34** | **Complete (all countries)** |
+| **Freelancer Visa pages** | **9** | **Complete (all countries)** |
 
-**Total pages:** ~2,364
+**Total pages:** ~2,373
 
 ---
 
@@ -823,8 +849,10 @@ These 21 countries have manually created pages with custom hero images:
    - Hungary, UAE, China, India (Batch 9)
    - Hong Kong, South Africa, Argentina, Chile (Batch 10)
 
-3. **Other Visa Type × Country Pages** - 3 more visa types to cover:
-   - Freelancer/Self-Employed Visa (9 countries planned)
+3. **Freelancer/Self-Employed Visa Pages Complete** ✓
+   - All 9 countries covered: Germany, Netherlands, Czech Republic, Spain, Portugal, France, Austria, UAE, Estonia
+
+4. **Other Visa Type × Country Pages** - 2 more visa types to cover:
    - Investor/Entrepreneur Visa (16 countries planned)
    - Work Permit (18 countries planned)
 
