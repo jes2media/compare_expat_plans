@@ -1,0 +1,66 @@
+---
+import { providers, getProviderBySlug } from '../../data/providers';
+
+export function getStaticPaths() {
+  return providers
+    .filter(p => p.externalUrl)
+    .map(p => ({
+      params: { provider: p.slug },
+    }));
+}
+
+const { provider: providerSlug } = Astro.params;
+const provider = getProviderBySlug(providerSlug);
+
+if (!provider?.externalUrl) {
+  return Astro.redirect('/providers');
+}
+
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting to {provider.name}...</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  {GA_ID && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+      <script is:inline define:vars={{ GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+      </script>
+    </>
+  )}
+</head>
+<body style="font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f8fafc;">
+  <div style="text-align: center; padding: 2rem;">
+    <p style="color: #64748b; margin-bottom: 1rem;">Redirecting to {provider.name}...</p>
+    <a href={provider.externalUrl} style="color: #2563eb;">Click here if not redirected</a>
+  </div>
+
+  <script is:inline define:vars={{ externalUrl: provider.externalUrl, providerSlug, providerName: provider.name, GA_ID }}>
+    // Track outbound click
+    if (typeof gtag !== 'undefined' && GA_ID) {
+      gtag('event', 'outbound_click', {
+        'event_category': 'outbound',
+        'event_label': providerName,
+        'provider': providerSlug,
+        'destination_url': externalUrl,
+        'transport_type': 'beacon'
+      });
+    }
+
+    // Redirect after brief delay to ensure tracking fires
+    setTimeout(function() {
+      window.location.href = externalUrl;
+    }, 150);
+  </script>
+</body>
+</html>

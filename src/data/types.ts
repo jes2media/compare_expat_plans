@@ -28,6 +28,8 @@ export interface Provider {
   href: string;
   /** Logo image path (optional) */
   logo?: string;
+  /** External URL for "Get a Quote" redirects */
+  externalUrl?: string;
 }
 
 // =====================

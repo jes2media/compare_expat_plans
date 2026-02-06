@@ -21,6 +21,7 @@ export const providers: Provider[] = [
     notableLimits: 'Higher cost than local options',
     href: '/providers/cigna-global',
     logo: '/images/providers/cigna-global.png',
+    externalUrl: 'https://www.cignaglobal.com',
   },
   {
     slug: 'allianz-care',
@@ -32,6 +33,7 @@ export const providers: Provider[] = [
     notableLimits: 'Deductibles apply to savings',
     href: '/providers/allianz-care',
     logo: '/images/providers/allianz-care.png',
+    externalUrl: 'https://www.allianzcare.com',
   },
   {
     slug: 'bupa-global',
@@ -43,6 +45,7 @@ export const providers: Provider[] = [
     notableLimits: 'Premium pricing',
     href: '/providers/bupa-global',
     logo: '/images/providers/bupa-global.png',
+    externalUrl: 'https://www.bupaglobal.com',
   },
   {
     slug: 'img-global',
@@ -54,6 +57,7 @@ export const providers: Provider[] = [
     notableLimits: '12-month pre-existing exclusion',
     href: '/providers/img-global',
     logo: '/images/providers/img-global.png',
+    externalUrl: 'https://www.imglobal.com',
   },
   {
     slug: 'axa-global',
@@ -65,6 +69,7 @@ export const providers: Provider[] = [
     notableLimits: 'Variable networks by region',
     href: '/providers/axa-global',
     logo: '/images/providers/axa-global.png',
+    externalUrl: 'https://www.axaglobalhealthcare.com',
   },
   {
     slug: 'safetywing',
@@ -76,6 +81,31 @@ export const providers: Provider[] = [
     notableLimits: 'Not true health insurance; limited coverage',
     href: '/providers/safetywing',
     logo: '/images/providers/safetywing.png',
+    externalUrl: 'https://safetywing.com',
+  },
+  {
+    slug: 'aetna-international',
+    name: 'Aetna International',
+    tagline: 'Strong US network for American expats',
+    type: 'international',
+    coverageStyle: 'International comprehensive',
+    includesUS: true,
+    notableLimits: 'Best value with US coverage needs',
+    href: '/providers/aetna-international',
+    logo: '/images/providers/aetna-international.png',
+    externalUrl: 'https://www.aetnainternational.com',
+  },
+  {
+    slug: 'geoblue',
+    name: 'GeoBlue',
+    tagline: 'Blue Cross Blue Shield for expats',
+    type: 'international',
+    coverageStyle: 'International comprehensive',
+    includesUS: true,
+    notableLimits: 'US-focused; limited outside Americas',
+    href: '/providers/geoblue',
+    logo: '/images/providers/geoblue.png',
+    externalUrl: 'https://www.geobluetravelinsurance.com',
   },
   {
     slug: 'world-nomads',
