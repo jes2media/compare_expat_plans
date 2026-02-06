@@ -1,0 +1,951 @@
+---
+/**
+ * Australia Business Innovation and Investment Visa (BIIP) - Long-form CRO-optimized page
+ * Subclass 188/888 comprehensive guide with all streams and insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "visa-requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Australia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Australia Insurance Guide", href: "/countries/australia/insurance" },
+  { title: "Australia Student Visa", href: "/visas/student-visa/in/australia" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+  { title: "Bupa Global Review", href: "/providers/bupa-global" },
+];
+
+const visaStreamColumns = [
+  { key: "stream", header: "Visa Stream" },
+  { key: "investment", header: "Investment/Assets" },
+  { key: "requirements", header: "Key Requirements" },
+];
+
+const visaStreamRows = [
+  { stream: "188A (Business Innovation)", investment: "AUD 1.25M net assets", requirements: "65 points, business turnover AUD 750K, state nomination" },
+  { stream: "188B (Investor)", investment: "AUD 2.5M designated investment", requirements: "AUD 2.5M net assets, 65 points, state nomination" },
+  { stream: "188C (Significant Investor)", investment: "AUD 5M complying investment", requirements: "No points test, no English, state nomination" },
+  { stream: "188E (Entrepreneur)", investment: "AUD 200K approved funding", requirements: "Funding from approved entity, business plan, state nomination" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "BIIP Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Adequate health insurance", notes: "Private health insurance required during 188 provisional period" },
+  { feature: "Provider Type", requirement: "Registered Australian or international insurer", notes: "OSHC not applicable; need visitor/expat health cover" },
+  { feature: "Coverage Area", requirement: "Must cover Australia", notes: "Worldwide coverage beneficial for business travel" },
+  { feature: "Duration", requirement: "Full visa duration (5 years)", notes: "Must maintain throughout provisional period" },
+  { feature: "Medicare Eligibility", requirement: "After 888 PR grant only", notes: "Not available during 188 provisional visa" },
+  { feature: "Hospital Coverage", requirement: "Strongly recommended", notes: "Australian private hospitals expensive without cover" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (AUD)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Bupa Global", type: "International", price: "$400-900", strengths: "Premium coverage, global network, high-net-worth individuals" },
+  { provider: "Cigna Global", type: "International", price: "$350-800", strengths: "Comprehensive plans, excellent claims, business travelers" },
+  { provider: "Allianz Care", type: "International", price: "$300-700", strengths: "Flexible options, good Australia coverage" },
+  { provider: "Bupa Australia", type: "Australian Private", price: "$200-500", strengths: "Largest Australian network, local expertise" },
+  { provider: "Medibank", type: "Australian Private", price: "$180-450", strengths: "Good value, strong hospital coverage" },
+  { provider: "HCF", type: "Australian Private", price: "$170-420", strengths: "Not-for-profit, competitive pricing" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (AUD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee (188A)", amount: "$6,480", notes: "Main applicant; additional for family members" },
+  { item: "Visa Application Fee (188B)", amount: "$9,505", notes: "Main applicant; additional for family members" },
+  { item: "Visa Application Fee (188C)", amount: "$9,505", notes: "Significant Investor Stream" },
+  { item: "Visa Application Fee (188E)", amount: "$6,480", notes: "Entrepreneur Stream" },
+  { item: "State Nomination Fee", amount: "$500-1,500", notes: "Varies by state/territory" },
+  { item: "Skills Assessment (if required)", amount: "$500-1,000", notes: "Depends on occupation and assessing body" },
+  { item: "Health Insurance (annual)", amount: "$4,000-10,000", notes: "Required during provisional period" },
+  { item: "Migration Agent Fees", amount: "$5,000-20,000", notes: "Highly recommended; varies by complexity" },
+  { item: "Investment (188C SIV)", amount: "$5,000,000", notes: "Complying investment portfolio required" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Research state nomination options", duration: "2-4 weeks", location: "Online research" },
+  { step: "Apply for state nomination (EOI)", duration: "1-3 months", location: "State government website" },
+  { step: "Receive state nomination invitation", duration: "2-6 months", location: "Email notification" },
+  { step: "Prepare documentation", duration: "4-8 weeks", location: "Home country/Australia" },
+  { step: "Submit 188 visa application", duration: "1 day", location: "ImmiAccount online" },
+  { step: "Health and character checks", duration: "2-4 weeks", location: "Approved clinics" },
+  { step: "Visa processing", duration: "12-24 months", location: "Department of Home Affairs" },
+  { step: "Receive 188 provisional visa", duration: "After approval", location: "Online grant" },
+  { step: "Meet business/investment requirements", duration: "3-4 years", location: "Australia" },
+  { step: "Apply for 888 permanent visa", duration: "After requirements met", location: "ImmiAccount online" },
+];
+
+const sivInvestmentColumns = [
+  { key: "category", header: "Investment Category" },
+  { key: "minimum", header: "Minimum Allocation" },
+  { key: "details", header: "Details" },
+];
+
+const sivInvestmentRows = [
+  { category: "Venture Capital/Growth PE", minimum: "AUD 500,000 (10%)", details: "Australian venture capital or growth private equity funds" },
+  { category: "Emerging Companies", minimum: "AUD 750,000 (15%)", details: "Listed on ASX, market cap under AUD 500M" },
+  { category: "Balancing Investment", minimum: "AUD 3,750,000 (75%)", details: "Managed funds in Australian assets (shares, bonds, property)" },
+];
+---
+
+<PageShell
+  title="Australia Business Investment Visa 2026: BIIP Guide, Requirements & Insurance"
+  description="Complete guide to Australia's Business Innovation and Investment Program (BIIP). Subclass 188A, 188B, 188C (Significant Investor), and 188E requirements, costs, and insurance needs."
+  headline="Australia Business Investment Visa: Complete BIIP Guide"
+  subheadline="Everything you need to know about Australia's investor visas—from AUD 200K Entrepreneur stream to AUD 5M Significant Investor Visa, state nomination, insurance requirements, and the path to permanent residence."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/bupa-global"
+  heroImage="/images/countries/australia-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Home Affairs Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Multiple Investment Streams
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Australia's Business Innovation and Investment Program (BIIP) offers multiple pathways for entrepreneurs and investors to establish themselves in Australia. Unlike single-track investor visas, Australia provides four distinct streams tailored to different business profiles—from established business owners seeking expansion (188A) to high-net-worth individuals making significant capital investments (188C).
+    </p>
+
+    <p class="mb-4">
+      The program operates as a two-stage process: a 5-year provisional visa (Subclass 188) followed by permanent residence (Subclass 888) once you've met your business or investment requirements. This structure ensures genuine commitment to Australia's economy while providing a clear pathway to settlement.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Australia BIIP Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>- <strong>Program name:</strong> Business Innovation and Investment Program (BIIP)</li>
+        <li>- <strong>Visa subclasses:</strong> 188 (provisional) leading to 888 (permanent)</li>
+        <li>- <strong>Streams:</strong> 188A, 188B, 188C (Significant Investor), 188E (Entrepreneur)</li>
+        <li>- <strong>Investment range:</strong> AUD 200,000 (188E) to AUD 5,000,000 (188C)</li>
+        <li>- <strong>Duration:</strong> 5-year provisional visa, then permanent residence</li>
+        <li>- <strong>State nomination:</strong> Required for all streams</li>
+        <li>- <strong>Medicare access:</strong> Only after 888 permanent visa grant</li>
+        <li>- <strong>Processing time:</strong> 12-24 months (significant backlog)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Four BIIP Streams</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">188A - Business Innovation Stream</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>- AUD 1.25M net business and personal assets</li>
+          <li>- Business turnover AUD 750K in 2 of last 4 years</li>
+          <li>- Points-tested (65 points minimum)</li>
+          <li>- Establish or manage business in Australia</li>
+          <li>- Best for: Established business owners</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">188B - Investor Stream</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>- AUD 2.5M designated investment</li>
+          <li>- AUD 2.5M net assets</li>
+          <li>- Points-tested (65 points minimum)</li>
+          <li>- 3+ years managing investments/business</li>
+          <li>- Best for: Experienced investors</li>
+        </ul>
+      </div>
+
+      <div class="border border-purple-200 bg-purple-50 rounded-lg p-6">
+        <h4 class="font-semibold text-purple-900 mb-3">188C - Significant Investor Stream</h4>
+        <ul class="space-y-2 text-purple-800">
+          <li>- AUD 5M complying investment portfolio</li>
+          <li>- No points test required</li>
+          <li>- No English language requirement</li>
+          <li>- Minimal residence requirement (40 days/year)</li>
+          <li>- Best for: Ultra-high-net-worth individuals</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">188E - Entrepreneur Stream</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>- AUD 200K funding from approved source</li>
+          <li>- Commonwealth or state funding entity</li>
+          <li>- Innovative business idea required</li>
+          <li>- Competent English (IELTS 6.0)</li>
+          <li>- Best for: Startup founders</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Important note:</strong> The BIIP program has undergone significant changes. The Premium Investor (PIV) and Business Talent (Subclass 132) visas were discontinued in 2021. The 188C Significant Investor Visa remains the primary route for high-value passive investment. Processing times have increased substantially—expect 12-24 months for decision.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Australia's BIIP is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You have AUD 1.25M+ in business/personal assets</li>
+          <li>You're an established business owner or investor</li>
+          <li>You want permanent residence pathway</li>
+          <li>You can commit to Australian business activity</li>
+          <li>You value Australia's lifestyle and stability</li>
+          <li>You have a high-growth business idea (188E)</li>
+          <li>You have AUD 5M+ for passive investment (188C)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>You want immediate permanent residence</li>
+          <li>You cannot meet points requirements (188A/B)</li>
+          <li>You prefer minimal ongoing commitments</li>
+          <li>You want shorter processing times</li>
+          <li>You need Medicare access immediately</li>
+          <li>Your investment capital is under AUD 1M</li>
+          <li>You cannot obtain state nomination</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Choosing Your Stream</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Your Profile</th>
+            <th class="px-4 py-2 text-left">Best Stream</th>
+            <th class="px-4 py-2 text-left">Key Advantage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2">Business owner, AUD 1.25M+ assets</td>
+            <td class="px-4 py-2 font-medium">188A</td>
+            <td class="px-4 py-2">Lower threshold, active business</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2">Investment manager, AUD 2.5M+</td>
+            <td class="px-4 py-2 font-medium">188B</td>
+            <td class="px-4 py-2">Investment-focused pathway</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2">Ultra-HNW, AUD 5M+ passive</td>
+            <td class="px-4 py-2 font-medium">188C</td>
+            <td class="px-4 py-2">No points, no English, minimal stay</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2">Startup founder, innovative idea</td>
+            <td class="px-4 py-2 font-medium">188E</td>
+            <td class="px-4 py-2">Lowest capital requirement</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>188C advantage:</strong> The Significant Investor Visa is Australia's most straightforward investor path for high-net-worth individuals. No points test, no English requirement, and only 40 days per year residence needed. The AUD 5M investment must be maintained for 4 years before applying for permanent residence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="visa-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements by Stream</h2>
+
+    <p class="mb-4">
+      Each BIIP stream has specific eligibility criteria. All streams require state or territory nomination, which means a state government must endorse your application based on their economic priorities.
+    </p>
+
+    <ComparisonTable columns={visaStreamColumns} rows={visaStreamRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">188A - Business Innovation Stream</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Points Test (65 minimum)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>- <strong>Age:</strong> Up to 30 points (under 25 or 25-32 years)</li>
+          <li>- <strong>English:</strong> Up to 10 points (Vocational to Superior)</li>
+          <li>- <strong>Education:</strong> Up to 15 points (Bachelor/Trade to PhD)</li>
+          <li>- <strong>Business experience:</strong> Up to 20 points (4-15+ years)</li>
+          <li>- <strong>Net assets:</strong> Up to 15 points (AUD 2M+)</li>
+          <li>- <strong>Business turnover:</strong> Up to 15 points (AUD 2M+)</li>
+          <li>- <strong>Innovation/patents:</strong> Up to 15 points</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Business Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>- Business turnover AUD 750K (2 of last 4 years)</li>
+          <li>- Own 30-51% of business (depending on turnover)</li>
+          <li>- Demonstrate successful business career</li>
+          <li>- Genuine intention to establish business in Australia</li>
+          <li>- Meet state nomination criteria</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">188C - Significant Investor Visa (SIV)</h3>
+
+    <p class="mb-4">
+      The SIV requires a AUD 5 million complying investment portfolio with specific allocation requirements:
+    </p>
+
+    <ComparisonTable columns={sivInvestmentColumns} rows={sivInvestmentRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-amber-800">
+        <strong>Important SIV rules:</strong> You cannot invest in residential property or directly in property-focused managed funds. The investment must be maintained for the full provisional period (4+ years). Funds must come from legitimate business, investment, or inheritance sources—you'll need comprehensive documentation.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">State Nomination Requirements</h3>
+
+    <p class="mb-4">
+      All BIIP applicants must secure state or territory nomination. Each jurisdiction has different priorities:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">New South Wales</h4>
+        <p class="text-neutral-600">Higher thresholds, focuses on Sydney-based businesses, strong in finance and tech sectors.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Victoria</h4>
+        <p class="text-neutral-600">Melbourne-centric, diverse industries, competitive processing.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Queensland</h4>
+        <p class="text-neutral-600">Regional focus, tourism and agriculture priorities, more accessible than NSW/VIC.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">South Australia</h4>
+        <p class="text-neutral-600">Lower thresholds, actively seeking investors, regional incentives.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Western Australia</h4>
+        <p class="text-neutral-600">Mining and resources focus, Perth metropolitan and regional options.</p>
+      </div>
+
+      <div class="border-l-4 border-teal-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Tasmania</h4>
+        <p class="text-neutral-600">Most accessible, lower investment thresholds, regional development focus.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Private Health Insurance Required During Provisional Period</h3>
+      <p class="text-green-800">
+        BIIP provisional visa holders (Subclass 188) do not have access to Medicare. You must maintain adequate private health insurance throughout your 5-year provisional period. Medicare access begins only after permanent residence (Subclass 888) is granted.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Australia's healthcare costs are among the highest in the world for uninsured patients. A hospital stay can easily exceed AUD 10,000 per day without coverage. For business visa holders making significant investments, comprehensive health insurance is essential—both for visa compliance and financial protection.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Your Policy Should Include</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Hospital coverage:</strong> Private hospital admission, surgery, intensive care</li>
+      <li><strong>Outpatient care:</strong> GP visits, specialist consultations, diagnostics</li>
+      <li><strong>Emergency treatment:</strong> 24/7 emergency care and ambulance</li>
+      <li><strong>Adequate limits:</strong> At least AUD 1 million annual coverage</li>
+      <li><strong>Waiting period considerations:</strong> Most policies have 12-month waits for pre-existing conditions</li>
+      <li><strong>Maternity (if applicable):</strong> Typically 12-month waiting period</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">International vs. Australian Private Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">International Insurance (Bupa Global, Cigna)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Coverage worldwide—essential for business travel</li>
+          <li>English-language service and claims</li>
+          <li>Portable if relocating or traveling frequently</li>
+          <li>Premium evacuation and repatriation</li>
+          <li>Better for pre-existing conditions</li>
+          <li>- Higher cost (AUD 400-900/month)</li>
+          <li>- May require upfront payment then reimbursement</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Australian Private Insurance (Bupa AU, Medibank)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Lower cost (AUD 200-500/month)</li>
+          <li>Direct billing with Australian hospitals</li>
+          <li>Familiar to local healthcare providers</li>
+          <li>Tax benefits (Lifetime Health Cover)</li>
+          <li>Established claims processes</li>
+          <li>- Australia-only coverage</li>
+          <li>- May have exclusions for temporary residents</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> For BIIP visa holders who travel frequently for business, international coverage from Bupa Global or Cigna Global provides the flexibility to receive care anywhere in the world. If you'll be primarily Australia-based, Australian private insurers offer excellent local coverage at lower cost—but check policy terms carefully for temporary visa holder coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Australian business visa?"
+    description="Compare international and Australian private insurers for BIIP visa holders."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      BIIP visa holders typically choose between international insurers offering global coverage or Australian private health insurers with established local networks. Your choice depends on travel frequency, family situation, and budget.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent International Travel (Business)</h4>
+        <p class="text-neutral-600">For investors who travel regularly between Australia, Asia, and other business hubs, Cigna Global or Bupa Global provides seamless worldwide coverage. You can access quality care in Sydney, Singapore, Hong Kong, or London without changing plans. The premium cost (AUD 400-900/month) is justified by convenience and global access.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Australia-Based / Family Focus</h4>
+        <p class="text-neutral-600">If you'll be primarily in Australia with occasional trips home, Bupa Australia or Medibank offers excellent coverage at lower cost. These insurers have the largest hospital networks and established relationships with Australian specialists. Budget AUD 400-800/month for comprehensive family coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Significant Investor (188C) Lifestyle</h4>
+        <p class="text-neutral-600">188C visa holders often split time between Australia and their home country, spending the minimum 40 days per year required. Bupa Global's top-tier plans offer VIP service, second opinion networks, and global concierge—appropriate for high-net-worth individuals. Expect AUD 700-1,200/month for comprehensive coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious (Meeting Minimum Requirements)</h4>
+        <p class="text-neutral-600">If cost is a priority, HCF or Medibank basic hospital covers meet visa requirements at AUD 170-300/month. However, these may have significant waiting periods and limited extras coverage. Don't compromise on hospital coverage—Australian private hospitals are expensive without adequate insurance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The BIIP involves substantial costs beyond the investment itself. Budget for visa fees, state nomination, legal advice, and ongoing health insurance throughout the provisional period.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates by Stream</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">188A (Business Innovation)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Visa application: <strong>AUD 6,480</strong></li>
+            <li>State nomination: <strong>AUD 500-1,500</strong></li>
+            <li>Migration agent: <strong>AUD 8,000-15,000</strong></li>
+            <li>Health exams: <strong>AUD 500-1,000</strong></li>
+            <li>Insurance (5 years): <strong>AUD 20,000-50,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total application costs: <strong>AUD 35,000-75,000</strong></li>
+            <li class="text-sm text-neutral-500">Plus AUD 1.25M+ in net assets</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">188C (Significant Investor)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Visa application: <strong>AUD 9,505</strong></li>
+            <li>State nomination: <strong>AUD 1,000-1,500</strong></li>
+            <li>Migration agent: <strong>AUD 15,000-25,000</strong></li>
+            <li>Investment advisor fees: <strong>AUD 10,000-50,000</strong></li>
+            <li>Insurance (5 years): <strong>AUD 35,000-60,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total application costs: <strong>AUD 70,000-145,000</strong></li>
+            <li class="text-sm text-neutral-500">Plus AUD 5,000,000 complying investment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Family Application Costs</h3>
+
+    <p class="mb-4">
+      Additional family members incur extra visa application charges:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Spouse/partner:</strong> AUD 3,245 additional (188A) to AUD 4,755 (188C)</li>
+      <li><strong>Children under 18:</strong> AUD 1,620 (188A) to AUD 2,375 (188C) each</li>
+      <li><strong>Health insurance:</strong> Budget AUD 200-400/month per family member</li>
+      <li><strong>Health examinations:</strong> Required for all family members</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Investment returns:</strong> Unlike pure residency costs, BIIP investments remain yours. The AUD 5M SIV portfolio generates returns (venture capital is higher risk/reward, balancing investments provide more stable returns). Many 188C investors find the portfolio performs adequately while providing Australian residence benefits.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The BIIP application is a multi-stage process requiring state nomination before federal visa lodgment. Processing times have increased significantly—expect 12-24 months from application to decision. Working with an experienced migration agent is strongly recommended.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Determine Eligibility and Choose Stream</h4>
+          <p class="text-neutral-600">Assess your business history, assets, and investment capacity. Calculate your points score for 188A/B streams. Consult a migration agent to determine the most suitable stream and realistic success chances.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Expression of Interest (EOI)</h4>
+          <p class="text-neutral-600">Lodge an EOI through SkillSelect, Australia's online immigration system. Your EOI is visible to state and territory governments who may invite you to apply for nomination based on their priorities.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for State Nomination</h4>
+          <p class="text-neutral-600">Once invited by a state, submit your state nomination application with business plan, investment documentation, and evidence of meeting their criteria. Processing takes 2-6 months depending on state and stream.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive State Nomination</h4>
+          <p class="text-neutral-600">Upon approval, the state provides formal nomination. You'll receive an invitation to apply for the visa through SkillSelect. This invitation is valid for 60 days.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Lodge 188 Visa Application</h4>
+          <p class="text-neutral-600">Submit your visa application online through ImmiAccount. Include all required documents: passport, business/investment evidence, English test results (if applicable), health insurance confirmation, and character certificates.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Health and Character Requirements</h4>
+          <p class="text-neutral-600">Undergo health examinations at an approved panel physician. Obtain police certificates from all countries you've lived in for 12+ months. Health insurance evidence must be current.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Visa Processing and Decision</h4>
+          <p class="text-neutral-600">The Department of Home Affairs reviews your application. Processing currently takes 12-24 months due to backlogs. You may receive requests for additional information. Continue monitoring ImmiAccount for updates.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">188 Visa Grant</h4>
+          <p class="text-neutral-600">Upon approval, you receive your 5-year provisional visa. For 188C holders, you must make your AUD 5M complying investment within specified timeframes. Enter Australia before your initial entry date.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Meet Business/Investment Requirements</h4>
+          <p class="text-neutral-600">During your provisional period, meet the ongoing requirements for your stream. 188A holders must operate a business; 188C holders maintain their investment and meet 40 days/year residence. Keep detailed records for 888 application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">10</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for 888 Permanent Visa</h4>
+          <p class="text-neutral-600">After 3-4 years, apply for Subclass 888 permanent residence. Demonstrate you've met all requirements (business turnover, investment maintenance, residence days). Upon 888 grant, you become a permanent resident with Medicare eligibility.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Processing priorities:</strong> The Department of Home Affairs prioritizes 188C (Significant Investor) applications over other streams due to their economic contribution. 188A and 188B may experience longer processing times. Ensure your application is complete to avoid delays.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different investor profiles typically experience the BIIP process:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Tech Entrepreneur, 188C SIV</h3>
+        <p class="text-neutral-600 mb-4">45 years old, sold tech company, AUD 8M liquid assets. Seeking education access for two children and lifestyle diversification. No English, limited time for Australia residence.</p>
+        <p class="text-green-700 font-medium">Applied for NSW nomination, approved in 3 months. 188C visa granted in 18 months. Made AUD 5M complying investment through approved fund manager. Children enrolled in Sydney private schools. Spends 45 days/year in Australia, maintains Hong Kong business. Bupa Global coverage for family (AUD 1,100/month). Approaching 888 eligibility.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Manufacturing Business Owner, 188A</h3>
+        <p class="text-neutral-600 mb-4">Family business owner, 52 years old, AUD 2M assets, business turnover AUD 1.2M. Wants to relocate family and establish Australian import business.</p>
+        <p class="text-green-700 font-medium">Scored 75 points (age, business experience, assets). South Australia nomination approved—state offered better support than NSW. 188A visa granted after 20 months. Established import distribution business in Adelaide, employing 4 people. Medibank family coverage (AUD 550/month). Meeting 888 business requirements, permanent residence application planned for 2027.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Investment Manager, 188B</h3>
+        <p class="text-neutral-600 mb-4">Former hedge fund manager, 48 years old, AUD 3M+ managed investments, seeking Australian lifestyle change. Strong English, investment track record.</p>
+        <p class="text-green-700 font-medium">Scored 80 points. Victoria nomination approved. Made AUD 2.5M designated investment in Victorian government bonds and managed funds. 188B visa granted in 16 months. Cigna Global coverage (AUD 450/month). Living in Melbourne, managing personal investments. Finds the designated investment return modest but acceptable for lifestyle benefits.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Vietnamese Entrepreneur, 188E</h3>
+        <p class="text-neutral-600 mb-4">Tech startup founder, 32 years old, developing AI agricultural platform. Secured AUD 300K from Entrepreneur Visa-approved venture fund. IELTS 7.0.</p>
+        <p class="text-amber-700 font-medium">188E is highly competitive—required innovative business plan and approved funding source. Queensland nomination obtained after extensive interviews and business plan revisions. Visa processing took 22 months. Now developing product with Queensland AgTech ecosystem support. HCF basic coverage (AUD 200/month) while keeping costs low. Early stage but making progress toward 888 requirements.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UAE Property Developer, 188C</h3>
+        <p class="text-neutral-600 mb-4">Family wealth, AUD 15M available, seeking passport diversification. Minimal time available for Australian residence.</p>
+        <p class="text-green-700 font-medium">NSW nomination approved quickly given investment size. 188C granted in 14 months—fastest processing. Premium complying investment portfolio managed by Australian fund. Spends exactly 40 days per year in Sydney. Bupa Global premium tier (AUD 900/month). Children in Australian universities. Family plans permanent transition eventually but appreciates flexibility of 188C minimal residence requirement.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">South African Restaurateur, 188A Points Challenge</h3>
+        <p class="text-neutral-600 mb-4">Restaurant chain owner, 58 years old, AUD 1.5M assets. Wanted to establish restaurant business in Australia. Limited formal education.</p>
+        <p class="text-red-700 font-medium">Scored only 55 points—age penalty and education gap. Explored options with migration agent. Eventually opted for alternative: Global Talent visa based on hospitality industry recognition, which doesn't require points test. Lesson: For applicants over 54 or with education gaps, 188A/B points requirements can be prohibitive. Explore alternative pathways.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Australian Business Visa"
+    description="Find the right coverage for your BIIP visa—international or Australian private options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Processing Times</h3>
+        <p class="text-neutral-600">Current BIIP processing times are 12-24 months—sometimes longer. Don't make business or investment plans that depend on quick visa approval. The Australian system has significant backlogs. Plan for delays and have contingency arrangements.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing the Wrong State for Nomination</h3>
+        <p class="text-neutral-600">Each state has different priorities and thresholds. NSW and Victoria are competitive with higher requirements; South Australia and Tasmania are more accessible but may have regional requirements. Research state criteria thoroughly and choose strategically—your nomination commits you to that state for initial residence.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Documentation of Funds Source</h3>
+        <p class="text-neutral-600">Australia's anti-money-laundering requirements are strict. You must document the legitimate source of all investment funds—business profits, asset sales, inheritance, etc. Bank statements alone aren't enough. Prepare comprehensive evidence trail going back years. Unexplained wealth will result in visa refusal.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Neglecting 888 Pathway Requirements</h3>
+        <p class="text-neutral-600">The 188 visa is provisional—you need to meet ongoing requirements to qualify for 888 permanent residence. 188A holders must demonstrate business ownership and turnover; 188C holders must maintain investment and meet residence days. Start tracking compliance from day one. Keep detailed records—you'll need them for 888 application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Letting Health Insurance Lapse</h3>
+        <p class="text-neutral-600">188 visa holders must maintain health insurance throughout the provisional period. If your coverage lapses, you're in breach of visa conditions. Set up automatic renewals and calendar reminders. A lapsed policy can create complications for your 888 application and potentially affect your visa status.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Australia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Australia</h2>
+
+    <p class="mb-4">
+      Australia has a world-class healthcare system combining public (Medicare) and private options. However, as a 188 provisional visa holder, you don't qualify for Medicare—private insurance is your only option until permanent residence.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Access for BIIP Visa Holders</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">188 Provisional Visa (No Medicare)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>- No Medicare access—private insurance required</li>
+          <li>- Must pay full fees at public hospitals if uninsured</li>
+          <li>- Private hospitals accessible with appropriate cover</li>
+          <li>- Emergency care provided regardless of status</li>
+          <li>- Pharmaceutical Benefits Scheme not available</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">888 Permanent Visa (Medicare Eligible)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Full Medicare eligibility</li>
+          <li>Bulk-billed GP and specialist visits</li>
+          <li>Free public hospital treatment</li>
+          <li>Pharmaceutical Benefits Scheme access</li>
+          <li>Many keep private cover for extras/choice</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare in Major Cities</h3>
+
+    <p class="mb-4">
+      Australian private healthcare is excellent, particularly in major cities where most BIIP visa holders settle:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Sydney / Melbourne</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>- World-class private hospitals</li>
+          <li>- Extensive specialist networks</li>
+          <li>- International patient services common</li>
+          <li>- Short waiting times with private cover</li>
+          <li>- Premium pricing—budget accordingly</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Brisbane / Perth / Adelaide</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>- Strong private hospital networks</li>
+          <li>- Good specialist availability</li>
+          <li>- Slightly lower costs than Sydney/Melbourne</li>
+          <li>- Excellent quality of care</li>
+          <li>- May need Sydney/Melbourne for rare specialists</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Costs Without Insurance</h3>
+
+    <p class="mb-4">
+      Australian healthcare is expensive without coverage:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Private hospital per day:</strong> AUD 1,000-2,500+</li>
+      <li><strong>ICU per day:</strong> AUD 3,000-5,000+</li>
+      <li><strong>Specialist consultation:</strong> AUD 200-500</li>
+      <li><strong>Emergency department:</strong> AUD 500-1,500+</li>
+      <li><strong>Surgery:</strong> AUD 5,000-50,000+ depending on procedure</li>
+      <li><strong>Childbirth (private):</strong> AUD 10,000-25,000</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Lifetime Health Cover loading:</strong> Australian private health insurance has a penalty for late starters. If you're over 31 and haven't had Australian cover, you'll pay 2% extra premium per year above 30. This affects Australian policies but not international insurers like Cigna or Bupa Global. Consider this when choosing between Australian and international coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long must I stay in Australia with a 188C Significant Investor Visa?</h3>
+        <p class="text-neutral-600">
+          The 188C requires a minimum of 40 days per year in Australia (average over 4 years). This is the most flexible residence requirement among BIIP streams—you can maintain business elsewhere while meeting the minimum. For permanent residence (888), you must accumulate at least 160 days over 4 years, though spending more time demonstrates commitment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I include my family in the BIIP visa application?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse/partner and dependent children can be included in your initial application or added later. Each family member incurs additional visa fees and must meet health and character requirements. They receive the same visa status and pathway to permanent residence. All family members need health insurance during the provisional period.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens to my investment if my visa is refused?</h3>
+        <p class="text-neutral-600">
+          If your 188 visa is refused, you can withdraw your designated or complying investment—it remains your asset. For 188C, the AUD 5M investment is only made after visa approval, so refusal before investment doesn't affect your capital. Always work with registered migration agents to maximize approval chances.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work in Australia with a BIIP visa?</h3>
+        <p class="text-neutral-600">
+          188A and 188E holders must operate their business in Australia—that's the visa purpose. 188B and 188C holders have work rights but are primarily investors, not employees. You can manage your investments and run businesses, but the visa intent is investment/business activity, not general employment. Spouses have full work rights.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can apply for Australian citizenship?</h3>
+        <p class="text-neutral-600">
+          After receiving your 888 permanent visa, you must wait 4 years (including at least 1 year as permanent resident) before citizenship eligibility. Total timeline: 188 provisional (4+ years) + 888 requirement + 4 years before citizenship = approximately 9-10 years from initial 188 visa to citizenship eligibility. You must also pass English and civics tests.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What are the risks of the 188C complying investment?</h3>
+        <p class="text-neutral-600">
+          The AUD 5M complying investment carries investment risk—venture capital allocation (10%) can lose value, and market funds fluctuate. However, you're not required to maintain exactly AUD 5M—the investment can decrease in value without affecting your visa. You cannot withdraw funds early or switch to prohibited investments (like residential property). Work with approved fund managers who understand SIV requirements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Australia's BIIP program offers genuine pathways to permanent residence for serious business operators and investors. The AUD 5M Significant Investor Visa (188C) stands out for high-net-worth individuals: no points test, no English requirement, and minimal residence obligation make it Australia's most accessible investor route despite the significant capital requirement.
+    </p>
+
+    <p class="mb-4">
+      For business owners with lower capital but strong operational track records, the 188A Business Innovation stream provides a more affordable entry point—though points requirements and business establishment obligations are substantial. The 188E Entrepreneur stream suits founders with innovative ideas and approved venture funding.
+    </p>
+
+    <p class="mb-6">
+      The main challenges are processing times (12-24 months) and the provisional-to-permanent pathway (4+ years before 888 eligibility). Private health insurance is mandatory throughout—budget AUD 4,000-10,000 annually depending on coverage level and family size. For investors comfortable with these timelines and ongoing requirements, Australia offers exceptional quality of life, political stability, and a pathway to citizenship in one of the world's most desirable countries.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Australia's BIIP suits investors seeking genuine residence with a clear permanent pathway, not just visa flexibility. The 188C is best for ultra-HNW individuals wanting minimal time commitment; 188A/B suit active business operators. Health insurance is mandatory during the 5-year provisional period—budget AUD 350-900/month for comprehensive international coverage. Work with registered migration agents and ensure you meet ongoing requirements to secure permanent residence.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/bupa-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Cigna Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/australia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Australia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in Australia</p>
+      </a>
+      <a href="/visas/student-visa/in/australia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Australia Student Visa</h3>
+        <p class="text-neutral-600 text-sm">OSHC requirements and student visa insurance guide</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+      <a href="/providers/bupa-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Bupa Global Review</h3>
+        <p class="text-neutral-600 text-sm">Comprehensive review of Bupa Global's international plans</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

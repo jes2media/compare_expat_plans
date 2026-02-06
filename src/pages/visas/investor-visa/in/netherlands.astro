@@ -1,0 +1,984 @@
+---
+/**
+ * Netherlands Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Self-Employed Residence, Startup Visa, and DAFT guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "visa-requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Netherlands", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Netherlands Insurance Guide", href: "/countries/netherlands/insurance" },
+  { title: "Netherlands Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/netherlands" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+];
+
+const visaPathColumns = [
+  { key: "pathway", header: "Visa Pathway" },
+  { key: "eligibility", header: "Who Qualifies" },
+  { key: "investment", header: "Investment/Requirements" },
+  { key: "duration", header: "Duration" },
+];
+
+const visaPathRows = [
+  { pathway: "Startup Visa", eligibility: "Innovative entrepreneurs with Dutch facilitator", investment: "No fixed minimum; must have sufficient funds", duration: "1 year (then self-employed permit)" },
+  { pathway: "Self-Employed Residence", eligibility: "Entrepreneurs scoring 100+ points", investment: "Points-based evaluation; no fixed amount", duration: "2 years, renewable" },
+  { pathway: "DAFT (US/Japan)", eligibility: "US, Japan, or Swiss citizens only", investment: "€4,500 minimum readily available", duration: "2 years, renewable" },
+  { pathway: "Intra-Company Transfer", eligibility: "Executives/specialists transferred from abroad", investment: "Employment by multinational company", duration: "Up to 3 years" },
+];
+
+const pointsColumns = [
+  { key: "category", header: "Points Category" },
+  { key: "criteria", header: "What They Assess" },
+  { key: "maxPoints", header: "Max Points" },
+];
+
+const pointsRows = [
+  { category: "Personal Experience", criteria: "Education, work experience, entrepreneurial background", maxPoints: "Up to 30" },
+  { category: "Business Plan", criteria: "Market analysis, financial projections, viability", maxPoints: "Up to 30" },
+  { category: "Added Value", criteria: "Innovation, job creation, investment in Netherlands", maxPoints: "Up to 40" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Dutch Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Insurance Type", requirement: "Dutch basic insurance (basisverzekering) MANDATORY", notes: "Required within 4 months of registration" },
+  { feature: "Provider Type", requirement: "Dutch health insurer", notes: "International insurance does NOT satisfy legal requirement" },
+  { feature: "Minimum Coverage", requirement: "Standard Dutch basic package", notes: "Covers GP, hospital, maternity, mental health" },
+  { feature: "Supplementary Insurance", requirement: "Optional but recommended", notes: "Dental, physio, alternative medicine not in basic" },
+  { feature: "For Visa Application", requirement: "International insurance initially", notes: "Until you register and get Dutch insurance" },
+  { feature: "Cost Structure", requirement: "Premium + mandatory deductible (€385/year)", notes: "Everyone pays same basic premium (~€130-150/month)" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International (pre-arrival)", price: "€180-350", strengths: "Application period coverage, global mobility" },
+  { provider: "Allianz Care", type: "International (pre-arrival)", price: "€170-320", strengths: "Flexible plans, EU coverage during transitions" },
+  { provider: "Zilveren Kruis", type: "Dutch Basic", price: "€130-155", strengths: "Largest Dutch insurer, wide network" },
+  { provider: "CZ", type: "Dutch Basic", price: "€125-145", strengths: "Good customer service, southern Netherlands" },
+  { provider: "VGZ", type: "Dutch Basic", price: "€120-140", strengths: "Competitive pricing, good app" },
+  { provider: "ONVZ", type: "Dutch Basic + Expat focus", price: "€140-160", strengths: "Expat-friendly, English support, global coverage add-on" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Startup Visa Application", amount: "€192", notes: "IND processing fee" },
+  { item: "Self-Employed Permit Application", amount: "€350", notes: "IND processing fee" },
+  { item: "DAFT Application", amount: "€192", notes: "IND processing fee" },
+  { item: "Residence Permit Collection", amount: "€77", notes: "Biometrics and card" },
+  { item: "KvK Registration (Chamber of Commerce)", amount: "Free", notes: "Required for all business types" },
+  { item: "Dutch Health Insurance", amount: "€130-160/month", notes: "Mandatory basic insurance" },
+  { item: "Mandatory Deductible", amount: "€385/year", notes: "Eigen risico - first €385 you pay" },
+  { item: "Legal/Advisory Fees", amount: "€1,500-5,000", notes: "Immigration lawyer, optional but recommended" },
+  { item: "Facilitator Fees (Startup)", amount: "€0-5,000", notes: "Some incubators charge fees" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const startupTimelineRows = [
+  { step: "Find recognized Dutch facilitator", duration: "2-8 weeks", location: "Remote/Netherlands" },
+  { step: "Develop business concept with facilitator", duration: "2-4 weeks", location: "With facilitator" },
+  { step: "Facilitator signs support agreement", duration: "1-2 weeks", location: "Netherlands" },
+  { step: "Submit Startup Visa application (MVV + residence)", duration: "1 day", location: "IND/Dutch embassy" },
+  { step: "IND processing", duration: "Up to 90 days", location: "Netherlands" },
+  { step: "Receive MVV visa (if abroad)", duration: "After approval", location: "Dutch embassy" },
+  { step: "Travel to Netherlands, collect residence permit", duration: "1-2 weeks", location: "IND desk" },
+  { step: "Register at municipality (BRP)", duration: "Within 5 days", location: "Local gemeente" },
+  { step: "Obtain Dutch health insurance", duration: "Within 4 months", location: "Any Dutch insurer" },
+];
+---
+
+<PageShell
+  title="Netherlands Entrepreneur Visa 2026: Startup Visa, Self-Employed & DAFT Guide"
+  description="Complete guide to Netherlands entrepreneur visa options: Startup Visa, Self-Employed Residence Permit, and DAFT. Points system, insurance requirements, and application process."
+  headline="Netherlands Entrepreneur Visa: Startup, Self-Employed & DAFT Guide"
+  subheadline="Everything you need to know about starting a business in the Netherlands—Startup Visa for innovators, Self-Employed permit with points system, DAFT for Americans, and mandatory Dutch health insurance."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare International Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/netherlands-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official IND Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Strong Startup Ecosystem
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The Netherlands does not offer a "Golden Visa" investment-for-residency program like Spain or Portugal. Instead, entrepreneurs have several pathways to Dutch residence—each requiring you to actively run a business rather than simply invest capital. The most popular routes are the Startup Visa for innovative entrepreneurs, the Self-Employed Residence Permit with a points-based evaluation, and DAFT for US, Japanese, and Swiss citizens.
+    </p>
+
+    <p class="mb-4">
+      What makes the Netherlands attractive isn't passive investment—it's one of Europe's strongest startup ecosystems, business-friendly regulations, a highly educated English-speaking workforce, and strategic access to EU markets. Cities like Amsterdam, Rotterdam, The Hague, and Eindhoven (the "Brainport" tech hub) are magnets for international entrepreneurs.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Netherlands Entrepreneur Visas</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Startup Visa:</strong> 1-year residence to build innovative startup with Dutch facilitator</li>
+        <li>• <strong>Self-Employed Permit:</strong> Points-based system (100 points needed); 2-year permit</li>
+        <li>• <strong>DAFT:</strong> US/Japan/Swiss citizens; €4,500 minimum investment; 2-year permit</li>
+        <li>• <strong>Health insurance:</strong> Dutch basic insurance (basisverzekering) MANDATORY</li>
+        <li>• <strong>Path to permanent residence:</strong> 5 years continuous legal residence</li>
+        <li>• <strong>Path to citizenship:</strong> 5 years (or 3 if married to Dutch citizen)</li>
+        <li>• <strong>30% ruling:</strong> Potential tax benefit for skilled migrants</li>
+        <li>• <strong>Processing time:</strong> Up to 90 days (IND)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose the Netherlands?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Top-ranked startup ecosystem in Europe</li>
+          <li>• 90%+ English proficiency—easy to operate</li>
+          <li>• Strategic location: gateway to 450M EU consumers</li>
+          <li>• Excellent infrastructure (airports, ports, digital)</li>
+          <li>• 30% ruling tax benefit available</li>
+          <li>• Path to citizenship in 5 years</li>
+          <li>• World-class healthcare system</li>
+          <li>• High quality of life</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• No passive investment route—must run a business</li>
+          <li>• Points system can be challenging to navigate</li>
+          <li>• Startup Visa requires finding a recognized facilitator</li>
+          <li>• High cost of living (especially Amsterdam)</li>
+          <li>• Mandatory Dutch health insurance (~€1,800/year)</li>
+          <li>• Housing market is extremely competitive</li>
+          <li>• Must learn Dutch for citizenship (NT2 exam)</li>
+          <li>• Weather is... Dutch</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>No Golden Visa here:</strong> Unlike Spain, Portugal, or Greece, the Netherlands does not offer residency through real estate or passive investment. Every entrepreneur pathway requires active business involvement. If you want to invest €500,000+ and visit occasionally, the Netherlands isn't the right choice. If you want to build a company in Europe's most connected economy, keep reading.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Netherlands is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want to actively build a business in Europe</li>
+          <li>✓ You have an innovative product or service</li>
+          <li>✓ You value English-friendly business environment</li>
+          <li>✓ You want access to EU markets from day one</li>
+          <li>✓ You're comfortable with higher living costs</li>
+          <li>✓ You're a US citizen (DAFT is straightforward)</li>
+          <li>✓ You want a relatively fast path to citizenship</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want passive investment residency (try Portugal, Spain)</li>
+          <li>• You don't have an innovative or points-qualifying business</li>
+          <li>• You need lower cost of living</li>
+          <li>• You want to minimize tax obligations</li>
+          <li>• You prefer warmer climate</li>
+          <li>• You're not comfortable with mandatory Dutch insurance</li>
+          <li>• You want minimal involvement in daily business operations</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Which Pathway is Right For You?</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Pathway</th>
+            <th class="px-4 py-2 text-left">Best For</th>
+            <th class="px-4 py-2 text-left">Key Requirement</th>
+            <th class="px-4 py-2 text-left">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Startup Visa</td>
+            <td class="px-4 py-2">Tech founders, innovators</td>
+            <td class="px-4 py-2">Dutch facilitator (incubator)</td>
+            <td class="px-4 py-2">1 year</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Self-Employed</td>
+            <td class="px-4 py-2">Experienced entrepreneurs</td>
+            <td class="px-4 py-2">100 points in evaluation</td>
+            <td class="px-4 py-2">2 years</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">DAFT</td>
+            <td class="px-4 py-2">US/Japan/Swiss citizens</td>
+            <td class="px-4 py-2">€4,500 readily available</td>
+            <td class="px-4 py-2">2 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Intra-Company Transfer</td>
+            <td class="px-4 py-2">Corporate executives/specialists</td>
+            <td class="px-4 py-2">Employed by multinational</td>
+            <td class="px-4 py-2">Up to 3 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>If you're American:</strong> The DAFT (Dutch-American Friendship Treaty) is your simplest path. With just €4,500 readily available and a viable business plan, you can get a 2-year renewable residence permit. It's one of the easiest entrepreneur visas in Europe for US citizens.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="visa-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Netherlands offers several pathways for entrepreneurs. Each has distinct requirements, and there's no "one size fits all" option. We'll cover the most common routes: Startup Visa, Self-Employed Residence Permit, and DAFT.
+    </p>
+
+    <ComparisonTable columns={visaPathColumns} rows={visaPathRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Startup Visa (Most Popular for Innovators)</h3>
+
+    <p class="mb-4">
+      The Startup Visa is designed for entrepreneurs with innovative products or services who want to launch in the Netherlands. You get 1 year to develop your startup with support from a recognized Dutch facilitator (incubator, accelerator, or innovation hub).
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Innovative product or service:</strong> Must be new to the Dutch market</li>
+          <li>• <strong>Recognized facilitator:</strong> Must sign support agreement</li>
+          <li>• <strong>Sufficient funds:</strong> To support yourself during startup year</li>
+          <li>• <strong>Valid passport</strong></li>
+          <li>• <strong>Clean criminal record</strong></li>
+          <li>• <strong>Health insurance:</strong> International during application, then Dutch</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">What Facilitators Provide</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Official support letter for IND</li>
+          <li>• Mentorship and guidance</li>
+          <li>• Workspace (often shared office)</li>
+          <li>• Network access and introductions</li>
+          <li>• Help navigating Dutch business registration</li>
+          <li>• Some offer investment or funding connections</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mb-6">
+      <strong>After 1 year:</strong> If your startup is viable, you apply for a Self-Employed Residence Permit to continue. If it fails, you typically need to leave (though some facilitators help transition to other visa types).
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+      <p class="text-blue-800">
+        <strong>Finding a facilitator:</strong> The RVO (Netherlands Enterprise Agency) maintains a list of recognized facilitators at <em>english.rvo.nl</em>. Popular options include Rockstart, HighTechXL (Eindhoven), StartupBootcamp, and Yes!Delft. Some are free; others charge fees or take equity.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Self-Employed Residence Permit (Points System)</h3>
+
+    <p class="mb-4">
+      For entrepreneurs without a tech startup or those coming from countries without a special treaty, the Self-Employed Residence Permit uses a points-based evaluation. You need at least 100 points across three categories.
+    </p>
+
+    <ComparisonTable columns={pointsColumns} rows={pointsRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 my-6">
+      <p class="text-amber-800">
+        <strong>Points system reality:</strong> Scoring 100 points is challenging for first-time entrepreneurs. The system favors applicants with significant experience, strong business plans, and clear added value to the Netherlands. Most successful applicants have 10+ years of business experience or bring investment/job creation.
+      </p>
+    </div>
+
+    <h4 class="font-semibold text-neutral-900 mb-2">How Points Are Evaluated</h4>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Personal experience:</strong> Education level, years of entrepreneurial experience, previous business success</li>
+      <li><strong>Business plan:</strong> Market research, financial projections, competitive analysis, viability assessment</li>
+      <li><strong>Added value:</strong> Does your business bring innovation, jobs, or investment to the Netherlands? Does it fill a gap in the market?</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">DAFT (Dutch-American Friendship Treaty)</h3>
+
+    <p class="mb-4">
+      The DAFT is a 1956 treaty that allows US citizens (and by extension, Japanese and Swiss citizens under similar arrangements) to obtain Dutch self-employed residence with minimal requirements. It's by far the easiest path for Americans.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">DAFT Requirements</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ US, Japanese, or Swiss citizenship</li>
+          <li>✓ €4,500 readily available (not invested)</li>
+          <li>✓ Valid business plan</li>
+          <li>✓ Registered with Dutch Chamber of Commerce (KvK)</li>
+          <li>✓ Valid passport</li>
+          <li>✓ No criminal record</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">DAFT Benefits</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• No points system evaluation</li>
+          <li>• Lower barrier than Self-Employed permit</li>
+          <li>• 2-year permit, renewable indefinitely</li>
+          <li>• Spouse can work for any employer</li>
+          <li>• Children can attend school</li>
+          <li>• Path to permanent residence (5 years)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>DAFT catch:</strong> The €4,500 must be "readily available"—in a Dutch bank account or accessible immediately. You don't need to invest it, just prove you have it. Many DAFT applicants are freelancers, consultants, or small business owners. The bar is intentionally low for treaty citizens.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">Dutch Basic Insurance is Legally Mandatory</h3>
+      <p class="text-red-800">
+        Once you register as a resident in the Netherlands, you are legally required to obtain Dutch basic health insurance (basisverzekering) within 4 months. This is not optional—it's enforced by law. International insurance does NOT satisfy this requirement. Failure to obtain Dutch insurance results in automatic enrollment and backdated premiums.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The Netherlands has a unique healthcare system that combines mandatory private insurance with public regulation. Everyone pays roughly the same premium for basic coverage (around €130-160/month), plus a mandatory annual deductible (eigen risico) of €385. Insurers cannot refuse you or charge more based on health status.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Two-Phase Insurance Strategy</h3>
+
+    <p class="mb-4">
+      Most entrepreneur visa applicants need insurance in two phases:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Phase 1: Application & Arrival</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Use international insurance (Cigna Global, Allianz Care)</li>
+          <li>• Required for visa application</li>
+          <li>• Covers you until municipal registration</li>
+          <li>• Can cancel once Dutch insurance starts</li>
+          <li>• Typically 1-3 months</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Phase 2: Dutch Resident</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Obtain Dutch basic insurance (zorgverzekering)</li>
+          <li>• Legally required within 4 months</li>
+          <li>• Choose any Dutch insurer</li>
+          <li>• Add supplementary insurance as needed</li>
+          <li>• Annual open enrollment in November-December</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What Dutch Basic Insurance Covers</h3>
+
+    <p class="mb-4">
+      The basic package (basispakket) is standardized across all Dutch insurers—you get the same coverage regardless of which company you choose. Differences are in service, apps, and supplementary packages.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Included in Basic Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP (huisarts) visits and referrals</li>
+          <li>✓ Hospital care and surgery</li>
+          <li>✓ Specialist consultations</li>
+          <li>✓ Prescription medications</li>
+          <li>✓ Maternity care and childbirth</li>
+          <li>✓ Mental health care (up to limits)</li>
+          <li>✓ Ambulance and emergency care</li>
+          <li>✓ Medical devices and prosthetics</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">NOT Included (Need Supplementary)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Dental care (adults)</li>
+          <li>• Physiotherapy (first 20 sessions/year)</li>
+          <li>• Glasses and contact lenses</li>
+          <li>• Alternative medicine (acupuncture, etc.)</li>
+          <li>• Extensive mental health care</li>
+          <li>• Cosmetic procedures</li>
+          <li>• Most vaccinations for travel</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>The mandatory deductible (eigen risico):</strong> In 2026, the first €385 of most healthcare costs (excluding GP visits and maternity) come out of your pocket. You can voluntarily increase this to €885 for lower monthly premiums—a common choice for healthy people. Think of it like a US deductible.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Netherlands visa application?"
+    description="International insurance for the application period, then transition to Dutch coverage after arrival."
+    buttonText="Compare International Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      You'll need two types of insurance: international coverage for your visa application and initial arrival, then Dutch basic insurance once you're registered. Here are our recommendations for both phases.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Phase 1: International Insurance (Application Period)</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Cigna Global</h4>
+        <p class="text-neutral-600">Best for applicants who need comprehensive coverage during the application period and may travel frequently. Worldwide coverage, English-speaking support, and easy cancellation when you switch to Dutch insurance. €180-350/month depending on coverage level.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Allianz Care</h4>
+        <p class="text-neutral-600">Good alternative with flexible plans. Strong EU network if you'll be traveling around Europe during your application period. Offers monthly payment options and straightforward cancellation. €170-320/month.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Phase 2: Dutch Basic Insurance (After Registration)</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-orange-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">ONVZ (Expat-Friendly)</h4>
+        <p class="text-neutral-600">Best choice for English-speaking expats. Full English website and customer service. Offers add-on global coverage for frequent travelers. Slightly higher premiums (€140-160/month) but worth it for the expat-focused service. Popular among internationals in Amsterdam.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Zilveren Kruis</h4>
+        <p class="text-neutral-600">Largest Dutch insurer with the widest network. Good choice if you want the most options for contracted providers. €130-155/month for basic. Dutch-language focus but improving English support.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">CZ or VGZ</h4>
+        <p class="text-neutral-600">Lower-cost options with good coverage. CZ is popular in southern Netherlands; VGZ offers a good app experience. Both €120-145/month. Suitable if you're comfortable navigating Dutch or using translation tools.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Choosing Dutch insurance:</strong> November-December is open enrollment when you can switch insurers for the following year. As a new resident, you can sign up anytime during your first 4 months. Use comparison sites like Independer.nl or Zorgwijzer.nl to compare plans—they're in Dutch but Google Translate works well.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Unlike Golden Visa countries requiring large upfront investments, Netherlands entrepreneur visas have modest application costs. The bigger ongoing expense is mandatory Dutch health insurance and the high cost of living—particularly housing in Amsterdam.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimate by Pathway</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Startup Visa</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Application fee: <strong>€192</strong></li>
+          <li>Residence permit: <strong>€77</strong></li>
+          <li>Facilitator (varies): <strong>€0-5,000</strong></li>
+          <li>Legal support: <strong>€1,000-3,000</strong></li>
+          <li>Int'l insurance (3mo): <strong>€500-1,000</strong></li>
+          <li class="pt-2 border-t font-semibold">Year 1 total: <strong>€1,800-9,300</strong></li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Self-Employed Permit</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Application fee: <strong>€350</strong></li>
+          <li>Residence permit: <strong>€77</strong></li>
+          <li>Legal/points assessment: <strong>€2,000-5,000</strong></li>
+          <li>Business plan prep: <strong>€500-2,000</strong></li>
+          <li>Int'l insurance (3mo): <strong>€500-1,000</strong></li>
+          <li class="pt-2 border-t font-semibold">Year 1 total: <strong>€3,500-8,500</strong></li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">DAFT</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Application fee: <strong>€192</strong></li>
+          <li>Residence permit: <strong>€77</strong></li>
+          <li>Required funds: <strong>€4,500</strong> (not spent)</li>
+          <li>Legal support: <strong>€500-2,000</strong></li>
+          <li>Int'l insurance (3mo): <strong>€500-1,000</strong></li>
+          <li class="pt-2 border-t font-semibold">Year 1 total: <strong>€1,300-3,300</strong> + €4,500 reserve</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Healthcare</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Basic insurance: <strong>€1,560-1,920/year</strong></li>
+            <li>Mandatory deductible: <strong>€385</strong></li>
+            <li>Supplementary (dental, etc.): <strong>€200-600/year</strong></li>
+            <li class="pt-2 border-t font-semibold">Total healthcare: <strong>€2,145-2,905/year</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Living Costs (Single Person)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Rent (Amsterdam): <strong>€1,800-2,500/month</strong></li>
+            <li>Rent (other cities): <strong>€1,200-1,800/month</strong></li>
+            <li>Utilities: <strong>€150-250/month</strong></li>
+            <li>Food/groceries: <strong>€300-500/month</strong></li>
+            <li>Transport: <strong>€100-200/month</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>30% ruling tax benefit:</strong> If you qualify as a "skilled migrant," you may be eligible for the 30% ruling—a tax benefit where 30% of your gross salary is tax-free for up to 5 years. This can significantly reduce your effective tax rate. Discuss eligibility with a Dutch tax advisor. The ruling is being phased down but still valuable.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Netherlands immigration process is handled by the IND (Immigratie- en Naturalisatiedienst). Processing takes up to 90 days for entrepreneur visas. If you need a visa to enter the Netherlands (non-EU citizens from most countries), you'll apply for an MVV (entry visa) alongside your residence permit.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Startup Visa Application Timeline</h3>
+
+    <ComparisonTable columns={timelineColumns} rows={startupTimelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide (Startup Visa)</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Find a Recognized Facilitator</h4>
+          <p class="text-neutral-600">Research Dutch startup incubators, accelerators, and innovation hubs on the RVO list. Reach out with your business concept. This can take 2-8 weeks as you find the right fit and they evaluate your idea.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Your Business Concept</h4>
+          <p class="text-neutral-600">Work with your facilitator to refine your product or service. They'll help ensure it meets the "innovative" requirement and prepare supporting documentation. The facilitator must believe in your venture enough to sponsor you.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Facilitator Agreement</h4>
+          <p class="text-neutral-600">Your facilitator signs an official support agreement stating they will mentor you for the year. This document is required for the IND application. It typically outlines workspace provision, mentoring commitments, and evaluation criteria.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain International Health Insurance</h4>
+          <p class="text-neutral-600">Get a policy from Cigna Global, Allianz Care, or another international insurer. You'll need this for the application. Keep it active until you register in the Netherlands and obtain Dutch insurance.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit IND Application</h4>
+          <p class="text-neutral-600">Apply through the IND website or at a Dutch embassy/consulate. Include your facilitator agreement, proof of funds, insurance certificate, passport, and completed forms. Pay the €192 application fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for IND Decision (Up to 90 Days)</h4>
+          <p class="text-neutral-600">The IND evaluates your application. They may request additional documents. Most Startup Visa applications are processed within 60-90 days. You'll receive a decision letter.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect MVV and Travel</h4>
+          <p class="text-neutral-600">If you need an MVV (entry visa), collect it from your local Dutch embassy. Travel to the Netherlands within 90 days. Schedule an appointment at an IND desk to provide biometrics and collect your residence permit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register at Municipality and Get Dutch Insurance</h4>
+          <p class="text-neutral-600">Within 5 days of arrival, register at your local gemeente (municipality) to enter the BRP (population register). Within 4 months, obtain Dutch basic health insurance. Cancel your international insurance once Dutch coverage begins.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>DAFT applicants:</strong> Your process is simpler. You can often complete registration at the Chamber of Commerce (KvK), open a Dutch bank account, and apply for the residence permit in a single trip. Many DAFT applicants work with immigration lawyers who handle the paperwork.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Netherlands entrepreneur visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Software Developer, DAFT Route</h3>
+        <p class="text-neutral-600 mb-4">32-year-old freelance developer, working remotely for US clients. Applied for DAFT with €4,500 in Dutch bank account and freelance consulting business plan.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 8 weeks. Used Cigna Global during application (€200/month), switched to ONVZ Dutch insurance after registration (€145/month). Kept US clients, added Dutch clients. Wife works for Dutch company using dependent work authorization. Now pursuing permanent residence.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">French Tech Founder, Startup Visa</h3>
+        <p class="text-neutral-600 mb-4">28-year-old with AI-powered SaaS product. Connected with Rockstart accelerator who became facilitator. EU citizen so no MVV needed.</p>
+        <p class="text-green-700 font-medium">✓ Startup Visa approved quickly (6 weeks). Rockstart provided co-working space, mentorship, and investor introductions. Raised €500,000 seed round by month 8. Transitioned to Self-Employed permit after year 1. Benefiting from 30% ruling (qualified as skilled migrant for follow-on role).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian E-commerce Entrepreneur, Self-Employed</h3>
+        <p class="text-neutral-600 mb-4">45-year-old with 20 years of business experience in India. Applied for Self-Employed permit with plan to open Dutch wholesale operation.</p>
+        <p class="text-amber-700 font-medium">△ Initial application scored 85 points—rejected for being under 100. Worked with immigration lawyer to strengthen "added value" section, emphasizing job creation (5 planned hires) and investment (€200,000). Second application approved with 110 points. Process took 7 months total.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Canadian Graphic Designer, Startup Visa</h3>
+        <p class="text-neutral-600 mb-4">35-year-old wanted to launch design agency in Amsterdam. Applied for Startup Visa but business model was deemed "not innovative enough."</p>
+        <p class="text-amber-700 font-medium">△ Startup Visa rejected—design agencies aren't considered innovative. Pivoted to "design technology platform" concept with facilitator's help. Reapplied with product angle (design automation tool), approved. Lesson: Startup Visa requires genuine innovation, not just a good business.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Couple, Both DAFT Applications</h3>
+        <p class="text-neutral-600 mb-4">Married couple in late 30s, both freelancers. She's a marketing consultant; he's a photographer. Each applied for DAFT independently.</p>
+        <p class="text-green-700 font-medium">✓ Both approved within 2 months. Each maintains separate businesses—she advises Dutch startups, he does commercial photography. Combined they earn €180,000/year. Living in Rotterdam (more affordable than Amsterdam). Children in Dutch public school. Planning citizenship application at 5-year mark.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Brazilian Restaurateur, Self-Employed Attempt</h3>
+        <p class="text-neutral-600 mb-4">42-year-old with successful restaurant in Sao Paulo. Wanted to open Brazilian restaurant in Amsterdam.</p>
+        <p class="text-red-700 font-medium">✗ Application rejected—only scored 70 points. No "added value" points for restaurant (not considered innovative), and limited Dutch market knowledge counted against him. IND noted Amsterdam already has Brazilian restaurants. Advised to consider Portugal's D7 or investor visa instead if goal is EU residence with restaurant business.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Your Netherlands Application"
+    description="International coverage for the application period, then transition to mandatory Dutch insurance."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thinking the Startup Visa is for Any Business</h3>
+        <p class="text-neutral-600">The Startup Visa specifically requires an "innovative" product or service. Consulting firms, restaurants, design agencies, and traditional businesses don't qualify—even if they're profitable. You need a genuinely new product, technology, or business model. If you're starting a conventional business, look at Self-Employed or DAFT instead.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting to Keep International Insurance</h3>
+        <p class="text-neutral-600">Once you're registered as a Dutch resident, international health insurance does NOT satisfy the legal requirement. You must obtain Dutch basic insurance within 4 months. The government will auto-enroll you and backdate premiums if you don't. Budget for this as an ongoing cost (~€1,800-2,400/year including deductible).</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the Points System</h3>
+        <p class="text-neutral-600">The Self-Employed permit points system is genuinely difficult. Most first-time applicants don't score 100 points without significant preparation. Work with an immigration lawyer who can assess your likelihood before you apply. The €350 application fee is non-refundable if rejected.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Having Housing Arranged</h3>
+        <p class="text-neutral-600">The Netherlands, especially Amsterdam, has a severe housing shortage. You cannot register at the municipality without a valid address. Arrange housing before arriving—whether a rental contract, serviced apartment, or staying with someone who will register you temporarily. Don't assume you'll "figure it out" after landing.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting About Dutch Tax Obligations</h3>
+        <p class="text-neutral-600">As a Dutch resident, you're taxed on worldwide income. The Netherlands has high income tax rates (up to 49.5%). The 30% ruling can help if you qualify, but not everyone does. Consult a Dutch tax advisor before moving—especially if you have investments, property abroad, or multiple income sources.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Netherlands -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Netherlands</h2>
+
+    <p class="mb-4">
+      The Dutch healthcare system consistently ranks among the best in Europe. It combines mandatory private insurance with government regulation to ensure universal coverage and controlled costs. As a resident, you'll have access to high-quality care—though it works differently than systems you may be used to.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Dutch Healthcare Works</h3>
+
+    <p class="mb-4">
+      The cornerstone of Dutch healthcare is the huisarts (general practitioner/GP). Your GP is the gatekeeper to all other care—you need a referral to see specialists. This is different from countries where you can go directly to specialists.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What You'll Appreciate</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ High quality, modern facilities</li>
+          <li>✓ Excellent doctor training and standards</li>
+          <li>✓ Most medical staff speak English well</li>
+          <li>✓ Standardized basic coverage for everyone</li>
+          <li>✓ Cannot be denied coverage or charged more for health</li>
+          <li>✓ GP visits are fully covered (no deductible)</li>
+          <li>✓ Prescription system well-organized</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">What Takes Adjustment</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• GPs tend toward conservative treatment ("wait and see")</li>
+          <li>• Cannot see specialists without GP referral</li>
+          <li>• Waiting times for non-urgent specialist care</li>
+          <li>• First €385/year costs come from your pocket</li>
+          <li>• Some expats find GPs dismissive of minor complaints</li>
+          <li>• Mental health care can have long wait lists</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Registering with a GP</h3>
+
+    <p class="mb-4">
+      One of your first tasks as a new resident is registering with a local GP (huisarts). This can be challenging in Amsterdam and other major cities where popular practices are often full. Tips:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Register early:</strong> Start looking for a GP before you need one</li>
+      <li><strong>Check for English-speaking practices:</strong> Look for "expat-friendly" GPs, especially in international areas</li>
+      <li><strong>Be persistent:</strong> If one practice is full, try the next one in your neighborhood</li>
+      <li><strong>Consider gezondheidscentrum:</strong> Health centers with multiple GPs often have more availability</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>For serious or specialist care:</strong> Dutch hospitals are excellent. For non-emergency specialist care, expect wait times of 2-6 weeks depending on specialty and urgency. The system prioritizes based on medical need. If you need faster access, supplementary insurance can provide private options at additional cost.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I invest in Dutch real estate to get residency like in Spain or Portugal?</h3>
+        <p class="text-neutral-600">
+          No. The Netherlands does not have a Golden Visa or investment-for-residency program. All entrepreneur visa routes require you to actively run a business. If you want passive investment residency in Europe, consider Spain (€500,000), Portugal (fund investment), or Greece (€250,000-500,000 property).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens after my Startup Visa year ends?</h3>
+        <p class="text-neutral-600">
+          If your startup is viable (generating revenue or on track), you apply for a Self-Employed Residence Permit to continue. Your facilitator will provide an assessment. If the startup failed, you typically need to leave the Netherlands—though some people transition to other visa types (employment, partnership) if circumstances allow. The year is genuinely meant for building, not permanent residence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse work in the Netherlands?</h3>
+        <p class="text-neutral-600">
+          Yes, in most cases. Spouses of DAFT holders receive full work authorization—they can work for any Dutch employer. Spouses of Startup Visa and Self-Employed permit holders can also work, though exact conditions vary. Both you and your spouse will need Dutch health insurance once registered.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to learn Dutch?</h3>
+        <p class="text-neutral-600">
+          Not for business—the Netherlands is so English-friendly that many entrepreneurs operate entirely in English. However, you will need Dutch for citizenship. The NT2 exam (Dutch language) is required for naturalization. Budget time to learn over your 5 years of residence. Daily life is easier without Dutch, but integration is smoother with it.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the 30% ruling and do I qualify?</h3>
+        <p class="text-neutral-600">
+          The 30% ruling is a tax benefit where 30% of your gross salary is tax-free, reducing your effective tax rate significantly. It's designed for "skilled migrants" recruited from abroad. Entrepreneurs may qualify if they take a salary from their own company and meet specific expertise requirements. Discuss with a Dutch tax advisor—the rules are complex and the benefit is being phased down.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How difficult is it to get permanent residence and citizenship?</h3>
+        <p class="text-neutral-600">
+          Permanent residence requires 5 years of continuous legal residence, sufficient income, and passing a civic integration exam (inburgeringsexamen). Citizenship also requires 5 years and the NT2 Dutch language exam. Unlike some EU countries, the Netherlands allows dual citizenship in many cases—check your home country's rules. The path is straightforward if you maintain your business and stay compliant.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The Netherlands offers genuine opportunity for entrepreneurs willing to actively build a business—but it's not a Golden Visa destination. If you're looking for passive investment residency, look elsewhere. If you want to launch a company in one of Europe's strongest economies with English fluency, top talent, and EU market access, the Netherlands delivers.
+    </p>
+
+    <p class="mb-4">
+      For Americans, the DAFT is remarkably accessible: €4,500 readily available and a viable business plan gets you a renewable 2-year residence permit. For tech founders with innovative products, the Startup Visa provides 12 months of incubator support and mentorship. For experienced entrepreneurs who can demonstrate value to the Dutch economy, the Self-Employed permit offers a path—though the 100-point threshold requires preparation.
+    </p>
+
+    <p class="mb-6">
+      The catch is mandatory Dutch health insurance and the high cost of living—budget €2,000-3,000/year for healthcare and €18,000-30,000/year for housing in major cities. These are ongoing costs that you can't avoid. But for the right entrepreneur, the Netherlands provides a stable, connected, English-speaking base in the heart of Europe.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Netherlands rewards active entrepreneurs over passive investors. DAFT makes it easy for Americans; the Startup Visa supports genuine innovators; the Self-Employed permit is tough but achievable with preparation. Budget for mandatory Dutch health insurance (€130-160/month plus €385 deductible) and the reality that this is not a low-cost destination. Work with immigration professionals for the points-based routes.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Plans →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/netherlands/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to Dutch healthcare and mandatory insurance</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/netherlands" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Digital Nomad Options</h3>
+        <p class="text-neutral-600 text-sm">Remote work options for location-independent professionals</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">International insurance for the application period</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

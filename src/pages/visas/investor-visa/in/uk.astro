@@ -1,0 +1,900 @@
+---
+/**
+ * UK Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Innovator Founder visa guide with insurance requirements
+ * Note: Tier 1 Investor visa closed February 2022
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in the UK", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "UK Health Insurance Guide", href: "/countries/uk/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Bupa Global Review", href: "/providers/bupa-global" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+];
+
+const visaComparisonColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "innovator", header: "Innovator Founder" },
+  { key: "scaleup", header: "Scale-up Visa" },
+  { key: "globalTalent", header: "Global Talent" },
+];
+
+const visaComparisonRows = [
+  { feature: "Investment Required", innovator: "None specified (funds for idea)", scaleup: "None (employment-based)", globalTalent: "None" },
+  { feature: "Endorsement", innovator: "Approved endorsing body", scaleup: "Qualifying employer", globalTalent: "Designated body" },
+  { feature: "Income/Salary", innovator: "Maintenance funds (£1,270)", scaleup: "£36,700/year minimum", globalTalent: "None specified" },
+  { feature: "Business Plan", innovator: "Required (innovative, viable, scalable)", scaleup: "Not required", globalTalent: "Portfolio/achievements" },
+  { feature: "Initial Duration", innovator: "3 years", scaleup: "2 years", globalTalent: "1-5 years" },
+  { feature: "Path to ILR", innovator: "3 years (if conditions met)", scaleup: "5 years", globalTalent: "3-5 years" },
+  { feature: "Can Bring Family", innovator: "Yes", scaleup: "Yes", globalTalent: "Yes" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "nhs", header: "NHS (via IHS)" },
+  { key: "private", header: "Private Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Annual Cost", nhs: "£1,035/year (IHS)", private: "£1,800-6,000/year" },
+  { feature: "GP Access", nhs: "Free, may wait 1-2 weeks", private: "Same-day/next-day" },
+  { feature: "Specialist Wait", nhs: "6-18 weeks typical", private: "1-2 weeks typical" },
+  { feature: "Hospital Care", nhs: "Full coverage, shared wards", private: "Private rooms, choice of hospital" },
+  { feature: "Prescriptions", nhs: "£9.90 per item (or prepay)", private: "Often included" },
+  { feature: "Dental/Vision", nhs: "Subsidized, not free", private: "Usually included" },
+  { feature: "Mental Health", nhs: "Covered, long waits", private: "Faster access" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Annual Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "NHS (via IHS)", type: "Public", price: "£1,035/yr", strengths: "Mandatory for visa, comprehensive" },
+  { provider: "Bupa Global", type: "International Private", price: "£2,500-5,000/yr", strengths: "UK-headquartered, excellent UK network" },
+  { provider: "Cigna Global", type: "International Private", price: "£2,200-4,500/yr", strengths: "Global coverage, flexible plans" },
+  { provider: "Bupa UK", type: "UK Private", price: "£1,000-2,400/yr", strengths: "UK-only, lower cost option" },
+  { provider: "AXA Health UK", type: "UK Private", price: "£900-2,200/yr", strengths: "Corporate plans, good value" },
+  { provider: "Allianz Care", type: "International Private", price: "£1,800-4,000/yr", strengths: "EU expats, global mobility" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (GBP)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "£1,191", notes: "Innovator Founder visa" },
+  { item: "Immigration Health Surcharge", amount: "£1,035/year", notes: "Paid upfront for visa duration" },
+  { item: "IHS (3-year visa total)", amount: "£3,105", notes: "Paid with visa application" },
+  { item: "Endorsement Fee", amount: "£0-1,000", notes: "Varies by endorsing body" },
+  { item: "Maintenance Funds", amount: "£1,270", notes: "Must hold for 28 consecutive days" },
+  { item: "Priority Processing", amount: "£500", notes: "Optional, 5 working days" },
+  { item: "Super Priority", amount: "£1,000", notes: "Optional, next working day" },
+  { item: "Private Insurance (optional)", amount: "£150-400/month", notes: "Supplements NHS access" },
+  { item: "Business Setup Costs", amount: "£500-5,000+", notes: "Company registration, accounting, legal" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Research endorsing bodies", duration: "1-2 weeks", location: "Online research" },
+  { step: "Develop business plan", duration: "2-8 weeks", location: "Self/advisors" },
+  { step: "Apply for endorsement", duration: "6-8 weeks", location: "Endorsing body" },
+  { step: "Endorsement interview/assessment", duration: "1-4 weeks", location: "Video call/in-person" },
+  { step: "Receive endorsement letter", duration: "After approval", location: "Endorsing body" },
+  { step: "Gather visa documents", duration: "1-2 weeks", location: "Home country" },
+  { step: "Submit visa application", duration: "1 day", location: "Online + biometrics" },
+  { step: "Visa processing (standard)", duration: "3-8 weeks", location: "UKVI" },
+  { step: "Receive visa decision", duration: "After processing", location: "Via email/post" },
+  { step: "Travel to UK", duration: "Within visa validity", location: "UK" },
+  { step: "Collect BRP card", duration: "Within 10 days of arrival", location: "Post office" },
+];
+---
+
+<PageShell
+  title="UK Innovator Founder Visa 2026: Requirements, Insurance & Application Guide"
+  description="Complete guide to UK entrepreneur visas including Innovator Founder, Scale-up, and Global Talent. Immigration Health Surcharge, private insurance options, and step-by-step application process."
+  headline="UK Investor & Entrepreneur Visas: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about starting a business in the UK—Innovator Founder visa (replacing the closed Tier 1), NHS access via IHS, private insurance options, and the path to settlement."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare UK Health Plans"
+  ctaButtonHref="/go/bupa-global"
+  heroBackgroundImage="/images/countries/uk-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official UK Home Office Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      NHS Access via IHS
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Important: Tier 1 Investor Visa Closed</h3>
+      <p class="text-amber-800">
+        The UK's Tier 1 (Investor) visa—which allowed entry based on a £2 million investment—was permanently closed on February 17, 2022. The government cited concerns about financial crime and lack of economic benefit. This page covers the current entrepreneur visa options available.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The UK remains one of the world's premier destinations for entrepreneurs and business founders. London consistently ranks among the top global cities for startups, with world-class universities, access to capital, a time zone bridging Asia and the Americas, and English as the business language.
+    </p>
+
+    <p class="mb-4">
+      While the "golden visa" investment route is gone, the UK now offers several pathways for entrepreneurs, innovators, and high-skilled individuals. The Innovator Founder visa—launched in April 2023—is the primary route for those starting innovative businesses in the UK.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: UK Entrepreneur Visas</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Main route:</strong> Innovator Founder visa (replaced Innovator visa April 2023)</li>
+        <li>• <strong>Investment requirement:</strong> No minimum, but must have funds to implement idea</li>
+        <li>• <strong>Endorsement:</strong> Required from approved endorsing body (Tech Nation, etc.)</li>
+        <li>• <strong>Healthcare:</strong> NHS access via Immigration Health Surcharge (~£1,035/year)</li>
+        <li>• <strong>Duration:</strong> 3 years, with path to settlement after 3 years</li>
+        <li>• <strong>Visa fee:</strong> £1,191 + IHS</li>
+        <li>• <strong>Key hubs:</strong> London, Manchester, Edinburgh, Cambridge, Bristol</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Current Entrepreneur Visa Options</h3>
+
+    <p class="mb-4">
+      The UK offers several routes for business-minded individuals. The right choice depends on your situation—whether you're founding a new venture, joining a fast-growing company, or recognized as a leader in your field.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Innovator Founder Visa</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• For founders with innovative, viable, scalable business ideas</li>
+          <li>• Requires endorsement from approved body</li>
+          <li>• No minimum investment amount</li>
+          <li>• Must have maintenance funds (£1,270)</li>
+          <li>• 3-year visa, settlement possible after 3 years</li>
+          <li>• Can bring spouse and children</li>
+          <li>• <strong>Best for:</strong> Tech founders, innovative startups</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Scale-up Visa</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• For skilled workers recruited by qualifying scale-up company</li>
+          <li>• Minimum salary £36,700/year</li>
+          <li>• Company must show 20%+ annual growth</li>
+          <li>• 2-year initial visa</li>
+          <li>• Can switch employers after 6 months</li>
+          <li>• Settlement after 5 years</li>
+          <li>• <strong>Best for:</strong> Joining high-growth startups</li>
+        </ul>
+      </div>
+
+      <div class="border border-purple-200 bg-purple-50 rounded-lg p-6">
+        <h4 class="font-semibold text-purple-900 mb-3">Global Talent Visa</h4>
+        <ul class="space-y-2 text-purple-800">
+          <li>• For leaders/potential leaders in specific fields</li>
+          <li>• Fields: science, humanities, engineering, arts, digital tech</li>
+          <li>• Endorsement from designated body (Tech Nation, etc.)</li>
+          <li>• No minimum salary or investment</li>
+          <li>• 1-5 year visa, highly flexible</li>
+          <li>• Settlement after 3 years (leaders) or 5 years</li>
+          <li>• <strong>Best for:</strong> Recognized experts, tech leaders</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">High Potential Individual Visa</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• For recent graduates of top global universities</li>
+          <li>• University must be on Home Office approved list</li>
+          <li>• Graduated in last 5 years</li>
+          <li>• 2 years (bachelor's/master's) or 3 years (PhD)</li>
+          <li>• No job offer required</li>
+          <li>• Cannot extend, must switch to another visa</li>
+          <li>• <strong>Best for:</strong> Recent elite university graduates</li>
+        </ul>
+      </div>
+    </div>
+
+    <ComparisonTable columns={visaComparisonColumns} rows={visaComparisonRows} />
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">UK Entrepreneur Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have an innovative, scalable business idea</li>
+          <li>✓ You want access to London's startup ecosystem</li>
+          <li>✓ You value English-speaking business environment</li>
+          <li>✓ You want a fast path to settlement (3 years possible)</li>
+          <li>✓ You can secure endorsement from approved body</li>
+          <li>✓ You want to bring your family</li>
+          <li>✓ You prefer comprehensive NHS healthcare</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want passive investment without running a business</li>
+          <li>• Your business idea isn't "innovative" (consider Portugal)</li>
+          <li>• You prefer lower cost of living (Spain, Portugal)</li>
+          <li>• You want to invest without working (no longer possible in UK)</li>
+          <li>• You can't get endorsement approval</li>
+          <li>• You prefer warmer climate</li>
+          <li>• Post-Brexit EU access is important to you</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>London vs. other UK cities:</strong> While London dominates the UK startup scene, cities like Manchester, Edinburgh, Cambridge, and Bristol offer lower costs, strong tech communities, and often easier access to endorsing bodies. Cambridge is particularly strong for biotech/deep tech, while Edinburgh has a thriving fintech scene.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Innovator Founder visa—the main entrepreneur route—requires endorsement from an approved body that verifies your business idea is innovative, viable, and scalable. This is not a rubber-stamp process; endorsing bodies conduct genuine assessments.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Innovator Founder Visa Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Mandatory Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport</li>
+          <li>• Endorsement letter from approved body</li>
+          <li>• Maintenance funds: £1,270 held for 28 consecutive days</li>
+          <li>• TB test certificate (if from listed country)</li>
+          <li>• English language: B2 level or above</li>
+          <li>• Genuine entrepreneur test (interview possible)</li>
+          <li>• Criminal record certificate (if required)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Business Plan Criteria</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Innovation:</strong> Genuine, original idea not duplicating existing market</li>
+          <li>• <strong>Viability:</strong> Realistic skills, market knowledge, research</li>
+          <li>• <strong>Scalability:</strong> Potential for job creation and growth</li>
+          <li>• Proof of any investment/funding secured</li>
+          <li>• Market analysis and competition assessment</li>
+          <li>• Your role and expertise in the business</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Approved Endorsing Bodies</h3>
+
+    <p class="mb-4">
+      You must obtain endorsement from a Home Office-approved body. Each has different focus areas and application processes:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Tech Nation</h4>
+        <p class="text-neutral-600">The UK's leading tech endorsing body. Focuses on digital technology businesses. Competitive—requires demonstrable traction, technical innovation, or founding team strength. Free to apply but rigorous assessment.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Startup Accelerators/Incubators</h4>
+        <p class="text-neutral-600">Many approved accelerators (Seedcamp, Entrepreneur First, etc.) can endorse. Often requires acceptance into their program. May involve equity stake or fees. Good option if you want mentorship and network access.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">University-Affiliated Bodies</h4>
+        <p class="text-neutral-600">Several UK universities can endorse through their enterprise programs. Often focused on academic spinouts or ideas connected to university research. Good option for PhD graduates commercializing research.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Sector-Specific Bodies</h4>
+        <p class="text-neutral-600">Various bodies focus on specific sectors (creative industries, social enterprise, etc.). Match your business sector to the appropriate endorsing body for best chances of approval.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Endorsement is not guaranteed:</strong> Approval rates vary by endorsing body, but rejection is common. Tech Nation, for example, reportedly approves less than 50% of applications. Your business plan must genuinely demonstrate innovation—"another food delivery app" won't qualify.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What Counts as "Innovative"?</h3>
+
+    <p class="mb-4">
+      The endorsing body must be satisfied that your business idea is:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>New to the UK market:</strong> Genuinely innovative, not a copy of existing businesses</li>
+      <li><strong>Different from anything else on the market:</strong> Has a unique selling proposition</li>
+      <li><strong>Creates economic benefit:</strong> Potential to create jobs, generate revenue, drive growth</li>
+      <li><strong>Technology-enabled or novel approach:</strong> Uses technology, new business models, or innovative methods</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Examples of successful ideas:</strong> AI/ML applications in underserved industries, fintech solutions, healthtech innovations, sustainability-focused tech, B2B SaaS with novel approaches, deep tech (biotech, quantum, etc.). The key is demonstrating genuine innovation, not just "an app for X."
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">NHS Access via Immigration Health Surcharge</h3>
+      <p class="text-green-800">
+        Unlike many countries, the UK does not require private health insurance for entrepreneur visas. Instead, you pay the Immigration Health Surcharge (IHS) as part of your visa application. Once paid, you have the same NHS access as UK residents—free GP visits, hospital care, and most treatments.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The IHS is currently £1,035 per year for most visa categories. You pay the full amount upfront for your entire visa duration (e.g., £3,105 for a 3-year Innovator Founder visa). This is mandatory—you cannot opt out and use private insurance instead.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">NHS vs. Private Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Why Many Entrepreneurs Add Private Insurance</h3>
+
+    <p class="mb-4">
+      While the NHS provides comprehensive care, many entrepreneurs choose to supplement it with private insurance for business reasons:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Reasons to Add Private Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Faster access to specialists (days vs. weeks)</li>
+          <li>✓ Private hospital rooms for recovery</li>
+          <li>✓ Choice of consultant and hospital</li>
+          <li>✓ Better mental health access (NHS waits are long)</li>
+          <li>✓ Global coverage for business travel</li>
+          <li>✓ Executive health screenings</li>
+          <li>✓ Time is money—less waiting, more working</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">NHS Is Sufficient If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• You're generally healthy</li>
+          <li>• You don't mind waiting for non-urgent care</li>
+          <li>• You want to minimize costs</li>
+          <li>• You're comfortable with shared hospital wards</li>
+          <li>• You don't travel frequently outside UK</li>
+          <li>• You're comfortable using A&E for emergencies</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Hybrid approach:</strong> Many UK-based entrepreneurs use NHS for emergencies and comprehensive care, while maintaining private insurance for planned procedures, mental health, and faster specialist access. This keeps costs lower than full private coverage while avoiding long NHS waits for non-urgent issues.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Setting up a business in the UK?"
+    description="Compare private health insurance options to supplement your NHS coverage—faster specialist access and global coverage for business travel."
+    buttonText="Compare UK Health Plans"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For UK-based entrepreneurs, insurance serves a supplementary role since NHS access is guaranteed via IHS. The choice is between UK-focused private insurers (lower cost, UK-only coverage) and international providers (higher cost, global coverage).
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Tech Founder, Frequent International Travel</h4>
+        <p class="text-neutral-600">Bupa Global or Cigna Global provide comprehensive global coverage essential for founders traveling to meet investors, partners, or customers. Both have strong UK networks plus worldwide coverage. Budget £200-400/month on top of IHS.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">UK-Focused Business, Minimal Travel</h4>
+        <p class="text-neutral-600">Bupa UK or AXA Health UK offer solid UK private coverage at lower cost than international plans. Good for faster specialist access and private hospital stays without paying for global coverage you won't use. Budget £80-200/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Startup Founder on Tight Budget</h4>
+        <p class="text-neutral-600">Rely on NHS (via IHS) for most care. Consider a basic UK private plan (£50-80/month) or outpatient-only coverage for faster GP/specialist access while using NHS for hospitalization. Prioritize mental health coverage given startup stress.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Relocating to UK</h4>
+        <p class="text-neutral-600">Each family member pays IHS separately (£1,035 each per year). For a family of four on a 3-year visa, that's £12,420 in IHS alone. Private family plans from Bupa UK or AXA can be cost-effective if you want faster access—compare NHS-only vs. NHS + private for your family size.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Health Conditions</h4>
+        <p class="text-neutral-600">NHS covers pre-existing conditions immediately with no exclusions—a major advantage. Private insurance in the UK typically excludes pre-existing conditions or requires moratorium underwriting. Consider using NHS for chronic condition management and private for unrelated care.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Starting a business in the UK involves significant upfront costs, particularly for immigration. The IHS alone adds thousands to your visa costs. Here's a realistic breakdown of what to expect.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Upfront Visa Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Single Applicant (3-year)</p>
+        <p class="text-3xl font-bold text-neutral-900">£4,296+</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa fee + IHS</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">With Spouse (3-year)</p>
+        <p class="text-3xl font-bold text-neutral-900">£8,500+</p>
+        <p class="text-sm text-neutral-500 mt-2">Both visas + IHS</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Family of 4 (3-year)</p>
+        <p class="text-3xl font-bold text-neutral-900">£17,000+</p>
+        <p class="text-sm text-neutral-500 mt-2">All visas + IHS + fees</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Living Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">London (Budget)</p>
+        <p class="text-3xl font-bold text-neutral-900">£2,500-3,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Zone 2-3, shared flat</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">London (Comfortable)</p>
+        <p class="text-3xl font-bold text-neutral-900">£4,000-6,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Own flat, Zone 1-2</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Manchester/Bristol</p>
+        <p class="text-3xl font-bold text-neutral-900">£2,000-3,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Own flat, comfortable</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (London Example)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1-bed Zone 2):</strong> £1,500-2,200/month</li>
+      <li><strong>IHS (amortized):</strong> ~£86/month per person</li>
+      <li><strong>Private insurance (optional):</strong> £150-400/month</li>
+      <li><strong>Council tax:</strong> £100-200/month</li>
+      <li><strong>Utilities:</strong> £150-250/month</li>
+      <li><strong>Transport:</strong> £150-250/month (Oyster/Tube)</li>
+      <li><strong>Food/groceries:</strong> £300-500/month</li>
+      <li><strong>Coworking space:</strong> £200-500/month</li>
+      <li><strong>Accountant:</strong> £100-300/month</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Tax advantage:</strong> The UK offers several tax incentives for startups including R&D tax credits, Enterprise Investment Scheme (EIS), and Seed Enterprise Investment Scheme (SEIS). These can significantly reduce your tax burden or attract investment. A UK-specialized accountant is essential.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Innovator Founder visa application involves two main stages: securing endorsement from an approved body, then applying for the visa itself. The endorsement process typically takes longer than the visa application.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Research Endorsing Bodies</h4>
+          <p class="text-neutral-600">Review the Home Office list of approved endorsing bodies. Match your business sector to the most appropriate body. Tech Nation is the default for tech businesses, but accelerators may be better if you want mentorship. Each body has different criteria and fees.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Your Business Plan</h4>
+          <p class="text-neutral-600">Create a comprehensive business plan demonstrating innovation, viability, and scalability. Include market research, competitive analysis, your unique value proposition, team credentials, and financial projections. The endorsing body will scrutinize this closely.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Endorsement</h4>
+          <p class="text-neutral-600">Submit your application to your chosen endorsing body. This typically includes your business plan, CV, evidence of funding (if any), and supporting documents. Expect an interview or assessment call. Processing takes 6-8 weeks typically.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Endorsement Letter</h4>
+          <p class="text-neutral-600">If approved, you'll receive an endorsement letter valid for 3 months. You must apply for your visa within this period. The letter confirms your business meets the innovation, viability, and scalability criteria.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Visa Documents</h4>
+          <p class="text-neutral-600">Gather: valid passport, endorsement letter, proof of English (unless exempt), bank statements showing £1,270 for 28 days, TB test certificate (if required), criminal record certificate (if required). Translate any documents not in English.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Online Application</h4>
+          <p class="text-neutral-600">Apply online via the UK government visa portal. Pay the visa fee (£1,191) and Immigration Health Surcharge (£3,105 for 3 years). Book your biometrics appointment at a visa application center (VAC) in your country.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Biometrics Appointment</h4>
+          <p class="text-neutral-600">Visit the visa application center to provide fingerprints and photo. Submit your passport and supporting documents. Consider priority processing (£500 for 5 days) or super priority (£1,000 for next day) if time is critical.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Decision and Travel</h4>
+          <p class="text-neutral-600">Standard processing takes 3-8 weeks. You'll receive a vignette (sticker) in your passport allowing entry to the UK. Travel within the vignette validity period (usually 90 days from decision). Collect your Biometric Residence Permit (BRP) within 10 days of arrival.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Contact points:</strong> After receiving your visa, you'll have regular contact with your endorsing body. They're required to meet with you at 6, 12, and 24 months to verify your business is progressing. Failure to meet business milestones could affect your ability to extend or settle.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for entrepreneurs applying for UK visas:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">AI Startup Founder from India, Tech Nation Endorsement</h3>
+        <p class="text-neutral-600 mb-4">Applied with working MVP, 2 paying customers, strong technical background from IIT. Solo founder, 28 years old.</p>
+        <p class="text-green-700 font-medium">✓ Tech Nation endorsement approved after 8 weeks. Visa processed in 4 weeks. Now based in London, raised seed round, using NHS for general care plus Cigna Global for faster specialist access. Total upfront cost: ~£5,000.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Fintech Founder from US, Seedcamp Route</h3>
+        <p class="text-neutral-600 mb-4">Accepted into Seedcamp accelerator, which provided endorsement. Previous experience at Goldman Sachs.</p>
+        <p class="text-green-700 font-medium">✓ Endorsement via accelerator was streamlined. Gave Seedcamp equity stake but gained mentorship and investor introductions. Visa approved in 3 weeks with priority processing. Uses Bupa Global for comprehensive coverage including US visits.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">E-commerce Business Owner from Nigeria</h3>
+        <p class="text-neutral-600 mb-4">Wanted to expand successful online retail business to UK. No tech angle, established business model.</p>
+        <p class="text-amber-700 font-medium">△ Tech Nation rejected as business wasn't sufficiently "innovative." Had to reframe as tech-enabled marketplace with AI recommendations. Second application approved after 4-month delay. Recommends clearly demonstrating tech innovation from start.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Biotech Researcher from Germany, Global Talent</h3>
+        <p class="text-neutral-600 mb-4">PhD from Max Planck, published papers, spinning out university research. Not founding traditional startup.</p>
+        <p class="text-green-700 font-medium">✓ Applied for Global Talent visa instead of Innovator Founder—better fit for academic commercialization. Endorsed by Royal Academy of Engineering. More flexibility than Innovator route. Now at Cambridge science park. Uses NHS plus AXA for private rooms.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Serial Entrepreneur from Brazil, Previous UK Exit</h3>
+        <p class="text-neutral-600 mb-4">Previously built and sold UK startup, now starting new venture. Strong track record but been away 3 years.</p>
+        <p class="text-green-700 font-medium">✓ Track record made endorsement straightforward. Tech Nation approved in 4 weeks citing proven ability to scale. Fast-tracked visa with super priority. Knows UK system well. Relies primarily on NHS with Bupa UK for speed when needed.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Consultant Wanting "Investor Visa"</h3>
+        <p class="text-neutral-600 mb-4">High-net-worth individual wanting to invest in UK property and businesses passively, not actively run company.</p>
+        <p class="text-red-700 font-medium">✗ No suitable visa route exists since Tier 1 Investor closed. Innovator Founder requires active involvement. Considered buying existing business to qualify but couldn't meet innovation criteria. Ultimately chose Portugal Golden Visa instead for passive investment route.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Private Health Insurance for UK Entrepreneurs"
+    description="Supplement your NHS access with faster specialist appointments and global coverage for business travel."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the "Innovation" Requirement</h3>
+        <p class="text-neutral-600">The most common reason for endorsement rejection is insufficient innovation. "Another marketplace," "Uber for X," or copying existing business models won't qualify. Your idea must be genuinely novel—new technology, unique approach, or solving problems in innovative ways. If in doubt, consult with the endorsing body before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting the Old Investor Visa to Return</h3>
+        <p class="text-neutral-600">Some applicants wait hoping the Tier 1 Investor route will reopen. It won't—the closure was permanent and based on policy concerns. If you want UK residence, you must actively build or lead a business, join a scale-up, or qualify as a global talent. Passive investment alone no longer provides a path.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting the IHS Is Mandatory</h3>
+        <p class="text-neutral-600">You cannot opt out of the Immigration Health Surcharge and use private insurance instead. IHS (£1,035/year) is mandatory for all entrepreneur visas. Private insurance is supplementary, not a replacement. Budget for IHS as a fixed visa cost—for a family of four on 3-year visas, that's over £12,000 in IHS alone.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing Endorsing Body Check-ins</h3>
+        <p class="text-neutral-600">After your visa is granted, your endorsing body will conduct progress reviews at 6, 12, and 24 months. Missing these or showing no business progress can result in endorsement withdrawal—which threatens your visa status. Maintain regular contact and demonstrate genuine business activity.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying for the Wrong Visa Category</h3>
+        <p class="text-neutral-600">Innovator Founder, Global Talent, and Scale-up have different criteria. Global Talent is better for established experts and researchers. Scale-up is employment-based, not for founders. High Potential Individual is for recent graduates. Choose the route that genuinely fits your situation rather than trying to force-fit into Innovator Founder.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in UK -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in the UK</h2>
+
+    <p class="mb-4">
+      The National Health Service (NHS) is one of the world's most comprehensive public healthcare systems. As an entrepreneur visa holder who has paid the IHS, you have full NHS access—the same as British citizens.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered by NHS</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Free Services (after IHS paid)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP (General Practitioner) consultations</li>
+          <li>✓ Hospital treatment and surgery</li>
+          <li>✓ A&E (Emergency room) care</li>
+          <li>✓ Specialist referrals</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Sexual health services</li>
+          <li>✓ Some vaccinations</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Charges Apply</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Prescriptions: £9.90 per item (or prepay £111.60/year)</li>
+          <li>• Dental treatment: £26.80-£319.10 per course</li>
+          <li>• Eye tests: ~£25 (free for some)</li>
+          <li>• Glasses/contacts: Full price unless exempt</li>
+          <li>• Some vaccinations (travel)</li>
+          <li>• Cosmetic procedures</li>
+          <li>• Fertility treatment (varies by area)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access NHS Care</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Register with a GP</h4>
+        <p class="text-neutral-600">Within your first weeks in the UK, register with a local GP surgery. You'll need proof of address and your BRP. GPs are your first point of contact for non-emergency care and refer you to specialists. Use the NHS Find a GP tool online.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Booking Appointments</h4>
+        <p class="text-neutral-600">Most GP surgeries use online booking or phone lines. Same-day urgent appointments are usually available, but routine appointments may take 1-2 weeks. The NHS App allows you to book appointments, order prescriptions, and view your medical records.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 999 for life-threatening emergencies or go to A&E. For urgent but non-life-threatening issues, call 111 for NHS 24/7 advice. Walk-in centers and urgent care centers handle minor injuries without appointment. A&E waits can be 4+ hours for non-critical issues.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialist Referrals</h4>
+        <p class="text-neutral-600">For most specialist care, you need a GP referral. NHS waiting times vary by specialty and area—6-18 weeks is common, with some specialties longer. This is where private insurance adds value: self-refer to private consultants with 1-2 week waits.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>NHS vs. Private—practical approach:</strong> Many entrepreneurs use NHS for: GP care, emergencies, maternity, chronic condition management. They use private insurance for: faster specialist access, elective procedures, mental health, executive health checks, and global travel coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I still get a UK investor visa by investing £2 million?</h3>
+        <p class="text-neutral-600">
+          No. The Tier 1 (Investor) visa was permanently closed on February 17, 2022. There is no longer any route to UK residence based purely on passive investment. You must now actively build or lead an innovative business (Innovator Founder), join a qualifying scale-up company, or qualify as a global talent in your field.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What does "innovative" actually mean for the Innovator Founder visa?</h3>
+        <p class="text-neutral-600">
+          Your business idea must be genuinely new and different from what exists in the UK market. This doesn't mean inventing new technology—it could be a novel business model, new approach to an existing problem, or application of existing tech in new ways. Copying existing businesses or "Uber for X" ideas typically don't qualify. The endorsing body makes the judgment call.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need private health insurance for a UK entrepreneur visa?</h3>
+        <p class="text-neutral-600">
+          No private insurance is required. You must pay the Immigration Health Surcharge (IHS) of £1,035 per year, which grants full NHS access. Private insurance is optional but popular among entrepreneurs for faster specialist access, private hospital rooms, and global coverage for business travel. Many use NHS + private insurance together.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residence (ILR)?</h3>
+        <p class="text-neutral-600">
+          Innovator Founder visa holders can apply for Indefinite Leave to Remain (ILR) after 3 years if their business meets specific criteria (job creation, revenue generation, investment raised, etc.). Global Talent visa holders can apply after 3 years (leaders) or 5 years. Scale-up visa holders must wait 5 years. Settlement is not automatic—you must meet the requirements.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family to the UK on an entrepreneur visa?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse/partner and children under 18 can apply as dependents. Each dependent pays their own visa fee (~£1,191) and IHS (~£1,035/year). They have full work rights in the UK and the same NHS access as you. Dependent applications are typically processed alongside your main application.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my business fails?</h3>
+        <p class="text-neutral-600">
+          Business failure doesn't automatically end your visa, but it complicates things. Your endorsing body conducts check-ins at 6, 12, and 24 months—if you show no progress, they may withdraw endorsement. You could potentially pivot to a new idea (with endorsing body approval) or switch to another visa category if eligible. Having a backup plan is wise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The UK's entrepreneur visa landscape has changed dramatically since the Tier 1 Investor route closed in 2022. Today's pathways—Innovator Founder, Global Talent, Scale-up—require genuine business building, not just capital deployment. This is by design: the UK wants active entrepreneurs creating jobs, not passive investors buying residency.
+    </p>
+
+    <p class="mb-4">
+      For the right founder—someone with a genuinely innovative idea and willingness to build in the UK—the Innovator Founder visa offers a compelling path. London's startup ecosystem, access to capital, English as the business language, and a 3-year path to settlement are significant advantages. The endorsement process is rigorous but ensures you've thought through viability.
+    </p>
+
+    <p class="mb-6">
+      Healthcare via the NHS (funded through the mandatory IHS) is comprehensive and world-class. Private insurance is optional but valuable for entrepreneurs who need faster access and can't afford long wait times. Budget £1,035/year per person for IHS as a fixed cost, plus £150-400/month for private coverage if you want it.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The UK Innovator Founder visa is best suited for tech entrepreneurs with genuinely innovative ideas who want access to one of the world's best startup ecosystems. It requires endorsement approval, active business building, and upfront costs of £4,000+ (visa + IHS). Healthcare is via NHS with optional private insurance for speed. Settlement is possible after just 3 years if your business succeeds.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/bupa-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Bupa Global Plans →
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Cigna Global Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/uk/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to NHS and private insurance for UK expats</p>
+      </a>
+      <a href="/providers/bupa-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Bupa Global Review</h3>
+        <p class="text-neutral-600 text-sm">In-depth review of Bupa's international health insurance</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">Detailed look at Cigna's global health insurance plans</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

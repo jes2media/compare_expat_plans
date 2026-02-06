@@ -1,0 +1,914 @@
+---
+/**
+ * Canada Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Start-Up Visa and Provincial Nominee Programs guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "visa-requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Canada", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+];
+
+const pathwayColumns = [
+  { key: "pathway", header: "Pathway" },
+  { key: "investment", header: "Investment/Requirement" },
+  { key: "outcome", header: "Outcome" },
+];
+
+const pathwayRows = [
+  { pathway: "Start-Up Visa Program", investment: "Support from designated organization", outcome: "Direct permanent residence" },
+  { pathway: "Quebec Entrepreneur", investment: "CAD 600,000 net worth, CAD 100,000+ deposit", outcome: "Work permit, then PR" },
+  { pathway: "Ontario Entrepreneur", investment: "CAD 600,000-800,000 net worth, CAD 200,000-600,000 investment", outcome: "Work permit, then PR" },
+  { pathway: "BC Entrepreneur", investment: "CAD 600,000 net worth, CAD 200,000 investment", outcome: "Work permit, then PR" },
+  { pathway: "Owner-Operator LMIA", investment: "Buy/start Canadian business", outcome: "Work permit, then PR" },
+];
+
+const startupColumns = [
+  { key: "organization", header: "Designated Organization Type" },
+  { key: "investment", header: "Minimum Investment" },
+  { key: "notes", header: "Notes" },
+];
+
+const startupRows = [
+  { organization: "Venture Capital Fund", investment: "CAD 200,000", notes: "Must be committed to your start-up; most competitive" },
+  { organization: "Angel Investor Group", investment: "CAD 75,000", notes: "From a designated angel investor group" },
+  { organization: "Business Incubator", investment: "No set minimum", notes: "Must be accepted into incubator program" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Period", requirement: "Until provincial healthcare begins", notes: "3-month waiting period in most provinces" },
+  { feature: "Coverage Type", requirement: "Comprehensive medical", notes: "Emergency, hospitalization, outpatient" },
+  { feature: "Provider Type", requirement: "Any recognized insurer", notes: "International or Canadian private" },
+  { feature: "Minimum Coverage", requirement: "CAD 100,000+ recommended", notes: "Higher for families" },
+  { feature: "Pre-existing Conditions", requirement: "Varies by insurer", notes: "Waiting periods common" },
+  { feature: "Repatriation", requirement: "Recommended", notes: "Not mandatory but advisable" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (CAD)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "$300-600", strengths: "Comprehensive coverage, worldwide network" },
+  { provider: "Allianz Care", type: "International", price: "$250-500", strengths: "Flexible plans, strong Canada network" },
+  { provider: "Manulife", type: "Canadian", price: "$150-350", strengths: "Local insurer, visitor coverage" },
+  { provider: "Blue Cross", type: "Canadian", price: "$100-300", strengths: "Affordable, good for waiting period" },
+  { provider: "GMS", type: "Canadian", price: "$80-250", strengths: "Budget option, basic coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (CAD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "PR Application Fee", amount: "$2,140", notes: "Principal applicant (2024 fees)" },
+  { item: "Biometrics Fee", amount: "$85", notes: "Per person" },
+  { item: "Right of PR Fee", amount: "$575", notes: "Paid upon approval" },
+  { item: "Medical Exam", amount: "$200-400", notes: "Per person, panel physician" },
+  { item: "Language Test (IELTS/TEF)", amount: "$300-400", notes: "Required for Start-Up Visa" },
+  { item: "Health Insurance (3 months)", amount: "$600-1,800", notes: "During waiting period" },
+  { item: "Legal Fees", amount: "$5,000-25,000", notes: "Immigration lawyer recommended" },
+  { item: "Business Plan (Start-Up)", amount: "$2,000-10,000", notes: "Professional preparation" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Develop business concept", duration: "1-6 months", location: "Home country" },
+  { step: "Secure designated organization support", duration: "2-12 months", location: "Remote/Canada visits" },
+  { step: "Receive Letter of Support", duration: "1-4 weeks", location: "From designated org" },
+  { step: "Complete language test", duration: "1-3 months", location: "Testing center" },
+  { step: "Medical examination", duration: "1-2 weeks", location: "Panel physician" },
+  { step: "Submit PR application", duration: "1 day", location: "Online (IRCC)" },
+  { step: "Application processing", duration: "12-36 months", location: "Government review" },
+  { step: "Receive COPR", duration: "After approval", location: "Visa office" },
+  { step: "Land in Canada as PR", duration: "Flexible", location: "Port of entry" },
+];
+---
+
+<PageShell
+  title="Canada Investor & Entrepreneur Visa 2026: Start-Up Visa, PNP & Insurance Guide"
+  description="Complete guide to Canada's entrepreneur immigration pathways. Start-Up Visa program, Provincial Nominee Programs, insurance requirements, and path to permanent residence."
+  headline="Canada Investor & Entrepreneur Visa: Complete Guide"
+  subheadline="Everything you need to know about Canada's Start-Up Visa Program, Provincial Nominee entrepreneur streams, mandatory insurance during the healthcare waiting period, and the path to permanent residence."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/canada-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official IRCC Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Direct Path to PR
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Canada no longer offers a traditional passive investor visa—the Federal Investor Immigration Programme was closed in 2014 and the Quebec Immigrant Investor Program has been suspended since 2019. However, Canada remains highly attractive for entrepreneurs through the Start-Up Visa Program and various Provincial Nominee Program (PNP) entrepreneur streams.
+    </p>
+
+    <p class="mb-4">
+      Unlike passive investment programs in Europe, Canada's entrepreneur pathways require active business involvement. The Start-Up Visa is unique: it leads directly to permanent residence even before your business succeeds, provided you secure support from a designated venture capital fund, angel investor group, or business incubator.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Canada Entrepreneur Immigration</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Federal Investor Programme:</strong> CLOSED since 2014</li>
+        <li>• <strong>Start-Up Visa:</strong> Leads directly to permanent residence</li>
+        <li>• <strong>Investment requirement:</strong> Designated org support (CAD 75,000-200,000+ commitment)</li>
+        <li>• <strong>Language requirement:</strong> CLB 5 in English or French</li>
+        <li>• <strong>Processing time:</strong> 12-36 months for Start-Up Visa</li>
+        <li>• <strong>Provincial options:</strong> BC, Ontario, Quebec, Alberta entrepreneur streams</li>
+        <li>• <strong>Healthcare:</strong> Provincial coverage after 3-month waiting period</li>
+        <li>• <strong>Path to citizenship:</strong> 3 years of physical presence after PR</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Important clarification:</strong> Canada does not have a "Golden Visa" or passive investment immigration program. The Start-Up Visa requires an innovative business idea and active involvement. If you're looking for a hands-off investment-based residence program, consider Portugal, Spain, or Greece instead. Canada is for entrepreneurs who want to build businesses.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Available Pathways</h3>
+
+    <ComparisonTable columns={pathwayColumns} rows={pathwayRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Why Choose Canada?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Direct path to permanent residence (Start-Up Visa)</li>
+          <li>• World-class innovation ecosystem</li>
+          <li>• Access to US market proximity</li>
+          <li>• Universal healthcare after waiting period</li>
+          <li>• Fast citizenship (3 years after PR)</li>
+          <li>• Multicultural society, easy integration</li>
+          <li>• Strong economy and stable government</li>
+          <li>• Include spouse and dependent children</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• No passive investment option</li>
+          <li>• Must secure designated organization support</li>
+          <li>• Long processing times (12-36 months)</li>
+          <li>• 3-month healthcare waiting period</li>
+          <li>• Cold winters in most regions</li>
+          <li>• High cost of living (Toronto, Vancouver)</li>
+          <li>• Language test required (English or French)</li>
+          <li>• Competitive—innovative idea needed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Canada's Start-Up Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have an innovative, scalable business idea</li>
+          <li>✓ You want direct permanent residence (not work permit first)</li>
+          <li>✓ You can secure designated organization support</li>
+          <li>✓ You have CLB 5+ English or French skills</li>
+          <li>✓ You want access to North American markets</li>
+          <li>✓ You value universal healthcare and stability</li>
+          <li>✓ You can handle 12-36 month processing time</li>
+          <li>✓ You want fast citizenship (3 years after PR)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want passive investment immigration</li>
+          <li>• You don't have a strong business concept</li>
+          <li>• You can't meet language requirements</li>
+          <li>• You need faster processing (weeks not months)</li>
+          <li>• You prefer warm climate year-round</li>
+          <li>• You want minimal physical presence requirements</li>
+          <li>• You prefer European market access</li>
+          <li>• You want to maintain existing business elsewhere</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Comparing Canada to Other Entrepreneur Options</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Program Type</th>
+            <th class="px-4 py-2 text-left">Investment</th>
+            <th class="px-4 py-2 text-left">Path to Citizenship</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Canada</td>
+            <td class="px-4 py-2">Active entrepreneur</td>
+            <td class="px-4 py-2">VC/Angel support</td>
+            <td class="px-4 py-2">3 years (after PR)</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">USA (EB-5)</td>
+            <td class="px-4 py-2">Passive investment</td>
+            <td class="px-4 py-2">$800,000-1,050,000</td>
+            <td class="px-4 py-2">5+ years</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">UK Innovator</td>
+            <td class="px-4 py-2">Active entrepreneur</td>
+            <td class="px-4 py-2">£50,000+</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Spain Golden</td>
+            <td class="px-4 py-2">Passive investment</td>
+            <td class="px-4 py-2">€500,000</td>
+            <td class="px-4 py-2">10 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Canada stands out:</strong> Canada offers the fastest path to citizenship among major immigration destinations (3 years vs. 5-10 years elsewhere). The Start-Up Visa grants permanent residence immediately—you don't need to succeed first. Combined with universal healthcare, stable economy, and multicultural society, Canada is exceptional for entrepreneurs committed to building their future here.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="visa-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Canada offers several pathways for entrepreneurs. The federal Start-Up Visa Program is the most attractive as it leads directly to permanent residence. Provincial Nominee Programs offer alternatives with varying requirements.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Start-Up Visa Program (Federal)</h3>
+
+    <p class="mb-4">
+      The Start-Up Visa is Canada's flagship entrepreneur immigration program. Unlike traditional investor visas, it doesn't require a specific investment amount from you—instead, you must convince a designated Canadian organization to support your innovative business idea.
+    </p>
+
+    <ComparisonTable columns={startupColumns} rows={startupRows} />
+
+    <h4 class="text-lg font-semibold text-neutral-900 mt-6 mb-3">Start-Up Visa Requirements</h4>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Qualifying business:</strong> Must be innovative, scalable, and globally competitive</li>
+      <li><strong>Designated organization support:</strong> Letter of Support from approved VC, angel group, or incubator</li>
+      <li><strong>Language proficiency:</strong> Minimum CLB 5 in English or French (speaking, listening, reading, writing)</li>
+      <li><strong>Settlement funds:</strong> Sufficient funds to settle in Canada (not invested in business)</li>
+      <li><strong>Ownership:</strong> Hold 10%+ voting rights; you + designated org must hold 50%+ combined</li>
+      <li><strong>Admissibility:</strong> Pass medical, security, and criminal checks</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <p class="text-green-800">
+        <strong>Key advantage:</strong> Your permanent residence is not conditional on business success. Once approved, you're a permanent resident regardless of whether your start-up thrives or fails. This makes Canada's Start-Up Visa uniquely low-risk compared to entrepreneur visas elsewhere.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provincial Nominee Programs (PNP)</h3>
+
+    <p class="mb-4">
+      Each Canadian province operates its own entrepreneur immigration stream with different requirements. These typically involve work permits before permanent residence.
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">British Columbia Entrepreneur Immigration</h4>
+        <p class="text-neutral-600">Minimum CAD 600,000 net worth, CAD 200,000 investment, create 1+ job. Lower threshold in regional areas (CAD 100,000 investment). Work permit issued first, then nomination after meeting business requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Ontario Entrepreneur Stream</h4>
+        <p class="text-neutral-600">CAD 600,000 net worth (GTA) or CAD 400,000 (outside GTA). Investment of CAD 600,000 (GTA) or CAD 200,000 (outside). Must create 2 permanent jobs. IT sector stream has different requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Quebec Entrepreneur Program</h4>
+        <p class="text-neutral-600">Minimum CAD 600,000 net worth for main stream. Must deposit CAD 200,000 with Investissement Quebec. Unique process through Quebec immigration system. French language skills advantageous.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Alberta Entrepreneur Stream</h4>
+        <p class="text-neutral-600">Recently reopened with updated criteria. Minimum CAD 500,000 net worth, CAD 200,000 investment (CAD 100,000 in rural areas). Business visit and Expression of Interest required.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Owner-Operator LMIA Pathway</h3>
+
+    <p class="mb-4">
+      If you want to buy or start a business in Canada without going through Start-Up Visa or PNP, you can apply for a work permit under the Owner-Operator LMIA stream. This involves:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li>Establishing or purchasing a Canadian business</li>
+      <li>Obtaining an LMIA (Labour Market Impact Assessment) for yourself as owner-operator</li>
+      <li>Receiving a work permit based on the LMIA</li>
+      <li>After operating successfully, applying for PR through Express Entry or PNP</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Note:</strong> The Owner-Operator pathway is more complex and doesn't guarantee permanent residence. It's best suited for those who want to operate an established business type (franchise, acquisition) rather than launch an innovative start-up.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Private Insurance Required During Waiting Period</h3>
+      <p class="text-amber-800">
+        Canada's provincial healthcare systems have a waiting period—typically 3 months—before new residents become eligible. During this time, you must have private health insurance. This is essential, not optional: healthcare costs in Canada can be substantial without coverage.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Unlike countries where private insurance is a visa requirement, Canada doesn't mandate specific coverage for immigration purposes. However, going without insurance during the waiting period is risky: a hospital stay can cost thousands of dollars per day.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provincial Healthcare Waiting Periods</h3>
+
+    <p class="mb-4">
+      Each province manages its own healthcare system. Waiting periods vary:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Ontario (OHIP):</strong> 3-month waiting period from date of arrival</li>
+      <li><strong>British Columbia (MSP):</strong> 3-month waiting period (reduced from previous wait)</li>
+      <li><strong>Quebec (RAMQ):</strong> 3-month waiting period for most newcomers</li>
+      <li><strong>Alberta (AHCIP):</strong> Coverage begins first day of third month after arrival</li>
+      <li><strong>Manitoba:</strong> No waiting period—coverage from day of arrival</li>
+      <li><strong>Saskatchewan:</strong> No waiting period for permanent residents</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What Your Private Insurance Should Cover</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Essential Coverage</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Emergency room visits</li>
+          <li>✓ Hospital stays (CAD 2,000-5,000/day)</li>
+          <li>✓ Physician consultations</li>
+          <li>✓ Prescription medications</li>
+          <li>✓ Diagnostic tests and imaging</li>
+          <li>✓ Ambulance services</li>
+          <li>✓ Outpatient surgery</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Recommended Add-ons</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Repatriation coverage</li>
+          <li>• Dental emergencies</li>
+          <li>• Vision care</li>
+          <li>• Mental health services</li>
+          <li>• Maternity (if applicable)</li>
+          <li>• Pre-existing condition coverage</li>
+          <li>• Trip interruption</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Important:</strong> Provincial healthcare covers physician visits and hospital care but not everything. Prescription drugs, dental care, vision care, and physiotherapy are typically not covered. Many permanent residents maintain supplementary private insurance even after the waiting period ends.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need health insurance for your move to Canada?"
+    description="Compare international and Canadian private insurers for the healthcare waiting period."
+    buttonText="Compare Health Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For the 3-month waiting period, you have two main options: international insurers offering global coverage, or Canadian insurers with visitor/newcomer plans. Your choice depends on your long-term plans and whether you'll travel outside Canada during this period.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent International Travelers</h4>
+        <p class="text-neutral-600">If you'll travel outside Canada during the waiting period or want coverage that works worldwide, choose Cigna Global or Allianz Care. These provide seamless coverage whether you're in Toronto, visiting the US, or returning to your home country. Higher cost but maximum flexibility.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Canada-Based / Cost-Conscious</h4>
+        <p class="text-neutral-600">If you'll stay in Canada during the waiting period, Manulife or Blue Cross offer good coverage at lower costs. These Canadian insurers specialize in newcomer coverage and understand the healthcare system well. Blue Cross offers specific "Welcome to Canada" plans designed for new immigrants.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Families with Children</h4>
+        <p class="text-neutral-600">Families should prioritize comprehensive coverage including pediatric care. Cigna Global and Allianz Care offer strong family plans. For budget options, Manulife provides good family coverage. Budget CAD 400-1,000/month for a family of four during the waiting period.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">If you have pre-existing conditions, international insurers like Cigna Global typically offer better coverage options, though with waiting periods (usually 12-24 months). Disclose all conditions upfront. Canadian insurers may exclude pre-existing conditions entirely during the short waiting period.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Canada's entrepreneur immigration involves government fees, professional services, and settlement costs. The Start-Up Visa is relatively affordable compared to passive investor programs, but budget for legal support and business development costs.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimate (Start-Up Visa)</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Application Costs (Single)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>PR application fee: <strong>CAD $2,140</strong></li>
+            <li>Right of PR fee: <strong>CAD $575</strong></li>
+            <li>Biometrics: <strong>CAD $85</strong></li>
+            <li>Medical exam: <strong>CAD $300</strong></li>
+            <li>Language test: <strong>CAD $350</strong></li>
+            <li>Legal fees: <strong>CAD $10,000</strong></li>
+            <li>Business plan prep: <strong>CAD $5,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total application: <strong>CAD $18,450</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Settlement Costs (First Year)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Health insurance (3 months): <strong>CAD $900</strong></li>
+            <li>Rental deposit + first month: <strong>CAD $4,000-8,000</strong></li>
+            <li>Initial furnishing: <strong>CAD $3,000-5,000</strong></li>
+            <li>Settlement funds (required): <strong>CAD $13,757*</strong></li>
+            <li class="pt-2 border-t font-semibold">Total first year setup: <strong>CAD $20,000-30,000</strong></li>
+          </ul>
+          <p class="text-sm text-neutral-500 mt-2">*Minimum required for single applicant (2024). Family of 4: CAD $25,564</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost of Living by City</h3>
+
+    <p class="mb-4">
+      Canada's major cities have high living costs. Monthly budget estimates for a single person:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Toronto:</strong> CAD $3,000-5,000/month (most expensive, strong tech scene)</li>
+      <li><strong>Vancouver:</strong> CAD $2,800-4,500/month (high housing, West Coast lifestyle)</li>
+      <li><strong>Montreal:</strong> CAD $2,000-3,500/month (more affordable, bilingual)</li>
+      <li><strong>Calgary:</strong> CAD $2,200-3,500/month (no provincial sales tax, energy sector)</li>
+      <li><strong>Ottawa:</strong> CAD $2,000-3,200/month (government hub, tech growth)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Tax considerations:</strong> Canada has federal and provincial taxes. Ontario's combined top marginal rate is about 53%. However, entrepreneurs can take advantage of the Small Business Deduction (9% federal rate on first CAD $500,000 of active business income) and other business structures. Consult a Canadian tax professional.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Start-Up Visa process is lengthy but straightforward. The critical first step is securing a Letter of Support from a designated organization. Processing times have increased to 12-36 months, so plan accordingly.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide (Start-Up Visa)</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Your Business Concept</h4>
+          <p class="text-neutral-600">Your business must be innovative, scalable, and able to compete globally. Designated organizations receive thousands of pitches—you need a compelling value proposition. Consider working with an accelerator or business advisor to refine your pitch.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Pitch to Designated Organizations</h4>
+          <p class="text-neutral-600">Apply to multiple designated venture capital funds, angel investor groups, or business incubators. Each has its own application process and focus areas. View the official IRCC list of designated organizations. Expect rejection from some—persistence is key.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Letter of Support</h4>
+          <p class="text-neutral-600">If a designated organization agrees to support your start-up, they'll provide a Letter of Support confirming their commitment. For VC funds, this means committing CAD $200,000+; for angel groups, CAD $75,000+. Incubators provide acceptance into their program.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Language Testing</h4>
+          <p class="text-neutral-600">Take an approved language test (IELTS for English, TEF for French) to demonstrate CLB 5 proficiency. You need minimum scores in speaking, listening, reading, and writing. Results are valid for 2 years—don't test too early.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get Medical Examination</h4>
+          <p class="text-neutral-600">Complete a medical exam with an IRCC-approved panel physician. The doctor submits results directly to IRCC. Medical results are valid for 12 months. Include family members who will accompany you.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Permanent Residence Application</h4>
+          <p class="text-neutral-600">Apply online through the IRCC portal. Submit all documents: Letter of Support, language test results, proof of settlement funds, identity documents, and police certificates. Pay the application fee (CAD $2,140) and biometrics fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Provide Biometrics</h4>
+          <p class="text-neutral-600">After submitting your application, you'll be invited to provide biometrics (fingerprints and photo) at a designated location. This must be done within 30 days of the request.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Current processing times are 12-36 months. You may receive requests for additional information. You can apply for a work permit while waiting if you want to start your business in Canada before PR is granted.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive COPR and Land in Canada</h4>
+          <p class="text-neutral-600">Upon approval, you'll receive a Confirmation of Permanent Residence (COPR). You must land in Canada before your medical exam expires (or request a new one). At the port of entry, the officer confirms your PR status and you receive your PR card by mail.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Work permit option:</strong> While your PR application is processing, you can apply for a work permit to start your business in Canada immediately. This lets you begin operations without waiting 12-36 months. The work permit is linked to your Start-Up Visa application.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Canada entrepreneur visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Tech Founder from India, AI Start-Up</h3>
+        <p class="text-neutral-600 mb-4">35 years old, software engineer background, developed AI-powered healthcare screening tool. Pitched to 8 incubators and 3 VC funds.</p>
+        <p class="text-green-700 font-medium">✓ Accepted by DMZ (Ryerson incubator) after 4 months of pitching. Letter of Support issued. PR approved in 18 months. Now operating from Toronto with 6 employees. Used Manulife insurance during 3-month OHIP wait. Became citizen 3 years after landing.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Brazilian Entrepreneur Family, E-commerce Platform</h3>
+        <p class="text-neutral-600 mb-4">Couple (40s) with two children, previously ran successful e-commerce business in Brazil. Wanted to scale internationally.</p>
+        <p class="text-green-700 font-medium">✓ Secured CAD $200,000 commitment from angel investor group. Family of 4 approved for PR after 24 months. Relocated to Vancouver. Used Blue Cross family plan during MSP wait (CAD $850/month). Children enrolled in public school. Business now generates CAD $2M annual revenue.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Fintech Founder, Expanding to Canada</h3>
+        <p class="text-neutral-600 mb-4">Already running successful fintech company in London. Wanted Canadian market access and PR for family security.</p>
+        <p class="text-amber-700 font-medium">△ First attempt rejected—designated org felt business concept wasn't innovative enough (existing product). Pivoted pitch to focus on new Canadian-specific product line. Second application with different incubator successful. PR approved after 30 months total. Notes the importance of genuinely innovative concept.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Investor, Seeking Owner-Operator Route</h3>
+        <p class="text-neutral-600 mb-4">Wealthy investor wanting to buy Canadian franchise. Not interested in building innovative start-up.</p>
+        <p class="text-amber-700 font-medium">△ Start-Up Visa not suitable—requires innovative business. Applied for BC PNP Entrepreneur Stream instead. Required CAD $600,000 net worth proof, CAD $200,000 investment commitment. Work permit granted, now operating two Tim Hortons franchises. PR expected after meeting business milestones. Process took longer but suited passive investment preference.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Nigerian Healthcare Start-Up, Family Relocation</h3>
+        <p class="text-neutral-600 mb-4">Doctor-entrepreneur with telemedicine platform. Wife and three children (ages 5, 8, 12). Seeking quality education and stability.</p>
+        <p class="text-green-700 font-medium">✓ Strong healthcare background helped secure incubator support. Family PR approved in 20 months. Moved to Toronto. International insurance with Cigna Global during wait (CAD $1,200/month family). Children thriving in Canadian schools. Platform now serves Canadian and African markets. Citizenship application pending.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">First-Time Founder, Underdeveloped Concept</h3>
+        <p class="text-neutral-600 mb-4">Recent MBA graduate with vague "social media platform" idea. Applied to multiple designated organizations with minimal business plan.</p>
+        <p class="text-red-700 font-medium">✗ Rejected by all organizations approached—concept not innovative or differentiated enough. Designated orgs receive hundreds of pitches from serious founders with proven traction. Lesson: Start-Up Visa requires genuine innovation and compelling value proposition, not just an idea. Later succeeded after developing product, gaining users, and returning with traction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Your Canada Move"
+    description="Find the right coverage for the healthcare waiting period—international or Canadian options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Designated Organization Requirements</h3>
+        <p class="text-neutral-600">Designated VCs, angels, and incubators are highly selective. They receive hundreds of applications from experienced entrepreneurs with proven traction. A vague idea or business plan won't cut it. Invest time in developing a compelling, innovative concept with market validation before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Insurance During the Waiting Period</h3>
+        <p class="text-neutral-600">Canada's healthcare waiting period (3 months in most provinces) is real. A single emergency room visit without insurance can cost thousands of dollars. A hospital stay can exceed CAD $5,000 per day. Always arrange private coverage before arriving—this is not optional.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Neglecting Language Test Preparation</h3>
+        <p class="text-neutral-600">CLB 5 (IELTS 5.0) is required in all four skills. Many applicants who speak English well struggle with the academic format of IELTS. Take practice tests, consider preparation courses, and allow time for retakes if needed. Don't let language testing delay your application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Passive Investment Immigration</h3>
+        <p class="text-neutral-600">Canada closed its passive investor programs years ago. The Start-Up Visa and PNP streams require active business involvement. If you're looking to invest money passively and receive residence, consider Portugal, Spain, or US EB-5 instead. Canada is for entrepreneurs who want to build businesses.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Processing Times and Costs</h3>
+        <p class="text-neutral-600">Start-Up Visa processing now takes 12-36 months—much longer than the "16 months" often quoted. Budget for legal fees (CAD $10,000-25,000), business plan preparation, and settlement funds. Plan finances to sustain your family during the wait, especially if not working during this period.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Canada -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Canada</h2>
+
+    <p class="mb-4">
+      Canada's universal healthcare system (Medicare) is a major attraction for immigrants. However, understanding how it works—and its limitations—is essential for planning your move.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Canadian Healthcare Works</h3>
+
+    <p class="mb-4">
+      Canada's healthcare is publicly funded but provincially administered. Each province runs its own health insurance plan:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Ontario:</strong> OHIP (Ontario Health Insurance Plan)</li>
+      <li><strong>British Columbia:</strong> MSP (Medical Services Plan)</li>
+      <li><strong>Quebec:</strong> RAMQ (Régie de l'assurance maladie du Québec)</li>
+      <li><strong>Alberta:</strong> AHCIP (Alberta Health Care Insurance Plan)</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered vs. Not Covered</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Covered by Provincial Healthcare</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Doctor visits (family physician, specialists)</li>
+          <li>✓ Hospital stays and treatments</li>
+          <li>✓ Medically necessary surgeries</li>
+          <li>✓ Diagnostic tests ordered by doctors</li>
+          <li>✓ Emergency room visits</li>
+          <li>✓ Maternity and childbirth</li>
+          <li>✓ Most laboratory tests</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">NOT Covered (Need Supplementary)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Prescription medications</li>
+          <li>• Dental care (except hospital dental surgery)</li>
+          <li>• Vision care and eyeglasses</li>
+          <li>• Physiotherapy and massage</li>
+          <li>• Mental health counseling (private)</li>
+          <li>• Ambulance fees (some provinces)</li>
+          <li>• Private or semi-private hospital rooms</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding a Family Doctor</h3>
+
+    <p class="mb-4">
+      One challenge for newcomers: finding a family doctor who is accepting new patients. In major cities, there can be long waits. Options include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Provincial registries:</strong> Most provinces have online tools to find doctors accepting patients</li>
+      <li><strong>Walk-in clinics:</strong> Available for non-emergency care without a family doctor</li>
+      <li><strong>Telehealth:</strong> Virtual care options have expanded significantly</li>
+      <li><strong>Community health centers:</strong> Often have shorter waits for registration</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Supplementary insurance:</strong> Most Canadians with employer benefits have supplementary insurance covering prescriptions, dental, vision, and paramedical services. As a business owner, you can provide this for yourself and employees. Individual plans are available from Manulife, Sun Life, Canada Life, and others. Budget CAD $100-300/month for comprehensive supplementary coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does Canada still have an investor visa?</h3>
+        <p class="text-neutral-600">
+          No. Canada's Federal Investor Immigration Programme was terminated in 2014, and Quebec's Immigrant Investor Program has been suspended since 2019. The Start-Up Visa requires active entrepreneurship, not passive investment. Provincial entrepreneur streams exist but require business operation, not just investment. If you want passive investment immigration, consider Portugal, Spain, or US EB-5.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my start-up fails after I receive PR?</h3>
+        <p class="text-neutral-600">
+          Your permanent residence is not conditional on business success. Once you're approved and land in Canada as a PR, your immigration status is secure regardless of whether your start-up succeeds or fails. This is a major advantage of Canada's program compared to conditional visas elsewhere. You can pivot to a different business or even take employment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family come with me on the Start-Up Visa?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse/common-law partner and dependent children under 22 can be included in your PR application. They receive the same permanent residence status. Your spouse can work for any employer in Canada—they're not restricted to your business. Children can attend public school.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can become a Canadian citizen?</h3>
+        <p class="text-neutral-600">
+          Permanent residents can apply for citizenship after 3 years (1,095 days) of physical presence in Canada within the 5 years before applying. You must file taxes, meet language requirements (CLB 4 in English or French), and pass a citizenship test on Canadian history, values, and rights. Canada offers one of the fastest paths to citizenship among major immigration destinations.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I apply for a work permit while waiting for PR?</h3>
+        <p class="text-neutral-600">
+          Yes. Start-Up Visa applicants can apply for a work permit to begin building their business in Canada while the PR application is processing. This is particularly useful given the long processing times (12-36 months). The work permit allows you to live and work in Canada, and your spouse can also receive an open work permit.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to live in a specific province after getting PR?</h3>
+        <p class="text-neutral-600">
+          No. As a permanent resident, you have the right to live and work anywhere in Canada. Even if you applied through a provincial program (like BC or Ontario entrepreneur), you're not legally required to stay in that province after receiving PR. However, if you applied through a PNP, maintaining a connection to that province during the nomination period is expected.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Canada's Start-Up Visa offers a unique proposition: permanent residence for entrepreneurs with innovative ideas, without requiring massive personal investment. Unlike European golden visas that grant residence for passive investment, Canada wants founders who will build businesses and create jobs. If you have a compelling concept and can secure support from a designated organization, this is one of the best entrepreneur immigration pathways in the world.
+    </p>
+
+    <p class="mb-4">
+      The trade-offs are real: no passive investment option exists, processing times are long (12-36 months), and you need to genuinely convince sophisticated investors or incubators that your idea is worth backing. The language requirement (CLB 5) and competitive nature of securing designated organization support mean this isn't for everyone.
+    </p>
+
+    <p class="mb-6">
+      For the 3-month healthcare waiting period, private insurance is essential—budget CAD $200-600/month for an individual or CAD $600-1,500/month for a family. Once you're covered by provincial healthcare, you'll have access to one of the world's best universal healthcare systems, though supplementary insurance for prescriptions and dental is advisable.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Canada's Start-Up Visa is ideal for genuine entrepreneurs with innovative, scalable business concepts. It offers direct permanent residence (not conditional on success), fast citizenship (3 years), and access to a stable economy with universal healthcare. The 3-month healthcare waiting period requires private insurance—budget CAD $200-600/month. Work with an immigration lawyer experienced in Start-Up Visa applications.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Health Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Plans →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">Comprehensive international health insurance for expats</p>
+      </a>
+      <a href="/providers/allianz-care" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Allianz Care Review</h3>
+        <p class="text-neutral-600 text-sm">Flexible international health insurance with global coverage</p>
+      </a>
+      <a href="/visas/investor-visa/in/spain" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Golden Visa</h3>
+        <p class="text-neutral-600 text-sm">Passive investment immigration to the EU</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

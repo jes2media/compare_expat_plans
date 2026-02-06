@@ -1,0 +1,925 @@
+---
+/**
+ * Singapore Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Global Investor Programme (GIP), EntrePass, and PEP guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "visa-requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Singapore", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Singapore Health Insurance Guide", href: "/countries/singapore/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+  { title: "Bupa Global Review", href: "/providers/bupa-global" },
+];
+
+const gipColumns = [
+  { key: "option", header: "GIP Option" },
+  { key: "investment", header: "Investment Required" },
+  { key: "requirements", header: "Key Requirements" },
+];
+
+const gipRows = [
+  { option: "Option A: Business Investment", investment: "SGD 10 million", requirements: "Invest in new business or expand existing Singapore operations" },
+  { option: "Option B: GIP Fund", investment: "SGD 25 million", requirements: "Invest in approved GIP-selected fund investing in Singapore companies" },
+  { option: "Option C: Single Family Office", investment: "SGD 50 million", requirements: "Establish family office in Singapore with AUM of at least SGD 200M" },
+];
+
+const visaComparisonColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "gip", header: "Global Investor Programme" },
+  { key: "entrepass", header: "EntrePass" },
+  { key: "pep", header: "Personalised Employment Pass" },
+];
+
+const visaComparisonRows = [
+  { feature: "Investment Minimum", gip: "SGD 10-50 million", entrepass: "No minimum (innovative business)", pep: "SGD 270,000/year income" },
+  { feature: "Business Track Record", gip: "3 years audited financials, 200M+ revenue", entrepass: "None required (idea-stage OK)", pep: "Senior executive experience" },
+  { feature: "Residency Status", gip: "Permanent Residence", entrepass: "Work Pass (1-2 years)", pep: "Work Pass (3 years max)" },
+  { feature: "Processing Time", gip: "6-8 months", entrepass: "8 weeks", pep: "8 weeks" },
+  { feature: "Family Inclusion", gip: "Spouse, children, parents", entrepass: "Dependent passes available", pep: "Dependent passes available" },
+  { feature: "Best For", gip: "Established UHNW investors", entrepass: "Tech/startup founders", pep: "High-earning executives" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Mandatory?", requirement: "No—but highly recommended", notes: "Singapore healthcare is excellent but expensive" },
+  { feature: "Public Healthcare Access", requirement: "Not subsidized for foreigners", notes: "Pay full foreigner rates at public hospitals" },
+  { feature: "Recommended Coverage", requirement: "Comprehensive private insurance", notes: "Budget SGD 300-800/month" },
+  { feature: "Coverage Type", requirement: "International or Singapore private", notes: "Both options viable" },
+  { feature: "Hospitalization Costs", requirement: "SGD 1,000-5,000/day at private", notes: "Without insurance, bills can exceed SGD 100,000" },
+  { feature: "Pre-existing Conditions", requirement: "No mandate", notes: "International insurers often better" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (SGD)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "SGD 400-900", strengths: "Comprehensive global coverage, premium service" },
+  { provider: "Bupa Global", type: "International", price: "SGD 500-1,100", strengths: "Extensive network, family plans, chronic conditions" },
+  { provider: "Allianz Care", type: "International", price: "SGD 350-800", strengths: "Flexible plans, good value for coverage" },
+  { provider: "AXA Singapore", type: "Local/Intl", price: "SGD 250-600", strengths: "Strong local presence, integrated products" },
+  { provider: "Great Eastern", type: "Local", price: "SGD 200-500", strengths: "Largest local insurer, extensive network" },
+  { provider: "Prudential Singapore", type: "Local", price: "SGD 180-450", strengths: "Comprehensive plans, good claims process" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (SGD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "GIP Application Fee", amount: "SGD 7,500", notes: "Non-refundable processing fee" },
+  { item: "EntrePass Application", amount: "SGD 105", notes: "Per application" },
+  { item: "EntrePass Issuance", amount: "SGD 225", notes: "Upon approval" },
+  { item: "PEP Application", amount: "SGD 105", notes: "Per application" },
+  { item: "GIP Investment (Option A)", amount: "SGD 10,000,000", notes: "New business or expansion" },
+  { item: "Legal/Advisory Fees", amount: "SGD 20,000-100,000", notes: "Immigration and corporate setup" },
+  { item: "Health Insurance", amount: "SGD 400-1,000/month", notes: "Comprehensive international coverage" },
+  { item: "Living Costs (Family)", amount: "SGD 8,000-20,000/month", notes: "Depends on lifestyle and housing" },
+];
+
+const timelineGIPColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "notes", header: "Notes" },
+];
+
+const timelineGIPRows = [
+  { step: "Prepare business documentation", duration: "4-8 weeks", notes: "Audited financials, business plan, personal docs" },
+  { step: "Submit GIP application to EDB", duration: "1 week", notes: "Economic Development Board reviews" },
+  { step: "EDB assessment and interview", duration: "4-6 months", notes: "May include in-person interview" },
+  { step: "Receive Approval In-Principle", duration: "After assessment", notes: "Conditional on investment execution" },
+  { step: "Execute qualifying investment", duration: "6-12 months", notes: "Must meet specific criteria" },
+  { step: "Submit investment proof to EDB", duration: "1-2 weeks", notes: "Documentation of completed investment" },
+  { step: "Final GIP approval", duration: "2-4 weeks", notes: "Permanent residence status granted" },
+  { step: "Collect PR documents (Re-Entry Permit)", duration: "1-2 weeks", notes: "At ICA" },
+];
+
+const timelineEntrePassColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "notes", header: "Notes" },
+];
+
+const timelineEntrePassRows = [
+  { step: "Register ACRA company (or plan to)", duration: "1-2 weeks", notes: "Private limited company required" },
+  { step: "Prepare business plan", duration: "2-4 weeks", notes: "Must demonstrate innovation and scalability" },
+  { step: "Submit EntrePass application online", duration: "1 day", notes: "Via Ministry of Manpower portal" },
+  { step: "Application processing", duration: "8 weeks", notes: "May request additional documents" },
+  { step: "Receive In-Principle Approval", duration: "After processing", notes: "Valid 6 months to collect pass" },
+  { step: "Complete company registration (if not done)", duration: "1-2 weeks", notes: "Must be 30%+ shareholder" },
+  { step: "Collect EntrePass", duration: "1 week", notes: "At Employment Pass Services Centre" },
+];
+---
+
+<PageShell
+  title="Singapore Investor Visa 2026: GIP, EntrePass & Insurance Guide"
+  description="Complete guide to Singapore's Global Investor Programme (GIP) and EntrePass. Investment requirements from SGD 10 million, tax benefits, world-class business environment, and healthcare coverage options."
+  headline="Singapore Investor Visa: GIP, EntrePass & Insurance Guide"
+  subheadline="Everything you need to know about Singapore's investor and entrepreneur visa options—Global Investor Programme for established investors, EntrePass for innovative startups, plus healthcare and insurance essentials."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/singapore-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official EDB/MOM Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      0% Capital Gains Tax
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Singapore is consistently ranked as the world's easiest place to do business, with a transparent legal system, zero capital gains tax, low corporate taxes (flat 17%), and access to the fastest-growing markets in Asia. For high-net-worth investors and innovative entrepreneurs, Singapore offers multiple pathways to residency—from the prestigious Global Investor Programme (GIP) that grants immediate permanent residence, to the EntrePass designed for startup founders.
+    </p>
+
+    <p class="mb-4">
+      Unlike European golden visas focused on passive real estate investment, Singapore's investor programs emphasize active business involvement and economic contribution. The trade-off: higher investment thresholds but potentially greater returns in Asia's premier financial hub.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Singapore Investor Visas</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>GIP Investment:</strong> SGD 10M (Option A), SGD 25M (Option B), or SGD 50M (Option C)</li>
+        <li>• <strong>GIP Outcome:</strong> Permanent Residence from day one</li>
+        <li>• <strong>EntrePass:</strong> No minimum investment, must have innovative/scalable business</li>
+        <li>• <strong>PEP:</strong> For individuals earning SGD 270,000+/year</li>
+        <li>• <strong>Corporate Tax:</strong> 17% flat rate (one of lowest globally)</li>
+        <li>• <strong>Capital Gains Tax:</strong> 0%</li>
+        <li>• <strong>Health Insurance:</strong> Not mandatory but essential (no public subsidy for foreigners)</li>
+        <li>• <strong>Official Language:</strong> English (business and government)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Singapore?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• 0% capital gains tax</li>
+          <li>• 17% flat corporate tax rate</li>
+          <li>• No inheritance tax</li>
+          <li>• English as official business language</li>
+          <li>• Rule of law and low corruption</li>
+          <li>• Gateway to ASEAN and Asia-Pacific markets</li>
+          <li>• World-class infrastructure and connectivity</li>
+          <li>• Safe, clean, efficient city</li>
+          <li>• GIP grants immediate permanent residence</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Very high investment thresholds (GIP)</li>
+          <li>• Stringent business track record requirements</li>
+          <li>• High cost of living</li>
+          <li>• Small city-state (limited geographic variety)</li>
+          <li>• Healthcare expensive without insurance</li>
+          <li>• Strict laws and regulations</li>
+          <li>• Hot, humid tropical climate year-round</li>
+          <li>• PR renewal requires maintaining business ties</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>2023 GIP Changes:</strong> Singapore introduced Option C (Single Family Office) requiring SGD 50 million investment and at least SGD 200 million in assets under management. This reflects Singapore's growing status as a global wealth management hub, attracting ultra-high-net-worth families from around the world.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Singapore Is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You have an established business with 3+ years track record and SGD 200M+ annual revenue (GIP)</li>
+          <li>You're building an innovative, scalable startup (EntrePass)</li>
+          <li>You're a high-earning executive (SGD 270K+/year) seeking flexibility (PEP)</li>
+          <li>You want access to Asian markets and capital</li>
+          <li>You value tax efficiency (0% capital gains, 17% corporate)</li>
+          <li>You prefer an English-speaking business environment</li>
+          <li>You can afford premium healthcare costs</li>
+          <li>Your family would thrive in a safe, modern city</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>You want passive investment without business involvement</li>
+          <li>Your business revenue is below SGD 200M annually</li>
+          <li>You prefer lower investment thresholds (Portugal: EUR 500K)</li>
+          <li>You want European/Schengen access</li>
+          <li>You prefer lower cost of living</li>
+          <li>You need public healthcare subsidies</li>
+          <li>You want a larger country with geographic variety</li>
+          <li>Your business isn't technology or innovation-focused (EntrePass)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Which Singapore Visa Is Right for You?</h3>
+
+    <ComparisonTable columns={visaComparisonColumns} rows={visaComparisonRows} />
+
+    <div class="mt-6 space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Choose GIP if:</h4>
+        <p class="text-neutral-600">You're an established business owner with significant wealth, want immediate permanent residence, and can invest SGD 10-50 million in Singapore's economy. Best for UHNW individuals seeking a base in Asia.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Choose EntrePass if:</h4>
+        <p class="text-neutral-600">You're founding an innovative startup, have VC backing or strong IP, and want to build your company in Singapore. No minimum investment required, but your business must demonstrate scalability and innovation potential.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Choose PEP if:</h4>
+        <p class="text-neutral-600">You're a high-earning executive (SGD 270,000+/year) wanting flexibility to work in Singapore without being tied to a specific employer. Valid for 3 years maximum, then requires conversion to other pass types.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="visa-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Singapore offers three main pathways for investors and entrepreneurs. The Global Investor Programme (GIP) leads to permanent residence, while EntrePass and PEP provide work pass status with potential paths to PR over time.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Global Investor Programme (GIP)</h3>
+
+    <p class="mb-4">
+      The GIP is Singapore's premier investor immigration program, designed for experienced business owners and investors. It grants permanent residence immediately upon approval, with three investment options introduced in 2023.
+    </p>
+
+    <ComparisonTable columns={gipColumns} rows={gipRows} />
+
+    <h4 class="text-lg font-semibold text-neutral-900 mt-6 mb-3">GIP Eligibility Requirements</h4>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h5 class="font-semibold text-neutral-900 mb-3">Business Track Record</h5>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Minimum 3 years of audited financial statements</li>
+          <li>• Annual revenue of at least SGD 200 million (most recent year)</li>
+          <li>• Average revenue of SGD 200M over last 3 years</li>
+          <li>• Must be a substantial shareholder in the company</li>
+          <li>• Company must be in approved industries</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h5 class="font-semibold text-neutral-900 mb-3">Approved Industries</h5>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Aerospace Engineering</li>
+          <li>• Alternative/Clean Energy</li>
+          <li>• Automotive</li>
+          <li>• Chemicals</li>
+          <li>• Consumer Business</li>
+          <li>• Electronics</li>
+          <li>• Financial Services</li>
+          <li>• Health & Life Sciences</li>
+          <li>• ICT & Media</li>
+          <li>• Logistics & Supply Chain</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">EntrePass (Entrepreneur Pass)</h3>
+
+    <p class="mb-4">
+      The EntrePass is designed for innovative entrepreneurs who want to start and operate a business in Singapore. Unlike GIP, there's no minimum investment amount—but your business must demonstrate innovation, scalability, and potential economic contribution.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">EntrePass Eligibility</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Must be registered (or plan to register) ACRA company</li>
+          <li>• Must hold at least 30% shareholding</li>
+          <li>• Business must be venture-backed, or</li>
+          <li>• Hold significant IP, or</li>
+          <li>• Have track record in established incubator</li>
+          <li>• Company cannot be older than 6 months at application</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Preferred Business Types</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Technology and software startups</li>
+          <li>• Biotech and life sciences</li>
+          <li>• Clean technology</li>
+          <li>• Fintech</li>
+          <li>• AI and machine learning</li>
+          <li>• Deep tech</li>
+          <li>• Businesses with strong IP portfolios</li>
+          <li>• VC-backed ventures (Series A+ preferred)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>EntrePass Renewals:</strong> Initial EntrePass is issued for 1 year. Renewal depends on meeting milestones: hiring local employees (at least 1 for first renewal, more for subsequent), minimum annual business spending (SGD 100,000+), and company revenue growth. Failure to meet benchmarks may result in non-renewal.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Personalised Employment Pass (PEP)</h3>
+
+    <p class="mb-4">
+      The PEP is for high-earning professionals who want flexibility to work in Singapore without being tied to a specific employer. It's technically an employment pass variant rather than investor visa, but popular among executives and consultants.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Income requirement:</strong> Fixed monthly salary of at least SGD 22,500 (SGD 270,000/year)</li>
+      <li><strong>Duration:</strong> Maximum 3 years (non-renewable—must convert to other pass type)</li>
+      <li><strong>Work flexibility:</strong> Can work for any employer in Singapore</li>
+      <li><strong>Unemployment buffer:</strong> 6 months to find new employment between jobs</li>
+      <li><strong>Not for:</strong> Sole proprietors, partners, company directors without salary</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Path to PR:</strong> EntrePass and PEP holders can apply for permanent residence after 2+ years of residency in Singapore. Approval depends on factors including business success, economic contribution, family ties, and integration. GIP grants PR immediately upon investment completion.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Health Insurance is NOT Mandatory—But Essential</h3>
+      <p class="text-amber-800">
+        Unlike European investor visas, Singapore does not require health insurance for visa approval. However, foreigners do not receive subsidized healthcare rates—you pay full "foreigner" rates at public hospitals, which can be 3-5x higher than citizen rates. A single hospitalization can cost SGD 50,000-200,000. Comprehensive private insurance is strongly recommended.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Singapore's healthcare system is world-class—ranked 6th globally by WHO—but operates on a mixed public-private model. Citizens and permanent residents benefit from government subsidies and CPF Medisave. Foreigners on work passes have no access to these benefits and face full-cost pricing.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding Singapore Healthcare Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Without Insurance (Foreigner Rates)</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>• GP visit: SGD 50-150</li>
+          <li>• Specialist consultation: SGD 150-400</li>
+          <li>• Emergency room: SGD 500-2,000</li>
+          <li>• Hospital stay (public): SGD 500-1,500/day</li>
+          <li>• Hospital stay (private): SGD 1,000-5,000/day</li>
+          <li>• Major surgery: SGD 30,000-150,000</li>
+          <li>• ICU: SGD 3,000-10,000/day</li>
+          <li>• Childbirth (private): SGD 15,000-30,000</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">With Comprehensive Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Monthly premium: SGD 300-1,000</li>
+          <li>• Outpatient: Often included or small copay</li>
+          <li>• Hospitalization: Fully covered to limits</li>
+          <li>• Surgery: Covered after deductible</li>
+          <li>• Specialists: Direct access, covered</li>
+          <li>• Evacuation: Included in international plans</li>
+          <li>• Pre-existing: Covered after waiting period</li>
+          <li>• Global coverage: Use anywhere worldwide</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">International vs. Local Singapore Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">International Insurance (Cigna, Bupa)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Worldwide coverage—use in any country</li>
+          <li>English-language service globally</li>
+          <li>Portable if you leave Singapore</li>
+          <li>Often better for pre-existing conditions</li>
+          <li>Premium service and amenities</li>
+          <li>Evacuation and repatriation included</li>
+          <li>Higher cost (SGD 400-1,100/month)</li>
+          <li>May require upfront payment + reimbursement</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Singapore Local Insurance (Great Eastern, AXA)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Lower cost (SGD 200-600/month)</li>
+          <li>Extensive Singapore hospital networks</li>
+          <li>Direct billing—no reimbursement hassle</li>
+          <li>Familiar to Singapore doctors/hospitals</li>
+          <li>Can integrate with MediShield Life (if PR)</li>
+          <li>Singapore-focused or regional coverage</li>
+          <li>May exclude pre-existing conditions</li>
+          <li>Cancel if you leave Singapore</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> For GIP investors and EntrePass holders who travel frequently, international insurance from Cigna Global or Bupa Global provides seamless worldwide coverage. If you'll be primarily based in Singapore and want lower costs, local insurers like Great Eastern or Prudential offer excellent Singapore coverage. Many high-net-worth individuals maintain both: international for global travel and local for cost-effective Singapore care.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need premium health insurance for Singapore?"
+    description="Compare international and local insurers for comprehensive coverage in Asia's leading business hub."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For high-net-worth investors and entrepreneurs in Singapore, choosing the right insurance depends on your travel patterns, family situation, and healthcare preferences. International insurers offer global portability; local insurers provide cost-effective Singapore coverage.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">GIP Investor / Frequent Global Traveler</h4>
+        <p class="text-neutral-600">Choose Cigna Global or Bupa Global for comprehensive worldwide coverage. These plans work seamlessly in Singapore, the US, Europe, and Asia—essential if you have business interests across multiple countries. Budget SGD 500-1,100/month for premium coverage. Both offer direct billing at major Singapore private hospitals.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">EntrePass Startup Founder</h4>
+        <p class="text-neutral-600">Balance coverage and cost with Allianz Care or AXA Singapore. Both offer strong Singapore networks at more accessible prices than top-tier international plans. Budget SGD 300-600/month. Ensure your plan covers pre-existing conditions if relevant—important during the stressful startup phase.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">Bupa Global offers particularly strong family plans with pediatric coverage, maternity benefits, and wellness programs. For a family of four, budget SGD 1,500-3,000/month for comprehensive international coverage. Great Eastern is a solid local alternative at roughly half the cost.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Cost-Conscious / Primarily Singapore-Based</h4>
+        <p class="text-neutral-600">If you rarely travel outside Singapore and want to minimize costs, Great Eastern or Prudential Singapore offer excellent local coverage at SGD 200-500/month. Direct billing at most Singapore hospitals and clinics makes claims hassle-free.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Singapore investor visas involve substantial upfront costs, particularly for the GIP. Beyond the investment itself, budget for professional fees, insurance, and high Singapore living costs. The numbers below cover application, setup, and ongoing expenses.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates by Visa Type</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">GIP (Option A)</h4>
+          <ul class="space-y-2 text-neutral-700 text-sm">
+            <li>Investment: <strong>SGD 10,000,000</strong></li>
+            <li>Application fee: <strong>SGD 7,500</strong></li>
+            <li>Legal/advisory: <strong>SGD 50,000-100,000</strong></li>
+            <li>Setup costs: <strong>SGD 20,000-50,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Upfront total: <strong>~SGD 10.1-10.2M</strong></li>
+            <li class="mt-4">Annual insurance: <strong>SGD 6,000-12,000</strong></li>
+            <li>Annual living: <strong>SGD 150,000-300,000</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">EntrePass</h4>
+          <ul class="space-y-2 text-neutral-700 text-sm">
+            <li>Application + issuance: <strong>SGD 330</strong></li>
+            <li>Company registration: <strong>SGD 500-2,000</strong></li>
+            <li>Legal/advisory: <strong>SGD 5,000-20,000</strong></li>
+            <li>Initial capital: <strong>Varies</strong></li>
+            <li class="pt-2 border-t font-semibold">Upfront total: <strong>SGD 10,000-50,000+</strong></li>
+            <li class="mt-4">Annual insurance: <strong>SGD 4,000-8,000</strong></li>
+            <li>Annual living: <strong>SGD 80,000-180,000</strong></li>
+            <li>Min. business spend: <strong>SGD 100,000/year</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">PEP</h4>
+          <ul class="space-y-2 text-neutral-700 text-sm">
+            <li>Application: <strong>SGD 105</strong></li>
+            <li>Issuance: <strong>SGD 225</strong></li>
+            <li>Relocation: <strong>SGD 10,000-30,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Upfront total: <strong>SGD 10,000-30,000</strong></li>
+            <li class="mt-4">Annual insurance: <strong>SGD 4,000-10,000</strong></li>
+            <li>Annual living: <strong>SGD 100,000-250,000</strong></li>
+            <li>Income required: <strong>SGD 270,000/year</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Singapore Living Costs</h3>
+
+    <p class="mb-4">
+      Singapore is one of the world's most expensive cities. Housing dominates the budget—renting a family apartment in a good district costs SGD 4,000-12,000/month. Other significant costs:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Housing (rent):</strong> SGD 3,000-5,000 (1-bed), SGD 5,000-12,000 (3-bed in prime area)</li>
+      <li><strong>International school:</strong> SGD 30,000-50,000/year per child</li>
+      <li><strong>Domestic helper:</strong> SGD 800-1,200/month (common in Singapore)</li>
+      <li><strong>Car ownership:</strong> SGD 150,000+ (COE + vehicle—many use Grab instead)</li>
+      <li><strong>Food:</strong> SGD 500-2,000/month (hawker centers are cheap; restaurants expensive)</li>
+      <li><strong>Utilities:</strong> SGD 200-400/month</li>
+      <li><strong>Transport (no car):</strong> SGD 150-300/month</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Tax advantages offset costs:</strong> While Singapore is expensive, the 0% capital gains tax, 17% corporate tax, and no inheritance tax can result in significant net savings for high-net-worth individuals. Many GIP investors find the tax savings alone justify Singapore's higher living costs compared to their home countries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Application processes differ significantly between visa types. GIP requires extensive documentation and takes 6-8 months through the Economic Development Board (EDB). EntrePass is faster (8 weeks) through the Ministry of Manpower (MOM).
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Global Investor Programme (GIP) Timeline</h3>
+
+    <ComparisonTable columns={timelineGIPColumns} rows={timelineGIPRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">EntrePass Timeline</h3>
+
+    <ComparisonTable columns={timelineEntrePassColumns} rows={timelineEntrePassRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">GIP Application Documents</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Passport (valid 2+ years)</li>
+          <li>• 3 years audited financial statements</li>
+          <li>• Business ownership/shareholding proof</li>
+          <li>• Company registration documents</li>
+          <li>• Detailed business plan for Singapore</li>
+          <li>• Proof of assets (bank statements, property)</li>
+          <li>• Educational qualifications</li>
+          <li>• Family documents (if including dependents)</li>
+          <li>• Police clearance certificates</li>
+          <li>• Medical examination (if requested)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">EntrePass Application Documents</h4>
+        <ul class="space-y-2 text-neutral-700 text-sm">
+          <li>• Passport (valid 6+ months)</li>
+          <li>• Business plan (innovation, scalability)</li>
+          <li>• Company registration (or ACRA application)</li>
+          <li>• Proof of 30%+ shareholding</li>
+          <li>• Funding proof (if VC-backed)</li>
+          <li>• IP documentation (if applicable)</li>
+          <li>• Incubator affiliation (if applicable)</li>
+          <li>• Educational qualifications</li>
+          <li>• Resume/CV</li>
+          <li>• Projected financials and milestones</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Professional assistance:</strong> Given the complexity and high stakes of GIP applications, most successful applicants work with specialized immigration lawyers and investment advisors. Budget SGD 50,000-100,000 for comprehensive professional support. For EntrePass, costs are lower but professional guidance still recommended (SGD 5,000-20,000).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for investors and entrepreneurs applying for Singapore visas:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Manufacturing Executive, GIP Option A</h3>
+        <p class="text-neutral-600 mb-4">50 years old, owns electronics manufacturing company with SGD 500M annual revenue. Invested SGD 10M to expand Singapore operations.</p>
+        <p class="text-green-700 font-medium">Approved in 7 months. Immediate PR for himself, wife, and two children. Established regional HQ in Singapore, hired 25 local staff. Children enrolled in international school. Chose Cigna Global for family (SGD 2,800/month). Now splits time between Singapore and China, appreciating Singapore's tax efficiency.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Tech Founder, EntrePass</h3>
+        <p class="text-neutral-600 mb-4">32 years old, founded AI startup with Series A funding from Sequoia. Expanding from Bangalore to Singapore.</p>
+        <p class="text-green-700 font-medium">EntrePass approved in 6 weeks. Registered Singapore company, hired 3 local engineers. First renewal approved after demonstrating SGD 150K business spending and 5 employees. Applied for PR after 2.5 years—pending. Bupa Global insurance (SGD 450/month). Values Singapore's access to Southeast Asian markets.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Family Office, GIP Option C</h3>
+        <p class="text-neutral-600 mb-4">Family with SGD 350M in assets seeking to establish Singapore family office. Applied under new Option C.</p>
+        <p class="text-green-700 font-medium">Approved after 8 months of due diligence. Invested SGD 50M in qualifying investments, established family office with 5 staff. Entire family (parents, 3 adult children) received PR. Using combination of Cigna Global (international travel) and Great Eastern (Singapore care). Appreciating Singapore's wealth management ecosystem and Asian investment opportunities.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Fintech Entrepreneur, EntrePass Rejection</h3>
+        <p class="text-neutral-600 mb-4">35 years old, founded payment processing company. Applied for EntrePass with B2B payments solution.</p>
+        <p class="text-amber-700 font-medium">Initial application rejected—MOM determined business model wasn't sufficiently innovative (too similar to existing services). Reapplied 6 months later with enhanced AI/ML integration and partnership with local bank. Second application approved. Lesson: EntrePass requires demonstrable innovation, not just a good business.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">European Executive, PEP</h3>
+        <p class="text-neutral-600 mb-4">45 years old, regional director for multinational earning SGD 450,000/year. Wanted flexibility to consult for multiple companies.</p>
+        <p class="text-green-700 font-medium">PEP approved in 5 weeks. Now consults for 3 Singapore companies without being tied to single employer. Applied for PR after 2 years—approved based on economic contribution and family ties (children in Singapore schools). AXA Singapore insurance (SGD 350/month). Values PEP flexibility for portfolio career.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indonesian Businessman, GIP Revenue Shortfall</h3>
+        <p class="text-neutral-600 mb-4">Business owner with SGD 150M annual revenue—below SGD 200M GIP threshold. Explored alternatives.</p>
+        <p class="text-amber-700 font-medium">GIP application not viable due to revenue requirements. Explored EntrePass but business model not innovation-focused. Eventually used Employment Pass route—hired as CEO of Singapore subsidiary with substantial salary. Applied for PR after 3 years. Alternative path took longer but achieved same outcome. Lesson: Multiple paths exist if GIP thresholds aren't met.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Singapore Investor Visa"
+    description="Find the right coverage for your investment in Asia's premier business hub—international or local options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating GIP Requirements</h3>
+        <p class="text-neutral-600">The SGD 200M revenue threshold is strictly enforced. Unlike some countries where requirements are flexible, Singapore's EDB conducts thorough due diligence. If your company's audited financials show less than SGD 200M revenue, don't waste time on a GIP application—explore EntrePass or Employment Pass alternatives.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Treating EntrePass as an Easy Alternative</h3>
+        <p class="text-neutral-600">EntrePass has no minimum investment, but it's not easy. Your business must demonstrate genuine innovation—not just a viable business model. MOM rejects applications that are "me too" businesses without technological differentiation. VC backing, patents/IP, or incubator affiliation significantly strengthen applications.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Health Insurance</h3>
+        <p class="text-neutral-600">Because insurance isn't mandatory for visa approval, some applicants delay arranging coverage. This is dangerous—a single hospitalization can cost SGD 50,000-200,000 at foreigner rates. Arrange comprehensive insurance before arriving in Singapore. The SGD 400-1,000/month premium is trivial compared to potential uninsured medical costs.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring EntrePass Renewal Requirements</h3>
+        <p class="text-neutral-600">EntrePass renewals require demonstrating progress: hiring local employees, meeting minimum business spending (SGD 100,000+), and showing revenue growth. Founders who focus only on product development without local hiring often face renewal difficulties. Plan for these milestones from day one.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underbudgeting for Singapore Living Costs</h3>
+        <p class="text-neutral-600">Singapore is one of the world's most expensive cities. Family housing in good areas costs SGD 5,000-12,000/month; international schools cost SGD 30,000-50,000/year per child. Budget realistically—underfunded moves create stress that can undermine business success. Include domestic helper (common in Singapore) if you have young children.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Singapore -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Singapore</h2>
+
+    <p class="mb-4">
+      Singapore has one of the world's best healthcare systems—ranked 6th globally by WHO. The system combines public hospitals (government-subsidized for citizens/PRs) with excellent private hospitals. For foreigners on work passes, private care is typically the better option since you pay full "foreigner" rates at public facilities anyway.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public vs. Private Healthcare</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Public Hospitals</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Singapore General Hospital (SGH)</li>
+          <li>• National University Hospital (NUH)</li>
+          <li>• Tan Tock Seng Hospital (TTSH)</li>
+          <li>• Excellent quality—but long waits</li>
+          <li>• Foreigner rates 3-5x citizen rates</li>
+          <li>• Ward classes: A, B1, B2, C (C subsidized for citizens only)</li>
+          <li>• Often used for complex procedures/emergencies</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Hospitals</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Mount Elizabeth (Orchard & Novena)</li>
+          <li>• Gleneagles Hospital</li>
+          <li>• Raffles Hospital</li>
+          <li>• Parkway East Hospital</li>
+          <li>• Shorter waits, premium facilities</li>
+          <li>• Higher costs (but covered by insurance)</li>
+          <li>• Direct billing with most insurers</li>
+          <li>• English widely spoken</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare for Different Residency Statuses</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">GIP Permanent Residents</h4>
+        <p class="text-neutral-600">As PRs, you gain access to subsidized healthcare rates (though less than citizens). You must contribute to CPF Medisave (8% of income) which can be used for approved medical expenses. Can purchase MediShield Life (national health insurance). Private insurance still recommended for comprehensive coverage and private hospital access.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">EntrePass / PEP Holders</h4>
+        <p class="text-neutral-600">Work pass holders pay full foreigner rates at public hospitals—no subsidies. No CPF contributions or MediShield Life access. Private insurance is essential. Most employers provide some insurance; entrepreneurs must arrange their own coverage. Budget SGD 300-800/month for comprehensive plans.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Dependents (Spouse, Children)</h4>
+        <p class="text-neutral-600">Dependent pass holders have same healthcare access as primary pass holder. Children can access pediatric care at both public and private hospitals. International schools often require proof of health insurance. Ensure your family plan covers pediatric and maternity (if relevant) comprehensively.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Medical tourism bonus:</strong> Singapore is a leading medical tourism destination—many come specifically for treatment. As a resident, you have easy access to world-class specialists in oncology, cardiology, orthopedics, and other fields. Private hospitals like Mount Elizabeth attract top physicians from around the world.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between GIP and EntrePass?</h3>
+        <p class="text-neutral-600">
+          GIP is for established business owners with proven track records (SGD 200M+ revenue, 3 years audited financials) who can invest SGD 10-50 million. It grants immediate permanent residence. EntrePass is for innovative startup founders—no minimum investment, but your business must demonstrate innovation and scalability. EntrePass gives a work pass initially, with a path to PR after 2+ years.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is health insurance mandatory for Singapore investor visas?</h3>
+        <p class="text-neutral-600">
+          No—unlike European investor visas, Singapore does not require health insurance for visa approval. However, we strongly recommend comprehensive private insurance. Foreigners pay full "foreigner" rates at public hospitals (3-5x citizen rates), and a single hospitalization can cost SGD 50,000-200,000. Budget SGD 300-1,000/month for quality coverage.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family get PR through my GIP application?</h3>
+        <p class="text-neutral-600">
+          Yes. GIP allows you to include your spouse and unmarried children under 21 in your PR application. Parents can be sponsored separately after you obtain PR. Each family member needs their own health insurance. For EntrePass and PEP, family members receive Dependent Passes (not PR) and can apply for PR later based on your status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long does it take to get Singapore citizenship?</h3>
+        <p class="text-neutral-600">
+          You must first be a Permanent Resident for at least 2 years before applying for citizenship. Total timeline from GIP approval to citizenship eligibility is typically 2-4 years. Citizenship approval considers factors including: economic contribution, family ties to Singapore, integration into society, and national service obligations for male applicants/dependents.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my EntrePass renewal is rejected?</h3>
+        <p class="text-neutral-600">
+          EntrePass renewals require meeting milestones: hiring local employees, minimum business spending (SGD 100,000+), and demonstrating business progress. If you don't meet these benchmarks, MOM may reject renewal. You'd have 30 days to leave Singapore or appeal. To avoid this, plan for hiring and spending requirements from the start—they're not optional.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I maintain my GIP status while living outside Singapore?</h3>
+        <p class="text-neutral-600">
+          GIP PR comes with a Re-Entry Permit (REP) valid for 5 years. You must renew the REP to maintain PR status while traveling. Renewal requires demonstrating continued economic ties to Singapore—business operations, employment, investments. Extended absence without economic ties may result in REP non-renewal and loss of PR status. Plan to maintain substantive Singapore business presence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Singapore's investor visa programs are designed for serious players—established business owners with proven track records (GIP) or innovative entrepreneurs building scalable ventures (EntrePass). The investment thresholds are high, but the rewards match: immediate permanent residence through GIP, 0% capital gains tax, 17% corporate tax, and access to Asia's premier business ecosystem.
+    </p>
+
+    <p class="mb-4">
+      For UHNW individuals seeking a base in Asia, the GIP's SGD 10-50 million investment threshold is substantial but delivers unmatched benefits: PR for the entire family, Singapore's world-class infrastructure, and a globally recognized business environment. The 2023 addition of Option C (Single Family Office) reflects Singapore's growing importance as a wealth management hub.
+    </p>
+
+    <p class="mb-6">
+      For startup founders, EntrePass offers a path to Singapore without massive capital—but your business must demonstrate genuine innovation. VC backing, strong IP, or incubator affiliation significantly strengthens applications. Plan for renewal requirements (local hiring, business spending) from day one.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Singapore investor visas suit serious investors and entrepreneurs who value tax efficiency, rule of law, and access to Asian markets. Health insurance isn't mandatory but is essential—budget SGD 400-1,000/month for comprehensive coverage. Work with specialized immigration advisors for GIP applications, and plan EntrePass milestones carefully. Singapore is expensive but delivers unmatched business advantages in Asia.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/bupa-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Bupa Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/singapore/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Singapore Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in Singapore</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">Comprehensive review of Cigna Global health insurance</p>
+      </a>
+      <a href="/providers/bupa-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Bupa Global Review</h3>
+        <p class="text-neutral-600 text-sm">In-depth review of Bupa Global health insurance plans</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

@@ -1,0 +1,944 @@
+---
+/**
+ * New Zealand Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Active Investor Plus and Entrepreneur visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "visa-requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in New Zealand", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "New Zealand Insurance Guide", href: "/countries/new-zealand/insurance" },
+  { title: "New Zealand Student Visa", href: "/visas/student-visa/in/new-zealand" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+];
+
+const investorColumns = [
+  { key: "option", header: "Investment Pathway" },
+  { key: "minimum", header: "Minimum Investment" },
+  { key: "duration", header: "Investment Period" },
+  { key: "notes", header: "Key Notes" },
+];
+
+const investorRows = [
+  { option: "Direct Investment (Growth)", minimum: "NZD 5 million", duration: "4 years", notes: "Growth-stage NZ businesses, equities, managed funds" },
+  { option: "Listed Equities Pathway", minimum: "NZD 10 million", duration: "4 years", notes: "Includes NZX-listed company shares" },
+  { option: "Residential Property Pathway", minimum: "NZD 15 million", duration: "4 years", notes: "Can include residential property investment" },
+  { option: "Entrepreneur Work Visa", minimum: "NZD 100,000", duration: "3 years (renewable)", notes: "High-value business establishment" },
+  { option: "Entrepreneur Resident Visa", minimum: "NZD 100,000 (from Work Visa)", duration: "After 2 years", notes: "Pathway from successful Entrepreneur Work Visa" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Investor Visa Status" },
+  { key: "notes", header: "Practical Considerations" },
+];
+
+const insuranceRows = [
+  { feature: "Health Insurance", requirement: "Strongly recommended (not mandatory)", notes: "No public healthcare for non-residents" },
+  { feature: "ACC Coverage", requirement: "Automatic for everyone", notes: "Covers accidents and injuries only" },
+  { feature: "Coverage Duration", requirement: "Full visa period recommended", notes: "Until eligible for residence" },
+  { feature: "Minimum Coverage", requirement: "No official minimum", notes: "Comprehensive coverage advisable" },
+  { feature: "Pre-existing Conditions", requirement: "Not covered initially", notes: "Waiting periods apply" },
+  { feature: "Family Coverage", requirement: "Recommended for dependents", notes: "Each family member should have coverage" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "NZD 350-700", strengths: "High-net-worth investors, global coverage" },
+  { provider: "Allianz Care", type: "International", price: "NZD 300-600", strengths: "Flexible plans, worldwide network" },
+  { provider: "Bupa Global", type: "International", price: "NZD 400-750", strengths: "Premium service, family coverage" },
+  { provider: "Southern Cross", type: "NZ Private", price: "NZD 150-350", strengths: "Established NZ insurer, local network" },
+  { provider: "nib", type: "NZ Private", price: "NZD 140-320", strengths: "Good value, NZ-focused coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (NZD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Active Investor Plus Application", amount: "NZD 4,310", notes: "Non-refundable application fee" },
+  { item: "Entrepreneur Work Visa Application", amount: "NZD 2,440", notes: "Initial application fee" },
+  { item: "Entrepreneur Resident Visa", amount: "NZD 3,170", notes: "After successful business operation" },
+  { item: "Immigration Levy", amount: "NZD 420", notes: "Added to application fees" },
+  { item: "Investment Minimum", amount: "NZD 5-15 million", notes: "Depending on investment pathway" },
+  { item: "Health Insurance", amount: "NZD 3,000-8,000/year", notes: "Recommended comprehensive coverage" },
+  { item: "Legal/Advisory Fees", amount: "NZD 15,000-50,000", notes: "Immigration and investment advisors" },
+  { item: "English Test (IELTS)", amount: "NZD 385", notes: "If required" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Initial assessment and EOI (Active Investor)", duration: "2-4 weeks", location: "Immigration NZ online" },
+  { step: "Invitation to apply (if EOI accepted)", duration: "Within 2-3 months", location: "Immigration NZ" },
+  { step: "Prepare full application documents", duration: "4-8 weeks", location: "Home country/NZ" },
+  { step: "Submit complete application", duration: "1 day", location: "Immigration NZ online" },
+  { step: "Application processing", duration: "3-6 months", location: "Immigration NZ" },
+  { step: "Approval and visa issued", duration: "After processing", location: "Immigration NZ" },
+  { step: "Transfer funds to NZ", duration: "12 months from approval", location: "NZ banks/investments" },
+  { step: "Maintain investment period", duration: "4 years", location: "New Zealand" },
+  { step: "Apply for residence", duration: "After investment period", location: "Immigration NZ" },
+];
+---
+
+<PageShell
+  title="New Zealand Investor Visa 2026: Active Investor Plus & Entrepreneur Guide"
+  description="Complete guide to New Zealand's Active Investor Plus Visa (NZD 5-15M) and Entrepreneur Visa. Investment requirements, insurance recommendations, and path to residence."
+  headline="New Zealand Investor Visa: Investment & Insurance Guide"
+  subheadline="Everything you need to know about New Zealand's Active Investor Plus and Entrepreneur visas—NZD 5-15 million thresholds, business requirements, and healthcare planning for the land of opportunity."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/cigna-global"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Immigration NZ Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      ACC Injury Coverage for All
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      New Zealand's investor visa program underwent a major overhaul in 2022, replacing the previous Investor 1 and Investor 2 categories with the streamlined Active Investor Plus visa. The new program emphasizes "active" investment—capital that contributes to New Zealand's economy through growth companies, venture capital, and listed equities rather than passive instruments like government bonds.
+    </p>
+
+    <p class="mb-4">
+      For entrepreneurs without multi-million-dollar capital, the Entrepreneur Work Visa offers a lower entry point at NZD 100,000, allowing you to establish and operate a high-value business before transitioning to residence. Both pathways lead to New Zealand's exceptional quality of life: clean air, outdoor adventures, excellent education, and a stable democracy.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: New Zealand Investor/Entrepreneur Visas</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Active Investor Plus:</strong> NZD 5M (direct), NZD 10M (listed equities), NZD 15M (with property)</li>
+        <li>• <strong>Entrepreneur Work Visa:</strong> NZD 100,000 capital for high-value business</li>
+        <li>• <strong>Investment period:</strong> 4 years for Active Investor Plus</li>
+        <li>• <strong>Entrepreneur pathway:</strong> 3 years work visa, then residence after 2 years success</li>
+        <li>• <strong>Health insurance:</strong> Not mandatory, but strongly recommended</li>
+        <li>• <strong>ACC coverage:</strong> Automatic injury coverage for everyone in NZ</li>
+        <li>• <strong>English requirement:</strong> Applies to Active Investor Plus applicants</li>
+        <li>• <strong>Path to residence:</strong> After 4-year investment period (Active Investor Plus)</li>
+        <li>• <strong>Application fee:</strong> NZD 4,310 (Active Investor Plus)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose New Zealand?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• World-class quality of life and natural beauty</li>
+          <li>• Stable economy and political system</li>
+          <li>• English-speaking, business-friendly environment</li>
+          <li>• No capital gains tax on most investments</li>
+          <li>• Excellent education system for families</li>
+          <li>• Clean, green lifestyle appeal</li>
+          <li>• ACC covers all accident-related injuries</li>
+          <li>• Path to citizenship after 5 years residence</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• High investment threshold (NZD 5-15 million)</li>
+          <li>• "Active" investment requirement—not passive bonds</li>
+          <li>• Geographic isolation from major markets</li>
+          <li>• No public healthcare until residence</li>
+          <li>• Smaller economy limits some opportunities</li>
+          <li>• High cost of living, especially Auckland</li>
+          <li>• 4-year investment maintenance period</li>
+          <li>• English proficiency requirement</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>2022 program changes:</strong> The Active Investor Plus visa replaced the old Investor 1 (NZD 10M) and Investor 2 (NZD 3M) categories. The new program focuses on "growth investments" that benefit New Zealand's economy. Government bonds and bank deposits no longer qualify. Applicants must demonstrate willingness to share business experience with NZ enterprises.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">New Zealand Investor Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You have NZD 5+ million to invest actively</li>
+          <li>You value quality of life over proximity to markets</li>
+          <li>You want an English-speaking environment</li>
+          <li>You appreciate outdoor lifestyle and nature</li>
+          <li>You have business experience to contribute</li>
+          <li>You can commit to a 4-year investment period</li>
+          <li>You're comfortable with private health insurance</li>
+          <li>You want a stable, corruption-free society</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You have less than NZD 5 million to invest</li>
+          <li>• You prefer passive investments (bonds, deposits)</li>
+          <li>• You need proximity to Asian or European markets</li>
+          <li>• You want faster path to residence</li>
+          <li>• You require immediate public healthcare access</li>
+          <li>• You don't meet English proficiency requirements</li>
+          <li>• You want a lower cost of living</li>
+          <li>• You prefer larger urban centers</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Active Investor Plus vs. Entrepreneur Pathway</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Criteria</th>
+            <th class="px-4 py-2 text-left">Active Investor Plus</th>
+            <th class="px-4 py-2 text-left">Entrepreneur Visa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Minimum Capital</td>
+            <td class="px-4 py-2">NZD 5-15 million</td>
+            <td class="px-4 py-2">NZD 100,000</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Time to Residence</td>
+            <td class="px-4 py-2">4 years</td>
+            <td class="px-4 py-2">5+ years (3+2)</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Business Involvement</td>
+            <td class="px-4 py-2">Share experience; active investing</td>
+            <td class="px-4 py-2">Full-time business operation</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Points System</td>
+            <td class="px-4 py-2">No points required</td>
+            <td class="px-4 py-2">Points-based assessment</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">English Requirement</td>
+            <td class="px-4 py-2">IELTS 5.0 or equivalent</td>
+            <td class="px-4 py-2">IELTS 4.0 or equivalent</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Who should choose which:</strong> Active Investor Plus suits high-net-worth individuals who want to invest passively in growth assets while contributing occasional business expertise. The Entrepreneur pathway suits those who want hands-on involvement in building a business in New Zealand with lower capital requirements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="visa-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      New Zealand offers two main pathways for investor and entrepreneur immigration. The Active Investor Plus visa is for high-net-worth individuals, while the Entrepreneur visa provides a lower-capital alternative for those willing to build a business.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-6 mb-3">Active Investor Plus Visa Requirements</h3>
+
+    <ComparisonTable columns={investorColumns} rows={investorRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Qualifies as "Active Investment"?</h3>
+
+    <p class="mb-4">
+      The 2022 overhaul specifically excludes passive investments. Qualifying investments must contribute to New Zealand's productive economy:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Qualifying Investments</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Growth-stage NZ private companies</li>
+          <li>• Venture capital and private equity funds</li>
+          <li>• Managed funds investing in NZ growth</li>
+          <li>• NZX-listed equities (NZD 10M+ pathway)</li>
+          <li>• Commercial property (limited weighting)</li>
+          <li>• Philanthropic investments in NZ</li>
+        </ul>
+      </div>
+
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Non-Qualifying Investments</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>• Government bonds</li>
+          <li>• Bank deposits</li>
+          <li>• Personal assets (cars, boats, art)</li>
+          <li>• Owner-occupied residential property</li>
+          <li>• Investments outside New Zealand</li>
+          <li>• Passive income-generating assets</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Entrepreneur Work Visa Requirements</h3>
+
+    <p class="mb-4">
+      The Entrepreneur Work Visa is for those who want to establish and actively manage a business in New Zealand. Requirements include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Minimum capital:</strong> NZD 100,000 for high-value businesses (may be waived for exceptional innovation)</li>
+      <li><strong>Business plan:</strong> Detailed plan demonstrating benefit to New Zealand</li>
+      <li><strong>Business experience:</strong> Relevant background in the proposed business area</li>
+      <li><strong>Points threshold:</strong> Must score 120 points on the Entrepreneur scale</li>
+      <li><strong>English proficiency:</strong> IELTS 4.0 overall or equivalent</li>
+      <li><strong>Character and health:</strong> Standard immigration requirements</li>
+      <li><strong>Not purchasing existing business:</strong> Generally must create new enterprise</li>
+    </ul>
+
+    <div class="border-l-4 border-blue-500 pl-4 mb-6">
+      <h4 class="font-semibold text-neutral-900">Entrepreneur Pathway to Residence</h4>
+      <p class="text-neutral-600">After successfully operating your business for 2+ years under the Entrepreneur Work Visa, you can apply for the Entrepreneur Resident Visa. You must demonstrate your business has been beneficial to New Zealand (employment creation, export growth, innovation, etc.).</p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">English Language Requirements</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-neutral-900 mb-3">Active Investor Plus</h4>
+      <p class="text-neutral-600 mb-4">IELTS 5.0 or equivalent, or evidence of English-language business dealings or education. The requirement can also be met through:</p>
+      <ul class="list-disc pl-6 space-y-1 text-neutral-600">
+        <li>University degree taught in English</li>
+        <li>Background in English-speaking business environment</li>
+        <li>Native English speaker from approved country</li>
+        <li>IELTS, TOEFL, PTE, or Cambridge English tests</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Unlike some investor visas, New Zealand's Active Investor Plus has no minimum stay requirement during the investment period. However, you must invest your funds in qualifying NZ investments within 12 months of visa approval and maintain them for 4 years.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-blue-900 mb-2">Health Insurance: Not Mandatory, But Essential</h3>
+      <p class="text-blue-800">
+        Unlike some countries, New Zealand does not require health insurance for investor visa holders. However, without residence status, you have no access to New Zealand's public healthcare system (except for emergencies and ACC-covered injuries). Comprehensive private insurance is strongly recommended.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      New Zealand has a unique healthcare situation for temporary visa holders. While you won't have access to subsidized public healthcare, you will be automatically covered by ACC (Accident Compensation Corporation) for any injury—regardless of visa status. This covers treatment for injuries from accidents, but not illness.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding ACC (Accident Compensation Corporation)</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What ACC Covers</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Treatment for accidental injuries</li>
+          <li>Sports injuries and adventure activities</li>
+          <li>Work-related accidents</li>
+          <li>Motor vehicle accident injuries</li>
+          <li>Rehabilitation services</li>
+          <li>Weekly compensation if unable to work</li>
+          <li>Medical treatment costs for injuries</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">What ACC Does NOT Cover</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>Illness and disease</li>
+          <li>Chronic health conditions</li>
+          <li>Preventive care and check-ups</li>
+          <li>Mental health (unless injury-related)</li>
+          <li>Maternity care</li>
+          <li>Prescription medications (non-injury)</li>
+          <li>Dental care (non-injury)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Private Insurance is Essential</h3>
+
+    <p class="mb-4">
+      As an investor visa holder, you'll pay full cost for any non-ACC healthcare. A single hospital admission can cost NZD 20,000-100,000+. Consider these scenarios:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Heart condition:</strong> Not covered by ACC—full private cost or health insurance</li>
+      <li><strong>Cancer treatment:</strong> Chemotherapy can cost NZD 50,000+ without coverage</li>
+      <li><strong>Appendectomy:</strong> Emergency surgery approximately NZD 15,000-25,000</li>
+      <li><strong>Chronic condition management:</strong> Ongoing costs add up quickly</li>
+      <li><strong>Maternity care:</strong> Full pregnancy and birth package NZD 10,000-20,000</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Our recommendation:</strong> Budget NZD 3,000-8,000 annually for comprehensive private health insurance. For high-net-worth investors, international plans from Cigna Global or Bupa Global provide worldwide coverage with premium service. New Zealand-based insurers like Southern Cross offer excellent local coverage at lower cost.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your New Zealand investor visa?"
+    description="Compare international and NZ-based insurers that provide comprehensive coverage for visa holders."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Investor visa holders typically choose between international insurers offering worldwide coverage and New Zealand-based private insurers with strong local networks. Your choice depends on travel frequency, budget, and coverage preferences.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">High-Net-Worth / Frequent Traveler</h4>
+        <p class="text-neutral-600">If you maintain homes in multiple countries or travel extensively, choose Cigna Global or Bupa Global. These provide seamless worldwide coverage—you can receive treatment in Auckland, Sydney, Singapore, or London without changing plans. Premium service includes direct billing at top hospitals globally.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Primarily NZ-Based / Budget-Conscious</h4>
+        <p class="text-neutral-600">If you'll spend most time in New Zealand, Southern Cross or nib offer excellent coverage at roughly half the cost of international plans. Southern Cross is New Zealand's largest private health insurer with well-established hospital relationships. These plans are NZ-focused but may include some overseas coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Coverage</h4>
+        <p class="text-neutral-600">Bupa Global offers particularly strong family plans with comprehensive pediatric coverage. For a family of four, budget NZD 1,200-2,500/month for international coverage, or NZD 500-1,200/month for New Zealand private insurance. Consider education integration—some plans include overseas student coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">International insurers like Cigna Global typically offer better coverage for pre-existing conditions after waiting periods (usually 12-24 months). New Zealand insurers may exclude conditions permanently or require longer waiting periods. Disclose all conditions upfront—non-disclosure can void your policy.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Tip for investors:</strong> Remember that ACC covers all accident-related treatment regardless of insurance. Your private policy primarily covers illness and non-injury conditions. Some investors opt for less comprehensive (and cheaper) illness-only coverage knowing ACC handles accidents.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      New Zealand's investor visa involves substantial capital commitment plus application and advisory fees. Budget carefully for both upfront and ongoing costs.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimate (Active Investor Plus)</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Upfront Costs</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Investment capital: <strong>NZD 5,000,000+</strong></li>
+            <li>Application fee: <strong>NZD 4,310</strong></li>
+            <li>Immigration levy: <strong>NZD 420</strong></li>
+            <li>Legal/advisory fees: <strong>NZD 25,000-50,000</strong></li>
+            <li>Investment setup costs: <strong>NZD 5,000-20,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total upfront (excl. investment): <strong>NZD 35,000-75,000</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Annual Ongoing Costs</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Health insurance: <strong>NZD 4,000-8,000</strong></li>
+            <li>Investment management: <strong>NZD 10,000-50,000</strong></li>
+            <li>Tax advisory: <strong>NZD 2,000-10,000</strong></li>
+            <li>Immigration renewals: <strong>NZD 500-1,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total annual: <strong>NZD 16,500-69,000</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Entrepreneur Visa Costs</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Initial Setup</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Business capital: <strong>NZD 100,000+</strong></li>
+            <li>Application fee: <strong>NZD 2,440</strong></li>
+            <li>Immigration levy: <strong>NZD 420</strong></li>
+            <li>Business setup costs: <strong>NZD 10,000-50,000</strong></li>
+            <li>Legal/visa fees: <strong>NZD 5,000-15,000</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Path to Residence</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Entrepreneur Resident Visa: <strong>NZD 3,170</strong></li>
+            <li>Ongoing business costs: <strong>Varies</strong></li>
+            <li>Health insurance (3+ years): <strong>NZD 12,000-24,000</strong></li>
+            <li>Living costs (NZ requirement): <strong>NZD 20,000+/year</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Living Costs in New Zealand</h3>
+
+    <p class="mb-4">
+      New Zealand has a high cost of living, particularly in Auckland. Budget accordingly:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Auckland:</strong> Most expensive; expect NZD 4,000-8,000/month for family living</li>
+      <li><strong>Wellington:</strong> Slightly lower; government hub, good infrastructure</li>
+      <li><strong>Christchurch:</strong> More affordable; rebuilt after earthquakes, growing tech scene</li>
+      <li><strong>Queenstown:</strong> Resort town premium; spectacular scenery, tourism focus</li>
+      <li><strong>Regional areas:</strong> Significantly lower costs; less infrastructure</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Tax considerations:</strong> New Zealand has no capital gains tax on most investments (though this is subject to change), no inheritance tax, and no stamp duty on shares. However, you'll be taxed on worldwide income as a tax resident. Consult a NZ tax specialist—the tax treatment of investor visa holders can be favorable during the first four years under the "transitional resident" rules.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Active Investor Plus application involves an Expression of Interest (EOI), followed by an Invitation to Apply (ITA) if your EOI is successful. Processing times are typically 3-6 months, but can be longer for complex applications.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide: Active Investor Plus</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Verify Eligibility and Prepare</h4>
+          <p class="text-neutral-600">Confirm you meet investment threshold and English requirements. Engage a licensed immigration adviser in New Zealand—this is mandatory for complex applications. Prepare documentation of investment funds and their legal source.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Expression of Interest (EOI)</h4>
+          <p class="text-neutral-600">Submit EOI through Immigration New Zealand's online system. Include details of proposed investment, business background, and how you'll contribute to NZ's economic growth. Fee applies. EOIs are assessed periodically.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Invitation to Apply (ITA)</h4>
+          <p class="text-neutral-600">If your EOI is successful, you'll receive an ITA within 2-3 months. You then have a set timeframe (usually 4 months) to submit your full application with all supporting documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Compile Full Application</h4>
+          <p class="text-neutral-600">Gather all required documents: passport, police certificates, health examinations, proof of funds, bank statements, investment plan, English test results, and character references. Most documents need to be certified or apostilled.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Full Application</h4>
+          <p class="text-neutral-600">Submit complete application online through Immigration NZ. Pay the application fee (NZD 4,310 + levy). Include detailed investment proposal showing how funds will be deployed in qualifying investments.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Application Assessment</h4>
+          <p class="text-neutral-600">Immigration NZ assesses your application, verifies funds source, checks character and health, and evaluates your investment plan. They may request additional information. Processing typically takes 3-6 months.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Visa Approval and Fund Transfer</h4>
+          <p class="text-neutral-600">Upon approval, you receive your investor visa (valid 4 years). You must transfer your investment funds to qualifying NZ investments within 12 months of approval. Work with NZ fund managers and investment advisors to deploy capital appropriately.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Investment Period and Residence</h4>
+          <p class="text-neutral-600">Maintain your qualifying investment for 4 years. Immigration NZ will verify your investment periodically. After the 4-year period, apply for residence. You can then access public healthcare and work toward citizenship (after 5 years residence).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Entrepreneur Work Visa process:</strong> The Entrepreneur pathway follows a similar EOI-ITA structure but focuses on your business plan rather than investment capital. You'll need to demonstrate how your business will benefit New Zealand through job creation, innovation, or export growth. Points are awarded for factors like capital amount, business experience, and age.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for investor visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Entrepreneur, NZD 8M Investment</h3>
+        <p class="text-neutral-600 mb-4">50 years old, sold tech company, seeking lifestyle change. Invested in NZ venture capital funds and growth-stage tech companies.</p>
+        <p class="text-green-700 font-medium">Approved after 4 months. Chose Cigna Global for worldwide coverage (NZD 650/month). Now splits time between Auckland and California. Actively mentoring NZ startups as part of visa commitment. Plans to transition to residence after investment period, appreciating work-life balance and outdoor lifestyle.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Asian Family, NZD 15M Property Pathway</h3>
+        <p class="text-neutral-600 mb-4">Family of four seeking education opportunities for children. Used highest-threshold pathway including residential property in Auckland.</p>
+        <p class="text-green-700 font-medium">Approved for entire family. Purchased NZD 6M Auckland home plus NZD 9M in listed equities and managed funds. Bupa Global family plan (NZD 1,800/month). Children enrolled in top Auckland schools. Appreciating NZ education system and outdoor lifestyle. Planning permanent relocation after residence obtained.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Entrepreneur, NZD 100K Business Visa</h3>
+        <p class="text-neutral-600 mb-4">45 years old, established software consultancy in UK, wanting to expand to NZ market with lower capital commitment.</p>
+        <p class="text-green-700 font-medium">Entrepreneur Work Visa approved after demonstrating high-value IT services business plan. Invested NZD 150K, employing 4 NZ staff after 18 months. Southern Cross insurance (NZD 280/month). Working toward Entrepreneur Resident Visa—business exceeding growth projections. Notes NZ clients appreciate timezone for APAC markets.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Middle Eastern Investor, Government Bonds</h3>
+        <p class="text-neutral-600 mb-4">Attempted to invest in NZ government bonds, expecting this would qualify under the old Investor 2 rules.</p>
+        <p class="text-red-700 font-medium">Application rejected—government bonds no longer qualify under Active Investor Plus. Post-2022 rules require "active" investments in growth assets. Redirected to NZ managed funds investing in growth companies. Re-applied 6 months later with qualifying investment portfolio. Now approved and tracking toward residence. Key lesson: Understand the 2022 rule changes before applying.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Investor, NZD 5M Direct</h3>
+        <p class="text-neutral-600 mb-4">55 years old, semi-retired, seeking quieter lifestyle while maintaining business involvement. Invested in growth-stage NZ companies directly.</p>
+        <p class="text-green-700 font-medium">Straightforward approval—Trans-Tasman relationship helped. Invested in 3 NZ growth companies across agritech and software sectors. Providing mentorship and board advisory as part of "active" commitment. nib insurance (NZD 320/month) adequate for primarily NZ-based lifestyle. Appreciates NZ's clean environment and fishing opportunities. Family visits frequently from Sydney.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Family, English Requirement Issue</h3>
+        <p class="text-neutral-600 mb-4">Family had sufficient funds (NZD 7M) but primary applicant struggled with IELTS 5.0 requirement.</p>
+        <p class="text-amber-700 font-medium">Initial concern about English requirement. Immigration advisor helped document extensive English-language business dealings—contracts, emails, board meetings conducted in English over 10 years. Accepted as equivalent evidence. Key lesson: English requirement can be met through business experience evidence, not just test scores. Approved after 5 months processing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for New Zealand Investor Visa"
+    description="Find the right coverage for your investment in New Zealand—international or local options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Attempting to Use Non-Qualifying Investments</h3>
+        <p class="text-neutral-600">The 2022 Active Investor Plus overhaul specifically excludes government bonds, bank deposits, and passive investments. Many applicants familiar with older investor visa programs don't realize the rules changed. Only "active" investments in growth assets qualify—verify your investment plan with Immigration NZ or a licensed adviser before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the "Active" Contribution Requirement</h3>
+        <p class="text-neutral-600">Active Investor Plus isn't just about money—you're expected to contribute business expertise to New Zealand. This might include mentoring NZ companies, joining advisory boards, or sharing industry knowledge. Applications that treat it as purely passive investment may face scrutiny or rejection.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Health Insurance Because It's Not Mandatory</h3>
+        <p class="text-neutral-600">While health insurance isn't a visa requirement, New Zealand's public healthcare is not available to investor visa holders (except ACC for injuries). A serious illness without insurance could cost NZD 100,000+. The savings from skipping insurance aren't worth the catastrophic risk.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Failing to Transfer Funds Within 12 Months</h3>
+        <p class="text-neutral-600">After visa approval, you must transfer your investment funds to qualifying NZ investments within 12 months. Missing this deadline can jeopardize your visa status. Plan your fund transfer and investment deployment before approval—don't scramble after receiving the visa.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Using a Licensed Immigration Adviser</h3>
+        <p class="text-neutral-600">New Zealand requires immigration advisers to be licensed. Using an unlicensed adviser can result in poor advice and wasted application fees. For high-value investor visas, professional guidance is essential—verify your adviser is registered with the Immigration Advisers Authority (IAA).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in New Zealand -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in New Zealand</h2>
+
+    <p class="mb-4">
+      New Zealand has a unique healthcare system that combines public hospitals with strong private sector options. As an investor visa holder, you'll rely on private healthcare for illness while ACC covers any accident-related injuries.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The ACC System: Injury Coverage for Everyone</h3>
+
+    <p class="mb-4">
+      New Zealand's ACC (Accident Compensation Corporation) is a no-fault insurance scheme covering everyone in the country—visitors, workers, and residents alike. If you're injured in New Zealand, ACC covers:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">ACC Benefits</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Medical treatment for injuries</li>
+          <li>Surgery and hospital stays (injury-related)</li>
+          <li>Rehabilitation and physiotherapy</li>
+          <li>Weekly compensation if unable to work</li>
+          <li>Covers sports and adventure activities</li>
+          <li>Motor vehicle accident coverage</li>
+          <li>Work-related injury protection</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">ACC Trade-off</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Cannot sue for personal injury (ACC replaces lawsuits)</li>
+          <li>• Coverage only for accidental injury, not illness</li>
+          <li>• Some gaps in coverage (eg. stress-related conditions)</li>
+          <li>• Funded by levies on employers and vehicle registration</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Quality</h3>
+
+    <p class="mb-4">
+      New Zealand's private healthcare is excellent, particularly in major cities. As an investor visa holder paying privately, you'll have access to:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Modern hospitals:</strong> Well-equipped facilities in Auckland, Wellington, Christchurch</li>
+      <li><strong>Short waiting times:</strong> Private patients typically seen within days</li>
+      <li><strong>English-speaking care:</strong> No language barriers for treatment</li>
+      <li><strong>Specialist access:</strong> Direct referral to specialists without GP gatekeeping</li>
+      <li><strong>International standard:</strong> Many NZ doctors trained in UK, US, or Australia</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Major Private Hospital Networks</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900">Southern Cross Hospitals</h4>
+        <p class="text-sm text-neutral-600">Largest private hospital group. Present in Auckland, Wellington, Christchurch, Hamilton, and other cities.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900">Mercy Hospital</h4>
+        <p class="text-sm text-neutral-600">Catholic-affiliated hospitals in Auckland and Dunedin. Excellent surgical and specialist services.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900">Wakefield Hospital</h4>
+        <p class="text-sm text-neutral-600">Wellington's main private hospital. Comprehensive surgical and medical services.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Path to Public Healthcare</h3>
+
+    <p class="mb-4">
+      Once you obtain residence (after the 4-year investment period), you become eligible for New Zealand's public healthcare system:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Subsidized GP visits:</strong> NZD 20-50 per visit (vs. NZD 80-120 privately)</li>
+      <li><strong>Free hospital care:</strong> Public hospitals provide free treatment for residents</li>
+      <li><strong>Subsidized prescriptions:</strong> Maximum NZD 5 per prescription item</li>
+      <li><strong>Waiting lists apply:</strong> Non-urgent surgery may have waits</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Hybrid approach:</strong> Many long-term NZ residents maintain private insurance even after gaining residence rights. This provides faster access to specialists and elective surgery while using the public system for emergencies and routine care. Budget NZD 200-400/month for ongoing private coverage post-residence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happened to the old Investor 1 and Investor 2 categories?</h3>
+        <p class="text-neutral-600">
+          They were replaced in 2022 by the Active Investor Plus visa. The old categories allowed passive investments like government bonds; the new program requires "active" investments in growth assets that benefit New Zealand's economy. If you applied under the old system before the change, your application would have been processed under those rules.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to live in New Zealand during the 4-year investment period?</h3>
+        <p class="text-neutral-600">
+          There is no minimum stay requirement for the Active Investor Plus visa during the investment period. However, you must maintain your qualifying investment in New Zealand for the full 4 years. For residence application after the investment period, you'll need to demonstrate commitment to New Zealand, which typically includes spending meaningful time in the country.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I include my family in the investor visa application?</h3>
+        <p class="text-neutral-600">
+          Yes. Your partner and dependent children can be included in your application. Each family member must meet health and character requirements, and each should have their own health insurance. Family members receive the same visa conditions and can work, study, and live in New Zealand.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How does ACC work if I get injured skiing or doing adventure sports?</h3>
+        <p class="text-neutral-600">
+          ACC covers everyone in New Zealand for accidental injuries, regardless of visa status. If you're injured skiing, bungy jumping, or hiking, ACC covers your treatment costs. This is automatic—no registration required. However, ACC only covers injuries, not illness. Your private health insurance covers illness and non-injury conditions.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the path from investor visa to citizenship?</h3>
+        <p class="text-neutral-600">
+          After completing the 4-year investment period, you can apply for residence. As a resident, you can then apply for citizenship after 5 years of residence (meeting presence requirements—typically 1,350 days physically present). Total timeline: approximately 9+ years from investor visa to citizenship eligibility.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is the Entrepreneur Visa easier than Active Investor Plus?</h3>
+        <p class="text-neutral-600">
+          The Entrepreneur Work Visa has a much lower capital requirement (NZD 100,000 vs. NZD 5+ million), but requires active business operation and is points-based. You must run your business full-time and demonstrate benefit to New Zealand. It's a different pathway—better for hands-on entrepreneurs, not passive investors. Success rate is lower than investor visas due to stringent business viability requirements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      New Zealand's Active Investor Plus visa offers access to one of the world's most desirable countries for high-net-worth individuals willing to make substantial, active investments. The 2022 program redesign ensures that investor capital contributes meaningfully to New Zealand's economy—not just parked in passive instruments.
+    </p>
+
+    <p class="mb-4">
+      The NZD 5-15 million threshold is significant, but New Zealand delivers exceptional value: political stability, clean environment, world-class education, English-speaking society, and a lifestyle that emphasizes work-life balance. The no-minimum-stay requirement during the investment period provides flexibility for those maintaining international commitments.
+    </p>
+
+    <p class="mb-6">
+      For those with less capital, the Entrepreneur Visa at NZD 100,000 offers a hands-on alternative—but requires full-time business operation. Health insurance is essential regardless of pathway; while ACC covers accidents, you'll rely on private insurance for any illness until you obtain residence after 4+ years.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        New Zealand's Active Investor Plus is ideal for high-net-worth individuals seeking exceptional quality of life in an English-speaking, stable democracy. The investment must be "active"—growth companies, managed funds, or equities—not passive bonds. Budget NZD 4,000-8,000 annually for health insurance (not mandatory but essential). Work with licensed immigration advisers and understand the 4-year investment commitment before applying.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/new-zealand/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">New Zealand Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in New Zealand</p>
+      </a>
+      <a href="/visas/student-visa/in/new-zealand" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">New Zealand Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Study visa requirements and mandatory insurance</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">Premium international health insurance for investors</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

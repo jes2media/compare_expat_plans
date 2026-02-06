@@ -1,0 +1,878 @@
+---
+/**
+ * Ireland Immigrant Investor Programme (IIP) - Long-form CRO-optimized page
+ * Investor visa guide with insurance requirements
+ * NOTE: Programme suspended as of February 2024 - content maintained for when it reopens
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Ireland", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Ireland Health Insurance Guide", href: "/countries/ireland/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Portugal Golden Visa", href: "/visas/investor-visa/in/portugal" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Investment Option" },
+  { key: "amount", header: "Minimum Amount" },
+  { key: "duration", header: "Hold Period" },
+  { key: "notes", header: "Key Details" },
+];
+
+const investmentRows = [
+  { option: "Enterprise Investment", amount: "€1,000,000", duration: "3+ years", notes: "Investment in Irish business creating/maintaining jobs" },
+  { option: "Investment Fund", amount: "€1,000,000", duration: "3+ years", notes: "Approved fund investing in Irish SMEs" },
+  { option: "Real Estate (REIT)", amount: "€2,000,000", duration: "3+ years", notes: "Irish Real Estate Investment Trust" },
+  { option: "Endowment (Donation)", amount: "€500,000", duration: "Non-refundable", notes: "Donation to arts, sports, health, education project" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private Health Insurance" },
+  { key: "public", header: "Public HSE System" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Requirement", private: "REQUIRED for IIP", public: "Not accepted initially" },
+  { feature: "Monthly Cost", private: "€150-500+", public: "Free (after residency)" },
+  { feature: "Eligibility", private: "Anyone can purchase", public: "After ordinary residency" },
+  { feature: "GP Access", private: "Immediate, full choice", public: "Free GP card if eligible" },
+  { feature: "Hospital Care", private: "Private hospitals, no wait", public: "Public hospitals, may wait" },
+  { feature: "Waiting Times", private: "Days to weeks", public: "Weeks to months" },
+  { feature: "Coverage Level", private: "Comprehensive", public: "Basic to comprehensive" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€300-600", strengths: "Global coverage, high net worth individuals" },
+  { provider: "Bupa Global", type: "International", price: "€350-700", strengths: "Premium service, worldwide network" },
+  { provider: "Allianz Care", type: "International", price: "€250-500", strengths: "Flexible plans, strong EU coverage" },
+  { provider: "Laya Healthcare", type: "Irish Private", price: "€150-400", strengths: "Local network, established Irish insurer" },
+  { provider: "Irish Life Health", type: "Irish Private", price: "€150-350", strengths: "Good value, broad hospital access" },
+  { provider: "VHI Healthcare", type: "Irish Private", price: "€150-400", strengths: "Largest Irish insurer, comprehensive" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Application Fee", amount: "€1,500", notes: "Non-refundable processing fee" },
+  { item: "Investment (minimum)", amount: "€500,000-2,000,000", notes: "Depends on investment route" },
+  { item: "Private Health Insurance", amount: "€1,800-8,400/year", notes: "€150-700/month for family" },
+  { item: "Legal Fees", amount: "€5,000-20,000", notes: "Immigration and investment lawyers" },
+  { item: "Due Diligence", amount: "€2,000-5,000", notes: "Background checks by approved fund" },
+  { item: "Travel and Accommodation", amount: "€3,000-10,000", notes: "Dublin visits for application" },
+  { item: "Financial Documentation", amount: "€500-2,000", notes: "Certified translations, audits" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Initial consultation and planning", duration: "1-3 months", location: "Home country" },
+  { step: "Source of funds verification", duration: "1-2 months", location: "Financial advisors" },
+  { step: "Select investment option", duration: "2-4 weeks", location: "With approved providers" },
+  { step: "Gather documentation", duration: "4-8 weeks", location: "Various sources" },
+  { step: "Submit IIP application", duration: "1 day", location: "Online to INIS" },
+  { step: "Application processing", duration: "4-6 months", location: "Immigration review" },
+  { step: "Investment completion", duration: "Upon approval", location: "Ireland" },
+  { step: "Initial residence permit", duration: "After investment", location: "Dublin INIS office" },
+  { step: "First renewal", duration: "After 2 years", location: "Dublin INIS office" },
+  { step: "Second renewal", duration: "After 5 years total", location: "Dublin INIS office" },
+];
+---
+
+<PageShell
+  title="Ireland Investor Visa 2026: Immigrant Investor Programme (IIP) Guide"
+  description="Complete guide to Ireland's Immigrant Investor Programme (IIP). Investment options from €500,000, private health insurance required, path to citizenship, and English-speaking EU access."
+  headline="Ireland Investor Visa: Immigrant Investor Programme Guide"
+  subheadline="Everything you need to know about Ireland's IIP—investment options, insurance requirements, processing times, and the path to Irish citizenship in an English-speaking EU country."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Investor Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/investor-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Irish Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      English-Speaking EU Country
+    </span>
+  </div>
+
+  <!-- Programme Suspension Warning -->
+  <div class="bg-red-50 border-2 border-red-300 rounded-lg p-6 mb-8">
+    <div class="flex items-start gap-3">
+      <svg class="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <div>
+        <h3 class="font-bold text-red-900 text-lg mb-2">Programme Currently Suspended</h3>
+        <p class="text-red-800 mb-2">
+          As of February 2024, Ireland's Immigrant Investor Programme (IIP) is <strong>suspended</strong> and not accepting new applications. The Irish government has not announced a reopening date.
+        </p>
+        <p class="text-red-700 text-sm">
+          This guide provides complete programme details for reference and for those planning ahead if the programme reopens. We recommend monitoring official Irish government announcements and considering alternative options like Portugal's Golden Visa in the meantime.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Ireland's Immigrant Investor Programme (IIP) has been one of Europe's most attractive investor visa options for high net worth individuals seeking EU residency. As an English-speaking country with a strong economy, favorable tax treaties, and gateway access to the European Union (especially post-Brexit), Ireland offers unique advantages for international investors and their families.
+    </p>
+
+    <p class="mb-4">
+      The programme allowed non-EEA nationals to secure Irish residency by making qualifying investments in the Irish economy. Unlike many investor programmes, the IIP had no minimum physical residency requirement—you only needed to visit Ireland once per year to maintain your status.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Ireland Immigrant Investor Programme</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Status:</strong> Currently SUSPENDED (February 2024)</li>
+        <li>• <strong>Investment minimum:</strong> €500,000 (endowment) to €2,000,000 (REIT)</li>
+        <li>• <strong>Net worth requirement:</strong> €2,000,000 minimum</li>
+        <li>• <strong>Health insurance:</strong> Private insurance REQUIRED</li>
+        <li>• <strong>Residence requirement:</strong> 1 day per year (when active)</li>
+        <li>• <strong>Family included:</strong> Spouse and children under 24</li>
+        <li>• <strong>Duration:</strong> 2 years initial, then 3 years, then 5 years</li>
+        <li>• <strong>Path to citizenship:</strong> 5 years (naturalization)</li>
+        <li>• <strong>Processing time:</strong> 4-6 months (when active)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Ireland?</h3>
+
+    <p class="mb-4">
+      Ireland stands out among EU investor visa destinations for several reasons:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Unique Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Only English-speaking EU country (post-Brexit)</li>
+          <li>• Common law legal system (similar to US, UK)</li>
+          <li>• No minimum stay requirement</li>
+          <li>• Strong education system</li>
+          <li>• EU passport access through citizenship</li>
+          <li>• Favorable corporate tax environment</li>
+          <li>• Gateway to EU market (500M+ consumers)</li>
+          <li>• No language requirement for residency</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Key Cities for Investors</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• <strong>Dublin:</strong> Capital, tech hub, headquarters for Google, Meta, Microsoft</li>
+          <li>• <strong>Cork:</strong> Second city, pharma and tech center</li>
+          <li>• <strong>Galway:</strong> West coast, medical device industry</li>
+          <li>• <strong>Limerick:</strong> Growing tech scene, lower cost</li>
+          <li>• World-class golf, countryside, and coastline</li>
+          <li>• Short flights to UK and mainland Europe</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Alternative: Start-up Entrepreneur Programme (STEP)</h3>
+
+    <p class="mb-4">
+      For entrepreneurs with innovative business ideas but lower capital, Ireland also offers (when active) the Start-up Entrepreneur Programme (STEP) with a minimum investment of €50,000 in an Irish start-up company. STEP requires you to be actively involved in the business, unlike the passive investment options in the IIP.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Post-Brexit context:</strong> Since the UK left the EU, Ireland has become the only English-speaking country in the EU and remains in the Common Travel Area with the UK. This unique positioning makes Irish residency particularly valuable for those wanting EU access while maintaining strong ties to the Anglophone world.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Ireland IIP is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have €2M+ net worth and €500K-2M to invest</li>
+          <li>✓ You value English-speaking business environment</li>
+          <li>✓ You want EU access without relocating full-time</li>
+          <li>✓ Education quality matters for your children</li>
+          <li>✓ You're comfortable with common law system</li>
+          <li>✓ You want a path to EU citizenship</li>
+          <li>✓ You can afford €150-500/month for insurance</li>
+          <li>✓ You can wait for programme to reopen</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need residency immediately (programme suspended)</li>
+          <li>• You have less than €2M net worth</li>
+          <li>• You prefer warmer climate (try Portugal, Spain)</li>
+          <li>• You want lower investment thresholds (try Portugal)</li>
+          <li>• You want to physically reside full-time in EU</li>
+          <li>• You prefer real estate investment (Portugal better)</li>
+          <li>• You want faster citizenship (Portugal at 5 years)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>While suspended:</strong> Consider Portugal's Golden Visa (from €500,000 fund investment), Malta's Permanent Residence Programme, or Spain's Golden Visa as alternatives. Portugal offers similar fund investment options with established track record.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      When active, Ireland's IIP offered four investment options. All require proof of minimum €2 million net worth from legally acquired sources, with the investment funds themselves needing independent verification of origin.
+    </p>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Investment Options Explained</h3>
+
+    <div class="space-y-6 mb-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Enterprise Investment (€1,000,000)</h4>
+        <p class="text-neutral-600">Invest directly in a new or existing Irish business. The enterprise must be headquartered in Ireland and create or maintain employment. Can be a single investment or spread across multiple enterprises. Investment must remain for at least 3 years. Most common choice for those wanting active involvement.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Investment Fund (€1,000,000)</h4>
+        <p class="text-neutral-600">Invest in an approved Irish investment fund that invests in Irish businesses. The fund must be approved by the Irish Immigration Service and regulated by the Central Bank of Ireland. Lower risk than direct enterprise investment as funds are professionally managed and diversified. Most popular option for passive investors.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Real Estate Investment Trust (€2,000,000)</h4>
+        <p class="text-neutral-600">Invest in any Irish REIT or combination of REITs listed on the Main Securities Market of the Irish Stock Exchange. Must maintain investment for at least 3 years. Higher minimum than other options but offers real estate exposure with liquidity. Less common due to higher threshold.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Endowment/Donation (€500,000)</h4>
+        <p class="text-neutral-600">Non-refundable donation to a project of public benefit in arts, sports, health, culture, or education. Lowest threshold but no return on investment. Can qualify for group donation of €400,000 if 5+ investors donate to the same project. Popular for those prioritizing entry over returns.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Net Worth Requirement (€2M)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Total assets minus liabilities</li>
+          <li>• Can include property, investments, business equity</li>
+          <li>• Must be legally acquired</li>
+          <li>• Verified by independent accountant</li>
+          <li>• Excludes the investment amount itself</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Source of Funds Documentation</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Audited business accounts</li>
+          <li>• Sale of property documentation</li>
+          <li>• Investment portfolio statements</li>
+          <li>• Inheritance documentation</li>
+          <li>• Gift documentation (if applicable)</li>
+          <li>• Tax returns and compliance proof</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Due diligence is rigorous:</strong> Ireland conducts thorough background checks on all applicants. Source of funds must be clearly documented and legally obtained. Applications with unclear wealth origins or connections to high-risk jurisdictions face additional scrutiny or rejection.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Private Health Insurance is Required</h3>
+      <p class="text-green-800">
+        IIP applicants and their dependents must have private health insurance covering them in Ireland. This is a mandatory condition of the programme. You cannot rely solely on the public HSE (Health Service Executive) system initially—private insurance is required from day one.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Ireland has a two-tier healthcare system: the public HSE system available to ordinary residents, and a robust private healthcare sector. As an investor visa holder, you'll initially rely on private insurance, though you may gain access to certain HSE services after establishing ordinary residency.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public vs. Private Healthcare in Ireland</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Requirements for IIP</h3>
+
+    <p class="mb-4">
+      Your health insurance must meet the following criteria:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li>Cover inpatient and outpatient treatment in Ireland</li>
+      <li>Include emergency and routine medical care</li>
+      <li>Cover all family members included in the application</li>
+      <li>Be valid from the date of approval</li>
+      <li>No annual or lifetime caps that would leave you underinsured</li>
+    </ul>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose International Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You travel frequently between countries</li>
+          <li>✓ You want coverage outside Ireland</li>
+          <li>✓ You prefer premium service levels</li>
+          <li>✓ You want a single provider across regions</li>
+          <li>✓ You value English-speaking customer service</li>
+          <li>✓ You may seek treatment in multiple countries</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Choose Irish Private Insurance If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You'll primarily be based in Ireland</li>
+          <li>✓ You want access to all Irish private hospitals</li>
+          <li>✓ You prefer local provider relationships</li>
+          <li>✓ You want potentially lower premiums</li>
+          <li>✓ You're comfortable with Irish system</li>
+          <li>✓ You don't need global coverage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Tax relief on insurance:</strong> Ireland offers tax relief on private health insurance premiums at the standard rate (20%). The relief is typically applied at source by the insurer, effectively reducing your premium cost.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Ireland investor visa?"
+    description="Compare international and Irish private health insurance options for high net worth individuals and families."
+    buttonText="Compare Investor Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For IIP investors, you have two main options: international health insurance from global providers (ideal if you travel frequently) or Irish private health insurance (best if you'll spend significant time in Ireland). Both satisfy visa requirements.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">High Net Worth Individual, Frequent Traveler</h4>
+        <p class="text-neutral-600">Cigna Global or Bupa Global offers comprehensive worldwide coverage with premium service levels. Direct billing at top hospitals globally, 24/7 multilingual support, and seamless coverage across countries. Higher cost but matches the lifestyle of mobile investors.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Relocating to Ireland Full-Time</h4>
+        <p class="text-neutral-600">VHI Healthcare or Laya Healthcare provides excellent Irish coverage with established networks across Dublin, Cork, and Galway. Strong pediatric and maternity coverage, familiar with Irish system. Supplement with travel insurance for international trips.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Investor Maintaining Multiple Residences</h4>
+        <p class="text-neutral-600">Allianz Care offers flexible international plans that cover Ireland plus other countries where you spend time. Good balance of comprehensive coverage and cost. Can customize regional coverage based on your travel patterns.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Cost-Conscious Applicant Meeting Requirements</h4>
+        <p class="text-neutral-600">Irish Life Health offers solid coverage at competitive rates. Meets visa requirements while keeping costs manageable. Good for those who need compliant coverage but don't need premium global service.</p>
+      </div>
+    </div>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mt-8">
+      <h3 class="font-semibold text-primary-900 mb-3">Our Top Recommendations</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <h4 class="font-semibold text-primary-800">For Global Coverage:</h4>
+          <p class="text-primary-700 mb-2">Cigna Global—extensive network, premium service, worldwide coverage including US if needed.</p>
+          <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-4 py-2 rounded hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get Cigna Quote →
+          </a>
+        </div>
+        <div>
+          <h4 class="font-semibold text-primary-800">For Premium International:</h4>
+          <p class="text-primary-700 mb-2">Bupa Global—unmatched service levels, comprehensive benefits, ideal for high net worth individuals.</p>
+          <a href="/go/bupa-global" class="inline-block bg-primary-600 text-white font-semibold px-4 py-2 rounded hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get Bupa Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The IIP involves significant capital commitment beyond just the investment amount. Budget for application fees, professional services, and ongoing insurance costs. Here's a realistic breakdown of expenses.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates by Route</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Endowment Route (Lowest Entry)</p>
+        <p class="text-3xl font-bold text-neutral-900">€515,000-540,000</p>
+        <p class="text-sm text-neutral-500 mt-2">€500K donation + fees + first year insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Enterprise/Fund Route</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,015,000-1,050,000</p>
+        <p class="text-sm text-neutral-500 mt-2">€1M investment + fees + first year insurance</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">REIT Route</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,015,000-2,050,000</p>
+        <p class="text-sm text-neutral-500 mt-2">€2M REIT + fees + first year insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Group Endowment (5+ investors)</p>
+        <p class="text-3xl font-bold text-neutral-900">€415,000-440,000</p>
+        <p class="text-sm text-neutral-500 mt-2">€400K donation + fees + first year insurance</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Health insurance:</strong> €1,800-8,400/year depending on family size and plan</li>
+      <li><strong>Annual visit requirement:</strong> €1,000-3,000 for travel and accommodation</li>
+      <li><strong>Investment monitoring:</strong> Often included in fund fees (typically 1-2%/year)</li>
+      <li><strong>Tax compliance:</strong> €500-2,000/year if using Irish accountant</li>
+      <li><strong>Permit renewals:</strong> Administrative fees every 2-5 years</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Investment returns:</strong> Unlike the endowment route, enterprise and fund investments can generate returns. Many approved funds target 3-6% annual returns, potentially offsetting ongoing costs. However, investments carry risk—returns are not guaranteed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      When the IIP is active, applications are submitted to Immigration Service Delivery (ISD, formerly INIS) in Dublin. The process involves pre-approval, investment completion, and then residence permit issuance. Here's the typical timeline and steps.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Engage Professional Advisors</h4>
+          <p class="text-neutral-600">Hire an Irish immigration lawyer and financial advisor familiar with the IIP. They'll assess your eligibility, recommend the best investment route, and guide documentation. Essential for first-time applicants—the process is complex and errors cause delays.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Document Source of Funds</h4>
+          <p class="text-neutral-600">Prepare comprehensive documentation of your €2M+ net worth and the source of your investment funds. This includes audited accounts, tax returns, property valuations, and transaction histories. Expect this to take 1-2 months if records aren't already organized.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Select Investment Vehicle</h4>
+          <p class="text-neutral-600">Choose between enterprise investment, approved fund, REIT, or endowment. If using a fund, select from the list of approved funds. Sign preliminary agreements but do not transfer funds yet—investment is made after approval.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Health Insurance</h4>
+          <p class="text-neutral-600">Secure private health insurance covering you and your dependents in Ireland. Obtain confirmation letter from the insurer for your application. Coverage must be active from the date you receive your residence permit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit IIP Application</h4>
+          <p class="text-neutral-600">Submit your complete application to Immigration Service Delivery with all supporting documents. Pay the €1,500 application fee. Applications are typically submitted during specific evaluation windows (when programme is active).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Due Diligence and Review</h4>
+          <p class="text-neutral-600">Immigration conducts background checks and reviews your application. This typically takes 4-6 months. You may be asked for additional documentation or clarification. The evaluation committee meets periodically to review applications.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Approval and Complete Investment</h4>
+          <p class="text-neutral-600">Upon approval, you have 90 days to complete your investment. Transfer funds to the approved enterprise, fund, or REIT. For endowments, complete the donation. Obtain proof of investment completion.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register and Receive Residence Permit</h4>
+          <p class="text-neutral-600">Travel to Dublin to register with the Garda National Immigration Bureau (GNIB). Receive your Irish Residence Permit (IRP) card—Stamp 4 permission. Initial permit valid for 2 years, renewable for 3 years, then 5 years.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Path to citizenship:</strong> After 5 years of residence (with 1 year continuous residence before application), you can apply for Irish citizenship through naturalization. Irish citizenship grants you an EU passport with visa-free access to 180+ countries and the right to live and work anywhere in the EU.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different investor situations typically played out under the IIP:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Tech Entrepreneur from Singapore, Enterprise Investment</h3>
+        <p class="text-neutral-600 mb-4">Invested €1M in Irish fintech company. Net worth €5M from previous exit. Family of four.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 5 months. Chose Cigna Global for family (€500/month) due to frequent travel. Children enrolled in Dublin schools. Now splitting time between Singapore and Dublin. Applied for citizenship after 5 years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Business Owner from UAE, Investment Fund Route</h3>
+        <p class="text-neutral-600 mb-4">Invested €1M in approved Irish fund. Net worth €3M from construction business. Single applicant.</p>
+        <p class="text-green-700 font-medium">✓ Smooth approval in 4 months with strong documentation. Chose Bupa Global (€350/month). Visits Ireland twice yearly for business expansion. Fund returning approximately 4% annually. Planning citizenship application.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Retired Couple from China, Endowment Route</h3>
+        <p class="text-neutral-600 mb-4">€500K donation to Irish university. Net worth €4M from business sale. Both in 60s with health conditions.</p>
+        <p class="text-green-700 font-medium">✓ Approved after additional documentation on wealth source. Chose VHI Healthcare (€600/month combined) for comprehensive local coverage. Grandchildren now attend Irish schools. Appreciate English-speaking environment.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Family from Russia, REIT Investment</h3>
+        <p class="text-neutral-600 mb-4">Attempted €2M REIT investment. Net worth claimed €10M.</p>
+        <p class="text-red-700 font-medium">✗ Application rejected due to insufficient source of funds documentation and enhanced due diligence requirements. Political exposure concerns flagged. Advised to seek alternative jurisdictions with different compliance frameworks.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Doctor from India, Group Endowment</h3>
+        <p class="text-neutral-600 mb-4">Joined group of 5 investors donating €400K each to healthcare project. Net worth €2.5M.</p>
+        <p class="text-green-700 font-medium">✓ Group application approved in 6 months. Lower investment threshold made entry accessible. Chose Irish Life Health (€200/month). Children in medical school in Dublin. Lowest cost entry route worked well.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Entrepreneur from Brazil, Enterprise Investment</h3>
+        <p class="text-neutral-600 mb-4">Invested in Irish agritech startup. Net worth €2.2M from agricultural business.</p>
+        <p class="text-amber-700 font-medium">△ Initial application delayed 8 months due to complex source of funds from multiple family businesses. Eventually approved after providing additional audited accounts and legal opinions on business structures. Extra €15K in legal fees.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Ireland Investors"
+    description="Find the right coverage for your IIP application—international or Irish private insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Source of Funds Documentation</h3>
+        <p class="text-neutral-600">The most common reason for delays and rejections. Ireland requires clear, auditable proof of how you acquired your €2M+ net worth and the specific investment funds. "I sold my business" isn't enough—you need sale contracts, bank transfers, tax payments, and potentially third-party verification. Start gathering documentation months in advance.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Transferring Investment Funds Before Approval</h3>
+        <p class="text-neutral-600">A critical error. The IIP requires you to receive approval before completing your investment. If you transfer €1M to an Irish company before approval and your application is rejected, you may have difficulty recovering your funds. Wait for official approval letter.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing the Wrong Investment Vehicle</h3>
+        <p class="text-neutral-600">Each investment route has different risk-return profiles and requirements. Enterprise investments require due diligence on the business. Fund investments require approved fund selection. Endowments are non-refundable. REIT investments require €2M instead of €1M. Consult professionals before committing.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting the Annual Visit Requirement</h3>
+        <p class="text-neutral-600">While Ireland has minimal residency requirements, you must visit Ireland at least once per calendar year to maintain your status. Failure to do so can jeopardize your residence permit renewal. Keep records of your visits (boarding passes, hotel receipts).</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Inadequate Health Insurance for Dependents</h3>
+        <p class="text-neutral-600">Your insurance must cover all family members included in your IIP application—spouse and children under 24. Policies that only cover the main applicant will not satisfy requirements. Ensure your coverage explicitly names all dependents and meets Irish requirements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Ireland -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Ireland</h2>
+
+    <p class="mb-4">
+      Ireland operates a mixed public-private healthcare system. The public Health Service Executive (HSE) provides care to all ordinary residents, while private healthcare offers faster access and more amenities. As an IIP investor with required private insurance, you'll have access to Ireland's excellent private healthcare sector.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Understanding the Irish System</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare (Your Primary Access)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Private hospitals in Dublin, Cork, Galway</li>
+          <li>✓ Choice of consultant specialists</li>
+          <li>✓ Minimal waiting times</li>
+          <li>✓ Private rooms and superior amenities</li>
+          <li>✓ Access to latest treatments and technology</li>
+          <li>✓ GP consultations (€50-70 private)</li>
+          <li>✓ Dental and vision typically separate</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Public HSE System (After Residency)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Free public hospital treatment</li>
+          <li>• GP Visit Card or Medical Card if eligible</li>
+          <li>• A&E access (€100 charge, waived with referral)</li>
+          <li>• Longer waiting times for elective procedures</li>
+          <li>• Means-tested eligibility for full coverage</li>
+          <li>• Drug Payment Scheme caps costs at €80/month</li>
+          <li>• Quality care but potential delays</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Key Hospitals and Facilities</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Dublin</h4>
+        <p class="text-neutral-600">Beacon Hospital, Blackrock Clinic, Mater Private Hospital, Hermitage Medical Clinic. World-class facilities with international patient services. Most specialists based in Dublin.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Cork</h4>
+        <p class="text-neutral-600">Bon Secours Hospital Cork, Mater Private Cork. Strong regional healthcare with good specialist coverage. Growing medical tourism destination.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Galway</h4>
+        <p class="text-neutral-600">Bon Secours Hospital Galway, Galway Clinic. Good private facilities serving the west of Ireland. Some specialist care may require Dublin travel.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GPs:</strong> Register with a local GP (General Practitioner). Consultations typically €50-70 for private patients.</li>
+      <li><strong>Specialists:</strong> Usually need GP referral, or your insurance may allow direct specialist access.</li>
+      <li><strong>Emergencies:</strong> Call 999 or 112. A&E departments in all major hospitals. €100 charge without GP referral.</li>
+      <li><strong>Pharmacies:</strong> Widely available. Many medications require prescription.</li>
+      <li><strong>Dental:</strong> Separate from medical insurance. Private dental widely available.</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Healthcare quality:</strong> Ireland's healthcare system ranks well internationally, particularly for cancer care, cardiac care, and medical research. Dublin hospitals are affiliated with major medical schools and attract top specialists. Private patients can expect care comparable to other developed nations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is the Ireland Immigrant Investor Programme still open?</h3>
+        <p class="text-neutral-600">
+          No. The IIP was suspended in February 2024 and is not currently accepting new applications. The Irish government has not announced a reopening date. Monitor official announcements from Immigration Service Delivery for updates. Consider alternative EU programmes like Portugal's Golden Visa in the meantime.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum investment for the Ireland investor visa?</h3>
+        <p class="text-neutral-600">
+          When active, the lowest entry point was €500,000 through the endowment (donation) route, or €400,000 per person for group donations of 5+ investors. Enterprise and fund investments required €1,000,000, while REIT investments required €2,000,000. All routes required proof of €2,000,000 minimum net worth.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to live in Ireland with the IIP?</h3>
+        <p class="text-neutral-600">
+          No. One of the IIP's main attractions was the minimal residency requirement—just one visit to Ireland per calendar year. You could maintain residency while living primarily elsewhere. However, for citizenship (after 5 years), you must have 1 year of continuous residence immediately before applying.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is private health insurance really mandatory?</h3>
+        <p class="text-neutral-600">
+          Yes. Private health insurance covering you and your dependents in Ireland is a mandatory condition of the IIP. You must provide proof of insurance with your application and maintain coverage throughout your residence. The public HSE system is not accepted as a substitute for initial applicants.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family be included in the application?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse and children under 24 years old can be included as dependents in your IIP application. Each dependent must have health insurance and will receive their own Irish Residence Permit. Adult children over 24 must apply separately or through their own qualifying investment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get Irish citizenship?</h3>
+        <p class="text-neutral-600">
+          After 5 years of legal residence in Ireland, you can apply for citizenship through naturalization. Requirements include: 1 year of continuous residence immediately before application, good character, and intention to continue residing in Ireland. No language test is required. Irish citizenship grants an EU passport.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Ireland's Immigrant Investor Programme offered a compelling route to EU residency for high net worth individuals—particularly those valuing an English-speaking environment, minimal residency requirements, and a path to EU citizenship. The combination of Ireland's common law system, favorable tax treaties, and post-Brexit positioning as the EU's only English-speaking country made it uniquely attractive.
+    </p>
+
+    <p class="mb-4">
+      However, with the programme currently suspended, prospective investors must either wait for a potential reopening or consider alternatives. Portugal's Golden Visa offers similar fund investment options with an established track record. Malta's programmes provide alternative EU access. The UK's investor visa route has also evolved post-Brexit.
+    </p>
+
+    <p class="mb-6">
+      For those committed to Ireland specifically, the Start-up Entrepreneur Programme (STEP) may offer an alternative path with lower capital requirements (€50,000) if you have an innovative business idea—though it requires active business involvement rather than passive investment.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Ireland IIP was an excellent programme for investors seeking English-speaking EU access with minimal residency requirements. Until it reopens, consider Portugal or Malta as alternatives. Private health insurance is mandatory—budget €150-500/month for comprehensive coverage. If the programme resumes, act quickly as demand will likely surge.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Cigna Global →
+        </a>
+        <a href="/go/bupa-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Bupa Global →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/ireland/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Ireland Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Ireland</p>
+      </a>
+      <a href="/visas/investor-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Golden Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Portugal's investor visa programme</p>
+      </a>
+      <a href="/visas/retirement-visa/in/ireland" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Ireland Retirement Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative residence options for retirees</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

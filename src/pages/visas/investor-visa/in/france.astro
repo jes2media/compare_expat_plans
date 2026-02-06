@@ -1,0 +1,970 @@
+---
+/**
+ * France Investor/Entrepreneur Visa (Passeport Talent) - Long-form CRO-optimized page
+ * Business creation, economic investment, and entrepreneur visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "visa-requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in France", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "France Insurance Guide", href: "/countries/france/insurance" },
+  { title: "France Freelancer Visa", href: "/visas/freelancer-visa/in/france" },
+  { title: "France Retirement Visa", href: "/visas/retirement-visa/in/france" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "AXA Global Review", href: "/providers/axa-global" },
+];
+
+const visaColumns = [
+  { key: "option", header: "Visa Option" },
+  { key: "requirement", header: "Key Requirement" },
+  { key: "duration", header: "Duration" },
+  { key: "notes", header: "Notes" },
+];
+
+const visaRows = [
+  { option: "Passeport Talent - Business Creation", requirement: "€30,000 in French bank + innovative project", duration: "Up to 4 years", notes: "Most accessible for entrepreneurs; includes family" },
+  { option: "Passeport Talent - Economic Investor", requirement: "€300,000+ direct investment in French company", duration: "Up to 4 years", notes: "For significant capital investment; job creation expected" },
+  { option: "Passeport Talent - Company Representative", requirement: "Establish French branch/subsidiary", duration: "Up to 4 years", notes: "For executives expanding existing business to France" },
+  { option: "Entrepreneur/Profession Libérale", requirement: "Viable business plan + sufficient funds", duration: "1 year (renewable)", notes: "Lower threshold than Talent; more scrutiny" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Comprehensive health insurance", notes: "Must cover illness, hospitalization, maternity" },
+  { feature: "Provider Type", requirement: "International or French private insurer", notes: "CFE (Caisse des Francais de l'Etranger) also accepted" },
+  { feature: "Coverage Area", requirement: "Must cover France", notes: "Worldwide coverage recommended for business travel" },
+  { feature: "Duration", requirement: "Full visa duration", notes: "Minimum 12 months for initial application" },
+  { feature: "Coverage Amount", requirement: "€30,000+ minimum", notes: "Higher coverage recommended; French care is expensive" },
+  { feature: "Social Security Access", requirement: "Available after residence", notes: "CPAM enrollment possible once legally resident" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "AXA Global", type: "International", price: "€200-450", strengths: "French parent company, excellent France network, bilingual service" },
+  { provider: "Cigna Global", type: "International", price: "€220-480", strengths: "Global entrepreneurs, comprehensive coverage, premium service" },
+  { provider: "Allianz Care", type: "International", price: "€180-400", strengths: "European focus, flexible plans, good value" },
+  { provider: "April International", type: "International", price: "€150-350", strengths: "French company, competitive pricing, expat-focused" },
+  { provider: "CFE", type: "French Public Option", price: "€100-300", strengths: "Access to French social security system, lower cost" },
+  { provider: "Henner", type: "French Private", price: "€180-400", strengths: "Strong France network, executive plans" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€225", notes: "Passeport Talent fee; paid at consulate" },
+  { item: "OFII Tax", amount: "€200", notes: "Immigration office tax upon arrival" },
+  { item: "Business Registration", amount: "€200-500", notes: "Depending on business structure" },
+  { item: "Required Capital (Business Creation)", amount: "€30,000", notes: "Must be in French bank account" },
+  { item: "Required Investment (Economic Investor)", amount: "€300,000+", notes: "Direct investment in company assets" },
+  { item: "Legal/Accounting Fees", amount: "€2,000-8,000", notes: "Business setup and immigration advice" },
+  { item: "Health Insurance", amount: "€150-450/month", notes: "Required; budget €1,800-5,400/year" },
+  { item: "Business Plan Development", amount: "€500-3,000", notes: "If using professional service" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Develop business plan", duration: "2-8 weeks", location: "Home country" },
+  { step: "Open French bank account", duration: "1-4 weeks", location: "France (or remotely with some banks)" },
+  { step: "Deposit required capital", duration: "1 week", location: "French bank" },
+  { step: "Register business (if required)", duration: "2-4 weeks", location: "France (online possible)" },
+  { step: "Gather visa documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Submit visa application", duration: "1 day", location: "French consulate" },
+  { step: "Visa processing", duration: "2-3 months", location: "Government review" },
+  { step: "Receive visa and travel", duration: "After approval", location: "Consulate pickup" },
+  { step: "Validate visa with OFII", duration: "Within 3 months", location: "France (online + medical)" },
+  { step: "Receive residence card", duration: "2-4 weeks after validation", location: "Prefecture" },
+];
+---
+
+<PageShell
+  title="France Investor & Entrepreneur Visa 2026: Passeport Talent Business Guide"
+  description="Complete guide to France's Passeport Talent for entrepreneurs and investors. Business creation (€30,000), economic investment (€300,000+), 4-year visa, family included, path to EU residence."
+  headline="France Investor & Entrepreneur Visa: Passeport Talent Guide"
+  subheadline="Everything you need to know about France's entrepreneur and investor visas—Passeport Talent options, €30,000-€300,000 requirements, La French Tech ecosystem, and path to permanent residence."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/axa-global"
+  heroImage="/images/countries/france-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official French Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      4-Year Multi-Year Visa
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      France does not offer a traditional "Golden Visa" with passive real estate investment. Instead, it provides entrepreneur and investor pathways through the Passeport Talent program—a multi-year visa designed to attract business creators, significant investors, and company executives to France. These routes require active business involvement rather than passive capital placement.
+    </p>
+
+    <p class="mb-4">
+      The Passeport Talent offers substantial advantages: a 4-year visa from the start, automatic family inclusion, and access to France's thriving startup ecosystem (La French Tech). For entrepreneurs with innovative projects, the Business Creation track requires just €30,000 in capital—far less than most European investment programs. For larger investors, the Economic Investor track welcomes those deploying €300,000+ into French companies.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: France Entrepreneur & Investor Visas</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Main program:</strong> Passeport Talent (multiple categories)</li>
+        <li>• <strong>Business Creation:</strong> €30,000 capital + innovative project</li>
+        <li>• <strong>Economic Investor:</strong> €300,000+ direct investment</li>
+        <li>• <strong>Company Representative:</strong> Establish French branch/subsidiary</li>
+        <li>• <strong>Duration:</strong> Up to 4 years (multi-year from start)</li>
+        <li>• <strong>Family included:</strong> Spouse and children receive "Passeport Talent - Famille"</li>
+        <li>• <strong>Path to PR:</strong> 5 years; citizenship: 5 years</li>
+        <li>• <strong>Work rights:</strong> Full work and business rights in France</li>
+        <li>• <strong>Schengen access:</strong> Travel freely within 26 Schengen countries</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose France for Business?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• 4-year visa from the start (no renewals for 4 years)</li>
+          <li>• Family included automatically</li>
+          <li>• La French Tech ecosystem and startup support</li>
+          <li>• Lower capital requirement (€30,000) than most EU programs</li>
+          <li>• Access to EU's second-largest economy</li>
+          <li>• Excellent quality of life and infrastructure</li>
+          <li>• Strong investor incentives and R&D tax credits</li>
+          <li>• Gateway to entire EU market</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Must actively run or invest in business (not passive)</li>
+          <li>• French language increasingly expected</li>
+          <li>• Complex business regulations and labor laws</li>
+          <li>• Higher taxes than some EU countries</li>
+          <li>• Business plan must demonstrate innovation/benefit</li>
+          <li>• Social charges add to employment costs</li>
+          <li>• Bureaucracy can be challenging</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>La French Tech:</strong> France has aggressively positioned itself as Europe's startup capital. La French Tech is a government-backed initiative supporting innovation and entrepreneurship, with dedicated visa tracks, incubators, funding programs, and a growing ecosystem of unicorns. Paris ranks as one of Europe's top three startup hubs alongside London and Berlin.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">France's Passeport Talent is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• You want to actively build or invest in a business</li>
+          <li>• You have an innovative project or startup idea</li>
+          <li>• You can commit €30,000+ in capital</li>
+          <li>• You want a long-term visa (4 years) from day one</li>
+          <li>• You want your family included automatically</li>
+          <li>• You're comfortable learning French</li>
+          <li>• You want access to the EU market</li>
+          <li>• You value startup ecosystem support</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want passive investment (consider Portugal, Greece)</li>
+          <li>• You prefer real estate investment routes</li>
+          <li>• You have no business plans—just want residency</li>
+          <li>• You need minimal stay requirements</li>
+          <li>• You want lower tax environments</li>
+          <li>• You're uncomfortable with French bureaucracy</li>
+          <li>• You prefer English-only business environment</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">France vs. Other EU Business/Investment Options</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Min. Investment</th>
+            <th class="px-4 py-2 text-left">Type</th>
+            <th class="px-4 py-2 text-left">Path to Citizenship</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">France (Business Creation)</td>
+            <td class="px-4 py-2">€30,000</td>
+            <td class="px-4 py-2">Active business</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">France (Economic Investor)</td>
+            <td class="px-4 py-2">€300,000</td>
+            <td class="px-4 py-2">Direct investment</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Spain (Golden Visa)</td>
+            <td class="px-4 py-2">€500,000</td>
+            <td class="px-4 py-2">Passive (real estate)</td>
+            <td class="px-4 py-2">10 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Portugal (Golden Visa)</td>
+            <td class="px-4 py-2">€500,000</td>
+            <td class="px-4 py-2">Funds/capital</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Germany (Entrepreneur)</td>
+            <td class="px-4 py-2">No minimum</td>
+            <td class="px-4 py-2">Viable business plan</td>
+            <td class="px-4 py-2">8 years (6 with integration)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why France stands out:</strong> France offers the lowest capital requirement (€30,000) among major EU countries for serious entrepreneur visas, combined with a 4-year multi-year permit from the start. Unlike passive golden visas, you must be actively involved, but you gain access to Europe's second-largest economy and a thriving startup ecosystem with substantial government support.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="visa-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      France offers several pathways for entrepreneurs and investors under the Passeport Talent umbrella. The Business Creation track is most accessible for startups, while Economic Investor suits those making substantial capital commitments. Each has distinct requirements.
+    </p>
+
+    <ComparisonTable columns={visaColumns} rows={visaRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Passeport Talent - Business Creation (Création d'Entreprise)</h3>
+
+    <p class="mb-4">
+      This is the primary route for entrepreneurs starting innovative businesses in France. It's designed for founders with projects that will contribute to France's economic development.
+    </p>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-neutral-900 mb-3">Requirements:</h4>
+      <ul class="space-y-2 text-neutral-700">
+        <li>• <strong>Capital:</strong> Minimum €30,000 deposited in a French bank account</li>
+        <li>• <strong>Business plan:</strong> Detailed plan showing viability and French economic benefit</li>
+        <li>• <strong>Innovation:</strong> Project should be innovative or fill market gap</li>
+        <li>• <strong>Qualifications:</strong> Master's degree or 5+ years professional experience in relevant field</li>
+        <li>• <strong>Business structure:</strong> Establish or control a French company (SAS, SARL, etc.)</li>
+        <li>• <strong>Investment use:</strong> Capital must be used for business operations</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Passeport Talent - Economic Investor (Investisseur Économique)</h3>
+
+    <p class="mb-4">
+      For larger investors making direct investments in French companies. This track suits those with significant capital who want to invest in existing businesses or create new ventures with substantial initial funding.
+    </p>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-neutral-900 mb-3">Requirements:</h4>
+      <ul class="space-y-2 text-neutral-700">
+        <li>• <strong>Investment:</strong> €300,000+ in tangible or intangible fixed assets</li>
+        <li>• <strong>Investment type:</strong> Direct investment in French company (not financial instruments)</li>
+        <li>• <strong>Job creation:</strong> Investment should create or preserve jobs</li>
+        <li>• <strong>Control:</strong> Hold at least 10% of company capital</li>
+        <li>• <strong>Role:</strong> Exercise management or supervisory function in the company</li>
+        <li>• <strong>Commitment:</strong> 4-year investment commitment</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Passeport Talent - Company Representative</h3>
+
+    <p class="mb-4">
+      For executives establishing French branches or subsidiaries of foreign companies. Ideal for multinational expansion into the French market.
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Key Requirements</h4>
+        <p class="text-neutral-600">Employed by foreign company for 3+ months, sent to France to establish or manage a branch/subsidiary. Company must demonstrate financial stability and business rationale for French expansion.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Alternative: Entrepreneur/Profession Libérale Visa</h3>
+
+    <p class="mb-4">
+      A simpler but shorter-duration option for those who don't qualify for Passeport Talent. Suitable for smaller-scale entrepreneurs and freelance professionals establishing businesses in France.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Lower capital requirements (varies)</li>
+          <li>• No innovation requirement</li>
+          <li>• Suitable for traditional businesses</li>
+          <li>• Path to longer-term residence</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Only 1-year initial permit (annual renewals)</li>
+          <li>• More scrutiny of business viability</li>
+          <li>• Family must apply separately</li>
+          <li>• Longer path to stable status</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> France requires a genuine business operation—not just capital parking. Authorities evaluate your business plan, qualifications, and the project's benefit to the French economy. Be prepared to demonstrate that your venture will create value, jobs, or innovation in France.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory for Visa Application</h3>
+      <p class="text-green-800">
+        All Passeport Talent applicants must provide proof of comprehensive health insurance covering France. This is required for your visa application and must remain valid throughout your stay. After establishing residence, you can transition to France's public healthcare system (CPAM).
+      </p>
+    </div>
+
+    <p class="mb-4">
+      France has excellent healthcare but requires visa applicants to have private coverage initially. Unlike residents who work and pay social contributions, new arrivals must demonstrate they won't burden the public system. Once you're legally resident and running your business, you can enroll in the French social security system.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Coverage You Need</h3>
+
+    <p class="mb-4">
+      Your health insurance policy must meet these requirements for visa approval:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Comprehensive coverage:</strong> Hospitalization, outpatient care, emergency treatment</li>
+      <li><strong>Minimum coverage:</strong> €30,000+ (matching Schengen requirements)</li>
+      <li><strong>Geographic coverage:</strong> Must explicitly cover France</li>
+      <li><strong>Duration:</strong> Minimum 12 months for initial application</li>
+      <li><strong>No exclusions:</strong> Policy cannot exclude common medical needs</li>
+      <li><strong>Repatriation:</strong> Coverage for medical evacuation/repatriation recommended</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Options for Entrepreneurs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">International Private Insurance</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Worldwide coverage for business travel</li>
+          <li>• English-language service</li>
+          <li>• Portable if you relocate</li>
+          <li>• Often better pre-existing condition coverage</li>
+          <li>• Premium hospitals and specialists</li>
+          <li>• Higher cost (€200-500/month)</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">CFE + Complementary Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Caisse des Francais de l'Etranger option</li>
+          <li>• Allows access to French social security rates</li>
+          <li>• Lower monthly costs (€100-200)</li>
+          <li>• Pairs with mutuelle for full coverage</li>
+          <li>• Familiar French system</li>
+          <li>• France-focused coverage</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Transitioning to French Social Security</h3>
+
+    <p class="mb-4">
+      Once you're legally resident in France and operating your business, you can join the French social security system:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Self-employed (Travailleur Indépendant):</strong> Pay social contributions through URSSAF; gain healthcare access through SSI (Sécurité Sociale des Indépendants)</li>
+      <li><strong>Company director (Assimilé salarié):</strong> SAS president with salary pays into general regime; access to CPAM</li>
+      <li><strong>Timeline:</strong> Usually 3-6 months after business registration to gain carte vitale</li>
+      <li><strong>Keep private insurance:</strong> Many entrepreneurs maintain private coverage alongside for faster access and premium care</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> Start with international insurance from AXA Global or Cigna Global for your visa application. This provides immediate, comprehensive coverage and works well for the business travel typical of entrepreneurs. After 6-12 months in France, evaluate whether to transition to the French system or maintain private coverage based on your needs and costs.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your French entrepreneur visa?"
+    description="Compare international insurers that meet Passeport Talent requirements and provide global coverage for business travel."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/axa-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Entrepreneurs and investors need flexible coverage that works in France while accommodating international business travel. Here are the top options, ranging from premium global coverage to French-focused solutions.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">International Entrepreneur / Frequent Traveler</h4>
+        <p class="text-neutral-600">If you'll travel regularly for business—meeting investors, clients, or partners across Europe and beyond—choose Cigna Global or AXA Global. AXA's French heritage means excellent France coverage combined with worldwide access. These plans cost more but eliminate insurance headaches when you're in London, New York, or Dubai next week.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">France-Focused / Cost-Conscious</h4>
+        <p class="text-neutral-600">If you'll spend 80%+ of your time in France, April International or CFE with complementary coverage offers good value. April is a French company specializing in expat insurance with competitive pricing. CFE gives you access to the French social security framework from day one.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Coverage</h4>
+        <p class="text-neutral-600">Passeport Talent includes family members automatically—they receive "Passeport Talent - Famille" status. For family coverage, AXA Global and Cigna Global offer comprehensive family plans including pediatric care and maternity. Budget €500-1,000/month for a family of four with international coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">International insurers like Cigna Global typically handle pre-existing conditions better than local French insurers, often covering them after 12-24 month waiting periods. Disclose all conditions upfront—French insurers may exclude them entirely. For complex health histories, get quotes from multiple providers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The total cost of France's entrepreneur visa depends heavily on which track you choose. The Business Creation route is accessible at €30,000 in capital, while Economic Investor requires €300,000+. Budget for visa fees, business setup costs, and ongoing insurance.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimate by Track</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Business Creation (Passeport Talent)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Required capital: <strong>€30,000</strong></li>
+            <li>Visa + OFII fees: <strong>€425</strong></li>
+            <li>Business registration: <strong>€300</strong></li>
+            <li>Legal/accounting: <strong>€3,000</strong></li>
+            <li>Insurance (first year): <strong>€3,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>~€36,725</strong></li>
+          </ul>
+          <p class="text-sm text-neutral-500 mt-2">*Capital is for business use, not lost</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Economic Investor</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Required investment: <strong>€300,000+</strong></li>
+            <li>Visa + OFII fees: <strong>€425</strong></li>
+            <li>Legal/due diligence: <strong>€8,000</strong></li>
+            <li>Insurance (first year): <strong>€4,500</strong></li>
+            <li>Accounting/advisory: <strong>€5,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>~€317,925</strong></li>
+          </ul>
+          <p class="text-sm text-neutral-500 mt-2">*Investment creates ownership/value</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Health insurance:</strong> €2,000-5,000/year (or join French system after establishment)</li>
+      <li><strong>Accounting/legal:</strong> €1,500-5,000/year for ongoing compliance</li>
+      <li><strong>Social contributions:</strong> ~45% of net income (self-employed) or included in salary costs</li>
+      <li><strong>Corporate tax:</strong> 25% on profits (reduced rates for small companies)</li>
+      <li><strong>Income tax:</strong> Progressive rates 0-45% on French-source income</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Living Costs in Major French Cities</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Paris</h4>
+        <p class="text-neutral-600 text-sm">€2,500-4,500/month for single professional. Higher rents (€1,200-2,000 for apartment) but access to France's main business hub.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Lyon</h4>
+        <p class="text-neutral-600 text-sm">€1,800-3,000/month. Strong startup scene, lower costs than Paris. Tech and biotech hub.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Toulouse</h4>
+        <p class="text-neutral-600 text-sm">€1,600-2,800/month. Aerospace industry center. Good quality of life, moderate costs.</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Funding and incentives:</strong> France offers substantial support for entrepreneurs through Bpifrance (public investment bank), research tax credits (CIR—up to 30% of R&D costs), and La French Tech programs. Many startups offset costs through grants, loans, and tax incentives. Factor these into your financial planning.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Passeport Talent application involves preparing your business plan, securing capital, and gathering extensive documentation. Processing typically takes 2-3 months. You can start your business activities immediately upon visa approval—no need to wait for the residence card.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Your Business Plan</h4>
+          <p class="text-neutral-600">Create a detailed business plan in French (or with French translation). Include market analysis, financial projections, job creation plans, and how your project benefits France. For innovative projects, emphasize technology, intellectual property, or market disruption. This is the most scrutinized part of your application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open French Bank Account and Deposit Capital</h4>
+          <p class="text-neutral-600">Open a business account with a French bank. Some banks (like Qonto, Shine) allow remote opening; traditional banks typically require in-person visits. Deposit your €30,000+ capital and obtain a certificate (attestation de dépôt de fonds). The funds are blocked until company registration.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Your Company (Optional at This Stage)</h4>
+          <p class="text-neutral-600">You can register your company before or after visa approval. Common structures: SAS (simplified joint-stock company—most popular for startups), SARL (limited liability company), or auto-entrepreneur (for smaller operations). Registration is done through the guichet unique (one-stop shop) at INPI.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Health Insurance</h4>
+          <p class="text-neutral-600">Obtain comprehensive health insurance from an international or French insurer. Get a certificate confirming coverage for France for the full visa duration. This can be done quickly—most insurers provide documentation within 24-48 hours.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Supporting Documents</h4>
+          <p class="text-neutral-600">Compile: valid passport, passport photos, business plan, proof of capital (bank certificate), health insurance certificate, proof of qualifications (diplomas, CV), proof of address in France (if available), clean criminal record from home country, and completed visa application forms. Documents must be translated into French by sworn translator.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Visa Application at French Consulate</h4>
+          <p class="text-neutral-600">Book an appointment at your local French consulate. Submit all documents and pay the €225 visa fee. You may be interviewed about your business plans. Processing typically takes 2-3 months—longer during busy periods or if additional documentation is requested.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Visa and Travel to France</h4>
+          <p class="text-neutral-600">Upon approval, your passport is stamped with a long-stay visa (VLS-TS) valid for up to 4 years. This visa acts as your residence permit during the first year. Travel to France within 3 months of visa issuance.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Validate Visa with OFII</h4>
+          <p class="text-neutral-600">Within 3 months of arrival, validate your visa online through the OFII (French Immigration Office) website. Pay the €200 tax and schedule a medical examination if required. This activates your residence rights and starts the clock toward permanent residence.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Residence Card (After Year 1)</h4>
+          <p class="text-neutral-600">Before your first year expires, apply at your local prefecture for the multi-year residence card (carte de séjour pluriannuelle). Provide proof that your business is operating—financial statements, employee records if applicable, social contribution payments. The card is issued for the remaining 3 years of your 4-year authorization.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Family applications:</strong> Your spouse and minor children can apply simultaneously for "Passeport Talent - Famille." They receive the same 4-year authorization and full work rights in France. Each family member needs their own health insurance policy. Submit family applications together for efficiency.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Passeport Talent applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Founder, SaaS Startup in Paris</h3>
+        <p class="text-neutral-600 mb-4">35 years old, software engineering background, building B2B SaaS product. Deposited €35,000, detailed business plan showing €500k projected revenue in 3 years.</p>
+        <p class="text-green-700 font-medium">Approved in 8 weeks. Strong technical background and clear market analysis impressed reviewers. Now operating from Station F incubator. Joined La French Tech accelerator program. Using AXA Global insurance (€320/month) for EU-wide coverage while traveling to meet clients.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Family, E-commerce Business in Lyon</h3>
+        <p class="text-neutral-600 mb-4">Couple (early 40s) with two children, post-Brexit EU access needed. Established online retail business, €40,000 capital, relocating operations to France.</p>
+        <p class="text-green-700 font-medium">Family of four approved—parents on Business Creation, children on Famille status. Chose Lyon for lower costs and good logistics. Using Cigna Global family plan (€750/month). Children enrolled in international school. Business now serving EU customers without Brexit complications.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Investor, €350,000 in French Tech Company</h3>
+        <p class="text-neutral-600 mb-4">Experienced angel investor, wanted EU presence and French market access. Invested €350,000 in growing French fintech startup, taking 15% stake and board seat.</p>
+        <p class="text-green-700 font-medium">Economic Investor track approved in 10 weeks. Required extensive due diligence documentation on investment source and company financials. Now splitting time between Mumbai and Paris. Using Allianz Care global plan (€400/month). Planning additional French investments.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Brazilian Entrepreneur, Restaurant Concept in Bordeaux</h3>
+        <p class="text-neutral-600 mb-4">Chef and hospitality professional, wanted to open Brazilian-French fusion restaurant. €50,000 capital, detailed concept and location secured.</p>
+        <p class="text-amber-700 font-medium">Initial hesitation from consulate—questioned innovation aspect. Strengthened application by emphasizing unique culinary fusion, job creation (8 positions), and tourism benefit. Approved on second submission after 4 months total. Recommends clearly articulating what makes your business distinctive for France.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Canadian Consultant, Company Representative in Paris</h3>
+        <p class="text-neutral-600 mb-4">Senior consultant at Toronto-based firm, sent to establish French subsidiary. Company has €2M annual revenue, expanding EU operations.</p>
+        <p class="text-green-700 font-medium">Company Representative track approved in 6 weeks—fastest of the Talent tracks with strong corporate backing. French subsidiary now operational, hiring local staff. Transitioned to French social security after 6 months. Company covers international insurance supplement for global travel.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">First-Time Applicant, Vague Business Plan</h3>
+        <p class="text-neutral-600 mb-4">Aspiring entrepreneur with general "consulting" business idea, €30,000 available, no specific clients or contracts secured.</p>
+        <p class="text-red-700 font-medium">Application rejected. Business plan lacked specificity—no identified market, unclear revenue model, no demonstrated expertise in consulting field. Advised to develop concrete business concept with target clients and realistic projections before reapplying. France wants genuine entrepreneurs, not visa shoppers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for French Entrepreneur Visa"
+    description="Find coverage that meets Passeport Talent requirements and supports your business lifestyle."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Submitting a Vague or Generic Business Plan</h3>
+        <p class="text-neutral-600">France evaluates the viability and benefit of your project carefully. A generic "consulting services" or "import/export" plan without specific clients, market analysis, or financial projections will be rejected. Your business plan should demonstrate clear understanding of the French market, realistic revenue projections, and how you'll create value or jobs. Invest in professional business plan development if needed.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the French Language Requirement</h3>
+        <p class="text-neutral-600">While not officially mandatory for the visa, French language proficiency is increasingly expected for business success. Government offices, banks, and many business partners operate in French. Start learning before you apply, and be prepared for interviews in French at some consulates. For permanent residence and citizenship, French language tests are required.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Having Documents Properly Translated</h3>
+        <p class="text-neutral-600">All non-French documents must be translated by a sworn translator (traducteur assermenté). Regular translations are not accepted. This includes your business plan, diplomas, criminal record certificate, and any supporting documents. Budget time and money for professional sworn translations—rushing this causes delays.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting to Validate Your Visa with OFII</h3>
+        <p class="text-neutral-600">After arriving in France, you must validate your visa online with OFII within 3 months. This is not optional—failing to validate can invalidate your residence rights and cause problems at renewal. Set a reminder immediately upon arrival. The process requires paying €200 and may include a medical examination.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Treating It Like a Passive Golden Visa</h3>
+        <p class="text-neutral-600">France's entrepreneur visa requires genuine business activity—not just parking money. At renewal, you'll need to show your business is operational: bank statements, tax filings, employee records if applicable. If your business has failed, explain what happened and your plans going forward. Authorities check that you're actually running a business, not just holding a visa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in France -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in France</h2>
+
+    <p class="mb-4">
+      France consistently ranks as having one of the world's best healthcare systems. As an entrepreneur, you'll initially rely on private insurance but can transition to the French social security system once your business is established and you're paying contributions.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The French Healthcare System</h3>
+
+    <p class="mb-4">
+      The French system combines public insurance (Sécurité Sociale) with private supplementary insurance (mutuelle). The public system covers approximately 70% of costs; most French residents have a mutuelle to cover the remainder.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Public Healthcare (After Establishment)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• World-class hospitals and specialists</li>
+          <li>• Generous coverage (70% of costs)</li>
+          <li>• Prescription medications heavily subsidized</li>
+          <li>• Free preventive care and screenings</li>
+          <li>• Access to any doctor (no gatekeeping)</li>
+          <li>• Excellent maternal/child health services</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Insurance Benefits</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Immediate coverage (no waiting period)</li>
+          <li>• 100% cost coverage with good plan</li>
+          <li>• Private rooms in hospitals</li>
+          <li>• Dental and optical coverage (limited in public)</li>
+          <li>• English-speaking services available</li>
+          <li>• International coverage for business travel</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Accessing the French System as an Entrepreneur</h3>
+
+    <p class="mb-4">
+      Your path to French healthcare depends on your business structure:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Auto-entrepreneur / Micro-entrepreneur:</strong> Pay simplified social contributions to URSSAF; covered by Sécurité Sociale des Indépendants (SSI)</li>
+      <li><strong>SARL manager (gérant majoritaire):</strong> Travailleur Non Salarié (TNS) status; SSI coverage</li>
+      <li><strong>SAS president:</strong> Assimilé salarié status with salary; covered by general CPAM regime</li>
+      <li><strong>Timeline:</strong> Typically 3-6 months after business registration to receive carte vitale</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Major Cities Healthcare Infrastructure</h3>
+
+    <div class="grid md:grid-cols-2 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Paris</h4>
+        <ul class="text-neutral-600 text-sm space-y-1">
+          <li>• AP-HP: Europe's largest hospital network</li>
+          <li>• American Hospital of Paris (Neuilly)</li>
+          <li>• Numerous English-speaking doctors</li>
+        </ul>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Lyon</h4>
+        <ul class="text-neutral-600 text-sm space-y-1">
+          <li>• Hospices Civils de Lyon (major university hospital)</li>
+          <li>• Strong biotech/medical research sector</li>
+          <li>• Growing international healthcare services</li>
+        </ul>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Marseille</h4>
+        <ul class="text-neutral-600 text-sm space-y-1">
+          <li>• AP-HM: Major Mediterranean medical center</li>
+          <li>• Institut Paoli-Calmettes (cancer)</li>
+          <li>• Good specialist care</li>
+        </ul>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Toulouse</h4>
+        <ul class="text-neutral-600 text-sm space-y-1">
+          <li>• CHU Toulouse (university hospital)</li>
+          <li>• Growing aerospace medicine expertise</li>
+          <li>• Modern facilities</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Recommendation:</strong> Keep private international insurance for your first 1-2 years while establishing your business. This provides immediate comprehensive coverage and works for business travel. Once you're enrolled in the French system and have a good mutuelle, you can evaluate whether to maintain international coverage or rely on the excellent French healthcare system.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak French to get a Passeport Talent?</h3>
+        <p class="text-neutral-600">
+          French is not officially required for the visa application, but it's increasingly expected for business success. Some consulates may conduct interviews in French. More importantly, daily business operations, government interactions, and banking often require French. Plan to learn—it will improve your experience significantly. For permanent residence and citizenship, French language tests are mandatory.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family work in France with the Passeport Talent - Famille?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse receives "Passeport Talent - Famille" status with full work rights—they can be employed, start their own business, or freelance without restrictions. Children can attend school (public or private) and later work when of legal age. This is a significant advantage over many other visa categories where family work rights are limited.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my business fails?</h3>
+        <p class="text-neutral-600">
+          Business failure doesn't automatically invalidate your visa, but you'll need to address it at renewal. Options include: starting a new business, transitioning to employment (change of status), or demonstrating ongoing entrepreneurial activity. France understands that businesses can fail—what matters is your genuine entrepreneurial intent. However, repeatedly failing to establish viable businesses may affect renewals.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can apply for permanent residence or citizenship?</h3>
+        <p class="text-neutral-600">
+          Permanent residence (carte de résident) is available after 5 years of continuous legal residence. Citizenship is also possible after 5 years, but requires French language proficiency (B1 level minimum), integration into French society, and passing a civics test. Continuous residence and stable financial situation are important factors. Some applicants receive citizenship faster through exceptional contributions to France.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I travel freely in Europe with the Passeport Talent?</h3>
+        <p class="text-neutral-600">
+          Yes. The Passeport Talent grants residence in France and free travel within the 26 Schengen countries for up to 90 days in any 180-day period. You can visit clients, attend conferences, and conduct business across Europe without additional visas. However, you cannot relocate your primary residence to another EU country—your main base must remain France.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between Passeport Talent and the regular entrepreneur visa?</h3>
+        <p class="text-neutral-600">
+          The Passeport Talent offers significant advantages: 4-year visa from the start (vs. 1-year for regular entrepreneur), automatic family inclusion with work rights, and a more streamlined process for qualified applicants. The regular entrepreneur/profession libérale visa has lower barriers but requires annual renewals and family members must apply separately. Choose Passeport Talent if you meet the qualifications (degree or experience) and capital requirements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      France's Passeport Talent offers a compelling pathway for entrepreneurs and investors who want to actively build businesses in Europe's second-largest economy. Unlike passive golden visas, France rewards genuine entrepreneurial activity with one of the most favorable visa structures available: a 4-year multi-year permit, automatic family inclusion with work rights, and relatively accessible capital requirements.
+    </p>
+
+    <p class="mb-4">
+      The €30,000 Business Creation threshold is significantly lower than Spain's €500,000 or Portugal's €500,000—but you must have a real business plan, not just capital to park. France wants innovators, job creators, and entrepreneurs who will contribute to the economy. The application scrutinizes your business viability, not just your bank balance.
+    </p>
+
+    <p class="mb-6">
+      For investors with €300,000+, the Economic Investor track offers a path to French residence through meaningful capital deployment. And for executives expanding existing businesses, the Company Representative track provides the smoothest approval process of all.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        France's entrepreneur and investor visas are ideal for those who want to actively participate in Europe's economy—not passively hold assets. The La French Tech ecosystem, strong investor incentives, and access to the EU market make France particularly attractive for tech startups and innovation-driven businesses. Budget €30,000-40,000 minimum to launch (Business Creation track), plus €200-450/month for comprehensive health insurance. French language skills will significantly improve your experience and business success.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/axa-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare AXA Global Plans
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Cigna Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/france/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">France Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in France</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/france" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">France Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Auto-entrepreneur and profession libérale options</p>
+      </a>
+      <a href="/visas/retirement-visa/in/france" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">France Retirement Visa</h3>
+        <p class="text-neutral-600 text-sm">Visitor visa for retirees with sufficient income</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

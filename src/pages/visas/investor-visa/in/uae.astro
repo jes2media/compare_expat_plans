@@ -1,0 +1,957 @@
+---
+/**
+ * UAE Golden Visa (Investor Visa) - Long-form CRO-optimized page
+ * Complete guide to UAE's 10-year Golden Visa for investors and entrepreneurs
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in UAE", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "UAE Health Insurance Guide", href: "/countries/uae/insurance" },
+  { title: "UAE Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/uae" },
+  { title: "UAE Freelancer Visa", href: "/visas/freelancer-visa/in/uae" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Investment Route" },
+  { key: "minimum", header: "Minimum Investment" },
+  { key: "duration", header: "Visa Duration" },
+  { key: "notes", header: "Notes" },
+];
+
+const investmentRows = [
+  { option: "Real Estate", minimum: "AED 2M (~$545,000)", duration: "10 years", notes: "Property must be retained; can be mortgaged up to 50%" },
+  { option: "Public Investment", minimum: "AED 2M (~$545,000)", duration: "10 years", notes: "Investment in approved funds or deposits" },
+  { option: "Business Owner", minimum: "AED 2M capital (~$545,000)", duration: "10 years", notes: "Own company with minimum AED 2M capital" },
+  { option: "Business Partner", minimum: "AED 2M share value", duration: "10 years", notes: "Share in existing UAE company worth AED 2M+" },
+  { option: "Entrepreneur", minimum: "AED 500,000 (~$136,000)", duration: "5-10 years", notes: "Startup valued at AED 500K+ or incubator-approved" },
+  { option: "Green Visa (Self-employed)", minimum: "AED 360,000/year income", duration: "5 years", notes: "For skilled freelancers and professionals" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "UAE Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Comprehensive health insurance", notes: "Mandatory in Dubai and Abu Dhabi for all residents" },
+  { feature: "Provider Type", requirement: "DHA/DOH approved insurer", notes: "International insurers widely accepted if compliant" },
+  { feature: "Minimum Coverage", requirement: "AED 150,000+ (~$40,000)", notes: "Higher coverage recommended for investors" },
+  { feature: "Inpatient Coverage", requirement: "Required", notes: "Hospital stays, surgeries fully covered" },
+  { feature: "Outpatient Coverage", requirement: "Required", notes: "Doctor visits, diagnostics, prescriptions" },
+  { feature: "Emergency Coverage", requirement: "Required", notes: "24/7 emergency access mandatory" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "$300-600", strengths: "Global coverage, high-net-worth individuals" },
+  { provider: "Bupa Global", type: "International", price: "$350-700", strengths: "Premium service, extensive UAE network" },
+  { provider: "Allianz Care", type: "International", price: "$280-550", strengths: "Flexible plans, strong Middle East presence" },
+  { provider: "Aetna International", type: "International", price: "$320-620", strengths: "US ties, excellent customer service" },
+  { provider: "Daman (National)", type: "UAE Local", price: "$150-350", strengths: "Government-linked, comprehensive local coverage" },
+  { provider: "AXA Gulf", type: "Regional", price: "$200-450", strengths: "Good balance of cost and coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (AED/USD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Golden Visa Fee", amount: "AED 1,150 (~$313)", notes: "10-year residence visa" },
+  { item: "Emirates ID", amount: "AED 1,000 (~$272)", notes: "Biometric ID card (10-year)" },
+  { item: "Medical Fitness Test", amount: "AED 300-500 (~$80-135)", notes: "Required health screening" },
+  { item: "Investment (Property)", amount: "AED 2,000,000+ (~$545,000+)", notes: "Minimum for 10-year Golden Visa" },
+  { item: "Property Registration", amount: "4% of property value", notes: "Dubai Land Department fee" },
+  { item: "Health Insurance (Annual)", amount: "$2,000-8,000", notes: "Mandatory; family plans higher" },
+  { item: "Company Setup (if applicable)", amount: "AED 15,000-50,000", notes: "For business route; varies by free zone" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Complete investment (property/business)", duration: "Varies (days-weeks)", location: "UAE" },
+  { step: "Gather required documents", duration: "1-2 weeks", location: "Home country/UAE" },
+  { step: "Submit Golden Visa application", duration: "1 day", location: "ICP/GDRFA portal or office" },
+  { step: "Application processing", duration: "2-4 weeks", location: "Government review" },
+  { step: "Medical fitness test", duration: "1-2 days", location: "Approved UAE centers" },
+  { step: "Emirates ID biometrics", duration: "1 day", location: "Typing center" },
+  { step: "Visa stamping", duration: "3-7 days", location: "GDRFA office" },
+  { step: "Receive Emirates ID card", duration: "1-2 weeks", location: "Delivered or pickup" },
+];
+
+const comparisonColumns = [
+  { key: "country", header: "Country" },
+  { key: "investment", header: "Min. Investment" },
+  { key: "duration", header: "Visa Duration" },
+  { key: "tax", header: "Income Tax" },
+  { key: "citizenship", header: "Citizenship Path" },
+];
+
+const comparisonRows = [
+  { country: "UAE Golden Visa", investment: "$545,000", duration: "10 years", tax: "0%", citizenship: "Limited (by decree)" },
+  { country: "Portugal Golden Visa", investment: "$500,000 (funds)", duration: "2 years", tax: "20-48%", citizenship: "5 years" },
+  { country: "Spain Golden Visa", investment: "$545,000 (property)", duration: "2+5 years", tax: "19-47%", citizenship: "10 years" },
+  { country: "UK Innovator Founder", investment: "$68,000+", duration: "3 years", tax: "20-45%", citizenship: "5 years" },
+  { country: "US EB-5", investment: "$800,000+", duration: "2 years (conditional)", tax: "10-37%", citizenship: "5 years" },
+];
+---
+
+<PageShell
+  title="UAE Golden Visa 2026: Investment Options, Insurance & Complete Guide"
+  description="Complete guide to UAE's Golden Visa for investors. AED 2 million investment threshold, 10-year residence, 0% income tax, mandatory insurance requirements, and fast processing."
+  headline="UAE Golden Visa: Investment & Insurance Guide"
+  subheadline="Everything you need to know about UAE's 10-year Golden Visa for investors and entrepreneurs—AED 2 million investment routes, mandatory health insurance, 0% income tax, and the path to long-term residence."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/uae-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official UAE Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      0% Personal Income Tax
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The UAE Golden Visa is one of the world's most attractive investor residence programs. Launched in 2019 and expanded significantly in 2022, it offers 10-year renewable residence to investors, entrepreneurs, and high-net-worth individuals. Unlike most investor visas, the UAE combines long-term residence with zero personal income tax—a powerful combination for wealth preservation.
+    </p>
+
+    <p class="mb-4">
+      For investors seeking a stable, business-friendly jurisdiction with world-class infrastructure, the UAE delivers exceptional value. Dubai and Abu Dhabi serve as global business hubs connecting Europe, Asia, and Africa, with modern cities, English widely spoken, and a government actively courting international investment and talent.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: UAE Golden Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>* <strong>Official name:</strong> UAE Golden Visa / Long-Term Residence Visa</li>
+        <li>* <strong>Minimum investment:</strong> AED 2 million (~$545,000) for 10-year visa</li>
+        <li>* <strong>Entrepreneur route:</strong> AED 500,000 (~$136,000) startup value</li>
+        <li>* <strong>Duration:</strong> 10 years, renewable indefinitely</li>
+        <li>* <strong>Family included:</strong> Spouse, children, domestic staff</li>
+        <li>* <strong>No sponsor required:</strong> Self-sponsored residence</li>
+        <li>* <strong>100% business ownership:</strong> No local partner needed</li>
+        <li>* <strong>Tax status:</strong> 0% personal income tax (9% corporate on profits over AED 375,000)</li>
+        <li>* <strong>Processing time:</strong> 2-4 weeks (very fast)</li>
+        <li>* <strong>Minimum stay:</strong> None required</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose UAE's Golden Visa?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>* 0% personal income tax (massive wealth preservation)</li>
+          <li>* 10-year visa with auto-renewal</li>
+          <li>* No sponsor needed (self-sponsored)</li>
+          <li>* 100% business ownership (no local partner required)</li>
+          <li>* No minimum stay requirement</li>
+          <li>* Include spouse, children, and domestic staff</li>
+          <li>* Fast processing (2-4 weeks)</li>
+          <li>* World-class infrastructure and safety</li>
+          <li>* Strategic location between Europe and Asia</li>
+          <li>* English widely spoken</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>* High investment threshold (AED 2M minimum)</li>
+          <li>* No path to citizenship (generally)</li>
+          <li>* High cost of living (Dubai especially)</li>
+          <li>* Health insurance mandatory and expensive</li>
+          <li>* Hot climate (summer temperatures exceed 40C)</li>
+          <li>* 9% corporate tax introduced in 2023</li>
+          <li>* Cultural differences to navigate</li>
+          <li>* Property market can be volatile</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Golden Visa vs Green Visa</h3>
+
+    <p class="mb-4">
+      The UAE offers two main long-term residence options for investors and professionals:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Golden Visa (10 Years)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>* AED 2 million investment minimum</li>
+          <li>* 10-year renewable residence</li>
+          <li>* No sponsor required</li>
+          <li>* Include unlimited family members</li>
+          <li>* Stay outside UAE up to 6 months</li>
+          <li>* Best for: Investors, entrepreneurs, high-net-worth</li>
+        </ul>
+      </div>
+
+      <div class="border border-purple-200 bg-purple-50 rounded-lg p-6">
+        <h4 class="font-semibold text-purple-900 mb-3">Green Visa (5 Years)</h4>
+        <ul class="space-y-2 text-purple-800">
+          <li>* Lower threshold for skilled workers/freelancers</li>
+          <li>* 5-year renewable residence</li>
+          <li>* Self-sponsored (no employer needed)</li>
+          <li>* Include first-degree relatives</li>
+          <li>* Stay outside UAE up to 6 months</li>
+          <li>* Best for: Freelancers, self-employed, professionals</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>2023-2024 developments:</strong> The UAE introduced 9% corporate tax on business profits exceeding AED 375,000 in 2023. Personal income remains tax-free. Free zone businesses may still qualify for 0% corporate tax if meeting substance requirements. The Golden Visa program has expanded eligibility, making it more accessible than when first launched.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">UAE Golden Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>* You have AED 2M+ ($545,000+) to invest</li>
+          <li>* You want to eliminate personal income tax</li>
+          <li>* You value 100% business ownership</li>
+          <li>* You want a stable, business-friendly jurisdiction</li>
+          <li>* You work with Europe, Middle East, or Asia</li>
+          <li>* You prefer modern, luxury infrastructure</li>
+          <li>* You can afford premium cost of living</li>
+          <li>* You don't need a path to citizenship</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>* You want a path to citizenship/passport</li>
+          <li>* You prefer lower cost of living</li>
+          <li>* You work primarily with US time zones</li>
+          <li>* You want European Union access</li>
+          <li>* You prefer moderate climates</li>
+          <li>* You're looking for cultural immersion</li>
+          <li>* You have less than $500,000 to invest</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Comparing Global Investor Visas</h3>
+
+    <ComparisonTable columns={comparisonColumns} rows={comparisonRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Why UAE stands out:</strong> The UAE's unique advantage is the combination of 10-year residence, 0% personal income tax, and 100% business ownership. No European program offers this tax treatment. For investors prioritizing wealth preservation over citizenship, the UAE is often the optimal choice.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      The UAE offers multiple qualifying routes for the Golden Visa. Real estate is the most straightforward, but business investment and entrepreneurship provide alternatives. The investment must be maintained throughout your residence—though property can be mortgaged up to 50%.
+    </p>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Real Estate Route (Most Popular)</h3>
+
+    <p class="mb-4">
+      The AED 2 million property investment is the most common route to the Golden Visa. Key details:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Property value:</strong> Minimum AED 2 million (approximately $545,000)</li>
+      <li><strong>Mortgage allowed:</strong> Property can be mortgaged up to 50%—equity must be AED 2M+</li>
+      <li><strong>Multiple properties:</strong> Can combine properties to reach AED 2M threshold</li>
+      <li><strong>Property type:</strong> Residential properties (apartments, villas, townhouses)</li>
+      <li><strong>Location:</strong> Dubai, Abu Dhabi, or other emirates (Dubai most popular)</li>
+      <li><strong>Off-plan purchases:</strong> Accepted if developer is approved and significant payment made</li>
+      <li><strong>Must retain property:</strong> Cannot sell and keep visa (unlike some programs)</li>
+    </ul>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Popular Investment Areas (Dubai)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>* <strong>Palm Jumeirah:</strong> Iconic, premium, AED 3M+ typical</li>
+          <li>* <strong>Downtown Dubai:</strong> Near Burj Khalifa, high demand</li>
+          <li>* <strong>Dubai Marina:</strong> Waterfront, expat-popular</li>
+          <li>* <strong>Business Bay:</strong> Central, good value</li>
+          <li>* <strong>JBR/Bluewaters:</strong> Beach lifestyle, tourism rental potential</li>
+          <li>* <strong>Dubai Hills:</strong> Family-friendly, growing area</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Property Considerations</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>* Work with RERA-registered agents only</li>
+          <li>* Verify property is in freehold area</li>
+          <li>* Check developer track record</li>
+          <li>* Understand service charges (can be high)</li>
+          <li>* Consider rental yield potential (4-7% typical)</li>
+          <li>* Factor in 4% DLD registration fee</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Business & Entrepreneur Routes</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Business Owner (AED 2,000,000)</h4>
+        <p class="text-neutral-600">Own a UAE company with capital or revenue of AED 2 million+. Can be mainland or free zone company. You must be the sole or majority owner. The company must be operational with legitimate business activity—shell companies don't qualify.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Entrepreneur / Startup (AED 500,000)</h4>
+        <p class="text-neutral-600">For startup founders with a business valued at AED 500,000+ or approved by a UAE incubator/accelerator. This route is more flexible but requires demonstrating innovation, scalability, and job creation potential. Incubator approval (Hub71, DIFC, etc.) can substitute for valuation requirement.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Public Investment (AED 2,000,000)</h4>
+        <p class="text-neutral-600">Deposit AED 2 million in an approved investment fund or establish a company with AED 2 million capital. This provides an alternative to real estate for investors preferring liquid assets. The investment must remain committed for the visa duration.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Free Zone vs Mainland Companies</h3>
+
+    <p class="mb-4">
+      When establishing a business in the UAE, you'll choose between free zone and mainland setup:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Free Zone Company</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>* 100% foreign ownership guaranteed</li>
+          <li>* Potential 0% corporate tax (if qualifying)</li>
+          <li>* Cannot trade directly with UAE mainland</li>
+          <li>* Faster setup (1-2 weeks)</li>
+          <li>* Popular: DMCC, DIFC, ADGM, JAFZA</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Mainland Company</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>* 100% foreign ownership now allowed (most sectors)</li>
+          <li>* Trade freely within UAE and internationally</li>
+          <li>* 9% corporate tax on profits over AED 375,000</li>
+          <li>* More complex setup (3-4 weeks)</li>
+          <li>* Required for some activities (retail, contracting)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> The investment must be made with legally obtained funds. Source of funds verification is standard practice. Bank transfers should be documented, and you may need to provide evidence of how you accumulated the investment capital. Anti-money-laundering checks are thorough but not onerous for legitimate investors.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">Mandatory Requirement</h3>
+      <p class="text-red-800">
+        Health insurance is <strong>mandatory</strong> for all UAE residents, including Golden Visa holders. In Dubai (DHA) and Abu Dhabi (DOH), you cannot complete your visa process without valid health insurance. This requirement is strictly enforced—you will need to show proof of coverage.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Unlike some investor visa programs where insurance requirements are loosely enforced, the UAE takes health insurance seriously. Your policy must meet regulatory standards set by the Dubai Health Authority (DHA) or Department of Health Abu Dhabi (DOH), depending on your emirate of residence.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What "Compliant Coverage" Means</h3>
+
+    <p class="mb-4">
+      UAE health insurance regulations require comprehensive coverage. Your policy must include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Inpatient hospitalization:</strong> Full coverage for hospital stays, surgeries, ICU</li>
+      <li><strong>Outpatient care:</strong> Doctor visits, specialists, diagnostics, prescriptions</li>
+      <li><strong>Emergency care:</strong> 24/7 emergency treatment access</li>
+      <li><strong>Maternity coverage:</strong> Often required for female residents of childbearing age</li>
+      <li><strong>Minimum coverage limits:</strong> AED 150,000+ (DHA Essential Benefits Plan minimum)</li>
+      <li><strong>Network access:</strong> Must include UAE hospitals and clinics</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">International vs. Local Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">International Insurance (Cigna, Bupa, Allianz)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>* Worldwide coverage—use anywhere</li>
+          <li>* Higher coverage limits ($1M-2M+)</li>
+          <li>* English-language service</li>
+          <li>* Portable if you relocate</li>
+          <li>* Premium service and amenities</li>
+          <li>* Higher cost ($3,600-8,400/year)</li>
+          <li>* Verify DHA/DOH compliance before purchasing</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">UAE Local Insurance (Daman, Oman, Orient)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>* Always DHA/DOH compliant</li>
+          <li>* Lower cost ($1,800-4,200/year)</li>
+          <li>* Extensive UAE hospital networks</li>
+          <li>* Direct billing standard</li>
+          <li>* Arabic and English service</li>
+          <li>* UAE-only coverage</li>
+          <li>* May have more exclusions</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Family Coverage Considerations</h3>
+
+    <p class="mb-4">
+      Golden Visa holders can sponsor their spouse, children, and domestic staff. Each family member requires their own health insurance policy. Family plans from international insurers typically offer:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Spouse coverage:</strong> Same comprehensive coverage as primary member</li>
+      <li><strong>Children:</strong> Full pediatric care, vaccinations included</li>
+      <li><strong>Maternity:</strong> Often included with waiting periods (10-12 months typical)</li>
+      <li><strong>Family pricing:</strong> 20-30% discount vs. individual policies</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> For Golden Visa holders with significant assets and travel needs, international insurance from Cigna Global or Bupa Global provides the flexibility and coverage levels appropriate for high-net-worth individuals. If you'll spend most time in the UAE and want to minimize costs, local insurers like Daman offer excellent UAE coverage at lower premiums.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your UAE Golden Visa?"
+    description="Compare international and UAE insurers that meet DHA/DOH requirements for investor visas."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Golden Visa holders typically choose between international insurers offering global coverage at premium prices, or UAE-based insurers with comprehensive local coverage at lower costs. For high-net-worth investors, we generally recommend international coverage for its flexibility and higher limits.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">High-Net-Worth Investor / Frequent Traveler</h4>
+        <p class="text-neutral-600">Choose Cigna Global or Bupa Global for worldwide coverage with premium service. These plans work seamlessly whether you're in Dubai, London, New York, or Singapore. Higher cost justified by flexibility and comprehensive coverage—typically $4,000-7,000/year for individual.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">UAE-Based / Cost-Conscious</h4>
+        <p class="text-neutral-600">If you'll spend most time in the UAE, Daman (National Health Insurance Company) or AXA Gulf offer comprehensive local coverage at roughly half the cost of international plans. Daman is particularly well-regarded as it's linked to Abu Dhabi government.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Coverage</h4>
+        <p class="text-neutral-600">Bupa Global offers particularly strong family plans with comprehensive pediatric and maternity coverage. For a family of four with Golden Visa, budget $12,000-20,000/year for premium international coverage, or $6,000-10,000/year for local plans.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">US Citizens</h4>
+        <p class="text-neutral-600">Aetna International has strong US network connections if you travel home frequently. Cigna Global also offers good US coverage. Note that most international plans exclude US for residents, so verify coverage if you spend significant time in the States.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Before purchasing international insurance, confirm in writing that the policy meets DHA/DOH requirements for your emirate. Some international policies may require supplementary local coverage to be fully compliant. Work with an insurance broker who specializes in UAE expat coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The Golden Visa involves substantial upfront investment plus ongoing costs. However, the 0% personal income tax means your net wealth accumulation can be significantly higher than in taxed jurisdictions. Budget for investment, visa fees, and mandatory insurance.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimate (Real Estate Route)</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Upfront Costs</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Property purchase: <strong>AED 2,000,000+ ($545,000+)</strong></li>
+            <li>DLD registration (4%): <strong>AED 80,000 (~$21,800)</strong></li>
+            <li>Agent commission (2%): <strong>AED 40,000 (~$10,900)</strong></li>
+            <li>Golden Visa + Emirates ID: <strong>AED 2,150 (~$585)</strong></li>
+            <li>Medical test: <strong>AED 400 (~$109)</strong></li>
+            <li class="pt-2 border-t font-semibold">Total upfront: <strong>~$578,400</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Annual Ongoing Costs</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Health insurance: <strong>$3,000-8,000</strong></li>
+            <li>Property service charges: <strong>$3,000-10,000</strong></li>
+            <li>Property insurance: <strong>$500-1,500</strong></li>
+            <li>Visa renewal (every 10 years): <strong>~$600</strong></li>
+            <li class="pt-2 border-t font-semibold">Total annual: <strong>$6,500-19,500</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Tax Advantage</h3>
+
+    <p class="mb-4">
+      The UAE's 0% personal income tax creates significant wealth preservation benefits. Consider the comparison:
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-green-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-green-600 mb-2">$300,000 Income in UAE</p>
+        <p class="text-3xl font-bold text-green-900">$300,000</p>
+        <p class="text-sm text-green-500 mt-2">Net (0% tax)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">$300,000 Income in UK</p>
+        <p class="text-3xl font-bold text-neutral-900">$180,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Net (~40% effective tax)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">$300,000 Income in US (CA)</p>
+        <p class="text-3xl font-bold text-neutral-900">$165,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Net (~45% effective tax)</p>
+      </div>
+    </div>
+
+    <p class="mb-4">
+      At $300,000 annual income, moving to the UAE saves $120,000-135,000 per year in taxes. Over 10 years, that's $1.2-1.35 million in tax savings—far exceeding the investment and ongoing costs.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Cost of living context:</strong> Dubai is expensive—comparable to London or New York. Monthly budgets for a comfortable lifestyle: $5,000-8,000 single, $10,000-15,000 family. However, the tax savings typically more than offset the higher cost of living for high earners.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The UAE Golden Visa process is remarkably fast compared to other investor visa programs—typically 2-4 weeks from investment completion to visa stamp. The process is increasingly digitized, though some steps require in-person attendance.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Your Investment</h4>
+          <p class="text-neutral-600">Purchase property worth AED 2M+, establish your business, or make qualifying investment. For real estate, complete the transaction and register with Dubai Land Department. Obtain title deed or business license as proof of investment.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Health Insurance</h4>
+          <p class="text-neutral-600">Arrange DHA/DOH-compliant health insurance before applying. Get the policy certificate showing coverage details. This is a mandatory requirement—your application will not proceed without it.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Required Documents</h4>
+          <p class="text-neutral-600">Prepare: valid passport (6+ months validity), passport photos, proof of investment (title deed/license), health insurance certificate, and bank statement showing source of funds. Some documents may need attestation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Golden Visa Application</h4>
+          <p class="text-neutral-600">Apply through the ICP (Federal Authority for Identity and Citizenship) smart services portal or GDRFA (General Directorate of Residency and Foreigners Affairs). Pay the AED 1,150 visa fee. Many investors use PRO services to handle the application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Application Processing</h4>
+          <p class="text-neutral-600">Processing typically takes 2-4 weeks. The UAE government reviews your investment documentation, background, and eligibility. You may be contacted for additional documents. Approval is generally straightforward for legitimate investors.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Medical Fitness Test</h4>
+          <p class="text-neutral-600">After initial approval, complete the medical fitness test at an approved center. This includes blood tests and chest X-ray (standard for all UAE residents). Results typically same-day. Certain medical conditions may require additional review.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Emirates ID</h4>
+          <p class="text-neutral-600">Visit a typing center or apply online for your Emirates ID. Provide biometrics (fingerprints, photo). Pay AED 1,000 for the 10-year ID card. The Emirates ID is essential for daily life—banking, phone contracts, hotel check-ins.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Visa Stamp and Emirates ID</h4>
+          <p class="text-neutral-600">Your residence visa is stamped in your passport at GDRFA. Emirates ID card is delivered or available for pickup within 1-2 weeks. Congratulations—you're now a UAE Golden Visa holder with 10-year residence rights.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Family applications:</strong> Your spouse, children, and domestic staff can apply for dependent visas once your Golden Visa is active. Each family member needs their own health insurance policy. Dependent visas are typically processed within 1-2 weeks after your visa is approved.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Golden Visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Tech Entrepreneur, AED 3M Dubai Marina Apartment</h3>
+        <p class="text-neutral-600 mb-4">42 years old, selling £500K+ from UK SaaS company annually. Purchased 2-bedroom apartment in Dubai Marina for investment and occasional use.</p>
+        <p class="text-green-700 font-medium">Approved in 18 days. Tax savings of £150,000+ per year easily justify the move. Uses Cigna Global for worldwide coverage ($5,200/year). Maintains UK clients while building Middle East presence. "The process was surprisingly smooth—faster than getting a UK mortgage."</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Family, AED 2.2M Villa in Dubai Hills</h3>
+        <p class="text-neutral-600 mb-4">Couple (40s) with two school-age children. Father runs IT consultancy, wanted tax-efficient base near Asian markets.</p>
+        <p class="text-green-700 font-medium">Entire family approved—parents and both children. Villa serves as primary home; children in Dubai international schools. Bupa Global family plan ($16,000/year) covers worldwide travel. Building regional client base while maintaining Indian business ties.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Crypto Entrepreneur, AED 2M+ Portfolio</h3>
+        <p class="text-neutral-600 mb-4">Late 30s, substantial crypto gains, seeking tax-efficient jurisdiction for future growth.</p>
+        <p class="text-amber-700 font-medium">Approved after additional documentation on source of funds—crypto gains required detailed transaction history and exchange records. 6-week total process. Now based in Dubai's crypto-friendly ecosystem. Notes: "The extra scrutiny was worth it. Zero capital gains tax makes a huge difference."</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Russian Business Owner, AED 5M Palm Jumeirah</h3>
+        <p class="text-neutral-600 mb-4">50s, established manufacturing business, seeking stable jurisdiction amid geopolitical uncertainty.</p>
+        <p class="text-green-700 font-medium">Approved in 3 weeks. Premium property purchase with strong documentation. Using AXA Gulf for comprehensive coverage. Family relocated fully; children in British curriculum schools. Appreciates UAE's neutrality and business stability.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Startup Founder, Hub71 Accelerator</h3>
+        <p class="text-neutral-600 mb-4">30s, fintech startup accepted into Abu Dhabi's Hub71 accelerator program. Limited personal capital.</p>
+        <p class="text-green-700 font-medium">Qualified via entrepreneur route—incubator approval substituted for AED 500K valuation. Green Visa initially, planning upgrade to Golden Visa as company grows. Hub71 provided visa support and connections. Local Daman insurance ($2,400/year).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Applicant with Insufficient Investment</h3>
+        <p class="text-neutral-600 mb-4">Purchased AED 1.5M apartment, assumed mortgage would count toward threshold.</p>
+        <p class="text-red-700 font-medium">Application rejected. Only equity counts—with 50% mortgage, equity was AED 750K, below AED 2M threshold. Returned 4 months later after purchasing additional property to reach threshold. Lesson: Verify equity calculation before applying. Mortgage can be up to 50%, but your equity must still be AED 2M+.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for UAE Golden Visa"
+    description="Find the right coverage for your investment in the UAE—international or local options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Misunderstanding the AED 2M Equity Requirement</h3>
+        <p class="text-neutral-600">The AED 2 million threshold refers to your equity, not the property price. If you buy a AED 4 million property with 50% mortgage, your equity is AED 2 million—barely qualifying. Many applicants mistakenly assume the purchase price is what matters. With a mortgage, ensure your equity portion meets the threshold.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Proper Health Insurance</h3>
+        <p class="text-neutral-600">Health insurance is mandatory and strictly enforced. Some applicants try to use travel insurance or non-compliant policies—these will be rejected. Get proper DHA/DOH-compliant coverage before applying. Budget $3,000-8,000/year for quality coverage and factor this into your ongoing costs.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Inadequate Source of Funds Documentation</h3>
+        <p class="text-neutral-600">The UAE requires proof of legitimate fund sources. Investors who cannot clearly document how they accumulated their investment capital face delays or rejections. Prepare bank statements, business records, asset sale documentation, or inheritance records. Cryptocurrency gains require particularly detailed documentation.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Neglecting Emirates ID After Visa Approval</h3>
+        <p class="text-neutral-600">Some investors complete the visa stamp but delay getting their Emirates ID. This creates problems—you need the Emirates ID for banking, phone contracts, hotel stays, and most daily activities. Complete the Emirates ID application immediately after visa approval, not weeks later.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming No Ongoing Requirements</h3>
+        <p class="text-neutral-600">While there's no minimum stay requirement, you must maintain your investment and valid health insurance throughout the 10-year period. Selling your property means losing your visa. Letting insurance lapse creates problems at renewal. Plan for ongoing costs and commitments, not just initial setup.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in UAE -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in UAE</h2>
+
+    <p class="mb-4">
+      The UAE has world-class healthcare, particularly in Dubai and Abu Dhabi. With proper insurance, you'll have access to JCI-accredited hospitals, English-speaking doctors, and minimal wait times. The healthcare system is primarily private, which is why mandatory insurance exists.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What to Expect</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>* JCI-accredited hospitals (highest international standard)</li>
+          <li>* English standard throughout healthcare system</li>
+          <li>* Minimal wait times (days, not weeks)</li>
+          <li>* State-of-the-art facilities and equipment</li>
+          <li>* Doctors from US, UK, Germany, India</li>
+          <li>* 24/7 emergency care</li>
+          <li>* Medical tourism destination</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Top Hospitals</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>* <strong>Cleveland Clinic Abu Dhabi:</strong> World-renowned US hospital</li>
+          <li>* <strong>American Hospital Dubai:</strong> Premier full-service hospital</li>
+          <li>* <strong>Mediclinic:</strong> Large regional network</li>
+          <li>* <strong>King's College Hospital Dubai:</strong> UK-affiliated</li>
+          <li>* <strong>Moorfields Eye Hospital:</strong> Specialist care</li>
+          <li>* <strong>German Heart Centre:</strong> Cardiac specialty</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Costs with Insurance</h3>
+
+    <p class="mb-4">
+      With proper health insurance, your out-of-pocket costs are typically limited to:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP visit:</strong> $0-40 copay (depending on plan)</li>
+      <li><strong>Specialist:</strong> $20-80 copay</li>
+      <li><strong>Hospitalization:</strong> Covered minus annual deductible ($0-2,500 typical)</li>
+      <li><strong>Prescriptions:</strong> 10-20% copay on most plans</li>
+      <li><strong>Dental:</strong> Often optional add-on ($500-1,500/year)</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public vs. Private Healthcare</h3>
+
+    <p class="mb-4">
+      The UAE healthcare system is primarily private. Public hospitals exist but are generally for UAE nationals. As a Golden Visa holder, you'll use private facilities—which is why comprehensive insurance is mandatory and why the standard of care is exceptionally high.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Medical tourism note:</strong> UAE hospitals attract medical tourists from around the world for elective procedures. As a resident, you'll benefit from this infrastructure. Many complex procedures that would have long wait times in other countries can be scheduled within days in Dubai or Abu Dhabi.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is it really 0% personal income tax?</h3>
+        <p class="text-neutral-600">
+          Yes. The UAE has no personal income tax—your salary, dividends, capital gains, and rental income are 100% yours. However, a 9% corporate tax was introduced in 2023 for business profits exceeding AED 375,000. Free zone companies may still qualify for 0% corporate tax if meeting substance requirements. Also note: US citizens must file US taxes regardless of residence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get UAE citizenship through the Golden Visa?</h3>
+        <p class="text-neutral-600">
+          Generally, no. UAE citizenship is rarely granted to non-Emiratis. The Golden Visa provides indefinite renewable residence, but not a path to citizenship. Exceptional cases of citizenship are granted by royal decree to individuals who have made extraordinary contributions to the UAE—but this is rare and cannot be applied for. For most investors, permanent residence is the realistic goal.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I sell my property after getting the Golden Visa?</h3>
+        <p class="text-neutral-600">
+          If you sell your qualifying investment before the 10-year period ends, you lose your Golden Visa status. You must maintain the investment throughout. However, you can upgrade—buy a more expensive property, for example—as long as you remain above the threshold. Some investors buy additional properties while retaining the original qualifying investment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long can I stay outside the UAE?</h3>
+        <p class="text-neutral-600">
+          Golden Visa holders can stay outside the UAE for up to 6 months without affecting their residence status. There's no minimum stay requirement—you don't need to live in the UAE full-time. This flexibility is one of the program's key advantages for investors who want a UAE base without committing to full-time residence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I sponsor my family?</h3>
+        <p class="text-neutral-600">
+          Yes. Golden Visa holders can sponsor their spouse, children (no age limit for female children; male children until they marry), and domestic staff (helpers, drivers). Each dependent needs their own health insurance policy. Dependent visas are processed after your Golden Visa is approved, typically within 1-2 weeks.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about banking and financial services?</h3>
+        <p class="text-neutral-600">
+          With your Emirates ID and Golden Visa, you can open UAE bank accounts, get credit cards, and access full financial services. Major banks include Emirates NBD, ADCB, FAB, and international banks (HSBC, Standard Chartered). UAE banking is modern, with excellent digital services. The UAE is also a crypto-friendly jurisdiction with regulated exchanges.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The UAE Golden Visa is the premier choice for investors who prioritize wealth preservation over citizenship. The combination of 10-year residence, 0% personal income tax, 100% business ownership, and world-class infrastructure is unmatched. No European or American program offers comparable tax treatment with this level of stability and development.
+    </p>
+
+    <p class="mb-4">
+      The AED 2 million (~$545,000) investment threshold is significant but reasonable compared to the lifetime tax savings for high earners. At $300,000 annual income, you'll save $120,000+ per year in taxes compared to the US or UK—more than recovering the investment cost in 5 years while retaining the asset.
+    </p>
+
+    <p class="mb-6">
+      The main limitations are the lack of citizenship path and high cost of living. If you need a second passport or prefer European lifestyle, look elsewhere. But if you want to maximize after-tax wealth accumulation in a stable, business-friendly jurisdiction with global connectivity, the UAE Golden Visa is hard to beat.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The UAE Golden Visa is ideal for high-net-worth investors and entrepreneurs who want tax-free income, long-term stability, and a strategic base between Europe and Asia—without needing a path to citizenship. Health insurance is mandatory—budget $3,000-8,000/year for comprehensive coverage. Work with qualified professionals for property and visa, and verify all requirements before committing.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/bupa-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Bupa Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/uae/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UAE Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in the UAE</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/uae" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UAE Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Virtual Working Visa for remote workers earning $3,500+/month</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/uae" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UAE Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Self-employed visa for freelancers and independent contractors</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

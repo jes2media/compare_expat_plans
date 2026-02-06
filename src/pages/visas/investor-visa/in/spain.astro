@@ -1,0 +1,878 @@
+---
+/**
+ * Spain Investor Visa (Golden Visa) - Long-form CRO-optimized page
+ * Visado de Inversor guide with investment options and insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Spain", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Spain Insurance Guide", href: "/countries/spain/insurance" },
+  { title: "Spain Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/spain" },
+  { title: "Spain Retirement Visa", href: "/visas/retirement-visa/in/spain" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Investment Option" },
+  { key: "minimum", header: "Minimum Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const investmentRows = [
+  { option: "Real Estate", minimum: "€500,000", notes: "Most popular route; property can generate rental income" },
+  { option: "Spanish Company Shares", minimum: "€1,000,000", notes: "Active Spanish company or investment fund" },
+  { option: "Bank Deposits", minimum: "€1,000,000", notes: "Must be held in Spanish financial institution" },
+  { option: "Government Bonds", minimum: "€2,000,000", notes: "Spanish public debt instruments" },
+  { option: "Business Project", minimum: "No fixed minimum", notes: "Must create jobs and demonstrate economic benefit" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Golden Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Full private coverage (cobertura completa)", notes: "Travel medical insurance NOT accepted" },
+  { feature: "Provider Type", requirement: "International or Spanish private insurer", notes: "Public healthcare access comes later" },
+  { feature: "Coverage Area", requirement: "Must cover Spain", notes: "Worldwide coverage preferred but not required" },
+  { feature: "Duration", requirement: "Full visa duration", notes: "Policy must remain active throughout stay" },
+  { feature: "Pre-existing Conditions", requirement: "No specific mandate", notes: "Varies by insurer; waiting periods common" },
+  { feature: "Repatriation", requirement: "Recommended", notes: "Most comprehensive policies include this" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€200-450", strengths: "High-net-worth individuals, comprehensive global coverage" },
+  { provider: "Bupa Global", type: "International", price: "€250-500", strengths: "Premium service, extensive network, family coverage" },
+  { provider: "Allianz Care", type: "International", price: "€180-400", strengths: "Flexible plans, good Spain network" },
+  { provider: "Sanitas (Bupa Spain)", type: "Spanish Private", price: "€80-200", strengths: "Excellent local network, Spanish-focused" },
+  { provider: "Adeslas", type: "Spanish Private", price: "€70-180", strengths: "Largest network in Spain, affordable" },
+  { provider: "DKV Seguros", type: "Spanish Private", price: "€90-220", strengths: "Good balance of coverage and cost" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€80", notes: "Paid at Spanish consulate or UGE" },
+  { item: "Residence Permit (TIE)", amount: "€500 (approx)", notes: "Higher than other visa types" },
+  { item: "Investment (Real Estate)", amount: "€500,000+", notes: "Most common route" },
+  { item: "Property Transfer Tax", amount: "6-10% of property", notes: "Varies by region; ~€30,000-50,000 on min investment" },
+  { item: "Notary and Registry Fees", amount: "€2,000-5,000", notes: "For property purchase" },
+  { item: "Legal Fees", amount: "€5,000-15,000", notes: "Immigration lawyer + property lawyer" },
+  { item: "Health Insurance", amount: "€150-500/month", notes: "Required; budget €2,400-6,000/year" },
+  { item: "NIE Application", amount: "€10-15", notes: "Tax identification number" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Find and reserve property", duration: "2-8 weeks", location: "Spain (or remotely)" },
+  { step: "Obtain NIE (tax number)", duration: "1-4 weeks", location: "Spain or Spanish consulate" },
+  { step: "Complete property purchase", duration: "4-8 weeks", location: "Spain (notary required)" },
+  { step: "Gather visa documents", duration: "1-2 weeks", location: "Home country/Spain" },
+  { step: "Submit Golden Visa application", duration: "1 day", location: "UGE (Spain) or consulate" },
+  { step: "Visa processing (fast-track)", duration: "10-20 business days", location: "Government review" },
+  { step: "Receive residence authorization", duration: "After approval", location: "Consulate/UGE" },
+  { step: "Apply for TIE card", duration: "1-4 weeks wait", location: "Police station (Spain)" },
+  { step: "Receive TIE card", duration: "2-4 weeks", location: "Police station (Spain)" },
+];
+---
+
+<PageShell
+  title="Spain Golden Visa 2026: Investment Options, Insurance & Application Guide"
+  description="Complete guide to Spain's Golden Visa (Visado de Inversor). Investment requirements from €500,000, insurance requirements, no minimum stay, and path to EU residency."
+  headline="Spain Golden Visa: Investment & Insurance Guide"
+  subheadline="Everything you need to know about Spain's Investor Visa—€500,000 real estate route, mandatory private insurance, minimal stay requirements, and the path to permanent residence."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/spain-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Spanish Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      No Minimum Stay Required
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Spain's Golden Visa (Visado de Inversor) is one of Europe's most attractive investor residence programs. Launched in 2013, it offers a straightforward path to EU residency through investment—most commonly via real estate purchases of €500,000 or more. Unlike most residence visas, the Golden Visa has no minimum stay requirement: you only need to visit Spain once per year to maintain your status.
+    </p>
+
+    <p class="mb-4">
+      For high-net-worth individuals seeking access to the EU, Spain offers compelling advantages: a mild climate, excellent infrastructure, direct flights to major global cities, and a clear path to permanent residence and eventually citizenship. The program is particularly popular among investors from the US, UK, China, Russia, and the Middle East.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Spain Golden Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Visado de Inversor / Golden Visa</li>
+        <li>• <strong>Minimum investment:</strong> €500,000 (real estate), €1M (shares/deposits), €2M (bonds)</li>
+        <li>• <strong>Minimum stay:</strong> None—just one visit per year to renew</li>
+        <li>• <strong>Duration:</strong> 2 years initial, then 5-year renewals</li>
+        <li>• <strong>Family included:</strong> Spouse, children under 18, dependent parents</li>
+        <li>• <strong>Path to PR:</strong> 5 years; citizenship after 10 years</li>
+        <li>• <strong>Work rights:</strong> Full work and business rights in Spain</li>
+        <li>• <strong>Schengen access:</strong> Travel freely within 26 Schengen countries</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Spain's Golden Visa?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• No minimum stay requirement (visit once per year)</li>
+          <li>• Include spouse, children, and dependent parents</li>
+          <li>• Full work and business rights</li>
+          <li>• Fast-track processing (10-20 business days)</li>
+          <li>• Property can generate rental income</li>
+          <li>• Access to 26 Schengen countries</li>
+          <li>• Clear path to permanent residence and citizenship</li>
+          <li>• High quality of life and healthcare</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• High investment threshold (€500,000 minimum)</li>
+          <li>• Additional costs: taxes, legal fees, insurance</li>
+          <li>• Spanish property market has regional variations</li>
+          <li>• Must maintain investment throughout visa period</li>
+          <li>• Private insurance required (no immediate public access)</li>
+          <li>• 10 years to citizenship (longer than some EU countries)</li>
+          <li>• Potential future changes to program terms</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>2023-2024 developments:</strong> Spain has discussed restricting Golden Visa real estate purchases in certain high-demand areas (Barcelona, parts of Madrid) to address housing affordability. As of early 2026, the program continues with €500,000 threshold, but investors should monitor potential changes and consider diversifying beyond the most popular areas.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Spain's Golden Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have €500,000+ to invest in real estate</li>
+          <li>✓ You want EU residency without relocating full-time</li>
+          <li>✓ You value a "base" in Europe for travel and business</li>
+          <li>✓ You want to include your entire family</li>
+          <li>✓ You're comfortable with ongoing insurance costs</li>
+          <li>✓ You can handle Spanish bureaucracy (with legal help)</li>
+          <li>✓ You have a long-term horizon (5-10 years)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You have less than €500,000 to invest</li>
+          <li>• You want citizenship faster (Portugal offers 5 years)</li>
+          <li>• You need to minimize ongoing costs</li>
+          <li>• You prefer to live elsewhere in the EU</li>
+          <li>• You want a lower investment threshold (Greece: €250k)</li>
+          <li>• You're uncomfortable with property market risk</li>
+          <li>• You need immediate public healthcare access</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Comparing EU Golden Visas</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Min. Investment</th>
+            <th class="px-4 py-2 text-left">Min. Stay</th>
+            <th class="px-4 py-2 text-left">Path to Citizenship</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Spain</td>
+            <td class="px-4 py-2">€500,000</td>
+            <td class="px-4 py-2">None (visit 1x/year)</td>
+            <td class="px-4 py-2">10 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Portugal</td>
+            <td class="px-4 py-2">€500,000 (funds)</td>
+            <td class="px-4 py-2">7 days/year</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Greece</td>
+            <td class="px-4 py-2">€250,000-500,000</td>
+            <td class="px-4 py-2">None</td>
+            <td class="px-4 py-2">7 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Malta</td>
+            <td class="px-4 py-2">€150,000+ (rental)</td>
+            <td class="px-4 py-2">None</td>
+            <td class="px-4 py-2">5 years (residency)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Spain stands out:</strong> While other countries offer lower investment thresholds or faster citizenship, Spain combines no minimum stay with full work rights, a strong economy, excellent infrastructure, and one of Europe's most desirable lifestyles. The €500,000 investment in Spanish real estate also holds tangible value and can generate rental income.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Spain offers five qualifying investment routes for the Golden Visa. Real estate is by far the most popular, accounting for over 90% of applications. The investment must be maintained throughout your residency period—you cannot sell the property and keep the visa.
+    </p>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Real Estate Route (Most Popular)</h3>
+
+    <p class="mb-4">
+      The €500,000 real estate investment is the threshold for the property's purchase price (excluding mortgage, if any). You can:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Buy one or multiple properties:</strong> The total must reach €500,000</li>
+      <li><strong>Use a mortgage:</strong> But only the equity portion counts (if you buy €700,000 property with €200,000 mortgage, only €500,000 counts)</li>
+      <li><strong>Buy residential or commercial:</strong> Apartments, houses, offices, retail—all qualify</li>
+      <li><strong>Buy anywhere in Spain:</strong> Madrid, Barcelona, Costa del Sol, Balearics, etc.</li>
+      <li><strong>Generate rental income:</strong> Nothing prevents you from renting out the property</li>
+    </ul>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Popular Investment Locations</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Madrid:</strong> Capital city, strong rental market</li>
+          <li>• <strong>Barcelona:</strong> International hub, high demand</li>
+          <li>• <strong>Marbella/Costa del Sol:</strong> Luxury market, expat community</li>
+          <li>• <strong>Valencia:</strong> More affordable, growing popularity</li>
+          <li>• <strong>Malaga:</strong> Tech hub, good value</li>
+          <li>• <strong>Balearic Islands:</strong> Mallorca, Ibiza—premium prices</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Property Considerations</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Get an independent property valuation</li>
+          <li>• Verify property is free of encumbrances</li>
+          <li>• Consider rental yield potential</li>
+          <li>• Factor in community fees (comunidad)</li>
+          <li>• Understand local property taxes (IBI)</li>
+          <li>• Use a qualified Spanish lawyer</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Alternative Investment Routes</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Spanish Company Shares / Investment Funds (€1,000,000)</h4>
+        <p class="text-neutral-600">Invest in active Spanish companies or Spanish-registered investment funds. This route requires due diligence on the investment target and is less common than real estate. The investment must be maintained, and you'll need to work with Spanish financial institutions.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Bank Deposits (€1,000,000)</h4>
+        <p class="text-neutral-600">Deposit €1 million in a Spanish bank account. This is liquid and low-risk but offers minimal return. The funds must remain deposited throughout your residency period—you cannot withdraw and spend them.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Government Bonds (€2,000,000)</h4>
+        <p class="text-neutral-600">Purchase Spanish public debt instruments worth at least €2 million. This is the highest threshold but offers government-backed security. Returns follow Spanish bond yields.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Business Project (No Fixed Minimum)</h4>
+        <p class="text-neutral-600">Launch a business that creates jobs or contributes to Spain's economy. No fixed investment minimum, but you must demonstrate significant economic benefit. This route requires a detailed business plan and is evaluated on a case-by-case basis. Useful if you're starting a company anyway.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> The investment must be free of any liens or encumbrances and made with legally obtained funds. You'll need to demonstrate the source of funds—bank transfers, sale of assets, business income—as part of your application. Anti-money-laundering checks are thorough.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Private Health Insurance is Required</h3>
+      <p class="text-green-800">
+        Golden Visa applicants must have private health insurance with a Spanish-authorized insurer providing full coverage (cobertura completa) in Spain. This is mandatory for your initial application and all renewals. Travel insurance or limited coverage plans are not accepted.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Unlike residents who work and pay into Spain's social security system, Golden Visa holders do not automatically receive access to Spain's public healthcare. You'll rely on private insurance for the duration of your visa—typically until you qualify for permanent residence after 5 years.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What "Full Coverage" Means</h3>
+
+    <p class="mb-4">
+      Spanish authorities require comprehensive private health insurance. Your policy should include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Inpatient hospitalization:</strong> Full coverage for hospital stays and surgeries</li>
+      <li><strong>Outpatient care:</strong> Doctor visits, specialists, diagnostics</li>
+      <li><strong>Emergency care:</strong> 24/7 emergency treatment</li>
+      <li><strong>No coverage caps:</strong> Or very high annual limits (€1M+)</li>
+      <li><strong>Valid in Spain:</strong> Policy must explicitly cover Spain</li>
+      <li><strong>No copays on essential care:</strong> Some policies accepted with moderate copays</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">International vs. Spanish Private Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">International Insurance (Cigna, Bupa, Allianz)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Worldwide coverage—use anywhere</li>
+          <li>✓ English-language service and claims</li>
+          <li>✓ Portable if you leave Spain</li>
+          <li>✓ Often better for pre-existing conditions</li>
+          <li>✓ Premium service and amenities</li>
+          <li>• Higher cost (€200-500/month)</li>
+          <li>• May require upfront payment + reimbursement</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Spanish Private Insurance (Sanitas, Adeslas)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Lower cost (€70-200/month)</li>
+          <li>✓ Extensive Spanish hospital networks</li>
+          <li>✓ Direct billing—no reimbursement needed</li>
+          <li>✓ Familiar to Spanish doctors/hospitals</li>
+          <li>• Spain-only coverage</li>
+          <li>• Spanish-language service primarily</li>
+          <li>• Cancel if you leave Spain</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> For Golden Visa applicants who travel frequently or maintain homes in multiple countries, international insurance from Cigna Global or Bupa Global provides flexibility and global coverage. If you'll spend most of your time in Spain and prefer lower costs, Spanish private insurers like Sanitas (owned by Bupa) offer excellent local coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Spanish Golden Visa?"
+    description="Compare international and Spanish private insurers that meet Golden Visa requirements."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Golden Visa applicants typically have two choices: international insurers offering worldwide coverage at premium prices, or Spanish private insurers with extensive local networks at lower costs. Your choice depends on how much time you'll spend in Spain vs. traveling.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Traveler / Multiple Residences</h4>
+        <p class="text-neutral-600">If you'll split time between Spain, other countries, and your home country, choose Cigna Global or Bupa Global. These provide seamless worldwide coverage—you can see doctors in New York, London, or Madrid without changing plans. The premium cost is worth it for true global mobility.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Primarily Spain-Based / Cost-Conscious</h4>
+        <p class="text-neutral-600">If you'll spend most of your time in Spain, Sanitas or Adeslas offer excellent coverage at roughly half the cost of international plans. Sanitas (owned by Bupa) provides the reassurance of a global parent company. Adeslas has Spain's largest provider network.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Coverage</h4>
+        <p class="text-neutral-600">Bupa Global offers particularly strong family plans with pediatric coverage and maternity benefits. For a family of four, budget €800-1,500/month for comprehensive international coverage, or €300-600/month for Spanish private insurance.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">International insurers like Cigna Global typically offer better coverage for pre-existing conditions after waiting periods (often 12-24 months). Spanish insurers may exclude conditions entirely. Disclose all conditions upfront and compare policies carefully.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The Golden Visa involves substantial upfront costs beyond the investment itself. Budget for taxes, legal fees, and ongoing insurance. The numbers below assume the €500,000 real estate route.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimate (Real Estate Route)</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Upfront Costs</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Property purchase: <strong>€500,000</strong></li>
+            <li>Transfer tax (8% avg): <strong>€40,000</strong></li>
+            <li>Notary/registry: <strong>€3,000</strong></li>
+            <li>Legal fees: <strong>€10,000</strong></li>
+            <li>Visa/TIE fees: <strong>€600</strong></li>
+            <li class="pt-2 border-t font-semibold">Total upfront: <strong>€553,600</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Annual Ongoing Costs</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Health insurance: <strong>€3,000-6,000</strong></li>
+            <li>Property tax (IBI): <strong>€1,000-3,000</strong></li>
+            <li>Community fees: <strong>€1,000-3,000</strong></li>
+            <li>Property maintenance: <strong>€500-2,000</strong></li>
+            <li>Non-resident income tax: <strong>€1,000-2,000</strong>*</li>
+            <li class="pt-2 border-t font-semibold">Total annual: <strong>€6,500-16,000</strong></li>
+          </ul>
+          <p class="text-sm text-neutral-500 mt-2">*If not renting out; based on deemed rental value</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Property Taxes and Fees by Region</h3>
+
+    <p class="mb-4">
+      Property transfer tax (Impuesto de Transmisiones Patrimoniales) varies by autonomous community:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Madrid:</strong> 6% (lowest in Spain)</li>
+      <li><strong>Catalonia (Barcelona):</strong> 10%</li>
+      <li><strong>Andalusia (Marbella, Malaga):</strong> 7%</li>
+      <li><strong>Valencia:</strong> 10%</li>
+      <li><strong>Balearic Islands:</strong> 8-11% (depending on value)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Rental income potential:</strong> Many Golden Visa investors offset costs by renting out their Spanish property. A €500,000 apartment in Madrid or Barcelona can generate €1,500-3,000/month in rental income—potentially covering insurance and ongoing costs. Consult a Spanish tax advisor about rental income taxation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Golden Visa application is relatively fast by immigration standards—Spain offers expedited processing for investors. Most applicants receive approval within 10-20 business days. You can apply from outside Spain (at a consulate) or from within Spain at the Unidad de Grandes Empresas (UGE).
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Your NIE (Tax Identification Number)</h4>
+          <p class="text-neutral-600">Before purchasing property, you need a NIE (Número de Identificación de Extranjero). Apply at a Spanish consulate or police station in Spain. This takes 1-4 weeks and is required for all financial transactions in Spain.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Find and Purchase Qualifying Property</h4>
+          <p class="text-neutral-600">Work with a reputable real estate agent and independent lawyer. Conduct due diligence: verify ownership, check for liens, review community rules. Sign a reservation contract (usually €6,000-10,000 deposit), then complete at notary. Total process: 4-8 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Certificate from Land Registry</h4>
+          <p class="text-neutral-600">After purchase, obtain a certificate from the Land Registry (Registro de la Propiedad) confirming your ownership and the property value. This document is required for the visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Health Insurance</h4>
+          <p class="text-neutral-600">Obtain a policy from an authorized insurer (Spanish or international) that provides full coverage in Spain. Get a certificate confirming coverage for the visa application. This can be done quickly—often same-day.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Supporting Documents</h4>
+          <p class="text-neutral-600">Compile: passport, photographs, criminal background check (apostilled), proof of funds source, health insurance certificate, land registry certificate, and completed application forms. Some documents need sworn translation into Spanish.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Golden Visa Application</h4>
+          <p class="text-neutral-600">Apply at the UGE (Large Business Unit) in Madrid, Barcelona, or other major cities if you're in Spain—or at a Spanish consulate if abroad. Pay the €80 visa fee. The UGE offers faster processing than consulates.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Residence Authorization</h4>
+          <p class="text-neutral-600">Processing typically takes 10-20 business days. Upon approval, you'll receive residence authorization. If you applied at a consulate, you'll receive a visa to enter Spain. If you applied in Spain, you can proceed directly to TIE.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for TIE (Residence Card)</h4>
+          <p class="text-neutral-600">Within 30 days of approval, schedule an appointment at a police station (Comisaría) to provide biometrics and apply for your TIE card. Pay the ~€500 fee. The card arrives in 2-4 weeks and is your official residence document.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Family applications:</strong> Your spouse, children under 18, and dependent parents can apply simultaneously or subsequently. Each family member needs their own health insurance policy. They receive the same residence rights as the primary applicant.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Golden Visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Executive, €650,000 Madrid Apartment</h3>
+        <p class="text-neutral-600 mb-4">55 years old, married, wants EU base for business travel and eventual retirement. Purchased modern apartment in Salamanca district.</p>
+        <p class="text-green-700 font-medium">✓ Golden Visa approved in 14 business days. Chose Cigna Global for worldwide coverage (€400/month for couple). Visits Spain 6-8 weeks per year, rents apartment short-term when away. Generating €2,500/month rental income. Planning permanent move after retirement in 5 years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Family, €520,000 Barcelona Property</h3>
+        <p class="text-neutral-600 mb-4">Couple (40s) with two children, post-Brexit EU access needed. Purchased apartment in Eixample.</p>
+        <p class="text-green-700 font-medium">✓ Entire family approved—parents and both children under 18. Chose Sanitas for family (€350/month total). Living in Barcelona full-time, children in international school. Husband works remotely for UK company. On track for permanent residence in 4 more years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Investor, Multiple Properties Totaling €500,000</h3>
+        <p class="text-neutral-600 mb-4">Purchased two apartments in Valencia—one residential (€350,000), one for rental (€150,000).</p>
+        <p class="text-amber-700 font-medium">△ Initial application delayed—needed additional documentation proving source of funds. Provided bank statements and business records. Approved after 5 weeks total. Now managing rental property remotely, visiting twice yearly. Notes that Valencia offered better value than Barcelona.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Russian Entrepreneur, €1M Business Investment</h3>
+        <p class="text-neutral-600 mb-4">Invested €1M in Spanish tech company rather than real estate due to sanctions-related banking complications with property purchases.</p>
+        <p class="text-amber-700 font-medium">△ More complex application process—required detailed due diligence on investment target. Approval took 6 weeks. Bupa Global insurance for €450/month. Now actively involved in the company and considering additional investments. Recommends working with specialized immigration lawyer for non-real-estate routes.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Middle Eastern Family, €800,000 Marbella Villa</h3>
+        <p class="text-neutral-600 mb-4">Family of five seeking vacation home and EU access. Purchased luxury villa in Nueva Andalucía.</p>
+        <p class="text-green-700 font-medium">✓ Smooth approval for all five family members. International insurance (Bupa Global family plan) at €1,100/month. Using property 3-4 months per year, particularly during summer. Children attend summer programs in Spain. Appreciating Schengen access for European travel.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">First-Time Applicant, €480,000 Budget</h3>
+        <p class="text-neutral-600 mb-4">Attempted to qualify with €480,000 property, planning to add funds later.</p>
+        <p class="text-red-700 font-medium">✗ Application rejected—investment must meet €500,000 threshold at time of application. Returned 3 months later after saving additional funds, purchased €510,000 apartment. Second application approved. Lesson: Don't cut it close—aim for at least €510,000-520,000 to ensure clear qualification.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Spanish Golden Visa"
+    description="Find the right coverage for your investment in Spain—international or local options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Cutting the Investment Too Close to €500,000</h3>
+        <p class="text-neutral-600">The €500,000 threshold is strict—there's no flexibility. If your property is valued at €498,000 on official documents, your application will be rejected. Always aim for at least €510,000-520,000 to account for valuation differences and provide a clear margin.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Travel or Budget Health Insurance</h3>
+        <p class="text-neutral-600">SafetyWing, World Nomads, and similar travel insurance policies are not accepted for the Golden Visa. You need comprehensive private health insurance from an authorized insurer. Budget €150-500/month for qualifying coverage and get confirmation in writing before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Neglecting Source of Funds Documentation</h3>
+        <p class="text-neutral-600">Spain requires proof that your investment funds are legally obtained. Prepare bank statements, business records, asset sale documentation, or inheritance records. Applicants from certain countries face additional scrutiny. Work with a lawyer to compile appropriate documentation.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Independent Legal Advice</h3>
+        <p class="text-neutral-600">Never rely solely on the real estate agent's recommended lawyer. Use an independent Spanish immigration lawyer and a separate property lawyer. The €5,000-15,000 in legal fees is worthwhile insurance against problems that could cost far more to fix.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting About Ongoing Maintenance Requirements</h3>
+        <p class="text-neutral-600">The Golden Visa requires maintaining your investment and valid insurance throughout the visa period. If you sell the property or let insurance lapse, you lose your residence status. Plan for ongoing costs: property taxes, community fees, insurance premiums, and periodic renewals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Spain -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Spain</h2>
+
+    <p class="mb-4">
+      Spain has an excellent healthcare system, ranking among the world's best. However, Golden Visa holders rely on private healthcare until they qualify for public benefits—typically after obtaining permanent residence or working and contributing to social security.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Quality</h3>
+
+    <p class="mb-4">
+      Spanish private healthcare is world-class, particularly in major cities. You'll have access to:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What Private Insurance Covers</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Modern hospitals with latest equipment</li>
+          <li>✓ English-speaking doctors (major cities)</li>
+          <li>✓ Short waiting times (days, not months)</li>
+          <li>✓ Specialist access without GP referral</li>
+          <li>✓ Private rooms for hospital stays</li>
+          <li>✓ Dental care (with most policies)</li>
+          <li>✓ Preventive care and check-ups</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Major Private Hospital Networks</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• <strong>Quirónsalud:</strong> Largest private network, 50+ hospitals</li>
+          <li>• <strong>HM Hospitales:</strong> Premium care, Madrid focus</li>
+          <li>• <strong>Vithas:</strong> Growing network, 19 hospitals</li>
+          <li>• <strong>Hospital Universitario:</strong> Teaching hospitals</li>
+          <li>• <strong>Teknon (Barcelona):</strong> Top-tier specialist care</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Path to Public Healthcare</h3>
+
+    <p class="mb-4">
+      Golden Visa holders can access Spain's public healthcare (Sistema Nacional de Salud) through several routes:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Work in Spain:</strong> If you work and pay social security contributions, you become eligible for public healthcare</li>
+      <li><strong>Permanent residence:</strong> After 5 years of legal residence, permanent residents can access public healthcare</li>
+      <li><strong>Convenio especial:</strong> Pay into the public system voluntarily (~€60-160/month depending on age) for coverage</li>
+      <li><strong>Emergency care:</strong> Spanish emergency rooms must treat everyone regardless of insurance status</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Healthcare quality comparison:</strong> Spanish public healthcare is excellent—often comparable to private care. The main advantages of private insurance are shorter waiting times and more choice of doctors/hospitals. Many long-term residents eventually use a mix: private insurance for routine care and convenience, public system for major treatments covered by convenio especial.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long do I need to stay in Spain to maintain my Golden Visa?</h3>
+        <p class="text-neutral-600">
+          There is no minimum stay requirement. You only need to visit Spain at least once during each residence permit period (every 2 years initially, then every 5 years). This makes Spain's Golden Visa one of the most flexible in Europe for investors who don't want to relocate full-time.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I include my family in the Golden Visa application?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse, children under 18, and economically dependent parents can all be included. Each family member needs their own health insurance policy. They receive the same residence rights and can travel, work, and study in Spain. Adult children over 18 cannot be included unless they are economically dependent.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I sell my property after getting the Golden Visa?</h3>
+        <p class="text-neutral-600">
+          If you sell the qualifying investment before obtaining permanent residence (5 years), you lose your Golden Visa status. You must maintain the €500,000+ investment throughout the visa period. After permanent residence, you can sell the property without affecting your immigration status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work or start a business in Spain with a Golden Visa?</h3>
+        <p class="text-neutral-600">
+          Yes. Unlike some investor visas that restrict work, Spain's Golden Visa grants full work and business rights. You can be employed by Spanish companies, start your own business, or continue working remotely. There are no restrictions on the type of work or business activity.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can apply for Spanish citizenship?</h3>
+        <p class="text-neutral-600">
+          Standard path to citizenship is 10 years of legal residence. Nationals of Latin American countries, Andorra, Philippines, Equatorial Guinea, and Portugal can apply after just 2 years. Sephardic Jews may also qualify for expedited citizenship. You must pass Spanish language and culture tests.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Spain's Golden Visa program at risk of being cancelled?</h3>
+        <p class="text-neutral-600">
+          Spain has discussed modifications to address housing affordability concerns—potentially restricting real estate purchases in high-demand areas like Barcelona and parts of Madrid. However, the program continues as of 2026. Investors should monitor developments but the program has strong economic support. Even if modified, existing visa holders typically retain their status.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Spain's Golden Visa offers a compelling combination: no minimum stay requirement, full work rights, family inclusion, and a clear path to permanent EU residence—all tied to a tangible real estate investment that can generate rental income. For high-net-worth individuals seeking a European base without committing to full-time relocation, it's one of the strongest options available.
+    </p>
+
+    <p class="mb-4">
+      The €500,000 investment threshold is significant but reasonable compared to other EU programs offering similar flexibility. The real cost is higher once you factor in transfer taxes, legal fees, and ongoing insurance—budget €550,000-600,000 total for the initial setup, plus €6,000-16,000 annually for maintenance costs.
+    </p>
+
+    <p class="mb-6">
+      The main considerations are the 10-year path to citizenship (longer than Portugal's 5 years) and the ongoing requirement to maintain your investment and health insurance. For investors comfortable with these parameters, Spain delivers excellent quality of life, world-class healthcare (via private insurance), and seamless access to the entire Schengen area.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Spain's Golden Visa is ideal for investors who want EU access without relocating full-time, value tangible real estate investment over financial products, and have a 5-10 year horizon. Private health insurance is mandatory—budget €200-500/month for comprehensive coverage. Work with qualified legal professionals and don't cut corners on the investment threshold.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance →
+        </a>
+        <a href="/go/bupa-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Bupa Global Plans →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/spain/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in Spain</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/spain" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Remote work visa for those earning €2,200+/month</p>
+      </a>
+      <a href="/visas/retirement-visa/in/spain" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Retirement Visa</h3>
+        <p class="text-neutral-600 text-sm">Non-lucrative visa for retirees with passive income</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

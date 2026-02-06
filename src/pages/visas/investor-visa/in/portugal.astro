@@ -1,0 +1,911 @@
+---
+/**
+ * Portugal Golden Visa / Investor Visa - Long-form CRO-optimized page
+ * Autorização de Residência para Atividade de Investimento (ARI) guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Portugal", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Portugal Health Insurance Guide", href: "/countries/portugal/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Portugal Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/portugal" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Investment Option" },
+  { key: "minimum", header: "Minimum Amount" },
+  { key: "notes", header: "Key Details" },
+];
+
+const investmentRows = [
+  { option: "Investment Funds", minimum: "€500,000", notes: "Portuguese venture capital or private equity funds" },
+  { option: "Capital Transfer", minimum: "€1,500,000", notes: "Bank deposit or securities" },
+  { option: "Company Creation", minimum: "€500,000 + 10 jobs", notes: "Or 8 jobs in low-density areas" },
+  { option: "Research/Arts Contribution", minimum: "€500,000", notes: "Scientific research or cultural heritage" },
+  { option: "Heritage Preservation", minimum: "€250,000-500,000", notes: "Cultural heritage restoration projects" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "recommendation", header: "Our Recommendation" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Private health insurance", recommendation: "Comprehensive international plan" },
+  { feature: "Coverage Area", requirement: "Must cover Portugal", recommendation: "Europe-wide or global coverage" },
+  { feature: "Coverage Limits", requirement: "No annual limits", recommendation: "€1M+ or unlimited" },
+  { feature: "Duration", requirement: "Valid for visa period", recommendation: "Annual renewable policy" },
+  { feature: "Inpatient Care", requirement: "Required", recommendation: "Full hospitalization coverage" },
+  { feature: "Outpatient Care", requirement: "Required", recommendation: "GP, specialists, diagnostics" },
+  { feature: "Emergency Evacuation", requirement: "Recommended", recommendation: "Essential for travel" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€200-500", strengths: "Comprehensive coverage, large global network" },
+  { provider: "Allianz Care", type: "International", price: "€180-450", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "BUPA Global", type: "International", price: "€250-600", strengths: "Premium coverage, excellent service" },
+  { provider: "Multicare (Fidelidade)", type: "Local Portuguese", price: "€50-150", strengths: "Budget option, extensive local network" },
+  { provider: "Allianz Portugal", type: "Local Portuguese", price: "€60-180", strengths: "Good local coverage, visa-accepted" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Application Fee (AIMA)", amount: "€5,324.60", notes: "Per main applicant" },
+  { item: "Family Member Fee", amount: "€5,324.60", notes: "Per additional family member" },
+  { item: "Renewal Fee (every 2 years)", amount: "€2,662.30", notes: "Per person" },
+  { item: "Legal/Advisory Fees", amount: "€5,000-15,000", notes: "Immigration lawyer recommended" },
+  { item: "Investment Verification", amount: "€1,000-3,000", notes: "Due diligence on investment" },
+  { item: "Health Insurance", amount: "€150-500/month", notes: "Private international coverage" },
+  { item: "NIF (Tax Number)", amount: "€0-200", notes: "Free or small agent fee" },
+  { item: "Bank Account Setup", amount: "€0-500", notes: "Some banks charge setup fees" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Initial consultation and investment selection", duration: "2-4 weeks", location: "Remote/home country" },
+  { step: "Obtain NIF and open Portuguese bank account", duration: "2-6 weeks", location: "Portugal or via representative" },
+  { step: "Complete qualifying investment", duration: "4-12 weeks", location: "Investment dependent" },
+  { step: "Gather documents and obtain health insurance", duration: "2-4 weeks", location: "Home country/remote" },
+  { step: "Submit Golden Visa application to AIMA", duration: "1 day", location: "Online/Portugal" },
+  { step: "AIMA processing and approval", duration: "2-6 months", location: "AIMA review" },
+  { step: "Biometrics appointment", duration: "1 day", location: "Portugal (SEF/AIMA office)" },
+  { step: "Receive residence permit card", duration: "2-4 weeks", location: "By mail or pickup" },
+];
+---
+
+<PageShell
+  title="Portugal Golden Visa 2026: Investment Options, Insurance & Application Guide"
+  description="Complete guide to Portugal's Golden Visa (ARI). Investment requirements after the 2023 real estate changes, mandatory health insurance, costs, and path to EU citizenship in 5 years."
+  headline="Portugal Golden Visa: Investment & Insurance Guide"
+  subheadline="Everything you need to know about Portugal's investor visa—updated for 2023 changes, qualifying investments, mandatory health insurance, and the path to permanent residence and citizenship."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Investor Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/portugal-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Post-2023 Real Estate Changes
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Only 7 Days/Year Stay Required
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Portugal's Golden Visa—officially the Autorização de Residência para Atividade de Investimento (ARI)—has been one of Europe's most popular residency-by-investment programs since its launch in 2012. It offers a fast track to EU residency with minimal stay requirements: just 7 days per year in Portugal.
+    </p>
+
+    <p class="mb-4">
+      However, the program changed significantly in October 2023. Real estate investment is no longer a qualifying option, which was previously the most popular route. The program now focuses on investment funds, capital transfers, job creation, and cultural contributions.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-3">Major 2023 Changes</h3>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Real estate investment eliminated</strong>—property purchases no longer qualify (as of October 2023)</li>
+        <li>• <strong>Investment fund route remains</strong>—€500,000 minimum into qualifying Portuguese funds</li>
+        <li>• <strong>Processing delays</strong>—SEF was renamed to AIMA, causing significant backlog</li>
+        <li>• <strong>NHR tax regime phasing out</strong>—new applicants after 2024 may not qualify</li>
+      </ul>
+    </div>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Portugal Golden Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Autorização de Residência para Atividade de Investimento (ARI)</li>
+        <li>• <strong>Minimum investment:</strong> €250,000-1,500,000 (depends on route)</li>
+        <li>• <strong>Minimum stay:</strong> Only 7 days per year (extremely flexible)</li>
+        <li>• <strong>Family included:</strong> Spouse, dependent children, dependent parents</li>
+        <li>• <strong>Duration:</strong> 2 years initial, then 2-year renewals</li>
+        <li>• <strong>Permanent residence:</strong> Eligible after 5 years</li>
+        <li>• <strong>Citizenship:</strong> Eligible after 5 years (one of the fastest in the EU)</li>
+        <li>• <strong>Schengen access:</strong> Free travel in 27 Schengen countries</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Portugal's Golden Visa Remains Popular</h3>
+
+    <p class="mb-4">
+      Despite the 2023 changes, Portugal's Golden Visa offers compelling advantages over other European programs:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Unique Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Only 7 days/year presence required (vs. 183+ days for most visas)</li>
+          <li>• Path to citizenship in 5 years</li>
+          <li>• Include extended family (spouse, children, parents)</li>
+          <li>• No language requirement for residency</li>
+          <li>• Full Schengen access from day one</li>
+          <li>• Work rights in Portugal (optional)</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Post-2023 Considerations</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Investment fund route requires €500,000+</li>
+          <li>• No more property investment option</li>
+          <li>• AIMA processing delays (2-6 months+)</li>
+          <li>• NHR tax benefits being phased out</li>
+          <li>• Investment options more complex than buying property</li>
+          <li>• Fund investments carry market risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Health insurance requirement:</strong> Private health insurance is mandatory for the Golden Visa. You must provide proof of valid coverage with your application and maintain it throughout your residency. Travel insurance is not accepted—you need comprehensive international health coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">The Golden Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You have €500,000+ to invest in funds or capital</li>
+          <li>You want EU residency with minimal presence requirements</li>
+          <li>You value a path to EU citizenship</li>
+          <li>You want to include family members</li>
+          <li>You're comfortable with investment fund risk</li>
+          <li>You can wait 2-6 months for processing</li>
+          <li>You can budget €5,000+ for application fees</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You wanted to buy property (no longer qualifies)</li>
+          <li>• Your budget is under €500,000</li>
+          <li>• You need immediate residency (processing is slow)</li>
+          <li>• You prefer guaranteed returns (funds carry risk)</li>
+          <li>• You want to actively live in Portugal (try D7 visa)</li>
+          <li>• You need NHR tax benefits (being phased out)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Alternative Portugal Visa Options</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">D7 Passive Income Visa</h4>
+        <p class="text-neutral-600 text-sm">For retirees and those with passive income. No investment required, but must live in Portugal 183+ days/year. Income requirement ~€9,120/year.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">D8 Digital Nomad Visa</h4>
+        <p class="text-neutral-600 text-sm">For remote workers with non-Portuguese employers. Income requirement €3,500+/month. Must establish tax residency.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Tech Visa</h4>
+        <p class="text-neutral-600 text-sm">For entrepreneurs and employees in certified startups. Faster processing, no minimum investment.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Key difference:</strong> The Golden Visa is the only option allowing you to maintain residency with just 7 days per year in Portugal. All other visas require you to establish tax residency (183+ days). If you want to keep living elsewhere while gaining EU access, the Golden Visa is your only route.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Following the October 2023 changes, real estate investment no longer qualifies for the Golden Visa. The remaining options focus on investment funds, capital transfers, job creation, and cultural contributions.
+    </p>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-3">Important: Real Estate No Longer Qualifies</h3>
+      <p class="text-red-800 mb-2">
+        As of October 2023, purchasing property in Portugal—regardless of value or location—does not qualify for the Golden Visa. Existing Golden Visa holders with property investments can continue to renew, but new applications cannot use real estate.
+      </p>
+      <p class="text-red-800 text-sm">
+        Note: Some advisors mention "commercial" property as a workaround. This is generally not accurate—the real estate route is closed for new applications.
+      </p>
+    </div>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Investment Fund Route (Most Common)</h3>
+
+    <p class="mb-4">
+      The €500,000 investment fund route has become the most popular option since the 2023 changes. You invest in Portuguese venture capital or private equity funds that are regulated by the CMVM (Portuguese Securities Commission).
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Requirements for Qualifying Funds</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Regulated by CMVM</li>
+          <li>• At least 60% invested in Portuguese companies</li>
+          <li>• Minimum 5-year commitment period</li>
+          <li>• Must be held for duration of Golden Visa</li>
+          <li>• Cannot be in real estate funds</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Pros and Cons of Fund Investment</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Pro: Lower entry than capital transfer (€500K vs €1.5M)</li>
+          <li>Pro: Potential for investment returns</li>
+          <li>Con: Illiquid—5+ year commitment</li>
+          <li>Con: Investment risk (not guaranteed)</li>
+          <li>Con: Fund fees (1-2% annually)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Capital Transfer Route</h3>
+
+    <p class="mb-4">
+      A €1,500,000 capital transfer—bank deposits or securities—qualifies for the Golden Visa. This is more liquid than fund investments but requires three times the capital.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Job Creation Route</h3>
+
+    <p class="mb-4">
+      Creating a company that employs at least 10 Portuguese workers (or 8 in low-density areas) qualifies, regardless of capital invested. The €500,000 minimum listed is often cited but the actual requirement focuses on job creation.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> All investments must be maintained for the duration of your Golden Visa. If you withdraw your investment fund or reduce capital, you may lose your residency status. Plan for at least 5 years of capital commitment before considering divestment.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Heritage and Cultural Contributions</h3>
+
+    <p class="mb-4">
+      €250,000-500,000 contributions to cultural heritage preservation, arts, or scientific research also qualify. This route is less common and typically requires working with specialized advisors to identify qualifying projects.
+    </p>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Private health insurance is a strict requirement for the Portugal Golden Visa. You must provide proof of valid coverage at the time of application and maintain it throughout your residency. Unlike some countries where insurance is recommended, Portugal will not issue your Golden Visa without compliant health coverage.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The insurance must provide comprehensive coverage in Portugal. Travel insurance, evacuation-only policies, or plans with significant coverage gaps are not accepted.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Your Insurance Must Cover</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Mandatory Coverage</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Inpatient hospital treatment</li>
+          <li>Outpatient medical care</li>
+          <li>Emergency treatment</li>
+          <li>Valid in Portugal</li>
+          <li>No annual coverage limits (or high limits)</li>
+          <li>Valid for at least 1 year</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Recommended Additional Coverage</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Europe-wide or global coverage (for travel)</li>
+          <li>Emergency medical evacuation</li>
+          <li>Repatriation</li>
+          <li>Specialist consultations</li>
+          <li>Prescription medications</li>
+          <li>Preventive care and screenings</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Local vs. International Insurance</h3>
+
+    <p class="mb-4">
+      Golden Visa applicants typically choose between Portuguese local insurers and international health insurance providers. Both can satisfy visa requirements, but they serve different needs.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Portuguese Local Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Pro: Lower cost (€50-180/month)</li>
+          <li>Pro: Extensive local hospital network</li>
+          <li>Pro: Accepted for visa</li>
+          <li>Con: Coverage only in Portugal</li>
+          <li>Con: Limited English support</li>
+          <li>Con: Bureaucratic claims process</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Those spending significant time in Portugal</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">International Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Pro: Global or Europe-wide coverage</li>
+          <li>Pro: English support</li>
+          <li>Pro: Covers you in home country and travel</li>
+          <li>Pro: Higher coverage limits</li>
+          <li>Con: Higher cost (€150-600/month)</li>
+          <li>Con: May need to pay upfront and claim back</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Those using 7-day minimum, traveling frequently</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation for Golden Visa holders:</strong> Since most Golden Visa holders spend minimal time in Portugal (just 7 days/year), international insurance typically makes more sense. You'll have coverage wherever you actually live and travel, while still satisfying the Portuguese visa requirement.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Portugal Golden Visa?"
+    description="Compare international health insurance plans that meet Portuguese visa requirements and cover you globally."
+    buttonText="Compare Golden Visa Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Golden Visa holders, we recommend international insurers that provide global coverage while satisfying Portuguese requirements. Since you'll only spend 7+ days per year in Portugal, you need a plan that covers you wherever you actually live.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">High Net Worth Investor, Frequent Traveler</h4>
+        <p class="text-neutral-600">Cigna Global or BUPA Global. Both offer comprehensive worldwide coverage with excellent networks. Direct billing at major hospitals globally. Premium service and English support. Budget €300-600/month for comprehensive coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Europe-Based, Occasional US Travel</h4>
+        <p class="text-neutral-600">Allianz Care with Europe + USA zone. Strong European network, option to add US coverage for trips. More affordable than fully global plans. Budget €180-400/month depending on age and coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Planning to Actually Live in Portugal</h4>
+        <p class="text-neutral-600">Consider a local Portuguese insurer like Multicare (Fidelidade) or Allianz Portugal. Lower costs (€50-180/month), extensive local networks, and straightforward access to Portuguese healthcare. Add travel insurance for trips abroad.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Young Children</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care both offer good family coverage. Look for plans with strong pediatric networks, maternity coverage (if relevant), and direct billing. Family plans typically offer per-child discounts.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global and Allianz Care will cover pre-existing conditions after waiting periods (typically 12-24 months). Be prepared to disclose fully during application. Premiums will be higher, and some conditions may be excluded initially.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The Portugal Golden Visa involves significant upfront and ongoing costs beyond the investment itself. Budget carefully—the total fees can reach €20,000+ before you even consider the investment.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total First-Year Costs (Excluding Investment)</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Single Applicant</p>
+        <p class="text-3xl font-bold text-neutral-900">€12,000-25,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Fees, legal, insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Couple</p>
+        <p class="text-3xl font-bold text-neutral-900">€20,000-35,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Double application fees</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Family of 4</p>
+        <p class="text-3xl font-bold text-neutral-900">€35,000-55,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Each person incurs fees</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Health insurance:</strong> €2,000-6,000/year (depending on age and coverage level)</li>
+      <li><strong>Renewal fees (every 2 years):</strong> €2,662.30 per person</li>
+      <li><strong>Investment fund fees:</strong> 1-2% of investment value annually</li>
+      <li><strong>Tax advisory:</strong> €500-2,000/year (if maintaining Portuguese tax affairs)</li>
+      <li><strong>Travel to Portugal:</strong> At least 1 trip/year for 7-day requirement</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Investment Cost Comparison</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Investment Fund (€500,000)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Initial investment: €500,000</li>
+          <li>• Fund setup fees: €5,000-15,000</li>
+          <li>• Annual management: ~€7,500-10,000 (1.5-2%)</li>
+          <li>• 5-year fund cost: ~€40,000-65,000</li>
+          <li>• Potential returns: Variable (could be positive)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Capital Transfer (€1,500,000)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Initial capital: €1,500,000</li>
+          <li>• Bank/custody fees: €1,000-5,000/year</li>
+          <li>• More liquid than funds</li>
+          <li>• Interest income possible</li>
+          <li>• Lower risk than fund investment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Hidden cost alert:</strong> Many Golden Visa applicants underestimate the cumulative cost of renewal fees. Over 5 years to permanent residence, a family of 4 will pay approximately €26,000 in renewal fees alone—on top of the initial application fees.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Golden Visa application involves several steps, typically taking 4-8 months from start to receiving your residence permit. Processing times have increased significantly since SEF was renamed to AIMA in 2023.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Initial Consultation and Investment Selection</h4>
+          <p class="text-neutral-600">Work with a qualified immigration lawyer and investment advisor. Decide on your investment route (funds, capital, job creation). Research qualifying investment funds if going that route. Budget €5,000-15,000 for professional fees.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain NIF (Portuguese Tax Number)</h4>
+          <p class="text-neutral-600">You need a Número de Identificação Fiscal (NIF) before you can invest. Non-residents require a fiscal representative. Your lawyer can arrange this, or you can do it in person at a Portuguese tax office. Cost: free to €200.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open Portuguese Bank Account</h4>
+          <p class="text-neutral-600">Required for the investment transfer. Some banks allow remote opening; others require an in-person visit. Recommended banks: Millennium BCP, Novo Banco, ActivoBank. Bring NIF, passport, proof of address, and proof of income source.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Qualifying Investment</h4>
+          <p class="text-neutral-600">Transfer funds and complete your investment. For investment funds, subscribe through your Portuguese bank or directly with the fund manager. Obtain investment confirmation documents—these are essential for your application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Health Insurance</h4>
+          <p class="text-neutral-600">Arrange qualifying health insurance before submitting your application. Get a policy certificate or confirmation letter in English or Portuguese. Ensure it explicitly states coverage in Portugal with no annual limits.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Documents</h4>
+          <p class="text-neutral-600">Compile required documents: passport, criminal record certificate (from home country), investment proof, health insurance, proof of accommodation in Portugal (rental or hotel booking for biometrics trip), and proof of funds for living expenses.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application to AIMA</h4>
+          <p class="text-neutral-600">Your lawyer submits the application online through the AIMA (formerly SEF) platform. Pay the application fee (€5,324.60 per person). You'll receive a confirmation and case number.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Approval and Schedule Biometrics</h4>
+          <p class="text-neutral-600">AIMA reviews your application (currently 2-6 months due to backlog). Once approved, you'll be invited to attend a biometrics appointment in Portugal. This requires physical presence—you cannot do it remotely.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Biometrics Appointment</h4>
+          <p class="text-neutral-600">Travel to Portugal for your appointment at an AIMA office. Bring your passport and all original documents. Fingerprints and photo will be taken. This visit can count toward your 7-day annual requirement.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">10</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Residence Permit</h4>
+          <p class="text-neutral-600">Your residence permit card arrives 2-4 weeks after biometrics, either by mail or pickup. The initial permit is valid for 2 years. Congratulations—you're now a Portuguese resident.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Processing delays:</strong> Since SEF was reorganized into AIMA in late 2023, processing times have significantly increased. Applications that once took 2-3 months are now taking 4-6+ months. Budget extra time and maintain patience with the process.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Golden Visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Entrepreneur, €500K Fund Investment</h3>
+        <p class="text-neutral-600 mb-4">50 years old, healthy, wants EU access while keeping US base. Invested in qualifying VC fund.</p>
+        <p class="text-green-700 font-medium">Approved in 4 months. Chose Cigna Global for worldwide coverage (€380/month). Uses Schengen access for European client meetings. Plans citizenship application after 5 years. Very satisfied—minimal Portugal time while gaining EU mobility.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Retiree Couple, €1.5M Capital Transfer</h3>
+        <p class="text-neutral-600 mb-4">Both 62, wanted Brexit-proof EU access. Had capital in UK savings.</p>
+        <p class="text-green-700 font-medium">Chose capital transfer for lower risk than funds. Total fees: €42,000 for both. Allianz Care coverage (€450/month each). Now spending 2 months/year in Portugal. EU healthcare access valuable as they age.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Business Owner, Family of 4</h3>
+        <p class="text-neutral-600 mb-4">45 years old, wife 42, two children (15 and 12). €500K fund investment.</p>
+        <p class="text-green-700 font-medium">Total first-year costs: €48,000 in fees plus €12,000 family health insurance. Children can study anywhere in EU. Family Cigna Global plan covers everyone. Processing took 6 months due to AIMA delays. Worth it for children's future EU education options.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Canadian Investor, Heritage Route</h3>
+        <p class="text-neutral-600 mb-4">Art collector, 55, interested in cultural contribution option. €500K to heritage project.</p>
+        <p class="text-amber-700 font-medium">Found qualifying heritage project difficult to identify. Required specialized cultural advisors (€15,000 extra). Process took 8 months due to project verification. Success, but more complex than fund route. Recommends fund investment for simplicity unless genuinely interested in heritage.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Tech Professional, NHR Expectations</h3>
+        <p class="text-neutral-600 mb-4">Applied in early 2024 expecting NHR tax benefits.</p>
+        <p class="text-red-700 font-medium">NHR regime was phased out for new applicants—did not qualify. Still completed Golden Visa for EU access, but tax planning required different approach. Now uses normal Portuguese tax residency rules. Lesson: Verify tax regime availability before planning around it.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Investor, Wanted Real Estate</h3>
+        <p class="text-neutral-600 mb-4">65, retired, originally wanted to buy Lisbon apartment for €500K.</p>
+        <p class="text-amber-700 font-medium">Arrived after October 2023 changes—real estate no longer qualifies. Pivoted to investment fund route instead. Less excited about paper investment vs. tangible property, but program still met EU access goals. Bought apartment anyway for personal use (doesn't count for visa).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Golden Visa"
+    description="Find the right coverage for your Portugal Golden Visa—international plans that satisfy visa requirements."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Real Estate Still Qualifies</h3>
+        <p class="text-neutral-600">The most common misconception in 2024-2026. Real estate investment was eliminated in October 2023. No property purchase—regardless of value, location, or type—qualifies for new Golden Visa applications. Existing holders can renew, but new applicants cannot use this route.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Total Costs</h3>
+        <p class="text-neutral-600">The €500,000 investment is just the beginning. Add €5,000+ per person in application fees, €5,000-15,000 in legal fees, €2,000-6,000/year in health insurance, and renewal fees every 2 years. A family of 4 should budget €50,000+ beyond the investment for the first 5 years.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting NHR Tax Benefits</h3>
+        <p class="text-neutral-600">The Non-Habitual Resident (NHR) tax regime—which offered 10 years of favorable tax treatment—is being phased out. New applicants after 2024 generally do not qualify. Do not structure your Golden Visa around NHR without confirming current eligibility with a Portuguese tax advisor.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Travel Insurance Instead of Health Insurance</h3>
+        <p class="text-neutral-600">Travel insurance does not satisfy the Golden Visa health insurance requirement. You need comprehensive private health insurance with no annual coverage limits. Applications with travel insurance will be rejected. Arrange proper coverage before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 7-Day Annual Requirement</h3>
+        <p class="text-neutral-600">You must spend at least 7 days in Portugal each year (or 14 days in each 2-year period). This sounds easy, but busy investors sometimes forget. Missing this requirement can jeopardize your renewal. Keep documentation of your stays.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Portugal -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Portugal</h2>
+
+    <p class="mb-4">
+      Portugal has a well-regarded healthcare system, ranking 23rd globally on Numbeo's Health Care Index. As a Golden Visa holder, you'll have access to both private healthcare (via your mandatory insurance) and eventually the public system (SNS) once you establish residence.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options for Golden Visa Holders</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Healthcare (Via Your Insurance)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Immediate access from visa approval</li>
+          <li>Short wait times for appointments</li>
+          <li>Modern private hospitals (CUF, Lusíadas, Hospital da Luz)</li>
+          <li>English-speaking doctors common</li>
+          <li>Full choice of specialists</li>
+          <li>Higher out-of-pocket if using local insurance</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Public Healthcare (SNS)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Available after registering as resident</li>
+          <li>Free or low-cost for residents</li>
+          <li>Good quality, especially in Lisbon/Porto</li>
+          <li>Longer wait times for non-urgent care</li>
+          <li>Less English availability</li>
+          <li>Register at local Centro de Saúde</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Accessing Healthcare During Your 7 Days</h3>
+
+    <p class="mb-4">
+      Since most Golden Visa holders spend only 7 days per year in Portugal, healthcare access looks different than for full-time residents:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">For Routine Care</h4>
+        <p class="text-neutral-600">Your international health insurance covers you in your home country. Use Portuguese private hospitals if you need care during your 7-day visits.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">For Emergencies in Portugal</h4>
+        <p class="text-neutral-600">Go to any hospital emergency room (Urgência). Private hospitals like CUF have shorter waits. Your international insurance should cover emergency treatment. Keep insurance details handy.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">For Planned Procedures</h4>
+        <p class="text-neutral-600">Some Golden Visa holders choose to time elective procedures with their Portugal visits, especially if Portuguese private healthcare offers good value. Coordinate with your insurer for pre-authorization.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Schengen healthcare:</strong> Your Portuguese residency gives you access to healthcare throughout the Schengen area under certain conditions. Your international insurance is essential for this—it covers you across Europe while your Portuguese status provides the legal right to treatment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I still get a Golden Visa by buying property?</h3>
+        <p class="text-neutral-600">
+          No. As of October 2023, real estate investment no longer qualifies for new Golden Visa applications. This includes all property types—residential, commercial, urban, rural—regardless of value or location. Existing Golden Visa holders with property can continue to renew, but new applicants must use alternative investment routes (funds, capital transfer, job creation, or cultural contribution).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long do I actually need to spend in Portugal each year?</h3>
+        <p class="text-neutral-600">
+          Just 7 days per year—or 14 days in each 2-year period. This is one of the most flexible residency requirements in Europe. The 7 days don't need to be consecutive. Your biometrics appointment and any AIMA visits count toward this requirement.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family be included in my Golden Visa application?</h3>
+        <p class="text-neutral-600">
+          Yes. You can include your spouse (or registered partner), dependent children (under 18, or older if financially dependent and studying), and dependent parents (yours and your spouse's). Each family member requires a separate application fee (€5,324.60 per person) and their own health insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get Portuguese citizenship?</h3>
+        <p class="text-neutral-600">
+          You can apply for citizenship after 5 years of legal residency—one of the fastest paths in the EU. Requirements include: maintaining your investment throughout, passing a basic Portuguese language test (A2 level), clean criminal record, and demonstrating ties to Portugal. The 7-day annual presence requirement still applies during this period.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens to my investment after 5 years?</h3>
+        <p class="text-neutral-600">
+          After obtaining permanent residence (5 years), you can divest your qualifying investment. For fund investments, this typically means waiting for the fund's natural exit or redemption period. You must maintain the investment during the entire Golden Visa period—withdrawing early can jeopardize your status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is health insurance really mandatory, or is it just recommended?</h3>
+        <p class="text-neutral-600">
+          Mandatory. Your Golden Visa application will not be approved without proof of valid health insurance covering Portugal. Travel insurance is not accepted—you need comprehensive private health insurance with no annual coverage limits. You must maintain coverage throughout your residency and show valid insurance at each renewal.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Portugal's Golden Visa remains one of Europe's most attractive residency-by-investment programs, even after the 2023 real estate changes. The 7-day annual presence requirement is unmatched—no other EU program offers such flexibility.
+    </p>
+
+    <p class="mb-4">
+      The elimination of real estate investment has narrowed the options significantly. Most applicants now choose the €500,000 investment fund route, which carries market risk but offers potential returns. The €1.5 million capital transfer is safer but requires three times the capital.
+    </p>
+
+    <p class="mb-6">
+      Budget carefully. Beyond your investment, expect €15,000-25,000 in first-year costs per person (fees, legal, insurance), plus ongoing renewal fees, fund management costs, and annual insurance premiums. For a family of 4, total 5-year costs excluding investment can exceed €100,000.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Portugal Golden Visa is best suited for high-net-worth individuals who want EU access with minimal presence requirements. The path to citizenship in 5 years is a significant advantage. Health insurance is mandatory—budget €150-500/month for international coverage that satisfies visa requirements and covers you globally.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/portugal/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Portugal</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal D8 Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative for remote workers with lower investment</p>
+      </a>
+      <a href="/visas/retirement-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal D7 Retirement Visa</h3>
+        <p class="text-neutral-600 text-sm">Passive income route with no investment required</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

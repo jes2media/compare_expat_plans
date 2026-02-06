@@ -1,0 +1,950 @@
+---
+/**
+ * Germany Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Aufenthaltserlaubnis zur selbständigen Tätigkeit (§21 AufenthG) guide with business requirements and insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "business-requirements", text: "Business Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Germany", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Germany Insurance Guide", href: "/countries/germany/insurance" },
+  { title: "Germany Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/germany" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Business Plan", details: "Viable, detailed business plan", notes: "Must demonstrate economic benefit to Germany" },
+  { requirement: "Economic Interest", details: "Regional need or economic benefit", notes: "Evaluated by Chamber of Commerce (IHK)" },
+  { requirement: "Financing", details: "Secured funding (no minimum)", notes: "Must be credible and sufficient for business" },
+  { requirement: "Experience", details: "Relevant qualifications/experience", notes: "Education, track record, industry knowledge" },
+  { requirement: "Age 45+ Provision", details: "Adequate pension/retirement funds", notes: "Required if over 45 years old" },
+  { requirement: "Health Insurance", details: "Mandatory coverage", notes: "Public or private; must meet German standards" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Comprehensive health insurance", notes: "Public (gesetzlich) or private (privat)" },
+  { feature: "Provider Type", requirement: "German-recognized insurer", notes: "Must be valid in Germany" },
+  { feature: "Coverage Level", requirement: "Equivalent to statutory insurance", notes: "No significant gaps in coverage" },
+  { feature: "Duration", requirement: "Full visa duration", notes: "Must remain active throughout stay" },
+  { feature: "Pre-existing Conditions", requirement: "Coverage required", notes: "Public insurance covers all conditions" },
+  { feature: "Repatriation", requirement: "Not mandatory", notes: "Recommended for international plans" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Allianz Care", type: "International Private", price: "€200-450", strengths: "Global coverage, flexible plans, strong Germany network" },
+  { provider: "Cigna Global", type: "International Private", price: "€250-500", strengths: "Comprehensive coverage, high-net-worth individuals" },
+  { provider: "TK (Techniker)", type: "German Public", price: "~15% of income", strengths: "Best-rated public insurer, comprehensive coverage" },
+  { provider: "Ottonova", type: "German Digital Private", price: "€300-600", strengths: "Modern private option, English service" },
+  { provider: "Feather", type: "Expat Private", price: "€150-350", strengths: "Flexible expat plans, easy enrollment" },
+  { provider: "DR-WALTER", type: "Expat Insurance", price: "€100-250", strengths: "Incoming expat specialist, visa-compliant" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€75-100", notes: "At German embassy/consulate" },
+  { item: "Residence Permit Fee", amount: "€100-150", notes: "Aufenthaltstitel processing" },
+  { item: "Business Registration", amount: "€20-50", notes: "Gewerbeanmeldung (trade registration)" },
+  { item: "Notary Fees (GmbH)", amount: "€500-1,500", notes: "If forming limited company" },
+  { item: "Share Capital (GmbH)", amount: "€25,000 minimum", notes: "Required for GmbH; €12,500 initially" },
+  { item: "Legal/Consulting Fees", amount: "€2,000-10,000", notes: "Immigration lawyer + business setup" },
+  { item: "Health Insurance", amount: "€150-500/month", notes: "Required; budget €2,000-6,000/year" },
+  { item: "Chamber Membership", amount: "€50-500/year", notes: "IHK or HWK membership (depends on business)" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Develop business plan", duration: "2-6 weeks", location: "Home country" },
+  { step: "Gather supporting documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Submit visa application", duration: "1 day", location: "German embassy/consulate" },
+  { step: "IHK/local authority review", duration: "2-8 weeks", location: "Germany" },
+  { step: "Visa decision", duration: "1-3 months total", location: "Embassy notification" },
+  { step: "Enter Germany", duration: "Within 90 days", location: "Germany" },
+  { step: "Register residence (Anmeldung)", duration: "Within 14 days", location: "Bürgeramt" },
+  { step: "Apply for residence permit", duration: "1-2 months wait", location: "Ausländerbehörde" },
+  { step: "Register business", duration: "1-2 weeks", location: "Gewerbeamt/Handelsregister" },
+];
+---
+
+<PageShell
+  title="Germany Entrepreneur Visa 2026: Business Requirements, Insurance & Application Guide"
+  description="Complete guide to Germany's Self-Employment Visa (§21 AufenthG). No minimum investment, business plan requirements, mandatory health insurance, and path to permanent residence."
+  headline="Germany Entrepreneur Visa: Business & Insurance Guide"
+  subheadline="Everything you need to know about Germany's Self-Employment Visa—no Golden Visa program, but a practical path for entrepreneurs with viable business plans and economic benefit to Germany."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/allianz-care"
+  heroImage="/images/countries/germany-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official German Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      No Minimum Investment
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Germany does not have a Golden Visa program like Spain, Portugal, or Greece. Instead, entrepreneurs and investors can obtain residence through the Self-Employment Visa (Aufenthaltserlaubnis zur selbständigen Tätigkeit) under §21 of the Residence Act (AufenthG). This visa is merit-based rather than investment-based—there's no minimum capital requirement, but you must demonstrate that your business will benefit the German economy.
+    </p>
+
+    <p class="mb-4">
+      The German approach rewards genuine entrepreneurs over passive investors. If you have a viable business idea, relevant experience, and can show economic benefit to Germany, you can build a path to permanent residence and eventually citizenship—all without a €500,000+ investment threshold. The trade-off is a more rigorous application process and the need to actively run your business.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Germany Entrepreneur Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Aufenthaltserlaubnis zur selbständigen Tätigkeit (§21 AufenthG)</li>
+        <li>• <strong>Minimum investment:</strong> None specified—financing must be credible</li>
+        <li>• <strong>Key requirement:</strong> Economic interest or regional need for business</li>
+        <li>• <strong>Duration:</strong> Up to 3 years initial, renewable</li>
+        <li>• <strong>Family included:</strong> Spouse and minor children</li>
+        <li>• <strong>Path to PR:</strong> 3 years with successful business (or 5 years standard)</li>
+        <li>• <strong>Path to citizenship:</strong> 8 years (or 6-7 with integration)</li>
+        <li>• <strong>Schengen access:</strong> Travel freely within 26 Schengen countries</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Germany's Entrepreneur Visa?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• No minimum investment threshold</li>
+          <li>• Europe's largest economy and market</li>
+          <li>• Excellent startup ecosystem (especially Berlin)</li>
+          <li>• Fast-track to permanent residence (3 years)</li>
+          <li>• World-class infrastructure and talent pool</li>
+          <li>• Strong rule of law and business environment</li>
+          <li>• Access to EU single market</li>
+          <li>• Exceptional healthcare and quality of life</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Must actively run your business (not passive investment)</li>
+          <li>• Subjective evaluation by local authorities</li>
+          <li>• German bureaucracy can be complex</li>
+          <li>• Higher cost of living in major cities</li>
+          <li>• German language increasingly important</li>
+          <li>• Over 45: Must prove pension provision</li>
+          <li>• Processing can take 1-3 months</li>
+          <li>• Outcomes vary by city/region</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Berlin startup advantage:</strong> Berlin has become one of Europe's leading startup hubs, with a more entrepreneur-friendly approach than other German cities. The local authorities (Ausländerbehörde) have experience with international founders, and the city offers extensive support networks, incubators, and English-speaking business services. If you're building a tech startup, Berlin is often the best choice.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Germany's Entrepreneur Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• You have a genuine business idea for Germany</li>
+          <li>• You want to actively build a company</li>
+          <li>• You have relevant experience/qualifications</li>
+          <li>• You prefer merit-based over investment-based</li>
+          <li>• You want access to EU's largest market</li>
+          <li>• You're comfortable with German bureaucracy</li>
+          <li>• You can demonstrate economic benefit</li>
+          <li>• You have secured or can secure financing</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You prefer passive investment (Golden Visa elsewhere)</li>
+          <li>• You want a guaranteed path with clear thresholds</li>
+          <li>• You don't plan to actively run a business</li>
+          <li>• You need minimum stay flexibility</li>
+          <li>• You're over 45 without pension provision</li>
+          <li>• You prefer English-only environments</li>
+          <li>• You want faster citizenship (Portugal: 5 years)</li>
+          <li>• You prefer warmer climates</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Germany vs. Other EU Options</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Program Type</th>
+            <th class="px-4 py-2 text-left">Min. Investment</th>
+            <th class="px-4 py-2 text-left">Path to PR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Germany</td>
+            <td class="px-4 py-2">Entrepreneur Visa</td>
+            <td class="px-4 py-2">None (merit-based)</td>
+            <td class="px-4 py-2">3 years (successful business)</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Spain</td>
+            <td class="px-4 py-2">Golden Visa</td>
+            <td class="px-4 py-2">€500,000</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Portugal</td>
+            <td class="px-4 py-2">Golden Visa</td>
+            <td class="px-4 py-2">€500,000 (funds)</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Netherlands</td>
+            <td class="px-4 py-2">Startup Visa</td>
+            <td class="px-4 py-2">None (facilitator required)</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Germany stands out:</strong> Germany offers the fastest path to permanent residence (3 years with successful business) and access to Europe's largest economy. Unlike Golden Visas that require €500,000+, Germany evaluates your business merit—making it accessible to entrepreneurs who can demonstrate value without massive capital. The EU Blue Card is also an alternative for highly skilled employees.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Business Requirements -->
+  <section id="business-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Business Requirements</h2>
+
+    <p class="mb-4">
+      Germany's entrepreneur visa is evaluated on merit rather than a fixed investment amount. The local Chamber of Commerce (IHK) and immigration authorities assess whether your business will benefit the German economy. This subjective process means outcomes can vary—a strong business plan and relevant experience are crucial.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The Three Key Criteria</h3>
+
+    <p class="mb-4">
+      Under §21 AufenthG, authorities evaluate three main factors:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">1. Economic Interest or Regional Need</h4>
+        <p class="text-neutral-600">Your business must address an economic interest or regional need. This could mean: filling a market gap, creating jobs, bringing innovation, contributing to a specific industry sector, or serving underserved communities. Tech startups, specialized manufacturing, and export-oriented businesses typically score well.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">2. Expected Positive Economic Impact</h4>
+        <p class="text-neutral-600">Authorities want to see that your business will have positive effects on the German economy. This includes: job creation (even if just your own initially), tax contributions, industry expertise transfer, innovation, and potential for growth. A business that hires German employees carries more weight than a solo operation.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">3. Secured Financing</h4>
+        <p class="text-neutral-600">You must demonstrate that your business is financially viable. While there's no minimum investment, you need to show: sufficient startup capital, proof of funding sources, realistic financial projections, and ability to support yourself. Bank statements, investor commitments, or personal assets can all serve as proof.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Business Plan Requirements</h3>
+
+    <p class="mb-4">
+      Your business plan is the cornerstone of your application. German authorities expect a comprehensive document covering:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Essential Elements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Executive summary</li>
+          <li>• Business description and model</li>
+          <li>• Market analysis and competition</li>
+          <li>• Target customers and sales strategy</li>
+          <li>• Organizational structure</li>
+          <li>• Financial projections (3-5 years)</li>
+          <li>• Funding requirements and sources</li>
+          <li>• Your qualifications and experience</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">What Strengthens Applications</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Job creation plans (even 1-2 hires)</li>
+          <li>• Letters of intent from customers</li>
+          <li>• Industry partnerships</li>
+          <li>• Relevant education/certifications</li>
+          <li>• Previous entrepreneurial success</li>
+          <li>• German language skills</li>
+          <li>• Existing German business connections</li>
+          <li>• Innovation or export potential</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Special Consideration: Applicants Over 45</h3>
+
+    <p class="mb-4">
+      If you're over 45, German law requires you to demonstrate adequate provision for old age (Altersvorsorge). This means showing:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Pension entitlements:</strong> From your home country or previous employment</li>
+      <li><strong>Private retirement savings:</strong> Investment accounts, 401(k), etc.</li>
+      <li><strong>Real estate assets:</strong> Property that generates income or can be sold</li>
+      <li><strong>Life insurance:</strong> With cash value or payout provisions</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> The over-45 pension requirement is strictly enforced. Authorities want assurance you won't rely on German social benefits in retirement. Prepare documentation of all retirement assets and consider working with a German financial advisor to structure your application properly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Germany requires all residents to have health insurance—this is a legal obligation (Versicherungspflicht). For entrepreneur visa applicants, you must show proof of adequate health insurance as part of your application. You can choose between public (gesetzlich) or private (privat) insurance.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Germany's dual healthcare system offers two paths: public statutory insurance (GKV) or private insurance (PKV). As a self-employed entrepreneur, you have the choice—unlike employees who are typically required to join public insurance below certain income thresholds.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Public vs. Private Insurance for Entrepreneurs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Public Insurance (GKV)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Premium: ~15% of income (€200-900/month)</li>
+          <li>• Family members covered free</li>
+          <li>• All pre-existing conditions covered</li>
+          <li>• Comprehensive coverage by law</li>
+          <li>• No medical underwriting</li>
+          <li>• Premium rises with income</li>
+          <li>• Good for families and those with conditions</li>
+          <li>• Top insurers: TK, AOK, Barmer</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Insurance (PKV)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Premium: €150-600/month (age-based)</li>
+          <li>• Family members need own policies</li>
+          <li>• Medical underwriting required</li>
+          <li>• More choice of doctors/services</li>
+          <li>• Shorter waiting times</li>
+          <li>• Premium doesn't rise with income</li>
+          <li>• Good for young, healthy individuals</li>
+          <li>• International options accepted</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Choosing the Right Insurance Path</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Young, Healthy, No Family</h4>
+        <p class="text-neutral-600">Private insurance often makes sense. Premiums are lower when young (€150-300/month), and you get better service. International private insurers like Allianz Care or Cigna Global work well if you travel frequently or may relocate.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">Public insurance is typically better value. Your spouse and children are covered at no extra cost (Familienversicherung). A family of four might pay €400-600/month total in public insurance vs. €1,000+ for separate private policies.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Public insurance covers all conditions without exclusions or waiting periods. Private insurers may exclude or surcharge conditions. If you have significant health history, public insurance provides better security.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">International Lifestyle</h4>
+        <p class="text-neutral-600">If you travel extensively or may relocate, international private insurance (Allianz Care, Cigna Global) provides worldwide coverage and portability. German public insurance primarily covers care within Germany.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Visa application tip:</strong> For your initial visa application, you need proof of insurance coverage. Many expats start with international private insurance (which is easy to obtain from abroad), then switch to German public or private insurance after arriving and establishing their business. Ensure any international policy explicitly meets German residence permit requirements.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your German Entrepreneur Visa?"
+    description="Compare international and German insurers that meet visa requirements."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Entrepreneurs have more insurance options than employees. You can choose German public insurers, German private insurers, or international providers. Your choice depends on family situation, health status, travel needs, and long-term plans.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Startup Founder in Berlin</h4>
+        <p class="text-neutral-600">If you're building a tech startup and may raise funding or relocate, Allianz Care or Cigna Global provide flexibility. These plans work anywhere in the world and don't tie you to Germany. Budget €200-400/month for comprehensive coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Relocating Long-Term</h4>
+        <p class="text-neutral-600">German public insurance (TK is highest-rated) covers your entire family for one premium based on income. This is typically the best value for families planning to stay in Germany. The Techniker Krankenkasse (TK) offers excellent English support and digital services.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Young Solo Entrepreneur</h4>
+        <p class="text-neutral-600">Ottonova offers a modern, fully digital private insurance experience with English service and competitive rates for young applicants. Alternatively, Feather provides flexible expat-focused plans that are easy to set up and adjust.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Initial Visa Application (From Abroad)</h4>
+        <p class="text-neutral-600">For the visa application itself, DR-WALTER and Feather specialize in incoming expat coverage and explicitly meet German visa requirements. These can serve as bridge insurance until you establish your long-term coverage in Germany.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Unlike Golden Visa programs with €500,000+ investment requirements, Germany's entrepreneur visa has no minimum capital. However, you'll face various setup and ongoing costs. The total depends heavily on your business type and structure.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates by Business Type</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Solo Freelancer/Consultant</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Visa/permit fees: <strong>€200-250</strong></li>
+            <li>Business registration: <strong>€20-50</strong></li>
+            <li>Legal/consulting: <strong>€1,000-3,000</strong></li>
+            <li>Insurance (annual): <strong>€2,000-4,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>€3,200-7,300</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">GmbH (Limited Company)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Visa/permit fees: <strong>€200-250</strong></li>
+            <li>Share capital (initial): <strong>€12,500</strong></li>
+            <li>Notary/registration: <strong>€1,000-2,000</strong></li>
+            <li>Legal/consulting: <strong>€3,000-10,000</strong></li>
+            <li>Insurance (annual): <strong>€2,000-6,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>€18,700-30,750</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Business Structure Options</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Einzelunternehmen (Sole Proprietorship)</h4>
+        <p class="text-neutral-600">Simplest structure for freelancers and consultants. No minimum capital, minimal registration fees. You're personally liable for business debts. Register with local Gewerbeamt for trade businesses, or simply register as Freiberufler (freelancer) for professional services.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">GmbH (Gesellschaft mit beschränkter Haftung)</h4>
+        <p class="text-neutral-600">German limited liability company. Requires €25,000 share capital (€12,500 initially). Provides liability protection and is standard for funded startups. More complex setup: notarization, commercial register (Handelsregister), ongoing compliance requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">UG (Unternehmergesellschaft)</h4>
+        <p class="text-neutral-600">"Mini-GmbH" with limited liability but only €1 minimum capital. Popular with early-stage startups. You must retain 25% of profits until reaching €25,000 capital (then can convert to GmbH). Good stepping stone for bootstrapping entrepreneurs.</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Cost advantage over Golden Visas:</strong> A solo entrepreneur can obtain German residence for under €10,000 total in year one—compared to €500,000+ for a Spanish or Portuguese Golden Visa. The trade-off is that you must actively run a business rather than make a passive investment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The entrepreneur visa application involves multiple steps across your home country and Germany. Processing typically takes 1-3 months, though timelines vary by embassy and business complexity. Working with an immigration lawyer significantly improves success rates.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Your Business Plan</h4>
+          <p class="text-neutral-600">Create a comprehensive business plan (20-40 pages) covering market analysis, financials, your qualifications, and why your business benefits Germany. Consider hiring a German business consultant to ensure it meets local expectations. This is the most critical document.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Supporting Documents</h4>
+          <p class="text-neutral-600">Collect: valid passport, biometric photos, CV/resume, educational certificates, proof of professional experience, proof of financing (bank statements, investor letters), and health insurance certificate. Some documents need certified German translations and apostilles.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply at German Embassy/Consulate</h4>
+          <p class="text-neutral-600">Book an appointment at your local German embassy or consulate. Submit your visa application, pay the fee (€75-100), and attend an interview. The embassy forwards your application to Germany for assessment by local authorities.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">IHK and Authority Assessment</h4>
+          <p class="text-neutral-600">The Chamber of Commerce (IHK) and local immigration authority (Ausländerbehörde) in your intended German city review your business plan. They assess economic benefit, viability, and your qualifications. This takes 2-8 weeks. They may request additional information.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Visa Decision</h4>
+          <p class="text-neutral-600">Upon approval, the embassy issues your visa (usually valid 90 days for entry). If rejected, you can appeal or reapply with a stronger application. Common rejection reasons: unclear economic benefit, insufficient financing, weak business plan, or lack of relevant experience.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enter Germany and Register (Anmeldung)</h4>
+          <p class="text-neutral-600">Enter Germany within your visa validity period. Within 14 days of finding housing, register your address at the local Bürgeramt (citizens' office). This Anmeldung is required before you can proceed with other registrations.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Residence Permit</h4>
+          <p class="text-neutral-600">Book an appointment at the Ausländerbehörde to convert your visa into a residence permit (Aufenthaltstitel). Bring all original documents. You'll receive a provisional permit while the card is produced. The permit is typically valid 1-3 years.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Your Business</h4>
+          <p class="text-neutral-600">Register with the Gewerbeamt (trade office) for trade businesses, or with the Finanzamt (tax office) if you're a freelancer. For GmbH/UG, complete notarization and register with the Handelsregister (commercial register). Open a German business bank account.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Berlin-specific tip:</strong> Berlin's Ausländerbehörde is notoriously backlogged. Appointments can take months to secure. Use early morning appointment slots, consider hiring an immigration lawyer who has contacts, and bring complete documentation to avoid repeat visits. The Berlin Business Office (Berlin Partner) can also assist international entrepreneurs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for entrepreneur visa applicants in Germany:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Founder, SaaS Startup in Berlin</h3>
+        <p class="text-neutral-600 mb-4">32 years old, previous startup experience, raised €200K from German angel investors. Building B2B software product.</p>
+        <p class="text-green-700 font-medium">Approved in 6 weeks. Strong business plan with clear market, investor backing, and tech background impressed IHK. Formed UG with €5,000 capital. Chose Allianz Care for insurance (€280/month). Now employing 3 people after 18 months. On track for permanent residence at 3-year mark.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Consultant, Munich Freelance</h3>
+        <p class="text-neutral-600 mb-4">45 years old, 20 years management consulting experience. Post-Brexit, needed EU work authorization. Established client base including German corporates.</p>
+        <p class="text-green-700 font-medium">Approved in 8 weeks. Demonstrated existing German clients and specialized expertise. Registered as Freiberufler (freelancer). Joined TK public insurance (€450/month). Had to provide extensive pension documentation due to age. Now earning more than in UK with lower taxes.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Family, Import Business in Frankfurt</h3>
+        <p class="text-neutral-600 mb-4">Couple (40s) with two children. Establishing import business for specialty goods with existing supplier relationships in India.</p>
+        <p class="text-amber-700 font-medium">Approved after 3 months with additional documentation requests. IHK initially questioned market need—responded with market research and letters of intent from German retailers. Formed GmbH with €25,000 capital. Family covered under TK public insurance (€600/month). Business profitable within first year.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Creative, Design Agency in Berlin</h3>
+        <p class="text-neutral-600 mb-4">28 years old, award-winning graphic designer. Wanted to establish boutique design agency serving European clients.</p>
+        <p class="text-green-700 font-medium">Approved in 5 weeks. Portfolio of international clients and design awards demonstrated expertise. Started as freelancer, later formed UG when hiring staff. Chose Ottonova private insurance (€180/month). Particularly appreciated Berlin's creative industry network and English-friendly business environment.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Brazilian E-commerce Entrepreneur, Hamburg</h3>
+        <p class="text-neutral-600 mb-4">35 years old, successful e-commerce business in Brazil. Wanted to expand to European market with warehouse operations.</p>
+        <p class="text-green-700 font-medium">Approved in 7 weeks. Existing business success and clear expansion plan with job creation impressed authorities. Established GmbH, leased warehouse space. Cigna Global insurance for €350/month (needs coverage for Brazil trips). Created 5 jobs within first year—accelerated path to permanent residence.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">First-Time Applicant, Vague Business Plan</h3>
+        <p class="text-neutral-600 mb-4">Wanted to start "consulting" business but couldn't articulate specific services, target market, or client pipeline. No relevant experience in proposed field.</p>
+        <p class="text-red-700 font-medium">Application rejected. IHK found no clear economic benefit—business plan too vague, no demonstrated expertise, no evidence of market demand. Reapplied 6 months later with specific niche, professional certifications, and letters of intent from potential clients. Second application approved. Lesson: German authorities want concrete plans, not general ideas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for German Entrepreneur Visa"
+    description="Find the right coverage for your business in Germany—international or local options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Submitting a Weak or Generic Business Plan</h3>
+        <p class="text-neutral-600">German authorities take business plans seriously. A generic template or vague description of "consulting services" will likely be rejected. Invest time (and potentially money for professional help) in a comprehensive, Germany-specific business plan that clearly demonstrates economic benefit and your qualifications.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the IHK Review</h3>
+        <p class="text-neutral-600">The Chamber of Commerce (IHK) assessment is not a rubber stamp. They genuinely evaluate whether your business makes economic sense for Germany. Research similar businesses, understand the competitive landscape, and be prepared to explain why your offering is needed. Consider scheduling a pre-consultation with IHK before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Inadequate Proof of Financing</h3>
+        <p class="text-neutral-600">While there's no minimum investment, you must prove your business is financially viable. Personal bank statements should show sufficient funds to cover startup costs and living expenses for at least 12 months. Investor commitments should be documented in writing. Don't rely on "I'll figure it out later."</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring the Over-45 Pension Requirement</h3>
+        <p class="text-neutral-600">If you're over 45, the pension provision requirement is strictly enforced. Prepare comprehensive documentation of retirement savings, pension entitlements, property, and other assets. This isn't about proving wealth—it's about showing you won't need German social benefits in retirement.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing the Wrong City</h3>
+        <p class="text-neutral-600">Each city's Ausländerbehörde has different approaches and processing times. Berlin is entrepreneur-friendly but severely backlogged. Munich is efficient but more conservative in assessments. Research your target city's approach and timeline. Your business address determines which authority processes your application.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Germany -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Germany</h2>
+
+    <p class="mb-4">
+      Germany has one of the world's best healthcare systems, with universal coverage and excellent quality. As an entrepreneur, you have more flexibility in choosing between public and private insurance than employees do. Understanding the system helps you make the right choice.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The German Healthcare System</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Public System (GKV)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Covers ~87% of population</li>
+          <li>• Comprehensive coverage by law</li>
+          <li>• All pre-existing conditions covered</li>
+          <li>• Family members included free</li>
+          <li>• Premium based on income (~15%)</li>
+          <li>• Maximum premium ~€900/month</li>
+          <li>• Minor out-of-pocket costs</li>
+          <li>• Some waiting times for specialists</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private System (PKV)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Covers ~13% of population</li>
+          <li>• Premium based on age and health</li>
+          <li>• Medical underwriting required</li>
+          <li>• Each family member needs own policy</li>
+          <li>• Faster access to specialists</li>
+          <li>• More doctor choice</li>
+          <li>• Private hospital rooms</li>
+          <li>• Premium increases with age</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality and Access</h3>
+
+    <p class="mb-4">
+      Both public and private insurance provide access to excellent care. Key features:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Modern facilities:</strong> German hospitals and clinics have excellent equipment and facilities</li>
+      <li><strong>Qualified doctors:</strong> German medical training is rigorous; many doctors speak English</li>
+      <li><strong>Comprehensive coverage:</strong> From routine care to complex surgeries and chronic conditions</li>
+      <li><strong>Pharmacy network:</strong> Apotheken (pharmacies) are ubiquitous with professional advice</li>
+      <li><strong>Emergency care:</strong> Call 112 for emergencies; excellent response times</li>
+      <li><strong>Specialist access:</strong> Private patients get faster appointments; public patients may wait weeks</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Major Cities Healthcare Notes</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Berlin</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Large international community</li>
+          <li>• Many English-speaking doctors</li>
+          <li>• Charité hospital (world-renowned)</li>
+          <li>• Good startup health networks</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Munich</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Highest medical density</li>
+          <li>• Many private clinics</li>
+          <li>• LMU and TU Munich hospitals</li>
+          <li>• Excellent specialist access</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Frankfurt</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• International business community</li>
+          <li>• English services common</li>
+          <li>• Good international insurers</li>
+          <li>• Convenient for frequent travelers</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Hamburg</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Strong hospital network</li>
+          <li>• UKE (University Medical Center)</li>
+          <li>• Growing international community</li>
+          <li>• Good work-life balance focus</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Insurance switching:</strong> Once you choose private insurance in Germany, switching back to public can be difficult (especially after age 55). Consider your long-term plans carefully. If you're unsure, public insurance offers a safe default—you can always switch to private later if circumstances change.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is there a minimum investment amount for Germany's entrepreneur visa?</h3>
+        <p class="text-neutral-600">
+          No. Unlike Golden Visa programs in Spain or Portugal, Germany has no fixed minimum investment. Instead, you must demonstrate that your business financing is secured and credible. This could be €10,000 for a freelance business or €500,000+ for a manufacturing facility—it depends entirely on what your business plan requires.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long does it take to get permanent residence?</h3>
+        <p class="text-neutral-600">
+          The standard path is 5 years of legal residence. However, successful entrepreneurs can qualify in just 3 years under §21(4) AufenthG if their business has been successful and they meet integration requirements (including basic German). This is one of the fastest PR paths in the EU for entrepreneurs.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak German?</h3>
+        <p class="text-neutral-600">
+          German is not legally required for the initial entrepreneur visa. However, it significantly helps: with authorities, business relationships, and daily life. For permanent residence and citizenship, you'll need to demonstrate German language skills (B1 level). Many successful entrepreneurs start in English-friendly cities like Berlin while learning German.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse and minor children can accompany you or join you later through family reunification. Spouses receive a residence permit with work rights. Children can attend German schools (excellent public education is free). Each family member needs their own health insurance unless covered under public family insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between the entrepreneur visa and EU Blue Card?</h3>
+        <p class="text-neutral-600">
+          The EU Blue Card is for highly skilled employees with a job offer meeting minimum salary requirements (€45,300 or €41,000 for shortage occupations in 2026). The entrepreneur visa is for self-employed individuals starting their own business. If you could work as an employee in a specialized field, the Blue Card offers a simpler path—but if you want to build your own company, the entrepreneur visa is your route.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my business fails?</h3>
+        <p class="text-neutral-600">
+          If your business closes, you must notify the Ausländerbehörde. Your residence permit is tied to self-employment, so you'd need to either start a new business, find employment (different permit required), or leave Germany. However, if you've already obtained permanent residence, losing your business doesn't affect your immigration status.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Germany's entrepreneur visa offers a unique proposition in Europe: access to the EU's largest economy without a minimum investment threshold. Unlike Golden Visas that reward capital, Germany rewards entrepreneurial merit—a viable business plan, relevant experience, and demonstrated economic benefit. This makes it accessible to genuine entrepreneurs who may not have €500,000 to invest in real estate.
+    </p>
+
+    <p class="mb-4">
+      The trade-off is a more rigorous, subjective application process. Your success depends on convincing German authorities that your business makes sense for Germany. This requires a strong business plan, clear qualifications, and usually professional help navigating the bureaucracy. The good news: if you can demonstrate genuine business merit, the 3-year path to permanent residence is among Europe's fastest.
+    </p>
+
+    <p class="mb-6">
+      Health insurance is mandatory and represents a significant ongoing cost (€150-500/month). You have the freedom to choose between comprehensive public insurance or flexible private options. For entrepreneurs with families or pre-existing conditions, public insurance often makes more sense. For young, healthy individuals who travel frequently, international private insurance provides greater flexibility.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Germany's entrepreneur visa suits genuine business builders who want access to Europe's economic powerhouse without massive capital requirements. Come with a concrete plan, relevant experience, and secured financing—not a vague idea. Budget €150-500/month for mandatory health insurance and consider professional help for the application. If your business succeeds, permanent residence in 3 years is achievable.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Cigna Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/germany/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in Germany</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Freelance visa for remote workers and digital professionals</p>
+      </a>
+      <a href="/providers/allianz-care" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Allianz Care Review</h3>
+        <p class="text-neutral-600 text-sm">Comprehensive review of Allianz international health insurance</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
