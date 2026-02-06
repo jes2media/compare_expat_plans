@@ -1,0 +1,893 @@
+---
+/**
+ * France Freelancer Visa - Long-form CRO-optimized page
+ * Profession Libérale / Auto-Entrepreneur Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in France", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "France Health Insurance Guide", href: "/countries/france/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "France Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/france" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "autoentrepreneur", header: "Auto-Entrepreneur" },
+  { key: "professionliberale", header: "Profession Libérale" },
+];
+
+const requirementsRows = [
+  { requirement: "Revenue Limits", autoentrepreneur: "€77,700/year services (2024)", professionliberale: "No limit" },
+  { requirement: "Social Contributions", autoentrepreneur: "~22% of revenue", professionliberale: "~45% of net income" },
+  { requirement: "Business Plan", autoentrepreneur: "Required—projet professionnel", professionliberale: "Required—detailed business case" },
+  { requirement: "Qualifications", autoentrepreneur: "Varies by activity", professionliberale: "Professional diplomas required" },
+  { requirement: "Registration", autoentrepreneur: "URSSAF + CFE", professionliberale: "URSSAF + Professional order" },
+  { requirement: "Health Insurance", autoentrepreneur: "Private for visa, then CPAM", professionliberale: "Private for visa, then CPAM" },
+  { requirement: "Accounting", autoentrepreneur: "Simplified (livre des recettes)", professionliberale: "Full accounting required" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private (Visa Stage)" },
+  { key: "puma", header: "PUMa (After 3 Months)" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", private: "€150-400", puma: "Free-€300/year + mutuelle ~€50-150" },
+  { feature: "When Available", private: "Immediately", puma: "After 3 months residency" },
+  { feature: "Coverage Level", private: "Comprehensive", puma: "~70% reimbursement + mutuelle" },
+  { feature: "GP Access", private: "Any doctor", puma: "Médecin traitant + referrals" },
+  { feature: "Hospital Care", private: "Direct billing often", puma: "70% reimbursed, rest via mutuelle" },
+  { feature: "Visa Acceptance", private: "Required for visa", puma: "N/A—for residents only" },
+  { feature: "Pre-existing Conditions", private: "May have waiting periods", puma: "Full coverage, no exclusions" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "AXA Global", type: "International", price: "€200-450", strengths: "French-based, local network, expat support" },
+  { provider: "Cigna Global", type: "International", price: "€220-500", strengths: "Large network, English support, flexible plans" },
+  { provider: "Allianz Care", type: "International", price: "€180-400", strengths: "High-deductible options, EU coverage" },
+  { provider: "April International", type: "International", price: "€150-350", strengths: "French company, tailored expat plans" },
+  { provider: "BUPA Global", type: "International", price: "€260-550", strengths: "Mental health, pre-existing conditions" },
+  { provider: "Mutuelle (post-CPAM)", type: "French Top-up", price: "€50-150", strengths: "Complements public coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€99", notes: "At French consulate" },
+  { item: "OFII Validation", amount: "€225", notes: "Within 3 months of arrival" },
+  { item: "Health Insurance (Initial)", amount: "€150-400/month", notes: "Private for visa period" },
+  { item: "CFE Registration", amount: "Free-€60", notes: "Depends on activity type" },
+  { item: "URSSAF Contributions", amount: "~22% of revenue", notes: "Auto-entrepreneur rate" },
+  { item: "Accountant (Expert-Comptable)", amount: "€80-200/month", notes: "Optional for auto-entrepreneur" },
+  { item: "Professional Insurance (RC Pro)", amount: "€30-150/month", notes: "Required for many activities" },
+  { item: "Financial Buffer", amount: "€5,000-15,000", notes: "Recommended savings" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Prepare documents and business plan", duration: "2-4 weeks", location: "Home country" },
+  { step: "Get private health insurance", duration: "1-2 weeks", location: "Insurance provider" },
+  { step: "Book visa appointment", duration: "2-6 weeks wait", location: "French consulate" },
+  { step: "Attend visa appointment", duration: "1 day", location: "Consulate" },
+  { step: "Visa processing", duration: "2-3 months", location: "Consulate review" },
+  { step: "Arrive in France", duration: "After approval", location: "France" },
+  { step: "Validate visa with OFII", duration: "Within 3 months", location: "Online + medical exam" },
+  { step: "Register business with CFE/URSSAF", duration: "1-2 weeks", location: "Online" },
+  { step: "Receive SIRET number", duration: "1-4 weeks", location: "INSEE confirmation" },
+  { step: "Apply for CPAM/PUMa", duration: "After 3 months residency", location: "Local CPAM office" },
+];
+---
+
+<PageShell
+  title="France Freelancer Visa 2026: Auto-Entrepreneur & Profession Libérale Guide"
+  description="Complete guide to freelancing in France. Auto-entrepreneur vs profession libérale, insurance requirements, URSSAF registration, and step-by-step application process for the profession libérale visa."
+  headline="France Freelancer Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in France—auto-entrepreneur vs profession libérale visas, private insurance for your application, transitioning to CPAM, and building your business in Europe's second-largest economy."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/axa-global"
+  heroBackgroundImage="/images/countries/france-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official French Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Simplified Auto-Entrepreneur Regime
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      France has become an increasingly popular destination for freelancers, particularly since Brexit prompted many UK-based professionals to relocate. The French auto-entrepreneur (micro-entrepreneur) regime offers a remarkably simple way to run a small freelance business, with flat-rate social contributions of around 22% and minimal accounting requirements.
+    </p>
+
+    <p class="mb-4">
+      Beyond the simplified taxation, France offers access to one of the world's best healthcare systems, a central European location, and a clear path to permanent residence. Paris, Lyon, Bordeaux, and Toulouse have all developed thriving freelance and startup ecosystems with growing international communities.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: France Freelancer Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> VLS-TS "Profession Libérale" (Long-Stay Visa)</li>
+        <li>• <strong>Business structures:</strong> Auto-entrepreneur (simplified) or Profession Libérale (regulated)</li>
+        <li>• <strong>Revenue limit:</strong> €77,700/year for services under auto-entrepreneur (2024)</li>
+        <li>• <strong>Income requirement:</strong> SMIC (~€1,766/month gross) or sufficient means</li>
+        <li>• <strong>Health insurance:</strong> Private for visa, then CPAM/PUMa after 3 months</li>
+        <li>• <strong>Duration:</strong> 1-year initial, renewable, 5 years to permanent residence</li>
+        <li>• <strong>Processing time:</strong> 2-3 months at consulate</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Auto-Entrepreneur vs. Profession Libérale: What's the Difference?</h3>
+
+    <p class="mb-4">
+      France offers two main paths for freelancers, and understanding the distinction is crucial for your visa application and business setup:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Auto-Entrepreneur (Micro-Entrepreneur)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Simplified regime for small freelancers</li>
+          <li>• Revenue cap: €77,700/year for services</li>
+          <li>• Flat-rate social contributions (~22%)</li>
+          <li>• Minimal accounting (just track revenue)</li>
+          <li>• No VAT below €36,800 (franchise)</li>
+          <li>• Ideal for consultants, designers, writers</li>
+          <li>• <strong>Easy online registration</strong></li>
+          <li>• Most common for expat freelancers</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Profession Libérale (Regulated Professions)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• For regulated professions requiring diplomas</li>
+          <li>• Doctors, lawyers, architects, accountants</li>
+          <li>• Psychologists, physiotherapists, notaries</li>
+          <li>• No revenue limits</li>
+          <li>• Higher social contributions (~45%)</li>
+          <li>• Must join professional order (Ordre)</li>
+          <li>• <strong>Full accounting required</strong></li>
+          <li>• Diploma recognition process needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why auto-entrepreneur is popular:</strong> Most expat freelancers—consultants, developers, designers, writers, marketers—use the auto-entrepreneur regime. It's simpler, has lower social contributions, and requires minimal accounting. You can register online and have your SIRET number within weeks. The regime works well until you exceed the €77,700 annual revenue threshold.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">France is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want access to excellent healthcare via PUMa</li>
+          <li>✓ You prefer simplified, low-rate social contributions</li>
+          <li>✓ You value quality of life (food, culture, travel)</li>
+          <li>✓ You want a central European location</li>
+          <li>✓ You earn under €77,700/year from services</li>
+          <li>✓ You're willing to learn some French</li>
+          <li>✓ You want a clear path to permanent residence</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need English-only bureaucracy (try Netherlands)</li>
+          <li>• You earn significantly above €77,700/year</li>
+          <li>• You want minimal paperwork (try Estonia e-Residency)</li>
+          <li>• You prefer lower cost of living (try Portugal, Spain)</li>
+          <li>• You dislike bureaucracy (France has plenty)</li>
+          <li>• You need faster visa processing (try Germany)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Post-Brexit advantage:</strong> Since Brexit, France has seen a significant influx of UK freelancers seeking to maintain EU access. Cities like Paris, Lyon, and Bordeaux have well-established English-speaking expat communities with networking groups, coworking spaces, and professional services tailored to international freelancers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Non-EU citizens need a Long-Stay Visa (VLS-TS) marked "Profession Libérale" or "Entrepreneur/Profession Libérale" to freelance in France. The visa is valid for one year and converts to a residence permit (carte de séjour) for subsequent renewals.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Required for All Applicants</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Long-stay visa application form (Cerfa)</li>
+          <li>• Passport photos (biometric)</li>
+          <li>• Health insurance confirmation letter</li>
+          <li>• Proof of accommodation in France</li>
+          <li>• Bank statements (3-6 months)</li>
+          <li>• Business plan (projet professionnel)</li>
+          <li>• CV/resume with qualifications</li>
+          <li>• Proof of funds (~€10,000-15,000)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Supporting Documents (Strengthen Application)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Client contracts or letters of intent</li>
+          <li>• Portfolio of previous work</li>
+          <li>• Diplomas and certificates (translated)</li>
+          <li>• Reference letters from clients</li>
+          <li>• Invoice history showing income</li>
+          <li>• French language certificate (if any)</li>
+          <li>• Proof of professional experience</li>
+          <li>• Membership in professional organizations</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
+
+    <p class="mb-4">
+      France requires proof that you can support yourself financially. While there's no strict minimum income for freelancers, you should demonstrate:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Income equivalent to SMIC:</strong> ~€1,766/month gross (€21,192/year) or show sufficient savings</li>
+      <li><strong>Bank statements:</strong> €10,000-15,000 in savings recommended</li>
+      <li><strong>Rental deposit:</strong> Typically 1-2 months rent (budget €1,500-3,000)</li>
+      <li><strong>Client evidence:</strong> Contracts, letters of intent, or ongoing work</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>The business plan matters:</strong> Your projet professionnel should clearly explain what services you offer, who your clients are, why you're based in France, and how you'll generate income. Consulates want to see a realistic, viable business—not vague aspirations. Include specific client names if possible.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Projet Professionnel (Business Plan)</h3>
+
+    <p class="mb-4">
+      Your business plan should cover:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Your professional background and qualifications</li>
+      <li>Services you'll provide (be specific)</li>
+      <li>Target clients (French and/or international)</li>
+      <li>Competitive analysis and market positioning</li>
+      <li>Financial projections for first 1-2 years</li>
+      <li>Why France is the right location for your business</li>
+      <li>Your plan for learning French (if not fluent)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Two-Stage Insurance Approach</h3>
+      <p class="text-green-800">
+        France uses a two-stage system: private health insurance for your visa application and initial months, then transition to the public system (CPAM/PUMa) after establishing residency. This differs from Germany, where you choose public or private permanently.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      For your visa application, you need private health insurance that meets French requirements. Once you've lived in France for 3 months with a valid visa, you can apply for CPAM (the public health insurance fund) and access PUMa (Protection Universelle Maladie).
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Visa-Stage vs. Resident Coverage</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance for Visa Application</h3>
+
+    <p class="mb-4">
+      Your private insurance for the visa must:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li>Cover minimum €30,000 in medical expenses</li>
+      <li>Include hospitalization and emergency treatment</li>
+      <li>Cover medical evacuation and repatriation</li>
+      <li>Be valid for your entire intended stay</li>
+      <li>Provide a "visa letter" confirming coverage in France</li>
+      <li>Not be travel insurance (must be comprehensive health coverage)</li>
+    </ul>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Why Keep Private Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Immediate coverage, no 3-month wait</li>
+          <li>✓ No reimbursement process</li>
+          <li>✓ English-speaking support</li>
+          <li>✓ Global coverage for travel</li>
+          <li>✓ Can maintain while awaiting CPAM</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Benefits of Transitioning to PUMa</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Significantly lower cost (free or low annual fee)</li>
+          <li>✓ Full coverage for pre-existing conditions</li>
+          <li>✓ Access to excellent French healthcare</li>
+          <li>✓ Carte Vitale simplifies doctor visits</li>
+          <li>✓ Add mutuelle for comprehensive coverage</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Transitioning to CPAM/PUMa</h3>
+
+    <p class="mb-4">
+      After 3 months of legal residence in France, you can apply for CPAM affiliation through PUMa (Protection Universelle Maladie). The process:
+    </p>
+
+    <ol class="list-decimal pl-6 space-y-2 mb-6">
+      <li>Wait 3 months after arrival with valid long-stay visa</li>
+      <li>Submit "Demande d'ouverture des droits à l'assurance maladie" to local CPAM</li>
+      <li>Processing takes 3-6 months (keep private insurance active)</li>
+      <li>Receive your attestation de droits (proof of coverage)</li>
+      <li>Apply for Carte Vitale (green health card)</li>
+      <li>Register with a médecin traitant (primary care doctor)</li>
+      <li>Sign up for a mutuelle to cover the 30% not reimbursed</li>
+    </ol>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>The overlap period:</strong> Keep your private insurance active until your CPAM application is approved and you have your Carte Vitale. This overlap typically takes 6-9 months from arrival. Many expats maintain both for peace of mind during the transition.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Professional Liability Insurance (RC Pro)</h3>
+
+    <p class="mb-4">
+      Many freelance activities in France require Responsabilité Civile Professionnelle (RC Pro)—professional liability insurance. This is separate from health insurance and protects against claims arising from your work.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Mandatory for:</strong> Regulated professions, construction, healthcare, finance</li>
+      <li><strong>Strongly recommended for:</strong> Consultants, designers, developers</li>
+      <li><strong>Cost:</strong> €30-150/month depending on activity</li>
+      <li><strong>Providers:</strong> Hiscox, AXA Pro, Allianz, April</li>
+    </ul>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your French freelancer visa?"
+    description="Compare private health insurance options that meet French visa requirements."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/axa-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For the visa application stage, you need international private insurance. AXA and April are French-based insurers with strong local knowledge, while Cigna and Allianz offer robust global coverage. After transitioning to CPAM, you'll only need a mutuelle for top-up coverage.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">New Arrival, First Year in France</h4>
+        <p class="text-neutral-600">AXA Global or April International are ideal—both are French companies with excellent local networks and visa letter support. They understand the French system and can guide your transition to CPAM. Budget €200-350/month for comprehensive coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Traveler, Need Global Coverage</h4>
+        <p class="text-neutral-600">Cigna Global offers strong worldwide coverage while meeting French visa requirements. Good choice if you'll travel frequently for work or return to your home country regularly. Direct billing network reduces out-of-pocket hassle.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious, Planning Quick CPAM Transition</h4>
+        <p class="text-neutral-600">Allianz Care with a higher deductible (€500-2,500) can reduce monthly costs while meeting visa requirements. Plan to transition to CPAM as soon as eligible to minimize private insurance costs. Budget €180-280/month.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-Existing Conditions or Mental Health Needs</h4>
+        <p class="text-neutral-600">BUPA Global offers more comprehensive mental health coverage and is generally more accommodating of pre-existing conditions. Higher premiums (€260-550/month) but fewer exclusions. Prioritize transitioning to PUMa where pre-existing conditions are fully covered.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Already Established, Post-CPAM Coverage</h4>
+        <p class="text-neutral-600">Once on CPAM/PUMa, add a mutuelle (complementary insurance) for €50-150/month. This covers the ~30% not reimbursed by the state plus dental and vision. Alan, April Santé, and Goodassur are popular with expats.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Freelancing in France involves setup costs, ongoing URSSAF contributions, and living expenses. The auto-entrepreneur regime keeps social contributions simple at roughly 22% of revenue, but you'll also need to budget for insurance, accounting (optional), and potentially RC Pro.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">URSSAF Social Contributions (Auto-Entrepreneur)</h3>
+
+    <p class="mb-4">
+      As an auto-entrepreneur, you pay social contributions (cotisations sociales) as a flat percentage of your revenue:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Services (BNC):</strong> ~22.2% of revenue (includes health, retirement, family benefits)</li>
+      <li><strong>Commercial (BIC):</strong> ~12.3% of revenue</li>
+      <li><strong>Rental activities:</strong> ~6% of revenue</li>
+      <li><strong>Payment:</strong> Monthly or quarterly via URSSAF online portal</li>
+      <li><strong>CFE tax:</strong> ~€200-500/year (cotisation foncière des entreprises)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <p class="text-green-800">
+        <strong>First year advantage:</strong> ACRE (Aide aux Créateurs et Repreneurs d'Entreprise) can reduce your first year's contributions by 50% if you qualify. This brings service contributions down to ~11% for year one—a significant saving for new freelancers.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Paris (Budget)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,500-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Small apartment, careful spending</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Paris (Comfortable)</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,500-4,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Good apartment, dining out</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Lyon/Bordeaux</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,000-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Comfortable living, lower rent</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Paris Example)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (studio/1BR):</strong> €1,200-1,800/month (less outside Paris)</li>
+      <li><strong>Health insurance:</strong> €200-400/month initially, €50-150 after CPAM</li>
+      <li><strong>URSSAF contributions:</strong> ~22% of revenue (so €660/month on €3,000 revenue)</li>
+      <li><strong>RC Pro insurance:</strong> €30-100/month</li>
+      <li><strong>Coworking space:</strong> €150-400/month (optional)</li>
+      <li><strong>Living expenses:</strong> €600-1,000/month (food, transport, utilities)</li>
+      <li><strong>Phone/internet:</strong> €50-80/month</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Tax advantage:</strong> Auto-entrepreneurs can optionally pay income tax as a flat rate (versement libératoire) of 1.7-2.2% of revenue, included with your URSSAF payment. This simplifies taxes but may not be optimal for everyone—consult an expert-comptable if your situation is complex.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The French freelancer visa process involves applying at your local French consulate, then validating your visa with OFII (Office Français de l'Immigration et de l'Intégration) after arrival. You'll also need to register your business to receive a SIRET number before you can invoice clients.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Business Case</h4>
+          <p class="text-neutral-600">Write your projet professionnel explaining your services, target market, and financial viability. Gather client contracts, letters of intent, portfolio samples, and professional credentials. The stronger your evidence of existing business, the better your application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Private Health Insurance</h4>
+          <p class="text-neutral-600">Contact AXA Global, Cigna, or another qualifying insurer for a comprehensive plan meeting French requirements. Request a "visa letter" (attestation d'assurance) confirming coverage for at least your first year in France. This is mandatory for your visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Book and Attend Consulate Appointment</h4>
+          <p class="text-neutral-600">Schedule an appointment at your nearest French consulate. Wait times vary (2-6 weeks). Bring all documents—the full checklist is on France-Visas.gouv.fr. Pay the €99 visa fee. Be prepared to explain your business plan in detail.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Visa Processing</h4>
+          <p class="text-neutral-600">Processing typically takes 2-3 months. The consulate may request additional documents or an interview. Once approved, you'll receive a VLS-TS (Visa Long Séjour valant Titre de Séjour) valid for 1 year.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Validate Visa with OFII</h4>
+          <p class="text-neutral-600">Within 3 months of arrival, validate your visa online through the OFII portal. Pay the €225 validation fee. You'll receive a medical examination appointment. Complete this process to make your visa valid as a residence permit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Your Business</h4>
+          <p class="text-neutral-600">Create your auto-entrepreneur status via autoentrepreneur.urssaf.fr or guichet-entreprises.fr. You'll choose your activity code (APE) and register with the appropriate CFE (Centre de Formalités des Entreprises). This is free for most activities.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Your SIRET Number</h4>
+          <p class="text-neutral-600">Within 1-4 weeks of registration, you'll receive your SIRET number (business identification) from INSEE. You now have a 14-digit number to include on all invoices. You can start billing clients legally.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for CPAM/PUMa (After 3 Months)</h4>
+          <p class="text-neutral-600">After 3 months of residence, submit your CPAM application. Processing takes 3-6 months. Once approved, you'll receive your attestation de droits and can apply for a Carte Vitale. Add a mutuelle for comprehensive coverage.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Language tip:</strong> While English is more common in Paris and major cities, French bureaucracy operates in French. Having basic French helps significantly with URSSAF, CPAM, and prefecture interactions. Consider taking French classes before or upon arrival—it also strengthens your visa application.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for and living on the French freelancer visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Designer Post-Brexit, Paris-Based</h3>
+        <p class="text-neutral-600 mb-4">Applied with portfolio and 2 ongoing retainer clients. 34 years old, basic French.</p>
+        <p class="text-green-700 font-medium">✓ Visa approved in 10 weeks. Started with April International (€280/month). Auto-entrepreneur registration completed in 3 weeks. Transitioned to CPAM after 7 months. Now billing €5,000/month and paying ~€1,100 in URSSAF. Very happy with healthcare quality.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Marketing Consultant, Lyon</h3>
+        <p class="text-neutral-600 mb-4">10 years experience, existing clients, planning to work with French companies. 41 years old.</p>
+        <p class="text-green-700 font-medium">✓ Visa approved with strong business plan. Chose Lyon for lower living costs. AXA Global coverage (€320/month). CPAM transition smooth but took 8 months total. Now running successful consultancy with mix of US and French clients. Recommends learning French for local market.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Canadian Developer, Remote Work Only</h3>
+        <p class="text-neutral-600 mb-4">Works for Canadian clients, no French business connections. 29 years old, no French.</p>
+        <p class="text-amber-700 font-medium">△ Initial application questioned—consulate wanted to understand benefit to France. Added explanation of local spending, tax contributions, and plans to attend French classes. Approved on second attempt with more detailed projet professionnel. Now working successfully from Bordeaux.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Architect from Argentina, Regulated Profession</h3>
+        <p class="text-neutral-600 mb-4">Qualified architect, needs diploma recognition and Ordre registration.</p>
+        <p class="text-amber-700 font-medium">△ More complex path due to regulated profession. Had to get Argentine diploma recognized by French Ministry, then register with Ordre des Architectes. Process took 8 months total. Now practicing in Toulouse with full profession libérale status. Worth the effort for access to French market.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Writer from Australia, Arts Focus</h3>
+        <p class="text-neutral-600 mb-4">Freelance journalist and author, 38 years old, fluent French.</p>
+        <p class="text-green-700 font-medium">✓ Straightforward approval thanks to established portfolio and French fluency. Registered as auto-entrepreneur in "activités littéraires." Joined Maison des Artistes for additional social benefits. Living in Nice, billing €3,500/month, very satisfied with quality of life and healthcare access.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">IT Consultant from India, New to Freelancing</h3>
+        <p class="text-neutral-600 mb-4">Former employee transitioning to freelance, limited client proof. 27 years old.</p>
+        <p class="text-red-700 font-medium">✗ Visa denied—insufficient evidence of viable freelance business. Consulate wanted to see existing clients, not just skills. Returned home, spent 6 months building freelance portfolio with remote clients, then reapplied successfully with 3 contracts and €8,000 in savings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for French Freelancers"
+    description="Find the right coverage for your visa application and first year in France."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating French Bureaucracy</h3>
+        <p class="text-neutral-600">France is famous for paperwork. Every interaction with URSSAF, CPAM, or the prefecture requires specific documents, often translated and certified. Build extra time into your planning—processes that seem simple often take weeks. Learn the phrase "je voudrais un rendez-vous" (I'd like an appointment).</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Learning Any French</h3>
+        <p class="text-neutral-600">While English is common in business, French bureaucracy operates in French. URSSAF forms, CPAM letters, and prefecture appointments are all in French. Even basic conversational French significantly smooths daily life and official interactions. Consulates also view French study favorably.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Canceling Private Insurance Too Early</h3>
+        <p class="text-neutral-600">Many freelancers cancel private insurance immediately after applying for CPAM. But CPAM processing takes 3-6 months, and you won't have your Carte Vitale immediately. Keep private insurance until you have confirmed CPAM coverage and your Carte Vitale in hand.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing OFII Validation Deadline</h3>
+        <p class="text-neutral-600">You must validate your VLS-TS visa with OFII within 3 months of arrival. Miss this deadline and your visa becomes invalid. The process is online at administration-etrangers-en-france.interieur.gouv.fr, but the site can be confusing. Start immediately upon arrival.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Without Client Evidence</h3>
+        <p class="text-neutral-600">A business plan with "I will find clients" is not convincing. Consulates want to see you have existing business or strong prospects. Even letters of intent, inquiry emails, or a track record of freelance work elsewhere strengthens your application significantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in France -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in France</h2>
+
+    <p class="mb-4">
+      France's healthcare system consistently ranks among the best in the world—the WHO famously ranked it #1 globally. As a registered freelancer with CPAM coverage, you'll have full access to this excellent system at highly subsidized costs.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How French Healthcare Works</h3>
+
+    <p class="mb-4">
+      France uses a reimbursement model. You pay for care (or your doctor bills directly), then CPAM reimburses approximately 70% of approved costs. A mutuelle (complementary insurance) covers most or all of the remaining 30%.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Covered by Sécurité Sociale (~70%)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP and specialist consultations</li>
+          <li>✓ Hospital treatment and surgeries</li>
+          <li>✓ Prescription medications</li>
+          <li>✓ Maternity care (100% covered)</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Preventive care and vaccinations</li>
+          <li>✓ Physical therapy</li>
+          <li>✓ Lab tests and imaging</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Covered by Mutuelle (Remaining ~30%)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• The "ticket modérateur" (30% copay)</li>
+          <li>• Dental work beyond basics</li>
+          <li>• Optical (glasses, contacts)</li>
+          <li>• Private hospital rooms</li>
+          <li>• Alternative medicine</li>
+          <li>• Excess fees (dépassements d'honoraires)</li>
+          <li>• Higher reimbursement rates</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Your Healthcare Journey as a Freelancer</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Months 1-3: Private Insurance</h4>
+        <p class="text-neutral-600">Use your private insurance from AXA, Cigna, or similar. You can see any doctor. Keep all receipts for potential reimbursement.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Months 3-9: Transition Period</h4>
+        <p class="text-neutral-600">Apply for CPAM after 3 months. Keep private insurance active while processing. May take 3-6 months to receive confirmation and Carte Vitale.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Month 9+: Full French Coverage</h4>
+        <p class="text-neutral-600">Once you have your Carte Vitale and médecin traitant, you're in the French system. Add a mutuelle for comprehensive coverage. Total monthly cost: ~€50-150 for mutuelle.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding Doctors</h3>
+
+    <p class="mb-4">
+      Use Doctolib to find and book appointments with doctors in France. Many doctors in Paris and major cities speak English. Once on CPAM, you'll need to register with a médecin traitant (primary care doctor) who coordinates your care.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Emergencies:</strong> Call 15 (SAMU) for medical emergencies. Call 112 for general emergencies. Hospital emergency rooms (Urgences) are available 24/7. SOS Médecins provides house calls for urgent but non-emergency issues.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between auto-entrepreneur and profession libérale?</h3>
+        <p class="text-neutral-600">
+          Auto-entrepreneur is a simplified tax regime available to small freelancers earning under €77,700/year (services). You pay flat-rate social contributions (~22%) with minimal accounting. Profession libérale refers to regulated professions (doctors, lawyers, architects) requiring diplomas and professional order membership, with higher contributions (~45%) but no revenue limits.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak French to get the freelancer visa?</h3>
+        <p class="text-neutral-600">
+          No, French language is not a formal visa requirement. However, demonstrating commitment to learning French strengthens your application. More importantly, daily life—bureaucracy, URSSAF, CPAM—operates in French. Basic conversational ability significantly eases your transition.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How much do I need to earn to qualify?</h3>
+        <p class="text-neutral-600">
+          There's no strict minimum income for freelancers, but you should demonstrate ability to earn approximately SMIC level (~€1,766/month gross or €21,192/year). Alternatively, show sufficient savings (€10,000-15,000) to support yourself while building your business. Client contracts and realistic financial projections in your business plan matter most.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can access public healthcare?</h3>
+        <p class="text-neutral-600">
+          You can apply for CPAM/PUMa after 3 months of legal residence. Processing takes an additional 3-6 months. Expect 6-9 months total from arrival before you have your Carte Vitale and full public coverage. Keep private insurance active during this entire period.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I exceed the auto-entrepreneur revenue limit?</h3>
+        <p class="text-neutral-600">
+          If you exceed €77,700 in services revenue for two consecutive years, you must switch to the regular regime (entreprise individuelle or EURL/SASU). This means higher social contributions (~45%), real accounting requirements, and VAT obligations. Many successful freelancers eventually make this transition as their business grows.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get permanent residence through the freelancer visa?</h3>
+        <p class="text-neutral-600">
+          Yes. After 5 years of continuous legal residence in France (including on the profession libérale visa), you can apply for a carte de résident (10-year renewable residence permit). Requirements include stable income, integration into French society, and typically B1 French language level.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      France's freelancer visa, combined with the auto-entrepreneur regime, offers a compelling path for self-employed professionals seeking European residency. The simplified tax structure (22% flat rate), access to world-class healthcare, and central location make it particularly attractive for consultants, designers, developers, and other service providers earning under €77,700 annually.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the infamous French bureaucracy and the 6-9 month wait for public healthcare. Budget for private insurance during your first year, and build extra time into every administrative process. Learning French—even basics—significantly eases daily life and official interactions.
+    </p>
+
+    <p class="mb-6">
+      For those willing to navigate the paperwork, France rewards you with an exceptional quality of life: world-class cuisine, rich culture, excellent infrastructure, and a healthcare system that consistently ranks among the best globally. Post-Brexit, the path is well-trodden by UK freelancers, and established English-speaking communities exist in Paris, Lyon, Bordeaux, and beyond.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        France's freelancer visa works best for established professionals with client evidence and tolerance for bureaucracy. The auto-entrepreneur regime keeps taxes simple at ~22% of revenue. Plan for 6-9 months of private insurance before CPAM kicks in, and invest in learning French. The reward is access to the EU, excellent healthcare, and one of the world's most desirable places to live.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/axa-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare AXA Global Plans →
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/france/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">France Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in France</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/france" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">France Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with France's other remote work options</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's Freiberufler visa</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

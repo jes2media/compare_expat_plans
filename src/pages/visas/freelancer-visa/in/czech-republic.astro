@@ -1,0 +1,868 @@
+---
+/**
+ * Czech Republic Freelancer/Self-Employed Visa (Živnostenský list) - Long-form CRO-optimized page
+ * Static page (overrides dynamic route for this specific country)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Czech Republic", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Czech Republic Health Insurance Guide", href: "/countries/czech-republic/insurance" },
+  { title: "Insurance for Freelancers", href: "/insurance-for/freelancers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Trade License (Živnostenský list)", details: "Required for all freelance activities", evidence: "Application at Trade Licensing Office" },
+  { requirement: "Financial Proof", details: "~€5,000-6,000 in savings", evidence: "Bank statements (3 months)" },
+  { requirement: "Health Insurance", details: "PVZP or Maxima ONLY", evidence: "Insurance certificate from approved provider" },
+  { requirement: "Accommodation", details: "Proof of housing in Czech Republic", evidence: "Rental contract or registered agent confirmation" },
+  { requirement: "Clean Criminal Record", details: "No criminal history", evidence: "Police clearance certificate (apostilled)" },
+  { requirement: "Valid Passport", details: "Valid for duration of stay + 3 months", evidence: "Passport with 2+ blank pages" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "pvzp", header: "PVZP" },
+  { key: "maxima", header: "Maxima" },
+];
+
+const insuranceRows = [
+  { feature: "Annual Cost", pvzp: "€500-700/year", maxima: "€500-800/year" },
+  { feature: "Accepted for Visa?", pvzp: "YES - required provider", maxima: "YES - required provider" },
+  { feature: "Coverage Level", pvzp: "Comprehensive (hospital + outpatient)", maxima: "Comprehensive (hospital + outpatient)" },
+  { feature: "Coverage Limit", pvzp: "CZK 2,000,000+", maxima: "CZK 2,000,000+" },
+  { feature: "Emergency Repatriation", pvzp: "Included", maxima: "Included" },
+  { feature: "Website", pvzp: "pvzp.cz", maxima: "maxi.cz" },
+  { feature: "English Support", pvzp: "Yes", maxima: "Yes" },
+];
+
+const internationalInsuranceColumns = [
+  { key: "provider", header: "International Provider" },
+  { key: "accepted", header: "Accepted for Czech Visa?" },
+  { key: "notes", header: "Notes" },
+];
+
+const internationalInsuranceRows = [
+  { provider: "SafetyWing", accepted: "NO - NOT ACCEPTED", notes: "Will be rejected at embassy" },
+  { provider: "Cigna Global", accepted: "NO - NOT ACCEPTED", notes: "Does not meet Czech requirements" },
+  { provider: "Allianz Care", accepted: "NO - NOT ACCEPTED", notes: "Not on approved list" },
+  { provider: "BUPA Global", accepted: "NO - NOT ACCEPTED", notes: "Not recognized by Czech authorities" },
+  { provider: "World Nomads", accepted: "NO - NOT ACCEPTED", notes: "Travel insurance, not compliant" },
+  { provider: "IMG Global", accepted: "NO - NOT ACCEPTED", notes: "Not on approved list" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Annual Cost" },
+  { key: "accepted", header: "Accepted for Visa?" },
+];
+
+const providerRows = [
+  { provider: "PVZP (Pojišťovna VZP)", type: "Czech - Required", price: "€500-700", accepted: "YES - Required" },
+  { provider: "Maxima pojišťovna", type: "Czech - Required", price: "€500-800", accepted: "YES - Required" },
+  { provider: "SafetyWing", type: "International", price: "€500-1,000", accepted: "NO - REJECTED" },
+  { provider: "Cigna Global", type: "International", price: "€1,000-2,000", accepted: "NO - REJECTED" },
+  { provider: "Allianz Care", type: "International", price: "€800-1,500", accepted: "NO - REJECTED" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Trade License (Živnostenský list)", amount: "~€30 (CZK 1,000)", notes: "One-time fee at Trade Office" },
+  { item: "Long-term Visa Application", amount: "~€100 (CZK 2,500)", notes: "Embassy application fee" },
+  { item: "Health Insurance (Annual)", amount: "€500-800", notes: "PVZP or Maxima only" },
+  { item: "Residence Permit Card", amount: "~€50 (CZK 1,000)", notes: "Biometric card fee" },
+  { item: "Document Translations", amount: "€100-300", notes: "Sworn translations required" },
+  { item: "Criminal Record Apostille", amount: "€50-150", notes: "Varies by country" },
+  { item: "Registered Agent (optional)", amount: "€100-300", notes: "For initial Czech address" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Obtain Trade License (Živnostenský list)", duration: "1-5 days", location: "Czech Trade Office (can use representative)" },
+  { step: "Purchase PVZP or Maxima insurance", duration: "1-3 days", location: "Online (pvzp.cz or maxi.cz)" },
+  { step: "Gather and apostille documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Obtain sworn translations", duration: "1-2 weeks", location: "Home country or Czech Republic" },
+  { step: "Submit visa application IN PERSON", duration: "1 day", location: "Czech embassy/consulate" },
+  { step: "Visa processing", duration: "60-90 days", location: "Ministry of Interior" },
+  { step: "Collect visa", duration: "1 day", location: "Embassy pickup" },
+  { step: "Arrive and register with Foreign Police", duration: "Within 3 working days", location: "Foreign Police office in CZ" },
+];
+---
+
+<PageShell
+  title="Czech Republic Freelancer Visa (Živnostenský list) 2026: Complete Insurance & Requirements Guide"
+  description="Complete guide to Czech Republic's Freelancer Visa (Zivno). CRITICAL: Only PVZP or Maxima insurance accepted - SafetyWing, Cigna NOT valid. Low costs, Prague lifestyle, path to EU residency."
+  headline="Czech Republic Freelancer Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need for the Czech Živnostenský list (Zivno) visa—CRITICAL: only PVZP or Maxima insurance accepted (international insurers like SafetyWing and Cigna are NOT valid), affordable Prague living, and path to EU permanent residency."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Learn About Czech Insurance Requirements"
+  ctaButtonHref="#insurance-requirements"
+  heroImage="/images/countries/czech-republic-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Ministry of Interior
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+      PVZP/Maxima Insurance ONLY
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The Czech Republic Freelancer Visa—officially the Živnostenský list (trade license) combined with a long-term visa—has become one of Europe's most popular pathways for digital nomads and self-employed professionals. Known informally as the "Zivno visa," it offers affordable living in Prague, one of Europe's most beautiful cities, with a clear path to EU permanent residency after 5 years.
+    </p>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+      <p class="text-red-800">
+        <strong>CRITICAL: Insurance Restriction</strong><br />
+        Czech Republic has STRICT insurance requirements. For the freelancer visa, you <strong>MUST</strong> have insurance from <strong>PVZP</strong> or <strong>Maxima</strong> ONLY. International insurance providers—SafetyWing, Cigna Global, Allianz Care, BUPA, World Nomads—are <strong>NOT ACCEPTED</strong>. Your visa WILL be rejected. This is non-negotiable.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Unlike many countries, Czech Republic has no minimum income requirement for this visa. Instead, you need to demonstrate sufficient savings (approximately €5,000-6,000) to support yourself while establishing your freelance business. This makes it accessible to freelancers at various income levels.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Czech Freelancer Visa (Zivno)</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Živnostenský list (Trade License) + Long-term visa/residence permit</li>
+        <li>• <strong>Duration:</strong> 1 year initial, renewable for 2 years</li>
+        <li>• <strong>Income requirement:</strong> None (must show ~€5,000-6,000 savings)</li>
+        <li>• <strong>Health insurance:</strong> ONLY PVZP or Maxima accepted (€500-800/year)</li>
+        <li>• <strong>Trade license fee:</strong> ~€30 (CZK 1,000)</li>
+        <li>• <strong>Visa fee:</strong> ~€100 (CZK 2,500)</li>
+        <li>• <strong>Processing time:</strong> 60-90 days</li>
+        <li>• <strong>Path to residency:</strong> Permanent residence after 5 years</li>
+        <li>• <strong>Popular cities:</strong> Prague, Brno</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Czech Republic for Freelancing?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>No income requirement:</strong> Unlike Spain or Portugal, no minimum monthly income needed</li>
+      <li><strong>Low costs:</strong> Trade license only €30, visa €100, insurance €500-800/year</li>
+      <li><strong>Affordable living:</strong> Prague offers Western quality at Eastern European prices</li>
+      <li><strong>Established nomad community:</strong> Large expat scene, abundant coworking spaces</li>
+      <li><strong>Central location:</strong> Easy access to all of Europe via trains and budget airlines</li>
+      <li><strong>Path to EU residency:</strong> Permanent residence after 5 continuous years</li>
+      <li><strong>Beautiful architecture:</strong> Prague is one of Europe's most stunning cities</li>
+      <li><strong>Fast internet:</strong> Excellent connectivity throughout the country</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Czech Republic is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You want affordable European living</li>
+          <li>You can use PVZP or Maxima insurance (required)</li>
+          <li>You want no minimum income requirement</li>
+          <li>You have ~€5,000-6,000 in savings</li>
+          <li>You want a path to EU permanent residency</li>
+          <li>You can handle bureaucratic processes</li>
+          <li>You appreciate history, architecture, and cafe culture</li>
+          <li>You want central European location for travel</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>You want to use SafetyWing or other international insurance (not accepted)</li>
+          <li>You need fast visa processing (60-90 days here)</li>
+          <li>You prefer everything in English (Czech bureaucracy can be challenging)</li>
+          <li>You want warmer weather year-round</li>
+          <li>You prefer simpler visa processes (Portugal D7, for example)</li>
+          <li>You don't want to deal with trade license paperwork</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why digital nomads love the Zivno:</strong> The combination of no income requirement, very low fees, affordable living, and path to permanent EU residence makes this one of Europe's most accessible long-term visa options. The strict insurance requirement is manageable once you know to use PVZP or Maxima.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Czech freelancer visa process involves two steps: obtaining a trade license (Živnostenský list), then applying for a long-term visa at a Czech embassy. You must apply IN PERSON at the embassy—online applications are not accepted.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The Trade License (Živnostenský list)</h3>
+
+    <p class="mb-4">
+      The Živnostenský list is a business license that authorizes you to operate as a self-employed freelancer in the Czech Republic. Most digital work falls under "free trades" (volná živnost) which require no special qualifications.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Trade License Basics</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Cost:</strong> ~€30 (CZK 1,000)</li>
+          <li>• <strong>Processing:</strong> 1-5 business days</li>
+          <li>• <strong>Application:</strong> Can use a representative</li>
+          <li>• <strong>Requirements:</strong> Clean criminal record</li>
+          <li>• <strong>Valid activities:</strong> IT, consulting, design, marketing, writing, most digital work</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">How to Apply</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Apply at Trade Licensing Office (Živnostenský úřad)</li>
+          <li>• Can be done through a registered agent/representative before you arrive</li>
+          <li>• Need Czech address (agent can provide this initially)</li>
+          <li>• Obtain before your visa appointment</li>
+          <li>• Keep the license—you'll need it for visa renewal</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
+
+    <p class="mb-4">
+      Unlike Spain or Portugal's Digital Nomad Visas which require proof of high income, Czech Republic has no minimum income requirement. Instead, you need to show sufficient savings—approximately €5,000-6,000 in your bank account.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <p class="text-green-800">
+        <strong>No income proof needed:</strong> You don't need to show contracts, invoices, or minimum monthly income. Just bank statements demonstrating sufficient savings to support yourself. This makes the Czech freelancer visa accessible to those just starting out.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Document Checklist</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Valid passport (6+ months validity, 2+ blank pages)</li>
+      <li>Trade license (Živnostenský list)</li>
+      <li>Proof of accommodation in Czech Republic (lease or agent confirmation)</li>
+      <li>Bank statements showing ~€5,000-6,000 (3 months)</li>
+      <li>Health insurance certificate from PVZP or Maxima ONLY</li>
+      <li>Criminal record certificate (apostilled)</li>
+      <li>Passport photos (35x45mm, white background)</li>
+      <li>Completed application forms</li>
+      <li>Sworn translations of all non-Czech documents</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Document verification:</strong> Many documents need apostille or superlegalization depending on your country. Criminal record certificates typically need apostille. Check with the Czech embassy for your country's specific requirements—this can take 2-4 weeks.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-300 rounded-lg p-6 mb-6">
+      <h3 class="font-bold text-red-900 mb-3">CRITICAL: Only PVZP or Maxima Insurance Accepted</h3>
+      <p class="text-red-800 mb-4">
+        Czech immigration law requires comprehensive health insurance from <strong>specific authorized providers</strong> for long-term visas. For the freelancer visa, <strong>ONLY PVZP (Pojišťovna VZP) and Maxima pojišťovna are accepted</strong>.
+      </p>
+      <p class="text-red-800 font-semibold">
+        International insurers—SafetyWing, Cigna Global, Allianz Care, BUPA, World Nomads, IMG Global—are NOT valid and your visa WILL be rejected if you apply with these. This is the #1 reason applications fail.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      This is one of the strictest insurance requirements in Europe. Many expats learn this the hard way after purchasing SafetyWing or Cigna and having their visa application rejected. Don't make this mistake—purchase PVZP or Maxima BEFORE your embassy appointment.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">PVZP vs Maxima Comparison</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">International Insurers: NOT Accepted</h3>
+
+    <p class="mb-4">
+      To be absolutely clear, here are popular international insurers that are NOT accepted for the Czech freelancer visa:
+    </p>
+
+    <ComparisonTable columns={internationalInsuranceColumns} rows={internationalInsuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Coverage Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What PVZP/Maxima Covers</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Comprehensive inpatient care (hospitalization)</li>
+          <li>Outpatient medical visits</li>
+          <li>Emergency medical treatment</li>
+          <li>Prescription medications</li>
+          <li>Emergency dental treatment</li>
+          <li>Ambulance services</li>
+          <li>Emergency repatriation</li>
+          <li>Coverage limit: CZK 2,000,000+</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Typical Limitations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>Limited or no travel coverage outside Czech Republic</li>
+          <li>Pre-existing conditions may have waiting periods</li>
+          <li>Routine dental may not be covered</li>
+          <li>Cosmetic procedures excluded</li>
+          <li>Some elective treatments limited</li>
+          <li>Maternity may have waiting period</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Supplementary travel insurance:</strong> Since PVZP and Maxima primarily cover you within Czech Republic, many expats add supplementary travel insurance (SafetyWing, World Nomads) for trips to other Schengen countries. This is fine as a supplement—just don't try to use it for your visa application.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Where to Purchase</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-2">PVZP (Pojišťovna VZP)</h4>
+        <p class="text-green-800 mb-2">Website: <a href="https://www.pvzp.cz" class="underline">pvzp.cz</a></p>
+        <p class="text-green-800">English version available. Can purchase online. They provide the insurance certificate you need for your visa application.</p>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-2">Maxima pojišťovna</h4>
+        <p class="text-green-800 mb-2">Website: <a href="https://www.maxi.cz" class="underline">maxi.cz</a></p>
+        <p class="text-green-800">English version available. Online purchase possible. Often slightly cheaper than PVZP for similar coverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Czech Visa Insurance: Only PVZP or Maxima Accepted"
+    description="Don't risk visa rejection with international insurance. Purchase from pvzp.cz or maxi.cz before your embassy appointment."
+    buttonText="View Insurance Requirements"
+    buttonHref="#recommended-providers"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Czech freelancer visa compliance, you have exactly two options: PVZP or Maxima. Both are accepted and provide similar comprehensive coverage. Choose based on price and any specific coverage details that matter to you.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">First-time Applicant</h4>
+        <p class="text-neutral-600">Use PVZP or Maxima—either is fine. PVZP is slightly more established; Maxima is sometimes cheaper. Both are fully accepted. Purchase before your embassy appointment and bring the insurance certificate.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Traveler in Schengen</h4>
+        <p class="text-neutral-600">Use PVZP or Maxima for visa compliance, then add supplementary travel insurance (SafetyWing or similar) for trips outside Czech Republic. PVZP/Maxima coverage is primarily within Czech Republic.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Contact PVZP and Maxima directly to discuss your situation. Both may have waiting periods or limitations for pre-existing conditions. Get clarity before purchasing.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Already Have International Insurance</h4>
+        <p class="text-neutral-600">You still need PVZP or Maxima for the visa—your Cigna, Allianz, or SafetyWing will not be accepted. You can keep your international insurance as supplementary coverage if you wish.</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Good news:</strong> PVZP and Maxima are affordable at €500-800/year—often cheaper than international insurers. The coverage is comprehensive for your time in Czech Republic. The restriction is frustrating if you're used to SafetyWing, but the actual insurance is good value.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The Czech freelancer visa is one of the most affordable long-term visa options in Europe. The trade license costs only ~€30, the visa fee is ~€100, and compliant insurance runs €500-800/year. Your main expense is proving you have ~€5,000-6,000 in savings (which you keep).
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total First-Year Cost Estimates</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Visa Setup Only</p>
+        <p class="text-3xl font-bold text-neutral-900">€800-1,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Fees + insurance + translations</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">With Agent Services</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,200-1,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Add visa agency help</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Required Savings</p>
+        <p class="text-3xl font-bold text-neutral-900">€5,000-6,000</p>
+        <p class="text-sm text-neutral-500 mt-2">You keep this—not a fee</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost of Living</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold mb-3">Monthly Budget - Prague</h4>
+        <ul class="text-sm space-y-2 text-neutral-700">
+          <li>Rent (studio/1BR): €600-900</li>
+          <li>Rent (shared apartment): €350-500</li>
+          <li>Food and groceries: €250-400</li>
+          <li>Public transport: €25 (monthly pass)</li>
+          <li>Coworking: €100-200</li>
+          <li>Utilities + internet: €80-120</li>
+          <li>Entertainment: €100-200</li>
+          <li><strong>Total: €1,500-2,300/month</strong></li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold mb-3">Monthly Budget - Brno</h4>
+        <ul class="text-sm space-y-2 text-neutral-700">
+          <li>Rent (studio/1BR): €400-600</li>
+          <li>Rent (shared apartment): €250-350</li>
+          <li>Food and groceries: €200-350</li>
+          <li>Public transport: €20 (monthly pass)</li>
+          <li>Coworking: €80-150</li>
+          <li>Utilities + internet: €70-100</li>
+          <li>Entertainment: €80-150</li>
+          <li><strong>Total: €1,100-1,700/month</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Affordable compared to Western Europe:</strong> Prague offers Western European quality at a fraction of the cost. A comfortable lifestyle that would cost €3,000+/month in Paris or Amsterdam runs €1,500-2,000 in Prague. Brno is even cheaper while maintaining excellent quality of life.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Czech freelancer visa process takes 3-4 months total from start to arrival. The main steps are: obtain trade license, purchase insurance, gather documents, apply at embassy, wait for processing, then register upon arrival. You MUST apply in person at a Czech embassy.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Trade License (Živnostenský list)</h4>
+          <p class="text-neutral-600">Apply at the Czech Trade Licensing Office. You can use a registered agent/representative to do this before you arrive—they provide a Czech address for the application. Cost: ~€30. Processing: 1-5 days. This is required before your visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Purchase PVZP or Maxima Insurance</h4>
+          <p class="text-neutral-600">Buy insurance from pvzp.cz or maxi.cz ONLY. You'll receive an insurance certificate to present at your visa appointment. Cost: €500-800/year. Do NOT purchase SafetyWing, Cigna, or other international insurance—they will not be accepted.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather and Verify Documents</h4>
+          <p class="text-neutral-600">Collect all required documents: criminal record certificate (apostilled), bank statements, passport photos, accommodation proof. Get sworn translations of all non-Czech documents. This can take 2-4 weeks depending on your country's processes.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Book Embassy Appointment</h4>
+          <p class="text-neutral-600">Contact the Czech embassy or consulate in your country to schedule an appointment. Wait times vary—some countries have 2-4 week waits. Book early. You MUST apply in person; mail or online applications are not accepted.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Visa Appointment</h4>
+          <p class="text-neutral-600">Bring all original documents plus copies: trade license, PVZP/Maxima insurance certificate, bank statements, criminal record, passport, photos, accommodation proof. Pay the visa fee (~€100). The interview is usually straightforward.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing takes 60-90 days—one of the longer waits in Europe. The Ministry of Interior reviews your application. They may request additional documents. Your passport stays at the embassy during this time.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect Visa and Travel</h4>
+          <p class="text-neutral-600">Pick up your visa at the embassy. The initial long-term visa is typically valid for 1 year. Enter Czech Republic and prepare for the next step.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with Foreign Police</h4>
+          <p class="text-neutral-600">Within 3 WORKING DAYS of arrival, register at the Foreign Police (Cizinecká policie). Bring your passport, visa, and proof of accommodation. If staying in a hotel, they handle this automatically. Private accommodation requires personal registration. Missing this deadline is a violation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Consider using a visa agency:</strong> Many expats use Prague-based visa agencies (€200-500) to handle the trade license application and document preparation. They reduce rejection risk and save significant stress, especially if you don't speak Czech.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out with the Czech freelancer visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Web Developer, €4,000/month income</h3>
+        <p class="text-neutral-600 mb-4">Freelances for US clients, wants Prague lifestyle.</p>
+        <p class="text-green-700 font-medium">Approved. Used PVZP insurance, hired visa agency for paperwork. Trade license obtained through agent. Living comfortably in Prague 2, loves the cafe scene and low costs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant, €3,500/month</h3>
+        <p class="text-neutral-600 mb-4">Applied with SafetyWing insurance, didn't research requirements.</p>
+        <p class="text-red-700 font-medium">Rejected. SafetyWing not accepted—visa denied at embassy. Wasted 3 months. Reapplied with PVZP insurance, approved on second attempt. Expensive lesson about insurance requirements.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Graphic Designer, €2,500/month</h3>
+        <p class="text-neutral-600 mb-4">Modest income but had €6,000 savings.</p>
+        <p class="text-green-700 font-medium">Approved. No minimum income requirement meant savings were sufficient. Used Maxima insurance, processed own paperwork with some struggle. Now based in Brno, enjoying lower costs than Prague.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Writer, Recently Graduated</h3>
+        <p class="text-neutral-600 mb-4">New to freelancing, only €3,000 in savings.</p>
+        <p class="text-red-700 font-medium">Denied. Insufficient funds—needed ~€5,500. Saved for 6 more months, then reapplied successfully. Now freelancing from Prague with proper savings buffer.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer, €5,000/month</h3>
+        <p class="text-neutral-600 mb-4">Strong income, used visa agency, PVZP insurance.</p>
+        <p class="text-green-700 font-medium">Approved quickly. Clean application, all documents in order. Agency handled trade license and translations. Now on year 3, planning for permanent residency at year 5.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Missed Foreign Police Registration</h3>
+        <p class="text-neutral-600 mb-4">Arrived on weekend, didn't register within 3 working days.</p>
+        <p class="text-amber-700 font-medium">Violation recorded. Received fine and warning. Registration is strictly enforced—mark it on your calendar and go on day 1 if possible. Hotels do this automatically; private accommodation requires personal visit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Ready for the Czech Freelancer Visa?"
+    description="Remember: ONLY PVZP or Maxima insurance is accepted. Purchase from pvzp.cz or maxi.cz before your embassy appointment."
+    buttonText="View Full Insurance Requirements"
+    buttonHref="#insurance-requirements"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4 bg-red-50 p-4 rounded-r-lg">
+        <h3 class="font-semibold text-red-900">1. Using SafetyWing, Cigna, or Other International Insurance</h3>
+        <p class="text-red-700">This is the #1 mistake and most common reason for visa rejection. Czech authorities require insurance from PVZP or Maxima ONLY. SafetyWing, Cigna Global, Allianz Care, BUPA, World Nomads—ALL are rejected. Don't assume your excellent international coverage will be accepted. It won't be.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4 bg-red-50 p-4 rounded-r-lg">
+        <h3 class="font-semibold text-red-900">2. Missing Foreign Police Registration (3 Working Days)</h3>
+        <p class="text-red-700">You MUST register with the Foreign Police (Cizinecká policie) within 3 WORKING days of arrival. Not 3 calendar days—3 working days. If you arrive Friday, Monday/Tuesday/Wednesday are your deadline. Hotels register you automatically. Private accommodation means you must go in person. Miss this and you'll face fines and complications.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4 bg-red-50 p-4 rounded-r-lg">
+        <h3 class="font-semibold text-red-900">3. Not Starting the Process Early Enough</h3>
+        <p class="text-red-700">Processing takes 60-90 days—longer than most European visas. Add time for trade license (1 week), document gathering and apostilles (2-4 weeks), and embassy appointment wait (2-4 weeks). Start 4-5 months before you want to arrive. Don't book flights until you have the visa.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4 bg-red-50 p-4 rounded-r-lg">
+        <h3 class="font-semibold text-red-900">4. Insufficient Savings in Bank Account</h3>
+        <p class="text-red-700">You need approximately €5,000-6,000 visibly in your bank account at time of application. This isn't a fee—you keep it—but it must be clearly visible in your statements. Funds in investment accounts or crypto don't count. Have the cash in a regular bank account for 2-3 months before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4 bg-red-50 p-4 rounded-r-lg">
+        <h3 class="font-semibold text-red-900">5. Skipping Document Apostille/Legalization</h3>
+        <p class="text-red-700">Criminal record certificates and other documents often need apostille or superlegalization (depending on your country). Unverified documents will be rejected. Check with the Czech embassy for your country's specific requirements. This process can take 2-4 weeks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Czech Republic -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Czech Republic</h2>
+
+    <p class="mb-4">
+      Czech Republic has excellent healthcare, especially in Prague and major cities. With your PVZP or Maxima insurance, you'll have access to comprehensive medical care at modern facilities. Many doctors in Prague speak English.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>High standard:</strong> Czech healthcare ranks well in Europe, with modern facilities</li>
+      <li><strong>English speakers:</strong> Many doctors in Prague speak English; harder outside capital</li>
+      <li><strong>Short waits:</strong> Generally reasonable wait times for appointments</li>
+      <li><strong>Affordable costs:</strong> Even without insurance, prices are much lower than Western Europe</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Recommended Facilities</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Major Hospitals</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Na Homolce Hospital - top facility, international department</li>
+          <li>Motol University Hospital - largest hospital, full range</li>
+          <li>General University Hospital - central Prague location</li>
+          <li>Thomayer Hospital - good emergency services</li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">Expat-Friendly Clinics</h4>
+        <ul class="text-sm space-y-1 text-neutral-700">
+          <li>Canadian Medical Care - English standard, expat-focused</li>
+          <li>Unicare Medical Center - international clinic chain</li>
+          <li>EUC Premium - multiple locations, English service</li>
+          <li>American Medical Center - familiar style for US expats</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What PVZP/Maxima Covers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Covered Services</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>GP and specialist visits</li>
+          <li>Hospital stays and surgery</li>
+          <li>Emergency treatment</li>
+          <li>Prescription medications</li>
+          <li>Emergency dental</li>
+          <li>Ambulance services</li>
+          <li>Emergency repatriation</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Typical Limitations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>Limited coverage outside Czech Republic</li>
+          <li>Pre-existing condition waiting periods</li>
+          <li>Routine dental may be limited</li>
+          <li>Cosmetic procedures excluded</li>
+          <li>Some elective procedures</li>
+          <li>Maternity may have waiting period</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Emergency numbers:</strong> Call 155 for ambulance, 112 for general emergency (English operators available). For non-emergencies, your insurance company can direct you to appropriate facilities.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why can I only use PVZP or Maxima insurance?</h3>
+        <p class="text-neutral-600">
+          Czech immigration law specifically requires comprehensive health insurance from providers authorized for long-term visa purposes. Only PVZP (Pojišťovna VZP) and Maxima pojišťovna meet these requirements. International insurers like SafetyWing, Cigna Global, Allianz Care, and BUPA are NOT on the approved list—regardless of how good their coverage is. This is non-negotiable and the #1 reason visa applications are rejected.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How much does the visa process cost in total?</h3>
+        <p class="text-neutral-600">
+          The direct costs are: trade license ~€30, visa fee ~€100, insurance €500-800/year, translations €100-300, apostilles €50-150. Total: approximately €800-1,400 for the first year. If you use a visa agency (recommended), add €200-500. You also need ~€5,000-6,000 in savings to show, but you keep this money.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is there a minimum income requirement?</h3>
+        <p class="text-neutral-600">
+          No. Unlike Spain or Portugal's Digital Nomad Visas, Czech Republic has no minimum monthly income requirement. You need to demonstrate sufficient savings (~€5,000-6,000) rather than ongoing income. This makes it accessible to freelancers at various income levels, including those just starting out.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long does the visa process take?</h3>
+        <p class="text-neutral-600">
+          Processing takes 60-90 days from your embassy appointment—one of the longer waits in Europe. Add time for trade license (1 week), document preparation and apostilles (2-4 weeks), and embassy appointment scheduling (2-4 weeks). Total: 3-5 months from start to arrival. Don't book flights until you have the visa.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Czech?</h3>
+        <p class="text-neutral-600">
+          Not officially required, but bureaucracy is challenging without it. English is common in Prague's expat areas but limited in government offices. Using a visa agency (€200-500) is highly recommended if you don't speak Czech—they handle paperwork, translations, and communication with authorities.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get permanent residency after this visa?</h3>
+        <p class="text-neutral-600">
+          Yes. After 5 years of continuous legal residence on the freelancer visa, you can apply for permanent residence. This removes the need for visa renewals and gives you broader rights in Czech Republic and the EU. Many expats successfully make this transition.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The Czech Republic Freelancer Visa (Zivno) offers an exceptional value proposition: no minimum income requirement, very low fees, affordable living in one of Europe's most beautiful cities, and a clear path to EU permanent residency after 5 years. It's no surprise this has become one of the most popular visa routes for digital nomads.
+    </p>
+
+    <p class="mb-4">
+      The main hurdle is the strict insurance requirement—only PVZP or Maxima are accepted. This trips up many applicants who assume their SafetyWing or Cigna coverage will work. It won't. But once you know to use PVZP or Maxima (both affordable at €500-800/year), this obstacle disappears.
+    </p>
+
+    <p class="mb-6">
+      If you want a legitimate long-term base in Europe with path to permanent residency, can handle Czech bureaucracy (or hire an agency to help), and are prepared to use Czech insurance providers, the Zivno visa offers outstanding value. Prague delivers Western quality at Eastern prices.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Czech Freelancer Visa is ideal for digital nomads who want affordable European living with no income requirements. The PVZP/Maxima insurance requirement is strict but the coverage is good and the cost is reasonable (€500-800/year). Budget 3-4 months for the process, have €5,000+ in savings, and use a visa agency if you don't speak Czech. Path to permanent EU residency after 5 years.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://www.pvzp.cz" target="_blank" rel="noopener noreferrer" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get PVZP Insurance (Required)
+        </a>
+        <a href="https://www.maxi.cz" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Maxima Insurance (Required)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/czech-republic/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Czech Republic Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Czech Republic</p>
+      </a>
+      <a href="/insurance-for/freelancers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Freelancers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for self-employed professionals</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelance Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative freelance visa in neighboring Germany</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

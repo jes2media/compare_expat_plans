@@ -1,0 +1,837 @@
+---
+/**
+ * Spain Freelancer/Autónomo Visa - Long-form CRO-optimized page
+ * Trabajador por Cuenta Propia (self-employed) visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Spain", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Spain Health Insurance Guide", href: "/countries/spain/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Spain Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/spain" },
+  { title: "Portugal Freelancer Visa", href: "/visas/freelancer-visa/in/portugal" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "detail", header: "Detail" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", detail: "~€2,400/month (400% IPREM)", notes: "Varies slightly by region" },
+  { requirement: "Financial Proof", detail: "12 months living expenses", notes: "Bank statements showing sufficient funds" },
+  { requirement: "Business Plan", detail: "Detailed plan showing viability", notes: "Services, clients, projections" },
+  { requirement: "Health Insurance", detail: "Private insurance required", notes: "Mandatory for visa application" },
+  { requirement: "Qualifications", detail: "Degree or professional experience", notes: "In your field of work" },
+  { requirement: "Criminal Record", detail: "Clean record certificate", notes: "Apostilled and translated" },
+  { requirement: "NIE", detail: "Foreigner ID number", notes: "Required for all official processes" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private Insurance (Visa)" },
+  { key: "seguridad", header: "Seguridad Social (After)" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", private: "€50-150/month", seguridad: "€230-380/month (RETA)" },
+  { feature: "When Required", private: "For visa application", seguridad: "After registration as Autónomo" },
+  { feature: "Coverage", private: "Comprehensive private care", seguridad: "Full public healthcare" },
+  { feature: "Access Speed", private: "Immediate, shorter waits", seguridad: "Depends on region" },
+  { feature: "Includes Pension", private: "No", seguridad: "Yes (retirement, disability)" },
+  { feature: "Family Coverage", private: "Additional cost per person", seguridad: "Includes dependents" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€150-300", strengths: "Comprehensive, visa acceptance guaranteed" },
+  { provider: "Allianz Care", type: "International", price: "€130-280", strengths: "Strong EU network, flexible plans" },
+  { provider: "Sanitas", type: "Spanish Private", price: "€60-120", strengths: "Affordable, wide Spanish network" },
+  { provider: "Adeslas", type: "Spanish Private", price: "€50-100", strengths: "Lowest cost, good coverage" },
+  { provider: "MAPFRE", type: "Spanish Private", price: "€70-140", strengths: "Established, multilingual support" },
+  { provider: "DKV", type: "Spanish Private", price: "€65-130", strengths: "Digital tools, English support" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€80-200", notes: "Varies by embassy/consulate" },
+  { item: "NIE Application", amount: "€10-15", notes: "Foreigner ID number" },
+  { item: "Private Insurance (visa)", amount: "€50-150/month", notes: "Required for application" },
+  { item: "Seguridad Social (RETA)", amount: "€230-380/month", notes: "After Autónomo registration" },
+  { item: "Gestoría (admin agent)", amount: "€50-150/month", notes: "Highly recommended" },
+  { item: "Document Translations", amount: "€100-300", notes: "Sworn translations required" },
+  { item: "Apostilles", amount: "€50-150", notes: "For foreign documents" },
+  { item: "Accountant (Asesor Fiscal)", amount: "€80-200/month", notes: "For tax compliance" },
+  { item: "Financial Buffer", amount: "€10,000-20,000", notes: "12 months expenses recommended" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents and business plan", duration: "2-4 weeks", location: "Home country" },
+  { step: "Get private health insurance", duration: "1-2 weeks", location: "Insurance provider" },
+  { step: "Book visa appointment", duration: "2-6 weeks wait", location: "Spanish embassy/consulate" },
+  { step: "Attend visa appointment", duration: "1 day", location: "Embassy/consulate" },
+  { step: "Visa processing", duration: "1-3 months", location: "Embassy review" },
+  { step: "Arrive in Spain", duration: "After approval", location: "Spain" },
+  { step: "Apply for NIE", duration: "Within 30 days", location: "Police station (Extranjería)" },
+  { step: "Register with Hacienda", duration: "Within 30 days", location: "Tax office (AEAT)" },
+  { step: "Register as Autónomo", duration: "Within 30 days", location: "Seguridad Social office" },
+  { step: "Get TIE residence card", duration: "2-4 weeks", location: "Extranjería office" },
+];
+
+const autonomoColumns = [
+  { key: "aspect", header: "Aspect" },
+  { key: "autonomo", header: "Autónomo Visa" },
+  { key: "dnv", header: "Digital Nomad Visa" },
+];
+
+const autonomoRows = [
+  { aspect: "Target Audience", autonomo: "Freelancers serving Spanish clients", dnv: "Remote workers for foreign companies" },
+  { aspect: "Spanish Clients", autonomo: "Unlimited - can work 100% local", dnv: "Max 20% of income" },
+  { aspect: "Social Security", autonomo: "Required (includes health/pension)", dnv: "Optional (private insurance only)" },
+  { aspect: "Monthly Costs", autonomo: "€230-380 RETA + taxes", dnv: "€100-300 private insurance" },
+  { aspect: "Tax Obligations", autonomo: "Full Spanish tax system", dnv: "Beckham Law option (24% flat)" },
+  { aspect: "Best For", autonomo: "Long-term freelancers, local work", dnv: "Remote workers, digital nomads" },
+];
+---
+
+<PageShell
+  title="Spain Freelancer Visa 2026: Autónomo Requirements, Insurance & Application Guide"
+  description="Complete guide to Spain's Autónomo/Freelancer Visa (Trabajador por Cuenta Propia). Insurance requirements, Seguridad Social costs, business registration, and step-by-step application process."
+  headline="Spain Freelancer Visa: Autónomo Insurance & Requirements Guide"
+  subheadline="Everything you need to know about becoming self-employed in Spain—Autónomo registration, mandatory insurance options, Seguridad Social costs, and the path to permanent residence."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/spain-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Spanish Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Path to Permanent Residence
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Spain's Autónomo visa (officially "Trabajador por Cuenta Propia" or self-employed worker visa) is the path for freelancers who want to build a business in Spain and serve Spanish clients. Unlike the Digital Nomad Visa, which restricts you to foreign clients, the Autónomo visa lets you work fully within the Spanish economy.
+    </p>
+
+    <p class="mb-4">
+      Cities like Barcelona, Madrid, Valencia, and Málaga have become magnets for international freelancers. The combination of Mediterranean lifestyle, reasonable costs compared to Northern Europe, growing tech and creative sectors, and excellent infrastructure makes Spain one of Europe's most attractive destinations for self-employment.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Spain Autónomo Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Autónomo Visa / Trabajador por Cuenta Propia</li>
+        <li>• <strong>Income requirement:</strong> ~€2,400/month (400% IPREM, varies by region)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY private insurance for visa application</li>
+        <li>• <strong>Duration:</strong> 1 year initial, renewable, 5 years to permanent residence</li>
+        <li>• <strong>Seguridad Social:</strong> €230-380/month after registration (includes health + pension)</li>
+        <li>• <strong>Spanish language:</strong> Not required but highly recommended</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Autónomo vs. Digital Nomad Visa: Which One?</h3>
+
+    <p class="mb-4">
+      Spain now offers two main options for freelancers and remote workers. Understanding the difference is crucial for choosing the right path:
+    </p>
+
+    <ComparisonTable columns={autonomoColumns} rows={autonomoRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Which should you choose?</strong> If you want to work with Spanish clients, build a local business, or integrate fully into the Spanish economy, the Autónomo visa is your path. If you work exclusively for foreign companies and want lower monthly costs, consider the <a href="/visas/digital-nomad-visa/in/spain" class="text-blue-700 underline">Digital Nomad Visa</a> instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Spain Autónomo is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want to work with Spanish clients</li>
+          <li>✓ You're building a local business or agency</li>
+          <li>✓ You value comprehensive social security (health + pension)</li>
+          <li>✓ You plan to stay in Spain long-term (5+ years)</li>
+          <li>✓ You can afford €230-380/month for Seguridad Social</li>
+          <li>✓ You want full integration into Spanish life</li>
+          <li>✓ You can demonstrate ~€2,400/month income potential</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You work only for foreign clients (Digital Nomad Visa)</li>
+          <li>• You want minimal monthly costs and paperwork</li>
+          <li>• You're not sure about staying long-term</li>
+          <li>• You can't afford €230-380/month social security</li>
+          <li>• You prefer to avoid Spanish bureaucracy (it's substantial)</li>
+          <li>• You want to keep your existing country's pension contributions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Gestoría tip:</strong> Spain's bureaucracy is notoriously complex, especially for self-employment registration. A gestoría (administrative agent) costs €50-150/month but handles all your paperwork, deadlines, and government interactions. Most expat freelancers consider this essential, not optional. Your gestoría will navigate Hacienda, Seguridad Social, and regional requirements so you can focus on your work.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Autónomo visa requires proving you can sustain yourself through self-employment in Spain. Unlike employed visa applicants, you must demonstrate business viability rather than just having a job offer.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Required for All Applicants</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Completed visa application form (EX-07)</li>
+          <li>• Biometric passport photos</li>
+          <li>• Private health insurance certificate</li>
+          <li>• Criminal record certificate (apostilled)</li>
+          <li>• Bank statements (12 months of funds)</li>
+          <li>• Business plan (plan de negocio)</li>
+          <li>• Proof of qualifications/experience</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Supporting Documents (Strengthen Application)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Client contracts or letters of intent</li>
+          <li>• Portfolio of previous work</li>
+          <li>• Professional references</li>
+          <li>• Evidence of Spanish language skills</li>
+          <li>• Proof of accommodation in Spain</li>
+          <li>• Previous self-employment tax returns</li>
+          <li>• Professional certifications</li>
+          <li>• Market research for your services in Spain</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
+
+    <p class="mb-4">
+      Spain requires proof of financial sustainability. The income threshold is typically calculated as 400% of the IPREM (Indicador Público de Renta de Efectos Múltiples), which works out to approximately €2,400/month or €28,800/year. Requirements may vary slightly by region.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Bank statements:</strong> 12 months of financial history showing sufficient funds</li>
+      <li><strong>Minimum savings:</strong> Approximately €10,000-20,000 (12 months of living expenses)</li>
+      <li><strong>Income evidence:</strong> Client contracts, letters of intent, or proof of existing income</li>
+      <li><strong>Business viability:</strong> Realistic projections in your business plan</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Business Plan (Plan de Negocio)</h3>
+
+    <p class="mb-4">
+      Your business plan is critical for the Autónomo visa. It should be professional and demonstrate that your business is viable in Spain. Include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li>Description of your services or products</li>
+      <li>Your professional qualifications and experience</li>
+      <li>Target market analysis (ideally including Spanish market)</li>
+      <li>Pricing strategy and income projections</li>
+      <li>Marketing plan for acquiring clients</li>
+      <li>Competitive analysis</li>
+      <li>First-year financial projections</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Professional presentation matters:</strong> While there's no required format, a well-structured business plan (10-20 pages) significantly improves your chances. Consider having it translated to Spanish by a sworn translator, or at minimum include a Spanish executive summary. A gestoría can help you tailor your plan to what Spanish authorities expect.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Two-Phase Insurance System</h3>
+      <p class="text-green-800">
+        Spain's Autónomo system involves two phases of health coverage: (1) Private insurance for your visa application, then (2) Seguridad Social (social security) once you register as Autónomo in Spain. Understanding this transition is crucial for planning your costs.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Phase 1: Private Insurance for Visa</h3>
+
+    <p class="mb-4">
+      For your initial visa application, you must have private health insurance that meets Spanish requirements:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Full coverage:</strong> Inpatient, outpatient, and emergency care</li>
+      <li><strong>Valid in Spain:</strong> Policy must specifically cover Spain</li>
+      <li><strong>No copays or coverage limits:</strong> "Cobertura completa" without major exclusions</li>
+      <li><strong>Duration:</strong> Cover at least your initial visa period (1 year)</li>
+      <li><strong>Cost:</strong> Typically €50-150/month for Spanish insurers, €130-300/month for international</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Phase 2: Seguridad Social After Registration</h3>
+
+    <p class="mb-4">
+      Once you arrive in Spain and register as Autónomo, you must join the Seguridad Social system through RETA (Régimen Especial de Trabajadores Autónomos). This becomes your primary health coverage and includes pension contributions.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Seguridad Social (RETA) Costs in 2026</h3>
+
+    <p class="mb-4">
+      Spain reformed its Autónomo social security system in 2023, moving to income-based contributions. Monthly costs now range from approximately €230-380 depending on your declared income bracket:
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Low Income Bracket</p>
+        <p class="text-3xl font-bold text-neutral-900">~€230/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Income under €670/month</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Average Income</p>
+        <p class="text-3xl font-bold text-neutral-900">~€300/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Income €1,300-1,700/month</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Higher Income</p>
+        <p class="text-3xl font-bold text-neutral-900">€350-380+/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Income €2,000+/month</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Tarifa Plana (Flat Rate):</strong> New Autónomos can qualify for a reduced rate of approximately €80/month for the first 12 months, then €160/month for months 13-24. This significant discount applies if you haven't been registered as Autónomo in Spain in the previous 2 years. Ask your gestoría about eligibility.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What Seguridad Social Includes</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Public healthcare:</strong> Full access to Spain's national health system</li>
+      <li><strong>Pension contributions:</strong> Counts toward Spanish retirement benefits</li>
+      <li><strong>Disability coverage:</strong> Protection in case of work incapacity</li>
+      <li><strong>Maternity/paternity leave:</strong> Paid leave benefits</li>
+      <li><strong>Unemployment benefit:</strong> Optional additional coverage available</li>
+      <li><strong>Family coverage:</strong> Dependents included in healthcare</li>
+    </ul>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Spain Autónomo visa?"
+    description="Compare private insurance plans accepted for visa applications in Spain."
+    buttonText="Compare Insurance Options"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For your initial visa application, you need private health insurance. Both Spanish insurers and international providers are accepted. After you register as Autónomo and join Seguridad Social, private insurance becomes optional but many freelancers keep it for faster specialist access.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious, Staying in Spain Long-Term</h4>
+        <p class="text-neutral-600">Start with Sanitas or Adeslas (€50-120/month) for your visa. After registration, rely primarily on Seguridad Social public healthcare. Many keep a basic private plan (€40-60/month) for faster specialist access.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Uncertain About Long-Term Plans</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide worldwide coverage. If you leave Spain, your insurance continues. Higher cost (€130-300/month) but maximum flexibility if your plans change.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-Existing Health Conditions</h4>
+        <p class="text-neutral-600">Spanish private insurers often exclude pre-existing conditions. International insurers like Cigna and Allianz have waiting periods rather than exclusions. Once you're on Seguridad Social, everything is covered immediately with no restrictions.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">Seguridad Social covers your entire family once you register. For the visa period, you'll need to add family members to your private plan (typically €30-50/person/month additional) or get separate policies.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">English-Language Support Essential</h4>
+        <p class="text-neutral-600">Cigna Global and Allianz Care offer full English support for claims and customer service. Spanish insurers like Sanitas and MAPFRE have some English support but documentation is primarily in Spanish. DKV has strong multilingual options.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Becoming Autónomo in Spain involves multiple costs beyond living expenses. The ongoing Seguridad Social payment is the largest expense, but initial setup costs and professional services add up. Here's a realistic breakdown.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Realistic Monthly Budget as Autónomo</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Valencia / Smaller Cities</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,800-2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Budget lifestyle, own apartment</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Barcelona / Madrid</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,500-3,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Comfortable lifestyle, central</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Barcelona/Madrid</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,500-5,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Nice apartment, coworking, dining out</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Business Costs Breakdown</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Seguridad Social (RETA):</strong> €80-380/month (€80 with Tarifa Plana discount)</li>
+      <li><strong>Gestoría:</strong> €50-150/month (handles all paperwork)</li>
+      <li><strong>Accountant/Tax advisor:</strong> €80-200/month (essential for compliance)</li>
+      <li><strong>Private insurance (optional after SS):</strong> €40-100/month</li>
+      <li><strong>Professional liability insurance:</strong> €30-100/month (depends on profession)</li>
+      <li><strong>Coworking space:</strong> €100-300/month (optional)</li>
+      <li><strong>Business software/tools:</strong> €50-150/month</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Tax deductions:</strong> As Autónomo, you can deduct business expenses including home office, equipment, professional services, travel, and training. A good asesor fiscal (tax advisor) will help you maximize legitimate deductions. Common deductible expenses include your gestoría fees, coworking membership, computer equipment, and professional development courses.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Autónomo visa process involves applying from your home country, then completing registration in Spain. Non-EU citizens must start at a Spanish consulate; you cannot switch from tourist status to Autónomo within Spain.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Business Case</h4>
+          <p class="text-neutral-600">Create a professional business plan demonstrating viability. Gather financial documentation (12 months bank statements), qualifications, and any client contracts or letters of intent. Start document apostilles early—they can take 2-4 weeks from your home country.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get Private Health Insurance</h4>
+          <p class="text-neutral-600">Purchase a policy from a Spanish insurer (Sanitas, Adeslas) or international provider (Cigna, Allianz) that meets "cobertura completa" requirements. Get the insurance certificate before your consulate appointment.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Book and Attend Consulate Appointment</h4>
+          <p class="text-neutral-600">Schedule your visa appointment at the Spanish consulate. Bring all documents, be prepared to explain your business in detail, and pay the visa fee (€80-200). Processing typically takes 1-3 months.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive in Spain and Get Your NIE</h4>
+          <p class="text-neutral-600">Within 30 days of arrival, apply for your NIE (Número de Identificación de Extranjero) at the Extranjería office. This foreigner ID number is required for all official processes—opening bank accounts, signing contracts, and registering as Autónomo.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with Hacienda (Tax Office)</h4>
+          <p class="text-neutral-600">Register as self-employed with the Agencia Tributaria (AEAT) by filing form 036 or 037. You'll declare your business activity (epígrafe) and VAT status. This step requires your NIE. A gestoría handles this paperwork for you.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with Seguridad Social (RETA)</h4>
+          <p class="text-neutral-600">Within 60 days of starting activity (usually coordinated with Hacienda registration), register with Seguridad Social as Autónomo. This enrolls you in RETA for healthcare and pension. Ask about the Tarifa Plana discount for new registrants.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get Your TIE Residence Card</h4>
+          <p class="text-neutral-600">Apply for your TIE (Tarjeta de Identidad de Extranjero) at the Extranjería office. This physical residence card proves your legal status and is needed for some services. Expect 2-4 weeks for issuance after biometrics appointment.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Set Up Business Operations</h4>
+          <p class="text-neutral-600">Open a Spanish bank account (requires NIE), set up invoicing software, and establish your business systems. Find a gestoría for ongoing administrative support and an asesor fiscal (tax advisor) for quarterly tax filings.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Key tip:</strong> The Hacienda and Seguridad Social registrations should be coordinated—you typically register with both on the same day or within a few days. Your gestoría will ensure the dates align correctly to avoid gaps or compliance issues. Don't try to navigate this alone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers pursuing the Autónomo visa in Spain:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Graphic Designer from Canada, 3 Client Contracts</h3>
+        <p class="text-neutral-600 mb-4">Applied with letters of intent from 2 Spanish agencies and 1 international client. Strong portfolio, €15,000 in savings.</p>
+        <p class="text-green-700 font-medium">✓ Visa approved in 6 weeks. Started with Sanitas (€80/month), qualified for Tarifa Plana at €80/month for first year. Based in Valencia, total monthly costs ~€2,200. Very happy with the lifestyle-cost balance.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Consultant from India, Remote Clients</h3>
+        <p class="text-neutral-600 mb-4">Mix of Spanish startup clients and US clients, 31 years old, earning €4,500/month average.</p>
+        <p class="text-green-700 font-medium">✓ Visa approved after providing detailed client contracts. Chose Autónomo over DNV to work freely with Spanish startups. Uses gestoría (€100/month) for all paperwork. Recommends starting with a gestoría from day one.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant from UK, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">Agency background, building freelance practice in Barcelona, 38 years old.</p>
+        <p class="text-amber-700 font-medium">△ Initial application flagged for insufficient Spanish market research in business plan. Revised with detailed Barcelona market analysis and Spanish language course enrollment. Approved on second submission. Lesson: business plan matters.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Yoga Instructor from Australia, New to Freelancing</h3>
+        <p class="text-neutral-600 mb-4">Certified instructor wanting to teach in Málaga, minimal freelance history, €8,000 savings.</p>
+        <p class="text-red-700 font-medium">✗ Visa denied—insufficient proof of business viability and financial reserves. Consulate wanted to see established client base and more savings. Advised to build remote client base first, increase savings to €15,000+, then reapply.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Web Developer from Brazil, Family of Four</h3>
+        <p class="text-neutral-600 mb-4">Relocating with spouse and 2 children, €6,000/month income, strong savings.</p>
+        <p class="text-green-700 font-medium">✓ Approved for family visa. Started with Cigna Global family plan (€480/month) for visa. After Seguridad Social registration, entire family covered under RETA. Children enrolled in local public school. Madrid-based, total family costs ~€4,500/month.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Photographer from USA, Mixed Client Base</h3>
+        <p class="text-neutral-600 mb-4">Wedding and commercial photographer, wants to work both Spanish and international events.</p>
+        <p class="text-green-700 font-medium">✓ Chose Autónomo specifically because DNV's 20% Spanish client limit was too restrictive. Now shoots 60% Spanish weddings, 40% destination events. The higher monthly Seguridad Social costs (€310/month) are worth the flexibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Spanish Autónomos"
+    description="Find the right coverage for your visa application—Spanish or international options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Seguridad Social Costs</h3>
+        <p class="text-neutral-600">Many new Autónomos are shocked by the €230-380/month Seguridad Social payment, especially when earning is still ramping up. Unlike some countries where social security is proportional to income, Spain's system has minimum floors. Budget for this from day one—it's mandatory, and non-payment triggers penalties and loss of coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping the Gestoría</h3>
+        <p class="text-neutral-600">Spain's bureaucracy is genuinely complex—forms in Spanish, strict deadlines, coordination between Hacienda and Seguridad Social. Trying to navigate this alone often leads to missed deadlines, incorrect filings, and fines. The €50-150/month for a gestoría is not optional for most expats—it's essential.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Weak Business Plan</h3>
+        <p class="text-neutral-600">A vague "I'll find clients when I arrive" business plan leads to rejection. Spanish consulates want to see realistic market analysis, existing client relationships (or strong prospects), and evidence you've researched the Spanish market for your services. The business plan should be 10-20 pages of substance.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 60-Day Registration Window</h3>
+        <p class="text-neutral-600">After starting business activity, you have 60 days to register with Seguridad Social. Miss this window and you face back-dated payments plus penalties. Your gestoría coordinates the Hacienda and Seguridad Social registrations to ensure compliance—another reason not to go it alone.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing the Wrong Visa Type</h3>
+        <p class="text-neutral-600">If you work exclusively for foreign clients and don't need Spanish clients, the Digital Nomad Visa may be better—lower monthly costs, simpler structure. The Autónomo path makes sense if you want Spanish clients, but comes with higher ongoing costs. Understand both options before committing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Spain -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Spain</h2>
+
+    <p class="mb-4">
+      Spain has an excellent healthcare system, consistently ranked among the best in the world. As an Autónomo contributing to Seguridad Social, you get full access to the public healthcare system—the same care available to Spanish citizens.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered Under Seguridad Social</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Fully Covered (Public Healthcare)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP and specialist consultations</li>
+          <li>✓ Hospital treatment and surgeries</li>
+          <li>✓ Emergency care (24/7)</li>
+          <li>✓ Prescription medications (small copay)</li>
+          <li>✓ Maternity care and delivery</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Diagnostic tests (X-ray, MRI, blood tests)</li>
+          <li>✓ Physical therapy and rehabilitation</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Additional with Private Insurance</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Faster specialist appointments</li>
+          <li>• Private hospital rooms</li>
+          <li>• English-speaking doctors (more available)</li>
+          <li>• Shorter wait times for elective procedures</li>
+          <li>• Wider dental coverage</li>
+          <li>• Alternative medicine options</li>
+          <li>• Direct access to specialists (no referral)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Registering with a Health Center</h4>
+        <p class="text-neutral-600">Once registered with Seguridad Social, you'll be assigned to a local health center (Centro de Salud) based on your address. Register there to get your health card (tarjeta sanitaria) and be assigned a GP (médico de cabecera).</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Booking Appointments</h4>
+        <p class="text-neutral-600">Most regions have online booking systems and apps for appointments. GP appointments are typically available within days. Specialist referrals can take longer (weeks to months depending on urgency and specialty)—this is where private insurance offers an advantage.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">For emergencies, go directly to the hospital emergency department (Urgencias) or call 112. Emergency care is available 24/7 and is free for Seguridad Social members. For non-emergencies that can't wait for a GP appointment, most health centers have walk-in urgent care.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Many Autónomos keep private insurance too:</strong> Even with excellent public healthcare, many freelancers maintain a basic private plan (€40-100/month) for faster specialist access and English-speaking doctors. This is especially common in Barcelona and Madrid where expat-focused private clinics are abundant.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between Autónomo and the Digital Nomad Visa?</h3>
+        <p class="text-neutral-600">
+          The Autónomo visa is for freelancers working with Spanish clients and integrating into the Spanish economy. You must join Seguridad Social (€230-380/month) but can work unlimited Spanish clients. The Digital Nomad Visa is for remote workers with foreign employers/clients (max 20% Spanish income) with lower monthly costs but more restrictions on who you can work with.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Spanish to become Autónomo?</h3>
+        <p class="text-neutral-600">
+          Spanish is not a legal requirement, but it's strongly recommended. Official processes (Hacienda, Seguridad Social) are in Spanish. A gestoría handles paperwork, but basic Spanish helps with daily life, networking, and client relationships. Many freelancers manage initially with English in Barcelona and Madrid, but invest in learning Spanish for long-term success.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the Tarifa Plana discount?</h3>
+        <p class="text-neutral-600">
+          The Tarifa Plana (flat rate) reduces Seguridad Social payments for new Autónomos to approximately €80/month for the first 12 months, then €160/month for months 13-24. To qualify, you can't have been registered as Autónomo in Spain in the previous 2 years. This significantly reduces costs during your first two years.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I hire employees as an Autónomo?</h3>
+        <p class="text-neutral-600">
+          Yes, Autónomos can hire employees, though this adds complexity (contracts, additional social security contributions, labor law compliance). Many freelancers work with other Autónomos as contractors instead. If you plan to build a team, consider consulting a gestoría or lawyer about the SL (Sociedad Limitada) company structure, which may be more appropriate for employer status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residence?</h3>
+        <p class="text-neutral-600">
+          After 5 years of continuous legal residence as Autónomo, you can apply for permanent residence (residencia de larga duración). After 10 years of residence (2 years for Latin American nationals), you can apply for Spanish citizenship. Maintain your Seguridad Social payments and tax compliance throughout—gaps can reset your timeline.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I stop earning for a few months?</h3>
+        <p class="text-neutral-600">
+          You must continue paying Seguridad Social even during slow periods—it's not optional. You can temporarily suspend your Autónomo registration (darse de baja) if you stop working entirely, but this affects your residence status and requires re-registration to resume. Plan for income fluctuations and maintain savings to cover mandatory payments during slow months.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Spain's Autónomo visa offers a genuine path to building a freelance career in one of Europe's most livable countries. Unlike the Digital Nomad Visa, it lets you work freely with Spanish clients and fully integrate into the local economy. The trade-off is higher ongoing costs and more administrative requirements.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the bureaucracy (get a gestoría—it's not optional) and the mandatory Seguridad Social payments (€230-380/month even during slow periods). These are real costs that require planning. However, the benefits include comprehensive healthcare, pension contributions, and a clear path to permanent residence and citizenship.
+    </p>
+
+    <p class="mb-6">
+      For freelancers committed to building a long-term presence in Spain—especially those who want Spanish clients or plan to stay 5+ years—the Autónomo path makes sense despite the higher costs. Cities like Barcelona, Madrid, Valencia, and Málaga offer excellent quality of life, growing freelance communities, and reasonable costs compared to Northern Europe.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Spain Autónomo visa is best suited for freelancers who want to work with Spanish clients and are willing to invest in the administrative requirements. Budget €230-380/month for Seguridad Social plus gestoría costs. Private insurance is required initially, then you transition to public healthcare. The reward is full integration into Spanish life with a path to permanent residence.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Private Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/spain/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Spain</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/spain" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Spain's visa for remote workers</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Freelancer Visa (D7)</h3>
+        <p class="text-neutral-600 text-sm">Compare with Portugal's self-employed visa</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> Visa requirements and social security rates change. This guide reflects our research as of the publication date. Always verify current requirements with Spanish consulates, Seguridad Social, and official government sources. We are not immigration lawyers, tax advisors, or insurance brokers. This is informational content, not legal or professional advice.
+    </p>
+  </div>
+
+</PageShell>

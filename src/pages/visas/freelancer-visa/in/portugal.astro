@@ -1,0 +1,868 @@
+---
+/**
+ * Portugal Freelancer Visa - Long-form CRO-optimized page
+ * D7 Visa and Trabalhador Independente guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Portugal", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Portugal Health Insurance Guide", href: "/countries/portugal/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Portugal Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/portugal" },
+  { title: "Spain Freelancer Visa", href: "/visas/freelancer-visa/in/spain" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "d7visa", header: "D7 Visa (Main Route)" },
+  { key: "trabalhador", header: "Trabalhador Independente" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", d7visa: "~€870/month (minimum wage 2025)", trabalhador: "~€870/month (minimum wage 2025)" },
+  { requirement: "Income Type", d7visa: "Passive income, remote work, freelance", trabalhador: "Self-employed in Portugal" },
+  { requirement: "Financial Proof", d7visa: "Bank statements, regular income", trabalhador: "Business plan, financial means" },
+  { requirement: "Health Insurance", d7visa: "Private insurance REQUIRED for visa", trabalhador: "Private insurance REQUIRED" },
+  { requirement: "NIF (Tax Number)", d7visa: "Required before or during application", trabalhador: "Required" },
+  { requirement: "Accommodation", d7visa: "Proof of housing in Portugal", trabalhador: "Proof of housing in Portugal" },
+  { requirement: "Duration", d7visa: "2-year initial permit, renewable", trabalhador: "2-year initial permit, renewable" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private Insurance (Visa)" },
+  { key: "sns", header: "SNS (After Residency)" },
+];
+
+const insuranceRows = [
+  { feature: "When Available", private: "Immediately (required for visa)", sns: "After residence permit + registration" },
+  { feature: "Monthly Cost", private: "€80-300 (age/coverage)", sns: "Free (tax-funded)" },
+  { feature: "GP Access", private: "Any private doctor, no referral", sns: "Assigned health center, referral needed" },
+  { feature: "Wait Times", private: "Days to weeks", sns: "Can be months for specialists" },
+  { feature: "Hospital Care", private: "Private hospitals, faster", sns: "Public hospitals, free" },
+  { feature: "English Availability", private: "Common in expat-focused clinics", sns: "Limited outside Lisbon/Porto" },
+  { feature: "Visa Acceptance", private: "Required for D7 application", sns: "Not applicable for visa stage" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€150-280", strengths: "Best overall, strong Portugal network" },
+  { provider: "Allianz Care", type: "International", price: "€120-250", strengths: "Best value, comprehensive EU coverage" },
+  { provider: "BUPA Global", type: "International", price: "€170-320", strengths: "Premium option, global coverage" },
+  { provider: "IMG Global", type: "International", price: "€100-200", strengths: "Mid-range, good value" },
+  { provider: "Médis", type: "Portuguese Local", price: "€50-100", strengths: "Local option, Portuguese speakers" },
+  { provider: "SafetyWing", type: "Travel Medical", price: "€45-80", strengths: "Budget, may work for initial visa" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "D7 Visa Application Fee", amount: "€90", notes: "Paid at consulate" },
+  { item: "Residence Permit Fee", amount: "€72", notes: "Paid at AIMA appointment" },
+  { item: "NIF Registration", amount: "Free-€150", notes: "Free in person, €50-150 via fiscal rep" },
+  { item: "Document Translations", amount: "€100-300", notes: "Certified translations required" },
+  { item: "Criminal Record Apostille", amount: "€50-100", notes: "From home country" },
+  { item: "Health Insurance", amount: "€80-280/month", notes: "Required for visa application" },
+  { item: "Portuguese Bank Account", amount: "Free-€50", notes: "Some banks charge non-resident fees" },
+  { item: "Financial Buffer", amount: "€3,000-10,000", notes: "Recommended savings" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Get NIF (tax number)", duration: "1-2 weeks", location: "Portugal (in person) or via fiscal rep" },
+  { step: "Gather documents and translations", duration: "2-4 weeks", location: "Home country" },
+  { step: "Get health insurance confirmation", duration: "1-2 weeks", location: "Insurance provider" },
+  { step: "Book visa appointment", duration: "1-4 weeks wait", location: "Portuguese consulate" },
+  { step: "Attend visa appointment", duration: "1 day", location: "Portuguese consulate" },
+  { step: "Visa processing", duration: "2-3 months", location: "Consulate review" },
+  { step: "Arrive in Portugal", duration: "Within 4 months", location: "Portugal" },
+  { step: "Open Portuguese bank account", duration: "1-2 weeks", location: "Portuguese bank" },
+  { step: "AIMA appointment for residence permit", duration: "2-6 months wait", location: "AIMA office (formerly SEF)" },
+  { step: "Receive residence card", duration: "2-4 weeks after AIMA", location: "Mail or pickup" },
+];
+---
+
+<PageShell
+  title="Portugal Freelancer Visa 2026: D7 Visa Requirements, Insurance & Application Guide"
+  description="Complete guide to the Portugal D7 Visa for freelancers and self-employed. Low income threshold (~€870/month), NHR tax benefits, insurance requirements, and path to EU citizenship in 5 years."
+  headline="Portugal Freelancer Visa: D7 Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Portugal—the D7 visa route, low income threshold, mandatory private insurance, NHR tax benefits, and the path to EU citizenship."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/portugal-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Portuguese Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Low Income Threshold (~€870/month)
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Portugal has become one of Europe's most popular destinations for freelancers and remote workers. The D7 visa—originally designed for retirees and passive income earners—has evolved into the primary route for self-employed professionals, remote workers, and freelancers seeking EU residency. With one of Europe's lowest income thresholds and a clear path to citizenship in just 5 years, Portugal offers an accessible gateway to the EU.
+    </p>
+
+    <p class="mb-4">
+      Lisbon and Porto have earned reputations as vibrant hubs for digital professionals, with thriving coworking scenes, excellent weather, and a large English-speaking expat community. The Algarve and Madeira also attract freelancers seeking a more relaxed lifestyle with lower costs than the capital.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Portugal D7 Visa for Freelancers</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> D7 Visa (covers passive income, remote work, and freelancing)</li>
+        <li>• <strong>Income requirement:</strong> ~€870/month (Portuguese minimum wage 2025)—much lower than Spain's DNV</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—private insurance required for visa application</li>
+        <li>• <strong>Duration:</strong> 2-year initial residence permit, renewable</li>
+        <li>• <strong>Path to citizenship:</strong> 5 years (one of Europe's fastest)</li>
+        <li>• <strong>Tax benefits:</strong> NHR regime offers 20% flat tax on Portuguese income</li>
+        <li>• <strong>Portuguese language:</strong> Not required for visa, A2 level for citizenship</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">D7 Visa vs. D8 Visa: Which One for Freelancers?</h3>
+
+    <p class="mb-4">
+      Portugal offers two main visa options for location-independent professionals. Understanding the difference is crucial for your application:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">D7 Visa (Recommended for Most Freelancers)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Income threshold: ~€870/month only</li>
+          <li>• Accepts passive AND active income</li>
+          <li>• Freelancers, remote workers welcome</li>
+          <li>• Retirees with pensions</li>
+          <li>• Investment/rental income earners</li>
+          <li>• <strong>Most flexible and accessible option</strong></li>
+          <li>• Well-established process</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">D8 Visa (Digital Nomad Visa)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Income threshold: €3,040/month (4x minimum wage)</li>
+          <li>• Remote employment for foreign company</li>
+          <li>• Freelancing for foreign clients</li>
+          <li>• Higher income requirement</li>
+          <li>• Newer visa category (2022)</li>
+          <li>• <strong>Use if you earn well above minimum</strong></li>
+          <li>• Same path to citizenship</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why D7 is often preferred for freelancers:</strong> The D7's lower income threshold makes it accessible to more people. You only need to demonstrate ~€870/month in regular income or sufficient savings—a fraction of Spain's €2,200 or Portugal's own D8 at €3,040. If you earn more, great, but you don't need to prove it.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Portugal is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>+ You want EU residency with a low income threshold</li>
+          <li>+ You seek the fastest path to EU citizenship (5 years)</li>
+          <li>+ You can benefit from NHR tax regime</li>
+          <li>+ You prefer excellent weather and quality of life</li>
+          <li>+ You work remotely or freelance internationally</li>
+          <li>+ You value a large English-speaking expat community</li>
+          <li>+ You can budget €80-280/month for private insurance</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want immediate public healthcare access (Germany better)</li>
+          <li>• You can't handle AIMA appointment delays (2-6 months)</li>
+          <li>• You prefer Central European location (Germany, Netherlands)</li>
+          <li>• You want lower cost of living (Eastern Europe cheaper)</li>
+          <li>• You prefer working for Portuguese clients (D8 or work visa better)</li>
+          <li>• You're not comfortable with bureaucratic delays</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Portugal's golden age for remote work:</strong> Portugal has actively courted digital nomads and remote workers since 2020. The combination of excellent weather, affordable living (outside Lisbon center), good internet infrastructure, and a welcoming expat community has made it Europe's most popular destination for location-independent professionals.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The D7 visa has straightforward requirements, with the main focus on proving regular income or sufficient financial means. Unlike Germany's freelancer visa, Portugal doesn't require a detailed business plan or client contracts—just proof you can support yourself.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Required for All Applicants</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Two passport-sized photos</li>
+          <li>• Completed visa application form</li>
+          <li>• Proof of health insurance (private, Portugal-valid)</li>
+          <li>• Proof of accommodation in Portugal</li>
+          <li>• Criminal record certificate (apostilled)</li>
+          <li>• Proof of income/financial means</li>
+          <li>• NIF (Portuguese tax number)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Freelancers Specifically</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Bank statements (6-12 months)</li>
+          <li>• Client contracts or invoices (helpful, not required)</li>
+          <li>• Proof of remote work arrangement</li>
+          <li>• Tax returns from home country</li>
+          <li>• Savings account statements</li>
+          <li>• Letter explaining freelance work</li>
+          <li>• Portfolio or website (optional but helpful)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Income Threshold: Why It's So Low</h3>
+
+    <p class="mb-4">
+      Portugal's D7 visa requires only the Portuguese minimum wage as a baseline—approximately €870/month in 2025 (up from €820 in 2024). This is dramatically lower than other European options:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Portugal D7:</strong> ~€870/month (approximately $950 USD)</li>
+      <li><strong>Spain Digital Nomad:</strong> €2,200/month (more than 2x Portugal)</li>
+      <li><strong>Portugal D8:</strong> €3,040/month (for those who qualify)</li>
+      <li><strong>Germany Freelancer:</strong> No minimum, but €2,000-3,000/month expected</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>In practice:</strong> While the legal minimum is ~€870/month, consulates like to see somewhat higher income or savings for a more comfortable life. Having €1,200-1,500/month income, or €10,000-15,000 in savings, strengthens your application. The key is demonstrating financial sustainability.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Getting Your NIF (Tax Number)</h3>
+
+    <p class="mb-4">
+      A NIF (Numero de Identificacao Fiscal) is Portugal's tax identification number. You'll need it for the visa application, opening a bank account, signing a rental lease, and virtually everything else in Portugal.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Option 1: In Person (Free)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Visit any Financas (tax office) in Portugal</li>
+          <li>• Bring passport and proof of address</li>
+          <li>• NIF issued same day</li>
+          <li>• Requires being in Portugal</li>
+          <li>• Free of charge</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Option 2: Fiscal Representative (Remote)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Hire a fiscal representative online</li>
+          <li>• They apply on your behalf</li>
+          <li>• Cost: €50-150 typically</li>
+          <li>• Takes 1-2 weeks</li>
+          <li>• Can be done before arriving</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Private Health Insurance is Mandatory for the D7 Visa</h3>
+      <p class="text-green-800">
+        Portugal requires proof of private health insurance valid in Portugal to issue the D7 visa. Travel insurance or limited coverage plans may not be accepted. You need comprehensive health insurance that covers medical treatment in Portugal for the duration of your stay.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The good news: after you receive your residence permit and register with the Portuguese system, you can access the SNS (Servico Nacional de Saude)—Portugal's public healthcare. However, for the visa application stage, private insurance is non-negotiable.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Insurance vs. SNS (Public Healthcare)</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Insurance Do Consulates Accept?</h3>
+
+    <p class="mb-4">
+      Portuguese consulates generally accept international health insurance from established providers. The key requirements are:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li>Coverage valid in Portugal for the entire visa duration</li>
+      <li>Covers hospitalization and medical treatment</li>
+      <li>No unreasonable exclusions for basic care</li>
+      <li>Proof in writing (policy document or confirmation letter)</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>SafetyWing and travel insurance:</strong> Unlike Spain (which explicitly rejects travel medical insurance), Portugal's requirements are less strictly defined. Some applicants have successfully used SafetyWing for the initial visa application. However, for the residence permit stage and long-term protection, upgrading to proper international health insurance is strongly recommended.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">After Residency: Joining the SNS</h3>
+
+    <p class="mb-4">
+      Once you have your residence permit, you can register at your local Centro de Saude (health center) to access Portugal's public healthcare system. You'll receive a user number (numero de utente) that gives you access to:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Free or low-cost GP consultations</li>
+      <li>Public hospital treatment</li>
+      <li>Subsidized prescription medications</li>
+      <li>Specialist referrals (though wait times can be long)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Most expats keep private insurance:</strong> While SNS is available, many freelancers maintain private insurance for faster access, English-speaking doctors, and shorter wait times. The SNS is excellent for emergencies and major procedures, but routine care can involve long waits.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Portugal D7 visa?"
+    description="Compare private health insurance accepted for Portugal's freelancer visa. Get quotes in minutes."
+    buttonText="Compare Qualifying Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For D7 visa applicants, you need insurance that Portuguese consulates will accept and that provides genuine coverage in Portugal. Here are the providers most commonly used by expat freelancers.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Freelancer Seeking Best Overall Coverage</h4>
+        <p class="text-neutral-600">Cigna Global offers the strongest network in Portugal with direct billing at major hospitals in Lisbon and Porto. Fast claims processing (5-7 days) and comprehensive coverage. Expect €150-280/month depending on age and plan level.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Freelancer, Under 40, Healthy</h4>
+        <p class="text-neutral-600">Allianz Care offers excellent European coverage at lower prices than Cigna. High-deductible options can reduce premiums significantly. Good choice for healthy applicants who want quality coverage without premium prices. €120-250/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Freelancer Wanting Local Integration</h4>
+        <p class="text-neutral-600">Medis is Portugal's largest private insurer. Lower premiums (€50-100/month) but Portuguese-language service. Good if you speak Portuguese or plan to integrate fully. May require local bank account for payment.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Visa Application Only (Upgrading Later)</h4>
+        <p class="text-neutral-600">SafetyWing or IMG Global may work for the initial visa application at lower cost. Plan to upgrade to comprehensive coverage for the residence permit stage and long-term protection. Budget option only—not recommended long-term.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Freelancer Traveling Frequently</h4>
+        <p class="text-neutral-600">If you'll travel outside Portugal regularly, Cigna Global or Allianz Care with worldwide coverage makes sense. Both offer plans covering multiple countries while maintaining Portugal as your base. Essential if you work with clients globally and visit them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Portugal's D7 visa is one of the most affordable routes to EU residency. Visa fees are low, and living costs outside Lisbon center remain reasonable by Western European standards.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total First-Year Visa Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Path</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Basic insurance, DIY where possible</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable Path</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,000-4,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Premium insurance, professional help</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Living Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Lisbon (City Center)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,000-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, comfortable</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Porto</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Lower rent, same quality</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Algarve/Madeira</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,200-1,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Lower costs, beach lifestyle</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Budget Breakdown (Lisbon Example)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1-bedroom):</strong> €900-1,400/month (higher in center, lower in suburbs)</li>
+      <li><strong>Health insurance:</strong> €100-250/month (private international coverage)</li>
+      <li><strong>Utilities:</strong> €80-120/month (electricity, gas, water, internet)</li>
+      <li><strong>Food:</strong> €300-500/month (groceries and occasional dining)</li>
+      <li><strong>Transport:</strong> €40-80/month (metro/bus pass or occasional taxis)</li>
+      <li><strong>Coworking:</strong> €100-250/month (many good options in Lisbon)</li>
+      <li><strong>Phone:</strong> €15-30/month (Portuguese SIM with data)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>NHR Tax Advantage:</strong> If you qualify for Portugal's Non-Habitual Resident tax regime, you may pay only 20% flat tax on Portuguese-source income from "high value" activities—which includes most tech and professional freelance work. This can result in significant savings compared to standard progressive tax rates.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The D7 visa application involves applying at a Portuguese consulate in your country of residence, then completing the residence permit process after arriving in Portugal. EU citizens can skip the visa stage and apply directly for residence after registering.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get Your NIF (Tax Number)</h4>
+          <p class="text-neutral-600">Either visit Portugal briefly to get your NIF in person (free) or hire a fiscal representative to obtain it remotely (€50-150). The NIF is required for almost everything in Portugal, including visa applications with some consulates.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather and Translate Documents</h4>
+          <p class="text-neutral-600">Collect your criminal record certificate (apostilled), passport, financial documents, and health insurance proof. Get certified translations of non-Portuguese documents. Some consulates require translations by specific agencies.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Private Health Insurance</h4>
+          <p class="text-neutral-600">Obtain private health insurance valid in Portugal. Get a confirmation letter or policy document showing coverage details. Cigna Global and Allianz Care can provide visa-ready documentation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Accommodation Proof</h4>
+          <p class="text-neutral-600">You need to show where you'll live in Portugal. This can be a rental contract, property deed, hotel booking for initial stay, or letter from someone hosting you. Long-term Airbnb bookings with host letter can work.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply at Portuguese Consulate</h4>
+          <p class="text-neutral-600">Book an appointment at your local Portuguese consulate. Submit all documents, pay the €90 visa fee, and attend an interview (usually brief). Some consulates accept mail-in applications for D7 renewals.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Visa Processing</h4>
+          <p class="text-neutral-600">Processing typically takes 2-3 months, though some consulates are faster. You may be asked for additional documents. Once approved, you'll receive a visa sticker in your passport valid for 4 months.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Open Bank Account</h4>
+          <p class="text-neutral-600">Enter Portugal within your visa validity. Open a Portuguese bank account (needed for rent, utilities, residence permit). ActivoBank and Millennium BCP are expat-friendly options. Some digital banks like N26 also work.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Schedule AIMA Appointment</h4>
+          <p class="text-neutral-600">AIMA (formerly SEF) handles residence permits. Book your appointment as early as possible—there's currently a significant backlog (2-6 months). Your visa stamp allows legal stay while waiting. Bring all original documents plus copies.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Your Residence Card</h4>
+          <p class="text-neutral-600">After your AIMA appointment, you'll receive a 2-year residence permit (Autorizacao de Residencia). This card allows you to live and work in Portugal and travel freely in Schengen. Apply for NHR tax status within 12 months.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>AIMA backlog warning:</strong> Portugal's immigration agency (AIMA, formerly SEF) has a significant backlog as of 2024-2026. Expect 2-6 months wait for your residence permit appointment after arrival. Your visa stamp keeps you legal during this time, but plan accordingly. Book your appointment immediately upon arrival—don't wait.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Portugal's D7 visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Web Developer, US-Based, €3,000/month Income</h3>
+        <p class="text-neutral-600 mb-4">Freelances for 3 US clients, clear bank statements showing consistent income. Applied with Allianz Care insurance.</p>
+        <p class="text-green-700 font-medium">+ Visa approved in 8 weeks. Well above income threshold. AIMA appointment in 3 months. Applied for NHR—now paying 20% flat tax. Loves Lisbon coworking scene.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Graphic Designer from UK, €1,200/month Average</h3>
+        <p class="text-neutral-600 mb-4">Variable freelance income, some months €800, others €2,000. Applied with 12 months bank statements.</p>
+        <p class="text-green-700 font-medium">+ Visa approved. Consulate requested additional savings proof (€8,000 in account). Showing average above minimum was key. Now in Porto, costs are lower than expected.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Writer, €900/month Income, Strong Savings</h3>
+        <p class="text-neutral-600 mb-4">Modest monthly income but €25,000 in savings. No current contracts, building freelance business.</p>
+        <p class="text-amber-700 font-medium">- Initially asked for more documentation. Consulate wanted proof of regular income stream, not just savings. Added 2 client contracts (small but recurring) and resubmitted. Approved on second attempt.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Photographer from Canada, Applied with SafetyWing</h3>
+        <p class="text-neutral-600 mb-4">Good income (€2,500/month) but used SafetyWing travel insurance to save money.</p>
+        <p class="text-green-700 font-medium">+ Visa approved—consulate accepted SafetyWing for initial visa. Upgraded to Cigna Global before AIMA appointment. Recommends starting with budget insurance then upgrading.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Consultant, Missed NHR Deadline</h3>
+        <p class="text-neutral-600 mb-4">Got D7 visa and residence permit successfully. Focused on setting up business, forgot about NHR.</p>
+        <p class="text-red-700 font-medium">- Applied for NHR 14 months after becoming tax resident. Deadline is 12 months. Lost access to 10 years of tax benefits potentially worth €30,000+. Now pays full progressive tax rates.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple, One Freelancer, One Non-Working Spouse</h3>
+        <p class="text-neutral-600 mb-4">Combined application. Freelancer earns €2,000/month. Spouse plans to job hunt after arrival.</p>
+        <p class="text-green-700 font-medium">+ Both approved as family unit. Income requirement increased by 50% for spouse—€1,305/month needed, they showed €2,000. Spouse later found remote job. Both have residence permits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Portugal Freelancers"
+    description="Find the right coverage for your D7 visa application and life in Portugal."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the NHR 12-Month Deadline</h3>
+        <p class="text-neutral-600">You must apply for Non-Habitual Resident tax status within 12 months of becoming a Portuguese tax resident. Miss this deadline and you lose 10 years of potential tax benefits. Set a calendar reminder the day you arrive. The savings can be €5,000-10,000/year or more.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the AIMA Backlog</h3>
+        <p class="text-neutral-600">Portugal's immigration agency (AIMA, formerly SEF) has a severe backlog. Don't assume you'll get your residence permit quickly. Budget 2-6 months after arrival. Book your appointment immediately upon entering Portugal—the wait starts from booking, not arrival.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Without Accommodation Proof</h3>
+        <p class="text-neutral-600">Portuguese consulates require proof of where you'll live. "I'll find a place when I arrive" isn't acceptable. Secure at least a short-term rental, Airbnb booking with host confirmation, or hotel reservation before applying. Long-term housing can come later.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Confusing D7 and D8 Visa Requirements</h3>
+        <p class="text-neutral-600">D7 requires ~€870/month (minimum wage). D8 requires €3,040/month. If you earn above €3,040, you can use either—D7 is often simpler. If you earn less than €3,040, D7 is your only option. Don't apply for D8 thinking it's "better" if you don't meet the threshold.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Relying Only on Savings Without Income Proof</h3>
+        <p class="text-neutral-600">While savings help, consulates prefer to see regular income. €50,000 in savings but no income stream raises questions about sustainability. Even small recurring contracts (€500/month) plus savings is stronger than savings alone. Show ongoing financial viability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Portugal -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Portugal</h2>
+
+    <p class="mb-4">
+      Portugal's healthcare system ranks well internationally, with both public (SNS) and private options available. As a freelancer, you'll start with private insurance (required for visa) and can later access the public system after receiving your residence permit.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The SNS (Public Healthcare)</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What's Covered by SNS</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>+ GP consultations (small fee ~€4-5)</li>
+          <li>+ Emergency care</li>
+          <li>+ Hospital treatment and surgery</li>
+          <li>+ Specialist referrals</li>
+          <li>+ Maternity and pediatric care</li>
+          <li>+ Prescription subsidies</li>
+          <li>+ Mental health services</li>
+          <li>+ Chronic disease management</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">SNS Challenges</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Long wait times for specialists (months)</li>
+          <li>• GP appointments can take weeks</li>
+          <li>• Limited English outside Lisbon/Porto</li>
+          <li>• Bureaucratic registration process</li>
+          <li>• Some medications may not be covered</li>
+          <li>• Dental care limited (mostly private)</li>
+          <li>• Quality varies by region</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Register with SNS</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">After Getting Your Residence Permit</h4>
+        <p class="text-neutral-600">Visit your local Centro de Saude (health center) with your residence permit, NIF, and proof of address. You'll be assigned a doctor and receive your numero de utente (patient number). This may take 1-2 visits and several weeks.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Using Private Healthcare</h4>
+        <p class="text-neutral-600">With private insurance, you can access clinics like Hospital da Luz, CUF, and Lusíadas immediately. No registration required—just show your insurance card. English-speaking doctors are common in Lisbon and Porto private clinics. Same-day appointments often available.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 112 for emergencies. Public hospital emergency rooms (Urgencias) treat everyone regardless of insurance. For non-emergency after-hours care, private hospitals have 24/7 emergency services. Keep your insurance card handy at all times.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>The hybrid approach:</strong> Most expat freelancers maintain private insurance while also registering with SNS. Use private for routine care and quick specialist access; use SNS for emergencies, major procedures, and as a backup. This provides the best of both systems.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Portugal's D7 visa really just ~€870/month income?</h3>
+        <p class="text-neutral-600">
+          Yes, the legal minimum is the Portuguese minimum wage—approximately €870/month in 2025. However, consulates like to see somewhat higher income or savings for a comfortable life. €1,200-1,500/month income or €10,000+ savings strengthens your application. But the threshold is genuinely low compared to Spain (€2,200) or Portugal's D8 (€3,040).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between D7 and D8 visas for freelancers?</h3>
+        <p class="text-neutral-600">
+          D7 is the "passive income" visa but has evolved to accept freelancers and remote workers. Income requirement: ~€870/month. D8 is the newer Digital Nomad Visa specifically for remote workers. Income requirement: €3,040/month. Both lead to the same residence permit and citizenship path. Most freelancers use D7 due to the lower threshold.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is SafetyWing accepted for the D7 visa?</h3>
+        <p class="text-neutral-600">
+          Some applicants have successfully used SafetyWing for the initial visa application—Portugal is less strict than Spain. However, it's travel medical insurance, not comprehensive health coverage. For the residence permit stage and your own protection, upgrading to proper international health insurance (Cigna, Allianz) is strongly recommended.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the NHR tax regime and should I apply?</h3>
+        <p class="text-neutral-600">
+          Non-Habitual Resident (NHR) status offers 20% flat tax on Portuguese-source income from "high value" activities (most professional work qualifies) for 10 years. You must apply within 12 months of becoming a tax resident. The benefits can be substantial—worth thousands per year. Apply immediately after getting your residence permit. Note: NHR rules changed in 2024; consult a tax advisor.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get Portuguese citizenship?</h3>
+        <p class="text-neutral-600">
+          After 5 years of legal residence, you can apply for Portuguese citizenship. You'll need to pass an A2 Portuguese language test and have no serious criminal record. Portugal allows dual citizenship—you won't need to renounce your original nationality. This is one of Europe's fastest paths to EU citizenship.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I access public healthcare with the D7 visa?</h3>
+        <p class="text-neutral-600">
+          Yes, after receiving your residence permit, you can register at your local Centro de Saude to access the SNS (public healthcare). However, this isn't available for the visa application—you need private insurance first. Most expats maintain private insurance even after gaining SNS access for faster care and English-speaking doctors.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Portugal's D7 visa offers one of the most accessible paths to EU residency for freelancers. The income threshold (~€870/month) is remarkably low by European standards, the path to citizenship is just 5 years, and the NHR tax regime can save you thousands annually. Combined with excellent weather, a thriving expat community, and good quality of life, Portugal deserves its reputation as a top destination for location-independent professionals.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the AIMA appointment backlog (plan for 2-6 months wait) and the requirement for private health insurance before you can access public healthcare. These are real hurdles, but manageable with proper planning. The insurance cost (€100-250/month) is modest by Western European standards and provides genuine value.
+    </p>
+
+    <p class="mb-6">
+      For freelancers who want EU residency without meeting Germany's strict business requirements or Spain's higher income thresholds, Portugal's D7 visa is often the best choice. The combination of accessibility, tax benefits, and citizenship timeline is hard to beat.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Portugal's D7 visa is ideal for freelancers earning ~€870+/month who want the fastest path to EU citizenship and significant tax benefits. Private health insurance is mandatory for the visa—budget €100-250/month for quality coverage. The AIMA backlog is frustrating but manageable. Apply for NHR tax status within 12 months or you'll regret it.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Insurance Plans
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/portugal/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Portugal</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Digital Nomad Visa (D8)</h3>
+        <p class="text-neutral-600 text-sm">Compare with Portugal's higher-income D8 visa option</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's Freiberufler visa requirements</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> Visa and tax requirements change frequently. This guide reflects our research as of the publication date. Verify current requirements with Portuguese consulates, AIMA, and official sources. We are not immigration lawyers or tax advisors. The NHR regime has undergone changes—consult a Portuguese tax professional for your specific situation.
+    </p>
+  </div>
+
+</PageShell>

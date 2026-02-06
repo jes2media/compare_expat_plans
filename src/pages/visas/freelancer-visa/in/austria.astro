@@ -1,0 +1,873 @@
+---
+/**
+ * Austria Freelancer Visa - Long-form CRO-optimized page
+ * Niederlassungsbewilligung – Selbständiger / Rot-Weiß-Rot Karte für Selbständige
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Austria", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Austria Health Insurance Guide", href: "/countries/austria/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Germany Freelancer Visa", href: "/visas/freelancer-visa/in/germany" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "rwrCard", header: "RWR Card (Non-EU)" },
+  { key: "settlement", header: "Settlement Permit (Non-EU)" },
+];
+
+const requirementsRows = [
+  { requirement: "Points System", rwrCard: "50+ points required", settlement: "Not required" },
+  { requirement: "Business Plan", rwrCard: "Must demonstrate economic benefit", settlement: "Proof of sustainable activity" },
+  { requirement: "Income Proof", rwrCard: "~€1,100-1,400/month minimum", settlement: "~€1,100-1,400/month minimum" },
+  { requirement: "Gewerbeschein", rwrCard: "Trade license required", settlement: "Trade license or profession registration" },
+  { requirement: "Health Insurance", rwrCard: "Mandatory—SVS or private", settlement: "Mandatory—SVS or private" },
+  { requirement: "Duration", rwrCard: "2 years initially", settlement: "1 year initially" },
+  { requirement: "German Language", rwrCard: "Points for German (A1=5pts, A2=10pts)", settlement: "A1 often required" },
+];
+
+const pointsColumns = [
+  { key: "category", header: "Category" },
+  { key: "criteria", header: "Criteria" },
+  { key: "points", header: "Points" },
+];
+
+const pointsRows = [
+  { category: "Qualifications", criteria: "University degree", points: "20-25" },
+  { category: "Qualifications", criteria: "Vocational training", points: "15-20" },
+  { category: "Experience", criteria: "3+ years professional experience", points: "10-20" },
+  { category: "Language", criteria: "German A1 / A2 / B1", points: "5 / 10 / 15" },
+  { category: "Language", criteria: "English B1 or higher", points: "5" },
+  { category: "Age", criteria: "Under 30 / 30-40 / 40+", points: "20 / 15 / 10" },
+  { category: "Austria Connection", criteria: "Previous work/study in Austria", points: "5-10" },
+  { category: "Innovation", criteria: "Innovative business concept", points: "Up to 20" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "svs", header: "SVS (Social Insurance)" },
+  { key: "private", header: "Private Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", svs: "~27% of income (capped)", private: "€250-600 (age/health-based)" },
+  { feature: "Eligibility", svs: "Mandatory for all self-employed", private: "Optional supplement or initial coverage" },
+  { feature: "Healthcare", svs: "Full ÖGK public healthcare access", private: "Private doctors and hospitals" },
+  { feature: "Pension", svs: "Included in contribution", private: "Not included" },
+  { feature: "Deductible", svs: "Small copays only", private: "€300-2,500 common" },
+  { feature: "Visa Acceptance", svs: "Accepted", private: "Must meet minimum standards" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "SVS + ÖGK", type: "Mandatory Social", price: "~27% of income", strengths: "Comprehensive public healthcare + pension" },
+  { provider: "Allianz Care", type: "Private International", price: "€300-500", strengths: "Initial coverage before SVS, global coverage" },
+  { provider: "Cigna Global", type: "Private International", price: "€350-600", strengths: "Large network, flexible plans" },
+  { provider: "UNIQA", type: "Private Austrian", price: "€200-400", strengths: "Local expertise, supplementary coverage" },
+  { provider: "Wiener Städtische", type: "Private Austrian", price: "€180-350", strengths: "Austrian market leader" },
+  { provider: "Generali Austria", type: "Private Austrian", price: "€220-450", strengths: "Good supplementary options" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "RWR Card Application", amount: "€120-160", notes: "Varies by permit type" },
+  { item: "SVS Contributions", amount: "~27% of income", notes: "Mandatory (health, pension, accident)" },
+  { item: "Minimum SVS (Year 1)", amount: "~€150-200/month", notes: "Reduced rate for new businesses" },
+  { item: "Gewerbeschein (Trade License)", amount: "€50-300", notes: "Depends on trade type" },
+  { item: "Wirtschaftskammer (Chamber)", amount: "€100-500/year", notes: "Mandatory membership" },
+  { item: "Steuerberater (Tax Advisor)", amount: "€100-300/month", notes: "Highly recommended" },
+  { item: "Translations & Apostilles", amount: "€100-300", notes: "For foreign documents" },
+  { item: "Financial Buffer", amount: "€8,000-15,000", notes: "Recommended savings" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Research and business plan preparation", duration: "2-4 weeks", location: "Home country" },
+  { step: "Gather documents, translations, apostilles", duration: "2-4 weeks", location: "Home country" },
+  { step: "Apply for initial visa (D visa)", duration: "4-12 weeks processing", location: "Austrian embassy" },
+  { step: "Arrive in Austria", duration: "After D visa", location: "Austria" },
+  { step: "Register residence (Meldezettel)", duration: "Within 3 days", location: "Meldeamt" },
+  { step: "Apply for Gewerbeschein", duration: "1-4 weeks", location: "Bezirkshauptmannschaft/Magistrat" },
+  { step: "Register with SVS", duration: "Immediately after Gewerbeschein", location: "SVS office" },
+  { step: "Apply for residence permit", duration: "2-4 months processing", location: "MA 35 (Vienna) or BH" },
+  { step: "Register with Finanzamt", duration: "Within 1 month", location: "Tax office" },
+];
+---
+
+<PageShell
+  title="Austria Freelancer Visa 2026: Requirements, SVS Insurance & Application Guide"
+  description="Complete guide to Austria's Freelancer Visa (Rot-Weiß-Rot Karte, Selbständige). Mandatory SVS insurance, points system, Gewerbeschein requirements, and step-by-step application process for Vienna and beyond."
+  headline="Austria Freelancer Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Austria—Rot-Weiß-Rot Karte points system, mandatory SVS social insurance, trade license requirements, and life in Vienna, consistently ranked the world's most livable city."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/allianz-care"
+  heroBackgroundImage="/images/visas/freelancer-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Austrian Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      SVS Insurance Mandatory
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Austria has become an increasingly attractive destination for freelancers and self-employed professionals. Vienna consistently ranks as the world's most livable city, offering a combination of high quality of life, excellent healthcare, central European location, and a sophisticated business environment. For freelancers willing to navigate the Austrian bureaucracy, the rewards are substantial.
+    </p>
+
+    <p class="mb-4">
+      Unlike some European countries with simpler freelance pathways, Austria requires freelancers to integrate into its comprehensive social insurance system. This means higher costs upfront—approximately 27% of income goes to SVS (Sozialversicherung der Selbständigen)—but it also means you get full access to excellent healthcare and build pension entitlements from day one.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Austria Freelancer Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa types:</strong> Rot-Weiß-Rot Karte für Selbständige (points-based) or Niederlassungsbewilligung – Selbständiger</li>
+        <li>• <strong>Income requirement:</strong> ~€1,100-1,400/month minimum (sufficient means)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—SVS social insurance (~27% of income)</li>
+        <li>• <strong>Trade license:</strong> Gewerbeschein required for most activities</li>
+        <li>• <strong>Duration:</strong> 1-2 years initially, renewable</li>
+        <li>• <strong>Path to PR:</strong> Permanent residence after 5 years</li>
+        <li>• <strong>German language:</strong> A1-B1 required or strongly recommended</li>
+        <li>• <strong>Key cities:</strong> Vienna, Salzburg, Graz, Innsbruck, Linz</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Non-EU vs. EU/EEA Citizens</h3>
+
+    <p class="mb-4">
+      The path to freelancing in Austria differs significantly based on your citizenship:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Non-EU Citizens</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Need Rot-Weiß-Rot Karte (points-based) OR</li>
+          <li>• Niederlassungsbewilligung – Selbständiger</li>
+          <li>• Must demonstrate economic benefit to Austria</li>
+          <li>• Points system considers qualifications, language, age</li>
+          <li>• Apply at Austrian embassy before arrival</li>
+          <li>• Processing takes 2-4 months</li>
+          <li>• Visa fee: €120-160</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">EU/EEA/Swiss Citizens</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• No visa required—freedom of establishment</li>
+          <li>• Simply register residence (Meldezettel)</li>
+          <li>• Apply for Gewerbeschein (trade license)</li>
+          <li>• Register with SVS social insurance</li>
+          <li>• Register with Finanzamt (tax office)</li>
+          <li>• Process takes 2-4 weeks</li>
+          <li>• Much simpler overall</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Vienna advantage:</strong> Vienna has the largest freelance and startup ecosystem in Austria, with excellent coworking spaces, networking opportunities, and a growing international community. The city's MA 35 immigration office handles the most applications and is generally efficient, though appointments can have long waits.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Austria is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You value quality of life and safety</li>
+          <li>✓ You want comprehensive social insurance coverage</li>
+          <li>✓ You can handle ~27% SVS contributions</li>
+          <li>✓ You speak or are willing to learn German</li>
+          <li>✓ You want a central European base</li>
+          <li>✓ You appreciate culture, history, and outdoor activities</li>
+          <li>✓ You're prepared for detailed bureaucracy</li>
+          <li>✓ You have qualifications that score points (RWR Card)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want lower social insurance costs (try Portugal)</li>
+          <li>• You prefer warmer climate (Spain, Portugal, Italy)</li>
+          <li>• You don't want to learn German (Netherlands)</li>
+          <li>• You're just starting out with minimal qualifications</li>
+          <li>• You want minimal bureaucracy (Estonia e-Residency)</li>
+          <li>• You can't afford initial 27% SVS contributions</li>
+          <li>• You need a points-based system but can't reach 50 points</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>The Austrian trade-off:</strong> Austria's mandatory SVS contributions (~27% of income) are higher than many countries, but they include health insurance, pension, and accident insurance. If you're planning to stay long-term, you'll appreciate building pension entitlements. If you're looking for the cheapest option, Austria isn't it—but the quality of life and coverage are exceptional.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Non-EU freelancers have two main pathways: the Rot-Weiß-Rot Karte für Selbständige (points-based) or the Niederlassungsbewilligung – Selbständiger (settlement permit for self-employed). The RWR Card is generally preferred as it offers a clearer pathway and longer initial validity.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Rot-Weiß-Rot Card Points System</h3>
+
+    <p class="mb-4">
+      To qualify for the RWR Card for Self-Employed, you need at least 50 points. Points are awarded based on qualifications, professional experience, language skills, and age. Here's how the system works:
+    </p>
+
+    <ComparisonTable columns={pointsColumns} rows={pointsRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Beyond meeting the 50-point threshold, you must also demonstrate that your business will provide economic benefit to Austria. This typically means showing how your services will serve Austrian clients, create employment, or bring investment/innovation to the country. A strong business plan is essential.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Required for All Applicants</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Completed application form (Antrag)</li>
+          <li>• Biometric passport photos</li>
+          <li>• Proof of accommodation in Austria</li>
+          <li>• Criminal record certificate (apostilled)</li>
+          <li>• Health insurance confirmation</li>
+          <li>• Proof of sufficient financial means</li>
+          <li>• Business plan demonstrating economic benefit</li>
+          <li>• Birth certificate (apostilled)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Points Evidence (RWR Card)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Diplomas and certificates (translated, apostilled)</li>
+          <li>• German/English language certificates</li>
+          <li>• CV with detailed work experience</li>
+          <li>• Reference letters from employers/clients</li>
+          <li>• Portfolio of work</li>
+          <li>• Evidence of Austrian connections (if any)</li>
+          <li>• Proof of professional qualifications</li>
+          <li>• Letters of intent from Austrian clients</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
+
+    <p class="mb-4">
+      Austria requires proof of "sufficient means" to support yourself. While there's no strict minimum income specified, immigration authorities generally look for:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Single person:</strong> ~€1,100-1,400/month (€13,200-16,800/year)</li>
+      <li><strong>Couple:</strong> ~€1,700-2,100/month</li>
+      <li><strong>Family with children:</strong> Additional ~€200-300 per child</li>
+      <li><strong>Savings buffer:</strong> €8,000-15,000 in bank statements</li>
+      <li><strong>Rental contract or housing proof</strong></li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Tip:</strong> If you have existing clients or contracts, include letters of intent or contracts in your application. Demonstrable income streams significantly strengthen your case and help prove economic benefit to Austria.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">SVS Membership is Mandatory</h3>
+      <p class="text-green-800">
+        All self-employed persons in Austria must join the SVS (Sozialversicherung der Selbständigen). This is not optional. SVS contributions cover health insurance (via ÖGK), pension insurance, and accident insurance. The combined rate is approximately 27% of your income, with caps on higher earners.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Austria's social insurance system for the self-employed is comprehensive but expensive. Unlike Germany where you can choose between public and private insurance, Austria mandates SVS membership for all freelancers and business owners. Private insurance can only supplement SVS coverage—it cannot replace it.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">SVS vs. Private Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding SVS Contributions</h3>
+
+    <p class="mb-4">
+      SVS contributions are calculated as a percentage of your business income:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">SVS Contribution Breakdown (2026)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• <strong>Health insurance:</strong> ~6.8% of income</li>
+          <li>• <strong>Pension insurance:</strong> ~18.5% of income</li>
+          <li>• <strong>Accident insurance:</strong> ~1.9% of income</li>
+          <li>• <strong>Total:</strong> ~27.2% of income</li>
+          <li>• <strong>Minimum contribution (Year 1):</strong> ~€150-200/month</li>
+          <li>• <strong>Maximum contribution cap:</strong> Based on max assessment base</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What SVS Gets You</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Full ÖGK healthcare access</li>
+          <li>✓ Pension contributions for retirement</li>
+          <li>✓ Accident insurance coverage</li>
+          <li>✓ Sickness benefit after 3 days</li>
+          <li>✓ Maternity benefits</li>
+          <li>✓ e-card for cashless healthcare</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>First-year advantage:</strong> In your first year of self-employment, SVS uses a reduced minimum assessment base. This means your contributions are lower while you're getting established. However, there may be back-payments in subsequent years when your actual income is assessed.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Initial Insurance Before SVS Registration</h3>
+
+    <p class="mb-4">
+      You'll need health insurance to apply for your visa and residence permit. Since SVS registration happens after you arrive and register your trade, you have two options for initial coverage:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Private international insurance:</strong> Allianz Care or Cigna Global provide coverage that meets visa requirements while you're getting established</li>
+      <li><strong>Austrian private insurance:</strong> UNIQA or Wiener Städtische can provide initial coverage</li>
+      <li><strong>EU citizens with EHIC:</strong> Can use EHIC initially, then register with SVS</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Transition period:</strong> Once you register your Gewerbeschein and join SVS, your SVS coverage begins. Private insurance can then be cancelled or converted to supplementary coverage (Zusatzversicherung) for extras like private hospital rooms or faster specialist access.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Austrian freelancer visa application?"
+    description="Compare private coverage options for the initial period before SVS registration, or supplementary plans to enhance your Austrian healthcare."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Austrian freelancers, SVS is mandatory—but you'll need private coverage for your visa application period, and you may want supplementary insurance for extras. Here are the providers most commonly used by expat freelancers in Austria.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Applying for Visa, Need Initial Coverage</h4>
+        <p class="text-neutral-600">Use Allianz Care or Cigna Global for comprehensive private coverage during your application and initial arrival period. Once your Gewerbeschein is registered and SVS kicks in, you can cancel the private policy or keep it as supplementary coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Established Freelancer, Want Faster Access</h4>
+        <p class="text-neutral-600">Consider supplementary private insurance (Zusatzversicherung) from UNIQA or Wiener Städtische. This gives you private hospital rooms, choice of chief physician, and often faster specialist appointments—while SVS handles the basics.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">EU Citizen, Quick Setup</h4>
+        <p class="text-neutral-600">If you're an EU citizen, you can use your EHIC for initial coverage while registering your business. Once your Gewerbeschein is active, register with SVS immediately. The process is straightforward and you'll have full coverage within weeks.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent International Traveler</h4>
+        <p class="text-neutral-600">SVS provides EU coverage via EHIC, but limited outside Europe. If you travel globally for business, keep supplementary international coverage from Allianz Care or Cigna Global for non-EU travel medical protection.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious, Just Starting</h4>
+        <p class="text-neutral-600">Focus on meeting the minimum requirements: private coverage for your visa application, then transition to SVS-only once registered. SVS provides comprehensive coverage. Add private supplementary insurance only if your income grows and you want extras.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Freelancing in Austria involves significant fixed costs, primarily the mandatory SVS contributions. Unlike neighboring Germany where you can choose private insurance, Austria's social insurance is non-negotiable. Plan your pricing and budget accordingly.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Vienna (Budget)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,200-2,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Shared flat, basic lifestyle</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Vienna (Comfortable)</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,200-4,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, coworking</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Smaller Cities (Graz, Linz)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,800-2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, lower costs</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Vienna Example)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (own apartment):</strong> €900-1,400/month (lower in outer districts)</li>
+      <li><strong>SVS contributions:</strong> €400-800/month (depends on income—min ~€150-200 in Year 1)</li>
+      <li><strong>Wirtschaftskammer:</strong> €40-100/month (averaged from annual fee)</li>
+      <li><strong>Steuerberater:</strong> €100-300/month (essential for compliance)</li>
+      <li><strong>Living expenses:</strong> €500-800/month (food, transport, utilities)</li>
+      <li><strong>Coworking space:</strong> €150-350/month (optional—good options in Vienna)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Tax benefit:</strong> SVS contributions are fully tax-deductible. Additionally, you can deduct business expenses including your home office, equipment, professional development, and travel. Austria has a progressive income tax system (0-55%), but deductions can significantly reduce your tax burden. A good Steuerberater is essential.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Austrian freelancer visa process involves several government offices and registrations. Non-EU citizens apply for a visa at the Austrian embassy, then complete additional registrations after arrival. EU citizens can skip the visa step but must complete the same business registrations.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Application</h4>
+          <p class="text-neutral-600">Write a detailed business plan demonstrating economic benefit to Austria. Gather evidence for points (qualifications, language certificates, work experience). Get criminal record certificate and other documents apostilled and translated into German by certified translators.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Initial Health Insurance</h4>
+          <p class="text-neutral-600">For your visa application, you need proof of health insurance. Obtain a confirmation letter from Allianz Care, Cigna Global, or another provider that meets Austrian requirements. This covers you until SVS kicks in after arrival.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply at Austrian Embassy (Non-EU)</h4>
+          <p class="text-neutral-600">Submit your application for the D visa (entry visa) or directly for the residence permit at the Austrian embassy. Processing typically takes 2-4 months. Be prepared to answer questions about your business plan and how your work benefits Austria.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Register Residence (Meldezettel)</h4>
+          <p class="text-neutral-600"><strong>Critical: Within 3 days of moving into accommodation</strong>, register at the Meldeamt (registration office). Bring your passport and rental contract. This registration is required for everything else—bank accounts, trade license, tax registration.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Gewerbeschein (Trade License)</h4>
+          <p class="text-neutral-600">Apply for your trade license at the Bezirkshauptmannschaft (district authority) or Magistrat (in Vienna). The type of license depends on your activity—some trades are "free" (freie Gewerbe), others require qualifications. Processing takes 1-4 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with SVS (Social Insurance)</h4>
+          <p class="text-neutral-600">Once your Gewerbeschein is issued, you must register with SVS within one month. Bring your trade license, passport, and Meldezettel. SVS registration triggers your mandatory health, pension, and accident insurance coverage.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with Finanzamt (Tax Office)</h4>
+          <p class="text-neutral-600">Register your business with the local Finanzamt. You'll receive a tax number (Steuernummer) within a few weeks. This is required before you can legally invoice clients. Consider engaging a Steuerberater at this stage.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Residence Permit (If Not Already Issued)</h4>
+          <p class="text-neutral-600">If you entered on a D visa, apply for your residence permit at MA 35 (Vienna) or the local Bezirkshauptmannschaft. Bring all registrations, trade license, SVS confirmation, and bank statements. Processing takes 2-4 months.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Join Wirtschaftskammer (Chamber of Commerce)</h4>
+          <p class="text-neutral-600">Membership in the Wirtschaftskammer (WKO) is mandatory for most trade license holders. You'll be automatically enrolled when your Gewerbeschein is issued. Fees depend on your trade type and can range from €100-500/year.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mt-6">
+      <p class="text-red-800">
+        <strong>3-Day Meldezettel Warning:</strong> Austria strictly enforces the 3-day residence registration deadline. Failure to register on time can result in fines and complications with your visa. Prioritize this immediately upon arrival—it's the foundation for all other registrations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for and living on the Austrian freelancer visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Consultant from USA, Strong Qualifications</h3>
+        <p class="text-neutral-600 mb-4">MBA degree, 8 years experience, German B1 certificate, letters of intent from Austrian companies. Age 35.</p>
+        <p class="text-green-700 font-medium">✓ Scored 62 points on RWR Card (25 education + 15 experience + 15 German + 7 age). Visa approved in 10 weeks. Used Allianz Care initially, transitioned to SVS. Now earning €7,000+/month consulting for Austrian and German clients. Very satisfied with quality of life in Vienna.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Graphic Designer from UK, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">Bachelor's degree, 5 years experience, basic German A1, age 29.</p>
+        <p class="text-green-700 font-medium">✓ Scored 55 points (20 education + 10 experience + 5 German + 20 age). Emphasized economic benefit through design for Austrian tourism companies. Visa approved in 12 weeks. SVS contributions (~€350/month) higher than expected but appreciates comprehensive coverage.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Freelancer from India, No German</h3>
+        <p class="text-neutral-600 mb-4">Bachelor's degree, 4 years experience, excellent English but no German, age 28.</p>
+        <p class="text-amber-700 font-medium">△ Initially scored only 45 points (20 education + 10 experience + 0 German + 5 English + 10 age = 45). Took German A2 course (3 months) to reach 55 points. Reapplied with stronger business plan including Austrian client contracts. Approved on second attempt after 16 weeks total.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">EU Citizen (Polish), Web Developer</h3>
+        <p class="text-neutral-600 mb-4">Moving from Warsaw to Vienna for lifestyle change, existing remote clients.</p>
+        <p class="text-green-700 font-medium">✓ No visa needed—freedom of establishment. Registered Meldezettel within 3 days, applied for Gewerbeschein (free trade—"EDV-Dienstleistungen"). Entire process took 3 weeks. SVS contributions manageable with €5,000/month income. Loves Vienna's quality of life.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Photographer from Brazil, Limited Savings</h3>
+        <p class="text-neutral-600 mb-4">Strong portfolio but only €5,000 savings, no Austrian clients yet, age 32.</p>
+        <p class="text-red-700 font-medium">✗ Application rejected—insufficient financial means and couldn't demonstrate economic benefit to Austria. Immigration wanted to see €10,000+ savings and concrete Austrian client interest. Returned home, spent 8 months building savings and Austrian contact network, planning to reapply.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Management Consultant, Family of Four</h3>
+        <p class="text-neutral-600 mb-4">US citizen, 45 years old, spouse and 2 children, 15 years experience.</p>
+        <p class="text-green-700 font-medium">✓ Strong application with 60+ points. Higher financial requirements for family (~€2,500/month) but income easily covers. SVS family coverage included. Children in excellent Austrian public schools. Spouse exploring own Gewerbeschein. Overall costs higher than expected but quality of life exceptional.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Austrian Freelancers"
+    description="Find the right coverage for your visa application and transition period—then supplement SVS if needed."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating SVS Contributions</h3>
+        <p class="text-neutral-600">At ~27% of income, SVS contributions are significant. Many freelancers are shocked when they realize they're paying €400-800/month in social insurance. Budget for this from the start—it's mandatory, not optional. The upside is comprehensive coverage and pension building.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 3-Day Meldezettel Deadline</h3>
+        <p class="text-neutral-600">Austria strictly enforces the 3-day residence registration requirement. Without your Meldezettel, you cannot open bank accounts, get a trade license, or register for SVS. Go to the Meldeamt within 3 days of moving in—bring passport and rental contract.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Without Demonstrating Economic Benefit</h3>
+        <p class="text-neutral-600">Simply meeting the 50-point threshold isn't enough. You must also show how your business benefits Austria. Weak applications say "I'll work remotely for foreign clients." Strong applications include Austrian client letters of intent, partnerships with local businesses, or plans to employ others.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring German Language Requirements</h3>
+        <p class="text-neutral-600">While German isn't always mandatory, it significantly helps your application (points!) and daily life. Bureaucracy is conducted in German. Contracts are in German. Learning at least A2-B1 before arrival makes everything easier and strengthens your visa application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Hiring a Steuerberater (Tax Advisor)</h3>
+        <p class="text-neutral-600">Austrian tax law is complex, with VAT decisions, income tax advance payments, and deduction optimization. The €100-300/month cost of a Steuerberater often pays for itself. They'll ensure compliance and maximize legitimate deductions. Do not try to DIY Austrian taxes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Austria -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Austria</h2>
+
+    <p class="mb-4">
+      Austria has one of Europe's best healthcare systems, consistently ranking in the top 10 globally. As a freelancer with SVS membership, you get full access to the public healthcare system through ÖGK (Österreichische Gesundheitskasse)—the same quality care available to Austrian citizens.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Fully Covered (SVS/ÖGK)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP and specialist consultations</li>
+          <li>✓ Hospital treatment and surgeries</li>
+          <li>✓ Prescription medications (small copay)</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Preventive care and screenings</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Physical therapy and rehabilitation</li>
+          <li>✓ Basic dental care</li>
+          <li>✓ EU/EEA coverage via EHIC</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Additional with Private Supplementary</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Private hospital rooms (Sonderklasse)</li>
+          <li>• Chief physician treatment</li>
+          <li>• Better dental coverage</li>
+          <li>• Alternative medicine</li>
+          <li>• Faster specialist appointments</li>
+          <li>• Global travel coverage</li>
+          <li>• No referral needed for specialists</li>
+          <li>• Hospital choice freedom</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Your e-card</h4>
+        <p class="text-neutral-600">After registering with SVS, you'll receive an e-card (electronic health card). Present this at any doctor or hospital for cashless treatment. The system is efficient and widely used throughout Austria.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Finding Doctors</h4>
+        <p class="text-neutral-600">Use the ÖGK website or Doctolib to find doctors who accept the e-card. Many doctors in Vienna speak English. You can see any "Kassenarzt" (contracted doctor) without referral. Private doctors charge more but may have shorter waits.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Appointments and Wait Times</h4>
+        <p class="text-neutral-600">GP appointments are usually available within days. Specialists can have 2-6 week waits with ÖGK. Private supplementary insurance often provides faster access. For urgent issues, call the 24-hour health hotline 1450.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 144 for emergencies (ambulance). Hospital emergency rooms (Notaufnahme) are available 24/7 at all major hospitals. For urgent but non-emergency issues, use the 1450 health hotline for advice.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Vienna hospitals:</strong> Vienna has excellent hospitals including AKH (Allgemeines Krankenhaus—one of Europe's largest), Wilhelminenspital, and various specialized centers. Quality is high across the public system. Private hospitals (Privatspitäler) offer luxury amenities but require supplementary insurance.</p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How much do SVS contributions cost?</h3>
+        <p class="text-neutral-600">
+          SVS contributions total approximately 27% of your income (health ~6.8%, pension ~18.5%, accident ~1.9%). There's a minimum contribution of roughly €150-200/month in your first year, increasing as your actual income is assessed. Higher earners hit a contribution cap. SVS contributions are fully tax-deductible.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I opt out of SVS and use only private insurance?</h3>
+        <p class="text-neutral-600">
+          No. SVS membership is mandatory for all self-employed persons in Austria. You cannot opt out. Private insurance can only supplement SVS coverage—it cannot replace it. This is different from Germany where you can choose private-only. Budget for SVS from the start.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak German for the freelancer visa?</h3>
+        <p class="text-neutral-600">
+          For the RWR Card, German earns you points (A1=5pts, A2=10pts, B1=15pts) but isn't strictly required if you meet 50 points otherwise. However, most bureaucracy is in German, and daily life is much easier with the language. Some settlement permits require A1 German. We strongly recommend learning at least A2 before arrival.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the Gewerbeschein and do I need one?</h3>
+        <p class="text-neutral-600">
+          The Gewerbeschein is a trade license required to conduct business in Austria. Most freelance activities require one. Some trades are "free" (freie Gewerbe—like IT services, consulting) and easy to obtain. Others are "regulated" (reglementierte Gewerbe) and require proof of qualifications. Apply at the Bezirkshauptmannschaft or Magistrat after registering your residence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residence?</h3>
+        <p class="text-neutral-600">
+          After 5 years of legal residence in Austria (including on a freelancer permit), you can apply for permanent residence (Daueraufenthalt-EU). Requirements include: 5 years continuous residence, sufficient income, health insurance, adequate accommodation, German B1, and integration exam. Permanent residence provides unlimited work rights and stays valid indefinitely.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work as an employee while having a freelancer permit?</h3>
+        <p class="text-neutral-600">
+          The freelancer permit (Selbständige) is specifically for self-employment. If you want to take employed work, you may need a different permit or to adjust your status. Some freelancers operate a "mixed" income (self-employed plus mini-job), but this affects your SVS category and taxes. Consult a Steuerberater before taking employed work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Austria's freelancer visa offers a pathway to one of Europe's highest quality of life destinations. Vienna consistently ranks as the world's most livable city, and the combination of excellent healthcare, central location, cultural richness, and safety is hard to match. For freelancers willing to invest in the process, the rewards are substantial.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the mandatory SVS contributions (~27% of income) and the detailed bureaucracy. These are significant costs that catch many freelancers off guard. Unlike Germany where you can choose private insurance, Austria mandates social insurance participation. Budget accordingly—your effective tax rate plus SVS can reach 50%+ at higher incomes.
+    </p>
+
+    <p class="mb-6">
+      For the right person—someone with solid qualifications (to meet the 50-point threshold), willingness to learn German, and income to support the social insurance burden—Austria provides an exceptional base for European freelance life. The path to permanent residence is clear, and the quality of healthcare, infrastructure, and daily life is among Europe's best.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Austria's freelancer visa is best suited for established professionals who value quality of life over minimal costs. SVS contributions are mandatory and significant (~27% of income)—factor this into your pricing. The bureaucracy is detailed, German language helps significantly, and you need 50+ points for the RWR Card. In return, you get access to exceptional healthcare, safety, and a world-class city. For those who can meet the requirements, Austria is an outstanding long-term choice.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Private Insurance →
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/austria/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Austria Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Austria</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's freelancer options (no mandatory public insurance)</p>
+      </a>
+      <a href="/visas/student-visa/in/austria" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Austria Student Visa</h3>
+        <p class="text-neutral-600 text-sm">Study in Austria with affordable OGK student insurance</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

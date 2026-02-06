@@ -1,0 +1,801 @@
+---
+/**
+ * UAE Freelancer Visa - Long-form CRO-optimized page
+ * Free Zone-based Freelance Permit guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in the UAE", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "UAE Health Insurance Guide", href: "/countries/uae/insurance" },
+  { title: "UAE Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/uae" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const freeZoneColumns = [
+  { key: "zone", header: "Free Zone" },
+  { key: "location", header: "Location" },
+  { key: "cost", header: "Annual Cost" },
+  { key: "best", header: "Best For" },
+];
+
+const freeZoneRows = [
+  { zone: "Dubai Media City", location: "Dubai", cost: "AED 15,000-25,000", best: "Media, marketing, creative" },
+  { zone: "DMCC", location: "Dubai", cost: "AED 18,000-30,000", best: "Commodities, consulting, general trade" },
+  { zone: "RAKEZ", location: "Ras Al Khaimah", cost: "AED 7,500-15,000", best: "Budget option, various activities" },
+  { zone: "Shams (Sharjah)", location: "Sharjah", cost: "AED 8,000-18,000", best: "Media, education, consulting" },
+  { zone: "Ajman Free Zone", location: "Ajman", cost: "AED 7,500-12,000", best: "Budget option, trading" },
+  { zone: "Fujairah Creative City", location: "Fujairah", cost: "AED 8,000-15,000", best: "Creative, media, consulting" },
+  { zone: "twofour54 Abu Dhabi", location: "Abu Dhabi", cost: "AED 20,000-35,000", best: "Media production, content" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Important Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "None required", notes: "No income threshold—unlike Digital Nomad Visa" },
+  { requirement: "Activity License", details: "Specific to your profession", notes: "Each Free Zone has permitted activities list" },
+  { requirement: "Health Insurance", details: "Mandatory in Dubai & Abu Dhabi", notes: "DHA/DOH compliant policy required" },
+  { requirement: "Valid Passport", details: "6+ months validity", notes: "Passport copy required" },
+  { requirement: "Passport Photo", details: "White background", notes: "Digital file for application" },
+  { requirement: "CV/Resume", details: "Professional background", notes: "Supports activity license application" },
+  { requirement: "Portfolio/Credentials", details: "Recommended", notes: "Strengthens application for licensed activities" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "dubai", header: "Dubai (DHA)" },
+  { key: "abudhabi", header: "Abu Dhabi (DOH)" },
+];
+
+const insuranceRows = [
+  { feature: "Status", dubai: "Mandatory", abudhabi: "Mandatory" },
+  { feature: "Minimum Coverage", dubai: "AED 150,000+", abudhabi: "AED 250,000+" },
+  { feature: "Inpatient Coverage", dubai: "Required", abudhabi: "Required" },
+  { feature: "Outpatient Coverage", dubai: "Required", abudhabi: "Required" },
+  { feature: "Maternity (if applicable)", dubai: "Optional", abudhabi: "Often required" },
+  { feature: "Fines for Non-Compliance", dubai: "AED 500/month", abudhabi: "AED 500/month" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Annual Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "$2,400-4,800", strengths: "Global coverage, strong network" },
+  { provider: "BUPA Global", type: "International", price: "$3,600-6,600", strengths: "Premium coverage, top hospitals" },
+  { provider: "Daman", type: "UAE Local", price: "$800-2,000", strengths: "DHA compliant, local focus" },
+  { provider: "Oman Insurance", type: "UAE Local", price: "$1,000-2,500", strengths: "Wide network, competitive" },
+  { provider: "Orient Insurance", type: "UAE Local", price: "$900-2,200", strengths: "Good value, local network" },
+  { provider: "Allianz Care", type: "International", price: "$2,200-4,200", strengths: "Flexible plans, travel coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (AED)" },
+  { key: "usd", header: "Amount (USD)" },
+];
+
+const costRows = [
+  { item: "Free Zone License (Budget)", amount: "AED 7,500-12,000", usd: "$2,000-3,300" },
+  { item: "Free Zone License (Premium)", amount: "AED 18,000-35,000", usd: "$4,900-9,500" },
+  { item: "Visa Fee (included in most packages)", amount: "Included", usd: "Included" },
+  { item: "Emirates ID", amount: "AED 370", usd: "$100" },
+  { item: "Medical Fitness Test", amount: "AED 300-500", usd: "$80-135" },
+  { item: "Health Insurance (Annual)", amount: "AED 3,000-18,000", usd: "$800-4,900" },
+  { item: "Establishment Card (if required)", amount: "AED 1,000-2,000", usd: "$270-545" },
+  { item: "Flexi-desk (optional)", amount: "AED 5,000-15,000/year", usd: "$1,360-4,100/year" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Choose Free Zone & package", duration: "1-3 days", location: "Online research" },
+  { step: "Submit application & documents", duration: "Same day", location: "Free Zone portal/agent" },
+  { step: "License approval", duration: "2-5 business days", location: "Free Zone authority" },
+  { step: "Entry permit (if outside UAE)", duration: "1-3 business days", location: "Online/email" },
+  { step: "Enter UAE (if outside)", duration: "Within 60 days", location: "Dubai/Abu Dhabi airport" },
+  { step: "Medical fitness test", duration: "1 day", location: "Approved medical center" },
+  { step: "Emirates ID biometrics", duration: "1 day", location: "Typing center" },
+  { step: "Visa stamping", duration: "3-7 business days", location: "Free Zone/GDRFA" },
+];
+---
+
+<PageShell
+  title="UAE Freelancer Visa 2026: Free Zone Permits, Insurance & Complete Guide"
+  description="Complete guide to the UAE Freelancer Visa through Free Zones. No income requirement, tax-free income, mandatory health insurance, and step-by-step application process for Dubai, RAKEZ, and more."
+  headline="UAE Freelancer Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in the UAE through Free Zones—no income requirement, tax-free earnings, mandatory insurance, and fast processing."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/uae-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      No Income Requirement
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      0% Income Tax
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The UAE offers one of the world's most attractive freelancer visa options through its Free Zone system. Unlike the Digital Nomad Visa (which requires $3,500/month income), the Freelancer Visa has no minimum income requirement. You can legally work as a self-employed professional, invoice clients worldwide, and enjoy the UAE's 0% personal income tax.
+    </p>
+
+    <p class="mb-4">
+      Dubai has become the Middle East's freelancer hub, with thousands of independent professionals operating through Free Zones like Dubai Media City, DMCC, and budget-friendly alternatives like RAKEZ in Ras Al Khaimah. The combination of tax-free income, world-class infrastructure, and strategic timezone (perfect for EU, Africa, and Asia clients) makes the UAE increasingly popular for consultants, creatives, and tech professionals.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: UAE Freelancer Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Freelance Permit (issued through Free Zones)</li>
+        <li>• <strong>Income requirement:</strong> None specified</li>
+        <li>• <strong>Duration:</strong> 1-3 years depending on Free Zone package</li>
+        <li>• <strong>Processing time:</strong> 2-4 weeks (fast!)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY in Dubai and Abu Dhabi</li>
+        <li>• <strong>Tax:</strong> 0% personal income tax on all earnings</li>
+        <li>• <strong>Annual cost:</strong> AED 7,500-25,000+ (~$2,000-7,000)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How the Free Zone System Works</h3>
+
+    <p class="mb-4">
+      The UAE has over 40 Free Zones—special economic areas that allow 100% foreign ownership and simplified business setup. As a freelancer, you obtain a license from a Free Zone, which grants you:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Freelance permit:</strong> Legal status to operate as self-employed</li>
+      <li><strong>Residence visa:</strong> Live and work in the UAE (1-3 years)</li>
+      <li><strong>Emirates ID:</strong> National ID card for daily life</li>
+      <li><strong>Bank account eligibility:</strong> Open UAE business and personal accounts</li>
+      <li><strong>Invoice globally:</strong> Work with clients anywhere in the world</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Free Zone Comparison</h3>
+
+    <p class="mb-4">
+      Each Free Zone has different fees, permitted activities, and target industries. Here's how they compare:
+    </p>
+
+    <ComparisonTable columns={freeZoneColumns} rows={freeZoneRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Budget tip:</strong> RAKEZ and Ajman Free Zone offer the lowest costs (AED 7,500-12,000/year) and accept a wide range of activities. Dubai-based Free Zones cost more but provide a prestigious Dubai address and are located in the city center.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">UAE Freelancer Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want tax-free income (0% personal tax)</li>
+          <li>✓ You work with EU, Middle East, Africa, or Asia clients</li>
+          <li>✓ You value safety, infrastructure, and modern amenities</li>
+          <li>✓ You want a central hub for global travel</li>
+          <li>✓ You want to invoice clients legally with a proper license</li>
+          <li>✓ You can budget $2,000-7,000/year for setup + insurance</li>
+          <li>✓ You want fast processing (2-4 weeks typical)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You prefer low cost of living (UAE is expensive)</li>
+          <li>• You work primarily with Americas time zones</li>
+          <li>• You want to work locally with UAE mainland companies</li>
+          <li>• You prefer cooler climates (summers reach 45C/113F)</li>
+          <li>• You want cultural immersion or nightlife scene</li>
+          <li>• You need the cheapest possible setup (try Portugal or Spain)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Freelancer vs Digital Nomad Visa:</strong> The Digital Nomad Visa requires $3,500/month income but doesn't require a Free Zone license. The Freelancer Visa has no income threshold but requires annual Free Zone fees. For most self-employed professionals, the Freelancer Visa is the better choice—it gives you a proper business license to invoice clients professionally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The UAE Freelancer Visa requirements are straightforward. There's no income threshold or complex documentation—you mainly need to choose a Free Zone and pay the annual license fee.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Documents Required</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Essential Documents</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Passport-sized photos (white background)</li>
+          <li>• CV/Resume</li>
+          <li>• Completed application form</li>
+          <li>• Health insurance policy (for Dubai/Abu Dhabi)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Supporting Documents (Helpful)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Professional certifications/degrees</li>
+          <li>• Portfolio of previous work</li>
+          <li>• Reference letters</li>
+          <li>• Existing client contracts</li>
+          <li>• Company registration from home country (if any)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Choosing Your Activity License</h3>
+
+    <p class="mb-4">
+      Each Free Zone has a list of permitted activities. You'll select one or more that match your profession. Common freelancer activities include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>IT Consultant:</strong> Software development, web design, tech consulting</li>
+      <li><strong>Management Consultant:</strong> Business advisory, strategy consulting</li>
+      <li><strong>Marketing Services:</strong> Digital marketing, social media, branding</li>
+      <li><strong>Content Creation:</strong> Writing, video production, photography</li>
+      <li><strong>Design Services:</strong> Graphic design, UX/UI, interior design</li>
+      <li><strong>Training & Coaching:</strong> Corporate training, executive coaching</li>
+      <li><strong>Translation Services:</strong> Language translation, interpretation</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Activity limitation:</strong> Your freelance permit restricts you to the activities on your license. If you want to offer services outside your licensed activities, you'll need to amend your license (additional fees apply). Choose your activities carefully at the start.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-red-800">
+        In Dubai and Abu Dhabi, health insurance is legally required for all visa holders. Failing to maintain valid insurance can result in fines of AED 500/month and complications with visa renewal. This is strictly enforced—not optional.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The UAE takes health insurance seriously. Your policy must meet the requirements set by DHA (Dubai Health Authority) or DOH (Department of Health Abu Dhabi). The requirements differ slightly between emirates.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Dubai vs Abu Dhabi Insurance Requirements</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Local vs International Insurance</h3>
+
+    <p class="mb-4">
+      You have two main options for meeting the insurance requirement:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">UAE Local Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Always DHA/DOH compliant</li>
+          <li>✓ Lower cost ($800-2,500/year)</li>
+          <li>✓ Strong local hospital network</li>
+          <li>✓ Easy claims process</li>
+          <li>• UAE-only coverage</li>
+          <li>• Limited travel coverage</li>
+        </ul>
+        <p class="mt-3 text-green-700 text-sm">Best for: UAE-focused residents, budget-conscious</p>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">International Insurance</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Worldwide coverage</li>
+          <li>✓ Coverage during travel</li>
+          <li>✓ Higher coverage limits ($1M+)</li>
+          <li>✓ Access to any hospital globally</li>
+          <li>• Higher cost ($2,000-6,000/year)</li>
+          <li>• Verify DHA compliance</li>
+        </ul>
+        <p class="mt-3 text-blue-700 text-sm">Best for: Frequent travelers, premium needs</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> If you choose international insurance, confirm in writing that your policy meets DHA/DOH requirements. Not all international plans are accepted. Get a compliance letter from your insurer before applying for your visa.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your UAE freelancer visa?"
+    description="Compare UAE-compliant plans from local and international providers."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      These providers offer DHA/DOH-compliant coverage suitable for UAE freelancers. Your choice depends on budget, travel frequency, and coverage preferences.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious, UAE-Based</h4>
+        <p class="text-neutral-600">Daman or Oman Insurance. Lowest costs, good local network, fully DHA compliant. Best if you'll be based in UAE most of the time.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Traveler, Multiple Countries</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care. Worldwide coverage means you're protected on business trips and vacations. Worth the extra cost if you travel monthly.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Premium Coverage, Top Hospitals</h4>
+        <p class="text-neutral-600">BUPA Global. Access to the best private hospitals in Dubai like Cleveland Clinic Abu Dhabi and American Hospital. Premium service and highest coverage limits.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">New to UAE, Exploring Options</h4>
+        <p class="text-neutral-600">Start with local insurance (Daman, Orient) for the first year. It's cheaper and guaranteed compliant. You can switch to international coverage later if you travel more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The UAE Freelancer Visa costs vary significantly based on your choice of Free Zone. Budget options like RAKEZ start around $2,000/year, while premium Dubai Free Zones can exceed $7,000/year.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">First Year Total Cost Estimates</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget (RAKEZ/Ajman)</p>
+        <p class="text-3xl font-bold text-neutral-900">$3,000-4,500</p>
+        <p class="text-sm text-neutral-500 mt-2">License + local insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Mid-Range (Shams/Fujairah)</p>
+        <p class="text-3xl font-bold text-neutral-900">$4,500-7,000</p>
+        <p class="text-sm text-neutral-500 mt-2">License + international insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium (Dubai Free Zones)</p>
+        <p class="text-3xl font-bold text-neutral-900">$8,000-14,000</p>
+        <p class="text-sm text-neutral-500 mt-2">DMCC/DMC + premium coverage</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost of Living in the UAE</h3>
+
+    <p class="mb-4">
+      The UAE—especially Dubai—has a high cost of living. Factor this into your planning:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Budget lifestyle:</strong> $2,500-3,500/month (shared housing, cooking at home)</li>
+      <li><strong>Comfortable:</strong> $4,500-6,500/month (1BR apartment, dining out)</li>
+      <li><strong>Premium Dubai:</strong> $8,000-15,000/month (Marina/Downtown apartment, full lifestyle)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Tax advantage calculation:</strong> With 0% income tax, a $100,000 annual income is worth significantly more than in the US (where you'd pay ~$25,000 in federal + state taxes) or EU (where you might pay 35-50%). The tax savings often offset the higher cost of living.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The UAE Freelancer Visa process is refreshingly fast compared to European alternatives. Most applicants complete the entire process in 2-4 weeks. Many Free Zones offer online applications, and some have agents who handle everything for you.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Choose Your Free Zone</h4>
+          <p class="text-neutral-600">Compare Free Zones based on cost, location, and permitted activities. RAKEZ and Ajman are budget-friendly. Dubai Media City and DMCC are premium options with Dubai addresses. Check which activities match your profession.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application Online</h4>
+          <p class="text-neutral-600">Most Free Zones have online portals. Upload your passport, CV, photo, and select your activity license. Some applicants use PRO services (professional agents) to handle the paperwork—costs around AED 1,000-2,000 extra but saves time.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Pay License Fee</h4>
+          <p class="text-neutral-600">Pay the annual license fee online. This covers your freelance permit and visa processing. Fees range from AED 7,500 (RAKEZ) to AED 25,000+ (DMCC). Most packages include the visa fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Entry Permit (if outside UAE)</h4>
+          <p class="text-neutral-600">If you're applying from abroad, you'll receive an entry permit by email within 1-5 business days. This allows you to enter the UAE within 60 days. If you're already in the UAE on a visit visa, you may proceed directly.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Medical Fitness Test</h4>
+          <p class="text-neutral-600">After arriving in the UAE, visit an approved medical center for a health screening (blood test, chest X-ray). Results are usually same-day. Cost is AED 300-500. Go early to avoid queues.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Emirates ID</h4>
+          <p class="text-neutral-600">Visit a typing center or apply online for your Emirates ID. You'll provide biometrics (fingerprints, photo). The ID card arrives in 1-2 weeks. This is essential for bank accounts, phone contracts, and daily life.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Visa Stamping</h4>
+          <p class="text-neutral-600">Your residence visa is stamped in your passport (or issued digitally). Your 1-3 year freelance permit is now active. You can legally operate, invoice clients, open bank accounts, and enjoy UAE residency.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get Health Insurance (if not already done)</h4>
+          <p class="text-neutral-600">Secure your DHA/DOH-compliant health insurance. Some Free Zone packages include basic insurance. Otherwise, arrange coverage within 30 days of visa stamping to avoid fines.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Pro tip:</strong> Many Free Zones offer "smart packages" that bundle license, visa, and insurance together for a fixed annual fee. These simplify the process and often provide better value than arranging everything separately.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out with the UAE Freelancer Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Digital Marketer, European Clients</h3>
+        <p class="text-neutral-600 mb-4">Earns $5,000/month, works with EU agencies and startups. Chose RAKEZ for cost savings.</p>
+        <p class="text-green-700 font-medium">✓ Setup completed in 3 weeks. Total first-year cost: $3,800. Saves $15,000/year in taxes compared to living in Netherlands. Very happy with the decision.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer, Mixed Clients</h3>
+        <p class="text-neutral-600 mb-4">Works with US, EU, and Middle East clients. Chose DMCC for prestige and networking.</p>
+        <p class="text-green-700 font-medium">✓ Setup cost $9,500 first year. Premium but worth it for client perception. DMCC address helped win a major consulting contract with a UAE bank.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Creator, Just Starting Out</h3>
+        <p class="text-neutral-600 mb-4">Variable income, some months high, some months low. Limited savings.</p>
+        <p class="text-amber-700 font-medium">△ Approved but struggled with Dubai's high living costs. Moved to Sharjah (cheaper rent) and uses Shams license. Works but requires careful budgeting.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Management Consultant, High Earner</h3>
+        <p class="text-neutral-600 mb-4">Earns $20,000/month with Fortune 500 clients. Wanted premium setup.</p>
+        <p class="text-green-700 font-medium">✓ Chose Dubai Media City, BUPA Global insurance, Marina apartment. Total setup $15,000. Saves $70,000+/year in taxes. Tax savings alone fund lifestyle upgrade.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Photographer, Creative Professional</h3>
+        <p class="text-neutral-600 mb-4">Does commercial photography for regional brands. Needs to work with UAE clients.</p>
+        <p class="text-green-700 font-medium">✓ Dubai Media City perfect for creative activities. Can invoice local clients legally. Built strong network through DMC community events. Thriving business.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">E-commerce Seller, Wrong Activity License</h3>
+        <p class="text-neutral-600 mb-4">Got freelance permit but wanted to run online store with inventory.</p>
+        <p class="text-red-700 font-medium">✗ Activity license didn't cover e-commerce trading. Had to upgrade to commercial license at additional cost. Should have researched activities more carefully upfront.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for UAE Freelancers"
+    description="Find DHA/DOH-compliant coverage from local and international providers."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing the Wrong Activity License</h3>
+        <p class="text-neutral-600">Each license limits what services you can legally offer. If you get a "Marketing Consultant" license but want to do software development, you'll need to amend your license (additional fees). Research permitted activities carefully before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Health Insurance</h3>
+        <p class="text-neutral-600">In Dubai and Abu Dhabi, health insurance isn't optional—it's legally required. Fines are AED 500/month for non-compliance. Some people try to delay insurance to save money, but this creates problems at visa renewal and can result in significant penalties.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Dubai Living Costs</h3>
+        <p class="text-neutral-600">Dubai is expensive. If you're earning $4,000/month, most of it goes to rent and living expenses. The tax savings only become significant at higher income levels. Budget carefully—or consider living in Sharjah/Ajman (cheaper) while working in Dubai.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting About Renewal Fees</h3>
+        <p class="text-neutral-600">The freelancer license is an annual commitment. You'll pay the license fee every year, plus insurance, plus any other costs. Factor this into your long-term planning. Some people are surprised by renewal costs after year one.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Getting Emirates ID Promptly</h3>
+        <p class="text-neutral-600">The Emirates ID is essential for everything—bank accounts, phone contracts, hotel check-ins, even some restaurant deliveries. Apply immediately after your medical test. Delays in getting your Emirates ID cause frustrating complications in daily life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in the UAE -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in the UAE</h2>
+
+    <p class="mb-4">
+      The UAE has world-class healthcare, particularly in Dubai and Abu Dhabi. With proper insurance, you'll have access to excellent private hospitals with minimal wait times and English-speaking staff.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ JCI-accredited hospitals (international gold standard)</li>
+          <li>✓ English widely spoken by medical staff</li>
+          <li>✓ Short wait times for specialists</li>
+          <li>✓ Modern facilities and equipment</li>
+          <li>✓ Many Western-trained doctors</li>
+          <li>✓ Excellent emergency care</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• High costs without insurance</li>
+          <li>• Some treatments require pre-authorization</li>
+          <li>• Public hospitals less accessible for expats</li>
+          <li>• Certain medications restricted</li>
+          <li>• Best specialists often in private hospitals</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Top Hospitals</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Cleveland Clinic Abu Dhabi</strong> — World-renowned US hospital brand, premium care</li>
+      <li><strong>American Hospital Dubai</strong> — Full-service, long-established, excellent reputation</li>
+      <li><strong>Mediclinic</strong> — Large network across UAE, consistent quality</li>
+      <li><strong>Aster Hospitals</strong> — Wide network, various price points</li>
+      <li><strong>King's College Hospital Dubai</strong> — UK healthcare standards</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What to Expect with Insurance</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP visit:</strong> $0-30 copay</li>
+      <li><strong>Specialist:</strong> $20-60 copay</li>
+      <li><strong>Hospital admission:</strong> Covered after deductible</li>
+      <li><strong>Medications:</strong> 10-20% copay typical</li>
+      <li><strong>Dental:</strong> Often requires separate coverage</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Climate consideration:</strong> UAE summers are extreme (40-50C/104-122F). Most expats spend summer months indoors or travel. The dry heat can cause dehydration and heat-related issues. Stay hydrated and take the climate seriously.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is there really no income requirement for the UAE Freelancer Visa?</h3>
+        <p class="text-neutral-600">
+          Correct. Unlike the Digital Nomad Visa ($3,500/month threshold), the Freelancer Visa through Free Zones has no income requirement. You pay the annual license fee regardless of how much you earn. This makes it accessible to freelancers at all income levels.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work with UAE-based clients?</h3>
+        <p class="text-neutral-600">
+          Yes. The Freelancer Visa allows you to invoice clients anywhere in the world, including UAE companies. This is a key advantage over the Digital Nomad Visa, which only allows work for foreign employers. You can build a local client base legally.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between Free Zones?</h3>
+        <p class="text-neutral-600">
+          Free Zones differ in cost, location, permitted activities, and prestige. Dubai-based zones (DMCC, Dubai Media City) cost more but provide a Dubai address. Northern Emirates zones (RAKEZ, Ajman) are budget-friendly. Each zone has specific activities they license—check compatibility with your profession.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family?</h3>
+        <p class="text-neutral-600">
+          Yes. Once your freelance visa is active, you can sponsor dependents (spouse, children, and in some cases parents). Each dependent requires additional visa fees and separate health insurance. There's no income threshold for family sponsorship with the freelancer visa.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I really pay zero income tax?</h3>
+        <p class="text-neutral-600">
+          The UAE has no personal income tax. Your freelance income is 100% yours. However, your home country may still have tax obligations—US citizens must file worldwide income regardless of residence. Consult a tax professional about your specific situation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I open a UAE bank account?</h3>
+        <p class="text-neutral-600">
+          Yes. With your Emirates ID and freelance license, you can open personal and business bank accounts. Popular options include Emirates NBD, Mashreq, ADCB, and digital banks like Liv and Wio. Requirements vary by bank—some require minimum balances or income proof.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The UAE Freelancer Visa offers a compelling package: zero income tax, fast processing (2-4 weeks), no income requirement, and the ability to work with clients worldwide including UAE companies. The Free Zone system is well-established and straightforward.
+    </p>
+
+    <p class="mb-4">
+      The trade-offs are cost and climate. Annual fees range from $2,000 (budget Free Zones) to $7,000+ (premium Dubai zones), plus mandatory health insurance. Dubai's cost of living is high. And the summer heat is genuinely brutal—expect to spend June-September indoors or traveling.
+    </p>
+
+    <p class="mb-6">
+      For freelancers earning $5,000+ monthly, the tax savings often exceed all costs combined. At $100,000 annual income, you save $25,000-40,000 in taxes compared to most Western countries. That's a compelling financial case even after accounting for higher living costs and visa fees.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The UAE Freelancer Visa is ideal for self-employed professionals who want tax-free income and a professional setup to invoice clients globally. No income requirement, fast processing, and excellent infrastructure. Budget $3,000-10,000 for first-year setup (license + insurance), and ensure you get DHA-compliant health coverage.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Plans →
+        </a>
+        <a href="/go/bupa-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View BUPA Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/uae/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UAE Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in the UAE</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/uae" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UAE Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with UAE's Virtual Working Program</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Portugal's D7 visa for self-employed</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

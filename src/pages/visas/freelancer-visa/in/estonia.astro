@@ -1,0 +1,852 @@
+---
+/**
+ * Estonia Freelancer/Self-Employed Visa - Long-form CRO-optimized page
+ * Covers e-Residency, Digital Nomad Visa, and Self-Employment TRP
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Estonia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Estonia Health Insurance Guide", href: "/countries/estonia/insurance" },
+  { title: "Estonia Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/estonia" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const pathwayColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "eresidency", header: "e-Residency" },
+  { key: "dnvisa", header: "Digital Nomad Visa" },
+  { key: "selfemployed", header: "Self-Employed TRP" },
+];
+
+const pathwayRows = [
+  { feature: "Physical Residence", eresidency: "No (digital identity only)", dnvisa: "Yes (up to 1 year)", selfemployed: "Yes (up to 5 years)" },
+  { feature: "Income Requirement", eresidency: "None", dnvisa: "€3,504/month", selfemployed: "Sufficient funds (no fixed amount)" },
+  { feature: "Business Requirement", eresidency: "Can form Estonian OÜ", dnvisa: "Must work remotely for foreign employer", selfemployed: "Business plan required" },
+  { feature: "Processing Time", eresidency: "4-8 weeks", dnvisa: "2-4 weeks", selfemployed: "2-3 months" },
+  { feature: "Fees", eresidency: "€100-120", dnvisa: "€80-100", selfemployed: "~€160" },
+  { feature: "Renewable", eresidency: "Yes (every 5 years)", dnvisa: "No (non-renewable)", selfemployed: "Yes (renewable)" },
+  { feature: "Path to PR", eresidency: "No", dnvisa: "No", selfemployed: "Yes (after 5 years)" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Medical Coverage", requirement: "€30,000+ (Schengen)", notes: "EU minimum standard" },
+  { feature: "Repatriation", requirement: "Required", notes: "Return transport if needed" },
+  { feature: "Coverage Duration", requirement: "Full stay period", notes: "No gaps allowed" },
+  { feature: "EU/Schengen Area", requirement: "Must be covered", notes: "For travel within EU" },
+  { feature: "Haigekassa Access", requirement: "Not included", notes: "Only for employed/tax-paying residents" },
+  { feature: "Private Insurance", requirement: "Required for freelancers", notes: "€100-200/month typical" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "SafetyWing", coverage: "€250,000", price: "€40-75", strengths: "Budget-conscious nomads" },
+  { provider: "Cigna Global", coverage: "€1,000,000+", price: "€180-350", strengths: "Comprehensive global coverage" },
+  { provider: "Allianz Care", coverage: "€500,000+", price: "€150-300", strengths: "EU-focused, strong network" },
+  { provider: "Feather", coverage: "Varies", price: "€80-180", strengths: "EU expat specialist" },
+  { provider: "BUPA Global", coverage: "€2,000,000+", price: "€280-450", strengths: "Premium coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "e-Residency Application", amount: "€100-120", notes: "One-time, digital ID only" },
+  { item: "Estonian OÜ Formation", amount: "€190-500", notes: "Company registration + share capital" },
+  { item: "Digital Nomad Visa", amount: "€80-100", notes: "1 year, non-renewable" },
+  { item: "Self-Employed TRP", amount: "~€160", notes: "Up to 5 years, renewable" },
+  { item: "Health Insurance", amount: "€100-200/month", notes: "Private insurance required" },
+  { item: "Virtual Office", amount: "€30-100/month", notes: "For company legal address" },
+  { item: "Accounting Services", amount: "€50-150/month", notes: "Required for OÜ compliance" },
+  { item: "Bank Account", amount: "€0-10/month", notes: "LHV, Wise, or fintech options" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const eresidencyTimelineRows = [
+  { step: "Apply online for e-Residency", duration: "30 minutes", location: "Online" },
+  { step: "Background check and processing", duration: "4-8 weeks", location: "Police and Border Guard" },
+  { step: "Pick up e-Residency kit", duration: "1 day", location: "Embassy or Estonia" },
+  { step: "Form Estonian OÜ company", duration: "1-3 days", location: "Online (e-Business Register)" },
+  { step: "Open business bank account", duration: "1-2 weeks", location: "Online or in-person" },
+  { step: "Apply for DN Visa or TRP (if residing)", duration: "2-12 weeks", location: "Embassy or in Estonia" },
+];
+
+const dnvisaTimelineRows = [
+  { step: "Gather documents and income proof", duration: "1-2 weeks", location: "Home country" },
+  { step: "Submit visa application", duration: "1 day", location: "Estonian embassy" },
+  { step: "Processing", duration: "15-30 days", location: "Police and Border Guard" },
+  { step: "Receive decision", duration: "Via email", location: "Digital notification" },
+  { step: "Collect visa", duration: "1-5 days", location: "Embassy or in Estonia" },
+  { step: "Register address in Estonia", duration: "Within 30 days", location: "Local municipality" },
+];
+---
+
+<PageShell
+  title="Estonia Freelancer Visa 2026: e-Residency, DN Visa & Self-Employed Guide"
+  description="Complete guide to freelancing in Estonia. Understand e-Residency vs Digital Nomad Visa vs Self-Employed TRP. Insurance requirements, company formation, and the world's most digital country."
+  headline="Estonia Freelancer Visa: e-Residency, Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in the world's most digital country—e-Residency, Digital Nomad Visa, Self-Employed TRP, mandatory private insurance, and Estonian company formation."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/freelancer-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Estonian Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      EU/Schengen Member
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Estonia has positioned itself as the world's most digitally advanced country and a magnet for location-independent entrepreneurs. Known for pioneering e-Residency—a digital identity for global business owners—Estonia offers freelancers several pathways to work from this Baltic tech hub.
+    </p>
+
+    <p class="mb-4">
+      Tallinn, the capital, is home to a thriving startup ecosystem that produced unicorns like Skype, Wise (TransferWise), and Bolt. The country's "e-Estonia" infrastructure means 99% of government services are online, taxes can be filed in minutes, and business formation happens in hours rather than weeks.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Freelancing in Estonia</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>e-Residency:</strong> Digital identity (€100-120)—NOT a visa, but enables Estonian company</li>
+        <li>• <strong>Digital Nomad Visa:</strong> 1 year, €3,504/month income, non-renewable</li>
+        <li>• <strong>Self-Employed TRP:</strong> Up to 5 years, renewable, path to permanent residence</li>
+        <li>• <strong>Health insurance:</strong> Private insurance REQUIRED—Haigekassa not available to freelancers</li>
+        <li>• <strong>Popular structure:</strong> e-Residency + OÜ company (location-independent)</li>
+        <li>• <strong>English proficiency:</strong> Excellent, especially in Tallinn</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Three Pathways for Freelancers</h3>
+
+    <p class="mb-4">
+      Estonia offers distinct options depending on whether you want to live in Estonia, run a business remotely, or both. Understanding these differences is crucial before applying.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">e-Residency</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Digital identity card</li>
+          <li>• Form Estonian OÜ company</li>
+          <li>• Access EU banking and payments</li>
+          <li>• Manage business 100% online</li>
+          <li>• <strong>NOT a residence permit</strong></li>
+          <li>• Live anywhere in the world</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Digital Nomad Visa</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Physical residence in Estonia</li>
+          <li>• €3,504/month income required</li>
+          <li>• Work remotely for foreign employer</li>
+          <li>• Valid up to 1 year</li>
+          <li>• <strong>Non-renewable</strong></li>
+          <li>• Full Schengen travel access</li>
+        </ul>
+      </div>
+
+      <div class="border border-purple-200 bg-purple-50 rounded-lg p-6">
+        <h4 class="font-semibold text-purple-900 mb-3">Self-Employed TRP</h4>
+        <ul class="space-y-2 text-purple-800">
+          <li>• Long-term residence permit</li>
+          <li>• Requires business plan</li>
+          <li>• Valid up to 5 years</li>
+          <li>• <strong>Renewable</strong></li>
+          <li>• Path to permanent residence</li>
+          <li>• Run Estonian business locally</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Common combination:</strong> Many location-independent freelancers get e-Residency, form an Estonian OÜ company, then continue living elsewhere. If you actually want to live in Estonia, you'll need either the Digital Nomad Visa (short-term) or Self-Employed TRP (long-term) in addition to e-Residency.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Estonia is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You value digital infrastructure and e-government</li>
+          <li>✓ You want an EU company structure (OÜ)</li>
+          <li>✓ You work in tech, startups, or digital services</li>
+          <li>✓ You earn €3,500+/month (for DN Visa)</li>
+          <li>✓ You appreciate efficient bureaucracy</li>
+          <li>✓ You enjoy Baltic/Nordic culture and four seasons</li>
+          <li>✓ You want access to Helsinki (2-hour ferry)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You expect e-Residency to give you residence rights</li>
+          <li>• You want warm weather year-round</li>
+          <li>• You need a path to citizenship (Estonia is strict)</li>
+          <li>• You prefer larger expat communities</li>
+          <li>• You work Americas time zones primarily</li>
+          <li>• You can't afford €100-200/month for private insurance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Helsinki backup:</strong> Tallinn is just a 2-hour ferry from Helsinki, Finland. Many freelancers in Estonia use Helsinki for specialized medical care or larger-city amenities. Your Schengen visa or residence permit allows easy travel between the two.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Estonia offers multiple pathways for freelancers. Here's a side-by-side comparison to help you choose the right one for your situation.
+    </p>
+
+    <ComparisonTable columns={pathwayColumns} rows={pathwayRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">e-Residency Requirements</h3>
+
+    <p class="mb-4">
+      e-Residency is Estonia's digital identity program for global entrepreneurs. It's the easiest pathway—you don't need to visit Estonia, meet income requirements, or prove business viability. However, it gives you zero residence rights.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport</li>
+          <li>• Passport-style photo</li>
+          <li>• Brief statement of purpose</li>
+          <li>• €100-120 application fee</li>
+          <li>• Clean criminal record (checked)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">What You Get</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Digital identity card + reader</li>
+          <li>• Ability to form Estonian OÜ</li>
+          <li>• Access to Estonian digital services</li>
+          <li>• EU business banking options</li>
+          <li>• Digital signatures valid in EU</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Digital Nomad Visa Requirements</h3>
+
+    <p class="mb-4">
+      The Digital Nomad Visa is for remote workers who want to live in Estonia while working for a foreign employer. It's Estonia's answer to the global remote work trend, launched in 2020.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Income:</strong> €3,504/month averaged over the past 6 months</li>
+      <li><strong>Employment:</strong> Work remotely for employer outside Estonia, OR run your own business serving non-Estonian clients</li>
+      <li><strong>Insurance:</strong> Schengen-compliant health insurance (€30,000+ coverage)</li>
+      <li><strong>Passport:</strong> Valid 3+ months beyond planned stay</li>
+      <li><strong>Clean record:</strong> No criminal history</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Self-Employed TRP Requirements</h3>
+
+    <p class="mb-4">
+      The Self-Employed Temporary Residence Permit is for freelancers who want to build a long-term business in Estonia. It's more involved than the DN Visa but offers a renewable permit and path to permanent residence.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Business plan:</strong> Detailed description of your business activities</li>
+      <li><strong>Sufficient funds:</strong> Proof you can support yourself (bank statements, contracts)</li>
+      <li><strong>Estonian business:</strong> Typically involves forming an OÜ company</li>
+      <li><strong>Insurance:</strong> Private health insurance required</li>
+      <li><strong>Clean record:</strong> Background check</li>
+      <li><strong>Address:</strong> Accommodation in Estonia</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Note on income:</strong> While the Self-Employed TRP doesn't have a fixed income requirement like the DN Visa, immigration authorities want to see you can sustain yourself. In practice, demonstrating €2,000-3,000/month in savings or contracts helps your application.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">Private Insurance is Mandatory</h3>
+      <p class="text-red-800">
+        Estonia's public health system (Haigekassa) is NOT available to freelancers unless you're employed and paying social tax. e-Residents, Digital Nomad Visa holders, and most self-employed professionals must arrange private health insurance. Budget €100-200/month.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      This is one of the most important (and often misunderstood) aspects of freelancing in Estonia. Unlike some countries where self-employed individuals can access public healthcare, Estonia requires you to be employed and paying social tax to access Haigekassa.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Requirements by Pathway</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Who Gets Haigekassa Access?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Haigekassa Eligible</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Employees with Estonian employment contract</li>
+          <li>✓ Self-employed paying social tax (33%)</li>
+          <li>✓ Pensioners receiving Estonian pension</li>
+          <li>✓ Students at Estonian institutions</li>
+          <li>✓ Parents on parental leave</li>
+          <li>✓ Registered unemployed</li>
+        </ul>
+      </div>
+
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">NOT Haigekassa Eligible</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ e-Residents (digital identity only)</li>
+          <li>✗ Digital Nomad Visa holders</li>
+          <li>✗ OÜ owners not paying themselves salary</li>
+          <li>✗ Freelancers with foreign clients only</li>
+          <li>✗ Remote workers for foreign companies</li>
+          <li>✗ Tourists and short-term visitors</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The OÜ + Salary Workaround</h3>
+
+    <p class="mb-4">
+      Some freelancers form an Estonian OÜ company and pay themselves a minimum salary (around €725/month in 2026) to access Haigekassa. This triggers social tax obligations but provides public healthcare. However, this adds complexity, costs, and tax implications—consult an Estonian accountant before choosing this route.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Calculation example:</strong> If you pay yourself €725/month salary, your company pays ~€240/month in social tax (33%). That's about the same cost as good private insurance, but you get Haigekassa access. The trade-off: more paperwork, tax filing, and you're now an "employer."
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Insurance Requirements</h3>
+
+    <p class="mb-4">
+      For visa and residence permit purposes, your private insurance must meet Schengen standards:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Minimum €30,000 medical coverage</li>
+      <li>Repatriation coverage included</li>
+      <li>Valid throughout the Schengen area</li>
+      <li>Coverage for entire stay duration</li>
+      <li>No exclusions for COVID-19 or pandemics</li>
+    </ul>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Estonia move?"
+    description="Compare private health insurance plans that meet Estonian visa requirements."
+    buttonText="Compare Qualifying Plans"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      These providers offer Schengen-compliant coverage suitable for freelancers in Estonia. All meet the minimum requirements for visa applications and residence permits.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Freelancer</h4>
+        <p class="text-neutral-600">SafetyWing at €40-75/month is the most affordable option that meets Schengen requirements. Good for healthy digital nomads who need basic coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Location-Independent Entrepreneur</h4>
+        <p class="text-neutral-600">Cigna Global provides comprehensive worldwide coverage. Ideal if you travel frequently between Estonia and other countries.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">EU-Focused Professional</h4>
+        <p class="text-neutral-600">Allianz Care or Feather offer strong European networks. Feather specifically caters to EU expats and integrates well with Estonian digital infrastructure.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Premium Coverage Seeker</h4>
+        <p class="text-neutral-600">BUPA Global provides top-tier coverage with excellent customer service. Worth it if you want premium hospital rooms and global evacuation coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-Term Resident (Haigekassa Route)</h4>
+        <p class="text-neutral-600">If you form an OÜ and pay yourself a salary, you'll access Haigekassa. Consider supplemental private insurance for faster specialist access or services not fully covered.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Estonia's setup costs are relatively low compared to other EU countries, but ongoing costs (especially insurance and accounting) add up. Here's what to expect.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">First Year Cost Scenarios</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">e-Residency Only</p>
+        <p class="text-3xl font-bold text-neutral-900">€800-1,500</p>
+        <p class="text-sm text-neutral-500 mt-2">e-Residency + OÜ + accounting</p>
+        <p class="text-xs text-neutral-400 mt-1">(No residence in Estonia)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Digital Nomad Visa</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + insurance (1 year)</p>
+        <p class="text-xs text-neutral-400 mt-1">(Living in Estonia)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Full Setup (e-Residency + TRP)</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,000-5,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Everything + OÜ + services</p>
+        <p class="text-xs text-neutral-400 mt-1">(Long-term, full structure)</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost of Living in Tallinn</h3>
+
+    <p class="mb-4">
+      Tallinn is affordable by Western European standards but pricier than other Baltic capitals. Here are typical monthly budgets:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Budget:</strong> €1,500-2,000/month (shared flat, cooking at home)</li>
+      <li><strong>Comfortable:</strong> €2,500-3,500/month (own apartment, coworking, dining out)</li>
+      <li><strong>Premium:</strong> €4,000+/month (central location, premium lifestyle)</li>
+    </ul>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Typical Monthly Costs</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Rent (1-bed):</strong> €600-1,000/month</li>
+          <li>• <strong>Utilities:</strong> €100-150/month</li>
+          <li>• <strong>Internet:</strong> €25-40/month (often included)</li>
+          <li>• <strong>Groceries:</strong> €250-400/month</li>
+          <li>• <strong>Dining out:</strong> €10-20 per meal</li>
+          <li>• <strong>Coworking:</strong> €150-300/month</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Business-Specific Costs</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Virtual office:</strong> €30-100/month</li>
+          <li>• <strong>Accounting:</strong> €50-150/month</li>
+          <li>• <strong>Health insurance:</strong> €100-200/month</li>
+          <li>• <strong>Bank account:</strong> €0-10/month</li>
+          <li>• <strong>Annual OÜ filings:</strong> €0-50/year</li>
+          <li>• <strong>Legal/tax advice:</strong> €100-200/hour</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Tax efficiency:</strong> Estonian OÜ companies pay 0% corporate tax on retained earnings. You only pay tax when distributing profits (20%). This makes Estonia attractive for reinvesting in business growth. Consult a tax advisor about your personal tax situation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Estonia's application processes are famously digital. Here are the timelines for each pathway.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">e-Residency + OÜ Company Formation</h3>
+
+    <ComparisonTable columns={timelineColumns} rows={eresidencyTimelineRows} />
+
+    <div class="space-y-6 mt-8">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for e-Residency Online</h4>
+          <p class="text-neutral-600">Visit e-resident.gov.ee and complete the application. You'll need a passport photo and brief explanation of why you want e-Residency. The €100-120 fee is paid online.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">The Police and Border Guard Board processes your application (4-8 weeks). They conduct a background check. Most applications are approved.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Pick Up Your e-Residency Kit</h4>
+          <p class="text-neutral-600">Collect your digital ID card and card reader from an Estonian embassy or in Estonia. You'll need your passport and receive a PIN envelope.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Form Your Estonian OÜ</h4>
+          <p class="text-neutral-600">Use the e-Business Register to form your company online. You'll need a legal address (virtual office) and €2,500 share capital (can be €0 initially with declaration). Many use services like Xolo, 1Office, or LeapIN.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open Business Bank Account</h4>
+          <p class="text-neutral-600">Options include traditional banks (LHV, Swedbank) or fintechs (Wise, Payoneer). Traditional banks often require in-person verification in Estonia.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-10 mb-3">Digital Nomad Visa Timeline</h3>
+
+    <ComparisonTable columns={timelineColumns} rows={dnvisaTimelineRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Pro tip:</strong> The Digital Nomad Visa is simpler to obtain than the Self-Employed TRP but can't be renewed. If you want to stay beyond 1 year, apply for the Self-Employed TRP before your DN Visa expires—or leave the Schengen area and potentially reapply later.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers using Estonia's various pathways:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">SaaS Founder, Location-Independent</h3>
+        <p class="text-neutral-600 mb-4">Runs software business from Southeast Asia. Wanted EU company for payment processing and credibility.</p>
+        <p class="text-green-700 font-medium">✓ Got e-Residency, formed OÜ, uses Wise for banking. Lives in Bali, files taxes through Estonian accountant. No need for residence permit—manages everything digitally.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer, €5,500/month from US Clients</h3>
+        <p class="text-neutral-600 mb-4">Wanted to experience Tallinn's startup scene for a year.</p>
+        <p class="text-green-700 font-medium">✓ Applied for Digital Nomad Visa—approved in 3 weeks. Has SafetyWing insurance at €65/month. Loves the tech infrastructure and Helsinki day trips. Planning to leave after 1 year since DN Visa can't be renewed.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Consultant, Thought e-Residency = Residence</h3>
+        <p class="text-neutral-600 mb-4">Applied for e-Residency planning to move to Tallinn.</p>
+        <p class="text-red-700 font-medium">✗ Surprised to learn e-Residency gives zero residence rights. Had to separately apply for Self-Employed TRP with business plan. Process took 3 extra months. Now warns others about this common confusion.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Writer, €2,500/month</h3>
+        <p class="text-neutral-600 mb-4">Below DN Visa threshold, wanted to live in Tallinn long-term.</p>
+        <p class="text-amber-700 font-medium">△ Couldn't qualify for DN Visa (€3,504 required). Applied for Self-Employed TRP with strong business plan and 6-month savings. Approved after 10 weeks. Now building local client base.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">E-commerce Entrepreneur with Estonian OÜ</h3>
+        <p class="text-neutral-600 mb-4">Runs dropshipping business. Wanted to actually move to Estonia.</p>
+        <p class="text-green-700 font-medium">✓ Already had e-Residency and profitable OÜ. Applied for Self-Employed TRP—approved quickly due to existing business track record. Pays himself €725/month salary to access Haigekassa for healthcare.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Developer, Winter Concerns</h3>
+        <p class="text-neutral-600 mb-4">From California, worried about Estonian winter.</p>
+        <p class="text-amber-700 font-medium">△ Got DN Visa, arrived in September. By December, found the darkness (6 hours daylight) challenging. Bought a SAD lamp, joined gym with sauna. Says it's manageable but advises others to seriously consider the winter before committing to Estonia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Estonian Freelancers"
+    description="Find Schengen-compliant coverage for your move to Estonia."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/safetywing"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thinking e-Residency Equals Residence</h3>
+        <p class="text-neutral-600">This is the most common misconception. e-Residency is a digital identity for business purposes—it gives you ZERO rights to live, work, or travel in Estonia or the EU. If you want to physically reside in Estonia, you need a separate visa or residence permit.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Access to Haigekassa (Public Healthcare)</h3>
+        <p class="text-neutral-600">Freelancers, e-Residents, and Digital Nomad Visa holders do not automatically get Haigekassa access. You must have private insurance. The only workaround is paying yourself a salary and social tax through an OÜ company—which adds significant complexity.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Planning to Renew the Digital Nomad Visa</h3>
+        <p class="text-neutral-600">The DN Visa is explicitly non-renewable. After 1 year, you must leave or switch to a different permit type (like Self-Employed TRP). Plan your long-term residency strategy from the start, not at month 11.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Accounting Requirements</h3>
+        <p class="text-neutral-600">Estonian OÜ companies require proper bookkeeping and annual filings. While Estonia's 0% retained earnings tax is attractive, you still need monthly VAT reports (if applicable), annual accounts, and compliance. Budget €50-150/month for accounting services.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring the Winter Reality</h3>
+        <p class="text-neutral-600">Estonian winters are dark and cold—Tallinn gets about 6 hours of daylight in December, with temperatures often below -10°C. If you're from a warm climate, this isn't a minor adjustment. Many nomads leave during winter or struggle with seasonal depression.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Estonia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Estonia</h2>
+
+    <p class="mb-4">
+      Estonia has a modern healthcare system with both public (Haigekassa) and private options. For freelancers without Haigekassa access, private healthcare is your primary option—and it's reasonably affordable.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Facilities in Tallinn</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>East-Tallinn Central Hospital:</strong> Largest hospital, comprehensive services</li>
+      <li><strong>North Estonia Medical Centre:</strong> Modern, wide range of specialties</li>
+      <li><strong>Confido Medical Centre:</strong> Private, English-speaking, expat-friendly</li>
+      <li><strong>Qvalitas Clinics:</strong> Private network, fast appointments</li>
+      <li><strong>Fertilitas:</strong> Women's health and fertility (private)</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">e-Health System</h3>
+
+    <p class="mb-4">
+      Estonia's digital health system is world-class. All medical records are electronic and accessible through the patient portal. Prescriptions are digital—you just give your ID number at the pharmacy. For freelancers with insurance, this digital infrastructure makes navigating healthcare much easier.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Costs Without Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Clinic Costs</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• GP consultation: €50-80</li>
+          <li>• Specialist visit: €80-150</li>
+          <li>• Blood tests (basic): €30-60</li>
+          <li>• X-ray: €40-80</li>
+          <li>• MRI scan: €200-400</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Dental & Other</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Dental checkup: €40-60</li>
+          <li>• Dental cleaning: €50-80</li>
+          <li>• Filling: €60-100</li>
+          <li>• Emergency room: €100-300</li>
+          <li>• Ambulance: Covered (even for visitors)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Helsinki backup:</strong> For specialized procedures or second opinions, many expats take the 2-hour ferry to Helsinki. Your Schengen-compliant insurance typically covers treatment in Finland. Helsinki has larger hospitals with more English-speaking specialists.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does e-Residency let me live in Estonia?</h3>
+        <p class="text-neutral-600">
+          No. e-Residency is a digital identity for running a business—it gives you zero residence, travel, or work rights in Estonia or the EU. To physically live in Estonia, you need a separate visa or residence permit (Digital Nomad Visa or Self-Employed TRP).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I access Estonian public healthcare as a freelancer?</h3>
+        <p class="text-neutral-600">
+          Not automatically. Haigekassa (public health insurance) requires you to be employed and paying social tax. Freelancers typically need private insurance. The workaround is forming an OÜ and paying yourself a salary, triggering social tax and Haigekassa eligibility—but this adds complexity.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between DN Visa and Self-Employed TRP?</h3>
+        <p class="text-neutral-600">
+          The Digital Nomad Visa is for remote workers with foreign employers/clients (€3,504/month income, 1 year, non-renewable). The Self-Employed TRP is for entrepreneurs building a business in Estonia (business plan required, up to 5 years, renewable, path to permanent residence).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How much does it cost to form an Estonian OÜ company?</h3>
+        <p class="text-neutral-600">
+          The state registration fee is €190. You'll also need a legal address (virtual office: €30-100/month) and accounting (€50-150/month). Share capital is €2,500 but can be deferred. Total first-year cost including e-Residency: approximately €800-1,500 plus ongoing monthly fees.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Estonia's 0% corporate tax real?</h3>
+        <p class="text-neutral-600">
+          Yes, but with a catch. Estonian OÜ companies pay 0% tax on retained earnings (profits kept in the company). When you distribute profits as dividends, you pay 20% (or 14% for regular distributions). This is great for reinvesting in growth, less advantageous if you need to extract money regularly.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I extend the Digital Nomad Visa beyond 1 year?</h3>
+        <p class="text-neutral-600">
+          No. The DN Visa is explicitly non-renewable for a maximum of 1 year. After that, you must apply for a different permit type (like Self-Employed TRP), leave Estonia, or spend time outside Schengen before potentially reapplying. Plan your long-term strategy early.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Estonia offers a genuinely unique proposition for freelancers: the world's most advanced digital infrastructure, a startup-friendly business environment, and the e-Residency program for running an EU company from anywhere. However, it's crucial to understand what each pathway actually provides.
+    </p>
+
+    <p class="mb-4">
+      e-Residency is for business structure, not residence. If you want to physically live in Estonia, you'll need the Digital Nomad Visa (short-term, non-renewable) or Self-Employed TRP (long-term, renewable). And regardless of pathway, freelancers need private health insurance—Haigekassa isn't available unless you're employed and paying social tax.
+    </p>
+
+    <p class="mb-6">
+      For tech-focused freelancers who value efficiency, digital services, and EU access, Estonia delivers. The winters are harsh (be honest with yourself about this), but the summers are beautiful, Helsinki is a ferry ride away, and Tallinn's startup community is welcoming to digital professionals.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Estonia suits freelancers who want an EU business structure (e-Residency + OÜ) or a digitally advanced place to live (DN Visa or Self-Employed TRP). Private insurance is mandatory—budget €100-200/month. Understand the distinction between e-Residency (digital identity) and actual residence permits before applying.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Private Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/digital-nomad-visa/in/estonia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Estonia Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Detailed guide to the 1-year DN Visa option</p>
+      </a>
+      <a href="/countries/estonia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Estonia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Estonia</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's Freiberufler option</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

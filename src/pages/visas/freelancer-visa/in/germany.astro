@@ -1,0 +1,852 @@
+---
+/**
+ * Germany Freelancer Visa - Long-form CRO-optimized page
+ * Freiberufler/Selbstständige Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Germany", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Germany Health Insurance Guide", href: "/countries/germany/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Germany Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/germany" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "freiberufler", header: "Freiberufler (Liberal)" },
+  { key: "gewerbe", header: "Gewerbetreibende (Trade)" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", freiberufler: "None specified (must prove sustainability)", gewerbe: "None specified (must prove sustainability)" },
+  { requirement: "Business Plan", freiberufler: "Required—detailed description of services", gewerbe: "Required—detailed business plan" },
+  { requirement: "Client Contracts", freiberufler: "Helpful—letters of intent, existing contracts", gewerbe: "Important—existing customers/orders" },
+  { requirement: "Qualifications", freiberufler: "Diplomas, certifications, portfolio", gewerbe: "Trade certificates, experience proof" },
+  { requirement: "Registration", freiberufler: "Finanzamt only", gewerbe: "Gewerbeamt + Finanzamt" },
+  { requirement: "Health Insurance", freiberufler: "Mandatory—public or private", gewerbe: "Mandatory—public or private" },
+  { requirement: "Financial Reserves", freiberufler: "Bank statements (3-6 months living costs)", gewerbe: "Bank statements (3-6 months living costs)" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "public", header: "Public (Gesetzliche)" },
+  { key: "private", header: "Private Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", public: "~€200-400 (income-based)", private: "€200-500 (age/health-based)" },
+  { feature: "Eligibility", public: "All self-employed can opt in", private: "Anyone, easier if healthy" },
+  { feature: "KSK Option", public: "Artists/writers pay ~€200/month", private: "Not applicable" },
+  { feature: "GP Access", public: "Any doctor, no referral", private: "Any doctor, often faster" },
+  { feature: "Hospital Care", public: "Full coverage", private: "Full coverage, private rooms" },
+  { feature: "Deductible", public: "None", private: "€500-2,500 common" },
+  { feature: "Visa Acceptance", public: "Accepted", private: "Must meet minimum standards" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "TK (Techniker Krankenkasse)", type: "Public", price: "€200-400+", strengths: "English support, app-based, most popular" },
+  { provider: "Barmer", type: "Public", price: "€200-400+", strengths: "Good digital tools, nationwide" },
+  { provider: "Allianz Care", type: "Private", price: "€250-500", strengths: "Comprehensive, global coverage option" },
+  { provider: "Cigna Global", type: "Private", price: "€300-600", strengths: "Large network, flexible plans" },
+  { provider: "Ottonova", type: "Private", price: "€300-450", strengths: "Digital-first, English-friendly" },
+  { provider: "KSK (via public)", type: "Public (subsidized)", price: "~€200", strengths: "Artists, writers, journalists only" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€100-150", notes: "Varies by embassy" },
+  { item: "Residence Permit Fee", amount: "€100-150", notes: "Issued after arrival" },
+  { item: "Health Insurance", amount: "€200-500/month", notes: "Public or private required" },
+  { item: "Steuerberater (Tax Advisor)", amount: "€100-300/month", notes: "Highly recommended for compliance" },
+  { item: "Certified Translations", amount: "€50-200", notes: "For non-German documents" },
+  { item: "Trade Registration (Gewerbe)", amount: "€20-65", notes: "Only for trade activities" },
+  { item: "Liability Insurance", amount: "€50-150/month", notes: "Often required by clients" },
+  { item: "Financial Buffer", amount: "€5,000-15,000", notes: "Recommended savings" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents and business plan", duration: "2-4 weeks", location: "Home country" },
+  { step: "Get health insurance confirmation", duration: "1-2 weeks", location: "Insurance provider" },
+  { step: "Book visa appointment", duration: "1-8 weeks wait", location: "German embassy/consulate" },
+  { step: "Attend visa appointment", duration: "1 day", location: "Embassy/consulate" },
+  { step: "Visa processing", duration: "4-12 weeks", location: "Embassy review" },
+  { step: "Arrive in Germany", duration: "After approval", location: "Germany" },
+  { step: "Register residence (Anmeldung)", duration: "Within 2 weeks", location: "Bürgeramt" },
+  { step: "Register with Finanzamt", duration: "Within 4 weeks", location: "Local tax office" },
+  { step: "Register trade (if Gewerbe)", duration: "Within 4 weeks", location: "Gewerbeamt" },
+  { step: "Get residence permit", duration: "1-4 weeks", location: "Ausländerbehörde" },
+];
+---
+
+<PageShell
+  title="Germany Freelancer Visa 2026: Requirements, Insurance & Application Guide"
+  description="Complete guide to the German Freelancer Visa (Freiberufler/Selbstständige). No minimum income, mandatory health insurance, business requirements, and step-by-step application process."
+  headline="Germany Freelancer Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Germany—Freiberufler vs Gewerbe visas, mandatory health insurance options, business registration, and the path to permanent residence."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/allianz-care"
+  heroBackgroundImage="/images/visas/freelancer-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official German Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      No Minimum Income Required
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Germany has become one of Europe's most attractive destinations for freelancers and self-employed professionals. Unlike many countries with rigid income thresholds, Germany's freelancer visa focuses on the viability of your business rather than a specific income figure. If you can demonstrate that your work is sustainable and serves the German economy, you can build a freelance career here.
+    </p>
+
+    <p class="mb-4">
+      Berlin in particular has earned a reputation as Europe's freelancer capital, with an estimated 70,000+ registered freelancers. The city's low cost of living (by Western European standards), thriving startup scene, and international community make it a natural hub for consultants, designers, developers, and creative professionals.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Germany Freelancer Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa types:</strong> Freiberufler (liberal professions) or Selbstständige/Gewerbe (trade/commercial)</li>
+        <li>• <strong>Income requirement:</strong> None specified—must prove business sustainability</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—German public or qualifying private insurance</li>
+        <li>• <strong>Duration:</strong> Initially 1-3 years, renewable</li>
+        <li>• <strong>Path to PR:</strong> Permanent residence after 5 years (3 with good German)</li>
+        <li>• <strong>German language:</strong> Not required but helpful for daily life and bureaucracy</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Freiberufler vs. Gewerbetreibende: What's the Difference?</h3>
+
+    <p class="mb-4">
+      Germany distinguishes between two types of self-employment, and understanding this distinction is crucial for your visa application:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Freiberufler (Liberal Professions)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Writers, journalists, translators</li>
+          <li>• Artists, musicians, photographers</li>
+          <li>• IT consultants, software developers</li>
+          <li>• Architects, engineers, scientists</li>
+          <li>• Doctors, lawyers, accountants</li>
+          <li>• Consultants, coaches, trainers</li>
+          <li>• <strong>No trade registration required</strong></li>
+          <li>• Register only with Finanzamt (tax office)</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Gewerbetreibende (Trade/Commercial)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• E-commerce, retail businesses</li>
+          <li>• Marketing agencies (with employees)</li>
+          <li>• Property management</li>
+          <li>• Commercial services</li>
+          <li>• Manufacturing, production</li>
+          <li>• Restaurant, hospitality</li>
+          <li>• <strong>Trade registration required</strong></li>
+          <li>• Register at Gewerbeamt + Finanzamt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Freiberufler is often preferred:</strong> Freiberufler status means less paperwork, no mandatory IHK (chamber of commerce) membership, simpler accounting requirements, and no trade tax (Gewerbesteuer) below certain income levels. Most IT professionals, consultants, and creative workers qualify as Freiberufler.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Germany is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You work in IT, consulting, or creative fields</li>
+          <li>✓ You can demonstrate existing clients or contracts</li>
+          <li>✓ You value strong worker protections and healthcare</li>
+          <li>✓ You want a path to permanent residence</li>
+          <li>✓ You're comfortable with bureaucracy (there's a lot)</li>
+          <li>✓ You prefer a central European location</li>
+          <li>✓ You can handle €200-500/month for health insurance</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need a specific income threshold (try Portugal)</li>
+          <li>• You want minimal bureaucracy (try Estonia e-Residency)</li>
+          <li>• You prefer warmer climate (Spain, Portugal, Italy)</li>
+          <li>• You're just starting out with no client proof</li>
+          <li>• You want lower cost of living (try Eastern Europe)</li>
+          <li>• You can't afford €200-500/month for insurance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Berlin advantage:</strong> Berlin's Ausländerbehörde (immigration office) is known for being more flexible with freelancer visas than other German cities. The city actively courts creative and tech professionals, and the English-speaking freelance community is well-established. If you have a choice of where to apply, Berlin is often the most straightforward path.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Unlike student or employment visas with clear-cut requirements, the German freelancer visa is somewhat subjective. Immigration officials evaluate whether your business is viable and whether it serves "economic interest" or meets "regional need." In practice, this means proving you have skills, clients, and the means to support yourself.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Required for All Applicants</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Biometric passport photos</li>
+          <li>• Completed visa application form</li>
+          <li>• Health insurance confirmation</li>
+          <li>• Proof of accommodation in Germany</li>
+          <li>• Bank statements (3-6 months)</li>
+          <li>• Business plan or activity description</li>
+          <li>• CV/resume with qualifications</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Supporting Documents (Strengthen Application)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Client contracts or letters of intent</li>
+          <li>• Portfolio of previous work</li>
+          <li>• Diplomas and certificates</li>
+          <li>• Reference letters from past clients</li>
+          <li>• Invoice history showing income</li>
+          <li>• German language certificate (if any)</li>
+          <li>• LinkedIn profile printout</li>
+          <li>• Website/online portfolio</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Proof</h3>
+
+    <p class="mb-4">
+      Germany doesn't specify a minimum income, but you must prove you can support yourself. In practice, immigration officials want to see:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Bank statements:</strong> At least €5,000-15,000 in savings, showing 3-6 months of history</li>
+      <li><strong>Client contracts:</strong> Letters of intent or signed contracts with German or international clients</li>
+      <li><strong>Income projection:</strong> Realistic estimate in your business plan (€24,000-36,000/year minimum typical)</li>
+      <li><strong>Rental contract:</strong> Showing you have accommodation arranged</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>The unwritten rule:</strong> While there's no official income minimum, most successful applicants show projected annual income of at least €24,000-36,000 (€2,000-3,000/month). Lower projections may trigger questions about how you'll afford health insurance and living costs.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Business Plan</h3>
+
+    <p class="mb-4">
+      Your business plan doesn't need to be a 50-page document, but it should clearly explain:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>What services you provide</li>
+      <li>Who your target clients are (ideally including German clients)</li>
+      <li>Your qualifications and experience</li>
+      <li>How you'll find clients in Germany</li>
+      <li>Your pricing and projected income</li>
+      <li>Why Germany specifically (not required, but helpful)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Germany requires all residents—including freelancers—to have health insurance. You cannot get a residence permit without proof of adequate coverage. Travel insurance or limited expat plans are not accepted; you need either German public insurance or comprehensive private insurance that meets German standards.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      As a freelancer, you have three main options: German public insurance (which freelancers can voluntarily join), private German insurance, or international private insurance that meets German requirements. Each has significant trade-offs.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public vs. Private Insurance for Freelancers</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Which Insurance Should You Choose?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose Public Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're over 40 or have health conditions</li>
+          <li>✓ You plan to stay in Germany long-term</li>
+          <li>✓ You have family to add (free for non-working spouse/kids)</li>
+          <li>✓ You want predictable, comprehensive coverage</li>
+          <li>✓ You may take employed work in the future</li>
+          <li>✓ You qualify for KSK (artists/writers)</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Choose Private Insurance If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You're young and healthy (under 35)</li>
+          <li>✓ You want lower initial costs</li>
+          <li>✓ You prefer faster specialist access</li>
+          <li>✓ You travel frequently and need global coverage</li>
+          <li>✓ You earn €60,000+ (where private becomes cheaper)</li>
+          <li>✓ You want private hospital rooms and extras</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Künstlersozialkasse (KSK) Option</h3>
+
+    <p class="mb-4">
+      If you're an artist, writer, journalist, or musician, you may qualify for the Künstlersozialkasse (KSK)—Germany's social insurance fund for creative professionals. The KSK covers 50% of your public health insurance and pension contributions, cutting your costs roughly in half.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-blue-900 mb-3">KSK Eligibility Requirements:</h4>
+      <ul class="space-y-2 text-blue-800">
+        <li>• Work as an artist, writer, or journalist as your main profession</li>
+        <li>• Earn at least €3,900/year from creative work</li>
+        <li>• Not employ more than one regular employee</li>
+        <li>• More than 50% of income from creative work</li>
+        <li>• Examples: authors, painters, musicians, journalists, designers, photographers</li>
+        <li>• <strong>Cost with KSK:</strong> ~€200/month total for health + pension</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>KSK application timing:</strong> You cannot apply for KSK until you're registered in Germany with a tax number. Many freelancers start with private insurance, then switch to public via KSK once approved. KSK approval can take 3-6 months.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Insurance Requirements</h3>
+
+    <p class="mb-4">
+      If you choose private insurance, it must meet German standards to be accepted for your residence permit:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Cover inpatient and outpatient treatment</li>
+      <li>No annual or lifetime coverage caps</li>
+      <li>Cover pre-existing conditions after waiting period</li>
+      <li>Valid throughout Germany and for travel</li>
+      <li>Meet the "Basistarif" minimum coverage level</li>
+    </ul>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your German freelancer visa?"
+    description="Compare private and public options for self-employed professionals in Germany."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For freelancers, the choice between public and private insurance depends on your age, health status, income, and long-term plans. Here are the providers most commonly used by expat freelancers in Germany.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Creative Professional Qualifying for KSK</h4>
+        <p class="text-neutral-600">Apply for KSK as soon as you're registered in Germany. Until approved, start with either TK (public) or Allianz Care (private). Once KSK approves you, your costs drop to ~€200/month total. TK is particularly popular with creatives due to English support.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">IT Consultant/Developer, Under 35, Healthy</h4>
+        <p class="text-neutral-600">Private insurance often makes sense initially. Ottonova offers a digital-first experience popular with tech workers. Allianz Care provides comprehensive coverage if you travel frequently. Budget €250-400/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Freelancer Over 40 or With Health Conditions</h4>
+        <p class="text-neutral-600">Public insurance (TK, Barmer) is usually the better choice. Premiums are based on income, not age or health. Pre-existing conditions are covered immediately. Private insurance premiums rise significantly with age and may exclude conditions.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Freelancer With Non-Working Spouse and Children</h4>
+        <p class="text-neutral-600">Public insurance is nearly always better—family members without income are covered free (Familienversicherung). With private insurance, each family member needs separate coverage at full price, potentially tripling your costs.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">New Arrival Waiting for Long-Term Solution</h4>
+        <p class="text-neutral-600">If you need coverage immediately while sorting out public insurance or KSK, Cigna Global or Allianz Care provide comprehensive private coverage that meets visa requirements. You can switch to public insurance later if desired.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Freelancing in Germany involves several costs beyond just living expenses. Health insurance is the largest ongoing expense, but you'll also need to budget for professional services, especially a tax advisor (Steuerberater) to navigate German tax requirements.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Berlin (Budget)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,000-2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Shared flat, basic lifestyle</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Berlin (Comfortable)</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,000-4,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, coworking</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Munich (Higher Cost)</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,500-5,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, comfortable</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Berlin Example)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (own apartment):</strong> €800-1,200/month (higher in Munich, Frankfurt)</li>
+      <li><strong>Health insurance:</strong> €200-500/month (depends on income and type)</li>
+      <li><strong>Pension/retirement:</strong> €0-400/month (optional for freelancers, via KSK if applicable)</li>
+      <li><strong>Steuerberater:</strong> €100-300/month (essential for compliance)</li>
+      <li><strong>Liability insurance:</strong> €50-150/month (often required by clients)</li>
+      <li><strong>Living expenses:</strong> €500-800/month (food, transport, utilities)</li>
+      <li><strong>Coworking space:</strong> €150-350/month (optional)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Tax advantage:</strong> As a freelancer, you can deduct business expenses from your taxable income. This includes your home office, equipment, professional development, travel, and often a portion of your phone and internet. A good Steuerberater will help you maximize legitimate deductions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The German freelancer visa process involves applying for a visa at a German embassy (if required for your nationality), then converting it to a residence permit after arriving in Germany. EU citizens can simply register and apply for the self-employment permit directly.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Business Case</h4>
+          <p class="text-neutral-600">Write a clear business plan describing your services, target clients, and how you'll sustain yourself. Gather client contracts, letters of intent, portfolio samples, and professional references. The stronger your evidence of existing business, the smoother your application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Health Insurance</h4>
+          <p class="text-neutral-600">Contact a German private insurer (Allianz Care, Ottonova) or public insurer (TK, Barmer) for a confirmation letter. Private insurance is easier to arrange before arrival. Public insurance may require you to be registered in Germany first—ask about "Anwartschaft" (waiting status).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Book and Attend Embassy Appointment</h4>
+          <p class="text-neutral-600">Schedule your visa appointment well in advance—some embassies have 4-8 week waits. Bring all documents, be prepared to explain your business in detail, and answer questions about why Germany specifically. Pay the €100-150 visa fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Register Residence (Anmeldung)</h4>
+          <p class="text-neutral-600">Within 14 days of moving into your apartment, register at the local Bürgeramt (citizens' office). You'll need your rental contract and passport. This registration is required for everything—bank accounts, tax registration, residence permits.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with the Finanzamt (Tax Office)</h4>
+          <p class="text-neutral-600">Complete the "Fragebogen zur steuerlichen Erfassung" (tax registration questionnaire) and submit to your local Finanzamt. You'll receive your tax number (Steuernummer) in 2-6 weeks. This is required before you can legally invoice clients.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Trade (Gewerbe Only)</h4>
+          <p class="text-neutral-600">If your activity is classified as Gewerbe (trade/commercial), register at the Gewerbeamt. Cost is €20-65. This is not required for Freiberufler (liberal professions). If unsure about your classification, ask your Steuerberater.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Residence Permit (Aufenthaltstitel)</h4>
+          <p class="text-neutral-600">Visit the Ausländerbehörde (immigration office) to convert your visa to a residence permit. Bring: passport, registration certificate, insurance proof, business plan, Finanzamt registration, bank statements, and biometric photos. Appointments often have 4-8 week waits—book early.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Set Up Business Operations</h4>
+          <p class="text-neutral-600">Open a German business bank account (N26, Holvi, traditional banks), find a Steuerberater, set up invoicing software, and consider liability insurance. Many German clients expect German bank accounts and proper invoices with Steuernummer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Berlin-specific tip:</strong> Berlin's Ausländerbehörde is notoriously slow and often requires multiple visits. Book your appointment immediately upon arrival—don't wait. Some freelancers report 3-4 month waits for appointments. Your visa remains valid while your application is pending.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for and living on the German freelancer visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from India, 3 Client Contracts</h3>
+        <p class="text-neutral-600 mb-4">Applied with letters of intent from 2 German startups and 1 US client. 28 years old, healthy.</p>
+        <p class="text-green-700 font-medium">✓ Visa approved in 6 weeks. Started with Ottonova private insurance (€280/month). Residence permit for 3 years. Found the process bureaucratic but straightforward with good documentation. Now earning €6,000+/month in Berlin.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Writer from UK, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">Journalist and content writer, 35 years old, applying for KSK.</p>
+        <p class="text-green-700 font-medium">✓ Started with TK public insurance (€350/month based on estimated income). KSK approved after 4 months—now paying €190/month total for health + pension. Works for German magazines and international clients. Very satisfied with coverage quality.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer from Brazil, No German Clients</h3>
+        <p class="text-neutral-600 mb-4">All clients remote/international, strong portfolio, 31 years old.</p>
+        <p class="text-amber-700 font-medium">△ Initial visa application questioned due to no German clients. Had to provide additional explanation of how work benefits Germany (Berlin tech ecosystem, spending locally). Approved on second attempt with stronger business plan. Now building German client base.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant, 45, Pre-existing Conditions</h3>
+        <p class="text-neutral-600 mb-4">Management consultant with diabetes, applying with spouse and child.</p>
+        <p class="text-green-700 font-medium">✓ Went with TK public insurance—diabetes covered immediately, family included free. Private insurance would have been €800+/month for family with exclusions. Paying €400/month for comprehensive family coverage. Highly recommends public insurance for anyone with health conditions.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Photographer from USA, Limited Savings</h3>
+        <p class="text-neutral-600 mb-4">Creative professional with €4,000 savings, wedding/event photography.</p>
+        <p class="text-red-700 font-medium">✗ Visa denied—insufficient financial reserves. Immigration wanted to see €8,000+ and stronger client pipeline. Returned home, built savings and client base for 8 months, reapplied successfully with €12,000 and 6 booked events.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">E-commerce Seller, Gewerbe Classification</h3>
+        <p class="text-neutral-600 mb-4">Runs online shop selling handmade products, needed trade registration.</p>
+        <p class="text-amber-700 font-medium">△ Process more complex due to Gewerbe requirement. Had to register trade, join IHK (chamber of commerce), and pay trade tax. Additional €200/month in fees and compliance costs versus Freiberufler. Still successful, but recommends consulting Steuerberater about classification before applying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for German Freelancers"
+    description="Find the right coverage for your self-employment in Germany—public or private."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Health Insurance Costs</h3>
+        <p class="text-neutral-600">Many freelancers are shocked to discover health insurance costs €200-500/month. Unlike employed workers (whose employers pay half), freelancers pay the full amount. Budget for this from day one—it's not optional, and failing to pay can jeopardize your residence permit.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing Private Insurance Without Understanding Lock-in</h3>
+        <p class="text-neutral-600">Once you choose private insurance and earn above €69,300/year (2026 threshold), switching back to public insurance is extremely difficult. Private premiums increase with age. A 30-year-old paying €250/month may pay €600/month at 50. Consider long-term implications.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Hiring a Steuerberater (Tax Advisor)</h3>
+        <p class="text-neutral-600">German tax law is complex, and freelancers face VAT decisions, quarterly advance payments, and deduction optimization. The €100-300/month cost of a Steuerberater often pays for itself in avoided penalties and maximized deductions. Do not try to DIY German taxes.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the Anmeldung Deadline</h3>
+        <p class="text-neutral-600">You must register your residence (Anmeldung) within 14 days of moving into an apartment. Without this, you cannot open bank accounts, get a tax number, or apply for your residence permit. Some landlords are reluctant to provide the required form—clarify this before signing a lease.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Without Client Evidence</h3>
+        <p class="text-neutral-600">A vague business plan without concrete clients is a common reason for visa denial. Get letters of intent, signed contracts, or at minimum documented email exchanges showing genuine business interest. "I plan to find clients after arriving" is not convincing to immigration officials.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Germany -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Germany</h2>
+
+    <p class="mb-4">
+      Germany has one of the world's best healthcare systems, ranking consistently in the top 10 globally. As a freelancer with proper insurance, you'll have full access to this system—the same doctors, hospitals, and treatments available to German citizens.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Fully Covered (Public Insurance)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP and specialist consultations</li>
+          <li>✓ Hospital treatment and surgeries</li>
+          <li>✓ Prescription medications (small copay)</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Preventive care and screenings</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Physical therapy</li>
+          <li>✓ Basic dental care</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Additional with Private Insurance</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Private hospital rooms</li>
+          <li>• Chief physician treatment</li>
+          <li>• Better dental coverage</li>
+          <li>• Alternative medicine</li>
+          <li>• Faster specialist appointments</li>
+          <li>• Global coverage for travel</li>
+          <li>• No referral needed for specialists</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Finding Doctors</h4>
+        <p class="text-neutral-600">Use Doctolib or Jameda to find and book appointments. Many doctors in Berlin and Munich speak English. You don't need to register with a specific GP—you can see any doctor who accepts your insurance type.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Appointments and Wait Times</h4>
+        <p class="text-neutral-600">GP appointments are usually available within days. Specialists can have 2-8 week waits with public insurance. Private insurance patients often get faster appointments. For urgent issues, call your insurance's hotline for expedited referrals.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 112 for emergencies. For urgent but non-emergency issues, call 116 117 for the medical on-call service. Hospital emergency rooms (Notaufnahme) are available 24/7 but are meant for genuine emergencies—expect long waits for non-urgent issues.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Your insurance card:</strong> Public insurance provides an electronic health card (Gesundheitskarte). Private insurance provides a membership card. Always bring your card to appointments. With private insurance, you may need to pay upfront and submit receipts for reimbursement.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is there a minimum income requirement for the German freelancer visa?</h3>
+        <p class="text-neutral-600">
+          Officially, no. However, you must demonstrate that your business is sustainable. In practice, most successful applicants show projected income of at least €24,000-36,000/year. Immigration officials want to see you can afford living costs (~€1,000-1,500/month) plus mandatory health insurance (€200-500/month).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak German to get the freelancer visa?</h3>
+        <p class="text-neutral-600">
+          No, German language is not a visa requirement. However, daily life—bureaucracy, landlords, some government offices—is easier with German. Many freelancers manage fine with English in Berlin and Munich. For the path to permanent residence after 5 years, you'll need B1 German (or A1 with other qualifications).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Should I choose public or private health insurance?</h3>
+        <p class="text-neutral-600">
+          It depends on your situation. Public insurance is better for: those over 40, those with health conditions, families (free coverage for non-working spouse/kids), and those planning long-term residency. Private is often better for: young healthy individuals, high earners (€60,000+), and those wanting faster specialist access.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between Freiberufler and Gewerbe?</h3>
+        <p class="text-neutral-600">
+          Freiberufler (liberal professions) includes writers, artists, consultants, IT professionals, doctors, architects—work based on personal expertise. Gewerbe (trade) covers commercial activities like retail, agencies with employees, and services not based on specialized qualifications. Freiberufler have simpler registration and may avoid trade tax.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work for German companies as a freelancer?</h3>
+        <p class="text-neutral-600">
+          Yes, but be careful of "Scheinselbstständigkeit" (false self-employment). If you work primarily for one client, at their office, on their schedule, you may be reclassified as an employee—triggering back taxes and penalties for both parties. Maintain multiple clients and demonstrable independence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residence?</h3>
+        <p class="text-neutral-600">
+          After 5 years of legal residence (including on a freelancer permit), you can apply for permanent residence (Niederlassungserlaubnis). Requirements include: sufficient income, pension contributions, adequate health insurance, B1 German, and basic knowledge of German law/society. High-skilled professionals with C1 German may qualify after 3 years.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Germany's freelancer visa offers a genuine path to building a sustainable business in Europe. The lack of a specific income threshold means approval depends on demonstrating viability rather than hitting an arbitrary number. If you have marketable skills and can show client interest, the visa is achievable.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the bureaucracy (expect multiple office visits and paperwork in German) and the mandatory health insurance costs (€200-500/month). These are real costs that catch many freelancers off guard. Budget accordingly, and seriously consider public insurance if you're over 35 or have any health conditions.
+    </p>
+
+    <p class="mb-6">
+      For the right person—someone with established skills, some client traction, and tolerance for German bureaucracy—this visa opens the door to the EU's largest economy, excellent healthcare, and a clear path to permanent residence. Berlin in particular has a welcoming freelance ecosystem with strong English support.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The German freelancer visa is best suited for established professionals with demonstrable skills and client relationships. Health insurance is mandatory and expensive—factor €200-500/month into your planning. The bureaucracy is real, but the payoff is access to Europe, excellent healthcare, and a path to permanent residence.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Private Insurance →
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/germany/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Germany</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's other remote work options</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Portugal's D7 visa for self-employed</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

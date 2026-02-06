@@ -1,0 +1,920 @@
+---
+/**
+ * Netherlands Freelancer/Self-Employed Visa - Long-form CRO-optimized page
+ * Static page for Self-Employment Residence Permit (Zelfstandig ondernemer)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Netherlands", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Netherlands Health Insurance Guide", href: "/countries/netherlands/insurance" },
+  { title: "Insurance for Freelancers Abroad", href: "/insurance-for/freelancers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "daft", header: "DAFT (US/Japan)" },
+  { key: "standard", header: "Standard Path" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Investment", daft: "€4,500 in business", standard: "Varies (business plan based)" },
+  { requirement: "Points System", daft: "Not required", standard: "100 points needed" },
+  { requirement: "Business Plan", daft: "Simple business outline", standard: "Detailed business plan" },
+  { requirement: "Dutch Experience", daft: "Not required", standard: "May earn points" },
+  { requirement: "Education Level", daft: "Not evaluated", standard: "Earns points (max 30)" },
+  { requirement: "Age", daft: "Not evaluated", standard: "Earns points (max 15)" },
+  { requirement: "Processing Time", daft: "8-12 weeks", standard: "8-12 weeks" },
+];
+
+const pointsColumns = [
+  { key: "category", header: "Category" },
+  { key: "points", header: "Maximum Points" },
+  { key: "examples", header: "How to Score" },
+];
+
+const pointsRows = [
+  { category: "Personal Experience", points: "35 points", examples: "Entrepreneurial history, sector experience" },
+  { category: "Business Plan", points: "35 points", examples: "Innovation, market research, financial projections" },
+  { category: "Added Value for NL", points: "30 points", examples: "Job creation, investment, innovation" },
+  { category: "Total Required", points: "100 points", examples: "Minimum threshold for approval" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "basic", header: "Basic (Basisverzekering)" },
+  { key: "supplementary", header: "With Supplementary" },
+];
+
+const insuranceRows = [
+  { feature: "Cost", basic: "~€120-150/month", supplementary: "€150-250/month" },
+  { feature: "GP Visits", basic: "Covered (after deductible)", supplementary: "Covered (after deductible)" },
+  { feature: "Hospital Care", basic: "Fully covered", supplementary: "Fully covered + extras" },
+  { feature: "Specialist Care", basic: "Covered with referral", supplementary: "Covered with referral" },
+  { feature: "Dental (Adults)", basic: "Not covered", supplementary: "Partial to full coverage" },
+  { feature: "Physiotherapy", basic: "Limited (chronic only)", supplementary: "10-40 sessions/year" },
+  { feature: "Alternative Medicine", basic: "Not covered", supplementary: "Often covered" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Zilveren Kruis", type: "Dutch Basic", price: "€120-145", strengths: "Largest network, English support" },
+  { provider: "CZ", type: "Dutch Basic", price: "€115-140", strengths: "Good value, clear policies" },
+  { provider: "ONVZ", type: "Dutch Basic", price: "€130-155", strengths: "Premium service, expat-friendly" },
+  { provider: "Cigna Global", type: "International", price: "€200-400", strengths: "First months, global coverage" },
+  { provider: "Allianz Care", type: "International", price: "€180-350", strengths: "Transition period, EU-wide" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "DAFT Visa Fee", amount: "€207", notes: "US/Japan citizens only" },
+  { item: "Standard Visa Fee", amount: "€350+", notes: "Non-DAFT applicants" },
+  { item: "Business Investment (DAFT)", amount: "€4,500", notes: "Minimum in bank/business" },
+  { item: "KvK Registration", amount: "€75", notes: "Chamber of Commerce (one-time)" },
+  { item: "Health Insurance", amount: "€120-150/month", notes: "Mandatory basic insurance" },
+  { item: "Annual Deductible", amount: "€385", notes: "Mandatory eigen risico (2026)" },
+  { item: "BSN Registration", amount: "Free", notes: "Required for everything" },
+  { item: "Residence Card", amount: "€77", notes: "Biometric ID document" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Prepare business plan and documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Submit MVV application (if required)", duration: "1 day", location: "Dutch embassy/consulate" },
+  { step: "IND processing", duration: "8-12 weeks", location: "IND (Netherlands)" },
+  { step: "Receive MVV (entry visa)", duration: "After approval", location: "Embassy/consulate" },
+  { step: "Arrive in Netherlands", duration: "Within 90 days of MVV", location: "Netherlands" },
+  { step: "Register at municipality", duration: "Within 5 days", location: "Gemeente (city hall)" },
+  { step: "Collect residence permit", duration: "1-2 weeks", location: "IND desk" },
+  { step: "Register with KvK", duration: "1-2 weeks", location: "Chamber of Commerce" },
+  { step: "Arrange Dutch health insurance", duration: "Within 4 months", location: "Online/insurance broker" },
+];
+---
+
+<PageShell
+  title="Netherlands Freelancer Visa 2026: DAFT, Requirements & Insurance Guide"
+  description="Complete guide to the Dutch Self-Employment Residence Permit (Zelfstandig ondernemer). DAFT treaty for US citizens, points system, mandatory Dutch health insurance, and step-by-step application process."
+  headline="Netherlands Freelancer Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in the Netherlands—DAFT treaty advantages, the points-based system, mandatory Dutch health insurance, and the complete application process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Expat Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/netherlands-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official IND Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      DAFT Treaty Eligible
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The Netherlands has become one of Europe's top destinations for freelancers and entrepreneurs, thanks to its business-friendly environment, high English proficiency, and central EU location. The Self-Employment Residence Permit (Zelfstandig ondernemer) allows non-EU nationals to live and work as freelancers in the Netherlands.
+    </p>
+
+    <p class="mb-4">
+      What makes the Netherlands particularly attractive is the DAFT treaty—the Dutch-American Friendship Treaty—which offers US and Japanese citizens a significantly easier path to self-employment. Instead of navigating the complex points system, DAFT applicants need only show €4,500 in business capital and a viable business plan.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Netherlands Freelancer Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Self-Employment Residence Permit (Zelfstandig ondernemer)</li>
+        <li>• <strong>Healthcare:</strong> Mandatory Dutch basic insurance (basisverzekering) ~€120-150/month</li>
+        <li>• <strong>DAFT advantage:</strong> US/Japan citizens need only €4,500 investment</li>
+        <li>• <strong>Standard path:</strong> Points-based system (100 points required)</li>
+        <li>• <strong>Duration:</strong> 2 years initial, renewable</li>
+        <li>• <strong>Path to PR:</strong> 5 years to permanent residence</li>
+        <li>• <strong>30% ruling:</strong> Tax benefit for qualifying expats</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Freelance in the Netherlands?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>DAFT treaty:</strong> US and Japanese citizens get a streamlined path with lower requirements</li>
+      <li><strong>English fluency:</strong> Over 90% of Dutch people speak English—daily business is easy</li>
+      <li><strong>EU market access:</strong> Gateway to 450 million consumers across the EU</li>
+      <li><strong>Strong startup ecosystem:</strong> Amsterdam ranks among Europe's top tech hubs</li>
+      <li><strong>30% ruling:</strong> Qualifying expats can receive 30% of salary tax-free for up to 5 years</li>
+      <li><strong>Excellent infrastructure:</strong> World-class internet, transport, and logistics</li>
+      <li><strong>Quality of life:</strong> High living standards, work-life balance, cycling culture</li>
+      <li><strong>Central location:</strong> Easy travel to UK, Germany, Belgium, France</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Key Cities for Freelancers</h3>
+
+    <div class="grid md:grid-cols-2 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900">Amsterdam</h4>
+        <p class="text-neutral-600 text-sm">Tech hub, creative industries, highest costs but most opportunities. Strong international community.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900">Rotterdam</h4>
+        <p class="text-neutral-600 text-sm">Architecture, logistics, port industries. More affordable than Amsterdam, growing startup scene.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900">The Hague</h4>
+        <p class="text-neutral-600 text-sm">International organizations, legal sector, government. Many expats, beach access.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900">Utrecht</h4>
+        <p class="text-neutral-600 text-sm">University city, central location, more affordable. Growing tech and creative sectors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Netherlands is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're a US or Japanese citizen (DAFT advantage)</li>
+          <li>✓ You work in tech, creative, or consulting fields</li>
+          <li>✓ You want EU market access from a central hub</li>
+          <li>✓ You prefer English as your working language</li>
+          <li>✓ You value work-life balance and cycling</li>
+          <li>✓ You can handle high living costs (especially housing)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You're not from the US/Japan and lack business experience (points system is tough)</li>
+          <li>• You want lower living costs (try Portugal, Spain)</li>
+          <li>• You prefer warmer weather year-round</li>
+          <li>• You want faster path to citizenship (Netherlands requires 5 years)</li>
+          <li>• You can't meet mandatory Dutch health insurance costs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>DAFT treaty advantage:</strong> If you're a US or Japanese citizen, the Netherlands offers one of the easiest freelancer visa paths in Europe. The €4,500 investment requirement is much lower than Germany's requirements, and you don't need to prove your business adds "value" to the Dutch economy through a points system.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Netherlands has two main paths for self-employed residence: the DAFT treaty route (for US and Japanese citizens) and the standard points-based system (for everyone else). The DAFT route is significantly simpler and has lower requirements.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">DAFT Treaty (US and Japanese Citizens)</h3>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">DAFT Requirements</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>Investment:</strong> €4,500 minimum in Dutch bank account or business</li>
+        <li>• <strong>Business plan:</strong> Clear outline of your business activities</li>
+        <li>• <strong>Valid passport:</strong> US or Japanese passport</li>
+        <li>• <strong>Clean record:</strong> No criminal record certificate may be required</li>
+        <li>• <strong>Health insurance:</strong> Proof of adequate coverage</li>
+        <li>• <strong>Housing:</strong> Proof of Dutch address (can arrange after arrival)</li>
+      </ul>
+    </div>
+
+    <p class="mb-4">
+      The DAFT treaty dates back to 1956 and was designed to promote trade between the US and Netherlands. Japan was added later under a similar treaty. Unlike the standard path, DAFT applicants don't need to prove their business creates jobs or adds innovation—they just need to show they have a viable business.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Standard Points System (Non-DAFT)</h3>
+
+    <p class="mb-4">
+      If you're not eligible for DAFT, you'll need to score at least 100 points across three categories. This system is designed to attract entrepreneurs who bring significant value to the Dutch economy.
+    </p>
+
+    <ComparisonTable columns={pointsColumns} rows={pointsRows} />
+
+    <div class="grid md:grid-cols-2 gap-6 mt-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">How Points Are Scored</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Education:</strong> Higher degrees earn more points</li>
+          <li>• <strong>Age:</strong> 25-44 years old scores highest</li>
+          <li>• <strong>Experience:</strong> Prior business ownership helps significantly</li>
+          <li>• <strong>Business plan quality:</strong> Professional assessment required</li>
+          <li>• <strong>Dutch ties:</strong> Previous work/study in NL earns points</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Common Challenges</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• First-time entrepreneurs often struggle to reach 100 points</li>
+          <li>• Business plan must be assessed by recognized advisor</li>
+          <li>• "Added value" is subjectively evaluated</li>
+          <li>• Process takes longer than DAFT</li>
+          <li>• Higher refusal rate than DAFT applications</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Points system reality check:</strong> The standard points system is designed for established entrepreneurs, not typical freelancers. If you're a web developer or consultant without prior business ownership, reaching 100 points is difficult. Consider whether Portugal, Germany, or Spain might offer easier paths.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents (Both Paths)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Valid passport:</strong> With at least 6 months validity</li>
+      <li><strong>Business plan:</strong> Detailed for points system, simpler for DAFT</li>
+      <li><strong>Proof of funds:</strong> €4,500 minimum for DAFT, more for points system</li>
+      <li><strong>Health insurance:</strong> Proof of coverage or intent to obtain Dutch insurance</li>
+      <li><strong>Antecedents certificate:</strong> Criminal background check from home country</li>
+      <li><strong>Tuberculosis certificate:</strong> From designated clinic (some nationalities)</li>
+      <li><strong>Application forms:</strong> Completed IND forms</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Dutch Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Unlike many countries where expat insurance satisfies visa requirements, the Netherlands requires all residents to have Dutch basic health insurance (basisverzekering). You must arrange this within 4 months of registering at your municipality. International insurance is only acceptable during your initial transition period.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The Dutch healthcare system is based on mandatory private insurance with government regulation. Everyone pays for basic insurance (basisverzekering), which covers essential care. You can add optional supplementary insurance (aanvullende verzekering) for extras like dental care and physiotherapy.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Basic vs. Supplementary Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">How Dutch Insurance Works</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What You Must Know</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ <strong>Mandatory deductible:</strong> €385/year (2026) before insurance pays</li>
+          <li>✓ <strong>GP visits:</strong> Free (no deductible applies)</li>
+          <li>✓ <strong>Referral system:</strong> Need GP referral for specialists</li>
+          <li>✓ <strong>Open enrollment:</strong> Switch insurers each January</li>
+          <li>✓ <strong>Zorgtoeslag:</strong> Low-income subsidy available</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Coverage Included in Basic</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ GP consultations (huisarts)</li>
+          <li>✓ Hospital care and surgery</li>
+          <li>✓ Prescription medications</li>
+          <li>✓ Mental health care (limited sessions)</li>
+          <li>✓ Maternity care and midwife</li>
+          <li>✓ Ambulance and emergency services</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>The deductible reality:</strong> The €385 mandatory deductible (eigen risico) means you pay the first €385 of most healthcare costs each year. This doesn't apply to GP visits, maternity care, or children under 18. Budget for this, especially in your first year when you may need healthcare more.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Timeline for New Arrivals</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Before Arrival</h4>
+        <p class="text-neutral-600">Keep your international health insurance active. You may need to show proof of coverage for your visa application. Cigna Global or Allianz Care work well for this transition period.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">First 4 Months</h4>
+        <p class="text-neutral-600">After registering at your municipality and receiving your BSN (citizen service number), you have 4 months to arrange Dutch basic insurance. Your international insurance can cover this gap, but don't delay—late registration may result in fines.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Ongoing</h4>
+        <p class="text-neutral-600">Once you have Dutch basic insurance, cancel your international policy. You can switch Dutch insurers every January during open enrollment. Consider supplementary insurance if you need dental or extensive physiotherapy coverage.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Freelancer tip:</strong> As a self-employed person (ZZP'er), you pay for your own health insurance—there's no employer contribution. Budget €1,500-2,000/year for basic insurance plus the €385 deductible. This is a significant fixed cost that affects your freelance rates.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need coverage during your transition to Dutch insurance?"
+    description="International health insurance can bridge the gap before your Dutch basisverzekering is active."
+    buttonText="Compare Transition Coverage"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      You'll need two types of insurance: international coverage for your visa application and transition period, then Dutch basic insurance once you're registered. Here are the top options for both phases.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Transition Period (First 4 Months)</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage during your move. Both are widely recognized for visa applications and offer good coverage in the Netherlands. Cancel once Dutch insurance is active.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-term: Best Value Dutch Insurance</h4>
+        <p class="text-neutral-600">CZ offers competitive premiums with straightforward policies. Good for freelancers who want to minimize costs. Basic coverage is standardized by law, so choosing the cheapest insurer often makes sense.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-term: Best for Expats</h4>
+        <p class="text-neutral-600">Zilveren Kruis and ONVZ offer excellent English-language support and are experienced with expat needs. Worth paying slightly more if you're uncomfortable navigating Dutch bureaucracy or prefer English-speaking customer service.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">If You Need Dental Coverage</h4>
+        <p class="text-neutral-600">Dutch basic insurance doesn't cover adult dental care. Add a supplementary package (aanvullende verzekering) if you expect dental work. Most supplementary packages cost €10-40/month and cover 75-100% of dental costs up to a yearly maximum.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Choosing Your Dutch Insurer</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">What to Compare</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Monthly premium:</strong> Varies by €10-30 between insurers</li>
+          <li>• <strong>Customer service:</strong> English availability varies</li>
+          <li>• <strong>Online tools:</strong> Apps, claim submission, doctor finder</li>
+          <li>• <strong>Supplementary options:</strong> Dental, physio, alternative medicine</li>
+          <li>• <strong>Collective discounts:</strong> Some employers/groups offer 5-10% off</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">What Doesn't Matter</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Coverage quality:</strong> Basic coverage is identical by law</li>
+          <li>• <strong>Pre-existing conditions:</strong> All must accept you for basic</li>
+          <li>• <strong>Doctor access:</strong> Any GP accepts any basic insurance</li>
+          <li>• <strong>Hospital coverage:</strong> All hospitals work with all insurers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Comparison sites:</strong> Use Independer.nl or Zorgwijzer.nl to compare Dutch health insurance. These sites show all insurers side-by-side with current premiums. You can filter by English support and see supplementary package options.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Setting up as a freelancer in the Netherlands involves visa fees, business registration, and ongoing health insurance costs. DAFT applicants have lower upfront costs than those going through the points system.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Upfront Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">DAFT Path (US/Japan)</p>
+        <p class="text-3xl font-bold text-neutral-900">~€4,900</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + investment + fees</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Standard Path</p>
+        <p class="text-3xl font-bold text-neutral-900">~€5,500+</p>
+        <p class="text-sm text-neutral-500 mt-2">Higher fees + assessments</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Annual Insurance</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,800-2,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Basic + deductible</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Costs as a Freelancer</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Health insurance:</strong> €120-150/month (basic) or €150-250/month (with supplements)</li>
+      <li><strong>Accounting:</strong> €100-300/month (optional but recommended)</li>
+      <li><strong>Professional liability insurance:</strong> €20-50/month (depending on profession)</li>
+      <li><strong>KvK annual fee:</strong> €0 (registration is one-time)</li>
+      <li><strong>Banking fees:</strong> €5-15/month (business account)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-blue-800">
+        <strong>Living costs reality:</strong> Amsterdam is expensive—expect €1,500-2,500/month for a studio/1-bedroom apartment. Rotterdam, Utrecht, and The Hague are 20-30% cheaper. Factor housing costs into your freelance rates before committing.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The 30% Ruling (Tax Benefit)</h3>
+
+    <p class="mb-4">
+      Qualifying expats can receive 30% of their salary tax-free for up to 5 years. This significantly reduces your tax burden. However, as a freelancer, qualifying is more complex than for employees.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">You May Qualify If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You were recruited from abroad</li>
+          <li>✓ You have specific expertise scarce in NL</li>
+          <li>✓ You lived 150+ km from Dutch border for 16 of past 24 months</li>
+          <li>✓ You earn above the threshold (€46,107 in 2026)</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Freelancer Complications:</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Self-employed don't automatically qualify</li>
+          <li>• May need to structure as BV (private company)</li>
+          <li>• Consult a tax advisor before assuming eligibility</li>
+          <li>• Rules have been tightening—verify current requirements</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Dutch freelancer visa process involves applying for an MVV (entry visa) from your home country, then converting it to a residence permit after arrival. DAFT applicants have a more streamlined process, while points-system applicants need additional business plan assessments.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Business Plan</h4>
+          <p class="text-neutral-600">For DAFT, a simple business outline works—describe your services, target clients, and projected income. For the points system, you'll need a comprehensive plan assessed by a recognized advisor (RVO or designated organizations). Include market analysis, financial projections, and evidence of your expertise.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open a Dutch Bank Account (DAFT)</h4>
+          <p class="text-neutral-600">DAFT applicants should open a Dutch bank account and deposit €4,500. Some banks allow account opening from abroad (bunq, for example). Alternatively, you can show funds in a US account with proof of transfer intent. Keep documentation of your capital.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit MVV Application</h4>
+          <p class="text-neutral-600">Apply at the Dutch embassy or consulate in your home country. Submit your passport, business plan, proof of funds, and application forms. Pay the visa fee (€207 for DAFT, €350+ for standard). Some countries allow online application through IND.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for IND Decision</h4>
+          <p class="text-neutral-600">The IND (Immigration and Naturalisation Service) processes your application in the Netherlands. This takes 8-12 weeks, sometimes longer. You may be asked for additional documents. Track your application status online through the IND portal.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect MVV and Travel</h4>
+          <p class="text-neutral-600">Once approved, collect your MVV sticker from the embassy. This entry visa is valid for 90 days—you must enter the Netherlands and register within this period. Book your flight and arrange initial accommodation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register at Municipality (Gemeente)</h4>
+          <p class="text-neutral-600">Within 5 days of arrival, register at your local gemeente (city hall). You'll need your rental contract and passport. This registration gives you a BSN (citizen service number)—essential for banking, insurance, and everything else.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect Residence Permit</h4>
+          <p class="text-neutral-600">Schedule an appointment at an IND desk to collect your residence permit card. Bring your passport and any requested documents. The card is your official proof of residence—valid for 2 years initially (DAFT) or as specified.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register at KvK (Chamber of Commerce)</h4>
+          <p class="text-neutral-600">Visit the KvK to register your business. Bring your passport, residence permit, and business details. You'll receive a KvK number (like an EIN/company number) and be registered in the trade register. Cost is €75 one-time.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Dutch Health Insurance</h4>
+          <p class="text-neutral-600">Within 4 months of registration, sign up for Dutch basic health insurance. Compare providers online, choose your insurer, and submit your BSN. Coverage begins from your registration date (retroactively if needed). Cancel your international insurance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Housing first:</strong> Finding accommodation in the Netherlands (especially Amsterdam) is notoriously difficult. Start your search before arriving—you need an address to register at the gemeente. Consider short-term rentals initially, then search for permanent housing once you have your BSN.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers moving to the Netherlands:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Software Developer, DAFT Route</h3>
+        <p class="text-neutral-600 mb-4">Freelance developer from New York, remote clients in US and Europe.</p>
+        <p class="text-green-700 font-medium">✓ DAFT application approved in 10 weeks. €4,500 investment was easy—already had savings. Kept US clients, added Dutch ones. Paying €140/month for Dutch insurance with dental supplement. Very happy with the move.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Canadian Marketing Consultant, Points System</h3>
+        <p class="text-neutral-600 mb-4">10 years experience, first time applying for Dutch visa.</p>
+        <p class="text-amber-700 font-medium">△ Points system was tough—scored only 85 points initially. Had to strengthen business plan with Dutch market research. Hired local advisor (€2,000) to improve application. Approved on second attempt after 6 months total.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Japanese Graphic Designer, DAFT Route</h3>
+        <p class="text-neutral-600 mb-4">Moving from Tokyo to Rotterdam for lower costs and creative scene.</p>
+        <p class="text-green-700 font-medium">✓ Japan qualifies for DAFT—process was straightforward. Rotterdam housing much easier than Amsterdam. Found apartment within 2 weeks. Dutch design community very welcoming. Insurance €125/month, much cheaper than US would be.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Translator, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">Previously could work freely in NL, now needs visa post-Brexit.</p>
+        <p class="text-red-700 font-medium">✗ Points system rejected—translation services didn't demonstrate enough "added value" to Dutch economy. Appealed but lost. Now considering Portugal's D7 visa instead. Brexit complications continue to affect UK freelancers.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Consultant, 30% Ruling</h3>
+        <p class="text-neutral-600 mb-4">Management consultant setting up in Amsterdam, high income.</p>
+        <p class="text-amber-700 font-medium">△ DAFT approved easily, but 30% ruling was complicated as freelancer. Had to set up a BV (Dutch company) and pay himself as employee to qualify. Extra accounting costs of €300/month, but tax savings made it worthwhile.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Photographer, First-time Freelancer</h3>
+        <p class="text-neutral-600 mb-4">Former employee, transitioning to freelance photography in Netherlands.</p>
+        <p class="text-green-700 font-medium">✓ DAFT doesn't require prior business experience—just a viable plan. Showed portfolio and client interest. €4,500 came from savings. Now building Dutch client base while serving US clients remotely. Insurance deductible hit hard in year one with dental work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare International Insurance for Your Move"
+    description="Coverage for your transition period before Dutch insurance kicks in."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming International Insurance Will Work Long-term</h3>
+        <p class="text-neutral-600">The Netherlands requires Dutch basic insurance for all residents. International insurance works for your visa application and transition period, but you must switch to Dutch insurance within 4 months of registration. Failure to do so results in automatic enrollment and back-payment penalties.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the Points System Difficulty</h3>
+        <p class="text-neutral-600">If you're not eligible for DAFT, the points system is genuinely difficult for typical freelancers. It's designed for entrepreneurs creating jobs and bringing innovation—not solo consultants or developers. Research whether you can realistically score 100 points before investing time and money.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Securing Housing Before Arrival</h3>
+        <p class="text-neutral-600">You need a Dutch address to register at the gemeente, which you need for your BSN, which you need for everything else. The Dutch housing market (especially Amsterdam) is extremely competitive. Start searching months in advance and consider short-term housing services for your first months.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting the Annual Insurance Deductible</h3>
+        <p class="text-neutral-600">Dutch insurance has a mandatory €385 annual deductible that catches many expats off guard. Unlike your premium, this is per-person and resets each January. Budget for it, especially in your first year when you might need more healthcare as you settle in.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming 30% Ruling Applies to All Freelancers</h3>
+        <p class="text-neutral-600">The 30% ruling is a significant tax benefit, but it's not automatic for self-employed people. Many freelancers assume they'll qualify and are disappointed. Consult a Dutch tax advisor before factoring this benefit into your financial planning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Netherlands -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in the Netherlands</h2>
+
+    <p class="mb-4">
+      The Dutch healthcare system consistently ranks among Europe's best, with universal coverage through mandatory private insurance. Care quality is high, wait times are generally reasonable, and English is widely spoken in medical settings—especially in major cities.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Dutch Healthcare Works</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">What's Covered (Basic Insurance)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP consultations (huisarts) - no deductible</li>
+          <li>✓ Hospital care and surgeries</li>
+          <li>✓ Specialist care (with GP referral)</li>
+          <li>✓ Prescription medications</li>
+          <li>✓ Mental health care (some sessions)</li>
+          <li>✓ Maternity and postnatal care</li>
+          <li>✓ Ambulance services</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">What's Not Covered (Basic)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Adult dental care (covered for children)</li>
+          <li>• Most physiotherapy (limited chronic care only)</li>
+          <li>• Glasses and contact lenses</li>
+          <li>• Cosmetic procedures</li>
+          <li>• Alternative medicine (acupuncture, etc.)</li>
+          <li>• Most vaccinations (travel vaccines)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The GP Gatekeeper System</h3>
+
+    <p class="mb-4">
+      In the Netherlands, your huisarts (GP/family doctor) is your first point of contact for almost all healthcare. You must register with a GP near your home, and you'll need a referral from them to see specialists. This is different from the US system where you can often see specialists directly.
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Finding a GP (Huisarts)</h4>
+        <p class="text-neutral-600">Register with a GP practice near your home as soon as you have your BSN. Many practices have waiting lists in popular areas. Use Zorgkaart Nederland to find practices accepting new patients and read reviews. Most GPs in cities speak English.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Getting Referrals</h4>
+        <p class="text-neutral-600">Dutch GPs often take a "wait and see" approach that can frustrate expats used to more interventionist medicine. Be direct about your concerns if you feel you need a specialist. GPs can refer you to any specialist; you don't need to stay within your insurance network.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Urgent Care</h4>
+        <p class="text-neutral-600">For urgent but non-emergency issues outside GP hours, call your GP's practice—they'll connect you to the huisartsenpost (after-hours GP service). For true emergencies, call 112 or go directly to the hospital's spoedeisende hulp (emergency room).</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>High quality:</strong> Netherlands consistently ranks in top 5 European healthcare systems</li>
+      <li><strong>English widely spoken:</strong> Medical professionals in cities typically speak good English</li>
+      <li><strong>Short wait times:</strong> Generally quick access to GPs; specialists may have 2-6 week waits</li>
+      <li><strong>Modern facilities:</strong> Well-equipped hospitals and clinics throughout the country</li>
+      <li><strong>Pharmacy access:</strong> Prescriptions filled at apotheek (pharmacy), often same-day</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Cultural note:</strong> Dutch healthcare culture emphasizes not over-treating. If you come from a country with more interventionist medicine (like the US), you may find Dutch doctors less likely to prescribe antibiotics, order tests, or refer to specialists for minor issues. This is intentional, not negligence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the DAFT treaty and who qualifies?</h3>
+        <p class="text-neutral-600">
+          The Dutch-American Friendship Treaty (DAFT) is a 1956 agreement that allows US citizens to become self-employed in the Netherlands with minimal requirements—just €4,500 in business capital and a viable business plan. Japanese citizens have similar access under a parallel treaty. No points system, no proof of "added value."
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I really need Dutch health insurance, or can I use international insurance?</h3>
+        <p class="text-neutral-600">
+          Yes, Dutch basic health insurance (basisverzekering) is mandatory for all residents. International insurance can cover your visa application and first 4 months, but you must switch to Dutch insurance after registering. Failure to do so results in automatic enrollment and fines. This is non-negotiable.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How hard is the points system for non-DAFT applicants?</h3>
+        <p class="text-neutral-600">
+          Genuinely difficult for typical freelancers. You need 100 points across experience, business plan quality, and "added value to the Netherlands." Solo consultants and developers often struggle because they don't create jobs or bring obvious innovation. Many non-DAFT freelancers consider Portugal or Germany as alternatives.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Dutch to freelance in the Netherlands?</h3>
+        <p class="text-neutral-600">
+          Not for business or daily life—over 90% of Dutch people speak English, and business is commonly conducted in English. However, official documents are in Dutch, and speaking some Dutch helps with integration and certain administrative tasks. For permanent residence or citizenship, Dutch language requirements apply.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the 30% ruling and do freelancers qualify?</h3>
+        <p class="text-neutral-600">
+          The 30% ruling allows qualifying expats to receive 30% of their salary tax-free for up to 5 years. However, self-employed people don't automatically qualify—it's designed for employees. Some freelancers set up a BV (Dutch private company) and pay themselves as employees to qualify. Consult a tax advisor for your specific situation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residence or citizenship?</h3>
+        <p class="text-neutral-600">
+          Permanent residence is possible after 5 years of legal residence. Citizenship requires 5 years plus passing a civic integration exam (inburgeringsexamen) in Dutch. The Netherlands generally doesn't allow dual citizenship—you may need to renounce your current citizenship, though exceptions exist for some countries.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The Netherlands offers an excellent base for freelancers who value a central European location, English-speaking environment, and strong business infrastructure. For US and Japanese citizens, the DAFT treaty makes it one of the easiest European countries to access—far simpler than Germany's complex requirements or Portugal's income thresholds.
+    </p>
+
+    <p class="mb-4">
+      However, the mandatory Dutch health insurance system means higher fixed costs than countries accepting international insurance. Budget €1,800-2,200 annually for insurance and deductible, on top of some of Europe's highest living costs (especially housing in Amsterdam). This works for higher-earning freelancers but can squeeze those with modest incomes.
+    </p>
+
+    <p class="mb-6">
+      For non-DAFT applicants, think carefully before committing. The points system is genuinely difficult for typical freelancers without established businesses or innovative offerings. Portugal's D7 visa, Spain's digital nomad visa, or Germany's freelancer visa may offer easier paths with lower costs.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Netherlands is ideal for US/Japanese freelancers seeking a European base with excellent infrastructure and English-speaking culture. DAFT makes it accessible; just be prepared for mandatory Dutch insurance and high living costs. Non-DAFT applicants should carefully evaluate whether they can score 100 points before investing in the process.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get Transition Coverage →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Compare All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/netherlands/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in the Netherlands</p>
+      </a>
+      <a href="/insurance-for/freelancers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Freelancers Abroad</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for self-employed expats</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/netherlands" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative visa option for remote workers</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
