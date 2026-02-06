@@ -36,27 +36,27 @@ const requirementsColumns = [
 ];
 
 const requirementsRows = [
-  { requirement: "University Admission", details: "Unconditional acceptance from Dutch institution", evidence: "Admission letter from university" },
-  { requirement: "Financial Proof", details: "€11,400/year (or €950/month)", evidence: "Bank statements or sponsor declaration" },
-  { requirement: "Health Insurance", details: "Valid insurance meeting Dutch standards", evidence: "Insurance certificate" },
-  { requirement: "Accommodation", details: "Housing in the Netherlands (initial address)", evidence: "Rental contract or university housing" },
-  { requirement: "English Proficiency", details: "IELTS 6.0-6.5 or TOEFL 80-90 typically", evidence: "Test certificate" },
-  { requirement: "TB Certificate", details: "Required from certain countries", evidence: "Medical certificate" },
+  { requirement: "University Admission", details: "Acceptance from recognized Dutch institution", evidence: "Admission letter, enrollment proof" },
+  { requirement: "Proof of Funds", details: "€13,000 for first year of residence permit", evidence: "Bank statements, scholarship letter, sponsor declaration" },
+  { requirement: "Valid Passport", details: "Valid for duration of studies", evidence: "Passport copy (valid 3+ months beyond stay)" },
+  { requirement: "TB Test", details: "Required from certain countries", evidence: "TB test certificate from approved clinic (~€70)" },
+  { requirement: "Health Insurance", details: "Mandatory coverage during stay", evidence: "Insurance policy or proof of Dutch basic insurance" },
+  { requirement: "Tuition Payment", details: "First year tuition paid or payment plan", evidence: "Payment confirmation or arrangement letter" },
 ];
 
 const insuranceColumns = [
-  { key: "feature", header: "Feature" },
+  { key: "feature", header: "Coverage Feature" },
   { key: "student", header: "Student Insurance" },
-  { key: "basic", header: "Dutch Basic (Basisverzekering)" },
+  { key: "basic", header: "Dutch Basic Insurance" },
 ];
 
 const insuranceRows = [
-  { feature: "Monthly Cost", student: "€50-80/month", basic: "€130+/month" },
-  { feature: "When Required", student: "If not working or under 32 hrs/month", basic: "If working 32+ hours/month" },
-  { feature: "Deductible", student: "Usually none or low", basic: "€385/year (eigen risico)" },
-  { feature: "Dental", student: "Often included (basic)", basic: "NOT covered for adults" },
-  { feature: "Providers", student: "AON, OOM, Zorgverzekering", basic: "Zilveren Kruis, VGZ, CZ" },
-  { feature: "GP Access", student: "Yes, register with huisarts", basic: "Yes, register with huisarts" },
+  { feature: "Cost", student: "€35-60/month", basic: "~€130/month + eigen risico" },
+  { feature: "Who Needs It", student: "Students not working or working under 32 hrs/month", basic: "Anyone working 32+ hours/month" },
+  { feature: "GP Access", student: "Covered (own network)", basic: "Covered (register with huisarts)" },
+  { feature: "Hospital Care", student: "Covered with limits", basic: "Full coverage (after €385 deductible)" },
+  { feature: "Dental", student: "Usually not included", basic: "Not covered for adults" },
+  { feature: "Prescriptions", student: "Covered (may have limits)", basic: "Covered (after deductible)" },
 ];
 
 const providerColumns = [
@@ -67,11 +67,12 @@ const providerColumns = [
 ];
 
 const providerRows = [
-  { provider: "AON Student Insurance", type: "Student", price: "€50-70", strengths: "Most popular, comprehensive" },
-  { provider: "OOM Verzekeringen", type: "Student", price: "€45-65", strengths: "Good value, flexible" },
-  { provider: "IND Erkend", type: "Student", price: "€55-80", strengths: "IND-recognized options" },
-  { provider: "Zilveren Kruis", type: "Dutch Basic", price: "€130+", strengths: "Required if working 32+ hrs" },
-  { provider: "Cigna Global", type: "International", price: "€100-180", strengths: "Frequent travelers" },
+  { provider: "AON Student Insurance", type: "Student", price: "€35-50", strengths: "Most popular, English support" },
+  { provider: "OOM International", type: "Student", price: "€40-55", strengths: "Good coverage, flexible" },
+  { provider: "Zilveren Kruis", type: "Dutch Basic", price: "~€130", strengths: "Large network, if working 32+ hrs" },
+  { provider: "ONVZ", type: "Dutch Basic", price: "~€130", strengths: "English-friendly, expat focus" },
+  { provider: "Cigna Global", type: "Private International", price: "€80-150", strengths: "Comprehensive, worldwide coverage" },
+  { provider: "Allianz Care", type: "Private International", price: "€70-130", strengths: "Long stays, EU coverage" },
 ];
 
 const costColumns = [
@@ -81,12 +82,13 @@ const costColumns = [
 ];
 
 const costRows = [
-  { item: "MVV/Residence Permit", amount: "€210", notes: "Often paid via university" },
-  { item: "Tuition (EU/EEA)", amount: "€2,530/year", notes: "Statutory rate 2024/25" },
-  { item: "Tuition (non-EU)", amount: "€8,000-20,000/year", notes: "Institutional rate, varies" },
-  { item: "Health Insurance", amount: "€50-80/month", notes: "Student insurance" },
-  { item: "Housing Deposit", amount: "€500-1,500", notes: "Refundable, varies" },
-  { item: "Municipality Registration", amount: "€0-50", notes: "Varies by gemeente" },
+  { item: "MVV Visa Fee", amount: "€210", notes: "Entry visa (if required from your country)" },
+  { item: "Residence Permit Fee", amount: "€207", notes: "TEV procedure via university" },
+  { item: "Tuition (EU/EEA)", amount: "€2,314/year", notes: "Statutory fee for EU students" },
+  { item: "Tuition (Non-EU)", amount: "€8,000-20,000/year", notes: "Varies by program and university" },
+  { item: "Student Insurance", amount: "€35-60/month", notes: "If not working or under 32 hrs/month" },
+  { item: "Dutch Basic Insurance", amount: "~€130/month", notes: "If working 32+ hours/month" },
+  { item: "TB Test (if required)", amount: "~€70", notes: "From GGD or approved clinic" },
 ];
 
 const timelineColumns = [
@@ -96,27 +98,28 @@ const timelineColumns = [
 ];
 
 const timelineRows = [
-  { step: "Receive unconditional admission", duration: "Varies", location: "University" },
-  { step: "University initiates MVV application", duration: "1-2 weeks", location: "University international office" },
-  { step: "IND processes MVV", duration: "2-4 weeks", location: "Netherlands (IND)" },
-  { step: "Receive MVV approval", duration: "Via embassy", location: "Dutch embassy in your country" },
-  { step: "Travel to Netherlands", duration: "Within 90 days of MVV", location: "-" },
-  { step: "Register at municipality", duration: "Within 5 days of arrival", location: "Local gemeente" },
-  { step: "Collect residence permit", duration: "1-2 weeks", location: "IND desk" },
-  { step: "Arrange health insurance", duration: "Immediately", location: "Online" },
+  { step: "Apply to Dutch university", duration: "Varies", location: "Studielink or university" },
+  { step: "Receive admission and enrollment proof", duration: "2-8 weeks", location: "University" },
+  { step: "University initiates residence permit (TEV)", duration: "1-2 weeks", location: "University/IND" },
+  { step: "Receive approval letter from IND", duration: "2-8 weeks", location: "Immigration service" },
+  { step: "Apply for MVV at Dutch embassy", duration: "2-4 weeks", location: "Embassy/consulate" },
+  { step: "Travel to Netherlands", duration: "Within 90 days of MVV", location: "Airport" },
+  { step: "Collect residence permit", duration: "1-2 weeks after arrival", location: "IND desk" },
+  { step: "Register at municipality (get BSN)", duration: "First week", location: "Gemeente" },
+  { step: "Arrange health insurance", duration: "Within 4 months", location: "Insurance provider" },
 ];
 ---
 
 <PageShell
-  title="Netherlands Student Visa 2026: Requirements, Insurance & Zoekjaar Guide"
-  description="Complete guide to the Dutch Student Visa. MVV requirements, health insurance options, the zoekjaar job search year, tuition fees, and the straightforward visa process handled by your university."
+  title="Netherlands Student Visa 2026: Requirements, Insurance & Application Guide"
+  description="Complete guide to the Netherlands Student Visa. MVV requirements, Dutch health insurance options, proof of funds, and step-by-step application process for international students."
   headline="Netherlands Student Visa: Insurance & Requirements Guide"
-  subheadline="Everything you need to know about studying in the Netherlands—university-managed visa process, health insurance options, the zoekjaar post-study work year, and navigating Dutch healthcare."
+  subheadline="Everything you need to know about studying in the Netherlands—visa requirements, health insurance options (student vs. Dutch basic), financial proof, and the complete application process."
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Compare Student Insurance"
   ctaButtonHref="/go/cigna-global"
-  heroImage="/images/visas/student-visa-hero-bg.png"
+  heroBackgroundImage="/images/visas/student-visa-hero-bg.png"
 >
 
   <!-- Trust Signals -->
@@ -131,7 +134,7 @@ const timelineRows = [
     </span>
     <span class="flex items-center gap-1">
       <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-      Zoekjaar Work Year Available
+      Orientation Year (Zoekjaar) Available
     </span>
   </div>
 
@@ -140,36 +143,36 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
 
     <p class="mb-4">
-      The Netherlands is one of the most popular destinations for international students, with over 115,000 studying at Dutch universities. The appeal is clear: <strong>most programs taught in English</strong>, a streamlined visa process where the university handles most paperwork, excellent quality of education, and a 1-year job search visa (zoekjaar) after graduation.
+      The Netherlands is one of Europe's most popular destinations for international students, with over 115,000 international students enrolled at Dutch universities. With 2,100+ English-taught programs—the highest in continental Europe—and 13 universities ranked in the global top 200, the Netherlands offers world-class education in a welcoming, international environment.
     </p>
 
     <p class="mb-4">
-      Health insurance in the Netherlands works differently depending on whether you work. If you don't work (or work less than 32 hours/month), you need student insurance meeting Dutch requirements. If you work 32+ hours/month, you're required to join Dutch basic insurance (basisverzekering)—which is more expensive but covers you like any Dutch resident.
+      The Dutch student visa process works differently from many countries: your university sponsors your residence permit application through the TEV procedure. This makes the process relatively straightforward, though health insurance can be confusing. Whether you need student insurance or Dutch basic insurance (basisverzekering) depends on how many hours you work.
     </p>
 
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
       <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Netherlands Student Visa</h3>
       <ul class="space-y-2 text-primary-800">
-        <li>• <strong>Programs:</strong> 2,100+ English-taught programs—most in continental Europe</li>
-        <li>• <strong>Visa process:</strong> University handles MVV application on your behalf</li>
-        <li>• <strong>Insurance:</strong> Student insurance (~€60/month) or Dutch basic (€130+/month if working)</li>
-        <li>• <strong>Work rights:</strong> 16 hours/week during term (permit required), full-time in summer</li>
-        <li>• <strong>Zoekjaar:</strong> 1-year job search visa after graduation</li>
-        <li>• <strong>Dental warning:</strong> Dutch basic insurance does NOT cover dental for adults</li>
+        <li>• <strong>Visa type:</strong> MVV + Residence Permit (university sponsors you via TEV procedure)</li>
+        <li>• <strong>Healthcare:</strong> Mandatory—student insurance OR Dutch basic insurance (basisverzekering)</li>
+        <li>• <strong>Tuition:</strong> €2,314/year (EU/EEA) or €8,000-20,000/year (non-EU)</li>
+        <li>• <strong>Work rights:</strong> 16 hours/week during term, full-time in summer</li>
+        <li>• <strong>Duration:</strong> Length of studies</li>
+        <li>• <strong>Post-study work:</strong> Orientation year (zoekjaar)—1 year to find work after graduation</li>
       </ul>
     </div>
 
     <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Study in the Netherlands?</h3>
 
     <ul class="list-disc pl-6 space-y-2 mb-6">
-      <li><strong>English everywhere:</strong> 2,100+ programs in English, 95% of Dutch speak English</li>
-      <li><strong>University handles visa:</strong> Less paperwork—they apply for your MVV</li>
-      <li><strong>Quality education:</strong> 13 Dutch universities in world top 200</li>
-      <li><strong>Zoekjaar:</strong> 1-year post-study job search visa</li>
-      <li><strong>Central location:</strong> Easy access to rest of Europe, major airport hub</li>
-      <li><strong>International environment:</strong> 13% of population is non-Dutch</li>
-      <li><strong>Innovation hub:</strong> Strong in tech, business, engineering, creative industries</li>
-      <li><strong>Bike culture:</strong> Easy, affordable transport</li>
+      <li><strong>English-taught programs:</strong> 2,100+ programs in English—highest in non-English Europe</li>
+      <li><strong>World-class universities:</strong> 13 Dutch universities in the global top 200</li>
+      <li><strong>International environment:</strong> 12% of students are international; very welcoming culture</li>
+      <li><strong>Excellent English proficiency:</strong> 95%+ of Dutch speak English fluently</li>
+      <li><strong>Bike-friendly cities:</strong> Safe, sustainable, and easy to get around</li>
+      <li><strong>Central location:</strong> Easy access to Germany, Belgium, France, and the UK</li>
+      <li><strong>Orientation year:</strong> 1 year to find work after graduation (zoekjaar)</li>
+      <li><strong>Affordable (for EU):</strong> €2,314/year tuition for EU/EEA students</li>
     </ul>
   </section>
 
@@ -181,30 +184,30 @@ const timelineRows = [
       <div class="bg-green-50 border border-green-200 rounded-lg p-6">
         <h3 class="font-semibold text-green-900 mb-3">Netherlands is Right For You If:</h3>
         <ul class="space-y-2 text-green-800">
-          <li>✓ You want to study entirely in English</li>
-          <li>✓ You want a straightforward visa process</li>
-          <li>✓ You want to work in Europe after graduation</li>
-          <li>✓ You value international, diverse environments</li>
-          <li>✓ You're interested in business, tech, or creative fields</li>
-          <li>✓ You want central European location</li>
+          <li>✓ You want English-taught programs without UK costs</li>
+          <li>✓ You prefer an international, multicultural environment</li>
+          <li>✓ You want to stay and work after graduation (zoekjaar)</li>
+          <li>✓ You value practical, career-focused education</li>
+          <li>✓ You want to explore Europe easily</li>
+          <li>✓ You're EU/EEA (low tuition at €2,314/year)</li>
         </ul>
       </div>
 
       <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
         <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
         <ul class="space-y-2 text-amber-800">
-          <li>• You want free tuition (Germany is €0 at public unis)</li>
-          <li>• Budget is very tight (Netherlands is expensive)</li>
-          <li>• You need dental coverage (not included in basic insurance)</li>
-          <li>• You want longer post-study work (Germany offers 18 months)</li>
-          <li>• Housing is a dealbreaker (Dutch housing crisis is real)</li>
+          <li>• Budget is tight (Netherlands is expensive to live in)</li>
+          <li>• You want completely free tuition (try Germany, Norway)</li>
+          <li>• You prefer warmer climate</li>
+          <li>• You want a larger country/more space</li>
+          <li>• You need guaranteed easy path to permanent residency</li>
         </ul>
       </div>
     </div>
 
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
       <p class="text-blue-800">
-        <strong>Zoekjaar advantage:</strong> After graduating from a Dutch university, you can apply for the zoekjaar (orientation year)—a 1-year residence permit to find work. You can work any job during this time, and once employed, switch to a work permit. Great for building a career in Europe.
+        <strong>Orientation year (zoekjaar) advantage:</strong> After completing your degree at a Dutch university, you can apply for an orientation year visa—giving you 12 months to find a job in the Netherlands. This makes transitioning from student to worker much easier than in many other countries.
       </p>
     </div>
   </section>
@@ -214,96 +217,113 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
 
     <p class="mb-4">
-      The Dutch student visa process is uniquely straightforward: your university handles the MVV (entry visa) and residence permit application on your behalf. This means less bureaucracy for you.
+      The Netherlands student visa process depends on your nationality. EU/EEA students don't need a visa—just register at the municipality. Non-EU students need an MVV (entry visa) and residence permit, which your university handles through the TEV procedure.
     </p>
 
     <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
 
-    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The MVV + Residence Permit Process</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Financial Requirements</h3>
 
-    <p class="mb-4">
-      Unlike most countries where you apply for a visa at an embassy, Dutch universities act as "sponsors" and apply to IND (Immigration and Naturalization Service) on your behalf. You just need to:
-    </p>
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Residence Permit Requirement</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Proof of funds:</strong> €13,000/year</li>
+          <li>• <strong>Method:</strong> Bank statement, scholarship, or sponsor</li>
+          <li>• <strong>Blocked account:</strong> Accepted as proof</li>
+          <li>• <strong>Note:</strong> This is the IND requirement, not actual costs</li>
+        </ul>
+      </div>
 
-    <ol class="list-decimal pl-6 space-y-2 mb-6">
-      <li>Get <strong>unconditional admission</strong> from a Dutch university</li>
-      <li>Provide required documents to university (passport, financial proof, insurance)</li>
-      <li>University submits MVV application to IND</li>
-      <li>Collect MVV sticker from Dutch embassy in your country</li>
-      <li>Travel to Netherlands and collect residence permit</li>
-    </ol>
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Actual Living Costs</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Amsterdam:</strong> €1,200-1,500/month</li>
+          <li>• <strong>Other cities:</strong> €1,000-1,300/month</li>
+          <li>• <strong>Housing:</strong> €500-900/month (scarce!)</li>
+          <li>• <strong>Budget realistically:</strong> €1,100+ minimum</li>
+        </ul>
+      </div>
+    </div>
 
-    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-      <p class="text-green-800">
-        <strong>Much simpler than other countries:</strong> No embassy interviews, no complex paperwork. Your university's international office guides you through the process. Just provide documents and follow their instructions.
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Housing crisis:</strong> Finding student housing in the Netherlands—especially Amsterdam—is extremely difficult. Start looking months in advance. Many universities offer housing guarantees for first-year international students, but you must apply early.
       </p>
     </div>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
-
-    <p class="mb-4">
-      You must prove you have <strong>€11,400/year</strong> (approximately €950/month) to support yourself. This can be shown through:
-    </p>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Needs What?</h3>
 
     <ul class="list-disc pl-6 space-y-2">
-      <li><strong>Bank statements:</strong> Showing sufficient savings</li>
-      <li><strong>Sponsor declaration:</strong> Parents or guarantor (notarized declaration)</li>
-      <li><strong>Scholarship letter:</strong> If receiving funding</li>
-      <li><strong>Combination:</strong> Partial savings plus sponsor</li>
+      <li><strong>EU/EEA/Swiss students:</strong> No visa needed. Just register at municipality within 5 days of arrival.</li>
+      <li><strong>Non-EU from visa-exempt countries (US, Canada, Australia, etc.):</strong> Enter visa-free, but university still handles residence permit via TEV.</li>
+      <li><strong>Non-EU from visa-required countries:</strong> Need MVV (entry visa) + residence permit. University handles both via TEV procedure.</li>
+      <li><strong>Everyone:</strong> Must have health insurance and register for BSN (citizen service number).</li>
     </ul>
-
-    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
-      <p class="text-amber-800">
-        <strong>Housing warning:</strong> The Netherlands, especially Amsterdam, has a severe housing shortage. Finding accommodation is often the hardest part of moving. Start searching early, use university housing if available, and consider smaller cities (Groningen, Eindhoven, Maastricht) where housing is easier.
-      </p>
-    </div>
   </section>
 
   <!-- Section: Insurance Requirements -->
   <section id="insurance-requirements" class="scroll-mt-24 mb-12">
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
 
-    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
-      <h3 class="font-semibold text-amber-900 mb-2">Insurance Depends on Whether You Work</h3>
-      <p class="text-amber-800">
-        The Netherlands has a unique rule: if you work 32 hours/month or more, you MUST join Dutch basic insurance (basisverzekering). If you don't work (or work less), you can use student insurance. This matters for costs—Dutch basic is €130+/month vs. ~€60/month for student insurance.
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">The Key Question: Are You Working?</h3>
+      <p class="text-green-800">
+        In the Netherlands, your insurance requirement depends on work hours. If you work 32+ hours per month, you MUST have Dutch basic health insurance (basisverzekering). If you work fewer than 32 hours per month or don't work, you can use student insurance instead.
       </p>
     </div>
 
     <p class="mb-4">
-      Either way, you need valid health insurance from day 1 in the Netherlands. Student insurance from providers like AON or OOM meets IND requirements. If you start working significantly, you'll need to switch to Dutch basic insurance.
+      This is one of the most confusing aspects for international students. Dutch law requires everyone who works in the Netherlands to have basisverzekering. But since most students either don't work or work limited hours, student insurance (like AON or OOM) is usually the right choice.
     </p>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Student Insurance vs. Dutch Basic</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Student Insurance vs. Dutch Basic Insurance</h3>
 
     <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
 
-    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Which Do You Need?</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding Your Options</h3>
 
     <div class="grid md:grid-cols-2 gap-6 mb-6">
       <div class="border border-green-200 bg-green-50 rounded-lg p-6">
-        <h4 class="font-semibold text-green-900 mb-3">Student Insurance (~€60/month) If:</h4>
+        <h4 class="font-semibold text-green-900 mb-3">Student Insurance (Under 32 hrs/month work)</h4>
         <ul class="space-y-2 text-green-800">
-          <li>✓ You don't work in the Netherlands</li>
-          <li>✓ You work less than 32 hours/month</li>
-          <li>✓ You want lower costs</li>
-          <li>✓ You want included basic dental</li>
+          <li>✓ Much cheaper (€35-60/month)</li>
+          <li>✓ No eigen risico (deductible)</li>
+          <li>✓ Easy to arrange online</li>
+          <li>✓ Coverage designed for students</li>
+          <li>✓ English customer service</li>
         </ul>
+        <p class="mt-3 text-sm text-green-700">Popular options: AON Student Insurance, OOM International</p>
       </div>
 
       <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
-        <h4 class="font-semibold text-blue-900 mb-3">Dutch Basic (€130+/month) If:</h4>
+        <h4 class="font-semibold text-blue-900 mb-3">Dutch Basic Insurance (32+ hrs/month work)</h4>
         <ul class="space-y-2 text-blue-800">
-          <li>✓ You work 32+ hours/month (mandatory)</li>
-          <li>✓ You want the same coverage as Dutch residents</li>
-          <li>✓ You plan to stay after graduation (smoother transition)</li>
+          <li>✓ Full Dutch healthcare system access</li>
+          <li>✓ Required by law if working enough hours</li>
+          <li>✓ Can add supplementary coverage</li>
+          <li>• ~€130/month + €385 deductible (eigen risico)</li>
+          <li>• More complex to arrange</li>
         </ul>
+        <p class="mt-3 text-sm text-blue-700">English-friendly: ONVZ, Zilveren Kruis</p>
       </div>
     </div>
 
-    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-      <p class="text-red-800">
-        <strong>Dental NOT covered:</strong> Dutch basic insurance does NOT cover dental care for adults (only children under 18). This is true for all Dutch residents. Budget €200-400/year for dental, or get additional dental insurance (aanvullende verzekering), or do dental work before moving.
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> If you start working 32+ hours per month, you have 4 months to switch to Dutch basic insurance. Penalties apply if you don't comply. Conversely, if you stop working, you can switch back to student insurance.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">EU Students: EHIC Considerations</h3>
+
+    <p class="mb-4">
+      If you're from an EU country, your European Health Insurance Card (EHIC) covers temporary stays. However, for long-term study, you still need Dutch insurance. EHIC alone is not sufficient for residence permit purposes.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Dental coverage:</strong> Neither student insurance nor Dutch basic insurance typically covers dental for adults. Budget separately for dental care (check-up ~€50-80) or add a supplementary policy (aanvullende verzekering) if you want dental coverage.
       </p>
     </div>
   </section>
@@ -311,10 +331,10 @@ const timelineRows = [
   <!-- CTA Box -->
   <CTABox
     variant="highlight"
-    title="Need help choosing Dutch health insurance?"
-    description="Compare AON, OOM, and Dutch basic insurance options for students."
-    buttonText="Compare Dutch Insurance Options"
-    buttonHref="/countries/netherlands/insurance"
+    title="Need comprehensive international coverage?"
+    description="Compare private insurance plans from top providers for students in the Netherlands."
+    buttonText="Compare Student Insurance Plans"
+    buttonHref="/go/cigna-global"
   />
 
   <!-- Section: Recommended Providers -->
@@ -322,7 +342,7 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
 
     <p class="mb-4">
-      For most students (not working or working fewer than 32 hours/month), student insurance is the best choice. AON Student Insurance is the most popular among international students in the Netherlands.
+      Your choice depends on whether you're working and your coverage needs. Most students start with student insurance like AON, then switch to basic insurance if they get a part-time job with enough hours.
     </p>
 
     <ComparisonTable columns={providerColumns} rows={providerRows} />
@@ -331,23 +351,23 @@ const timelineRows = [
 
     <div class="space-y-4">
       <div class="border-l-4 border-green-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Standard Student (Not Working)</h4>
-        <p class="text-neutral-600">AON Student Insurance is the most popular choice—widely recognized, comprehensive coverage, includes basic dental, and priced around €50-70/month. OOM is a good alternative at similar pricing.</p>
+        <h4 class="font-semibold text-neutral-900">Most Students (Not Working Much)</h4>
+        <p class="text-neutral-600">AON Student Insurance is the most popular choice—affordable, good coverage, and excellent English support. Most universities recommend it. OOM is a solid alternative with similar coverage.</p>
       </div>
 
       <div class="border-l-4 border-blue-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Working Part-Time (32+ hours/month)</h4>
-        <p class="text-neutral-600">You must join Dutch basic insurance (basisverzekering). Zilveren Kruis, VGZ, and CZ are major providers. Compare on zorgwijzer.nl or independer.nl. Add dental coverage separately—it's not included.</p>
+        <h4 class="font-semibold text-neutral-900">Working 32+ Hours/Month</h4>
+        <p class="text-neutral-600">You must have Dutch basic insurance (basisverzekering). ONVZ is popular with expats for English-friendly service. Zilveren Kruis has a large network. Compare at independer.nl or zorgwijzer.nl.</p>
       </div>
 
       <div class="border-l-4 border-purple-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Traveling Frequently</h4>
-        <p class="text-neutral-600">Dutch student insurance typically covers you in the Netherlands and has limited EU coverage. If you travel often outside Europe, consider adding international coverage from Cigna Global or similar alongside your student insurance.</p>
+        <h4 class="font-semibold text-neutral-900">Want Comprehensive Private Coverage</h4>
+        <p class="text-neutral-600">Cigna Global and Allianz Care offer premium private coverage with global portability. More expensive but covers you everywhere—good if you travel frequently or want top-tier care.</p>
       </div>
 
       <div class="border-l-4 border-amber-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Dental Concerns</h4>
-        <p class="text-neutral-600">Student insurance often includes basic dental. Dutch basic insurance does NOT. If you're on Dutch basic and need dental care, add aanvullende verzekering (supplementary insurance) with dental coverage—costs €5-20/month extra.</p>
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Dutch basic insurance must accept you regardless of pre-existing conditions. Student insurance may have limitations. If you have ongoing health needs, Dutch basic (if working) or Cigna Global gives better coverage.</p>
       </div>
     </div>
   </section>
@@ -357,7 +377,7 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
 
     <p class="mb-4">
-      The Netherlands is not a budget destination, but it offers good value for the quality of education and international experience. EU students benefit from much lower tuition fees.
+      The Netherlands is not cheap, but visa and permit fees are reasonable compared to countries like the UK or US. The big costs are tuition (for non-EU students) and living expenses—especially housing.
     </p>
 
     <ComparisonTable columns={costColumns} rows={costRows} />
@@ -367,52 +387,36 @@ const timelineRows = [
     <div class="grid md:grid-cols-3 gap-6 mb-6">
       <div class="bg-neutral-50 rounded-lg p-6 text-center">
         <p class="text-sm text-neutral-600 mb-2">EU Student</p>
-        <p class="text-3xl font-bold text-neutral-900">€3,500-4,500</p>
-        <p class="text-sm text-neutral-500 mt-2">Visa + tuition + insurance</p>
+        <p class="text-3xl font-bold text-neutral-900">~€15,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Tuition + living</p>
       </div>
       <div class="bg-neutral-50 rounded-lg p-6 text-center">
-        <p class="text-sm text-neutral-600 mb-2">Non-EU Student</p>
-        <p class="text-3xl font-bold text-neutral-900">€9,000-21,000</p>
-        <p class="text-sm text-neutral-500 mt-2">Visa + tuition + insurance</p>
+        <p class="text-sm text-neutral-600 mb-2">Non-EU (Lower Tuition)</p>
+        <p class="text-3xl font-bold text-neutral-900">~€22,000</p>
+        <p class="text-sm text-neutral-500 mt-2">€8k tuition + living</p>
       </div>
       <div class="bg-neutral-50 rounded-lg p-6 text-center">
-        <p class="text-sm text-neutral-600 mb-2">Annual Insurance</p>
-        <p class="text-3xl font-bold text-neutral-900">€600-900</p>
-        <p class="text-sm text-neutral-500 mt-2">Student insurance</p>
+        <p class="text-sm text-neutral-600 mb-2">Non-EU (Higher Tuition)</p>
+        <p class="text-3xl font-bold text-neutral-900">~€34,000</p>
+        <p class="text-sm text-neutral-500 mt-2">€20k tuition + living</p>
       </div>
     </div>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Living Costs</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Living Cost Breakdown</h3>
 
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <div class="border border-neutral-200 rounded-lg p-6">
-        <h4 class="font-semibold text-neutral-900 mb-3">Amsterdam (Most Expensive)</h4>
-        <ul class="space-y-2 text-neutral-700 text-sm">
-          <li>• Rent: €700-1,200/month (room or small studio)</li>
-          <li>• Food: €200-300/month</li>
-          <li>• Transport: €0-100/month (bike!)</li>
-          <li>• Insurance: €60-130/month</li>
-          <li>• Other: €100-200/month</li>
-          <li>• <strong>Total: €1,100-1,800/month</strong></li>
-        </ul>
-      </div>
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Housing:</strong> €500-900/month (student rooms, shared apartments)</li>
+      <li><strong>Food:</strong> €200-300/month (cooking at home)</li>
+      <li><strong>Transport:</strong> €0-100/month (bike is free, OV-chipkaart for trains)</li>
+      <li><strong>Insurance:</strong> €35-130/month (depending on type)</li>
+      <li><strong>Phone/internet:</strong> €20-40/month</li>
+      <li><strong>Social/leisure:</strong> €100-200/month</li>
+      <li><strong>Total:</strong> €1,000-1,500/month</li>
+    </ul>
 
-      <div class="border border-neutral-200 rounded-lg p-6">
-        <h4 class="font-semibold text-neutral-900 mb-3">Other Cities (Groningen, Eindhoven, etc.)</h4>
-        <ul class="space-y-2 text-neutral-700 text-sm">
-          <li>• Rent: €400-700/month</li>
-          <li>• Food: €150-250/month</li>
-          <li>• Transport: €0-50/month (bike!)</li>
-          <li>• Insurance: €60-130/month</li>
-          <li>• Other: €80-150/month</li>
-          <li>• <strong>Total: €750-1,200/month</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
-      <p class="text-green-800">
-        <strong>Bike culture saves money:</strong> The Netherlands is bike-friendly—most students cycle everywhere. A good used bike costs €100-200, and you'll save on transport all year. Budget €0-50/month for transport if you bike (vs. €100+ for public transport in other countries).
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Work rights help:</strong> You can work 16 hours/week during term and full-time in summer. At Dutch minimum wage (~€13/hour for 21+), that's roughly €800-1,000/month in summer—enough to cover a few months of living costs if you save.
       </p>
     </div>
   </section>
@@ -422,7 +426,7 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
 
     <p class="mb-4">
-      The Dutch student visa process is refreshingly simple because your university handles most of it. Your main job is to get admitted and provide documents—they do the rest.
+      The Netherlands uses the TEV procedure—your university initiates your residence permit application with the IND (immigration service). This makes the process easier than countries where you handle everything yourself.
     </p>
 
     <ComparisonTable columns={timelineColumns} rows={timelineRows} />
@@ -433,63 +437,79 @@ const timelineRows = [
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Get University Admission</h4>
-          <p class="text-neutral-600">Apply to Dutch universities through Studielink (Dutch system) or directly. You need unconditional admission—conditional offers don't work for visa applications. Confirm your place and pay any deposits.</p>
+          <h4 class="font-semibold text-neutral-900">Apply to Dutch University</h4>
+          <p class="text-neutral-600">Apply through Studielink (for most programs) or directly to the university. Deadlines are usually January-May for September start. Check English requirements (IELTS/TOEFL) for each program.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Provide Documents to University</h4>
-          <p class="text-neutral-600">Your university's international office will request: passport copy, passport photo, financial proof (€11,400), proof of health insurance, and sometimes TB certificate. Follow their specific instructions.</p>
+          <h4 class="font-semibold text-neutral-900">Get Admission and Provide Documents</h4>
+          <p class="text-neutral-600">Once admitted, provide the university with passport copy, proof of funds (€13,000), and insurance proof. The university prepares your residence permit application.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">University Submits MVV Application</h4>
-          <p class="text-neutral-600">The university submits your MVV (entry visa) and residence permit applications to IND. You don't need to do anything except wait. Processing typically takes 2-4 weeks.</p>
+          <h4 class="font-semibold text-neutral-900">University Initiates TEV Procedure</h4>
+          <p class="text-neutral-600">Your university submits your application to the IND. They act as your sponsor and handle communication with immigration. You don't interact directly with IND at this stage.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Collect MVV from Embassy</h4>
-          <p class="text-neutral-600">Once approved, you'll be notified to collect your MVV (visa sticker) from the Dutch embassy or consulate in your country. Bring your passport. The MVV is valid for 90 days—travel within this window.</p>
+          <h4 class="font-semibold text-neutral-900">Receive IND Approval</h4>
+          <p class="text-neutral-600">IND processes your application (2-8 weeks). Once approved, you'll receive confirmation. Your university will notify you and provide next steps for MVV collection.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Arrive and Register</h4>
-          <p class="text-neutral-600">Upon arrival, register at the municipality (gemeente) within 5 days. You need a Dutch address—this is why housing is important to arrange beforehand. You'll receive a BSN (citizen service number).</p>
+          <h4 class="font-semibold text-neutral-900">Apply for MVV at Embassy (Non-EU)</h4>
+          <p class="text-neutral-600">If you're from a visa-required country, visit the Dutch embassy or consulate to collect your MVV (entry visa). Bring your passport and approval documents. Some countries have VFS centers instead.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Collect Residence Permit</h4>
-          <p class="text-neutral-600">Visit an IND desk (often at university or nearby) to provide biometrics and collect your residence permit. This takes 1-2 weeks after your appointment. The permit is your official status in the Netherlands.</p>
+          <h4 class="font-semibold text-neutral-900">Travel to the Netherlands</h4>
+          <p class="text-neutral-600">Enter the Netherlands within 90 days of MVV issuance. Your MVV is valid for 90 days. At the border, you may be asked to show proof of enrollment and accommodation.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
         <div>
+          <h4 class="font-semibold text-neutral-900">Collect Residence Permit</h4>
+          <p class="text-neutral-600">Pick up your residence permit from the IND desk (often at the university or city). You'll need to provide biometrics. The permit shows your work rights and validity period.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register at Municipality (Get BSN)</h4>
+          <p class="text-neutral-600">Within 5 days of arrival, register at your local gemeente (municipality). You'll receive a BSN (citizen service number)—essential for banking, working, and insurance. Book an appointment in advance online.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
           <h4 class="font-semibold text-neutral-900">Finalize Health Insurance</h4>
-          <p class="text-neutral-600">If not already done, arrange health insurance immediately. AON and OOM can be arranged online. You need coverage from day 1—don't delay. Register with a huisarts (GP) in your area.</p>
+          <p class="text-neutral-600">Arrange your health insurance within 4 months. With a BSN, you can set up student insurance (AON, OOM) or Dutch basic insurance if you're working enough hours. Get this done early.</p>
         </div>
       </div>
     </div>
 
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
       <p class="text-blue-800">
-        <strong>5-day registration deadline:</strong> You must register at the municipality (gemeente) within 5 days of arrival. This requires having a Dutch address—another reason to arrange housing before you arrive. Missing this deadline complicates everything.
+        <strong>Pro tip:</strong> Open a Dutch bank account (ING, ABN AMRO, Bunq) as soon as you have your BSN. You'll need it for rent, insurance, and receiving any work payments. Some banks offer student accounts with no fees.
       </p>
     </div>
   </section>
@@ -504,49 +524,49 @@ const timelineRows = [
 
     <div class="grid md:grid-cols-2 gap-6">
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student from India, Amsterdam</h3>
-        <p class="text-neutral-600 mb-4">Data Science at University of Amsterdam, not working.</p>
-        <p class="text-green-700 font-medium">✓ AON student insurance (€65/month). University handled entire visa process—just submitted documents. Housing was hard—ended up 30 minutes outside Amsterdam but manageable by train. Very happy with English environment.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student from India, Not Working</h3>
+        <p class="text-neutral-600 mb-4">1-year MSc at TU Delft, focused on studies.</p>
+        <p class="text-green-700 font-medium">✓ Uses AON Student Insurance (€45/month). Registered with local huisarts. Got sick once—GP visit was covered, prescriptions covered. Simple and affordable. Very satisfied.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Bachelor's Student from Germany (EU), Groningen</h3>
-        <p class="text-neutral-600 mb-4">Psychology at University of Groningen, works part-time.</p>
-        <p class="text-amber-700 font-medium">△ EU citizen—no visa needed. Works 40 hours/month at a restaurant, so had to get Dutch basic insurance (€130/month) instead of cheaper student insurance. Added dental coverage separately. Housing much easier in Groningen than Amsterdam.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Bachelor's Student from US, Part-time Barista</h3>
+        <p class="text-neutral-600 mb-4">3-year BA at University of Amsterdam, works at coffee shop.</p>
+        <p class="text-amber-700 font-medium">Started with AON, but works 40 hours/month. Had to switch to Dutch basic insurance (~€130/month). More expensive, but legal requirement. €385 deductible hurts for small claims.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">MBA Student from Nigeria, Rotterdam</h3>
-        <p class="text-neutral-600 mb-4">MBA at Rotterdam School of Management.</p>
-        <p class="text-green-700 font-medium">✓ University handled everything—even airport pickup. OOM insurance (€60/month) covers basics. Intensive program means no time for work anyway. Rotterdam more affordable than Amsterdam. Planning to use zoekjaar after graduation.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">PhD Researcher from Brazil</h3>
+        <p class="text-neutral-600 mb-4">4-year funded PhD at Leiden University, on employment contract.</p>
+        <p class="text-green-700 font-medium">✓ As an employee, has mandatory Dutch basic insurance. Employer contribution helps offset cost. Full access to Dutch healthcare system. Added dental supplementary plan—worth it for peace of mind.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">PhD Candidate from China, Eindhoven</h3>
-        <p class="text-neutral-600 mb-4">Funded PhD at TU Eindhoven (employed researcher).</p>
-        <p class="text-green-700 font-medium">✓ As employee, automatically enrolled in Dutch basic insurance (employer contribution). Full Dutch benefits. Tech hub environment perfect for research. Eindhoven more affordable than Amsterdam. Housing still challenging but better than Randstad.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Exchange Student from Germany, 6 Months</h3>
+        <p class="text-neutral-600 mb-4">Erasmus semester at Utrecht University.</p>
+        <p class="text-green-700 font-medium">✓ German health insurance covers via EHIC for temporary stay. University accepted this. No need for separate Dutch insurance. Used student health center for a minor issue—easy.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Exchange Student from US, Maastricht</h3>
-        <p class="text-neutral-600 mb-4">One semester abroad, keeping home insurance.</p>
-        <p class="text-amber-700 font-medium">△ US insurance doesn't meet Dutch requirements. Had to get AON student insurance anyway (€350 for semester). Double-covered but no choice. Maastricht is lovely—very international, near Belgium/Germany borders.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Self-funded Student from China, Limited Budget</h3>
+        <p class="text-neutral-600 mb-4">2-year MSc at Erasmus University Rotterdam, watching costs carefully.</p>
+        <p class="text-green-700 font-medium">✓ AON Student Insurance keeps costs low. Found housing through university guarantee. Cooks at home, uses bike. €1,100/month total. Challenging but manageable with scholarship.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Student Who Struggled with Housing</h3>
-        <p class="text-neutral-600 mb-4">Couldn't find housing before arrival.</p>
-        <p class="text-red-700 font-medium">✗ Arrived without confirmed address. Couldn't register at gemeente within 5 days. Spent first month in hostel while frantically searching. Finally found room through Facebook group. Lesson: housing is the hardest part—start months in advance.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Student Who Didn't Register for BSN</h3>
+        <p class="text-neutral-600 mb-4">1-year program, delayed municipality registration.</p>
+        <p class="text-red-700 font-medium">Couldn't open bank account, delayed salary payments from part-time job, insurance setup complicated. Had to pay rent in cash. Eventually sorted but stressful first month. Register immediately!</p>
       </div>
     </div>
   </section>
 
   <!-- CTA Box -->
   <CTABox
-    title="Compare Dutch Student Insurance"
-    description="Find the right coverage for your studies in the Netherlands."
-    buttonText="Compare Insurance Options"
-    buttonHref="/countries/netherlands/insurance"
+    title="Compare Insurance Options for the Netherlands"
+    description="Find the right coverage for your Dutch studies—student insurance or comprehensive private plans."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
   />
 
   <!-- Section: Common Mistakes -->
@@ -555,28 +575,28 @@ const timelineRows = [
 
     <div class="space-y-6">
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Not Arranging Housing Before Arrival</h3>
-        <p class="text-neutral-600">The Netherlands, especially Amsterdam, has a severe housing crisis. You must register at the municipality within 5 days of arrival—impossible without an address. Start searching months in advance, use university housing if available, consider smaller cities.</p>
+        <h3 class="font-semibold text-neutral-900">Not Understanding the 32-Hour Work Rule</h3>
+        <p class="text-neutral-600">If you work 32+ hours per month, you must have Dutch basic insurance (basisverzekering). Student insurance is not legal in this case. Switching within 4 months is required—penalties apply if you don't.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Missing the 5-Day Registration Deadline</h3>
-        <p class="text-neutral-600">You must register at the gemeente (municipality) within 5 days of arrival to get your BSN. Without a BSN, you can't open a bank account, start work, or access many services. Make this appointment immediately upon arrival.</p>
+        <h3 class="font-semibold text-neutral-900">Choosing Wrong Insurance Type</h3>
+        <p class="text-neutral-600">Some students buy expensive private insurance when affordable student insurance would suffice. Others try to use only EHIC for a full degree (not allowed). Match your insurance to your actual situation.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Not Understanding the Working/Insurance Rule</h3>
-        <p class="text-neutral-600">If you work 32+ hours/month, you MUST switch to Dutch basic insurance (basisverzekering). This is law, not optional. Getting caught without proper insurance while working can result in fines and problems with your residence permit.</p>
+        <h3 class="font-semibold text-neutral-900">Not Registering with a Huisarts Immediately</h3>
+        <p class="text-neutral-600">In the Netherlands, you must register with a GP (huisarts) to access healthcare. GPs are often full and not accepting new patients. Register in your first week—don't wait until you're sick.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Forgetting Dental Isn't Covered</h3>
-        <p class="text-neutral-600">Dutch basic insurance does NOT cover dental for adults. A filling can cost €100-200 out of pocket. Either get supplementary dental insurance, do dental work before coming, or budget for out-of-pocket dental costs.</p>
+        <h3 class="font-semibold text-neutral-900">Delaying BSN Registration</h3>
+        <p class="text-neutral-600">Your BSN (citizen service number) is needed for everything: bank accounts, work, insurance, phone contracts. Register at the gemeente within 5 days of arrival. Book your appointment before arriving—slots fill up.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Not Getting a Work Permit When Needed</h3>
-        <p class="text-neutral-600">Non-EU students need a work permit (TWV) to work, even part-time. Your employer must apply for this—it's not automatic. Make sure any job you take has a valid TWV in place before you start working.</p>
+        <h3 class="font-semibold text-neutral-900">Underestimating Living Costs</h3>
+        <p class="text-neutral-600">The Netherlands is expensive. Amsterdam especially so. The €13,000/year proof requirement is a minimum—actual costs are €12,000-18,000/year. Housing alone can be €6,000-10,000/year. Budget realistically.</p>
       </div>
     </div>
   </section>
@@ -586,7 +606,7 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in the Netherlands</h2>
 
     <p class="mb-4">
-      The Dutch healthcare system is efficient and high-quality, but works differently than many countries. The key concept: the huisarts (GP) is your gatekeeper to all other care. You can't just walk into a specialist—you need a GP referral first.
+      The Dutch healthcare system is high-quality, efficient, and well-organized. It's based on mandatory insurance with regulated premiums. The system relies on GPs (huisartsen) as gatekeepers—you see your GP first, and they refer you to specialists if needed.
     </p>
 
     <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Dutch Healthcare Works</h3>
@@ -595,67 +615,64 @@ const timelineRows = [
       <div class="border border-green-200 bg-green-50 rounded-lg p-6">
         <h4 class="font-semibold text-green-900 mb-3">What's Covered</h4>
         <ul class="space-y-2 text-green-800">
-          <li>✓ GP visits (after eigen risico)</li>
-          <li>✓ Specialist care (with referral)</li>
-          <li>✓ Hospital treatment</li>
-          <li>✓ Prescription medications</li>
-          <li>✓ Mental healthcare (with referral)</li>
+          <li>✓ GP (huisarts) consultations</li>
+          <li>✓ Hospital treatment (after referral)</li>
+          <li>✓ Specialist care (after referral)</li>
+          <li>✓ Prescriptions (after deductible)</li>
+          <li>✓ Mental health care</li>
           <li>✓ Maternity care</li>
         </ul>
       </div>
 
-      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
-        <h4 class="font-semibold text-red-900 mb-3">NOT Covered (Adults)</h4>
-        <ul class="space-y-2 text-red-800">
-          <li>✗ Dental care (children only)</li>
-          <li>✗ Physiotherapy (first 20 sessions)</li>
-          <li>✗ Glasses/contacts (children only)</li>
-          <li>✗ Alternative medicine</li>
-          <li>✗ Cosmetic procedures</li>
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Not Covered (Basic Insurance)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Dental care for adults</li>
+          <li>• Physiotherapy (first 20 sessions)</li>
+          <li>• Glasses/contact lenses</li>
+          <li>• Some vaccinations</li>
+          <li>• Cosmetic procedures</li>
+          <li>• Alternative medicine</li>
         </ul>
       </div>
     </div>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Eigen Risico (Deductible)</h3>
-
-    <p class="mb-4">
-      Dutch basic insurance has a mandatory deductible called <strong>eigen risico</strong>—€385/year (2024). You pay the first €385 of covered care each year before insurance pays. Some exceptions:
-    </p>
-
-    <ul class="list-disc pl-6 space-y-2 mb-6">
-      <li><strong>GP visits:</strong> Exempt from deductible (free after insurance)</li>
-      <li><strong>Maternity care:</strong> Exempt from deductible</li>
-      <li><strong>Specialist care:</strong> Counts toward deductible</li>
-      <li><strong>Hospital stays:</strong> Count toward deductible</li>
-    </ul>
-
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The GP (Huisarts) System</h3>
 
     <div class="space-y-4 mb-6">
       <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Step 1: Register with a Huisarts</h4>
-        <p class="text-neutral-600">Find a GP (huisarts) near your home and register. This is essential—you need a huisarts to access any specialist care. Use zorgkaartnederland.nl to find one accepting new patients.</p>
+        <h4 class="font-semibold text-neutral-900">Register with a GP First</h4>
+        <p class="text-neutral-600">You must register with a huisarts to access most healthcare. They're your first point of contact for all medical issues. Ask your university or check zorgkaartnederland.nl to find GPs accepting new patients.</p>
       </div>
 
       <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Step 2: Book Through Your Huisarts</h4>
-        <p class="text-neutral-600">For any health issue, start with your huisarts. They'll either treat you, refer you to a specialist, or advise self-care. Don't skip this step—specialists won't see you without a referral.</p>
+        <h4 class="font-semibold text-neutral-900">GP as Gatekeeper</h4>
+        <p class="text-neutral-600">You cannot go directly to a specialist—your GP must refer you. This is different from some countries. GPs handle most issues themselves; specialists are for complex cases only.</p>
       </div>
 
       <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Step 3: Huisartsenpost for Urgent Care</h4>
-        <p class="text-neutral-600">For urgent issues outside GP hours (evenings, weekends), call your local huisartsenpost (GP post). They provide after-hours care. For emergencies, call 112.</p>
-      </div>
-
-      <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
-        <p class="text-neutral-600">Call 112 for life-threatening emergencies. Go to hospital spoedeisende hulp (emergency room) for serious injuries. For non-urgent issues outside GP hours, call huisartsenpost first.</p>
+        <h4 class="font-semibold text-neutral-900">Appointments and Emergencies</h4>
+        <p class="text-neutral-600">Call your GP for appointments. For after-hours emergencies, call the huisartsenpost (GP post). For life-threatening emergencies, call 112. A&E (spoedeisende hulp) is for genuine emergencies only.</p>
       </div>
     </div>
 
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Eigen Risico (Deductible)</h3>
+
+    <p class="mb-4">
+      With Dutch basic insurance, you have an annual deductible (eigen risico) of €385. This means you pay the first €385 of covered care each year before insurance kicks in. GP visits and maternity care are exempt from the deductible.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP visits:</strong> Free (no deductible applies)</li>
+      <li><strong>Prescriptions:</strong> Count toward deductible</li>
+      <li><strong>Specialist care:</strong> Count toward deductible</li>
+      <li><strong>Hospital stays:</strong> Count toward deductible</li>
+      <li><strong>Student insurance:</strong> Usually no deductible (but coverage limits may apply)</li>
+    </ul>
+
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
       <p class="text-blue-800">
-        <strong>University health services:</strong> Most Dutch universities have student health services offering free basic care, mental health support, and guidance. Use these—they're often faster than finding a huisarts and understand student-specific issues.
+        <strong>Pro tip:</strong> For dental care, either get a supplementary policy (aanvullende verzekering) or budget €100-200/year for check-ups and cleaning. Many students use dental clinics that offer student discounts.
       </p>
     </div>
   </section>
@@ -666,44 +683,44 @@ const timelineRows = [
 
     <div class="space-y-6">
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Do I need Dutch basic insurance or can I use student insurance?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need a visa to study in the Netherlands?</h3>
         <p class="text-neutral-600">
-          It depends on whether you work. If you don't work (or work fewer than 32 hours/month), student insurance (AON, OOM) is fine and cheaper (~€60/month). If you work 32+ hours/month, you MUST join Dutch basic insurance (€130+/month)—it's the law.
+          EU/EEA/Swiss students: No visa needed—just register at the municipality. Non-EU students: You need an MVV (entry visa) and residence permit, which your university arranges through the TEV procedure. Some non-EU countries (US, Canada, Australia) are visa-exempt for entry but still need a residence permit.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">What is the zoekjaar (orientation year)?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">Which insurance do I need—student or Dutch basic?</h3>
         <p class="text-neutral-600">
-          After graduating from a Dutch university, you can apply for the zoekjaar—a 1-year residence permit to find work. You can work any job during this time, and once employed, switch to a regular work permit. Apply within 3 years of graduation.
+          It depends on work hours. If you work fewer than 32 hours per month (or don't work), use student insurance like AON (€35-60/month). If you work 32+ hours per month, you must have Dutch basic insurance (basisverzekering, ~€130/month). The 32-hour rule is per month, not per week.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Is dental covered by Dutch insurance?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">Is the Netherlands expensive for students?</h3>
         <p class="text-neutral-600">
-          No—dental care is NOT covered by Dutch basic insurance for adults (only children under 18). Student insurance often includes basic dental. If on Dutch basic, add aanvullende verzekering (supplementary insurance) with dental coverage, or budget for out-of-pocket costs.
-        </p>
-      </div>
-
-      <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">What is the eigen risico (deductible)?</h3>
-        <p class="text-neutral-600">
-          Dutch basic insurance has a €385/year mandatory deductible (eigen risico). You pay the first €385 of covered care before insurance kicks in. GP visits and maternity care are exempt. Student insurance often has lower or no deductible.
+          Yes, it's one of the more expensive European countries. Expect €1,000-1,500/month for living costs. Housing is the biggest challenge—especially in Amsterdam where rooms cost €600-900+. Other cities like Groningen, Maastricht, and Eindhoven are somewhat cheaper.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
         <h3 class="font-semibold text-neutral-900 mb-2">Can I work while studying in the Netherlands?</h3>
         <p class="text-neutral-600">
-          Yes, but with conditions. Non-EU students need a work permit (TWV)—your employer must apply for this. You can work up to 16 hours/week during the academic year or full-time in summer (June-August). EU students have no restrictions.
+          Yes. Non-EU students can work 16 hours/week during term time, or full-time during June, July, and August. Your employer needs a work permit (TWV), but this is usually straightforward for student jobs. EU students have no restrictions on work hours.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">How hard is it to find housing?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Dutch to study in the Netherlands?</h3>
         <p class="text-neutral-600">
-          Very hard, especially in Amsterdam. The Netherlands has a housing crisis. Start searching 3-6 months before arrival. Use university housing if available. Consider smaller cities (Groningen, Eindhoven, Maastricht) where housing is easier. Budget €400-1,000/month depending on location.
+          Not for most programs—there are 2,100+ English-taught programs. 95%+ of Dutch people speak English fluently. However, learning basic Dutch helps with daily life, part-time jobs, and integration. Many universities offer free Dutch language courses.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I stay after graduation?</h3>
+        <p class="text-neutral-600">
+          Yes! The orientation year (zoekjaar) gives you 12 months after graduation to find a job in the Netherlands. Apply within 3 years of graduating. Once you find a job, you can switch to a work permit. This is one of the Netherlands' biggest draws for international students.
         </p>
       </div>
     </div>
@@ -714,24 +731,24 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
 
     <p class="mb-4">
-      The Netherlands offers one of the easiest paths for international students: your university handles the visa process, most programs are in English, and the zoekjaar gives you time to find work after graduation. The trade-off is higher costs than Germany or France and a challenging housing market.
+      The Netherlands offers an excellent study abroad experience—world-class education in English, an international environment, and a clear path to work after graduation through the orientation year. The visa process is relatively smooth since your university handles most of it.
     </p>
 
     <p class="mb-4">
-      Health insurance is straightforward if you understand the work rule: student insurance (~€60/month) if not working, Dutch basic (€130+/month) if working 32+ hours/month. Just remember dental isn't covered for adults—plan accordingly.
+      Health insurance is the main complexity. Most students just need affordable student insurance (AON, OOM) at €35-60/month. Only if you work 32+ hours per month do you need the more expensive Dutch basic insurance. Get this right from the start to avoid complications.
     </p>
 
     <p class="mb-6">
-      For students who want an English-speaking environment, central European location, and strong post-study work prospects, the Netherlands is an excellent choice. Start housing search early, arrange insurance before arrival, and you'll be set for a great experience.
+      The Netherlands is expensive—especially for housing—but work rights help offset costs. The high quality of life, bike culture, safety, and central European location make it worth the investment for many students. The orientation year post-graduation is a significant advantage over countries with stricter post-study policies.
     </p>
 
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
       <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
       <p class="text-primary-800 mb-4">
-        The Netherlands offers a smooth visa process (university handles it), English-taught programs, and a 1-year job search visa after graduation. Health insurance depends on work status—student insurance for non-workers, Dutch basic if working 32+ hours/month. Dental isn't covered—budget separately. Housing is the biggest challenge—start early.
+        For most students not working much, student insurance like AON (€35-60/month) is all you need. If you take a part-time job with 32+ hours/month, switch to Dutch basic insurance. Either way, register with a GP immediately, get your BSN fast, and enjoy what the Netherlands has to offer.
       </p>
-      <a href="/countries/netherlands/insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
-        Compare Dutch Insurance Options →
+      <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Student Insurance Plans →
       </a>
     </div>
   </section>
@@ -750,11 +767,11 @@ const timelineRows = [
       </a>
       <a href="/visas/student-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
         <h3 class="font-semibold text-neutral-900">Germany Student Visa</h3>
-        <p class="text-neutral-600 text-sm">Compare with Germany's free tuition and insurance</p>
+        <p class="text-neutral-600 text-sm">Compare with Germany's Student Visa (free tuition option)</p>
       </a>
-      <a href="/visas/student-visa/in/france" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
-        <h3 class="font-semibold text-neutral-900">France Student Visa</h3>
-        <p class="text-neutral-600 text-sm">Compare with France's Social Security coverage</p>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
       </a>
     </div>
   </section>

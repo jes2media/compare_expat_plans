@@ -36,27 +36,27 @@ const requirementsColumns = [
 ];
 
 const requirementsRows = [
-  { requirement: "University Admission", details: "Acceptance letter from French institution", evidence: "Admission letter from university" },
-  { requirement: "Campus France", details: "Procedure completed (most nationalities)", evidence: "Campus France attestation" },
-  { requirement: "Financial Proof", details: "€615/month minimum (~€7,380/year)", evidence: "Bank statements, sponsor letter, or scholarship" },
-  { requirement: "Accommodation", details: "Housing in France (at least initial)", evidence: "Rental contract, CROUS, or host attestation" },
-  { requirement: "Language", details: "French (DELF/TCF) or English proof", evidence: "Language test certificate" },
-  { requirement: "Academic Records", details: "Previous diplomas and transcripts", evidence: "Certified copies and translations" },
+  { requirement: "Campus France Registration", details: "Mandatory pre-application process", evidence: "Études en France account + interview confirmation" },
+  { requirement: "University Acceptance", details: "Attestation d'inscription from French institution", evidence: "Official acceptance letter" },
+  { requirement: "Proof of Funds", details: "€615/month minimum (€7,380/year)", evidence: "Bank statements, scholarship letter, or sponsor guarantee" },
+  { requirement: "Valid Passport", details: "Valid for duration of stay", evidence: "Passport copy" },
+  { requirement: "Accommodation Proof", details: "Address in France for first 3 months", evidence: "Lease, dorm confirmation, or host attestation" },
+  { requirement: "Health Insurance", details: "Coverage for first 3 months until Sécu enrollment", evidence: "Insurance certificate" },
 ];
 
 const insuranceColumns = [
-  { key: "feature", header: "Feature" },
-  { key: "secu", header: "Sécurité Sociale (CVEC)" },
+  { key: "feature", header: "Coverage Feature" },
+  { key: "secu", header: "Sécurité Sociale (Free)" },
   { key: "mutuelle", header: "Mutuelle (Top-up)" },
 ];
 
 const insuranceRows = [
-  { feature: "Cost", secu: "€100/year (CVEC contribution)", mutuelle: "€15-50/month" },
-  { feature: "Coverage", secu: "~70% of healthcare costs", mutuelle: "Remaining 30% + extras" },
-  { feature: "Required", secu: "Yes (mandatory for students)", mutuelle: "No, but highly recommended" },
-  { feature: "Dental", secu: "Basic only, low reimbursement", mutuelle: "Better coverage included" },
-  { feature: "Optical", secu: "Minimal coverage", mutuelle: "Usually included" },
-  { feature: "Mental Health", secu: "Covered with referral", mutuelle: "Better access/coverage" },
+  { feature: "Cost", secu: "€0 (automatic enrollment)", mutuelle: "€20-50/month" },
+  { feature: "GP Visits", secu: "70% reimbursed", mutuelle: "Remaining 30% covered" },
+  { feature: "Hospital Care", secu: "80-100% covered", mutuelle: "Copays covered" },
+  { feature: "Prescriptions", secu: "15-100% depending on drug", mutuelle: "Remaining % covered" },
+  { feature: "Dental", secu: "30-70% on basic care", mutuelle: "Better coverage" },
+  { feature: "Optical", secu: "Very limited", mutuelle: "Usually included" },
 ];
 
 const providerColumns = [
@@ -67,11 +67,12 @@ const providerColumns = [
 ];
 
 const providerRows = [
-  { provider: "LMDE", type: "Student Mutuelle", price: "€15-30", strengths: "Largest student insurer, partnerships" },
-  { provider: "HEYME", type: "Student Mutuelle", price: "€10-25", strengths: "Modern, good app, affordable" },
-  { provider: "SMERRA", type: "Student Mutuelle", price: "€15-35", strengths: "Regional focus, Lyon area" },
-  { provider: "MGEL", type: "Student Mutuelle", price: "€18-40", strengths: "East France, comprehensive" },
-  { provider: "Allianz Care", type: "International", price: "€60-120", strengths: "If traveling frequently outside France" },
+  { provider: "Sécurité Sociale", type: "Public (mandatory)", price: "€0", strengths: "Base coverage, automatic enrollment" },
+  { provider: "LMDE", type: "Student mutuelle", price: "€20-35", strengths: "Popular, good student services" },
+  { provider: "SMERRA", type: "Student mutuelle", price: "€20-40", strengths: "Regional focus, good value" },
+  { provider: "HEYME", type: "Student mutuelle", price: "€25-50", strengths: "Modern, digital-first, quick claims" },
+  { provider: "SafetyWing", type: "International", price: "€45-70", strengths: "First 3 months before Sécu kicks in" },
+  { provider: "Cigna Global", type: "International", price: "€80-150", strengths: "Comprehensive private, global coverage" },
 ];
 
 const costColumns = [
@@ -81,12 +82,13 @@ const costColumns = [
 ];
 
 const costRows = [
-  { item: "VLS-TS Visa Fee", amount: "€99", notes: "Long-stay student visa" },
-  { item: "CVEC Contribution", amount: "€100/year", notes: "Student/campus life + Social Security" },
-  { item: "Tuition (Public, EU)", amount: "€170-380/year", notes: "Licence/Master/Doctorate" },
-  { item: "Tuition (Public, non-EU)", amount: "€2,770-3,770/year", notes: "Licence/Master (since 2019)" },
-  { item: "Mutuelle (optional)", amount: "€15-50/month", notes: "Covers remaining 30% of costs" },
-  { item: "Campus France Fee", amount: "€0-50", notes: "Varies by country" },
+  { item: "Visa Application Fee", amount: "€99", notes: "VLS-TS student visa" },
+  { item: "Campus France Fee", amount: "€50-350", notes: "Varies by country of origin" },
+  { item: "CVEC Contribution", amount: "€100/year", notes: "Mandatory student life contribution" },
+  { item: "Public University Tuition", amount: "€170-380/year", notes: "Licence €170, Master's €243, Doctorat €380" },
+  { item: "Grande École Tuition", amount: "€3,000-15,000/year", notes: "Elite institutions, varies widely" },
+  { item: "Mutuelle (Optional)", amount: "€20-50/month", notes: "Top-up insurance, recommended" },
+  { item: "OFII Validation", amount: "€0", notes: "Free online validation" },
 ];
 
 const timelineColumns = [
@@ -96,27 +98,29 @@ const timelineColumns = [
 ];
 
 const timelineRows = [
-  { step: "Create Campus France account", duration: "1 day", location: "Online (etudes-en-france.fr)" },
-  { step: "Complete Campus France procedure", duration: "2-6 weeks", location: "Online + interview" },
-  { step: "Receive university admission", duration: "Varies", location: "University" },
-  { step: "Schedule visa appointment", duration: "1-4 weeks", location: "French consulate" },
-  { step: "Attend visa appointment", duration: "1 day", location: "French consulate" },
-  { step: "Visa processing", duration: "2-6 weeks", location: "French authorities" },
-  { step: "Validate VLS-TS online", duration: "Within 3 months of arrival", location: "Online (France)" },
-  { step: "Pay CVEC and register", duration: "1 week", location: "Online" },
+  { step: "Register on Études en France", duration: "November-March", location: "Campus France online" },
+  { step: "Submit applications via Campus France", duration: "January-April", location: "Online platform" },
+  { step: "Campus France interview", duration: "March-May", location: "Local Campus France office" },
+  { step: "Get university acceptance", duration: "April-June", location: "University response" },
+  { step: "Pay CVEC contribution", duration: "Before visa", location: "cvec.etudiant.gouv.fr" },
+  { step: "Apply for VLS-TS visa", duration: "2-4 weeks before travel", location: "French consulate" },
+  { step: "Attend visa appointment", duration: "1 day", location: "Consulate/visa center" },
+  { step: "Arrive in France", duration: "Before course starts", location: "France" },
+  { step: "Validate visa online (OFII)", duration: "Within 3 months", location: "administration-etrangers-en-france.interieur.gouv.fr" },
+  { step: "Register for Sécurité sociale", duration: "After OFII validation", location: "etudiant-etranger.ameli.fr" },
 ];
 ---
 
 <PageShell
-  title="France Student Visa 2026: Requirements, Social Security & Insurance Guide"
-  description="Complete guide to the French Student Visa (VLS-TS). Campus France procedure, Social Security coverage, mutuelle top-up insurance, CAF housing benefits, and low tuition fees."
+  title="France Student Visa 2026: Requirements, Insurance & Application Guide"
+  description="Complete guide to the France VLS-TS Student Visa. Requirements, Sécurité sociale healthcare, Campus France process, affordable tuition, and step-by-step application guide for international students."
   headline="France Student Visa: Insurance & Requirements Guide"
-  subheadline="Everything you need to know about studying in France—Campus France procedure, automatic Social Security coverage, optional mutuelle insurance, CAF housing assistance, and affordable tuition."
+  subheadline="Everything you need to know about studying in France—visa requirements, automatic Sécurité sociale enrollment, affordable tuition at public universities, and the Campus France application process."
   tocItems={tocItems}
   relatedLinks={relatedLinks}
   ctaButtonText="Compare Student Insurance"
   ctaButtonHref="/go/cigna-global"
-  heroImage="/images/visas/student-visa-hero-bg.png"
+  heroBackgroundImage="/images/visas/student-visa-hero-bg.png"
 >
 
   <!-- Trust Signals -->
@@ -131,7 +135,7 @@ const timelineRows = [
     </span>
     <span class="flex items-center gap-1">
       <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-      Social Security Included
+      Sécurité Sociale Included
     </span>
   </div>
 
@@ -140,36 +144,36 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
 
     <p class="mb-4">
-      France attracts over 400,000 international students annually, making it the 4th most popular study destination globally. The appeal is clear: <strong>low tuition fees</strong>, <strong>automatic Social Security coverage</strong>, world-class universities, and the chance to experience French culture in one of Europe's most vibrant countries.
+      France is one of the world's most affordable destinations for international students, with public university tuition as low as €170/year. The VLS-TS (Visa Long Séjour valant Titre de Séjour) gives you student residency status, automatic enrollment in the French social security system (Sécurité sociale), and the right to work up to 964 hours per year.
     </p>
 
     <p class="mb-4">
-      Healthcare is refreshingly simple for students in France. Since 2019, all students are automatically enrolled in French Social Security (Sécurité Sociale) through the CVEC contribution—€100/year gives you 70% healthcare coverage. A mutuelle (top-up insurance) for €15-50/month covers the remaining 30% and is highly recommended but not required.
+      Unlike countries where you must purchase expensive private insurance, France automatically enrolls students in Sécurité sociale at no cost. This covers approximately 70% of most healthcare costs. Many students add a mutuelle (top-up insurance) for €20-50/month to cover the remaining 30%, but even without it, healthcare is remarkably affordable.
     </p>
 
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
-      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: France Student Visa</h3>
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: France Student Visa (VLS-TS)</h3>
       <ul class="space-y-2 text-primary-800">
-        <li>• <strong>Tuition:</strong> €170-380/year (EU) or €2,770-3,770/year (non-EU) at public universities</li>
-        <li>• <strong>Healthcare:</strong> Social Security (70% coverage) via €100/year CVEC</li>
-        <li>• <strong>Mutuelle:</strong> Optional top-up (€15-50/month) for remaining 30%</li>
-        <li>• <strong>Work rights:</strong> Up to 964 hours/year (~20 hours/week)</li>
-        <li>• <strong>CAF housing:</strong> €100-200/month housing assistance available</li>
-        <li>• <strong>Post-study:</strong> Job search extension (APS) available after graduation</li>
+        <li>• <strong>Visa type:</strong> VLS-TS (Visa Long Séjour valant Titre de Séjour)</li>
+        <li>• <strong>Healthcare access:</strong> Free Sécurité sociale enrollment (covers 70% of costs)</li>
+        <li>• <strong>Tuition:</strong> €170/year (licence) to €380/year (master's/PhD) at public universities</li>
+        <li>• <strong>Work rights:</strong> 964 hours/year (approximately 20 hours/week)</li>
+        <li>• <strong>Duration:</strong> 4 months to 1 year (renewable)</li>
+        <li>• <strong>Post-study work:</strong> APS visa (1 year) or passeport talent for skilled workers</li>
       </ul>
     </div>
 
     <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Study in France?</h3>
 
     <ul class="list-disc pl-6 space-y-2 mb-6">
-      <li><strong>Affordable tuition:</strong> Public universities cost €170-3,770/year (vs €20,000+ in UK/US)</li>
-      <li><strong>World-class education:</strong> Sorbonne, Sciences Po, HEC, INSEAD, Grandes Écoles</li>
-      <li><strong>Social Security included:</strong> €100/year gives you comprehensive healthcare base</li>
-      <li><strong>CAF housing benefit:</strong> Get €100-200/month toward rent (all nationalities eligible)</li>
-      <li><strong>Cultural capital:</strong> Paris, Lyon, Marseille—art, food, history, lifestyle</li>
-      <li><strong>Work rights:</strong> 964 hours/year to supplement your income</li>
-      <li><strong>EU location:</strong> Easy access to rest of Europe, Schengen travel</li>
-      <li><strong>French language:</strong> Learn a global language, valuable for career</li>
+      <li><strong>Incredibly affordable tuition:</strong> €170-380/year at public universities (vs. €15,000+ in UK/US)</li>
+      <li><strong>World-class grandes écoles:</strong> Elite institutions like HEC, Sciences Po, École Polytechnique</li>
+      <li><strong>Free healthcare:</strong> Automatic Sécurité sociale covers most medical costs</li>
+      <li><strong>Rich culture and lifestyle:</strong> World-renowned cuisine, art, history, fashion</li>
+      <li><strong>Central European location:</strong> Easy travel to Spain, Italy, Germany, UK</li>
+      <li><strong>Strong programs:</strong> Business, engineering, fashion, culinary arts, international relations</li>
+      <li><strong>APS visa:</strong> Stay 1 year after graduation to job search, then transition to work visa</li>
+      <li><strong>Growing English programs:</strong> 1,500+ programs taught entirely in English</li>
     </ul>
   </section>
 
@@ -181,30 +185,30 @@ const timelineRows = [
       <div class="bg-green-50 border border-green-200 rounded-lg p-6">
         <h3 class="font-semibold text-green-900 mb-3">France is Right For You If:</h3>
         <ul class="space-y-2 text-green-800">
-          <li>✓ You want affordable, high-quality education</li>
-          <li>✓ You want to learn or improve French</li>
-          <li>✓ You appreciate art, culture, and gastronomy</li>
-          <li>✓ You want straightforward healthcare (Social Security)</li>
-          <li>✓ You want housing assistance (CAF benefits)</li>
-          <li>✓ You're studying business, fashion, arts, or social sciences</li>
+          <li>✓ You want ultra-affordable tuition (€170-380/year)</li>
+          <li>✓ You want free healthcare through Sécurité sociale</li>
+          <li>✓ You're interested in business, engineering, or arts</li>
+          <li>✓ You want to learn French (or already speak it)</li>
+          <li>✓ You love European culture, food, and travel</li>
+          <li>✓ You want a post-graduation work pathway (APS visa)</li>
         </ul>
       </div>
 
       <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
         <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
         <ul class="space-y-2 text-amber-800">
-          <li>• You want free tuition (Germany has €0 tuition)</li>
-          <li>• You don't want to learn any French</li>
-          <li>• You prefer all-in-one healthcare (UK's NHS is simpler)</li>
-          <li>• You want easier post-study work rights (Germany's 18 months)</li>
-          <li>• You're on a very tight budget (Paris is expensive)</li>
+          <li>• You don't want to learn any French (daily life is easier with basics)</li>
+          <li>• You want a fully English-speaking environment (UK, Ireland better)</li>
+          <li>• You prefer straightforward bureaucracy (France can be complex)</li>
+          <li>• You want easier permanent residency (Canada, Australia simpler)</li>
+          <li>• You need to work more than 20 hours/week</li>
         </ul>
       </div>
     </div>
 
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
       <p class="text-blue-800">
-        <strong>CAF housing benefit:</strong> Unlike most countries, France offers housing assistance (APL) to international students. Depending on your rent and location, you could receive €100-200/month. Apply at caf.fr after arrival—it's essentially free money that many students forget to claim.
+        <strong>APS visa advantage:</strong> After completing your degree, you can apply for the APS (Autorisation Provisoire de Séjour) visa—1 year to search for a job matching your qualifications. If you find one, you can transition to a work visa or the "passeport talent" for skilled professionals, which leads to permanent residency.
       </p>
     </div>
   </section>
@@ -214,47 +218,50 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
 
     <p class="mb-4">
-      The French Student Visa (VLS-TS) requires university admission, completion of the Campus France procedure (for most nationalities), and proof of financial means.
+      The France Student Visa (VLS-TS) requires going through Campus France—the French government's centralized application system. You'll need university acceptance, proof of funds, and temporary health insurance for the first 3 months.
     </p>
 
     <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
 
-    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Campus France Procedure</h3>
-
-    <p class="mb-4">
-      Most non-EU students must complete the "Études en France" procedure through Campus France before applying for a visa. This validates your academic project and streamlines university applications.
-    </p>
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Financial Requirements</h3>
 
     <div class="grid md:grid-cols-2 gap-6 mb-6">
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h4 class="font-semibold text-neutral-900 mb-3">Countries Requiring Campus France</h4>
-        <p class="text-neutral-700 text-sm">Most countries including: India, China, USA, Brazil, Mexico, Morocco, Algeria, Tunisia, Senegal, and many more. Check with your local Campus France office.</p>
+        <h4 class="font-semibold text-neutral-900 mb-3">Minimum Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Monthly minimum:</strong> €615/month</li>
+          <li>• <strong>Annual proof:</strong> €7,380</li>
+          <li>• <strong>Acceptable sources:</strong> Savings, family support, scholarship</li>
+          <li>• <strong>Scholarship holders:</strong> Letter from sponsor suffices</li>
+        </ul>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h4 class="font-semibold text-neutral-900 mb-3">Exempt Countries</h4>
-        <p class="text-neutral-700 text-sm">EU/EEA citizens don't need visas. Some countries have simplified procedures. Exchange program students may have different processes.</p>
+        <h4 class="font-semibold text-neutral-900 mb-3">Realistic Living Costs</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Paris:</strong> €1,200-1,500/month</li>
+          <li>• <strong>Lyon, Marseille:</strong> €800-1,000/month</li>
+          <li>• <strong>Smaller cities:</strong> €600-800/month</li>
+          <li>• <strong>CAF housing aid:</strong> €100-250/month reduction</li>
+        </ul>
       </div>
     </div>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
-
-    <p class="mb-4">
-      You must prove you have at least <strong>€615/month</strong> (approximately €7,380/year) to support yourself. This can be demonstrated through:
-    </p>
-
-    <ul class="list-disc pl-6 space-y-2 mb-6">
-      <li><strong>Bank statements:</strong> Showing savings or regular income</li>
-      <li><strong>Scholarship letter:</strong> If receiving funding</li>
-      <li><strong>Sponsor attestation:</strong> Parents or guarantor committing to support you</li>
-      <li><strong>French bank guarantee:</strong> Some banks offer this service</li>
-    </ul>
-
-    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
       <p class="text-amber-800">
-        <strong>Budget realistically:</strong> While €615/month is the official minimum, you'll likely need €800-1,200/month in Paris, €600-900 in other cities. CAF housing assistance (€100-200/month) can help significantly.
+        <strong>CAF housing assistance:</strong> International students in France qualify for CAF (Caisse d'Allocations Familiales) housing benefits. This can reduce your rent by €100-250/month depending on your accommodation and location. Apply as soon as you have a French address.
       </p>
     </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Language Requirements</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>French-taught programs:</strong> B2 level (TCF, DELF, or equivalent)</li>
+      <li><strong>English-taught programs:</strong> IELTS 6.0-6.5 or equivalent (no French required)</li>
+      <li><strong>Preparatory programs:</strong> May accept lower levels with language course</li>
+      <li><strong>Grandes écoles:</strong> Often require both French and English</li>
+      <li><strong>Daily life:</strong> Basic French strongly recommended even for English programs</li>
+    </ul>
   </section>
 
   <!-- Section: Insurance Requirements -->
@@ -262,48 +269,47 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
 
     <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
-      <h3 class="font-semibold text-green-900 mb-2">Social Security Through CVEC—No Separate Insurance Needed</h3>
+      <h3 class="font-semibold text-green-900 mb-2">Automatic Sécurité Sociale Enrollment</h3>
       <p class="text-green-800">
-        Since 2019, France no longer requires students to purchase separate health insurance. By paying the CVEC contribution (€100/year), you're automatically enrolled in French Social Security (Sécurité Sociale), which covers approximately 70% of healthcare costs. This is mandatory and included in your registration.
+        Unlike most countries, France automatically enrolls international students in Sécurité sociale at no cost. This covers approximately 70% of healthcare expenses. You only need private insurance for the first 3 months while your registration processes.
       </p>
     </div>
 
     <p class="mb-4">
-      The system works like this: Social Security covers 70% of approved medical costs. You pay the remaining 30% out of pocket (called the "ticket modérateur"). A mutuelle is optional insurance that covers this 30% gap—highly recommended but not required for the visa.
+      The French healthcare system works on a reimbursement model. Sécurité sociale covers 70% of most costs (sometimes 100% for hospital stays). The remaining 30% is either paid out of pocket or covered by an optional mutuelle (complementary insurance).
     </p>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Social Security vs. Mutuelle</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Sécurité Sociale vs. Mutuelle</h3>
 
     <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
 
-    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Should You Get a Mutuelle?</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">When You Need What Coverage</h3>
 
     <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
-        <h4 class="font-semibold text-green-900 mb-3">You Can Skip Mutuelle If:</h4>
-        <ul class="space-y-2 text-green-800">
-          <li>✓ You're healthy with no regular medical needs</li>
-          <li>✓ You can handle 30% out-of-pocket occasionally</li>
-          <li>✓ Budget is extremely tight</li>
-          <li>✓ You have glasses/dental done before arrival</li>
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">First 3 Months (Before Sécu Kicks In)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Private insurance required for visa</li>
+          <li>• SafetyWing, Cigna, or travel insurance</li>
+          <li>• Coverage until Carte Vitale arrives</li>
+          <li>• Keep receipts for any care</li>
         </ul>
       </div>
 
-      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
-        <h4 class="font-semibold text-blue-900 mb-3">Get a Mutuelle If:</h4>
-        <ul class="space-y-2 text-blue-800">
-          <li>✓ You want full coverage (100% reimbursement)</li>
-          <li>✓ You need glasses, contacts, or dental work</li>
-          <li>✓ You have ongoing health conditions</li>
-          <li>✓ You want mental health coverage</li>
-          <li>✓ Peace of mind is worth €15-50/month</li>
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">After Sécurité Sociale Enrollment</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ 70% covered automatically (free)</li>
+          <li>✓ Add mutuelle for remaining 30% (€20-50/month)</li>
+          <li>✓ Or pay 30% out of pocket (often very affordable)</li>
+          <li>✓ Carte Vitale = your health card for reimbursements</li>
         </ul>
       </div>
     </div>
 
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
       <p class="text-blue-800">
-        <strong>Real cost example:</strong> A doctor visit costs €25-50 in France. Social Security reimburses 70% (€17.50-35). Without mutuelle, you pay €7.50-15 out of pocket. With mutuelle, you pay €0. For occasional visits, it's manageable; for regular care, mutuelle pays for itself.
+        <strong>Is a mutuelle worth it?</strong> For most students, yes. A GP visit costs €26.50—Sécu reimburses €18.55, leaving €7.95. With a mutuelle, you pay nothing. Over a year, even moderate healthcare use makes the €20-50/month worthwhile. Plus, dental and optical coverage is much better with a mutuelle.
       </p>
     </div>
   </section>
@@ -311,10 +317,10 @@ const timelineRows = [
   <!-- CTA Box -->
   <CTABox
     variant="highlight"
-    title="Need help choosing a French mutuelle?"
-    description="Compare LMDE, HEYME, and other student insurance options."
-    buttonText="Compare French Insurance Options"
-    buttonHref="/countries/france/insurance"
+    title="Need coverage before Sécurité sociale kicks in?"
+    description="Get affordable insurance for your first 3 months in France while waiting for Carte Vitale."
+    buttonText="Get SafetyWing Quote"
+    buttonHref="/go/safetywing"
   />
 
   <!-- Section: Recommended Providers -->
@@ -322,32 +328,32 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
 
     <p class="mb-4">
-      Since Social Security is automatic, the choice is about mutuelle (top-up coverage). French student mutuelles are affordable and designed specifically for student needs.
+      Your insurance needs in France depend on timing. For the first 3 months, you need private insurance. After that, Sécurité sociale is free and mandatory, with optional mutuelle top-up recommended.
     </p>
 
     <ComparisonTable columns={providerColumns} rows={providerRows} />
 
-    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Need</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
 
     <div class="space-y-4">
       <div class="border-l-4 border-green-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Best Value Overall</h4>
-        <p class="text-neutral-600">HEYME offers modern, digital-first service at competitive prices (€10-25/month). Good app, easy reimbursement, popular with international students. LMDE is the largest and has the most partnerships with universities.</p>
+        <h4 class="font-semibold text-neutral-900">First 3 Months (Before Carte Vitale)</h4>
+        <p class="text-neutral-600">SafetyWing is ideal—affordable, easy to purchase, accepted for visa purposes. Cancel once your Sécurité sociale registration is confirmed. Cigna Global works too if you want more comprehensive coverage.</p>
       </div>
 
       <div class="border-l-4 border-blue-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Need Glasses or Dental</h4>
-        <p class="text-neutral-600">All mutuelles offer optical/dental packages, but coverage varies. MGEL and LMDE have good optical packages. For significant dental work, check specific plan limits—some cap at €200/year, others at €400+.</p>
+        <h4 class="font-semibold text-neutral-900">Ongoing Coverage (With Sécurité Sociale)</h4>
+        <p class="text-neutral-600">Add a student mutuelle like LMDE, SMERRA, or HEYME. These are designed for students, affordable (€20-50/month), and integrate seamlessly with Sécu. HEYME is popular for its modern app and quick reimbursements.</p>
       </div>
 
       <div class="border-l-4 border-purple-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Traveling Often Outside France</h4>
-        <p class="text-neutral-600">French Social Security and mutuelles primarily cover care in France. If you travel frequently to other EU countries, EHIC/GHIC cards help. For non-EU travel, consider an international plan like Allianz Care alongside your mutuelle.</p>
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Students</h4>
+        <p class="text-neutral-600">Sécurité sociale alone is viable. You'll pay 30% out of pocket, but French healthcare is affordable. A GP visit costs €7.95 after reimbursement. Consider mutuelle only if you need dental or optical care.</p>
       </div>
 
       <div class="border-l-4 border-amber-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Mental Health Support</h4>
-        <p class="text-neutral-600">Social Security covers psychiatric care with referral. Mutuelles add coverage for psychologists (often €30-50/session reimbursement). HEYME and LMDE have mental health packages. University counseling services are also available free.</p>
+        <h4 class="font-semibold text-neutral-900">Comprehensive Private Coverage</h4>
+        <p class="text-neutral-600">If you want private hospitals, faster access, or global coverage for travel, Cigna Global offers premium options. This is overkill for most students but valuable if you have complex health needs or travel frequently.</p>
       </div>
     </div>
   </section>
@@ -357,7 +363,7 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
 
     <p class="mb-4">
-      France offers excellent value for international students. Public university tuition is low, and additional benefits like CAF housing assistance can significantly reduce your overall costs.
+      France offers some of the lowest education costs in the developed world. Public university tuition is heavily subsidized—international students pay the same rates as French students at most institutions.
     </p>
 
     <ComparisonTable columns={costColumns} rows={costRows} />
@@ -366,51 +372,34 @@ const timelineRows = [
 
     <div class="grid md:grid-cols-3 gap-6 mb-6">
       <div class="bg-neutral-50 rounded-lg p-6 text-center">
-        <p class="text-sm text-neutral-600 mb-2">EU Student (Public Uni)</p>
-        <p class="text-3xl font-bold text-neutral-900">€450-700</p>
-        <p class="text-sm text-neutral-500 mt-2">Visa + tuition + CVEC</p>
+        <p class="text-sm text-neutral-600 mb-2">Public University (Paris)</p>
+        <p class="text-3xl font-bold text-neutral-900">€15,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Tuition + living + visa fees</p>
       </div>
       <div class="bg-neutral-50 rounded-lg p-6 text-center">
-        <p class="text-sm text-neutral-600 mb-2">Non-EU Student (Public Uni)</p>
-        <p class="text-3xl font-bold text-neutral-900">€3,000-4,000</p>
-        <p class="text-sm text-neutral-500 mt-2">Visa + tuition + CVEC</p>
+        <p class="text-sm text-neutral-600 mb-2">Public University (Lyon)</p>
+        <p class="text-3xl font-bold text-neutral-900">€11,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Lower living costs</p>
       </div>
       <div class="bg-neutral-50 rounded-lg p-6 text-center">
-        <p class="text-sm text-neutral-600 mb-2">Annual Mutuelle</p>
-        <p class="text-3xl font-bold text-neutral-900">€180-600</p>
-        <p class="text-sm text-neutral-500 mt-2">Optional, €15-50/month</p>
+        <p class="text-sm text-neutral-600 mb-2">Grande École (Business)</p>
+        <p class="text-3xl font-bold text-neutral-900">€25,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Higher tuition, Paris living</p>
       </div>
     </div>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Living Costs</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Tuition Comparison</h3>
 
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <div class="border border-neutral-200 rounded-lg p-6">
-        <h4 class="font-semibold text-neutral-900 mb-3">Paris</h4>
-        <ul class="space-y-2 text-neutral-700 text-sm">
-          <li>• Rent: €500-900/month (room or small studio)</li>
-          <li>• Food: €200-300/month</li>
-          <li>• Transport: €40-86/month (Navigo)</li>
-          <li>• Other: €100-200/month</li>
-          <li>• <strong>Total: €850-1,400/month</strong></li>
-        </ul>
-      </div>
-
-      <div class="border border-neutral-200 rounded-lg p-6">
-        <h4 class="font-semibold text-neutral-900 mb-3">Other Cities (Lyon, Bordeaux, etc.)</h4>
-        <ul class="space-y-2 text-neutral-700 text-sm">
-          <li>• Rent: €350-600/month</li>
-          <li>• Food: €150-250/month</li>
-          <li>• Transport: €20-50/month</li>
-          <li>• Other: €80-150/month</li>
-          <li>• <strong>Total: €600-1,000/month</strong></li>
-        </ul>
-      </div>
-    </div>
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>France public university:</strong> €170-380/year</li>
+      <li><strong>UK university (international):</strong> £15,000-38,000/year (€17,500-44,000)</li>
+      <li><strong>US public university (out-of-state):</strong> $25,000-45,000/year (€23,000-42,000)</li>
+      <li><strong>Germany public university:</strong> €0-500/year (but higher living costs)</li>
+    </ul>
 
     <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
       <p class="text-green-800">
-        <strong>CAF housing benefit:</strong> Don't forget to apply for APL (housing assistance) at caf.fr. Depending on your rent and situation, you could receive €100-200/month back. This is available to all students regardless of nationality—it's free money.
+        <strong>Work rights help:</strong> You can work up to 964 hours/year (about 20 hours/week). At SMIC (€11.65/hour), that's roughly €11,200/year—enough to cover most living costs outside Paris. Many students work in restaurants, retail, or tutoring.
       </p>
     </div>
   </section>
@@ -420,7 +409,7 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
 
     <p class="mb-4">
-      The French student visa process involves the Campus France procedure (for most nationalities), university admission, and then the visa application itself.
+      The France student visa application goes through Campus France, the government agency managing international student admissions. The process is more centralized than many countries—you apply to universities through the Études en France platform and have an interview at your local Campus France office.
     </p>
 
     <ComparisonTable columns={timelineColumns} rows={timelineRows} />
@@ -431,63 +420,71 @@ const timelineRows = [
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Create Campus France Account</h4>
-          <p class="text-neutral-600">Go to etudes-en-france.fr and create your account. Fill in your academic background, language skills, and study project. This is how French institutions evaluate your application.</p>
+          <h4 class="font-semibold text-neutral-900">Register on Études en France (Campus France)</h4>
+          <p class="text-neutral-600">Create an account at the Campus France platform for your country (e.g., usa.campusfrance.org). Fill in your academic history, language certificates, and study plans. Start this in November-January for September enrollment.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Complete Campus France Procedure</h4>
-          <p class="text-neutral-600">Apply to universities through the platform (or directly if applicable). Attend a Campus France interview. Receive your attestation validating your academic project. This is required before your visa appointment.</p>
+          <h4 class="font-semibold text-neutral-900">Apply to Universities Through Campus France</h4>
+          <p class="text-neutral-600">Select up to 7 programs through the DAP (Demande d'Admission Préalable) process for licence, or apply directly for master's programs. Upload transcripts, motivation letter, and CV. Some universities have their own portals alongside Campus France.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Receive University Admission</h4>
-          <p class="text-neutral-600">Once accepted by a French university, you'll receive an admission letter. Some universities issue provisional admissions—you need the final acceptance for the visa.</p>
+          <h4 class="font-semibold text-neutral-900">Campus France Interview</h4>
+          <p class="text-neutral-600">After submitting your dossier, schedule an interview at your local Campus France office. They assess your motivation, French level (if applicable), and study plan. This is more of a check than a test—be prepared to explain why France and your chosen program.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Apply for VLS-TS Visa</h4>
-          <p class="text-neutral-600">Schedule appointment at French consulate. Bring: passport, admission letter, Campus France attestation, financial proof, accommodation proof, photos. Pay €99 visa fee.</p>
+          <h4 class="font-semibold text-neutral-900">Receive University Acceptance</h4>
+          <p class="text-neutral-600">Universities respond between April and June. Once accepted, you'll receive an attestation d'inscription (acceptance letter). Some universities require you to confirm and pay a deposit.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Receive Visa & Travel</h4>
-          <p class="text-neutral-600">Processing takes 2-6 weeks. Once approved, your passport gets a VLS-TS visa sticker. Travel to France before your course starts.</p>
+          <h4 class="font-semibold text-neutral-900">Pay CVEC Contribution</h4>
+          <p class="text-neutral-600">Before applying for your visa, pay the €100 CVEC (Contribution Vie Étudiante et de Campus) at cvec.etudiant.gouv.fr. This funds student services and is mandatory for all students. You'll receive a certificate to include in your visa application.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Validate VLS-TS Online</h4>
-          <p class="text-neutral-600">Within 3 months of arrival, validate your visa at administration-etrangers-en-france.interieur.gouv.fr. This is CRITICAL—failing to validate means your visa becomes invalid. Do it immediately upon arrival.</p>
+          <h4 class="font-semibold text-neutral-900">Apply for VLS-TS Student Visa</h4>
+          <p class="text-neutral-600">Apply at the French consulate in your country. Bring your Campus France approval, acceptance letter, CVEC certificate, financial proof, accommodation proof, and health insurance for the first 3 months. Processing takes 2-4 weeks.</p>
         </div>
       </div>
 
       <div class="flex gap-4">
         <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
         <div>
-          <h4 class="font-semibold text-neutral-900">Pay CVEC & Register</h4>
-          <p class="text-neutral-600">Before enrolling at university, pay the €100 CVEC at cvec.etudiant.gouv.fr. This registers you for Social Security and campus services. Keep the attestation for university registration.</p>
+          <h4 class="font-semibold text-neutral-900">Arrive and Validate Visa Online</h4>
+          <p class="text-neutral-600">Within 3 months of arrival, you must validate your VLS-TS visa online at administration-etrangers-en-france.interieur.gouv.fr. This converts your visa into a residence permit. Missing this deadline causes serious problems—set a reminder.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register for Sécurité Sociale</h4>
+          <p class="text-neutral-600">After validating your visa, register for Sécurité sociale at etudiant-etranger.ameli.fr. You'll receive your Carte Vitale (health card) within a few weeks. Until then, pay for care and submit receipts for reimbursement through Ameli.</p>
         </div>
       </div>
     </div>
 
-    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mt-6">
-      <p class="text-red-800">
-        <strong>Don't forget VLS-TS validation:</strong> Many students forget to validate their visa online within 3 months of arrival. If you miss this deadline, your visa becomes invalid, and you'll face serious problems with your residence status. Do it in your first week.
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Start early:</strong> Campus France has strict deadlines—typically January-March for the following September. The process takes 6-8 months from start to arrival. Don't wait until spring to begin.
       </p>
     </div>
   </section>
@@ -502,49 +499,49 @@ const timelineRows = [
 
     <div class="grid md:grid-cols-2 gap-6">
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student from Brazil, Paris</h3>
-        <p class="text-neutral-600 mb-4">Sciences Po Paris, studying political science.</p>
-        <p class="text-green-700 font-medium">✓ Social Security via CVEC (€100/year). Added HEYME mutuelle (€20/month) for full coverage. Receives €150/month CAF housing assistance. Total healthcare cost: €340/year. Very satisfied with French system.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Master's Student from US, Business School</h3>
+        <p class="text-neutral-600 mb-4">2-year Grande École MBA in Paris, €15,000/year tuition.</p>
+        <p class="text-green-700 font-medium">✓ Registered for Sécu + HEYME mutuelle (€35/month). Total healthcare cost: €420/year. Used GP twice, got full reimbursement. Much cheaper than US insurance. Landed consulting job through APS visa.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Bachelor's Student from Morocco, Lyon</h3>
-        <p class="text-neutral-600 mb-4">Engineering at INSA Lyon, CROUS housing.</p>
-        <p class="text-green-700 font-medium">✓ Skipped mutuelle to save money—Social Security covers basics. Uses university health center for routine needs. No major health issues. Pays 30% out of pocket occasionally (~€10-15/visit). Working fine.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Undergraduate from Morocco, Public University</h3>
+        <p class="text-neutral-600 mb-4">3-year licence in Lyon, €170/year tuition.</p>
+        <p class="text-green-700 font-medium">✓ Total degree cost under €15,000 including living. Sécu covered healthcare, skipped mutuelle to save money—paid €30 out of pocket total for minor care. CAF housing benefit reduced rent by €180/month. Great value.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">PhD Candidate from India, Grenoble</h3>
-        <p class="text-neutral-600 mb-4">Funded PhD at Université Grenoble Alpes.</p>
-        <p class="text-green-700 font-medium">✓ PhD fellowship includes Social Security as employee. Gets MGEL mutuelle through university. Mountain sports coverage included—useful for skiing. CAF gives €180/month for apartment. Excellent value.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">PhD Student from China, Scholarship</h3>
+        <p class="text-neutral-600 mb-4">4-year funded PhD in Toulouse, scholarship covers living.</p>
+        <p class="text-green-700 font-medium">✓ Sécu + LMDE mutuelle, fully covered. Needed dental work—mutuelle covered it completely. French healthcare excellent. Smaller city = lower costs, great quality of life. Planning to stay via passeport talent.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Exchange Student from US, Aix-en-Provence</h3>
-        <p class="text-neutral-600 mb-4">One semester abroad from American university.</p>
-        <p class="text-amber-700 font-medium">△ Home university required keeping US insurance. Also enrolled in French Social Security via CVEC. Effectively double-covered. Minor hassle but both work. French doctors accept both.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Exchange Student from Germany, 1 Semester</h3>
+        <p class="text-neutral-600 mb-4">6-month Erasmus exchange in Paris.</p>
+        <p class="text-amber-700 font-medium">△ EHIC card from Germany covered most care. Still registered for Sécu (took longer than exchange). Used SafetyWing for first month as backup. Simple process for EU students—less paperwork.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Student Needing Glasses, Bordeaux</h3>
-        <p class="text-neutral-600 mb-4">Needed new prescription glasses in France.</p>
-        <p class="text-amber-700 font-medium">△ Social Security covers minimal optical. LMDE mutuelle (€25/month) includes €200 optical coverage. Still paid €80 out of pocket for frames. Lesson: do eye care before leaving home if budget-conscious.</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Culinary Student from Japan</h3>
+        <p class="text-neutral-600 mb-4">2-year program at Le Cordon Bleu Paris, €30,000/year.</p>
+        <p class="text-amber-700 font-medium">△ Private school = higher costs, but Sécu still free. Added mutuelle for dental (culinary = teeth matter). 20 hours/week work limit meant restaurant stages helped experience but not income. Worth it for career.</p>
       </div>
 
       <div class="border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Student Who Missed Deadline</h3>
-        <p class="text-neutral-600 mb-4">Forgot to validate VLS-TS visa online.</p>
-        <p class="text-red-700 font-medium">✗ Arrived in September, started classes, forgot about visa validation. Realized in January—past the 3-month deadline. Had to visit prefecture, pay fines, and revalidate. Stressful and expensive. Validate immediately!</p>
+        <h3 class="font-semibold text-neutral-900 mb-2">Self-funded Student, Forgot OFII Validation</h3>
+        <p class="text-neutral-600 mb-4">1-year master's in Marseille, procrastinated paperwork.</p>
+        <p class="text-red-700 font-medium">✗ Missed the 3-month OFII validation deadline. Had to restart process, pay fees again, and was briefly in irregular status. Couldn't renew visa easily. Don't skip the online validation—set calendar reminders for day 1.</p>
       </div>
     </div>
   </section>
 
   <!-- CTA Box -->
   <CTABox
-    title="Compare French Student Insurance"
-    description="Find the right mutuelle to complement your Social Security coverage."
-    buttonText="Compare Insurance Options"
-    buttonHref="/countries/france/insurance"
+    title="Compare Student Insurance Options"
+    description="Find the right coverage for your first months in France before Sécurité sociale kicks in."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/safetywing"
   />
 
   <!-- Section: Common Mistakes -->
@@ -553,28 +550,28 @@ const timelineRows = [
 
     <div class="space-y-6">
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Forgetting to Validate VLS-TS</h3>
-        <p class="text-neutral-600">The most critical mistake. You must validate your VLS-TS visa online within 3 months of arrival at the ANEF portal. Missing this deadline invalidates your visa and creates serious legal problems. Do it in your first week in France.</p>
+        <h3 class="font-semibold text-neutral-900">Not Registering on Campus France Early Enough</h3>
+        <p class="text-neutral-600">Campus France deadlines are strict—typically January-March for September enrollment. The interview process alone takes 2-4 weeks to schedule. Start in November if possible. Late applications = missed year.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Skipping Campus France</h3>
-        <p class="text-neutral-600">If your country requires Campus France procedure, you cannot skip it. Your visa application will be rejected without the Campus France attestation. Start this process early—it takes 2-6 weeks minimum.</p>
+        <h3 class="font-semibold text-neutral-900">Failing to Validate Visa Online Within 3 Months</h3>
+        <p class="text-neutral-600">The VLS-TS must be validated at administration-etrangers-en-france.interieur.gouv.fr within 3 months of arrival. This is not optional. Missing it makes your status irregular and complicates future renewals. Do it in your first week.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Not Applying for CAF</h3>
-        <p class="text-neutral-600">Many students don't know about or forget to apply for CAF housing assistance (APL). You're eligible regardless of nationality. Apply at caf.fr after signing your lease—you could receive €100-200/month. It's free money.</p>
+        <h3 class="font-semibold text-neutral-900">Arriving Without Interim Insurance</h3>
+        <p class="text-neutral-600">Sécurité sociale enrollment takes 4-8 weeks after arrival. If you get sick or injured before receiving your Carte Vitale, you'll pay full price. Get SafetyWing or similar for the first 3 months—it's required for the visa anyway.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Underestimating Paris Costs</h3>
-        <p class="text-neutral-600">Paris is expensive. The €615/month minimum is unrealistic for Paris—budget €1,000-1,400/month realistically. Consider other cities (Lyon, Bordeaux, Toulouse, Lille) if budget is a concern—quality education, lower costs.</p>
+        <h3 class="font-semibold text-neutral-900">Skipping the Mutuelle Long-term</h3>
+        <p class="text-neutral-600">Sécurité sociale covers 70%, but that 30% adds up. A GP visit costs €8 after reimbursement, but dental work or specialist visits can be €50-200 out of pocket. For €20-50/month, a mutuelle gives peace of mind and better dental/optical.</p>
       </div>
 
       <div class="border-l-4 border-red-500 pl-4">
-        <h3 class="font-semibold text-neutral-900">Skipping Mutuelle Without Understanding Costs</h3>
-        <p class="text-neutral-600">Social Security covers 70%, you pay 30%. For a hospital stay or specialist care, 30% can add up fast. A mutuelle at €15-30/month is cheap insurance against unexpected medical costs. Consider your risk tolerance.</p>
+        <h3 class="font-semibold text-neutral-900">Not Applying for CAF Housing Assistance</h3>
+        <p class="text-neutral-600">International students qualify for CAF housing benefits worth €100-250/month. Many don't know or don't bother. Apply at caf.fr as soon as you have a French address and bank account. It's free money—don't leave it on the table.</p>
       </div>
     </div>
   </section>
@@ -584,63 +581,74 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in France</h2>
 
     <p class="mb-4">
-      France has one of the world's best healthcare systems, ranking #1 in the WHO's global assessment. As a student with Social Security coverage, you have access to this excellent system at minimal cost.
+      France has one of the world's best healthcare systems, consistently ranked in the top 5 globally. The system is universal—everyone is covered through Sécurité sociale. As a student, you're automatically enrolled at no cost, with care reimbursed at 70-100% depending on the service.
     </p>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered by Social Security</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How French Healthcare Works</h3>
 
     <div class="grid md:grid-cols-2 gap-6 mb-6">
       <div class="border border-green-200 bg-green-50 rounded-lg p-6">
-        <h4 class="font-semibold text-green-900 mb-3">70% Covered (Sécu Only)</h4>
+        <h4 class="font-semibold text-green-900 mb-3">Covered by Sécurité Sociale</h4>
         <ul class="space-y-2 text-green-800">
-          <li>✓ Doctor consultations (GP and specialists)</li>
-          <li>✓ Hospital stays</li>
-          <li>✓ Prescription medications</li>
+          <li>✓ GP visits (70% reimbursed, ~€8 out of pocket)</li>
+          <li>✓ Specialist visits (70% after GP referral)</li>
+          <li>✓ Hospital stays (80-100%)</li>
+          <li>✓ Prescriptions (15-100% depending on drug)</li>
           <li>✓ Lab tests and imaging</li>
-          <li>✓ Mental health (with referral)</li>
-          <li>✓ Basic dental care</li>
+          <li>✓ Mental health (psychiatrist covered)</li>
         </ul>
       </div>
 
-      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
-        <h4 class="font-semibold text-blue-900 mb-3">100% with Mutuelle</h4>
-        <ul class="space-y-2 text-blue-800">
-          <li>✓ Full reimbursement (no out-of-pocket)</li>
-          <li>✓ Better optical coverage</li>
-          <li>✓ Better dental coverage</li>
-          <li>✓ Alternative medicine (some plans)</li>
-          <li>✓ Private hospital rooms (some plans)</li>
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Mutuelle Recommended For</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Remaining 30% of costs</li>
+          <li>• Dental care (better coverage)</li>
+          <li>• Optical (glasses, contacts)</li>
+          <li>• Private/semi-private hospital rooms</li>
+          <li>• Some alternative therapies</li>
+          <li>• No-referral specialist access</li>
         </ul>
       </div>
     </div>
 
-    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Getting Your Carte Vitale</h3>
 
     <div class="space-y-4 mb-6">
       <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Step 1: Get Your Carte Vitale</h4>
-        <p class="text-neutral-600">After CVEC registration, apply for your Carte Vitale (health card) through ameli.fr. Processing takes 2-4 weeks. In the meantime, doctors will provide paper forms for reimbursement.</p>
+        <h4 class="font-semibold text-neutral-900">Step 1: Validate Your Visa</h4>
+        <p class="text-neutral-600">Complete the online OFII validation within 3 months of arrival. This is required before you can register for Sécurité sociale.</p>
       </div>
 
       <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Step 2: Find a Doctor</h4>
-        <p class="text-neutral-600">Search for a médecin traitant (primary doctor) on doctolib.fr or annuairesante.ameli.fr. You can see doctors without a referral, but having a médecin traitant improves reimbursement rates.</p>
+        <h4 class="font-semibold text-neutral-900">Step 2: Register on Ameli</h4>
+        <p class="text-neutral-600">Create an account at etudiant-etranger.ameli.fr. Upload your passport, visa, student certificate, proof of address, and bank details (RIB) for reimbursements.</p>
       </div>
 
       <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Step 3: Book Appointments</h4>
-        <p class="text-neutral-600">Use Doctolib (app or website) to book most appointments. Some doctors accept walk-ins. University health centers (SUMPPS) offer free services for students.</p>
+        <h4 class="font-semibold text-neutral-900">Step 3: Receive Carte Vitale</h4>
+        <p class="text-neutral-600">Processing takes 4-8 weeks. You'll receive a temporary certificate first, then the physical Carte Vitale. Show this at pharmacies and doctors for instant reimbursement.</p>
       </div>
 
       <div class="border-l-4 border-primary-500 pl-4">
-        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
-        <p class="text-neutral-600">Call 15 (SAMU) for medical emergencies or 112 (European emergency number). Go to hospital urgences (emergency room) for serious issues. SOS Médecins provides house calls for non-emergencies.</p>
+        <h4 class="font-semibold text-neutral-900">Step 4: Declare a Médecin Traitant</h4>
+        <p class="text-neutral-600">Choose a GP as your "médecin traitant" (treating doctor). This isn't mandatory but improves reimbursement rates for specialist visits. Your GP can help you register.</p>
       </div>
     </div>
 
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Typical Costs After Reimbursement</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP visit:</strong> €26.50 total, €8 after Sécu (€0 with mutuelle)</li>
+      <li><strong>Specialist visit:</strong> €30-50 total, €10-20 after Sécu</li>
+      <li><strong>Emergency room:</strong> Often free or minimal copay</li>
+      <li><strong>Prescriptions:</strong> €1-5 for most common medications</li>
+      <li><strong>Dental cleaning:</strong> €30-50 after partial reimbursement</li>
+    </ul>
+
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
       <p class="text-blue-800">
-        <strong>University health services:</strong> Most French universities have SUMPPS (Service Universitaire de Médecine Préventive et de Promotion de la Santé) offering free medical consultations, mental health support, and preventive care. Use these—they're included in your CVEC.
+        <strong>Quality and access:</strong> French healthcare is excellent—short wait times for GPs, high-quality hospitals, and no gatekeeping for emergencies. Unlike the UK's NHS, you can often see a specialist within days. The system combines public funding with private delivery, giving you both affordability and access.
       </p>
     </div>
   </section>
@@ -651,44 +659,44 @@ const timelineRows = [
 
     <div class="space-y-6">
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Do I need private health insurance for the France student visa?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">Is tuition really only €170-380 per year at public universities?</h3>
         <p class="text-neutral-600">
-          No. Since 2019, students are automatically enrolled in French Social Security through the CVEC contribution (€100/year). This replaces the old requirement for separate student insurance. A mutuelle (top-up) is optional but recommended to cover the 30% not covered by Social Security.
+          Yes. French public universities charge the same low rates to international students as to French citizens. Licence (bachelor's) is €170/year, master's is €243/year, and doctorate is €380/year. This doesn't include grandes écoles or private schools, which charge more. The CVEC fee (€100/year) is additional.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">What is Campus France and do I need it?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak French to study in France?</h3>
         <p class="text-neutral-600">
-          Campus France is the French government agency managing international student applications. Most non-EU students must complete the "Études en France" procedure before applying for a visa. It validates your academic project and simplifies applications. Check if your country requires it.
+          Not necessarily. Over 1,500 programs are taught entirely in English, especially at the master's level and at grandes écoles. However, daily life in France is much easier with basic French. Outside Paris, English is less common. Consider taking French classes alongside your studies—it helps with integration, jobs, and staying in France post-graduation.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">What is a mutuelle and should I get one?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between a public university and a grande école?</h3>
         <p class="text-neutral-600">
-          A mutuelle is complementary insurance covering the 30% of costs not covered by Social Security. Without it, you pay 30% out of pocket for medical care. Student mutuelles cost €15-50/month and provide peace of mind. Highly recommended, especially for glasses, dental, or regular medical needs.
-        </p>
-      </div>
-
-      <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">What is CAF and how do I get housing benefits?</h3>
-        <p class="text-neutral-600">
-          CAF (Caisse d'Allocations Familiales) provides housing assistance (APL) to students regardless of nationality. Apply at caf.fr after signing your lease. Depending on your rent and situation, you could receive €100-200/month. It takes 2-3 months to process, but payments are retroactive.
+          Public universities are open-access (no entrance exam after bac), affordable (€170-380/year), and cover all disciplines. Grandes écoles are selective institutions with entrance exams or interviews, higher tuition (€3,000-15,000+/year), and strong career networks. Both are respected, but grandes écoles often have better industry connections and higher starting salaries in fields like business and engineering.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
         <h3 class="font-semibold text-neutral-900 mb-2">Can I work while studying in France?</h3>
         <p class="text-neutral-600">
-          Yes. Students can work up to 964 hours per year (about 20 hours/week) without a separate work permit. During summer, you can work more. The French minimum wage (SMIC) is €11.65/hour. Your student residence card includes work authorization.
+          Yes. The VLS-TS student visa allows you to work up to 964 hours per year (about 20 hours/week). At minimum wage (SMIC, €11.65/hour), this means roughly €11,200/year. Many students work in restaurants, retail, tutoring, or as au pairs. Your employer must declare you through official channels.
         </p>
       </div>
 
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-900 mb-2">Can I stay after graduation?</h3>
+        <h3 class="font-semibold text-neutral-900 mb-2">How do I get a Carte Vitale?</h3>
         <p class="text-neutral-600">
-          Yes. After completing a master's or higher degree, you can apply for an APS (Autorisation Provisoire de Séjour)—a temporary residence permit to search for work. If you find a job matching your qualifications, you can switch to a work permit. Not as generous as Germany's 18 months, but workable.
+          After validating your visa online (OFII), register at etudiant-etranger.ameli.fr. Upload your documents (passport, visa, student certificate, proof of address, RIB). Processing takes 4-8 weeks. You'll first receive a temporary attestation, then the physical card. The Carte Vitale enables instant reimbursement at pharmacies and tracks your healthcare for claims.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family join me on a student visa?</h3>
+        <p class="text-neutral-600">
+          Yes, but they need their own visa. Your spouse can apply for a "vie privée et familiale" visa that allows them to work. Children can join on dependent visas. Family members are also covered by Sécurité sociale once in France. You'll need to prove sufficient funds to support everyone (approximately €615/month per additional person).
         </p>
       </div>
     </div>
@@ -699,25 +707,30 @@ const timelineRows = [
     <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
 
     <p class="mb-4">
-      France offers an excellent combination of affordable education, quality healthcare, and cultural richness. The healthcare system is particularly student-friendly: pay €100/year for CVEC, and you're covered by French Social Security—one of the world's best healthcare systems.
+      France offers an exceptional deal for international students: world-class education at €170-380/year at public universities, free healthcare through Sécurité sociale, and a clear post-graduation work pathway. The combination of affordable tuition, comprehensive healthcare, and quality of life is hard to beat.
     </p>
 
     <p class="mb-4">
-      The 70/30 coverage split (Social Security pays 70%, you pay 30%) means a mutuelle is highly recommended for peace of mind. At €15-50/month, it's cheap insurance against unexpected costs and provides better optical and dental coverage.
+      The main challenges are bureaucracy (Campus France, OFII validation, Sécu registration) and the French language for daily life. But if you're organized and willing to learn some French, these are manageable. The rewards—affordable education, excellent healthcare, European location, rich culture—make it worthwhile.
     </p>
 
     <p class="mb-6">
-      Don't forget the CAF housing benefit—€100-200/month toward rent is available to all students. Combined with low tuition (€170-3,770/year at public universities), France is remarkably affordable for the quality of education and life experience you get.
+      For insurance, the system is straightforward: get private coverage for your first 3 months (SafetyWing works well), then rely on free Sécurité sociale with an optional mutuelle (€20-50/month) for full coverage. Healthcare costs will be among the lowest of any developed country.
     </p>
 
     <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
       <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
       <p class="text-primary-800 mb-4">
-        France provides automatic Social Security coverage through the €100/year CVEC—no separate insurance shopping required. Add a mutuelle (€15-50/month) for full coverage. Apply for CAF housing benefits. The result: excellent healthcare and financial support in one of the world's most desirable countries.
+        France is one of the best-value destinations for international students. Ultra-low tuition at public universities, free Sécurité sociale healthcare, and the APS post-graduation visa make it compelling. Budget for interim insurance (first 3 months) and consider a mutuelle for ongoing coverage—but your total healthcare costs will be minimal compared to the UK or US.
       </p>
-      <a href="/countries/france/insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
-        Compare French Insurance Options →
-      </a>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/safetywing" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get SafetyWing for First 3 Months →
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-600 font-semibold px-6 py-3 rounded-lg border border-primary-600 hover:bg-primary-50 transition-colors">
+          Compare Comprehensive Plans →
+        </a>
+      </div>
     </div>
   </section>
 
@@ -735,11 +748,11 @@ const timelineRows = [
       </a>
       <a href="/visas/student-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
         <h3 class="font-semibold text-neutral-900">Germany Student Visa</h3>
-        <p class="text-neutral-600 text-sm">Compare with Germany's free tuition and insurance</p>
+        <p class="text-neutral-600 text-sm">Compare with Germany's Student Visa (free tuition option)</p>
       </a>
-      <a href="/visas/student-visa/in/netherlands" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
-        <h3 class="font-semibold text-neutral-900">Netherlands Student Visa</h3>
-        <p class="text-neutral-600 text-sm">Compare with Netherlands' student visa and insurance</p>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
       </a>
     </div>
   </section>
