@@ -1,0 +1,908 @@
+---
+/**
+ * Japan Investor/Business Manager Visa - Long-form CRO-optimized page
+ * Business Manager Visa (経営・管理) for investors and entrepreneurs
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Japan", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Japan Insurance Guide", href: "/countries/japan/insurance" },
+  { title: "Singapore Investor Visa", href: "/visas/investor-visa/in/singapore" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Capital Investment", details: "¥5,000,000+ (~$33,000 USD)", notes: "Must be invested in Japanese business" },
+  { requirement: "Office Space", details: "Dedicated business premises", notes: "Cannot be home office; must have lease" },
+  { requirement: "Employees", details: "2+ full-time Japanese employees OR", notes: "Alternative to ¥5M if hiring" },
+  { requirement: "Business Plan", details: "Viable business plan", notes: "Must demonstrate sustainability" },
+  { requirement: "Management Role", details: "Active management position", notes: "Cannot be passive investor" },
+  { requirement: "Clean Record", details: "No criminal history", notes: "Background check required" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "National Health Insurance", requirement: "Mandatory after landing", notes: "NHI (Kokumin Kenkō Hoken) enrollment required" },
+  { feature: "Coverage Type", requirement: "Universal 70% coverage", notes: "Patient pays 30% coinsurance" },
+  { feature: "Premium Basis", requirement: "Income + municipality-based", notes: "Varies by city; ¥30,000-80,000/month typical" },
+  { feature: "For Visa Application", requirement: "Not strictly required", notes: "But shows financial stability" },
+  { feature: "Private Supplement", requirement: "Optional but recommended", notes: "Covers 30% copay + extras" },
+  { feature: "International Coverage", requirement: "NHI has limited overseas", notes: "Private insurance for travel" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "NHI (Kokumin Kenkō Hoken)", type: "Japanese Public", price: "¥30,000-80,000", strengths: "Mandatory, comprehensive Japan coverage" },
+  { provider: "Allianz Care", type: "International Private", price: "¥25,000-60,000", strengths: "Global coverage, English service" },
+  { provider: "Cigna Global", type: "International Private", price: "¥30,000-70,000", strengths: "Worldwide network, premium service" },
+  { provider: "AFLAC Japan", type: "Japanese Supplement", price: "¥5,000-15,000", strengths: "Cancer/illness supplements" },
+  { provider: "Sony Life", type: "Japanese Private", price: "¥10,000-30,000", strengths: "Local comprehensive options" },
+  { provider: "Tokio Marine", type: "Japanese Private", price: "¥8,000-25,000", strengths: "Leading Japanese insurer" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (JPY)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Capital Investment", amount: "¥5,000,000+", notes: "Minimum required capital" },
+  { item: "Company Registration", amount: "¥200,000-300,000", notes: "Registration tax + fees" },
+  { item: "Office Lease (initial)", amount: "¥500,000-2,000,000", notes: "Deposit + advance rent (Tokyo)" },
+  { item: "Visa Application Fee", amount: "¥4,000", notes: "At immigration" },
+  { item: "Certificate of Eligibility", amount: "Free", notes: "Processing fee waived" },
+  { item: "Legal/Administrative Fees", amount: "¥300,000-1,000,000", notes: "Lawyer + judicial scrivener" },
+  { item: "National Health Insurance", amount: "¥360,000-960,000/year", notes: "Mandatory after enrollment" },
+  { item: "Pension Contributions", amount: "~¥200,000/year", notes: "National Pension mandatory" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Prepare business plan", duration: "1-2 months", location: "Home country" },
+  { step: "Register company in Japan", duration: "2-4 weeks", location: "Japan (can use proxy)" },
+  { step: "Secure office space", duration: "1-2 weeks", location: "Japan" },
+  { step: "Apply for Certificate of Eligibility", duration: "1-3 months", location: "Immigration Bureau" },
+  { step: "CoE approval", duration: "1-3 months processing", location: "Japan" },
+  { step: "Apply for visa at embassy", duration: "1-2 weeks", location: "Home country embassy" },
+  { step: "Enter Japan", duration: "Within 3 months", location: "Japan" },
+  { step: "Register residence", duration: "Within 14 days", location: "City/ward office" },
+  { step: "Enroll in NHI and pension", duration: "Within 14 days", location: "City/ward office" },
+];
+---
+
+<PageShell
+  title="Japan Business Manager Visa 2026: Investment Requirements, Insurance & Application Guide"
+  description="Complete guide to Japan's Business Manager Visa (経営・管理). ¥5,000,000 investment, company formation, mandatory NHI enrollment, and path to permanent residence."
+  headline="Japan Business Manager Visa: Investment Guide"
+  subheadline="Everything you need to know about Japan's Business Manager Visa—¥5,000,000 investment, company setup requirements, mandatory national health insurance, and building your business in one of the world's largest economies."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/allianz-care"
+  heroImage="/images/countries/japan-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Japanese Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      ¥5,000,000 Investment Path
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Japan's Business Manager Visa (経営・管理 / Keiei Kanri) allows foreign entrepreneurs and investors to establish and manage businesses in Japan. Unlike passive investment visas in other countries, Japan requires active business management—you must be genuinely running a company, not just providing capital. The minimum investment is ¥5,000,000 (approximately $33,000 USD), making it one of the more accessible entrepreneur visas globally.
+    </p>
+
+    <p class="mb-4">
+      Japan offers unique advantages: the world's third-largest economy, exceptional quality of life, remarkable safety, and access to Asian markets. The trade-off is Japan's business culture complexity, language barriers, and the requirement to actively manage your business. For entrepreneurs who embrace these challenges, Japan provides an extraordinary base for building a business.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Japan Business Manager Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Business Manager Visa (経営・管理)</li>
+        <li>• <strong>Minimum investment:</strong> ¥5,000,000 (~$33,000 USD)</li>
+        <li>• <strong>Office requirement:</strong> Dedicated business premises (not home)</li>
+        <li>• <strong>Duration:</strong> 1 year initial, renewable (3, 5 years possible)</li>
+        <li>• <strong>Family included:</strong> Spouse and children (Dependent visa)</li>
+        <li>• <strong>Path to PR:</strong> 10 years residence (or 1 year with HSFP points)</li>
+        <li>• <strong>Path to citizenship:</strong> 5 years continuous residence</li>
+        <li>• <strong>Work rights:</strong> Full rights to manage your business</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Japan?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• World's 3rd largest economy</li>
+          <li>• Exceptional safety and quality of life</li>
+          <li>• Accessible investment threshold (¥5M)</li>
+          <li>• Excellent healthcare system</li>
+          <li>• Gateway to Asian markets</li>
+          <li>• Strong rule of law and IP protection</li>
+          <li>• 5-year path to citizenship possible</li>
+          <li>• Highly educated workforce</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Must actively manage business (not passive)</li>
+          <li>• Japanese language important for success</li>
+          <li>• Complex business culture and customs</li>
+          <li>• Office requirement adds cost</li>
+          <li>• 10-year standard path to PR</li>
+          <li>• High cost of living (Tokyo especially)</li>
+          <li>• Bureaucracy can be challenging</li>
+          <li>• Aging population affects labor market</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Startup Visa option:</strong> Japan also offers a Startup Visa in designated cities (Tokyo, Fukuoka, etc.) that allows 6-12 months to prepare your business before meeting full Business Manager requirements. This is ideal for entrepreneurs who need time to establish the company, secure office space, and refine their business plan before the formal visa application.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Japan's Business Manager Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• You want to actively build a business in Asia</li>
+          <li>• You're drawn to Japanese culture and lifestyle</li>
+          <li>• You value safety and quality of life</li>
+          <li>• You have a Japan-relevant business idea</li>
+          <li>• You're willing to learn Japanese</li>
+          <li>• You have ¥5M+ to invest in a real business</li>
+          <li>• You want access to Japanese/Asian markets</li>
+          <li>• You appreciate long-term relationship building</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want a passive investment visa</li>
+          <li>• You prefer English-only business environment</li>
+          <li>• You need fast PR (Japan is 10 years standard)</li>
+          <li>• You're not prepared for Japanese business culture</li>
+          <li>• You prefer Mediterranean/Western lifestyle</li>
+          <li>• You want real estate-based investment visa</li>
+          <li>• You prefer lower cost of living</li>
+          <li>• You need a home-based business setup</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Japan vs. Other Asian Options</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Program</th>
+            <th class="px-4 py-2 text-left">Min. Investment</th>
+            <th class="px-4 py-2 text-left">PR Timeline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Japan</td>
+            <td class="px-4 py-2">Business Manager Visa</td>
+            <td class="px-4 py-2">¥5,000,000 (~$33K)</td>
+            <td class="px-4 py-2">10 years (1 year HSFP)</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Singapore</td>
+            <td class="px-4 py-2">EntrePass / GIP</td>
+            <td class="px-4 py-2">S$100K / S$10M</td>
+            <td class="px-4 py-2">2 years / immediate</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Hong Kong</td>
+            <td class="px-4 py-2">Investment Visa</td>
+            <td class="px-4 py-2">No minimum (viable business)</td>
+            <td class="px-4 py-2">7 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Thailand</td>
+            <td class="px-4 py-2">Thailand Elite / LTR</td>
+            <td class="px-4 py-2">฿600K-2M / income-based</td>
+            <td class="px-4 py-2">No PR path</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Japan stands out:</strong> Japan offers the lowest investment threshold among major Asian economies for an entrepreneur visa. The ¥5M (~$33K) is far below Singapore's GIP ($10M+) and more accessible than Hong Kong's increasingly complex requirements. Japan also offers a rare path to citizenship (5 years)—impossible in Singapore and very limited in Hong Kong.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Japan's Business Manager Visa requires either capital investment of ¥5,000,000 or employment of 2+ full-time Japanese residents. Most foreign entrepreneurs choose the capital route. The investment must be in an actual operating business—you cannot simply deposit money in a bank account.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding the ¥5,000,000 Requirement</h3>
+
+    <div class="space-y-6 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">What Counts as Investment</h4>
+        <p class="text-neutral-600">The ¥5M must be genuinely invested in business operations: company capital, equipment, inventory, office setup, initial operating expenses. Immigration officials will verify that funds were actually used for business purposes, not just temporarily deposited.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Source of Funds</h4>
+        <p class="text-neutral-600">You must demonstrate legitimate source of the investment capital. Bank statements, sale of assets, loan agreements, or investor commitments work. Japan is strict about anti-money laundering—expect thorough documentation requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Office Requirement</h4>
+        <p class="text-neutral-600">You must have a dedicated physical office—home offices don't qualify. The office must be a commercial lease (not residential) with your company name on the mailbox/directory. Shared offices or virtual offices are generally not accepted, though some serviced offices may qualify if they meet specific criteria.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Alternative: Employee Route</h4>
+        <p class="text-neutral-600">Instead of ¥5M capital, you can qualify by employing 2+ full-time employees who are Japanese residents (citizens or permanent residents). This can reduce the capital requirement but adds payroll obligations from day one.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Company Structure Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Kabushiki Kaisha (KK / 株式会社)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Traditional Japanese corporation</li>
+          <li>• Higher prestige with Japanese partners</li>
+          <li>• Minimum capital: ¥1 (though ¥5M for visa)</li>
+          <li>• Registration cost: ~¥200,000</li>
+          <li>• Annual compliance requirements</li>
+          <li>• Preferred for larger businesses</li>
+          <li>• Better for fundraising/investors</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Godo Kaisha (GK / 合同会社)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Similar to US LLC</li>
+          <li>• Lower setup cost: ~¥60,000</li>
+          <li>• Simpler administration</li>
+          <li>• Flexible profit distribution</li>
+          <li>• Less prestigious than KK</li>
+          <li>• Popular for small/solo businesses</li>
+          <li>• Qualifies for Business Manager Visa</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> You must be actively engaged in managing the business—this is not a passive investment visa. Immigration expects to see you making business decisions, meeting with clients, and running operations. Absentee ownership or purely remote management from another country won't satisfy visa requirements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">National Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Japan requires all residents to enroll in health insurance. As a business owner, you'll typically join the National Health Insurance (国民健康保険 / Kokumin Kenkō Hoken) system. Enrollment happens at your local city or ward office within 14 days of registering your residence.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Japan's universal healthcare system provides excellent coverage at 70% of costs (patient pays 30% coinsurance). As a self-employed business owner, you'll be in the NHI system rather than the employee-based Shakai Hoken system. Many expats supplement NHI with private insurance to cover the 30% copay and provide international coverage.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding Japanese Health Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">National Health Insurance (NHI)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Mandatory for all residents</li>
+          <li>• Premium: income + municipality-based</li>
+          <li>• Typical: ¥30,000-80,000/month</li>
+          <li>• 70% coverage (you pay 30%)</li>
+          <li>• All hospitals and clinics accept</li>
+          <li>• Includes dental (basic)</li>
+          <li>• Limited overseas coverage</li>
+          <li>• Must pay even when abroad</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Insurance (Optional)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Supplements 30% copay</li>
+          <li>• International coverage for travel</li>
+          <li>• English-speaking support</li>
+          <li>• Access to international hospitals</li>
+          <li>• Higher limits for serious illness</li>
+          <li>• Cancer insurance popular in Japan</li>
+          <li>• Medical evacuation coverage</li>
+          <li>• Premium: ¥10,000-60,000/month</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Strategy for Business Owners</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 1: Before Arrival</h4>
+        <p class="text-neutral-600">For visa application, health insurance proof isn't strictly required but shows financial stability. Consider travel insurance for the initial setup period before NHI enrollment.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 2: After Registration</h4>
+        <p class="text-neutral-600">Enroll in NHI within 14 days of residence registration. Your premium is calculated based on previous year's income (first year often lower). This is mandatory—you cannot opt out.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 3: Long-Term Strategy</h4>
+        <p class="text-neutral-600">Most business owners maintain NHI (mandatory) plus optional private supplement. Popular additions: cancer insurance (very common in Japan), copay coverage, and international travel insurance for business trips.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>High-cost illness protection:</strong> Japan's NHI includes a High-Cost Medical Expense Benefit (高額療養費) that caps your monthly out-of-pocket at approximately ¥80,000-150,000 depending on income, even for expensive treatments. This provides excellent catastrophic coverage without private insurance.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Japan Business Manager Visa?"
+    description="Compare international insurers that supplement Japan's NHI system."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Japanese NHI is mandatory and excellent, but many expats add private coverage for international travel, English support, and copay coverage. Here are options for different needs:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">NHI-Only (Budget Approach)</h4>
+        <p class="text-neutral-600">Many long-term residents rely solely on NHI. It's comprehensive, accepted everywhere, and the 30% copay with high-cost caps is manageable. Add travel insurance for international trips. This is the most cost-effective approach for those comfortable with Japanese healthcare.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent International Traveler</h4>
+        <p class="text-neutral-600">Allianz Care or Cigna Global provide worldwide coverage that complements NHI. Useful for business travelers who need seamless care outside Japan. These also offer English support and international hospital networks.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Cancer/Critical Illness Concern</h4>
+        <p class="text-neutral-600">Japan has high cancer rates, and cancer insurance is extremely popular. AFLAC Japan dominates this market. These policies pay lump sums upon diagnosis, covering lost income and uncovered treatments. Many Japanese consider this essential.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Want English-Speaking Full Service</h4>
+        <p class="text-neutral-600">Tokyo has international hospitals (St. Luke's, Tokyo Midtown) that accept international insurance. Cigna Global or Allianz Care provide direct billing and English coordination. Higher cost but removes language barriers in healthcare.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Setting up a business in Japan involves the ¥5M capital investment plus various registration, legal, and operational costs. Tokyo is expensive; consider Osaka, Fukuoka, or other cities for lower costs.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Tokyo Setup (Higher End)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Capital investment: <strong>¥5,000,000</strong></li>
+            <li>Company registration: <strong>¥250,000</strong></li>
+            <li>Office (deposit + rent): <strong>¥1,500,000</strong></li>
+            <li>Legal/admin fees: <strong>¥600,000</strong></li>
+            <li>Visa application: <strong>¥4,000</strong></li>
+            <li>NHI + pension (year 1): <strong>¥500,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>~¥7,850,000</strong></li>
+            <li class="text-sm text-neutral-500">(~$52,000 USD)</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Regional City (Fukuoka/Osaka)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Capital investment: <strong>¥5,000,000</strong></li>
+            <li>Company registration: <strong>¥100,000</strong> (GK)</li>
+            <li>Office (deposit + rent): <strong>¥600,000</strong></li>
+            <li>Legal/admin fees: <strong>¥400,000</strong></li>
+            <li>Visa application: <strong>¥4,000</strong></li>
+            <li>NHI + pension (year 1): <strong>¥400,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>~¥6,500,000</strong></li>
+            <li class="text-sm text-neutral-500">(~$43,000 USD)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Office Rent</h4>
+        <p class="text-neutral-600">Tokyo: ¥100,000-300,000/month for small office. Osaka/Fukuoka: ¥50,000-150,000. This is often the largest ongoing expense beyond salary. Some entrepreneurs use co-working spaces that meet visa requirements (verify with immigration).</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">NHI and Pension</h4>
+        <p class="text-neutral-600">NHI: ¥30,000-80,000/month depending on income and municipality. National Pension: ~¥17,000/month. These are mandatory and must be paid even during slow business periods.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Accounting and Tax</h4>
+        <p class="text-neutral-600">Tax accountant (zeirishi): ¥300,000-600,000/year for small business. Corporate tax: ~23% effective rate. Consumption tax (similar to VAT): 10% on sales over ¥10M annually.</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Cost perspective:</strong> Japan's ¥5M (~$33K) investment is very accessible compared to other developed nations. Combined with excellent healthcare, safety, and quality of life, Japan offers remarkable value for entrepreneurs—though living costs in Tokyo are high.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Business Manager Visa requires establishing your company in Japan before applying, which creates a chicken-and-egg challenge. Most applicants use a proxy (lawyer or judicial scrivener) to register the company, then apply for the Certificate of Eligibility (CoE), and finally obtain the visa from their home country embassy.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Business Plan</h4>
+          <p class="text-neutral-600">Create a detailed business plan for the Japanese market. Include: executive summary, market analysis, revenue projections, use of funds, and why your business will succeed in Japan. This doesn't need to be in Japanese initially but shows you've done serious planning.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Company in Japan</h4>
+          <p class="text-neutral-600">Work with a judicial scrivener (shiho shoshi) and/or lawyer to register your KK or GK. They can act as your proxy while you're still abroad. Deposit capital (¥5M+) into a Japanese bank—often challenging from abroad, but specialists can arrange this.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Office Space</h4>
+          <p class="text-neutral-600">Sign a commercial lease for your business premises. Cannot be a residential address or your future apartment. Your representative or lawyer in Japan may sign on behalf of the company. Take photos for the visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Certificate of Eligibility (CoE)</h4>
+          <p class="text-neutral-600">Your representative in Japan submits the CoE application to the regional Immigration Bureau. Include: business plan, company registration documents, office lease, capital evidence, your resume, and photos. Processing: 1-3 months typically.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive CoE and Apply for Visa</h4>
+          <p class="text-neutral-600">Once approved, the CoE is mailed to your representative in Japan, who sends it to you. Take the CoE to your local Japanese embassy/consulate, apply for the actual visa (quick process, 3-5 days typically), and receive your passport with visa.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enter Japan</h4>
+          <p class="text-neutral-600">Enter Japan within 3 months of visa issuance. At immigration, present your CoE and visa. You'll receive a residence card (Zairyu Card) at the airport for 1-year initial status. Your Business Manager status begins.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Residence and Enroll in Services</h4>
+          <p class="text-neutral-600">Within 14 days: register address at city/ward office, receive residence certificate (juminhyo), enroll in NHI and National Pension. Open personal bank account (can be challenging—bring company documents). Get a phone number and set up utilities.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Startup Visa alternative:</strong> Some cities (Tokyo's Shibuya, Fukuoka, Kobe) offer a Startup Visa allowing 6-12 months to prepare before meeting full requirements. This lets you enter Japan first, find office space, refine your business plan, and then convert to Business Manager status. Ideal for entrepreneurs who need boots-on-ground preparation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Business Manager Visa applicants in Japan:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Entrepreneur, SaaS Business in Tokyo</h3>
+        <p class="text-neutral-600 mb-4">35 years old, building B2B SaaS for Japanese enterprises. ¥8M capital, WeWork-style office in Shibuya. Previous startup experience in Silicon Valley.</p>
+        <p class="text-green-700 font-medium">Approved in 7 weeks. Strong business plan with clear Japan market fit impressed immigration. Using NHI + Cigna Global supplement for travel. Hired first Japanese employee after 6 months. Business growing, 3-year renewal expected.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">German Import/Export Business in Osaka</h3>
+        <p class="text-neutral-600 mb-4">42 years old, importing German machinery and products to Japanese market. ¥10M capital, small warehouse/office in Osaka. 15 years B2B sales experience.</p>
+        <p class="text-green-700 font-medium">Approved in 5 weeks via Startup Visa then conversion. Established supplier relationships from previous career. Lower Osaka costs stretched budget further. NHI only—comfortable with Japanese healthcare. Profitable in year 2.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Cafe Owner in Fukuoka</h3>
+        <p class="text-neutral-600 mb-4">38 years old, opening specialty coffee cafe with Australian-style brunch. ¥7M capital for equipment, renovation, initial inventory. Hospitality background.</p>
+        <p class="text-amber-700 font-medium">Approved after 10 weeks with additional documentation. Immigration wanted clarity on food service licensing and sustainability plan. Fukuoka's Startup Visa program helped with initial entry. Cafe busy on weekends, building local following. NHI + travel insurance for trips home.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese E-commerce, Cross-Border Sales</h3>
+        <p class="text-neutral-600 mb-4">30 years old, selling Japanese products to Chinese consumers via Tmall/JD.com. ¥5M capital, small office in Tokyo. Strong Chinese consumer insight.</p>
+        <p class="text-green-700 font-medium">Approved in 6 weeks. Clear business model with demonstrable market. Language skills (Chinese, Japanese, English) key asset. GK structure kept costs low. Business profitable quickly due to existing customer channels. Applied for 3-year renewal successfully.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Consultant, One-Person Business</h3>
+        <p class="text-neutral-600 mb-4">50 years old, management consultant serving Japanese subsidiaries of UK companies. ¥5M capital, shared office space. 25 years consulting experience.</p>
+        <p class="text-green-700 font-medium">Approved in 8 weeks. Extensive track record and existing client relationships impressed. Shared office required extra documentation to prove it met requirements. Using Allianz Care for English-speaking healthcare. Planning for permanent residence via 10-year route.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Application Rejected: Online-Only Business</h3>
+        <p class="text-neutral-600 mb-4">Wanted to run dropshipping business from home, treating apartment as office. No clear Japan market focus—selling globally via Amazon.</p>
+        <p class="text-red-700 font-medium">Rejected. Immigration found: no proper office (home address rejected), no clear business activity requiring presence in Japan, business could operate from anywhere. Advised to reconsider if Japan is necessary for business model. Lesson: Business Manager Visa requires genuine Japan-based operations with proper office.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Japan Business Manager Visa"
+    description="Find the right coverage to supplement Japan's NHI system."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Home Address or Virtual Office</h3>
+        <p class="text-neutral-600">Japan requires a dedicated commercial office space. Residential addresses, virtual offices, and mail-forwarding services don't qualify. Invest in proper office space—even a small commercial lease in a co-working building that provides dedicated space may work, but verify with immigration first.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Treating It as Passive Investment</h3>
+        <p class="text-neutral-600">This is not a "park money and get residence" visa. You must actively manage the business. Immigration checks that you're genuinely running operations. Being absent from Japan for extended periods or having someone else manage everything risks visa renewal denial.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Business Plan</h3>
+        <p class="text-neutral-600">A vague "I'll figure it out" approach doesn't work. Present a concrete business plan with: what you'll sell/provide, target customers, revenue model, why Japan specifically, and financial projections. Immigration officers assess business viability.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Banking Challenges</h3>
+        <p class="text-neutral-600">Opening Japanese bank accounts is notoriously difficult for foreigners. Plan ahead: work with specialists who can help arrange company accounts, expect the process to take time, and have backup payment solutions. Personal accounts may require residence history.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring Japanese Business Culture</h3>
+        <p class="text-neutral-600">Japan has distinct business customs: relationship-building takes time, hierarchy matters, indirect communication is common, and punctuality is essential. Foreign entrepreneurs who dismiss these as "old-fashioned" often struggle. Invest in understanding Japanese business culture.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Japan -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Japan</h2>
+
+    <p class="mb-4">
+      Japan has one of the world's best healthcare systems: universal coverage, advanced technology, high quality, and reasonable costs. Life expectancy is among the highest globally. As a resident, you'll have access to this excellent system through mandatory NHI enrollment.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Japanese Healthcare System</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">National Health Insurance (NHI)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Mandatory for all residents</li>
+          <li>• 70% coverage (30% patient copay)</li>
+          <li>• High-cost cap: ~¥80,000/month</li>
+          <li>• All hospitals/clinics accept</li>
+          <li>• Basic dental included</li>
+          <li>• Prescription drug coverage</li>
+          <li>• Preventive care covered</li>
+          <li>• Premium: income-based</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Healthcare Quality</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• World-class hospitals and technology</li>
+          <li>• Highly trained physicians</li>
+          <li>• Short wait times (vs UK/Canada)</li>
+          <li>• Clean, modern facilities</li>
+          <li>• Pharmacies everywhere (konbini)</li>
+          <li>• Same-day appointments often possible</li>
+          <li>• Advanced diagnostic equipment</li>
+          <li>• Excellent specialist access</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare in Major Cities</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Tokyo</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• International hospitals (St. Luke's, Tokyo Midtown)</li>
+          <li>• Many English-speaking doctors</li>
+          <li>• Extensive specialist options</li>
+          <li>• University hospitals (Tokyo U, Keio)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Osaka</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Strong hospital network</li>
+          <li>• International clinic options</li>
+          <li>• Good specialist coverage</li>
+          <li>• Lower costs than Tokyo</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Fukuoka</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Quality regional hospitals</li>
+          <li>• Growing international community</li>
+          <li>• Startup ecosystem support</li>
+          <li>• More affordable overall</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Smaller Cities</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Good basic care everywhere</li>
+          <li>• Limited English speakers</li>
+          <li>• May need to travel for specialists</li>
+          <li>• University hospitals in prefectural capitals</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Language tip:</strong> Outside major international hospitals, English is limited. Many expats: (1) learn basic medical Japanese, (2) use translation apps during appointments, (3) bring Japanese-speaking friends for complex visits, or (4) use medical interpreting services. Major hospitals may have English-speaking staff, but assume Japanese is needed.</p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse and children can apply for Dependent visas, allowing them to live in Japan. Spouses can work up to 28 hours/week without additional permission. Children can attend Japanese schools (excellent public education is free). Each family member needs their own health insurance enrollment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long does it take to get permanent residence?</h3>
+        <p class="text-neutral-600">
+          Standard path is 10 years of continuous residence. However, the Highly Skilled Foreign Professional (HSFP) points system can reduce this to 3 years (70+ points) or just 1 year (80+ points). Points come from education, work experience, income, and other factors. Many business owners qualify for accelerated PR.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get Japanese citizenship?</h3>
+        <p class="text-neutral-600">
+          Yes, after 5 years of continuous residence, you can apply for naturalization. Requirements include: 5+ years residence, age 20+, good conduct, sufficient assets, renouncing other citizenship (Japan doesn't allow dual). Language ability is assessed. The process takes 6-12 months.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Japanese?</h3>
+        <p class="text-neutral-600">
+          It's not legally required for the visa, but business success often requires it. Some industries (IT, export/import to English markets) can operate in English. However, hiring, customer service, administrative tasks, and daily life are much easier with Japanese. Most successful business owners invest in learning.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my business fails?</h3>
+        <p class="text-neutral-600">
+          Your visa status depends on maintaining a viable business. If your business closes, you need to either: start a new qualifying business, change to a different visa status (work visa if you find employment), or leave Japan. Discuss contingency plans with an immigration lawyer before problems arise.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work for other companies too?</h3>
+        <p class="text-neutral-600">
+          Your primary activity must be managing your business. However, with "Permission to Engage in Activities Other Than Those Permitted" (資格外活動許可), you can do limited additional work. Consulting for other companies or part-time work may be possible with proper permission.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Japan's Business Manager Visa offers a genuine path to building a business in one of the world's most developed economies. The ¥5M (~$33K) investment threshold is remarkably accessible—far lower than Singapore, Hong Kong, or Western alternatives. For entrepreneurs drawn to Japanese culture, markets, or lifestyle, this visa provides a legitimate route to residence and eventually citizenship.
+    </p>
+
+    <p class="mb-4">
+      The trade-offs are real: this is not a passive investment visa, Japanese business culture has a learning curve, and the language barrier is significant. The 10-year standard path to permanent residence is longer than European alternatives (though HSFP points can accelerate to 1-3 years). Office requirements add cost beyond the capital investment.
+    </p>
+
+    <p class="mb-6">
+      Healthcare is excellent and mandatory—NHI provides comprehensive coverage with manageable copays. Most expats find the Japanese healthcare system superior to their home countries. Optional private insurance adds international coverage and English support but isn't essential for medical care within Japan.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Japan's Business Manager Visa suits genuine entrepreneurs who want to build a business in Japan—not passive investors seeking a Golden Visa. Come with ¥5M+, a real business plan, commitment to active management, and willingness to embrace Japanese culture. The reward is life in one of the world's safest, most developed countries with a genuine path to permanent residence and citizenship.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Cigna Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/japan/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Japan Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to NHI and private insurance in Japan</p>
+      </a>
+      <a href="/visas/investor-visa/in/singapore" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Singapore Investor Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare Singapore's EntrePass and GIP programs</p>
+      </a>
+      <a href="/providers/allianz-care" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Allianz Care Review</h3>
+        <p class="text-neutral-600 text-sm">International health insurance with Japan coverage</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

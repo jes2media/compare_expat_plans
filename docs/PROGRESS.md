@@ -1,13 +1,13 @@
 # Project Progress Log
 
-Last updated: February 5, 2026
+Last updated: February 6, 2026
 
 ---
 
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,373
+**Total pages:** ~2,401
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -16,11 +16,73 @@ Last updated: February 5, 2026
 **Problem/solution guides:** 6 (with hero images)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
-**Visa × Country pages:** 93 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa)
+**Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
 
 ---
 
 ## Completed Milestones
+
+### February 6, 2026 - Investor/Entrepreneur Visa Pages Batches 1-10 (28 countries)
+
+#### Investor Visa Pages Created
+New investor visa pages at `/visas/investor-visa/in/[country]`:
+
+**Batch 1 (Top EU Golden Visa programs):**
+- Greece (Golden Visa, €250K-500K real estate still active, zero stay, 7-year citizenship)
+- Malta (MPRP, €300K+ property or €10K/year rental, English-speaking EU, permanent residence)
+- Italy (Investor Visa, €250K startup to €2M bonds, full work rights, 10-year citizenship)
+
+**Batch 2 (USA):**
+- USA (EB-5, $800K TEA or $1.05M standard, Green Card path, critical health insurance focus)
+
+**Batch 3 (Premium Europe):**
+- Switzerland (Lump-sum taxation/forfait fiscal, CHF 400K+ annual tax, mandatory LAMal, wealthy non-working residents)
+- Austria (Red-White-Red Card, €50,000+ investment, SVS mandatory, Vienna tech/startup scene)
+- Cyprus (Permanent Residence by Investment, €300,000 property, 2-month processing, non-dom tax regime)
+
+**Batch 4 (Asia-Pacific):**
+- Japan (Business Manager Visa 経営・管理, ¥5,000,000 investment ~$33K, mandatory NHI enrollment, Startup Visa option, HSFP points system)
+- Hong Kong (CIES HK$30M or Investment Visa for entrepreneurs, Top Talent Pass, 7-year PR path, no citizenship, 15% flat tax)
+- Thailand (Thailand Elite ฿600K-2.14M for 5-20 years, LTR Visa $1M assets/$80K income, BOI ฿10M+, no citizenship path, work rights vary by program)
+
+**Batch 5 (Americas & Strategic Markets):**
+- Malaysia (MM2H RM1M deposit + RM40K/month income, Sarawak S-MM2H RM150K-300K easier alternative, Premium Visa 20-year, English-speaking SE Asia)
+- Panama (Qualified Investor $300K, Friendly Nations $5K + economic tie, USD economy, territorial taxation, Pensionado discounts, 7-year citizenship path)
+- Turkey (Citizenship by Investment $400K property, 3-6 month processing, Turkish passport 110+ countries, one of fastest CBI programs globally)
+
+**Batch 6 (Asia-Pacific Expansion):**
+- Indonesia (Second Home Visa $130K savings + $1,400/month income, Golden Visa $2.5M+ new 2024, Investor KITAS IDR 10B, no citizenship path, Singapore evacuation essential)
+- Philippines (SRRV Smile $20K deposit 50+, SRRV Classic $50K 35+, SIRV $75K active investment, permanent residence, English-speaking, refundable deposit)
+- South Korea (D-8 Investment KRW 100M ~$75K corporate, F-5-5 PR KRW 300M ~$225K, F-5-6 Real Estate KRW 500M-1.5B, citizenship path 5 years + TOPIK Level 5, mandatory NHI)
+
+**Batch 7 (Caribbean CBI Programs):**
+- St. Kitts and Nevis (World's oldest CBI since 1984, SISC $250K single/$300K family 4, real estate $400K 7-year hold, 45-60 day processing, 157 countries visa-free, "Platinum Standard")
+- Dominica (Most affordable CBI globally, EDF $100K single/$175K family 4, real estate $200K 3-year hold, 145 countries visa-free, best value Caribbean citizenship)
+- Grenada (Only Caribbean CBI with US E-2 Treaty, NTF $150K single/$200K family, 146 countries visa-free + path to US residence, unique value proposition for US seekers)
+
+**Batch 8 (Pacific, Americas, Asia):**
+- Vanuatu (Fastest CBI globally 30-60 days, DSP $130K single/$150K family 4, 112 countries visa-free, zero income/capital gains/wealth tax, Pacific island lifestyle, Australia/NZ evacuation essential)
+- Costa Rica (Inversionista $150K productive investment, 3-6 month processing, mandatory CAJA enrollment, 7-year citizenship path, Pura Vida lifestyle, dual insurance system)
+- Vietnam (No fixed minimum investment, IRC + ERC company setup, 1-5 year investor visa, no citizenship path, mandatory evacuation coverage Singapore/Bangkok, fastest-growing SE Asian economy)
+
+**Batch 9 (Caribbean CBI + EU Candidate):**
+- Antigua and Barbuda (CBI $100K NDF for family up to 4 - best family value, 150+ countries visa-free, 5 days/5 years residency, extended family inclusion, 3-6 month processing)
+- St. Lucia (CBI $100K NEF or $300K refundable bonds, 145+ countries visa-free, zero residency requirement, unique bond option for capital preservation, 3-4 month processing)
+- Montenegro (EU candidate CBI €350K-€550K+ real estate + €100K donation, potential EU pathway 2028-2030, 124+ countries + Schengen, program winding down - limited slots, Belgrade/Vienna evacuation)
+
+**Batch 10 (MENA + Southeast Asia):**
+- Jordan (Investor residency $100K+ company/real estate, 5-year renewable, excellent Amman healthcare - King Hussein Cancer Center, 2-4 month processing, 15+ year citizenship path discretionary)
+- Egypt (Golden Visa 2024 launch, $300K+ real estate/company for 3-year or $500K+ for 5-year, Cairo private hospitals good, currency volatility, evacuation coverage essential outside major cities)
+- Cambodia (E-class + company $100K+, QIP $500K+ with 9-year tax holiday, dollar economy, 7-year citizenship path, Bangkok evacuation essential - local healthcare limited)
+
+**Previously existing pages (12):**
+- Portugal, Spain, UK, Germany, France, Netherlands, Ireland
+- UAE, Singapore, Australia, Canada, New Zealand
+
+**Total Investor Visa pages: 40** (12 existing + 28 new across 10 batches)
+**Total Visa × Country pages: 133** (33 DNV + 17 Retirement + 34 Student + 9 Freelancer + 40 Investor)
+
+---
 
 ### February 5, 2026 - Student Visa Pages Complete (34 countries)
 
@@ -822,8 +884,9 @@ These 21 countries have manually created pages with custom hero images:
 | **Retirement Visa pages** | **17** | **Complete (17 countries across 4 batches)** |
 | **Student Visa pages** | **34** | **Complete (all countries)** |
 | **Freelancer Visa pages** | **9** | **Complete (all countries)** |
+| **Investor Visa pages** | **40** | **In progress (28 new + 12 existing)** |
 
-**Total pages:** ~2,373
+**Total pages:** ~2,401
 
 ---
 
@@ -852,9 +915,9 @@ These 21 countries have manually created pages with custom hero images:
 3. **Freelancer/Self-Employed Visa Pages Complete** ✓
    - All 9 countries covered: Germany, Netherlands, Czech Republic, Spain, Portugal, France, Austria, UAE, Estonia
 
-4. **Other Visa Type × Country Pages** - 2 more visa types to cover:
-   - Investor/Entrepreneur Visa (16 countries planned)
-   - Work Permit (18 countries planned)
+4. **Other Visa Type × Country Pages** - Work Permit pages remaining:
+   - Investor/Entrepreneur Visa: 40 pages complete (12 existing + 28 new in 10 batches)
+   - Work Permit (18 countries planned) - next priority
 
 3. **Continue Country-Persona Expansion** - ~92 countries remaining
    - Batch 9: Middle East (Qatar, Bahrain, Kuwait, Oman, Saudi Arabia, Jordan)

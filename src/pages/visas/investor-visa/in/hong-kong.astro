@@ -1,0 +1,913 @@
+---
+/**
+ * Hong Kong Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Investment Visa and Capital Investment Entrant Scheme guide
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Routes", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Hong Kong", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Hong Kong Insurance Guide", href: "/countries/hong-kong/insurance" },
+  { title: "Singapore Investor Visa", href: "/visas/investor-visa/in/singapore" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+];
+
+const visaRoutesColumns = [
+  { key: "route", header: "Visa Route" },
+  { key: "requirement", header: "Key Requirement" },
+  { key: "bestFor", header: "Best For" },
+];
+
+const visaRoutesRows = [
+  { route: "Investment Visa (GEP)", requirement: "Viable business plan, no fixed minimum", notes: "Entrepreneurs with business in HK" },
+  { route: "CIES (restarted 2024)", requirement: "HK$30M in eligible investments", notes: "High-net-worth passive investors" },
+  { route: "Top Talent Pass (TTPS)", requirement: "Top university or HK$2.5M income", notes: "High achievers seeking residence" },
+  { route: "Quality Migrant (QMAS)", requirement: "Points-based (age, education, etc.)", notes: "Skilled professionals" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "For Visa Application", requirement: "Not mandatory", notes: "But strongly recommended" },
+  { feature: "Public Healthcare", requirement: "Available to residents", notes: "Very long wait times" },
+  { feature: "Private Insurance", requirement: "Essential in practice", notes: "Most expats use private" },
+  { feature: "Corporate Coverage", requirement: "Standard for employees", notes: "Self-employed need own coverage" },
+  { feature: "Hospital Coverage", requirement: "Highly recommended", notes: "Private hospital costs very high" },
+  { feature: "Maternity", requirement: "Important add-on", notes: "HK$100,000+ private delivery" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "HK$3,000-8,000", strengths: "Comprehensive global coverage" },
+  { provider: "Bupa Global", type: "International", price: "HK$3,500-9,000", strengths: "Premium service, no limits" },
+  { provider: "Allianz Care", type: "International", price: "HK$2,500-6,000", strengths: "Good value, strong network" },
+  { provider: "AXA Hong Kong", type: "Local Premium", price: "HK$1,500-4,000", strengths: "Local expertise, Chinese language" },
+  { provider: "AIA Hong Kong", type: "Local", price: "HK$1,000-3,000", strengths: "Strong local network" },
+  { provider: "Manulife HK", type: "Local", price: "HK$1,200-3,500", strengths: "Flexible plans, savings options" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (HKD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "CIES Investment", amount: "HK$30,000,000", notes: "Capital Investment Entrant Scheme" },
+  { item: "Visa Application Fee", amount: "HK$230", notes: "Per application" },
+  { item: "Company Registration", amount: "HK$1,720", notes: "Annual Business Registration" },
+  { item: "Company Incorporation", amount: "HK$1,545", notes: "One-time fee" },
+  { item: "Office (Central)", amount: "HK$50,000-200,000/month", notes: "Prime Central location" },
+  { item: "Office (Kowloon)", amount: "HK$20,000-80,000/month", notes: "More affordable" },
+  { item: "Legal/Consulting", amount: "HK$30,000-100,000", notes: "Immigration lawyer + setup" },
+  { item: "Health Insurance", amount: "HK$15,000-60,000/year", notes: "Essential for private care" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Prepare business plan/documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Register HK company (if needed)", duration: "1-2 weeks", location: "Hong Kong/online" },
+  { step: "Submit visa application", duration: "1 day", location: "Immigration Department" },
+  { step: "Application processing", duration: "4-8 weeks", location: "Hong Kong" },
+  { step: "Visa approval", duration: "Notification by mail/email", location: "Immigration" },
+  { step: "Entry to Hong Kong", duration: "Within visa validity", location: "Hong Kong" },
+  { step: "Collect HKID", duration: "Within 30 days", location: "Registration of Persons" },
+  { step: "Initial visa duration", duration: "1-2 years", location: "Hong Kong" },
+  { step: "Renewal pattern", duration: "2-2-3 years to PR", location: "Immigration" },
+];
+---
+
+<PageShell
+  title="Hong Kong Investor Visa 2026: CIES, Investment Visa & Entrepreneur Guide"
+  description="Complete guide to Hong Kong investment and entrepreneur visas. CIES (HK$30M), Investment Visa for entrepreneurs, Top Talent Pass, and path to permanent residence."
+  headline="Hong Kong Investor Visa: Complete Guide"
+  subheadline="Everything you need to know about Hong Kong's investor and entrepreneur visa options—including the revived Capital Investment Entrant Scheme (HK$30M), Investment Visa for entrepreneurs, and pathways to permanent residence in Asia's premier financial hub."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/hong-kong-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official HK Immigration Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      7-Year PR Path
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Hong Kong offers multiple pathways for investors and entrepreneurs to obtain residence in one of Asia's premier financial centers. The most notable is the Capital Investment Entrant Scheme (CIES), relaunched in 2024 after an 8-year suspension, requiring HK$30 million in eligible investments. For entrepreneurs, the Investment Visa (under the General Employment Policy) requires a viable business plan but has no fixed minimum investment.
+    </p>
+
+    <p class="mb-4">
+      Hong Kong's strategic advantages are significant: zero capital gains tax, simple flat tax system (15% max), free port status, common law legal system, gateway to Mainland China, and world-class infrastructure. The path to permanent residence is straightforward—7 years of continuous residence—though the political landscape has evolved significantly since 2019.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Hong Kong Investor/Entrepreneur Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>CIES investment:</strong> HK$30,000,000 (~$3.8M USD) in eligible assets</li>
+        <li>• <strong>Investment Visa:</strong> No fixed minimum (viable business required)</li>
+        <li>• <strong>Top Talent Pass:</strong> Top 100 university or HK$2.5M income</li>
+        <li>• <strong>Processing time:</strong> 4-8 weeks typically</li>
+        <li>• <strong>Family included:</strong> Spouse and unmarried children under 18</li>
+        <li>• <strong>Path to PR:</strong> 7 years continuous residence</li>
+        <li>• <strong>Tax benefits:</strong> No capital gains, 15% max income tax</li>
+        <li>• <strong>Renewal pattern:</strong> 1-2-2-3 years to PR</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Hong Kong?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Zero capital gains tax</li>
+          <li>• Simple, low tax system (15% max)</li>
+          <li>• World-class financial infrastructure</li>
+          <li>• Common law legal system</li>
+          <li>• Gateway to Mainland China</li>
+          <li>• English widely spoken in business</li>
+          <li>• Excellent international connectivity</li>
+          <li>• No foreign exchange controls</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• CIES requires HK$30M (very high threshold)</li>
+          <li>• Extremely high cost of living</li>
+          <li>• Political landscape has changed</li>
+          <li>• National Security Law implications</li>
+          <li>• Apartment sizes very small</li>
+          <li>• No path to citizenship (PR only)</li>
+          <li>• Long healthcare wait times (public)</li>
+          <li>• Competitive business environment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>CIES revival:</strong> After being suspended in 2015 during a property boom, Hong Kong restarted the Capital Investment Entrant Scheme in March 2024. The new program requires HK$30M in eligible investments (equities, bonds, funds—but NOT property for immigration purposes). This is primarily aimed at ultra-high-net-worth individuals seeking Hong Kong residence for financial and tax planning purposes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Hong Kong is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• You prioritize tax efficiency above all</li>
+          <li>• You have HK$30M+ for CIES, or viable business</li>
+          <li>• You want access to China market</li>
+          <li>• You value financial center infrastructure</li>
+          <li>• You're comfortable with high living costs</li>
+          <li>• You want English-speaking Asian base</li>
+          <li>• You appreciate fast-paced business culture</li>
+          <li>• You understand the political context</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want citizenship pathway (HK offers PR only)</li>
+          <li>• You're uncomfortable with political evolution</li>
+          <li>• You prefer lower cost of living</li>
+          <li>• You want larger living spaces</li>
+          <li>• You don't have HK$30M or business plan</li>
+          <li>• You prefer Western lifestyle</li>
+          <li>• You need good public healthcare</li>
+          <li>• You want quiet, relaxed environment</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Hong Kong vs. Other Asian Financial Hubs</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Location</th>
+            <th class="px-4 py-2 text-left">Investor Route</th>
+            <th class="px-4 py-2 text-left">Investment</th>
+            <th class="px-4 py-2 text-left">Tax Regime</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Hong Kong</td>
+            <td class="px-4 py-2">CIES / Investment Visa</td>
+            <td class="px-4 py-2">HK$30M / Business plan</td>
+            <td class="px-4 py-2">0% cap gains, 15% max income</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Singapore</td>
+            <td class="px-4 py-2">GIP / EntrePass</td>
+            <td class="px-4 py-2">S$10M / S$100K</td>
+            <td class="px-4 py-2">0% cap gains, 22% max income</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Japan</td>
+            <td class="px-4 py-2">Business Manager</td>
+            <td class="px-4 py-2">¥5M (~HK$260K)</td>
+            <td class="px-4 py-2">Cap gains taxed, up to 45%</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Dubai (UAE)</td>
+            <td class="px-4 py-2">Golden Visa</td>
+            <td class="px-4 py-2">AED 2M property</td>
+            <td class="px-4 py-2">0% income, 0% cap gains</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Hong Kong stands out:</strong> Hong Kong offers unmatched China access, common law legal system, and zero capital gains tax. For businesses connecting Western markets with Mainland China, Hong Kong remains uniquely positioned. The Investment Visa (no fixed minimum) is more accessible than CIES for genuine entrepreneurs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Routes</h2>
+
+    <p class="mb-4">
+      Hong Kong offers several visa categories for investors and entrepreneurs. The choice depends on your capital, business plans, and whether you want active business involvement or passive investment.
+    </p>
+
+    <ComparisonTable columns={visaRoutesColumns} rows={visaRoutesRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Capital Investment Entrant Scheme (CIES)</h3>
+
+    <div class="border-l-4 border-blue-500 pl-4 mb-6">
+      <p class="text-neutral-600 mb-4">The CIES is Hong Kong's passive investment visa, relaunched in 2024 with a HK$30 million threshold. It's designed for ultra-high-net-worth individuals who want Hong Kong residence without running a business.</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">Eligible Investments</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• Hong Kong listed equities</li>
+            <li>• Hong Kong government bonds</li>
+            <li>• Eligible collective investment schemes</li>
+            <li>• Limited partnership funds</li>
+            <li>• Non-residential real estate (for investment)</li>
+          </ul>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">NOT Eligible</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• Residential property</li>
+            <li>• Bank deposits</li>
+            <li>• Insurance products (with exceptions)</li>
+            <li>• Personal use items</li>
+            <li>• Cryptocurrency</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Investment Visa (General Employment Policy)</h3>
+
+    <div class="border-l-4 border-green-500 pl-4 mb-6">
+      <p class="text-neutral-600 mb-4">For entrepreneurs who want to start or join a business in Hong Kong. No fixed minimum investment—Immigration assesses your business plan viability and your background.</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">Key Requirements</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• Viable business plan</li>
+            <li>• Relevant business/professional background</li>
+            <li>• Contribution to Hong Kong economy</li>
+            <li>• Sufficient capital for business needs</li>
+            <li>• Reasonable premises/office</li>
+          </ul>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">What Immigration Looks For</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• Job creation for locals</li>
+            <li>• Business track record</li>
+            <li>• Industry expertise</li>
+            <li>• Trade/technology/innovation value</li>
+            <li>• Financial sustainability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Top Talent Pass Scheme (TTPS)</h3>
+
+    <div class="border-l-4 border-purple-500 pl-4 mb-6">
+      <p class="text-neutral-600 mb-4">Launched in 2022 to attract high achievers. Two categories: graduates from top 100 global universities, or those earning HK$2.5M+ annually.</p>
+
+      <div class="space-y-3">
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">Category A: High Earners</h4>
+          <p class="text-neutral-700 text-sm">Earned HK$2.5 million+ in the year before application. No other eligibility requirements.</p>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">Category B: Top University Graduates</h4>
+          <p class="text-neutral-700 text-sm">Graduated from top 100 university (various rankings) with 3+ years work experience in past 5 years.</p>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">Category C: Recent Top Graduates</h4>
+          <p class="text-neutral-700 text-sm">Graduated from top 100 university in past 5 years, less than 3 years work experience. Annual quota of 10,000.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Mainland Chinese citizens generally cannot apply for CIES—it's primarily for overseas nationals. The Investment Visa and other schemes may have different eligibility for different nationalities. Verify current requirements with Immigration Department before planning.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance: Not Mandatory, But Essential</h3>
+      <p class="text-green-800">
+        Hong Kong does not require health insurance for visa applications. However, private health insurance is practically essential—public healthcare has extremely long wait times, and private care is very expensive without insurance. Most employers provide corporate coverage, but self-employed and investors need their own policies.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Hong Kong's public healthcare is excellent quality but severely overcrowded. Wait times for non-emergency specialist appointments can be months or years. Private hospitals offer world-class care but charge premium prices (HK$50,000+ for simple procedures). Comprehensive health insurance is a practical necessity for anyone living in Hong Kong.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Understanding Hong Kong Healthcare</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Public Healthcare (Hospital Authority)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Available to all residents with HKID</li>
+          <li>• Very affordable (HK$180/day inpatient)</li>
+          <li>• Excellent emergency and trauma care</li>
+          <li>• Extremely long wait times for specialists</li>
+          <li>• Overcrowded facilities</li>
+          <li>• Limited English (improving)</li>
+          <li>• Used mainly for emergencies</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Premium: HK$1,000-8,000/month</li>
+          <li>• Immediate specialist access</li>
+          <li>• English widely spoken</li>
+          <li>• Modern facilities, private rooms</li>
+          <li>• Very expensive without insurance</li>
+          <li>• Direct billing with major insurers</li>
+          <li>• Standard for business community</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Strategy for Investors/Entrepreneurs</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Self-Employed/Business Owner</h4>
+        <p class="text-neutral-600">You won't have corporate coverage—essential to arrange your own. Consider international plans (Cigna, Bupa) for premium service or local plans (AXA HK, AIA) for cost efficiency. Budget HK$2,000-6,000/month for comprehensive individual coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">CIES Passive Investor</h4>
+        <p class="text-neutral-600">With substantial assets, premium international coverage makes sense. Bupa Global or Cigna Global provide worldwide coverage with Hong Kong as home base. Important if you travel frequently or may not be in HK full-time.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Coverage</h4>
+        <p class="text-neutral-600">Maternity coverage is crucial—private delivery in Hong Kong costs HK$100,000-200,000+. Children's coverage, dental, and vision add-ons are important for families. Family plans from major insurers run HK$5,000-15,000/month.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Corporate structure tip:</strong> If you're setting up a company, consider offering group medical insurance to employees (including yourself as director). Group plans often provide better value than individual policies and are tax-deductible business expenses.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need health insurance for Hong Kong?"
+    description="Compare international and local insurers for comprehensive coverage."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Hong Kong has a mature insurance market with both international and local options. Your choice depends on budget, coverage needs, and whether you need international portability.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">High-Net-Worth (CIES Investor)</h4>
+        <p class="text-neutral-600">Bupa Global or Cigna Global—premium service, worldwide coverage, no annual limits. These insurers are familiar with high-net-worth clients and provide concierge-style service. Budget HK$6,000-10,000/month for comprehensive individual coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Entrepreneur/Business Owner</h4>
+        <p class="text-neutral-600">AXA Hong Kong or Allianz Care—good balance of coverage and cost. Local insurers have strong hospital networks; international insurers add global coverage for business travel. Budget HK$2,000-5,000/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Young Professional (TTPS)</h4>
+        <p class="text-neutral-600">AIA or Manulife Hong Kong—cost-effective local coverage. Many young professionals rely on employer coverage, but having your own policy ensures continuity. Budget HK$1,000-2,500/month.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">Ensure maternity coverage if planning children (waiting periods apply). International plans often include worldwide childbirth coverage. Children's wellness, vaccinations, and dental are important add-ons. Budget HK$6,000-15,000/month for family of four.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Hong Kong is one of the world's most expensive cities. The CIES requires HK$30 million investment; the Investment Visa has no fixed minimum but requires realistic business funding. Living costs, especially housing, are extremely high.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">CIES (Passive Investment)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Investment: <strong>HK$30,000,000</strong></li>
+            <li>Visa/admin fees: <strong>HK$5,000</strong></li>
+            <li>Legal/consulting: <strong>HK$50,000-100,000</strong></li>
+            <li>Insurance (annual): <strong>HK$50,000-100,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total initial: <strong>~HK$30,150,000</strong></li>
+            <li class="text-sm text-neutral-500">(~$3.85M USD)</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Investment Visa (Entrepreneur)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Business capital: <strong>Varies (HK$500K-5M typical)</strong></li>
+            <li>Company setup: <strong>HK$5,000</strong></li>
+            <li>Office (annual, Kowloon): <strong>HK$300,000-600,000</strong></li>
+            <li>Visa/admin fees: <strong>HK$5,000</strong></li>
+            <li>Legal/consulting: <strong>HK$30,000-80,000</strong></li>
+            <li>Insurance (annual): <strong>HK$30,000-60,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>HK$870,000-5,750,000+</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Living Costs in Hong Kong</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Housing</h4>
+        <p class="text-neutral-600">The major expense. A 500 sq ft apartment: HK$20,000-40,000/month (outside Central). Central/Mid-Levels: HK$35,000-70,000+. Family-sized apartments (1000+ sq ft): HK$50,000-150,000. Deposits typically 2 months.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">International Schools</h4>
+        <p class="text-neutral-600">If you have children, international school fees are substantial: HK$100,000-250,000/year per child, plus debentures (HK$500,000-2,000,000 often required). Local schools are much cheaper but may not suit non-Chinese speakers.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Daily Life</h4>
+        <p class="text-neutral-600">Dining out is reasonable (local food HK$50-100/meal, Western HK$150-400). Transportation is efficient and affordable (MTR, buses). Groceries at international supermarkets are expensive; local markets are cheaper.</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Tax advantage:</strong> Hong Kong's simple tax system (15% max, no capital gains, territorial basis) can offset high living costs for many investors. No VAT/GST. If your income derives from outside Hong Kong, it may not be taxable at all under territorial taxation rules.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Hong Kong's visa applications are processed by the Immigration Department. Processing is generally efficient—4-8 weeks for most applications. You can apply from abroad or within Hong Kong (if on a valid stay).
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide (Investment Visa)</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Business Plan</h4>
+          <p class="text-neutral-600">Create a comprehensive business plan for your Hong Kong operations. Include: business concept, market analysis, financial projections, staffing plans, and your relevant background. Immigration assesses whether your business contributes to Hong Kong's economy.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Hong Kong Company</h4>
+          <p class="text-neutral-600">Incorporate your company with the Companies Registry. Quick and affordable—can be done online or through company secretarial services. Obtain Business Registration Certificate. Consider using a registered office address if you don't have premises yet.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Required Documents</h4>
+          <p class="text-neutral-600">Prepare: passport, photos, company registration documents, business plan, proof of capital, CV/resume, academic certificates, evidence of business experience, office lease (if available), and letter explaining your business intentions.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Submit to Immigration Department—online, by mail, or in person at Immigration Tower, Wan Chai. Pay HK$230 fee. Applications from abroad go through Chinese embassy/consulate or can be submitted by Hong Kong representative.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Processing and Follow-up</h4>
+          <p class="text-neutral-600">Immigration reviews your application (4-8 weeks typically). They may request additional documents or clarification. Respond promptly to any queries. You may be called for interview, though this isn't common for straightforward cases.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Approval and Entry</h4>
+          <p class="text-neutral-600">Upon approval, you receive a visa label or electronic visa. Enter Hong Kong within validity period. If applying from abroad, affix visa to passport at embassy. Initial stay is typically 1-2 years for business-related visas.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register for HKID</h4>
+          <p class="text-neutral-600">Within 30 days of arrival, register for Hong Kong Identity Card at Registration of Persons offices. The HKID is essential for banking, healthcare, and daily life. Carry it at all times (legal requirement).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Maintain Status and Renew</h4>
+          <p class="text-neutral-600">Continue operating your business successfully. Apply for extension before visa expires. Pattern: 1-2-2-3 years. After 7 years continuous ordinary residence, apply for permanent resident status (Right of Abode).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>CIES application note:</strong> The Capital Investment Entrant Scheme has additional requirements—must work with an approved financial intermediary, investments must be properly documented, and there are specific timelines for deploying capital. Consult with CIES specialists for detailed guidance.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for investor and entrepreneur visa applicants in Hong Kong:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Fintech Founder, Investment Visa</h3>
+        <p class="text-neutral-600 mb-4">38 years old, fintech background, launching Asia operations from HK. HK$2M initial capital, team of 3. Previous startup exits.</p>
+        <p class="text-green-700 font-medium">Approved in 5 weeks. Strong business plan with clear Hong Kong value proposition impressed Immigration. Set up in Cyberport for tech incentives. Cigna Global for personal coverage, group plan for employees. 2-year initial visa, business growing.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Malaysian Investor, CIES Route</h3>
+        <p class="text-neutral-600 mb-4">55 years old, sold manufacturing business. HK$50M liquid assets. Wants Hong Kong base for family and investments.</p>
+        <p class="text-green-700 font-medium">CIES approved in 8 weeks. Worked with licensed intermediary to structure HK$30M in eligible investments. Family relocated, children in international school. Bupa Global comprehensive family coverage. 2-year visa, straightforward renewal expected.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US E-commerce Entrepreneur</h3>
+        <p class="text-neutral-600 mb-4">32 years old, running cross-border e-commerce selling Asian products to US. HK$500K capital, working from co-working space.</p>
+        <p class="text-amber-700 font-medium">Approved after 7 weeks with additional documentation. Immigration questioned "why Hong Kong specifically"—responded with China sourcing and logistics advantages. Small operation but growing revenue impressed. AIA local coverage (cost-conscious). 1-year initial visa.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Trading Company Director</h3>
+        <p class="text-neutral-600 mb-4">45 years old, commodity trading experience. Opening HK office for Australian firm. Strong corporate backing, existing clients.</p>
+        <p class="text-green-700 font-medium">Approved in 4 weeks. Clear corporate structure and existing business made approval straightforward. Sheung Wan office for shipping proximity. Corporate medical coverage through parent company. 2-year visa with smooth renewal.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Tech Professional, Top Talent Pass</h3>
+        <p class="text-neutral-600 mb-4">29 years old, IIT graduate working for US tech company. Annual income $180K USD. Wants Hong Kong base for Asia.</p>
+        <p class="text-green-700 font-medium">TTPS Category B approved in 3 weeks—fastest approval. IIT qualified under top university list. Now running regional operations from HK for employer, considering own startup later. AXA HK coverage. 2-year visa with no renewal concerns.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Application Rejected: Restaurant Concept</h3>
+        <p class="text-neutral-600 mb-4">Wanted to open small restaurant, minimal capital, no food service experience. Business plan lacked detail on licensing, competition, and financial viability.</p>
+        <p class="text-red-700 font-medium">Rejected. Immigration found: insufficient capital for F&B setup, no relevant experience, generic business plan without Hong Kong specifics, no clear competitive advantage. Advised to demonstrate industry experience and realistic funding. Lesson: HK values business viability and your ability to execute.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Hong Kong Residence"
+    description="Find the right coverage for life in one of Asia's most expensive cities."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Living Costs</h3>
+        <p class="text-neutral-600">Hong Kong is extremely expensive. A comfortable lifestyle for a single professional requires HK$50,000-80,000/month; families need HK$100,000-200,000+ including housing, school fees, and insurance. Plan your capital accordingly—underfunding is a common reason businesses fail.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Generic Business Plans</h3>
+        <p class="text-neutral-600">Immigration wants to see "why Hong Kong"—not a business that could operate anywhere. Demonstrate specific Hong Kong advantages: China access, regional hub role, financial infrastructure, or specific industry clusters. Generic plans suggesting Hong Kong is "just a convenient location" won't impress.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring Insurance Until Too Late</h3>
+        <p class="text-neutral-600">Unlike some countries, Hong Kong public healthcare has years-long waits for non-emergency care. Don't arrive without insurance and expect to quickly arrange coverage—some policies have waiting periods, and gaps in coverage can be costly if you need care.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">CIES Real Estate Confusion</h3>
+        <p class="text-neutral-600">Residential property does NOT count toward CIES's HK$30M investment requirement. Only non-residential property (commercial/industrial) qualifies, and even then there are restrictions. Many applicants waste time pursuing residential property investment assuming it qualifies.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Planning for Renewal</h3>
+        <p class="text-neutral-600">Your initial visa is typically 1-2 years. Renewal requires showing your business is operating viably. Plan from day one: maintain proper accounts, generate revenue or show legitimate business activity, and keep documentation organized. Dormant companies struggle at renewal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Hong Kong -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Hong Kong</h2>
+
+    <p class="mb-4">
+      Hong Kong has a dual healthcare system: excellent but overcrowded public hospitals, and world-class but expensive private facilities. The vast majority of expats and business professionals rely on private healthcare with insurance coverage.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Hong Kong Healthcare System</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Public Healthcare (Hospital Authority)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Available to HKID holders</li>
+          <li>• Highly subsidized (HK$180/day inpatient)</li>
+          <li>• Excellent trauma and emergency care</li>
+          <li>• Specialist wait: months to years</li>
+          <li>• Overcrowded wards</li>
+          <li>• Language barrier possible</li>
+          <li>• Queen Mary, Prince of Wales hospitals</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Immediate access, no waiting</li>
+          <li>• English commonly spoken</li>
+          <li>• Modern facilities, private rooms</li>
+          <li>• Very expensive without insurance</li>
+          <li>• Major insurers accepted</li>
+          <li>• Matinée, Hong Kong Sanatorium, Canossa</li>
+          <li>• Standard for business community</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Key Private Hospitals</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Hong Kong Island</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Hong Kong Sanatorium & Hospital (Happy Valley)</li>
+          <li>• Matilda International Hospital (The Peak)</li>
+          <li>• Canossa Hospital (Mid-Levels)</li>
+          <li>• Adventist Hospital (Stubbs Road)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Kowloon</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Hong Kong Baptist Hospital (Kowloon Tong)</li>
+          <li>• St. Teresa's Hospital (Kowloon City)</li>
+          <li>• Hong Kong Adventist Hospital – Tsuen Wan</li>
+          <li>• Union Hospital (Sha Tin)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Emergency care:</strong> For true emergencies, public hospital A&E departments provide excellent care without the wait times affecting specialist clinics. Call 999 for ambulance. Many expats use public A&E for emergencies, then transfer to private for follow-up care.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get Hong Kong citizenship?</h3>
+        <p class="text-neutral-600">
+          No. Hong Kong does not offer citizenship—it's a Special Administrative Region of China. After 7 years continuous ordinary residence, you can apply for Permanent Resident status (Right of Abode), which provides most benefits of citizenship: no visa restrictions, voting rights in some elections, and security of tenure. PR is the endpoint of the immigration journey.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What counts as "continuous residence" for PR?</h3>
+        <p class="text-neutral-600">
+          You must ordinarily reside in Hong Kong for 7 continuous years. Brief trips abroad are fine, but extended absences may break continuity. General guidance: maintain your home in HK, keep your HKID active, and don't establish primary residence elsewhere. Each case is assessed individually—there's no hard rule on days abroad.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is residential property really excluded from CIES?</h3>
+        <p class="text-neutral-600">
+          Yes. The 2024 CIES specifically excludes residential property from the HK$30M investment. This is different from the pre-2015 scheme which allowed property. You can buy residential property personally, but it doesn't count toward immigration requirements. Non-residential property (commercial/industrial) may partially qualify within limits.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse work in Hong Kong?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouses of visa holders can apply for Dependent visa with unrestricted work rights. They can work for any employer or start their own business without changing visa status. Children on Dependent visas can study but cannot work until age 18.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if my business fails?</h3>
+        <p class="text-neutral-600">
+          Your visa status depends on maintaining valid purpose. If your business closes, you'd need to find employment (change to employment visa), start a new business, or leave Hong Kong. Discuss contingency plans with immigration advisors. Having PR (after 7 years) provides security—you can stay regardless of employment status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How has Hong Kong changed since 2019?</h3>
+        <p class="text-neutral-600">
+          Hong Kong has changed significantly. The National Security Law (2020) altered the political and legal landscape. Some businesses have relocated; others have expanded. For investors, the fundamentals remain: low tax, rule of law for commercial matters, China access, and financial infrastructure. Make your own assessment based on your business needs and risk tolerance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Hong Kong remains a premier destination for investors and entrepreneurs seeking Asian exposure, tax efficiency, and world-class financial infrastructure. The CIES (HK$30M) is among the most expensive passive investment visa programs globally, but provides access to a sophisticated financial center. The Investment Visa offers a more accessible route for genuine entrepreneurs with viable Hong Kong businesses.
+    </p>
+
+    <p class="mb-4">
+      The trade-offs are real: extremely high living costs, uncertain political evolution, and no path to citizenship. Hong Kong offers Permanent Residence after 7 years—valuable, but different from citizenship available in Japan or Europe. The healthcare system requires private insurance for practical access, adding to costs.
+    </p>
+
+    <p class="mb-6">
+      For investors who prioritize tax efficiency (zero capital gains, 15% max income), China access, English-speaking environment, and Asian financial hub status, Hong Kong delivers unique value. Understand the costs, plan for comprehensive health insurance, and make an informed decision about whether Hong Kong's advantages align with your priorities.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Hong Kong suits investors and entrepreneurs who prioritize tax efficiency, China access, and Asian financial hub benefits over citizenship pathways and lower living costs. Come with realistic expectations about costs (housing, schools, insurance), a genuine business rationale, and understanding of the current environment. For the right profile, Hong Kong offers unmatched advantages in Asia.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/bupa-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Bupa Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/hong-kong/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Hong Kong Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Hong Kong</p>
+      </a>
+      <a href="/visas/investor-visa/in/singapore" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Singapore Investor Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare Singapore's GIP and EntrePass programs</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">Premium international health insurance for Hong Kong</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

@@ -1,0 +1,945 @@
+---
+/**
+ * USA EB-5 Investor Visa - Long-form CRO-optimized page
+ * Green Card through investment, $800K TEA or $1.05M standard
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in the USA", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "USA Health Insurance Guide", href: "/countries/usa/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Insurance for US Coverage", href: "/insurance-for/us-coverage" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Investment Route" },
+  { key: "minimum", header: "Minimum Investment" },
+  { key: "notes", header: "Key Details" },
+];
+
+const investmentRows = [
+  { option: "TEA (Targeted Employment Area)", minimum: "$800,000", notes: "Rural or high unemployment areas" },
+  { option: "Standard Investment", minimum: "$1,050,000", notes: "Non-TEA areas" },
+  { option: "Regional Center (TEA)", minimum: "$800,000", notes: "Pooled investment, indirect jobs count" },
+  { option: "Regional Center (Standard)", minimum: "$1,050,000", notes: "Pooled investment, indirect jobs count" },
+  { option: "Direct Investment (TEA)", minimum: "$800,000", notes: "Own business, direct job creation" },
+  { option: "Direct Investment (Standard)", minimum: "$1,050,000", notes: "Own business, direct job creation" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "EB-5 Requirement" },
+  { key: "recommendation", header: "Our Recommendation" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Not legally required", recommendation: "Comprehensive US health insurance" },
+  { feature: "Coverage Area", requirement: "N/A", recommendation: "Full USA coverage essential" },
+  { feature: "Coverage Limits", requirement: "N/A", recommendation: "$1M+ or unlimited (US costs are extreme)" },
+  { feature: "Network", requirement: "N/A", recommendation: "PPO with broad US hospital network" },
+  { feature: "Prescription Drugs", requirement: "N/A", recommendation: "Must include—US drug costs very high" },
+  { feature: "Pre-existing Conditions", requirement: "N/A", recommendation: "ACA plans cover; international plans vary" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "$600-1,500", strengths: "Global coverage including USA" },
+  { provider: "BUPA Global", type: "International", price: "$650-1,600", strengths: "Comprehensive US + worldwide" },
+  { provider: "GeoBlue", type: "International (BCBS)", price: "$400-900", strengths: "BCBS network access in USA" },
+  { provider: "ACA Marketplace", type: "US Domestic", price: "$400-1,200", strengths: "Guaranteed issue, pre-existing covered" },
+  { provider: "Aetna/UHC/Anthem", type: "US Domestic", price: "$500-1,500", strengths: "Major US carrier networks" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (USD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "I-526E Filing Fee", amount: "$11,160", notes: "Petition filing with USCIS" },
+  { item: "I-485 Filing Fee (if in US)", amount: "$1,440", notes: "Adjustment of status, per person" },
+  { item: "Consular Processing", amount: "$345", notes: "If applying from abroad" },
+  { item: "Biometrics Fee", amount: "$85", notes: "Per person" },
+  { item: "Immigration Attorney", amount: "$15,000-50,000", notes: "Essential for EB-5" },
+  { item: "Regional Center Fees", amount: "$50,000-80,000", notes: "Administrative fees if using RC" },
+  { item: "USCIS Premium Processing", amount: "$2,805", notes: "Optional—faster processing" },
+  { item: "Health Insurance", amount: "$500-1,500/month", notes: "US coverage essential" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Select investment project and attorney", duration: "1-3 months", location: "Research phase" },
+  { step: "Source of funds documentation", duration: "1-2 months", location: "Home country" },
+  { step: "Complete investment transfer", duration: "1-2 months", location: "Wire to escrow" },
+  { step: "File I-526E petition", duration: "1 day", location: "USCIS" },
+  { step: "I-526E processing (current backlog)", duration: "24-36+ months", location: "USCIS" },
+  { step: "Consular interview or I-485 adjustment", duration: "3-12 months", location: "Embassy or US" },
+  { step: "Receive conditional Green Card", duration: "After approval", location: "USA" },
+  { step: "File I-829 to remove conditions", duration: "After 2 years", location: "USCIS" },
+  { step: "Receive permanent Green Card", duration: "12-24 months after I-829", location: "USCIS" },
+];
+---
+
+<PageShell
+  title="USA EB-5 Investor Visa 2026: Green Card Through Investment Guide"
+  description="Complete guide to the EB-5 Immigrant Investor Program. $800,000 TEA or $1.05M standard investment for US Green Card. Processing times, Regional Centers, and essential health insurance."
+  headline="USA EB-5 Investor Visa: Green Card Through Investment"
+  subheadline="The path to a US Green Card through investment—$800,000 in targeted areas or $1,050,000 standard. Full guide to the EB-5 program, processing times, and why health insurance is critical in America."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare US Health Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/usa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Post-Reform Integrity Act
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Path to US Citizenship
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The EB-5 Immigrant Investor Program offers a direct path to a US Green Card through capital investment. Unlike European Golden Visas that grant residency, EB-5 provides actual immigration status—leading to permanent residence and ultimately US citizenship.
+    </p>
+
+    <p class="mb-4">
+      Created in 1990, EB-5 was reformed by the EB-5 Reform and Integrity Act of 2022, which increased investment thresholds (from $500K/$1M to $800K/$1.05M), added investor protections, and created new rural set-aside visas with faster processing.
+    </p>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-3">Critical: Health Insurance in America</h3>
+      <p class="text-red-800">
+        Unlike Europe, the US has no universal healthcare. Medical costs are the highest in the world—a hospital stay can cost $10,000-100,000+, and a serious illness can bankrupt families without insurance. Health insurance is not legally required for EB-5, but going without is financially reckless. This is not optional in practice.
+      </p>
+    </div>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: EB-5 Investor Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Program name:</strong> EB-5 Immigrant Investor Program</li>
+        <li>• <strong>Minimum investment:</strong> $800,000 (TEA) or $1,050,000 (standard)</li>
+        <li>• <strong>Job creation:</strong> Must create 10 full-time US jobs</li>
+        <li>• <strong>Initial status:</strong> 2-year conditional Green Card</li>
+        <li>• <strong>Permanent residence:</strong> After conditions removed (~2 years)</li>
+        <li>• <strong>Citizenship:</strong> Eligible after 5 years as permanent resident</li>
+        <li>• <strong>Family included:</strong> Spouse and unmarried children under 21</li>
+        <li>• <strong>Work rights:</strong> Full work authorization from day one</li>
+        <li>• <strong>Processing time:</strong> Currently 24-36+ months (significant backlog)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose EB-5?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Key Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Direct path to US citizenship</li>
+          <li>• No sponsor or employer required</li>
+          <li>• Full work authorization</li>
+          <li>• Include spouse and children under 21</li>
+          <li>• Access to world's largest economy</li>
+          <li>• Children's US education opportunities</li>
+          <li>• Investment may be returned after 5+ years</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• High investment threshold ($800K-1.05M)</li>
+          <li>• Long processing times (2-3+ years)</li>
+          <li>• Investment at risk (not guaranteed return)</li>
+          <li>• Complex immigration process</li>
+          <li>• No universal healthcare (insurance critical)</li>
+          <li>• US taxes on worldwide income</li>
+          <li>• Must create 10 jobs (or invest via Regional Center)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Key difference from EU programs:</strong> EB-5 grants actual immigration status (Green Card), not just residency. After 5 years, you can become a US citizen. European Golden Visas typically provide residence permits that may lead to citizenship after 5-10 years, but the US Green Card is more valuable for those seeking permanent American life.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">EB-5 is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You want to live and work permanently in the US</li>
+          <li>You have $800,000-$1,050,000 to invest</li>
+          <li>You want US citizenship for yourself and family</li>
+          <li>You can wait 2-4+ years for processing</li>
+          <li>You want children to have US education access</li>
+          <li>You're comfortable with investment risk</li>
+          <li>You can afford US health insurance</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need fast processing (try Portugal/Greece)</li>
+          <li>• You want guaranteed capital return</li>
+          <li>• You prefer universal healthcare (EU better)</li>
+          <li>• Your budget is under $800,000</li>
+          <li>• You don't want US tax obligations</li>
+          <li>• You prefer passive property investment</li>
+          <li>• You want minimal stay requirements</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">EB-5 vs. European Golden Visas</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Portugal Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€500,000 fund investment. Faster processing (4-6 months). EU/Schengen access. Citizenship in 5 years. Universal healthcare. Lower cost but not US access.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Greece Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€250,000 property. Fast processing (1-3 months). Zero stay. Much lower cost. But no US access, 7 years to citizenship, no work rights.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">UK Innovator Visa</h4>
+        <p class="text-neutral-600 text-sm">£50,000 minimum (but needs endorsement). Faster processing. Path to UK citizenship. Lower investment but more complex requirements.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>EB-5's unique value:</strong> If your goal is specifically US permanent residence and citizenship, EB-5 is the most direct path for investors. No other program provides a Green Card through investment alone. The high cost and long processing reflect the value of US immigration status.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      EB-5 requires a capital investment that creates at least 10 full-time jobs for US workers. You can invest directly in your own business or through a USCIS-designated Regional Center.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-3">2022 Reform: Increased Investment Thresholds</h3>
+      <p class="text-amber-800 mb-2">
+        The EB-5 Reform and Integrity Act of 2022 raised minimum investments:
+      </p>
+      <ul class="text-amber-800 space-y-1">
+        <li>• <strong>TEA (Targeted Employment Area):</strong> $500,000 → $800,000</li>
+        <li>• <strong>Standard:</strong> $1,000,000 → $1,050,000</li>
+        <li>• Thresholds now adjust with inflation every 5 years</li>
+        <li>• New rural set-aside category with faster processing</li>
+      </ul>
+    </div>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Regional Center vs. Direct Investment</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Regional Center (Most Common)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>~90% of EB-5 investors use Regional Centers</li>
+          <li>Pooled investment in larger projects</li>
+          <li>Indirect jobs count toward 10-job requirement</li>
+          <li>No active management required</li>
+          <li>USCIS-designated and monitored</li>
+          <li>Project sponsors handle job creation</li>
+        </ul>
+        <p class="text-green-700 text-sm mt-3">Best for: Passive investors who don't want to run a business</p>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Direct Investment</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Start or invest in your own business</li>
+          <li>Must directly create 10 full-time W-2 jobs</li>
+          <li>More control over investment</li>
+          <li>Active involvement expected</li>
+          <li>More complex documentation</li>
+          <li>Higher risk if business struggles</li>
+        </ul>
+        <p class="text-blue-700 text-sm mt-3">Best for: Entrepreneurs who want to run a US business</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Targeted Employment Areas (TEAs)</h3>
+
+    <p class="mb-4">
+      TEAs offer the lower $800,000 threshold. They include rural areas and areas with unemployment at least 150% of the national average.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Rural TEA (Best Processing)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Population under 20,000</li>
+          <li>• Outside metropolitan statistical areas</li>
+          <li>• Priority processing (set-aside visas)</li>
+          <li>• 20% of EB-5 visas reserved for rural</li>
+          <li>• Shorter wait times than urban TEA</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">High Unemployment TEA</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Unemployment 150%+ of national average</li>
+          <li>• Calculated by census tract</li>
+          <li>• Many urban areas qualify</li>
+          <li>• Projects often in city peripheries</li>
+          <li>• State designation required</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Job Creation Requirement</h3>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-blue-900 mb-3">10 Full-Time Jobs Per Investor</h4>
+      <ul class="space-y-2 text-blue-800">
+        <li>• Must be for US workers (citizens, permanent residents, or authorized workers)</li>
+        <li>• Full-time = minimum 35 hours/week</li>
+        <li>• Jobs must be created within ~2.5 years of investment</li>
+        <li>• <strong>Regional Center:</strong> Indirect and induced jobs count (calculated by economists)</li>
+        <li>• <strong>Direct Investment:</strong> Only direct W-2 employees count</li>
+        <li>• Jobs must exist when filing I-829 to remove conditions</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Capital at risk:</strong> EB-5 requires your investment to be "at risk"—meaning there can be no guaranteed return. You may lose your investment if the project fails. This is not a bank deposit or guaranteed bond. Choose Regional Centers and projects carefully.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">No Legal Requirement—But Absolutely Essential</h3>
+      <p class="text-red-800">
+        Unlike European visas, EB-5 has no health insurance requirement. But this doesn't mean you can skip it. The US has the highest healthcare costs in the world. A single hospital stay averages $15,000-30,000. A heart attack can cost $150,000+. Without insurance, medical bills are the leading cause of bankruptcy in America. Health insurance is not optional in practice.
+      </p>
+    </div>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">US Healthcare Costs (Why Insurance is Critical)</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-red-50 rounded-lg p-4 text-center">
+        <p class="text-3xl font-bold text-red-900">$15,000+</p>
+        <p class="text-red-800 text-sm">Average hospital stay (3 days)</p>
+      </div>
+      <div class="bg-red-50 rounded-lg p-4 text-center">
+        <p class="text-3xl font-bold text-red-900">$150,000+</p>
+        <p class="text-red-800 text-sm">Heart attack treatment</p>
+      </div>
+      <div class="bg-red-50 rounded-lg p-4 text-center">
+        <p class="text-3xl font-bold text-red-900">$30,000+</p>
+        <p class="text-red-800 text-sm">Childbirth (uncomplicated)</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Options for EB-5 Holders</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">ACA Marketplace (Obamacare)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Available to Green Card holders</li>
+          <li>Guaranteed issue (no medical underwriting)</li>
+          <li>Pre-existing conditions covered</li>
+          <li>Subsidies available based on income</li>
+          <li>Open enrollment Nov-Jan (or Special Enrollment)</li>
+          <li>Strong domestic networks</li>
+        </ul>
+        <p class="text-blue-700 text-sm mt-3">Best for: Those committed to living in the US full-time</p>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">International Insurance (US-Included)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Covers US + worldwide</li>
+          <li>Good for those traveling/splitting time</li>
+          <li>May require medical underwriting</li>
+          <li>Cigna Global, BUPA Global, GeoBlue</li>
+          <li>More flexibility on providers</li>
+          <li>Often more expensive for US coverage</li>
+        </ul>
+        <p class="text-green-700 text-sm mt-3">Best for: Those splitting time between US and abroad</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance During EB-5 Processing</h3>
+
+    <p class="mb-4">
+      While your I-526E is pending (2-3+ years), you're not yet a Green Card holder. During this period:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">If You Remain Abroad</h4>
+        <p class="text-neutral-600">Continue your existing international or home country coverage. Add US travel coverage for visits to check on investments or prepare for move.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">If You Move to US on Other Visa</h4>
+        <p class="text-neutral-600">Some EB-5 investors hold other visas (E-2, H-1B, B-1/B-2) while waiting. You'll need US coverage appropriate for your current status. B visas: travel insurance. Work visas: employer coverage or ACA.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">When Green Card Arrives</h4>
+        <p class="text-neutral-600">You're eligible for ACA Marketplace plans immediately. This is often the most practical option—guaranteed issue, broad networks, and subsidies if income qualifies.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> For EB-5 holders living in the US, ACA Marketplace plans often provide the best value—guaranteed issue means no pre-existing condition exclusions. For those splitting time internationally, Cigna Global or BUPA Global with USA zone provides flexibility. Budget $500-1,500/month for comprehensive US coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need health insurance for your US move?"
+    description="Compare international plans with US coverage and domestic ACA options. Essential for anyone moving to America."
+    buttonText="Compare US Health Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      US health insurance is complex. Your options depend on immigration status, income, and whether you'll split time internationally. Here are providers that work well for EB-5 investors.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Full-Time US Resident (Green Card Holder)</h4>
+        <p class="text-neutral-600">ACA Marketplace plans (Healthcare.gov) are often best. Guaranteed issue, subsidies available, broad networks. Major carriers: Blue Cross Blue Shield, UnitedHealthcare, Aetna, Kaiser (regional). Budget $400-1,200/month per person depending on age and plan level.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Splitting Time Between US and Abroad</h4>
+        <p class="text-neutral-600">Cigna Global or BUPA Global with USA zone. Covers you worldwide including US treatment. More expensive than domestic plans but provides flexibility. GeoBlue offers BCBS network access. Budget $600-1,500/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Entrepreneur Starting US Business</h4>
+        <p class="text-neutral-600">Consider small group health insurance for your company (available with 2+ employees in most states). Or ACA individual plans. As business grows, you can offer employee benefits. Professional associations sometimes offer group coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">ACA family plans cover children until age 26. Strong pediatric networks. Children in US schools will need proof of coverage. Dental and vision typically separate—add these. Budget $1,500-3,000/month for family coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">ACA plans cannot deny coverage or charge more for pre-existing conditions—this is a major advantage. International plans often exclude pre-existing conditions initially. For those with health conditions, ACA is typically the best option once Green Card is issued.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      EB-5 is an expensive program. Beyond the investment itself, expect significant fees for USCIS filings, Regional Center administration, and immigration attorneys.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total First-Year Costs (Regional Center Route)</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">TEA Investment ($800K)</p>
+        <p class="text-3xl font-bold text-neutral-900">$900,000+</p>
+        <p class="text-sm text-neutral-500 mt-2">Investment + all fees</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Standard ($1.05M)</p>
+        <p class="text-3xl font-bold text-neutral-900">$1,200,000+</p>
+        <p class="text-sm text-neutral-500 mt-2">Investment + all fees</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">With Family of 4</p>
+        <p class="text-3xl font-bold text-neutral-900">$950,000+</p>
+        <p class="text-sm text-neutral-500 mt-2">TEA + additional filing fees</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Fee Breakdown</h3>
+
+    <div class="border border-neutral-200 rounded-lg p-6 mb-6">
+      <ul class="space-y-2">
+        <li><strong>EB-5 Investment:</strong> $800,000-$1,050,000</li>
+        <li><strong>Regional Center Admin Fee:</strong> $50,000-80,000 (one-time)</li>
+        <li><strong>I-526E Filing:</strong> $11,160</li>
+        <li><strong>I-485 (per person if in US):</strong> $1,440</li>
+        <li><strong>Immigration Attorney:</strong> $15,000-50,000</li>
+        <li><strong>Biometrics (per person):</strong> $85</li>
+        <li><strong>First year health insurance:</strong> $6,000-18,000 (family)</li>
+        <li class="border-t pt-2 mt-2"><strong>Total (TEA, family of 3):</strong> ~$900,000-950,000</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Health insurance:</strong> $6,000-36,000/year depending on family size and plan</li>
+      <li><strong>Tax preparation:</strong> $1,000-5,000/year (US taxes complex, especially with foreign assets)</li>
+      <li><strong>I-829 filing (year 2):</strong> $4,465 to remove conditions</li>
+      <li><strong>Green Card renewal (every 10 years):</strong> $540</li>
+      <li><strong>N-400 citizenship (after 5 years):</strong> $760</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Investment return:</strong> Unlike property Golden Visas, EB-5 investments don't guarantee returns. Regional Center projects typically target 0.5-2% annual return, but many investors receive only principal back (or less if project struggles). View the "return" as the Green Card, not financial profit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      EB-5 is a multi-year process. Current processing times are 24-36+ months for the I-526E petition alone, plus time for consular processing or adjustment of status. Plan for 3-5+ years from investment to permanent Green Card.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-3">Current Processing Times (2026)</h3>
+      <ul class="text-amber-800 space-y-1">
+        <li>• <strong>I-526E:</strong> 24-36+ months (significant backlog)</li>
+        <li>• <strong>Rural TEA:</strong> Faster due to set-aside visas (12-18 months in some cases)</li>
+        <li>• <strong>Consular processing:</strong> 6-12 months after I-526E approval</li>
+        <li>• <strong>I-485 (in US):</strong> 12-24 months after I-526E approval</li>
+        <li>• <strong>I-829 (remove conditions):</strong> 12-24 months</li>
+      </ul>
+    </div>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Select Investment and Attorney</h4>
+          <p class="text-neutral-600">Research Regional Centers (if going that route) or identify direct investment opportunity. Engage an experienced EB-5 immigration attorney—this is not DIY territory. Attorney fees: $15,000-50,000. Allow 1-3 months for research and selection.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Document Source of Funds</h4>
+          <p class="text-neutral-600">USCIS requires detailed documentation of how you accumulated your investment capital. This is often the most challenging part. You must trace funds through: earnings, business income, inheritance, property sales, or gifts. 5+ years of tax returns, bank statements, and business records typically required.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Transfer Investment Funds</h4>
+          <p class="text-neutral-600">Wire investment to escrow account (Regional Center) or directly to your business (direct investment). Funds must come from documented lawful sources. Regional Centers typically hold funds in escrow until I-526E approval. For direct investment, funds go directly into your business.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">File I-526E Petition</h4>
+          <p class="text-neutral-600">Your attorney files Form I-526E (Immigrant Petition by Standalone Investor) with USCIS. Filing fee: $11,160. Include investment documentation, source of funds evidence, business plan (if direct), and Regional Center documentation (if applicable).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for I-526E Approval</h4>
+          <p class="text-neutral-600">This is the longest step—currently 24-36+ months. USCIS may issue Requests for Evidence (RFEs) requiring additional documentation. Rural TEA investments may process faster due to set-aside visas. Premium processing ($2,805) available for faster adjudication.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Consular Processing or Adjustment of Status</h4>
+          <p class="text-neutral-600">After I-526E approval, you apply for your Green Card. If abroad: interview at US consulate. If legally in US: file I-485 adjustment of status. Both routes take 6-24 months. Spouse and children under 21 file simultaneously.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Conditional Green Card</h4>
+          <p class="text-neutral-600">You receive a 2-year conditional Green Card. This provides full work authorization and residence rights, but conditions must be removed. Start living, working, and settling in the US. Arrange health insurance immediately.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">File I-829 to Remove Conditions</h4>
+          <p class="text-neutral-600">Within 90 days before 2-year anniversary, file Form I-829 to remove conditions. You must demonstrate: investment was sustained, jobs were created (or will be created), and capital remained at risk. Filing fee: $4,465.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Permanent Green Card</h4>
+          <p class="text-neutral-600">Once I-829 approved, you receive a 10-year permanent Green Card. You're now a lawful permanent resident with full rights. After 5 years, eligible for US citizenship (Form N-400).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for EB-5 investors:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Family, $800K Rural TEA</h3>
+        <p class="text-neutral-600 mb-4">Couple (both 42) with two children (16, 14). Primary goal: children's US education.</p>
+        <p class="text-green-700 font-medium">Invested in rural hotel development project. I-526E processed in 18 months (rural priority). Children now in US high school. Family on conditional Green Cards. ACA insurance ($2,100/month family). Very satisfied—children on track for US college admissions as residents, not international students.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Tech Entrepreneur, Direct Investment</h3>
+        <p class="text-neutral-600 mb-4">38 years old, sold startup in India, wants to start US company.</p>
+        <p class="text-amber-700 font-medium">Chose direct investment ($1.05M) to start tech company in Austin. More control but complex—had to create 10 direct jobs (challenging in tech with contractors). I-526E took 28 months. Now running growing company with 15 employees. Cigna Global initially ($650/month), switched to group plan for company. Worth the complexity for entrepreneurial control.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Brazilian Family, Regional Center</h3>
+        <p class="text-neutral-600 mb-4">Couple (50s), empty nesters, want retirement access to US.</p>
+        <p class="text-green-700 font-medium">Invested $800K in Florida hotel Regional Center project. Passive approach—no active management. I-526E took 30 months. Now splitting time between Brazil and Florida. BUPA Global ($1,200/month couple) for flexibility. Investment expected to return principal only after 5 years—view Green Card as the return.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Investor, Source of Funds Challenge</h3>
+        <p class="text-neutral-600 mb-4">52 years old, wealth from property portfolio built over 25 years.</p>
+        <p class="text-amber-700 font-medium">Source of funds documentation extremely challenging—had to trace 25 years of property transactions, mortgages, and sales. Multiple RFEs from USCIS. Attorney fees escalated to $45,000. Eventually approved after 38 months. Now in US with Green Card. Lesson: Complex wealth sources significantly complicate EB-5.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Vietnamese Family, Healthcare Challenge</h3>
+        <p class="text-neutral-600 mb-4">Family of 4, father (48) has controlled diabetes.</p>
+        <p class="text-green-700 font-medium">Biggest surprise was US healthcare costs. ACA plan covers pre-existing diabetes (major advantage), but premiums $2,400/month for family. Deductibles and copays significant. Spent $15,000 out-of-pocket first year despite insurance. Diabetes supplies expensive. Now satisfied but budgeted extra $20,000/year for healthcare beyond premiums.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Failed Regional Center Project</h3>
+        <p class="text-neutral-600 mb-4">Invested $500K (pre-2022 threshold) in retail development that stalled.</p>
+        <p class="text-red-700 font-medium">Project delayed by COVID, then developer defaulted. Jobs not created in time. I-829 denied—conditions not met. Lost Green Card and most of investment (recovered ~30% through litigation). Now in removal proceedings. Lesson: EB-5 investment risk is real—project selection and due diligence critical.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare US Health Insurance Options"
+    description="Essential coverage for anyone moving to America—compare international plans and understand ACA options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/insurance-for/us-coverage"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Health Insurance Importance</h3>
+        <p class="text-neutral-600">Many international investors don't realize US healthcare has no safety net. A single hospitalization can cost $50,000-200,000. Medical bankruptcy is real. Arrange comprehensive coverage before you or your family set foot in the US—and maintain it continuously.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Inadequate Source of Funds Documentation</h3>
+        <p class="text-neutral-600">USCIS scrutinizes fund sources intensely. You must trace your $800K-1.05M through legitimate, documented channels. Gaps, unclear transactions, or offshore complications cause RFEs and denials. Start preparing documentation months before filing—work backwards through every dollar.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing Regional Center Without Due Diligence</h3>
+        <p class="text-neutral-600">Not all Regional Centers are equal. Some have failed projects, litigation, or management problems. Research project track record, developer experience, job creation methodology, and exit strategy. Use experienced EB-5 counsel who knows the market. Don't just chase the lowest fees.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Fast Processing</h3>
+        <p class="text-neutral-600">EB-5 is slow. Current I-526E processing: 24-36+ months. Then consular processing or I-485. Then I-829. Total timeline: 4-6+ years from investment to permanent Green Card. If you need US access quickly, consider other visa options (E-2, L-1, O-1) while EB-5 processes.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring US Tax Implications</h3>
+        <p class="text-neutral-600">Green Card holders pay US tax on worldwide income. This surprises many investors with significant foreign assets or income. Consult a cross-border tax advisor before committing to EB-5—understand FBAR, FATCA, and foreign asset reporting. Some find US tax obligations outweigh benefits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in the USA -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in the USA</h2>
+
+    <p class="mb-4">
+      The US has the most advanced—and most expensive—healthcare system in the world. Unlike Europe, there's no universal coverage. Understanding US healthcare is essential before moving.
+    </p>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-3">Key Facts About US Healthcare</h3>
+      <ul class="space-y-2 text-red-800">
+        <li>• <strong>No universal healthcare</strong>—coverage through private insurance or government programs (Medicare/Medicaid)</li>
+        <li>• <strong>Highest costs in the world</strong>—average family spends $22,000+/year on healthcare</li>
+        <li>• <strong>Insurance essential</strong>—without it, you pay "chargemaster" rates (often 3-10x insured rates)</li>
+        <li>• <strong>Network matters</strong>—in-network care is covered; out-of-network can cost 2-5x more</li>
+        <li>• <strong>Pre-existing conditions</strong>—ACA plans must cover; other plans may exclude</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options for Green Card Holders</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">ACA Marketplace (Obamacare)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Available to all legal residents</li>
+          <li>Guaranteed issue—can't be denied</li>
+          <li>Pre-existing conditions covered</li>
+          <li>Subsidies based on income</li>
+          <li>Bronze/Silver/Gold/Platinum tiers</li>
+          <li>Open enrollment Nov-Jan (or Special Enrollment)</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Employer Coverage</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Most Americans get coverage through work</li>
+          <li>If you start a business, can offer group plans</li>
+          <li>Often better networks and lower premiums</li>
+          <li>Tax-advantaged (pre-tax premiums)</li>
+          <li>COBRA allows continuation if job ends</li>
+          <li>Dependent coverage for spouse/children</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Understanding US Insurance Terms</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Premium</h4>
+        <p class="text-neutral-600">Monthly payment for insurance. Ranges from $300-1,500+/person. Higher premium = lower out-of-pocket costs when you use care.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Deductible</h4>
+        <p class="text-neutral-600">Amount you pay before insurance kicks in. Ranges from $0-8,000+. Lower deductible = higher premium. Family deductibles are 2x individual.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Copay / Coinsurance</h4>
+        <p class="text-neutral-600">What you pay for each service after deductible. Copay = fixed amount ($20-50 for doctor visit). Coinsurance = percentage (20% of hospital bill).</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Out-of-Pocket Maximum</h4>
+        <p class="text-neutral-600">Most you'll pay in a year (excluding premium). Once reached, insurance pays 100%. ACA plans cap at ~$9,000 individual / $18,000 family.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Network (PPO vs HMO)</h4>
+        <p class="text-neutral-600">PPO = flexibility to see any provider (out-of-network covered at lower rate). HMO = must use network providers only. PPO premiums higher but more choice.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Budget realistically:</strong> US healthcare is expensive even with insurance. A healthy family of 4 should budget $2,000-3,000/month for premiums + $5,000-10,000/year for out-of-pocket costs. If anyone has chronic conditions, budget more. This is a significant expense that surprises many immigrants.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get US citizenship?</h3>
+        <p class="text-neutral-600">
+          You can apply for citizenship 5 years after becoming a permanent resident (Green Card holder). The timeline: I-526E (2-3 years) + conditional Green Card (2 years) + I-829 (1-2 years) + 5 years as permanent resident + N-400 processing (1 year) = approximately 11-13 years from investment to citizenship. This is longer than European programs.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Will I get my investment back?</h3>
+        <p class="text-neutral-600">
+          Not guaranteed. EB-5 requires capital to be "at risk"—there can be no guaranteed return. Regional Center projects typically aim to return principal after 5+ years, but projects can fail. Some investors lose significant capital. View the Green Card as the "return," not financial profit. Due diligence on project selection is critical.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if my Regional Center project fails?</h3>
+        <p class="text-neutral-600">
+          If jobs aren't created or investment isn't sustained, your I-829 may be denied and Green Card revoked. You may lose investment capital. The EB-5 Reform Act added protections (fund administrators, project audits), but risk remains. If project fails before I-526E approval, you may be able to reinvest in a different project.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to live in the US during processing?</h3>
+        <p class="text-neutral-600">
+          No. During I-526E processing, you can remain abroad. You only need to be in the US after receiving your Green Card. However, once you have a Green Card, extended absences (over 6 months) can jeopardize your status. If you need to travel, apply for a reentry permit before trips over 1 year.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is health insurance really that expensive in the US?</h3>
+        <p class="text-neutral-600">
+          Yes. Expect $400-1,500/month per person for comprehensive coverage. A healthy family of 4 typically pays $2,000-3,000/month in premiums alone, plus deductibles and copays. Total annual healthcare spending (premiums + out-of-pocket): $25,000-50,000 for a family is not unusual. Budget accordingly.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I use EB-5 if I have pre-existing conditions?</h3>
+        <p class="text-neutral-600">
+          EB-5 itself has no health requirements. But health insurance matters: ACA Marketplace plans must cover pre-existing conditions at the same price—a major advantage. International plans and non-ACA plans may exclude pre-existing conditions. Once you have a Green Card, ACA plans are your best option for guaranteed coverage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      EB-5 is the most direct path to US permanent residence through investment. For those committed to American life—particularly families wanting children's US education and career opportunities—the Green Card is invaluable. No other program provides this level of US access.
+    </p>
+
+    <p class="mb-4">
+      But EB-5 is expensive, slow, and carries real investment risk. The $800K-1.05M threshold, 2-4+ year processing, and possibility of project failure make it unsuitable for those seeking quick, guaranteed residency. European Golden Visas offer faster, lower-risk alternatives for general global mobility.
+    </p>
+
+    <p class="mb-6">
+      Health insurance is the hidden challenge. Unlike European programs, the US has no universal healthcare. Budget $500-1,500/month per person—this is not optional. ACA plans provide the best security for Green Card holders, especially those with pre-existing conditions.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        EB-5 is for those committed to American life long-term. The Green Card and citizenship path justify the cost and wait for many families. But go in with eyes open: investment risk is real, processing is slow, and US healthcare costs will surprise you. Health insurance isn't legally required but is absolutely essential—budget $500-1,500/month per person.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/insurance-for/us-coverage" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          US Coverage Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/insurance-for/us-coverage" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance Plans with US Coverage</h3>
+        <p class="text-neutral-600 text-sm">International plans that include expensive US healthcare</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">Comprehensive international coverage including USA</p>
+      </a>
+      <a href="/visas/investor-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Golden Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with faster, lower-cost EU alternative</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

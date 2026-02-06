@@ -1,0 +1,906 @@
+---
+/**
+ * Italy Investor Visa (Visto per Investitori) - Long-form CRO-optimized page
+ * Startup, company, bonds, or philanthropic route
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Italy", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Italy Health Insurance Guide", href: "/countries/italy/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Italy Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/italy" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Investment Route" },
+  { key: "minimum", header: "Minimum Amount" },
+  { key: "notes", header: "Key Details" },
+];
+
+const investmentRows = [
+  { option: "Innovative Startup", minimum: "€250,000", notes: "Must be registered in Italian startup registry" },
+  { option: "Innovative SME", minimum: "€500,000", notes: "Small/medium enterprise with innovation status" },
+  { option: "Italian Company", minimum: "€1,000,000", notes: "Established Italian company (any sector)" },
+  { option: "Government Bonds", minimum: "€2,000,000", notes: "Italian sovereign bonds (BTPs), 2-year hold" },
+  { option: "Philanthropic Donation", minimum: "€1,000,000", notes: "Cultural, educational, or public interest projects" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "recommendation", header: "Our Recommendation" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Health insurance covering Italy", recommendation: "Comprehensive international plan" },
+  { feature: "Coverage Area", requirement: "Must cover Italy", recommendation: "Europe-wide or global coverage" },
+  { feature: "Coverage Limits", requirement: "€30,000+ medical treatment", recommendation: "€1M+ or unlimited" },
+  { feature: "Duration", requirement: "Valid for visa period", recommendation: "Annual renewable policy" },
+  { feature: "Hospitalization", requirement: "Required", recommendation: "Full inpatient coverage" },
+  { feature: "Repatriation", requirement: "Required for visa", recommendation: "Essential" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€180-450", strengths: "Comprehensive global coverage, large network" },
+  { provider: "Allianz Care", type: "International", price: "€150-380", strengths: "Strong EU coverage, competitive pricing" },
+  { provider: "BUPA Global", type: "International", price: "€200-500", strengths: "Premium service, mental health parity" },
+  { provider: "AXA Global", type: "International", price: "€160-400", strengths: "EU-regulated, strong Italy network" },
+  { provider: "Generali Italia", type: "Local Italian", price: "€100-250", strengths: "Extensive local network, Italian-regulated" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€116", notes: "Investor visa type" },
+  { item: "Residence Permit (Permesso)", amount: "€100-200", notes: "Upon arrival in Italy" },
+  { item: "Legal/Advisory Fees", amount: "€5,000-15,000", notes: "Immigration and investment structuring" },
+  { item: "Investment Verification", amount: "€2,000-5,000", notes: "Due diligence and documentation" },
+  { item: "Notary Fees (if applicable)", amount: "€1,000-3,000", notes: "For company investments" },
+  { item: "Health Insurance", amount: "€150-450/month", notes: "International coverage required" },
+  { item: "Codice Fiscale (Tax Code)", amount: "Free", notes: "Required for all transactions" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Pre-approval application to Invest in Italy Committee", duration: "1-2 weeks to prepare", location: "Online/Remote" },
+  { step: "Committee evaluation (nulla osta)", duration: "30 days maximum", location: "Italian government" },
+  { step: "Receive nulla osta (clearance certificate)", duration: "After approval", location: "Via email" },
+  { step: "Apply for investor visa at Italian consulate", duration: "1-2 weeks to prepare", location: "Home country consulate" },
+  { step: "Visa processing", duration: "15-30 days", location: "Consulate" },
+  { step: "Enter Italy and complete investment", duration: "Within 3 months", location: "Italy" },
+  { step: "Apply for residence permit (Permesso di Soggiorno)", duration: "8 days after arrival", location: "Local Questura" },
+  { step: "Receive residence permit", duration: "2-4 weeks", location: "Italy" },
+];
+---
+
+<PageShell
+  title="Italy Investor Visa 2026: Investment Options, Insurance & Application Guide"
+  description="Complete guide to Italy's Investor Visa (Visto per Investitori). Startup investment from €250,000, company investment €1M, or €2M bonds. Path to Italian and EU citizenship."
+  headline="Italy Investor Visa: Investment & Insurance Guide"
+  subheadline="The dolce vita through investment—startup from €250,000, company from €1M, or bonds at €2M. Full guide to Italy's investor visa, requirements, and mandatory health insurance."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Investor Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/italy-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Startup Route from €250K
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Path to Italian Citizenship
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Italy's Investor Visa (Visto per Investitori) offers residency through investment in Italian startups, companies, government bonds, or philanthropy. Launched in 2017, it's designed to attract entrepreneurs, investors, and high-net-worth individuals to Italy's economy.
+    </p>
+
+    <p class="mb-4">
+      Unlike property-based Golden Visas (Greece, Spain), Italy's program focuses on business investment—with the lowest entry point being €250,000 into Italian startups. This makes it attractive for entrepreneurially-minded investors who want to actively participate in Italy's economy rather than just own property.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-3">Key Advantage: Startup Route at €250,000</h3>
+      <p class="text-green-800">
+        Italy offers the lowest entry point among major EU investor programs through its innovative startup route. By investing €250,000 in a registered Italian startup, you gain residence in one of Europe's largest economies—with full work rights, Schengen access, and a path to citizenship. No other major EU country offers investor residence at this level.
+      </p>
+    </div>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Italy Investor Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Visto per Investitori (Investor Visa)</li>
+        <li>• <strong>Minimum investment:</strong> €250,000 (startup) to €2,000,000 (bonds)</li>
+        <li>• <strong>Initial visa:</strong> 2 years</li>
+        <li>• <strong>Renewal:</strong> 3 years (if investment maintained)</li>
+        <li>• <strong>Family included:</strong> Spouse and dependent children</li>
+        <li>• <strong>Work rights:</strong> Yes—can work in Italy</li>
+        <li>• <strong>Permanent residence:</strong> After 5 years of legal residence</li>
+        <li>• <strong>Citizenship:</strong> After 10 years (4 years if EU citizen)</li>
+        <li>• <strong>Schengen access:</strong> Free travel in 27 Schengen countries</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Italy's Investor Visa Stands Out</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Key Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Lowest startup entry (€250,000) in major EU</li>
+          <li>• Full work rights included</li>
+          <li>• Access to Italy's startup ecosystem</li>
+          <li>• Path to Italian (EU) citizenship</li>
+          <li>• Business investment, not just property</li>
+          <li>• Fast pre-approval (30 days max)</li>
+          <li>• World-class lifestyle and culture</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Startup investment carries risk</li>
+          <li>• No property investment option</li>
+          <li>• 10 years to citizenship (longer than Portugal)</li>
+          <li>• Italian bureaucracy can be challenging</li>
+          <li>• Language helpful for integration</li>
+          <li>• Higher thresholds for lower-risk options</li>
+          <li>• Must maintain investment 2+ years</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Health insurance requirement:</strong> Private health insurance covering Italy is mandatory for the Investor Visa. You must provide proof of valid coverage at application and maintain it throughout your stay. Italy has an excellent public healthcare system (SSN), but you need private coverage initially and may choose to enroll in SSN once resident.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">The Investor Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You want to invest in Italian businesses, not just property</li>
+          <li>You have €250,000-2,000,000 for business investment</li>
+          <li>You're comfortable with startup/business risk</li>
+          <li>You want full work rights in Italy</li>
+          <li>You're interested in Italian entrepreneurship</li>
+          <li>You appreciate Italian lifestyle and culture</li>
+          <li>You can commit to 10-year citizenship path</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You prefer property investment (try Greece)</li>
+          <li>• You want guaranteed return (bonds require €2M)</li>
+          <li>• You want fast citizenship (Portugal = 5 years)</li>
+          <li>• You prefer English-speaking country (Malta)</li>
+          <li>• You want zero stay requirement (Greece)</li>
+          <li>• You're uncomfortable with business risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Italy vs. Other EU Investor Programs</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Greece Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€250,000 property minimum. Zero stay. Property-based. Lower risk than startup. 7 years to citizenship. No work rights.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Portugal Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€500,000 funds. 7 days/year stay. Fund investment. 5 years to citizenship. No property route. Work rights included.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Spain Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€500,000 property. No stay first 2 years. 10 years to citizenship. Property route still active. Work rights included.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Italy's unique position:</strong> The €250,000 startup investment is the lowest entry to a major EU economy. For entrepreneurially-minded investors interested in Italy's startup scene (Milan, Rome, Turin), it offers unmatched access. But it requires tolerance for startup risk—this isn't a passive property investment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Italy's Investor Visa offers five investment routes with different thresholds and risk profiles. Unlike property-based Golden Visas, all options involve business or financial investment in Italy's economy.
+    </p>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Innovative Startup Route (€250,000)</h3>
+
+    <p class="mb-4">
+      The most accessible route—invest €250,000 in an Italian startup registered in the special registry of innovative startups (Registro delle startup innovative). These companies must meet specific innovation criteria.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Startup Route Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Lowest entry threshold in major EU (€250,000)</li>
+          <li>Access to growing Italian tech ecosystem</li>
+          <li>Potential for significant returns</li>
+          <li>Active involvement possible</li>
+          <li>Milan/Rome startup scenes growing</li>
+          <li>Government support for innovation</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Startup Route Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>High risk—startups can fail</li>
+          <li>Capital may be illiquid for years</li>
+          <li>Must find qualifying startup</li>
+          <li>Due diligence essential</li>
+          <li>No guaranteed return</li>
+          <li>Business knowledge helpful</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Innovative SME Route (€500,000)</h3>
+
+    <p class="mb-4">
+      Invest €500,000 in an innovative small or medium enterprise. These are larger than startups but still registered for special innovation status. Lower risk than pure startups but still equity investment.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Italian Company Route (€1,000,000)</h3>
+
+    <p class="mb-4">
+      Invest €1,000,000 in any established Italian company. No innovation requirement—can be traditional businesses. More options but higher threshold. Can include family businesses or established SMEs.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Government Bonds Route (€2,000,000)</h3>
+
+    <p class="mb-4">
+      Purchase €2,000,000 of Italian government bonds (BTPs—Buoni del Tesoro Poliennali). Must hold for at least 2 years. Lowest risk option but requires four times the capital of startup route.
+    </p>
+
+    <div class="border border-neutral-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-neutral-900 mb-3">Government Bonds: Risk vs. Access</h4>
+      <ul class="space-y-2 text-neutral-700">
+        <li><strong>Pro:</strong> Lowest risk—Italian sovereign debt rated BBB/Baa3</li>
+        <li><strong>Pro:</strong> Liquid after 2-year hold period</li>
+        <li><strong>Pro:</strong> Interest income (currently 3-4% on 10-year BTPs)</li>
+        <li><strong>Con:</strong> Requires €2,000,000 (vs €250,000 startup)</li>
+        <li><strong>Con:</strong> Capital could earn more elsewhere</li>
+        <li><strong>Con:</strong> Currency risk if you're not EUR-based</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Philanthropic Donation Route (€1,000,000)</h3>
+
+    <p class="mb-4">
+      Donate €1,000,000 to cultural, educational, scientific, or public interest projects. This is a donation, not investment—no return expected. Appeals to high-net-worth philanthropists who want Italian residence while supporting causes.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Investment must be maintained:</strong> All investment options require maintaining the investment for at least the initial 2-year visa period. For renewals, continued investment (or evidence the startup/company remains active) is expected. Government bonds must be held for the full 2-year minimum.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Private health insurance covering Italy is required for the Investor Visa application. You must show valid coverage at the consulate and maintain it initially. Once resident, you may be eligible to enroll in Italy's public SSN (Servizio Sanitario Nazionale), but private coverage is needed at minimum for the visa.
+      </p>
+    </div>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Italian Healthcare Options</h3>
+
+    <p class="mb-4">
+      Italy has an excellent public healthcare system (SSN) that residents can access. As an Investor Visa holder, you have options:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Public Healthcare (SSN)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Free or low-cost for residents</li>
+          <li>Excellent quality hospitals</li>
+          <li>Need "tessera sanitaria" (health card)</li>
+          <li>Requires residency registration</li>
+          <li>May need to pay contribution if self-employed</li>
+          <li>Long waits for non-urgent care</li>
+        </ul>
+        <p class="text-green-700 text-sm mt-3">Available after establishing residency in Italy</p>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Insurance (Required Initially)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Required for visa application</li>
+          <li>Immediate access to care</li>
+          <li>Shorter wait times</li>
+          <li>Choice of specialists</li>
+          <li>English-speaking options</li>
+          <li>Covers you during Schengen travel</li>
+        </ul>
+        <p class="text-blue-700 text-sm mt-3">Mandatory for visa, many keep for convenience</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What Your Insurance Must Cover</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Mandatory for Visa</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Medical treatment minimum €30,000</li>
+          <li>Hospitalization coverage</li>
+          <li>Valid in Italy for visa duration</li>
+          <li>Repatriation coverage</li>
+          <li>Emergency treatment</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Recommended Additional</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Europe-wide coverage (Schengen travel)</li>
+          <li>Higher limits (€1M+)</li>
+          <li>Outpatient care</li>
+          <li>Prescription medications</li>
+          <li>Specialist consultations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Long-term strategy:</strong> Many Investor Visa holders maintain private insurance even after SSN eligibility. Private insurance provides faster access, choice of specialists, and covers gaps in public system. If you travel frequently or live part-time outside Italy, international coverage is essential.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for Italy Investor Visa?"
+    description="Compare international health insurance plans that meet Italian visa requirements and provide Europe-wide coverage."
+    buttonText="Compare Investor Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Italy's Investor Visa, you need coverage that satisfies visa requirements while providing genuine protection. Both international and Italian providers can work, depending on your lifestyle.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Entrepreneur Spending Time Across Europe</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care with Europe zone. Full Schengen coverage for business travel. Direct billing at major European hospitals. Budget €180-400/month depending on age and coverage level.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Relocating Full-Time to Italy</h4>
+        <p class="text-neutral-600">Consider Italian insurers like Generali or UniSalute for local focus (€100-250/month). Supplement with travel coverage for trips. Once SSN-eligible, many reduce private coverage to top-up only.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">US Investor Wanting US + Italy Coverage</h4>
+        <p class="text-neutral-600">Cigna Global or BUPA Global with worldwide zone including USA. Essential if you maintain US business ties or travel there frequently. Budget €350-550/month for comprehensive US-included coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with School-Age Children</h4>
+        <p class="text-neutral-600">Allianz Care or Cigna Global family plans. Good pediatric networks in Milan/Rome. Family discounts available. Consider Italian insurance once children enrolled in Italian schools and you have SSN access.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Over 60 with Pre-existing Conditions</h4>
+        <p class="text-neutral-600">BUPA Global or Cigna Global with full underwriting. Expect waiting periods (12-24 months) for pre-existing conditions. Italy's SSN covers pre-existing conditions once enrolled—factor this into long-term planning. Budget €400-700/month for comprehensive senior coverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Italy's Investor Visa has relatively low government fees compared to programs like Malta. The main cost is the investment itself, plus professional fees for structuring and documentation.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total First-Year Costs by Route (Excluding Investment)</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Startup Route (€250K)</p>
+        <p class="text-3xl font-bold text-neutral-900">€10,000-20,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Fees + insurance + legal</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Company Route (€1M)</p>
+        <p class="text-3xl font-bold text-neutral-900">€15,000-30,000</p>
+        <p class="text-sm text-neutral-500 mt-2">More complex structuring</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Bonds Route (€2M)</p>
+        <p class="text-3xl font-bold text-neutral-900">€10,000-20,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Simpler, less legal work</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Investment Cost Comparison</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Startup Route (€250,000)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Investment: €250,000</li>
+          <li>• Expected return: Variable (-100% to 10x+)</li>
+          <li>• Risk level: High</li>
+          <li>• Liquidity: Low (startup timelines)</li>
+          <li>• Active involvement: Often expected</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Entrepreneurial investors comfortable with risk</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Bonds Route (€2,000,000)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Investment: €2,000,000</li>
+          <li>• Expected return: 3-4% yield (current rates)</li>
+          <li>• Risk level: Low (sovereign debt)</li>
+          <li>• Liquidity: After 2-year hold</li>
+          <li>• Active involvement: None</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Passive investors wanting safety</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Health insurance:</strong> €2,000-6,000/year (depending on coverage and age)</li>
+      <li><strong>Residence permit renewal:</strong> ~€100-200 (every 2-3 years)</li>
+      <li><strong>Tax advisory:</strong> €1,000-5,000/year (if Italian tax resident)</li>
+      <li><strong>Accounting (if company involved):</strong> €2,000-10,000/year</li>
+      <li><strong>Investment monitoring:</strong> Variable (startup board meetings, etc.)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Tax considerations:</strong> If you become Italian tax resident (183+ days/year), you'll pay Italian income tax on worldwide income. Italy offers a "new resident" flat tax of €100,000/year on foreign income for up to 15 years—attractive for high earners. Consult an Italian tax advisor before relocating.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Italy's Investor Visa uses a two-stage process: first obtain a "nulla osta" (clearance certificate) from the Invest in Italy Committee, then apply for the visa at your local Italian consulate. The process is faster than many Golden Visas.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Identify Your Investment</h4>
+          <p class="text-neutral-600">Decide on investment route (startup, SME, company, bonds, or philanthropic). For startup/SME routes, identify the target company from Italy's official registries. For bonds, identify the BTP securities you'll purchase. Consider working with an investment advisor familiar with Italian markets.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Documentation</h4>
+          <p class="text-neutral-600">Gather required documents: valid passport, proof of investment funds, investment plan/target identification, health insurance certificate, criminal record check (apostilled), proof of accommodation in Italy (even temporary), and source of funds documentation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Online Pre-Approval Application</h4>
+          <p class="text-neutral-600">Apply online through the Invest in Italy portal (investorvisa.mise.gov.it) for the nulla osta. Provide investment details, personal information, and supporting documents. The system is English-friendly. No fee for this stage.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Invest in Italy Committee Evaluation</h4>
+          <p class="text-neutral-600">The Committee (representatives from multiple ministries) reviews your application. They verify the investment qualifies and check background. By law, they must respond within 30 days. Most applications are approved if documentation is complete.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Nulla Osta</h4>
+          <p class="text-neutral-600">If approved, you receive the nulla osta (clearance certificate) via email. This is valid for 6 months—you must apply for your visa within this period. The nulla osta is essentially pre-approval; consulate processing is usually straightforward after this.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Investor Visa at Consulate</h4>
+          <p class="text-neutral-600">Submit visa application at the Italian consulate in your home country. Bring: nulla osta, passport, photos, health insurance, proof of accommodation, and visa fee (€116). Family members apply simultaneously with supporting documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Visa and Enter Italy</h4>
+          <p class="text-neutral-600">Visa processing typically takes 15-30 days. Once approved, you receive a 2-year investor visa. Enter Italy and complete your investment within 3 months of arrival.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Residence Permit</h4>
+          <p class="text-neutral-600">Within 8 days of arrival, apply for your Permesso di Soggiorno (residence permit) at your local Questura (police station). Bring proof of investment completion, visa, passport, and accommodation details. The permit is typically issued within 2-4 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Investment and Register</h4>
+          <p class="text-neutral-600">Finalize your investment (transfer funds to startup, purchase bonds, etc.). Obtain documentation proving investment completion. Register for Codice Fiscale (tax code) if not done already. You're now a legal Italian resident.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Processing times:</strong> Italy's Investor Visa is relatively fast. The nulla osta (30 days max) plus consulate processing (15-30 days) means you can have your visa in 2-3 months. Residence permit adds another 2-4 weeks. Total timeline: approximately 3-4 months from application to living in Italy.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Italy Investor Visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Entrepreneur, €250K Startup Investment</h3>
+        <p class="text-neutral-600 mb-4">38 years old, sold previous startup, wants European base and access to Italian tech scene.</p>
+        <p class="text-green-700 font-medium">Invested €250,000 in Milan-based fintech startup. Nulla osta in 25 days, visa in 3 weeks. Now based in Milan, actively advising the startup. Cigna Global (€280/month) for Europe-wide coverage. Uses new resident flat tax (€100,000/year) for significant tax savings. Very satisfied with lifestyle and business opportunities.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Investor, €2M Government Bonds</h3>
+        <p class="text-neutral-600 mb-4">52 years old, family wealth, wants EU access with low risk.</p>
+        <p class="text-green-700 font-medium">Chose €2M BTP route for safety. Nulla osta in 28 days. Currently earning ~3.5% yield on bonds. Family (spouse + 2 children) included. Allianz Care family plan (€680/month). Uses residence for Schengen travel and children's European education. No active involvement required—passive approach suits him well.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Art Collector, €1M Philanthropic Donation</h3>
+        <p class="text-neutral-600 mb-4">60 years old, passionate about Italian culture, significant wealth.</p>
+        <p class="text-green-700 font-medium">Donated €1M to Florentine art restoration project. Received recognition from cultural ministry. Now splits time between Florence and London. BUPA Global (€450/month) for comprehensive coverage. Views donation as meaningful contribution, not just visa purchase. Access to Italian cultural circles and events a valued bonus.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Family, €500K Innovative SME</h3>
+        <p class="text-neutral-600 mb-4">Couple (both 45), two teenagers, seeking European education for children.</p>
+        <p class="text-green-700 font-medium">Invested €500,000 in Rome-based biotech SME. Entire family approved. Children enrolled in international school, now fluent in Italian. Planning to switch to Italian universities. Generali Italia insurance (€350/month family) after first year. Wife now working for Italian company. Full integration into Italian life.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Brazilian Investor, Startup Failed</h3>
+        <p class="text-neutral-600 mb-4">42 years old, invested €280,000 in Italian tech startup.</p>
+        <p class="text-amber-700 font-medium">Startup failed after 18 months—investment lost. Maintained residence by reinvesting in different startup. Learning: startup route carries real risk. Still satisfied with Italian residence and lifestyle, but financial loss was significant. Recommends thorough due diligence and accepting possibility of total loss.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Rejected Application—Source of Funds</h3>
+        <p class="text-neutral-600 mb-4">48 years old, funds from complex offshore structure.</p>
+        <p class="text-red-700 font-medium">Committee requested additional documentation on fund sources. Provided partial documentation. Nulla osta denied—couldn't adequately explain offshore holdings. Reapplied with restructured, transparent funding 6 months later—approved. Lesson: Italy requires clean, documentable source of funds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Italy Investor Visa"
+    description="Find coverage that meets Italian visa requirements and provides the comprehensive protection you need."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Startup Risk</h3>
+        <p class="text-neutral-600">The €250,000 startup route is appealing but high-risk. Italian startups, like all startups, can fail. You could lose your entire investment. Only choose this route if you're comfortable with potential total loss and genuinely interested in the business, not just the visa.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Property Route</h3>
+        <p class="text-neutral-600">Italy's Investor Visa doesn't include property investment—unlike Greece or Spain. If you want to buy Italian property for residence, you'll need the separate Elective Residence Visa (which requires proving income, not investment). Don't assume you can buy a villa and get investor status.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring Tax Implications</h3>
+        <p class="text-neutral-600">If you spend 183+ days in Italy, you become Italian tax resident on worldwide income. This can be significant if you have foreign income. Consult an Italian tax advisor before relocating—the new resident regime (€100,000 flat tax on foreign income) may help, but eligibility has conditions.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Waiting to Complete Investment</h3>
+        <p class="text-neutral-600">You must complete your investment within 3 months of entering Italy. Some applicants delay, expecting flexibility. Don't—failure to invest on time can invalidate your visa. Have funds ready and investment structured before arrival.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing Startup Without Due Diligence</h3>
+        <p class="text-neutral-600">Not all Italian startups are equal. Some visa advisors push specific startups for commissions. Do your own due diligence: review financials, meet founders, understand the business. This is a real investment, not just a visa fee—treat it accordingly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Italy -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Italy</h2>
+
+    <p class="mb-4">
+      Italy has one of the world's best healthcare systems, ranked 2nd globally by the World Health Organization. As an Investor Visa holder, you'll need private insurance initially but can access the excellent public system (SSN) once resident.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Public Healthcare (SSN)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Free/low-cost for registered residents</li>
+          <li>Excellent hospital quality</li>
+          <li>World-renowned specialists</li>
+          <li>Need tessera sanitaria (health card)</li>
+          <li>Long waits for non-urgent care</li>
+          <li>Variable by region (North generally better)</li>
+        </ul>
+        <p class="text-green-700 text-sm mt-3">Requires residency registration + contribution if self-employed</p>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Required for visa application</li>
+          <li>Immediate access, no waiting lists</li>
+          <li>Choice of hospital and specialist</li>
+          <li>Modern private facilities</li>
+          <li>English-speaking staff common</li>
+          <li>Direct billing with international insurers</li>
+        </ul>
+        <p class="text-blue-700 text-sm mt-3">Many keep private for convenience alongside SSN</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Top Hospitals by Region</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Milan (Lombardy)</h4>
+        <p class="text-neutral-600">San Raffaele Hospital, Humanitas, Istituto Europeo di Oncologia. Italy's strongest healthcare region. Major research centers. Private options include Humanitas and Gruppo San Donato.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Rome (Lazio)</h4>
+        <p class="text-neutral-600">Policlinico Gemelli, Bambin Gesù (pediatrics), Campus Bio-Medico. Excellent public and private options. Many English-speaking doctors serving expat community.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Bologna (Emilia-Romagna)</h4>
+        <p class="text-neutral-600">Policlinico Sant'Orsola, Rizzoli Orthopedic Institute (world-renowned). Strong public healthcare. University hospital research focus.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Florence/Tuscany</h4>
+        <p class="text-neutral-600">Careggi University Hospital, Meyer Children's Hospital. Good public system. Villa Donatello and other private options serve expat community.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Regional variation:</strong> Italian healthcare quality varies by region. Northern regions (Lombardy, Emilia-Romagna, Veneto) generally have the best public systems. Southern regions can have longer waits and older facilities. Consider this when choosing where to base yourself.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work in Italy with the Investor Visa?</h3>
+        <p class="text-neutral-600">
+          Yes. Unlike some Golden Visa programs, Italy's Investor Visa includes full work rights. You can work as an employee, start a business, or engage in any professional activity. This makes it attractive for entrepreneurs who want to actively participate in the Italian economy.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get Italian citizenship?</h3>
+        <p class="text-neutral-600">
+          Standard naturalization requires 10 years of legal residence. If you're an EU citizen, it's reduced to 4 years. You'll need to pass an Italian language test (B1 level), demonstrate integration, and have clean criminal record. Italy allows dual citizenship, so you typically don't need to renounce your original nationality.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if my startup investment fails?</h3>
+        <p class="text-neutral-600">
+          If your startup fails, you don't automatically lose your residence—but you'll need to make a new qualifying investment to renew. Italy understands startup risk; the key is maintaining compliant status. Many advisors recommend having backup investment capacity if choosing the startup route.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is there a minimum stay requirement?</h3>
+        <p class="text-neutral-600">
+          There's no explicit minimum stay for the Investor Visa itself. However, for permanent residence (after 5 years), you generally need to have been primarily resident in Italy. For citizenship (10 years), you must have maintained continuous residence. If you plan to rarely visit Italy, consider Greece's Golden Visa instead.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I buy property with the Investor Visa?</h3>
+        <p class="text-neutral-600">
+          You can buy property in Italy, but property purchase doesn't qualify for the Investor Visa. You need separate qualifying investment (startup, company, bonds, or donation). However, once you have the visa, you're free to purchase property for living or investment purposes separately.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How does the €100,000 flat tax work?</h3>
+        <p class="text-neutral-600">
+          The "new resident" regime allows qualifying individuals to pay a flat €100,000/year on all foreign-sourced income, regardless of amount. This is attractive for high earners with significant foreign income. Requirements include not being Italian tax resident for 9 of the previous 10 years. Consult an Italian tax advisor for eligibility.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Italy's Investor Visa offers the lowest entry point to a major EU economy through its €250,000 startup route. For entrepreneurially-minded investors who want to actively participate in Europe's third-largest economy, it's an compelling option with full work rights and a path to Italian citizenship.
+    </p>
+
+    <p class="mb-4">
+      The program is best suited for those comfortable with business investment risk. Unlike property-based Golden Visas, your capital is in companies or financial instruments, not real estate. The startup route in particular carries significant risk—but also potential upside if you choose well.
+    </p>
+
+    <p class="mb-6">
+      Health insurance is mandatory for the visa and prudent long-term. Italy's public SSN is excellent once you're enrolled, but international coverage provides flexibility, faster access, and coverage during Schengen travel. Budget €150-450/month depending on your needs.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Italy's Investor Visa is ideal for entrepreneurs and active investors who want Italian residence with work rights. The €250,000 startup entry is unmatched in major EU economies. But accept the investment risk—this isn't a passive property purchase. For risk-averse investors, the €2M bond route offers safety at a higher price.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/italy/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Italy Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Italy</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/italy" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Italy Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative for remote workers—new 2024 program</p>
+      </a>
+      <a href="/visas/investor-visa/in/greece" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Greece Golden Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Greece's property-based program</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

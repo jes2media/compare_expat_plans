@@ -1,0 +1,902 @@
+---
+/**
+ * Greece Golden Visa / Investor Visa - Long-form CRO-optimized page
+ * Real estate investment route still active (unlike Portugal)
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Greece", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Greece Health Insurance Guide", href: "/countries/greece/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Greece Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/greece" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Investment Option" },
+  { key: "minimum", header: "Minimum Amount" },
+  { key: "notes", header: "Key Details" },
+];
+
+const investmentRows = [
+  { option: "Real Estate (Standard Areas)", minimum: "€250,000", notes: "Most of Greece outside premium zones" },
+  { option: "Real Estate (Premium Areas)", minimum: "€500,000", notes: "Athens center, Thessaloniki, Mykonos, Santorini, islands >3,100 sq m" },
+  { option: "Capital Investment", minimum: "€400,000", notes: "Greek company shares or bonds" },
+  { option: "Government Bonds", minimum: "€400,000", notes: "Greek government securities, 3-year minimum hold" },
+  { option: "Bank Deposit", minimum: "€400,000", notes: "Fixed-term deposit in Greek bank, 1-year minimum" },
+  { option: "Alternative Investment Fund", minimum: "€400,000", notes: "Greek RAIF or AIFM-managed fund" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "recommendation", header: "Our Recommendation" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Private health insurance", recommendation: "Comprehensive international plan" },
+  { feature: "Coverage Area", requirement: "Must cover Greece", recommendation: "Europe-wide or global coverage" },
+  { feature: "Coverage Limits", requirement: "Full hospitalization", recommendation: "€1M+ or unlimited" },
+  { feature: "Duration", requirement: "Valid for visa period", recommendation: "Annual renewable policy" },
+  { feature: "Inpatient Care", requirement: "Required", recommendation: "Full hospitalization coverage" },
+  { feature: "Outpatient Care", requirement: "Required", recommendation: "GP, specialists, diagnostics" },
+  { feature: "Emergency Evacuation", requirement: "Recommended", recommendation: "Essential for island living" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€180-450", strengths: "Global coverage, large network" },
+  { provider: "Allianz Care", type: "International", price: "€150-400", strengths: "Strong EU coverage, competitive pricing" },
+  { provider: "BUPA Global", type: "International", price: "€200-500", strengths: "Premium service, mental health" },
+  { provider: "Interamerican", type: "Local Greek", price: "€80-200", strengths: "Extensive local network, lower cost" },
+  { provider: "Ethniki Insurance", type: "Local Greek", price: "€70-180", strengths: "Budget option, Greek hospitals" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Application Fee", amount: "€2,000", notes: "Main applicant" },
+  { item: "Residence Permit Card", amount: "€16", notes: "Per person" },
+  { item: "Family Member Fee", amount: "€150", notes: "Per additional family member" },
+  { item: "Legal Fees", amount: "€3,000-8,000", notes: "Immigration lawyer" },
+  { item: "Property Transfer Tax", amount: "3.09%", notes: "On property purchase price" },
+  { item: "Notary Fees", amount: "1-2%", notes: "Property transaction" },
+  { item: "Health Insurance", amount: "€100-400/month", notes: "Private coverage required" },
+  { item: "Property Agent Fees", amount: "2-3%", notes: "If using real estate agent" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Property search and selection", duration: "2-8 weeks", location: "Greece (recommended)" },
+  { step: "Obtain Greek Tax Number (AFM)", duration: "1-2 days", location: "Greece or consulate" },
+  { step: "Open Greek bank account", duration: "1-2 weeks", location: "Greece" },
+  { step: "Property purchase and notarization", duration: "2-4 weeks", location: "Greece" },
+  { step: "Gather documents and health insurance", duration: "1-2 weeks", location: "Home country/Greece" },
+  { step: "Submit Golden Visa application", duration: "1 day", location: "Greece (Decentralized Administration)" },
+  { step: "Biometrics appointment", duration: "1 day", location: "Greece" },
+  { step: "Processing and approval", duration: "1-3 months", location: "Greek authorities" },
+  { step: "Receive residence permit", duration: "2-4 weeks", location: "Greece (pickup)" },
+];
+---
+
+<PageShell
+  title="Greece Golden Visa 2026: Investment Options, Insurance & Application Guide"
+  description="Complete guide to Greece's Golden Visa. Real estate from €250,000, zero stay requirement, Schengen access, and path to EU permanent residence. Insurance requirements explained."
+  headline="Greece Golden Visa: Investment & Insurance Guide"
+  subheadline="Europe's most flexible Golden Visa—real estate still qualifies, zero days minimum stay, and one of the lowest thresholds in the EU. Full guide to investment options and mandatory insurance."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Investor Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/greece-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Real Estate Route Active
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Zero Days Minimum Stay
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Greece's Golden Visa is now one of Europe's most attractive residency-by-investment programs. While Portugal eliminated real estate investment in 2023, Greece still allows property purchases—and at lower thresholds. With zero minimum stay requirements and full Schengen access, it's become the top choice for investors seeking EU residency.
+    </p>
+
+    <p class="mb-4">
+      The program launched in 2013 and has grown significantly, particularly among Chinese, Turkish, and Middle Eastern investors. Recent changes in 2023-2024 doubled the threshold in premium areas to €500,000, but most of Greece still qualifies at €250,000.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-3">Key Advantage: Real Estate Still Works</h3>
+      <p class="text-green-800">
+        Unlike Portugal's Golden Visa (which eliminated property investment in 2023), Greece still allows real estate purchases as a qualifying investment. This means you get a tangible asset—an apartment, villa, or commercial property—rather than a paper investment in funds. Many investors prefer owning property they can use, rent, or eventually sell.
+      </p>
+    </div>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Greece Golden Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Permanent Residence Permit for Investors</li>
+        <li>• <strong>Minimum investment:</strong> €250,000 (standard) / €500,000 (premium areas)</li>
+        <li>• <strong>Minimum stay:</strong> Zero days required (no physical presence needed)</li>
+        <li>• <strong>Family included:</strong> Spouse, children under 21, parents of both spouses</li>
+        <li>• <strong>Duration:</strong> 5 years, renewable indefinitely</li>
+        <li>• <strong>Permanent residence:</strong> Can apply after 7 years of continuous legal residence</li>
+        <li>• <strong>Citizenship:</strong> After 7 years (requires A2 Greek language test)</li>
+        <li>• <strong>Schengen access:</strong> Free travel in 27 Schengen countries</li>
+        <li>• <strong>Work rights:</strong> Cannot work as employee in Greece (investment income only)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Greece's Golden Visa Stands Out</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Key Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Real estate investment still qualifies</li>
+          <li>• Zero days minimum stay (most flexible in EU)</li>
+          <li>• €250,000 threshold in most areas (lowest in EU)</li>
+          <li>• Property can be rented for income</li>
+          <li>• Include extended family (parents on both sides)</li>
+          <li>• Fast processing (1-3 months typical)</li>
+          <li>• No interview or language test for residency</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Premium areas now require €500,000</li>
+          <li>• Cannot work as employee in Greece</li>
+          <li>• 7 years to citizenship (longer than Portugal's 5)</li>
+          <li>• Greek bureaucracy can be slow</li>
+          <li>• Island properties need evacuation coverage</li>
+          <li>• Property values vary significantly</li>
+          <li>• Must maintain investment throughout</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Health insurance requirement:</strong> Private health insurance is mandatory for the Golden Visa. You must provide proof of valid coverage with your application and maintain it throughout your residency. This is especially important if you plan to spend time on the Greek islands, where medical facilities are limited.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">The Golden Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>You have €250,000-500,000 for real estate</li>
+          <li>You want a tangible property investment</li>
+          <li>You want EU residency with zero stay requirements</li>
+          <li>You plan to use the property for holidays</li>
+          <li>You want rental income from Greek tourism</li>
+          <li>You want to include parents in the application</li>
+          <li>You're comfortable with Greek real estate market</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want to work as an employee in Greece</li>
+          <li>• You need citizenship faster than 7 years</li>
+          <li>• You prefer paper investments over property</li>
+          <li>• Your budget is under €250,000</li>
+          <li>• You're uncomfortable with property management</li>
+          <li>• You need immediate work authorization</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Greece vs. Other Golden Visas</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Portugal Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€500,000 fund investment (no real estate). 7 days/year stay. Citizenship in 5 years. More expensive but faster citizenship path.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Spain Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€500,000 real estate. No minimum stay for first renewal. Citizenship requires 10 years. Higher threshold but similar structure.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Malta Residence</h4>
+        <p class="text-neutral-600 text-sm">€300,000+ property or €10,000/year rent. Government contribution required. English-speaking. Higher total cost but English-speaking EU.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Greece's sweet spot:</strong> If you want real estate ownership with EU residency and zero stay requirements, Greece offers the best value. The €250,000 threshold in non-premium areas is the lowest property-based Golden Visa in the EU.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Greece offers multiple investment routes, but real estate remains the most popular. The 2023-2024 reforms introduced a two-tier system for property investment, with higher thresholds in premium areas.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-3">2024 Changes: Premium Areas Now €500,000</h3>
+      <p class="text-amber-800 mb-2">
+        As of May 2024, certain high-demand areas require a €500,000 minimum investment:
+      </p>
+      <ul class="text-amber-800 space-y-1">
+        <li>• <strong>Attica (Athens region)</strong> — Central Athens, Piraeus, northern/southern suburbs</li>
+        <li>• <strong>Thessaloniki</strong> — City center and metropolitan area</li>
+        <li>• <strong>Mykonos</strong> — Entire island</li>
+        <li>• <strong>Santorini</strong> — Entire island</li>
+        <li>• <strong>Islands over 3,100 sq meters</strong> — Large island properties</li>
+      </ul>
+      <p class="text-amber-800 mt-2 text-sm">
+        The €250,000 threshold still applies elsewhere: Peloponnese, Crete, Rhodes, Corfu, mainland Greece, and smaller islands.
+      </p>
+    </div>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Real Estate Route (Most Popular)</h3>
+
+    <p class="mb-4">
+      Approximately 95% of Golden Visa applicants choose real estate. You can purchase one or multiple properties totaling the minimum threshold, and you can rent them out for income.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Property Types That Qualify</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Residential apartments and houses</li>
+          <li>• Villas and vacation homes</li>
+          <li>• Commercial properties</li>
+          <li>• Land (with building permit potential)</li>
+          <li>• Multiple properties combined</li>
+          <li>• Off-plan purchases (with escrow)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Popular Locations by Budget</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li><strong>€250,000:</strong> Crete, Peloponnese, mainland, smaller islands</li>
+          <li><strong>€300,000-400,000:</strong> Rhodes, Corfu, Halkidiki</li>
+          <li><strong>€500,000+:</strong> Athens center, Mykonos, Santorini</li>
+          <li><strong>€750,000+:</strong> Premium Athens neighborhoods, luxury islands</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Alternative Investment Routes</h3>
+
+    <p class="mb-4">
+      For those preferring financial investments over property, Greece offers several €400,000 alternatives:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Capital Investment (€400,000)</h4>
+        <p class="text-neutral-600">Invest in shares or bonds of Greek companies. Must be held for the duration of the Golden Visa. Less liquid than bank deposits but potential for returns.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Government Bonds (€400,000)</h4>
+        <p class="text-neutral-600">Greek government securities with a minimum 3-year residual maturity. Lower risk than company shares. Interest income subject to Greek taxation.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Bank Deposit (€400,000)</h4>
+        <p class="text-neutral-600">Fixed-term deposit in a Greek bank for at least 1 year. Most liquid option. Current interest rates around 2-3%. Bank must be licensed in Greece.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why most choose property:</strong> Real estate at €250,000-500,000 beats the €400,000 financial investment threshold. Plus you get a tangible asset you can use, rent, or sell (after maintaining for visa purposes). Most investors prefer a vacation home over a bank deposit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Private health insurance covering Greece is required for the Golden Visa application. You must provide proof of valid coverage and maintain it throughout your residency. Travel insurance is not accepted—you need comprehensive health coverage.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Since Golden Visa holders have zero stay requirements, many spend limited time in Greece. Your insurance should cover you both in Greece and wherever you actually live.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Special Considerations for Greece</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Island Coverage Critical</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>Many Greek islands have limited medical facilities</li>
+          <li>Serious cases require evacuation to Athens</li>
+          <li>Summer tourist season strains island clinics</li>
+          <li>Ferry/helicopter evacuation coverage essential</li>
+          <li>Choose plans with air ambulance coverage</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Coverage Must Include</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Emergency hospital treatment</li>
+          <li>Medical evacuation (especially for islands)</li>
+          <li>Outpatient and specialist care</li>
+          <li>Prescription medications</li>
+          <li>Valid across Greece including islands</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Local vs. International Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Greek Local Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Pro: Lower cost (€70-200/month)</li>
+          <li>Pro: Good local hospital network</li>
+          <li>Pro: Accepted for visa</li>
+          <li>Con: Coverage only in Greece</li>
+          <li>Con: Greek language documentation</li>
+          <li>Con: Limited English support</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Those spending significant time in Greece</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">International Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Pro: Global or Europe-wide coverage</li>
+          <li>Pro: English support and documents</li>
+          <li>Pro: Covers you in home country</li>
+          <li>Pro: Better evacuation coverage</li>
+          <li>Con: Higher cost (€150-500/month)</li>
+          <li>Con: May need to pay and claim back</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Those spending limited time in Greece, island properties</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> Since most Golden Visa holders have zero stay requirements and may spend limited time in Greece, international insurance makes more sense. If you own island property, evacuation coverage is essential. Budget €150-400/month for comprehensive international coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Greece Golden Visa?"
+    description="Compare international health insurance plans that meet Greek visa requirements and include island evacuation coverage."
+    buttonText="Compare Golden Visa Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Golden Visa holders, we recommend international insurers with strong European coverage and evacuation benefits. Island property owners should prioritize plans with air ambulance coverage.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Island Property Owner</h4>
+        <p class="text-neutral-600">Cigna Global or BUPA Global. Both offer comprehensive evacuation coverage essential for islands like Mykonos, Santorini, or Crete. Air ambulance to Athens included. Budget €200-450/month.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Athens Property, Frequent Traveler</h4>
+        <p class="text-neutral-600">Allianz Care with Europe zone. Strong coverage across EU, competitive pricing, good Athens hospital network. Add worldwide if you travel outside Europe. Budget €150-350/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious, Mainland Property</h4>
+        <p class="text-neutral-600">Consider Greek local insurers like Interamerican or Ethniki for basic visa compliance (€70-150/month). Add travel insurance for trips outside Greece. Not ideal for island properties.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care family plans. Good pediatric networks in Athens, family discounts, and comprehensive coverage for children's health needs. Essential if children will attend Greek schools.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care with full medical underwriting. Expect waiting periods (12-24 months) for pre-existing conditions. Greek local insurers may exclude pre-existing conditions entirely.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Greece's Golden Visa has relatively low government fees compared to other programs. The main costs are the property investment itself and associated purchase taxes.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total First-Year Costs (Excluding Property)</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Single Applicant</p>
+        <p class="text-3xl font-bold text-neutral-900">€12,000-20,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Fees, taxes, legal, insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Couple</p>
+        <p class="text-3xl font-bold text-neutral-900">€14,000-25,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Family member fees lower</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Family of 4</p>
+        <p class="text-3xl font-bold text-neutral-900">€18,000-35,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Including children</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Property Purchase Example (€250,000)</h3>
+
+    <div class="border border-neutral-200 rounded-lg p-6 mb-6">
+      <ul class="space-y-2">
+        <li><strong>Property price:</strong> €250,000</li>
+        <li><strong>Transfer tax (3.09%):</strong> €7,725</li>
+        <li><strong>Notary fees (~1.5%):</strong> €3,750</li>
+        <li><strong>Legal fees:</strong> €4,000</li>
+        <li><strong>Agent commission (2.5%):</strong> €6,250</li>
+        <li><strong>Application fees:</strong> €2,000</li>
+        <li><strong>First year insurance:</strong> €2,400</li>
+        <li class="border-t pt-2 mt-2"><strong>Total investment:</strong> €276,125</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Health insurance:</strong> €1,200-5,000/year (depending on age and coverage)</li>
+      <li><strong>Property tax (ENFIA):</strong> €200-2,000/year (depends on property value and location)</li>
+      <li><strong>Property maintenance:</strong> €500-3,000/year (condo fees, repairs)</li>
+      <li><strong>Property management:</strong> €1,000-3,000/year (if renting to tourists)</li>
+      <li><strong>Renewal fees:</strong> Minimal (€16 per person every 5 years)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Rental income potential:</strong> Many Golden Visa properties generate rental income, especially in tourist areas. A well-located Athens apartment or island villa can yield 4-8% gross rental returns, helping offset ongoing costs. Short-term vacation rentals (Airbnb) are popular but require proper licensing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Greece Golden Visa process is relatively straightforward, typically taking 2-4 months from property purchase to receiving your residence permit. The main steps involve property purchase, document gathering, and a single visit for biometrics.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Property Search and Selection</h4>
+          <p class="text-neutral-600">Work with a Greek real estate agent or lawyer to find qualifying properties. Visit Greece to view properties (recommended). Verify the property meets the minimum threshold and has clear title. Consider location, rental potential, and personal use.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Greek Tax Number (AFM)</h4>
+          <p class="text-neutral-600">You need an Arithmos Forologikou Mitroou (AFM) before purchasing property. Apply at a local tax office (DOY) or through a Greek consulate abroad. Your lawyer can arrange this with power of attorney. Takes 1-2 days.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open Greek Bank Account</h4>
+          <p class="text-neutral-600">Required for the property purchase transfer. Most banks require in-person opening (Alpha Bank, Eurobank, Piraeus Bank). Bring passport, AFM, proof of address, and proof of income source. Some lawyers can facilitate remote opening.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Property Purchase</h4>
+          <p class="text-neutral-600">Sign the purchase contract before a Greek notary. Pay the property price and transfer tax (3.09%). The notary registers the property with the Land Registry. Obtain the contract and registration documents—these are essential for your visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Health Insurance</h4>
+          <p class="text-neutral-600">Arrange qualifying health insurance before submitting your visa application. Get a policy certificate in English or Greek. Ensure it covers hospitalization, outpatient care, and is valid for at least 1 year in Greece.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Required Documents</h4>
+          <p class="text-neutral-600">Compile: valid passport, property purchase documents, proof of payment, health insurance, criminal record certificate (apostilled), passport photos, and completed application forms. Documents must be translated into Greek by certified translator.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Submit your application to the Decentralized Administration office responsible for your property's location. Your lawyer typically handles this. Pay the €2,000 application fee. You'll receive a receipt confirming submission.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Biometrics Appointment</h4>
+          <p class="text-neutral-600">Attend an in-person appointment in Greece for fingerprints and photo. This is usually scheduled 2-4 weeks after application submission. All family members must attend. This visit can be combined with property viewing.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Residence Permit</h4>
+          <p class="text-neutral-600">Processing takes 1-3 months after biometrics. You'll receive a 5-year residence permit card, renewable indefinitely as long as you maintain the investment. Pickup is typically at the same office where you submitted.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Processing times:</strong> Greece generally processes Golden Visa applications within 1-3 months, faster than Portugal's current backlog. However, times vary by region—Athens and Thessaloniki offices tend to be busier than regional offices.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Golden Visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Investor, €260,000 Crete Villa</h3>
+        <p class="text-neutral-600 mb-4">48 years old, wants EU access and vacation home. Bought villa in Chania region.</p>
+        <p class="text-green-700 font-medium">Approved in 6 weeks. Total cost including property: €285,000. Chose Cigna Global (€220/month) for evacuation coverage from Crete. Uses villa 4-6 weeks/year for vacation, rents via Airbnb rest of year (€12,000/year income). Very satisfied with value.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Family, €520,000 Athens Apartment</h3>
+        <p class="text-neutral-600 mb-4">Couple (both 45) with two children (12 and 15). Wanted Brexit-proof EU access.</p>
+        <p class="text-green-700 font-medium">Bought premium Athens center apartment post-threshold increase. Entire family approved in 2.5 months. Allianz Care family plan (€650/month total). Children can study anywhere in EU. Use apartment 2 months/year, rent otherwise. Happy with Schengen mobility for business travel.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Turkish Entrepreneur, €270,000 Thessaloniki</h3>
+        <p class="text-neutral-600 mb-4">55 years old, export business, wanted EU banking and travel.</p>
+        <p class="text-green-700 font-medium">Bought two apartments in Thessaloniki (combined €270,000). Processing took 2 months. Used local Greek insurer (€90/month) since spending significant time there. Opened Greek bank accounts for EU business operations. Uses properties for business trips and family visits.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Retiree Couple, €280,000 Santorini</h3>
+        <p class="text-neutral-600 mb-4">Both 62, wanted Mediterranean retirement and EU healthcare options.</p>
+        <p class="text-amber-700 font-medium">Initially wanted Santorini but €500,000 threshold too high. Redirected to Paros (similar Cycladic style, €250,000 zone). Approved in 8 weeks. BUPA Global (€480/month each) for age-appropriate comprehensive coverage. Spend 3 months/year in Greece, rest in Florida. Evacuation coverage critical for island location.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian IT Professional, €400,000 Bank Deposit</h3>
+        <p class="text-neutral-600 mb-4">40 years old, didn't want property management hassle.</p>
+        <p class="text-green-700 font-medium">Chose €400,000 fixed-term bank deposit instead of property. More liquid, no maintenance concerns. Approved in 10 weeks. Uses Golden Visa purely for Schengen access for business travel. Cigna Global for worldwide coverage (€280/month). Plans to eventually convert to property when ready to use Greece more.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Russian Family with Elderly Parents, €300,000</h3>
+        <p class="text-neutral-600 mb-4">Couple (50s), two adult children, and both sets of parents (70s).</p>
+        <p class="text-amber-700 font-medium">Greek Golden Visa allows including parents—unique advantage. Bought mainland property in Halkidiki (still €250,000 zone). 8 family members approved total. Insurance challenge: elderly parents required premium rates (€600-800/month each). Overall satisfied but insurance costs significant for extended family.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Greek Golden Visa"
+    description="Find coverage that meets visa requirements and includes island evacuation—essential for Greek island properties."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Buying in Premium Zone at €250,000 Threshold</h3>
+        <p class="text-neutral-600">Since May 2024, Athens center, Thessaloniki, Mykonos, and Santorini require €500,000 minimum. If you buy a €300,000 property in these areas, it won't qualify. Verify the zone before purchasing or ensure your investment meets the higher threshold.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Evacuation Coverage for Island Properties</h3>
+        <p class="text-neutral-600">Many Greek islands have limited medical facilities—often just a small clinic. Serious conditions require air or ferry evacuation to Athens. If you buy island property, ensure your insurance includes emergency medical evacuation. This isn't optional; it's essential.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Verifying Property Title</h3>
+        <p class="text-neutral-600">Greek property records can be complex. Some properties have disputed ownership, unpaid taxes, or building code violations. Always use a qualified Greek lawyer to verify clear title before purchasing. Title problems can delay or invalidate your Golden Visa.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting to Work as an Employee</h3>
+        <p class="text-neutral-600">Golden Visa holders cannot work as employees in Greece. You can own businesses, invest, and receive rental income—but you cannot take a Greek job. If you want to work in Greece, you need a different visa type (work permit, freelancer visa, etc.).</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Travel Insurance Instead of Health Insurance</h3>
+        <p class="text-neutral-600">Travel insurance doesn't satisfy the Golden Visa health insurance requirement. You need comprehensive private health insurance covering hospitalization, outpatient care, and valid for at least 1 year. Applications with travel insurance will be rejected.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Greece -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Greece</h2>
+
+    <p class="mb-4">
+      Greece has a dual healthcare system with both public (ESY) and private options. As a Golden Visa holder, you'll primarily use private healthcare through your mandatory insurance, though you may access public facilities in emergencies.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Healthcare (Via Your Insurance)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Immediate access with valid insurance</li>
+          <li>Modern facilities in Athens and major cities</li>
+          <li>English-speaking doctors common</li>
+          <li>Short wait times for appointments</li>
+          <li>Major hospitals: Hygeia, Metropolitan, Euromedica</li>
+          <li>Direct billing with international insurers</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Public Healthcare (ESY)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Available to residents with AMKA number</li>
+          <li>Free or low-cost treatment</li>
+          <li>Long wait times for non-urgent care</li>
+          <li>Quality varies by hospital and region</li>
+          <li>Limited English availability</li>
+          <li>Crowded emergency rooms</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Island Healthcare Considerations</h3>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">Critical for Island Property Owners</h4>
+      <p class="text-amber-800 mb-4">
+        Most Greek islands have limited medical facilities:
+      </p>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Small islands:</strong> Often just a health center (Kentro Ygeias) with basic care</li>
+        <li>• <strong>Medium islands (Mykonos, Santorini, Paros):</strong> Small hospitals, but serious cases transfer to Athens</li>
+        <li>• <strong>Large islands (Crete, Rhodes, Corfu):</strong> Better facilities, but still limited for complex cases</li>
+        <li>• <strong>Evacuation:</strong> Helicopter or ferry to Athens for serious conditions</li>
+        <li>• <strong>Summer season:</strong> Island clinics strained by tourist volume</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Best Hospitals by Region</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Athens</h4>
+        <p class="text-neutral-600">Hygeia Hospital, Metropolitan Hospital, Euromedica Athens, Henry Dunant Hospital. Full range of specialists, direct billing with major insurers, English widely spoken.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Thessaloniki</h4>
+        <p class="text-neutral-600">Interbalkan Medical Center, Euromedica, Papageorgiou Hospital. Good specialist coverage for Northern Greece.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Crete</h4>
+        <p class="text-neutral-600">Venizeleio Hospital (Heraklion), Chania General Hospital. Better than other islands but complex cases may still require Athens transfer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I really stay zero days in Greece and keep my Golden Visa?</h3>
+        <p class="text-neutral-600">
+          Yes. Greece has no minimum stay requirement for maintaining your Golden Visa. You only need to visit Greece for biometrics during the initial application and renewals (every 5 years). This is the most flexible residency program in the EU—you can live anywhere while maintaining Greek/Schengen residency.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between €250,000 and €500,000 zones?</h3>
+        <p class="text-neutral-600">
+          Since May 2024, premium areas require €500,000: Athens center, Thessaloniki, Mykonos, Santorini, and islands with properties over 3,100 square meters. The rest of Greece—including Crete, Rhodes, Corfu, Peloponnese, and mainland—still qualifies at €250,000. This is based on property location, not your residence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I rent out my Golden Visa property?</h3>
+        <p class="text-neutral-600">
+          Yes. You can rent your property for long-term or short-term (vacation) rentals. Many Golden Visa holders generate rental income to offset costs. Short-term rentals require registration and licensing (MHTE number). Rental income is subject to Greek taxation (15-45% depending on amount).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I include my parents in my Golden Visa application?</h3>
+        <p class="text-neutral-600">
+          Yes—this is a unique advantage of Greece's program. You can include your parents and your spouse's parents as dependents, regardless of their age. They receive the same 5-year residence permit. Each parent pays a €150 application fee plus their own health insurance. Few other Golden Visa programs allow this.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get Greek citizenship?</h3>
+        <p class="text-neutral-600">
+          You can apply for Greek citizenship after 7 years of continuous legal residence. Requirements include: basic Greek language proficiency (A2 level), passing a citizenship test on Greek history/culture, clean criminal record, and demonstrating ties to Greece. Note that Greece requires you to establish physical presence for citizenship—the zero-stay privilege applies only to residency.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I sell my property?</h3>
+        <p class="text-neutral-600">
+          If you sell your Golden Visa property without replacing it with another qualifying investment, you lose your residency status. You must maintain the investment for the duration of your Golden Visa. If you want to sell, you can reinvest in another qualifying property (must meet current thresholds) or switch to a different investment type.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Greece's Golden Visa is currently the best value property-based residency program in the EU. With real estate investment still qualifying (unlike Portugal), zero stay requirements, and the lowest thresholds in Europe (€250,000 in non-premium areas), it offers an unbeatable combination of flexibility and affordability.
+    </p>
+
+    <p class="mb-4">
+      The 2024 threshold increase in premium areas (Athens center, Mykonos, Santorini) to €500,000 makes budget planning more important. But the vast majority of Greece—including beautiful destinations like Crete, Rhodes, Corfu, and the Peloponnese—still qualifies at €250,000.
+    </p>
+
+    <p class="mb-6">
+      Health insurance is mandatory and should be taken seriously, especially for island property owners. Medical facilities on Greek islands are limited, making evacuation coverage essential. Budget €150-400/month for comprehensive international coverage.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Greece Golden Visa is ideal for investors who want real property ownership with EU residency and zero stay requirements. It's particularly attractive post-Portugal changes. If you're comfortable with Greek real estate and want a vacation home that doubles as an investment, Greece offers the best value in Europe.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/greece/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Greece Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Greece</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/greece" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Greece Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative for remote workers—€3,500/month income requirement</p>
+      </a>
+      <a href="/visas/investor-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Golden Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Portugal's fund-based program</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

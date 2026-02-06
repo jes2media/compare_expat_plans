@@ -1,0 +1,939 @@
+---
+/**
+ * Austria Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Red-White-Red Card for investors and self-employed with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Austria", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Austria Insurance Guide", href: "/countries/austria/insurance" },
+  { title: "Germany Investor Visa", href: "/visas/investor-visa/in/germany" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+];
+
+const requirementsColumns = [
+  { key: "category", header: "Visa Category" },
+  { key: "requirement", header: "Key Requirement" },
+  { key: "benefit", header: "Main Benefit" },
+];
+
+const requirementsRows = [
+  { category: "Self-Employed Key Worker", requirement: "€50,000+ investment, specialized skills", benefit: "Work rights, path to PR" },
+  { category: "Start-up Founder", requirement: "Innovative business, VC/incubator backing", benefit: "2-year visa, renewal possible" },
+  { category: "Investor (Settlement Permit)", requirement: "Major investment, economic benefit", benefit: "Direct settlement permit" },
+  { category: "Artist/Athlete", requirement: "Exceptional talent, cultural contribution", benefit: "Simplified approval process" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Comprehensive health insurance", notes: "Must cover illness, accident, hospitalization" },
+  { feature: "Provider Type", requirement: "Austrian or EU-recognized insurer", notes: "International insurers accepted" },
+  { feature: "Minimum Coverage", requirement: "€30,000+ medical coverage", notes: "Higher is recommended" },
+  { feature: "Duration", requirement: "Full visa/permit duration", notes: "Continuous coverage required" },
+  { feature: "Pre-existing Conditions", requirement: "No exclusions for acute care", notes: "Emergency coverage mandatory" },
+  { feature: "Repatriation", requirement: "Recommended but not mandatory", notes: "Important for travel coverage" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Allianz Care", type: "International Private", price: "€180-400", strengths: "Global coverage, strong EU network" },
+  { provider: "Cigna Global", type: "International Private", price: "€220-480", strengths: "Comprehensive plans, excellent service" },
+  { provider: "ÖGK (Austrian public)", type: "Austrian Social Insurance", price: "~20% of income", strengths: "Full Austrian coverage once employed" },
+  { provider: "UNIQA", type: "Austrian Private", price: "€150-350", strengths: "Local private option, good network" },
+  { provider: "DR-WALTER", type: "Expat Insurance", price: "€80-200", strengths: "Visa-compliant, easy setup" },
+  { provider: "Feather", type: "Expat Insurance", price: "€120-280", strengths: "Flexible plans, digital service" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€160", notes: "Red-White-Red Card application" },
+  { item: "Residence Permit Fee", amount: "€120-160", notes: "Annual permit fee" },
+  { item: "Business Registration", amount: "€25-50", notes: "Gewerbeschein (trade license)" },
+  { item: "Company Formation (GmbH)", amount: "€2,000-5,000", notes: "Notary, registration, minimum capital" },
+  { item: "Minimum Capital (GmbH)", amount: "€10,000", notes: "Privileged formation; €35,000 standard" },
+  { item: "Legal/Consulting Fees", amount: "€1,500-8,000", notes: "Immigration lawyer + business setup" },
+  { item: "Health Insurance", amount: "€100-400/month", notes: "Budget €1,200-5,000/year" },
+  { item: "Chamber Membership", amount: "€200-1,000/year", notes: "WKO (Austrian Chamber) for businesses" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Prepare business plan and documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Submit visa application", duration: "1 day", location: "Austrian embassy/consulate" },
+  { step: "AMS labor market assessment", duration: "2-4 weeks", location: "Austria (internal process)" },
+  { step: "Application review", duration: "4-8 weeks", location: "MA 35/immigration authority" },
+  { step: "Visa decision and issuance", duration: "1-2 weeks", location: "Embassy notification" },
+  { step: "Enter Austria", duration: "Within visa validity", location: "Austria" },
+  { step: "Register residence (Meldezettel)", duration: "Within 3 days", location: "Meldeamt" },
+  { step: "Collect biometric permit card", duration: "2-4 weeks", location: "MA 35" },
+  { step: "Register business", duration: "1-2 weeks", location: "Gewerbebehörde" },
+];
+---
+
+<PageShell
+  title="Austria Investor Visa 2026: Red-White-Red Card, Requirements & Insurance Guide"
+  description="Complete guide to Austria's investor and entrepreneur visas. Red-White-Red Card for self-employed, start-up founders, and investors. Insurance requirements and path to permanent residence."
+  headline="Austria Investor Visa: Red-White-Red Card Guide"
+  subheadline="Everything you need to know about Austria's entrepreneur and investor residence permits—including the Red-White-Red Card for self-employed, start-up visa, and paths to permanent residence in the heart of Europe."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/allianz-care"
+  heroImage="/images/countries/austria-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Austrian Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      €50,000+ Investment Path
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Austria offers several pathways for investors and entrepreneurs to obtain residence through its Red-White-Red Card system. While Austria doesn't have a classic "Golden Visa" program with a fixed real estate investment threshold, it provides merit-based options for self-employed professionals, start-up founders, and significant investors who contribute to the Austrian economy.
+    </p>
+
+    <p class="mb-4">
+      The Austrian approach combines economic benefit assessment with a points-based system for certain categories. Whether you're launching an innovative start-up in Vienna's tech scene, establishing a traditional business, or making a substantial investment, Austria offers pathways to residence—and eventually citizenship—in one of Europe's most livable countries.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Austria Investor/Entrepreneur Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Main pathway:</strong> Red-White-Red Card for Self-Employed Key Workers</li>
+        <li>• <strong>Minimum investment:</strong> €50,000+ with proven economic benefit</li>
+        <li>• <strong>Start-up visa:</strong> 2-year permit for innovative business founders</li>
+        <li>• <strong>Duration:</strong> 1-2 years initial, renewable</li>
+        <li>• <strong>Family included:</strong> Spouse and minor children eligible</li>
+        <li>• <strong>Path to PR:</strong> 5 years of legal residence</li>
+        <li>• <strong>Path to citizenship:</strong> 10 years (6 with integration achievements)</li>
+        <li>• <strong>EU benefits:</strong> Schengen travel, access to Austrian healthcare</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Austria?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Exceptional quality of life (Vienna ranks #1 globally)</li>
+          <li>• Central European location—gateway to East and West</li>
+          <li>• Strong economy with low unemployment</li>
+          <li>• Excellent education and healthcare systems</li>
+          <li>• German-speaking EU country (business language)</li>
+          <li>• Rich cultural scene and outdoor lifestyle</li>
+          <li>• Lower cost than Switzerland, similar benefits</li>
+          <li>• Stable political and economic environment</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• No straightforward real estate investment visa</li>
+          <li>• Must demonstrate economic benefit to Austria</li>
+          <li>• German increasingly important for integration</li>
+          <li>• Longer path to citizenship (10 years standard)</li>
+          <li>• Dual citizenship generally not allowed</li>
+          <li>• Bureaucracy can be thorough</li>
+          <li>• Higher taxes than some alternatives</li>
+          <li>• Limited annual quotas for some visa types</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Vienna advantage:</strong> Vienna has been ranked the world's most livable city for years running. For entrepreneurs, it offers a growing tech ecosystem, excellent infrastructure, and a strategic location bridging Western and Central/Eastern European markets. The city is also increasingly English-friendly in business contexts.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Austria's Investor Visa is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• You want Europe's highest quality of life</li>
+          <li>• You value German-speaking business environment</li>
+          <li>• You're building an innovative start-up</li>
+          <li>• You have specialized skills/qualifications</li>
+          <li>• You want central European location</li>
+          <li>• You prefer lower costs than Switzerland</li>
+          <li>• You're comfortable with 10-year citizenship path</li>
+          <li>• You appreciate culture, arts, and outdoor activities</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want a passive real estate investment visa</li>
+          <li>• You need a clear, fixed investment threshold</li>
+          <li>• You want faster citizenship (Portugal: 5 years)</li>
+          <li>• You require dual citizenship</li>
+          <li>• You prefer English-only business environment</li>
+          <li>• You want minimal physical presence requirements</li>
+          <li>• You prioritize tax optimization</li>
+          <li>• You prefer Mediterranean climate</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Austria vs. Other EU Options</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Program Type</th>
+            <th class="px-4 py-2 text-left">Min. Investment</th>
+            <th class="px-4 py-2 text-left">Citizenship Path</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Austria</td>
+            <td class="px-4 py-2">RWR Card (Self-Employed)</td>
+            <td class="px-4 py-2">€50,000+ (merit-based)</td>
+            <td class="px-4 py-2">10 years (6 accelerated)</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Germany</td>
+            <td class="px-4 py-2">Entrepreneur Visa</td>
+            <td class="px-4 py-2">None (merit-based)</td>
+            <td class="px-4 py-2">8 years (6 accelerated)</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Switzerland</td>
+            <td class="px-4 py-2">Lump-Sum Taxation</td>
+            <td class="px-4 py-2">CHF 400K+ annual tax</td>
+            <td class="px-4 py-2">12 years</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Portugal</td>
+            <td class="px-4 py-2">Golden Visa</td>
+            <td class="px-4 py-2">€500,000 (funds)</td>
+            <td class="px-4 py-2">5 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Austria stands out:</strong> Austria offers the best quality of life in Europe at a lower cost than Switzerland, with similar benefits. For entrepreneurs who value stability, culture, and a central European base, Austria provides excellent infrastructure and market access—though the path to citizenship is longer than southern European alternatives.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Austria offers several pathways for entrepreneurs and investors, each with different requirements. Unlike Golden Visa programs with fixed real estate thresholds, Austria evaluates applications based on economic benefit, innovation potential, and your qualifications.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Red-White-Red Card Categories</h3>
+
+    <div class="space-y-6 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Self-Employed Key Workers (Selbständige Schlüsselkräfte)</h4>
+        <p class="text-neutral-600">The main pathway for entrepreneurs. Requires minimum €50,000 investment and demonstrated economic benefit. You must show transfer of investment capital, creation of jobs, and/or introduction of new technologies or services. A positive assessment from the Austrian Economic Chamber (WKO) is typically required.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Start-up Founder Visa</h4>
+        <p class="text-neutral-600">For innovative business founders with backing from an approved incubator, accelerator, or investor. Must develop an innovative product, service, or business model. Initial 2-year permit, renewable. Best suited for tech entrepreneurs and those with novel business concepts.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Settlement Permit for Major Investors</h4>
+        <p class="text-neutral-600">For significant investors who create substantial economic benefit. No fixed minimum, but typically involves major investments creating multiple jobs. Grants immediate settlement permit rather than temporary residence. Requires positive assessment from ABA (Austrian Business Agency).</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Artists and Athletes</h4>
+        <p class="text-neutral-600">Special pathway for individuals with exceptional cultural or athletic achievements. Simplified process for those who can demonstrate significant cultural contribution or international recognition. Assessed on individual merit.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Self-Employed Key Worker Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Financial Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Minimum investment:</strong> €50,000</li>
+          <li>• Must be transferred to Austrian business</li>
+          <li>• Proof of investment origin required</li>
+          <li>• Sufficient funds for living expenses</li>
+          <li>• ~€1,200/month personal resources</li>
+          <li>• Additional funds for dependents</li>
+          <li>• Clean financial background</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Economic Benefit Criteria</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Creates new jobs in Austria</li>
+          <li>• Transfers new technology or knowledge</li>
+          <li>• Export potential or foreign investment</li>
+          <li>• Fills a market gap or need</li>
+          <li>• Comparable or additional to existing services</li>
+          <li>• Contributes to Austrian economy</li>
+          <li>• WKO positive assessment required</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Points-Based Assessment (Where Applicable)</h3>
+
+    <p class="mb-4">
+      Some Austrian visa categories use a points system. While the Self-Employed Key Worker category focuses on economic benefit, understanding the points framework helps with applications:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Qualifications:</strong> University degrees, especially Austrian/EEA recognized</li>
+      <li><strong>Work experience:</strong> Years of relevant professional experience</li>
+      <li><strong>Language skills:</strong> German (A1-B2) and/or English proficiency</li>
+      <li><strong>Age:</strong> Younger applicants score higher (under 30 maximum points)</li>
+      <li><strong>Austria connection:</strong> Previous study or work in Austria</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Austria has annual quotas for certain residence permit categories. The Self-Employed Key Worker category is not subject to quotas, but applications are processed on a first-come basis. Apply early in the year if possible and ensure your documentation is complete.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Austria requires proof of comprehensive health insurance for all residence permit applications. Your coverage must be valid in Austria and cover the full duration of your permit. Once your business is established and generating income, you'll be enrolled in Austria's social insurance system.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Austria has a two-tier healthcare system: mandatory social insurance (ÖGK) for employed and self-employed individuals earning above a threshold, and private insurance options. For your initial visa application, you'll typically use international private insurance, then transition to Austrian social or private insurance once established.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Options for Entrepreneurs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Austrian Social Insurance (SVS)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Mandatory once self-employed income exceeds threshold</li>
+          <li>• Premium: ~20% of income (pension, health, accident)</li>
+          <li>• Comprehensive Austrian healthcare coverage</li>
+          <li>• Pension contributions included</li>
+          <li>• Family members can be co-insured</li>
+          <li>• Some out-of-pocket costs for treatments</li>
+          <li>• Optional supplementary private insurance available</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">International Private Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Essential for initial visa application</li>
+          <li>• Continues as supplement or alternative</li>
+          <li>• €80-400/month depending on coverage</li>
+          <li>• Global coverage for frequent travelers</li>
+          <li>• Faster access to specialists</li>
+          <li>• Choice of private hospitals</li>
+          <li>• Portable if you relocate</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Timeline for Entrepreneurs</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 1: Visa Application</h4>
+        <p class="text-neutral-600">For your RWR Card application, you need private health insurance covering Austria. International providers like Allianz Care, Cigna Global, or DR-WALTER explicitly meet Austrian visa requirements. Budget €80-200/month.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 2: Business Establishment</h4>
+        <p class="text-neutral-600">Once you register your business with the Gewerbebehörde and start earning income, you'll be enrolled in the SVS (Sozialversicherung der Selbständigen). This happens automatically when you register your trade. Continue private insurance as supplement if desired.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 3: Ongoing Coverage</h4>
+        <p class="text-neutral-600">Most entrepreneurs maintain Austrian social insurance (mandatory above income thresholds) plus optional private supplementary insurance for faster appointments, private rooms, and broader coverage. International insurance remains valuable for frequent travelers.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Visa application tip:</strong> For your RWR Card application, use established international insurers that explicitly state Austria compliance. Allianz Care and DR-WALTER are commonly accepted. Ensure your policy letter clearly states coverage in Austria, minimum €30,000 medical coverage, and the full visa duration.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Austria Investor Visa?"
+    description="Compare international insurers that meet Austrian visa requirements."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For your Austrian investor visa, you'll need insurance that's recognized by Austrian authorities. Here are the best options for different stages and situations:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Visa Application Phase</h4>
+        <p class="text-neutral-600">Allianz Care or DR-WALTER are reliable choices for the initial visa application. Both explicitly meet Austrian requirements and issue clear documentation. Budget €80-200/month for comprehensive coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Established Entrepreneur (Vienna-Based)</h4>
+        <p class="text-neutral-600">Once enrolled in SVS, consider adding UNIQA or another Austrian private insurer as supplement. This gives you faster access to specialists and private hospital rooms while maintaining your social insurance coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent International Traveler</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care work well as primary or supplementary coverage if you travel frequently. These provide seamless worldwide coverage and don't require you to return to Austria for treatment. Budget €200-400/month.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Relocating to Austria</h4>
+        <p class="text-neutral-600">For families, Austrian social insurance (SVS) offers good value with family co-insurance options. Supplement with private insurance for children's dental, private rooms, and faster specialist access. Budget €300-600/month for family of four.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Austria's investor visa involves various setup and ongoing costs. The main financial requirements are the €50,000+ investment (for Self-Employed Key Worker category) plus business establishment and living costs.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates by Scenario</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Freelance/Sole Proprietor</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Visa/permit fees: <strong>€300</strong></li>
+            <li>Business registration: <strong>€50-100</strong></li>
+            <li>Legal/consulting: <strong>€1,500-3,000</strong></li>
+            <li>Insurance (annual): <strong>€1,500-3,000</strong></li>
+            <li>Investment capital: <strong>€50,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>~€53,000-56,000</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">GmbH (Limited Company)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Visa/permit fees: <strong>€300</strong></li>
+            <li>Company formation: <strong>€3,000-5,000</strong></li>
+            <li>Share capital (privileged): <strong>€10,000</strong></li>
+            <li>Legal/consulting: <strong>€3,000-8,000</strong></li>
+            <li>Insurance (annual): <strong>€2,000-4,000</strong></li>
+            <li>Investment capital: <strong>€50,000+</strong></li>
+            <li class="pt-2 border-t font-semibold">Year 1 total: <strong>~€68,000-77,000</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Business Structure Options</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Einzelunternehmen (Sole Proprietorship)</h4>
+        <p class="text-neutral-600">Simplest structure for freelancers and consultants. No minimum capital, registration with Gewerbebehörde. You're personally liable for business debts. Tax on personal income, SVS contributions once income exceeds thresholds.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">GmbH (Gesellschaft mit beschränkter Haftung)</h4>
+        <p class="text-neutral-600">Austrian limited liability company. Standard share capital €35,000, but "privileged formation" allows €10,000. Provides liability protection, standard for funded startups. Requires notarization, commercial register (Firmenbuch) entry, and annual compliance.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">OG/KG (Partnerships)</h4>
+        <p class="text-neutral-600">Austrian partnership structures for multiple founders. OG (Offene Gesellschaft) has unlimited liability; KG (Kommanditgesellschaft) has limited partners. Less common for foreign entrepreneurs but useful for specific structures.</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Cost perspective:</strong> While the €50,000+ investment requirement is higher than Germany's merit-only entrepreneur visa, it's far lower than Portugal or Spain's €500,000 Golden Visa thresholds. For entrepreneurs who want access to a German-speaking EU market with exceptional quality of life, Austria offers compelling value.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Austrian RWR Card application involves multiple steps and typically takes 2-4 months from submission to approval. Applications are processed by the provincial immigration authority (MA 35 in Vienna) with input from the Austrian Economic Chamber (WKO) and labor market service (AMS).
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Business Plan and Documentation</h4>
+          <p class="text-neutral-600">Develop a comprehensive business plan showing economic benefit to Austria. Gather supporting documents: passport, educational certificates, work experience proof, criminal record certificate, health insurance, and proof of €50,000+ investment capital. Documents may need apostilles and certified German translations.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application at Austrian Embassy</h4>
+          <p class="text-neutral-600">Book an appointment at your local Austrian embassy or consulate. Submit your complete application with all documents. Pay the visa fee (€160). The embassy forwards your application to Austria for processing.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">WKO and AMS Assessment</h4>
+          <p class="text-neutral-600">The Austrian Economic Chamber (WKO) evaluates the economic benefit of your business. The labor market service (AMS) assesses labor market impact. Both provide opinions to the immigration authority. This process takes 2-4 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Immigration Authority Review</h4>
+          <p class="text-neutral-600">The provincial immigration authority (MA 35 in Vienna, other offices in other provinces) reviews your complete application. They may request additional documents or clarification. Processing takes 4-8 weeks after receiving all assessments.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Visa Issuance and Entry</h4>
+          <p class="text-neutral-600">Upon approval, the embassy issues your entry visa. Enter Austria within the visa validity period (usually 90 days). You can start setting up your business immediately upon arrival.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Residence (Meldezettel)</h4>
+          <p class="text-neutral-600">Within 3 days of finding accommodation, register your residence at the local Meldeamt (registration office). Bring your passport, rental agreement, and completed registration form. The Meldezettel is required for all subsequent administrative steps.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect Biometric Residence Permit</h4>
+          <p class="text-neutral-600">Schedule an appointment with MA 35 (or your provincial immigration authority) to provide biometrics and collect your RWR Card. This is a physical card valid for 1-2 years, renewable. Bring your passport and Meldezettel.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register Your Business</h4>
+          <p class="text-neutral-600">Register with the Gewerbebehörde (trade authority) for your Gewerbeschein (trade license). For a GmbH, complete notarization and register with the Firmenbuch (commercial register). Register with the tax office (Finanzamt) and open an Austrian business bank account.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Vienna-specific tip:</strong> Vienna's MA 35 handles a high volume of applications. Book appointments early (they fill up weeks in advance), arrive with complete documentation, and consider working with an immigration lawyer who has established relationships with the office. The Vienna Business Agency also offers free support for international entrepreneurs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for investor and entrepreneur visa applicants in Austria:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Founder, SaaS Start-up in Vienna</h3>
+        <p class="text-neutral-600 mb-4">33 years old, accepted into Vienna's tech accelerator program. Building B2B software with €100K seed funding from Austrian angel investors.</p>
+        <p class="text-green-700 font-medium">Approved in 8 weeks via Start-up Founder Visa. Accelerator support streamlined the application. Formed GmbH with €10,000 privileged capital. Using Allianz Care for initial coverage (€180/month), will switch to SVS + supplement once revenue starts. Now employing 2 developers, expanding into DACH market.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">German Management Consultant, Vienna Office</h3>
+        <p class="text-neutral-600 mb-4">42 years old, 15 years consulting experience. Opening Vienna branch to serve Central/Eastern European clients. €80,000 investment in office and operations.</p>
+        <p class="text-green-700 font-medium">Approved in 6 weeks as Self-Employed Key Worker. German language and existing client relationships strengthened application. WKO assessment highlighted regional expertise gap. Using Austrian private insurance (UNIQA) from day one (€250/month). Business profitable within 6 months.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Family, Import Business in Salzburg</h3>
+        <p class="text-neutral-600 mb-4">Couple (late 40s) with two teenagers. Post-Brexit, establishing specialty food import business connecting UK producers with Austrian/German markets. €120,000 investment.</p>
+        <p class="text-amber-700 font-medium">Approved after 10 weeks with additional documentation. WKO requested detailed market analysis and supplier contracts—provided letters of intent from UK producers and Austrian distributors. Family covered under SVS once business launched. Children enrolled in Austrian schools. Integration going well with German lessons.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Investor, Real Estate Development</h3>
+        <p class="text-neutral-600 mb-4">50 years old, successful property developer. Wanted to invest €2M in Austrian real estate development project and obtain residence.</p>
+        <p class="text-green-700 font-medium">Approved for Settlement Permit via major investor pathway. ABA (Austrian Business Agency) provided positive assessment based on job creation (15+ construction and property management jobs). Required extensive due diligence on source of funds. Cigna Global for comprehensive international coverage. Actively managing development project in Vienna.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian IT Services, Expansion to Europe</h3>
+        <p class="text-neutral-600 mb-4">35 years old, running successful IT outsourcing company in India. Opening Vienna delivery center to serve European clients closer to their timezone. €200,000 investment.</p>
+        <p class="text-green-700 font-medium">Approved in 9 weeks. Strong business plan with existing European clients impressed WKO. Job creation plan (10 developers in year one) was key factor. Formed GmbH, hired Austrian employees immediately. Using mix of SVS and international insurance for staff and personal coverage. Vienna's central timezone ideal for European client calls.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">First Application, Vague Business Concept</h3>
+        <p class="text-neutral-600 mb-4">Wanted to start "online business" in Austria but couldn't specify products, customers, or how €50,000 investment would be used. No relevant experience in proposed field.</p>
+        <p class="text-red-700 font-medium">Application rejected. WKO couldn't identify economic benefit—no clear business model, target market, or job creation plan. Advised to develop concrete business concept with market research. Reapplied 6 months later with specific e-commerce niche, supplier agreements, and marketing plan. Second application approved. Lesson: Austrian authorities expect detailed, realistic business plans.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Austria Investor Visa"
+    description="Find the right coverage for your business move to Austria—international or local options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the Business Plan Requirements</h3>
+        <p class="text-neutral-600">Austrian authorities take business plans seriously. A generic template or vague concept will likely result in rejection or significant delays. Invest in a professional, Austria-specific business plan that clearly demonstrates economic benefit, market research, and realistic financial projections.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Failing to Prove Investment Fund Sources</h3>
+        <p class="text-neutral-600">Austria requires clear documentation of where your €50,000+ investment comes from. Bank statements showing account history, sale agreements, loan documents, or investor commitments are essential. Unexplained large deposits raise red flags.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Neglecting Document Translations and Apostilles</h3>
+        <p class="text-neutral-600">Foreign documents need certified German translations and, in many cases, apostilles or legalization. This takes time—start early. Documents in English may be accepted by some offices but German translations are always safer.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Engaging with WKO Early</h3>
+        <p class="text-neutral-600">The Austrian Economic Chamber (WKO) provides the economic benefit assessment. Consider contacting them informally before applying to understand what they're looking for. Some regional chambers offer pre-consultation services that can strengthen your application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring German Language Integration</h3>
+        <p class="text-neutral-600">While German isn't required for the initial visa, it matters for permit renewals, permanent residence, and citizenship. Start learning immediately. A1 German is often expected for first renewal; B1 for permanent residence. Vienna offers many German courses for business professionals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Austria -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Austria</h2>
+
+    <p class="mb-4">
+      Austria has an excellent healthcare system combining mandatory social insurance with optional private coverage. The quality of care is high, facilities are modern, and coverage is comprehensive. As an entrepreneur, you'll likely start with private insurance then transition to the social insurance system once your business is generating income.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Austrian Healthcare System</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Social Insurance (ÖGK/SVS)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Mandatory for employed and self-employed</li>
+          <li>• SVS for self-employed (pension + health + accident)</li>
+          <li>• Premium: ~20% of income</li>
+          <li>• Comprehensive coverage including hospital</li>
+          <li>• Family members can be co-insured</li>
+          <li>• Some out-of-pocket costs (Selbstbehalt)</li>
+          <li>• Access to all contract doctors and hospitals</li>
+          <li>• Prescription medicines partially covered</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Insurance (Zusatzversicherung)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Optional supplement to social insurance</li>
+          <li>• Private hospital rooms (Sonderklasse)</li>
+          <li>• Free choice of doctors and specialists</li>
+          <li>• Shorter waiting times</li>
+          <li>• Alternative treatments covered</li>
+          <li>• Better dental coverage</li>
+          <li>• Premium: €50-300/month depending on age</li>
+          <li>• Tax deductible as business expense</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality and Access</h3>
+
+    <p class="mb-4">
+      Austrian healthcare consistently ranks among the best in Europe. Key features:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Modern hospitals:</strong> Excellent facilities in Vienna (AKH is one of Europe's largest) and throughout the country</li>
+      <li><strong>Qualified doctors:</strong> Rigorous medical training; many doctors speak English, especially in Vienna</li>
+      <li><strong>Fast emergency care:</strong> Call 144 for emergencies; excellent response times</li>
+      <li><strong>Pharmacy network:</strong> Apotheken widely available; some medicines require prescriptions</li>
+      <li><strong>Preventive care:</strong> Annual check-ups covered under social insurance</li>
+      <li><strong>Specialist access:</strong> Referral system through GP, though private insurance provides direct access</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Major Cities Healthcare Notes</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Vienna</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Largest medical infrastructure in Austria</li>
+          <li>• AKH (Allgemeines Krankenhaus) - major teaching hospital</li>
+          <li>• Many English-speaking doctors</li>
+          <li>• International expat healthcare practices</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Salzburg</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Excellent hospital (Salzburger Landeskliniken)</li>
+          <li>• Good specialist access</li>
+          <li>• Growing international community</li>
+          <li>• Close to German border (additional options)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Graz</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• LKH Graz - Styria's main hospital</li>
+          <li>• Medical university with research focus</li>
+          <li>• Growing tech scene with healthcare support</li>
+          <li>• Lower costs than Vienna</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Innsbruck</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Excellent mountain rescue and trauma care</li>
+          <li>• University hospital</li>
+          <li>• Important for outdoor sports enthusiasts</li>
+          <li>• Good specialist coverage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>E-Card system:</strong> Once enrolled in Austrian social insurance, you'll receive an E-Card—your health insurance card. Present this at doctors and pharmacies for covered treatments. Keep your E-Card updated and carry it at all times. Lost cards can be replaced through your insurance provider.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does Austria have a Golden Visa program?</h3>
+        <p class="text-neutral-600">
+          Not in the traditional sense. Austria doesn't offer a straightforward "invest €X in real estate, get residence" program like Portugal or Spain. Instead, Austria has the Red-White-Red Card system for self-employed and investors who demonstrate economic benefit. The minimum investment is around €50,000 for the Self-Employed Key Worker category, but approval depends on your business plan and qualifications, not just the investment amount.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long does it take to get Austrian citizenship?</h3>
+        <p class="text-neutral-600">
+          The standard path is 10 years of legal residence. This can be reduced to 6 years with exceptional integration (perfect language skills, community involvement, no public assistance). Austria generally doesn't allow dual citizenship—you'll typically need to renounce your original citizenship. Some exceptions exist for EU citizens and those who automatically gained Austrian citizenship.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak German?</h3>
+        <p class="text-neutral-600">
+          German isn't required for the initial RWR Card application, but it's increasingly important. For permit renewals, you'll typically need A1-A2 German. For permanent residence, B1 level is required. For citizenship, B2 level plus an Austrian culture/history exam. Vienna's business scene is fairly English-friendly, but German significantly helps with daily life and long-term integration.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family?</h3>
+        <p class="text-neutral-600">
+          Yes. Your spouse and minor children can accompany you or join later through family reunification. Each family member needs their own residence permit application, but these are processed alongside yours. Spouses receive work rights. Children can attend Austrian schools (excellent public education is free). Each family member needs health insurance unless covered under your Austrian social insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between RWR Card and EU Blue Card?</h3>
+        <p class="text-neutral-600">
+          The EU Blue Card is for highly qualified employees with a job offer meeting salary requirements (€4,752/month in 2026). The RWR Card for Self-Employed is for entrepreneurs starting their own business. If you could work as an employee in a specialized field, the Blue Card offers a simpler path. If you want to build your own company, the RWR Card for Self-Employed is your route.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my business fails?</h3>
+        <p class="text-neutral-600">
+          Your RWR Card is tied to self-employment. If your business fails, you'd need to find employment (requires permit change), start a new business, or leave Austria. However, if you've obtained permanent residence (after 5 years), your immigration status isn't affected by business failure. Consider this when planning your long-term timeline.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Austria offers an attractive proposition for entrepreneurs: residence in one of the world's most livable countries without the €500,000+ investment typical of Golden Visa programs. The €50,000 minimum investment for the Self-Employed Key Worker category makes it accessible to serious entrepreneurs, while the Start-up Founder Visa provides a pathway for innovative businesses with accelerator backing.
+    </p>
+
+    <p class="mb-4">
+      The trade-off is a more rigorous, merit-based process. You'll need a solid business plan, demonstrable economic benefit to Austria, and the willingness to integrate into Austrian society (including learning German). The 10-year path to citizenship is longer than Portugal or Spain, and Austria's requirement to generally renounce original citizenship is a significant consideration.
+    </p>
+
+    <p class="mb-6">
+      Health insurance is mandatory and represents an ongoing cost. Start with international private insurance for your visa application, then transition to Austrian social insurance once your business is established. Budget €100-400/month depending on coverage level and family situation.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Austria suits entrepreneurs who prioritize quality of life, central European location, and German-speaking market access over fast citizenship or minimal investment. Come with a genuine business plan, €50,000+ to invest, and commitment to integration. Vienna's growing tech scene and Austria's economic stability make it an excellent base for building a European business—just plan for the longer citizenship timeline.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Cigna Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/austria/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Austria Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in Austria</p>
+      </a>
+      <a href="/visas/investor-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Investor Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare Germany's entrepreneur visa pathway</p>
+      </a>
+      <a href="/providers/allianz-care" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Allianz Care Review</h3>
+        <p class="text-neutral-600 text-sm">Comprehensive review of Allianz international health insurance</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

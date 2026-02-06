@@ -1,0 +1,927 @@
+---
+/**
+ * Cyprus Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * Cyprus Permanent Residence by Investment and non-dom tax regime guide
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Cyprus", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Cyprus Insurance Guide", href: "/countries/cyprus/insurance" },
+  { title: "Malta Investor Visa", href: "/visas/investor-visa/in/malta" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+];
+
+const investmentColumns = [
+  { key: "route", header: "Investment Route" },
+  { key: "minimum", header: "Minimum Investment" },
+  { key: "notes", header: "Key Features" },
+];
+
+const investmentRows = [
+  { route: "New Property (from developer)", minimum: "€300,000 + VAT", notes: "Most popular route; must be new residential" },
+  { route: "Resale Property", minimum: "€300,000", notes: "Must have paid full VAT at original purchase" },
+  { route: "Commercial Property", minimum: "€300,000", notes: "Office, shop, hotel, or similar" },
+  { route: "Company Shares", minimum: "€300,000", notes: "Cyprus-based company creating 5+ jobs" },
+  { route: "Investment Fund Units", minimum: "€300,000", notes: "Cyprus Investment Funds (AIFs/RAIFs)" },
+  { route: "Combined Investment", minimum: "€300,000 total", notes: "Mix of above options" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "Visa Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Comprehensive health insurance", notes: "Medical, hospital, emergency" },
+  { feature: "Geographic Scope", requirement: "Valid in Cyprus", notes: "EU-wide coverage recommended" },
+  { feature: "Coverage Amount", requirement: "Not specified (comprehensive)", notes: "€50,000+ recommended" },
+  { feature: "Duration", requirement: "Full permit duration", notes: "Renewable annually" },
+  { feature: "Pre-existing Conditions", requirement: "No specific exclusion requirement", notes: "Better to have covered" },
+  { feature: "After GeSY Enrollment", requirement: "Optional supplement", notes: "Can use public system" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Allianz Care", type: "International Private", price: "€150-350", strengths: "Global coverage, strong EU network" },
+  { provider: "Cigna Global", type: "International Private", price: "€180-400", strengths: "Comprehensive plans, worldwide access" },
+  { provider: "Passport Card", type: "International Private", price: "€100-250", strengths: "Expat specialist, good value" },
+  { provider: "GeSY (GESY)", type: "Cyprus Public", price: "~2.65% of income", strengths: "Full Cyprus public healthcare" },
+  { provider: "Eurolife", type: "Cyprus Private", price: "€80-200", strengths: "Local insurer, Cyprus network" },
+  { provider: "Metlife Cyprus", type: "Cyprus Private", price: "€100-250", strengths: "International backing, local service" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Property Investment", amount: "€300,000 + VAT (5-19%)", notes: "Main investment; VAT varies by property" },
+  { item: "Application Fee", amount: "€500", notes: "Per applicant, non-refundable" },
+  { item: "Permit Issuance Fee", amount: "€70", notes: "Upon approval" },
+  { item: "Legal Fees", amount: "€3,000-8,000", notes: "Immigration + property purchase" },
+  { item: "Property Transfer Fees", amount: "0-8% of value", notes: "Reduced or waived for first property" },
+  { item: "Stamp Duty", amount: "0.15-0.2%", notes: "On property contracts" },
+  { item: "Health Insurance", amount: "€1,200-4,000/year", notes: "Annual premium varies by coverage" },
+  { item: "Secure Deposit", amount: "€30,000", notes: "3-year fixed deposit in Cypriot bank" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Find property and sign contract", duration: "1-4 weeks", location: "Cyprus/remotely" },
+  { step: "Pay deposit (min €200,000)", duration: "Upon signing", location: "Bank transfer" },
+  { step: "Make €30,000 bank deposit", duration: "Before application", location: "Cypriot bank" },
+  { step: "Gather documents", duration: "2-4 weeks", location: "Home country + Cyprus" },
+  { step: "Submit PR application", duration: "1 day", location: "Civil Registry" },
+  { step: "Application review", duration: "2 months (fast-track)", location: "Ministry of Interior" },
+  { step: "Approval notification", duration: "Within 2 months", location: "Email/letter" },
+  { step: "Travel to Cyprus", duration: "Within 1 year", location: "Cyprus" },
+  { step: "Collect Residence Permit", duration: "1-2 weeks after arrival", location: "Civil Registry" },
+];
+---
+
+<PageShell
+  title="Cyprus Investor Visa 2026: Permanent Residence by Investment & Non-Dom Tax Guide"
+  description="Complete guide to Cyprus Permanent Residence by Investment. €300,000 property investment, 2-month processing, non-dom tax benefits, and path to EU citizenship."
+  headline="Cyprus Investor Visa: Permanent Residence Guide"
+  subheadline="Everything you need to know about Cyprus Permanent Residence by Investment—€300,000 property route, fast 2-month processing, attractive non-dom tax regime, and life in the EU's eastern Mediterranean."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/allianz-care"
+  heroImage="/images/countries/cyprus-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Cyprus Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      €300,000 Property Route
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Cyprus offers one of Europe's most attractive investor residence programs: permanent residence through a €300,000 property investment with fast 2-month processing. Unlike temporary residence permits that require renewal, Cyprus grants actual permanent residence—valid for life as long as you maintain your investment and visit at least once every 2 years.
+    </p>
+
+    <p class="mb-4">
+      The Cyprus program stands out for its combination of accessible investment threshold, fast processing, genuine permanent status, and exceptional tax benefits through the non-dom regime. For investors seeking an EU base with Mediterranean lifestyle, favorable taxation, and straightforward requirements, Cyprus delivers compelling value.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Cyprus Permanent Residence</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Investment minimum:</strong> €300,000 in new property (+ VAT)</li>
+        <li>• <strong>Processing time:</strong> ~2 months (fast-track)</li>
+        <li>• <strong>Permit type:</strong> Permanent Residence (lifetime validity)</li>
+        <li>• <strong>Physical presence:</strong> Visit once every 2 years</li>
+        <li>• <strong>Family included:</strong> Spouse, children under 25, parents</li>
+        <li>• <strong>Path to citizenship:</strong> 5 years residence (12 months continuous before)</li>
+        <li>• <strong>Non-dom benefits:</strong> 0% tax on dividends, interest, rental income abroad</li>
+        <li>• <strong>EU benefits:</strong> Schengen travel, Cyprus healthcare access</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose Cyprus?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Lowest Golden Visa threshold in EU (€300K)</li>
+          <li>• Permanent residence (not temporary)</li>
+          <li>• Fast 2-month processing</li>
+          <li>• Non-dom tax regime (0% on foreign income)</li>
+          <li>• English widely spoken (UK legacy)</li>
+          <li>• Mediterranean climate (340 sunny days)</li>
+          <li>• Low crime, high safety</li>
+          <li>• Family-friendly (three generations)</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Not Schengen (EU but separate visa regime)</li>
+          <li>• Divided island (Turkish occupation in north)</li>
+          <li>• Limited direct flights from some regions</li>
+          <li>• Property market varies in quality</li>
+          <li>• Summer heat (35-40°C July-August)</li>
+          <li>• Car essential outside cities</li>
+          <li>• Smaller expat community than Spain/Portugal</li>
+          <li>• Banking sector has had past issues</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Non-dom advantage:</strong> Cyprus's non-domiciled tax regime is among Europe's most favorable. For 17 years after becoming tax resident, you pay 0% tax on dividends, interest, and most capital gains regardless of whether remitted to Cyprus. Combined with no inheritance tax and no wealth tax, this makes Cyprus exceptionally attractive for investors and entrepreneurs with international income.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Cyprus is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• You want the lowest EU investment threshold</li>
+          <li>• Tax optimization is a priority (non-dom)</li>
+          <li>• You prefer English-speaking environment</li>
+          <li>• You want genuine permanent residence</li>
+          <li>• You love Mediterranean/beach lifestyle</li>
+          <li>• You don't need to be in Schengen zone</li>
+          <li>• You want to include parents in application</li>
+          <li>• You value fast processing (2 months)</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need Schengen zone access</li>
+          <li>• You want to be in mainland Europe</li>
+          <li>• You prefer cooler/wetter climate</li>
+          <li>• You want faster citizenship path</li>
+          <li>• You need frequent flights to many destinations</li>
+          <li>• You prefer larger expat communities</li>
+          <li>• You want rental income route (Portugal better)</li>
+          <li>• You prefer urban/cosmopolitan lifestyle</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cyprus vs. Other EU Options</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Min. Investment</th>
+            <th class="px-4 py-2 text-left">Processing</th>
+            <th class="px-4 py-2 text-left">Permit Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Cyprus</td>
+            <td class="px-4 py-2">€300,000 (property)</td>
+            <td class="px-4 py-2">2 months</td>
+            <td class="px-4 py-2">Permanent Residence</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Greece</td>
+            <td class="px-4 py-2">€250,000-500,000</td>
+            <td class="px-4 py-2">2-3 months</td>
+            <td class="px-4 py-2">5-year renewable</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Malta</td>
+            <td class="px-4 py-2">€300,000+ (property/rental)</td>
+            <td class="px-4 py-2">4-6 months</td>
+            <td class="px-4 py-2">Permanent Residence</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Portugal</td>
+            <td class="px-4 py-2">€500,000 (funds)</td>
+            <td class="px-4 py-2">8-12 months</td>
+            <td class="px-4 py-2">2-year renewable</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Cyprus stands out:</strong> Cyprus offers genuine permanent residence (not temporary permits requiring renewal) with the lowest property investment threshold in the EU. The 2-month processing is among the fastest, and the non-dom tax regime provides ongoing benefits that Portugal's NHR changes have diminished. The main trade-off is not being in the Schengen zone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Cyprus offers multiple investment routes to permanent residence, all with a €300,000 minimum threshold. The most popular is purchasing new residential property from a developer, but commercial property, company shares, and investment funds also qualify.
+    </p>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Property Investment Details</h3>
+
+    <div class="space-y-6 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">New Property from Developer (Most Common)</h4>
+        <p class="text-neutral-600">Purchase new residential property directly from a developer for minimum €300,000 + VAT. VAT is 19% standard, but reduced 5% applies to primary residence (first 200m²). This is the most straightforward route with the fastest processing. Property must be from a single development (not multiple purchases).</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Resale Property</h4>
+        <p class="text-neutral-600">Purchase resale property for minimum €300,000 if the property had VAT paid in full at original purchase. This applies to properties built after 2004 (Cyprus EU accession). Verify VAT payment history before purchase. No additional VAT due on resale transactions.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Commercial Property</h4>
+        <p class="text-neutral-600">Invest €300,000 in commercial real estate: offices, retail units, hotels, or similar. Useful for investors who want income-generating property. VAT treatment may differ from residential. Consider rental market demand in chosen location.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Company Shares</h4>
+        <p class="text-neutral-600">Invest €300,000 in shares of a Cyprus-registered company. The company must have physical presence in Cyprus and employ at least 5 people. Suitable for entrepreneurs who want to invest in an operating business rather than passive real estate.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Additional Requirements</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Financial Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Bank deposit:</strong> €30,000 in Cyprus bank (3-year term)</li>
+          <li>• <strong>Annual income:</strong> €30,000+ from abroad</li>
+          <li>• <strong>Additional per dependent:</strong> €5,000/year each</li>
+          <li>• <strong>Additional per parent:</strong> €8,000/year each</li>
+          <li>• <strong>Property payment:</strong> Min €200,000 before application</li>
+          <li>• Source of funds documentation required</li>
+          <li>• Income must be from outside Cyprus</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Eligibility Criteria</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Clean criminal record</li>
+          <li>• No prior Cyprus visa refusal/deportation</li>
+          <li>• Not on sanctions lists</li>
+          <li>• Health insurance coverage</li>
+          <li>• Cannot work in Cyprus (investment income OK)</li>
+          <li>• Must visit Cyprus once every 2 years</li>
+          <li>• Must maintain investment while PR valid</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Family Inclusion</h3>
+
+    <p class="mb-4">
+      Cyprus allows extensive family inclusion—one of the program's significant advantages:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Spouse:</strong> Included in main application</li>
+      <li><strong>Children under 18:</strong> Included automatically</li>
+      <li><strong>Adult children 18-25:</strong> Included if unmarried and financially dependent</li>
+      <li><strong>Parents (both applicant's and spouse's):</strong> Can be included with additional €8,000/year income per set</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> The permanent residence permit does not confer work rights in Cyprus. You can manage your own investments and company (if you invested in shares), but you cannot take employment. Most PR holders live off investment income, pensions, or remote work for non-Cyprus employers—which is permissible.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory for PR Application</h3>
+      <p class="text-green-800">
+        You must show proof of comprehensive health insurance covering Cyprus when applying for permanent residence. After obtaining PR and becoming tax resident, you can enroll in GeSY (the Cyprus public health system) and optionally supplement with private insurance.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Cyprus introduced GeSY (General Healthcare System) in 2019-2020, providing universal public healthcare for residents. As a permanent resident, you're eligible to enroll. However, many expats maintain private insurance for faster access, broader coverage, and international portability.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Options in Cyprus</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">GeSY Public Healthcare</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Available to all legal residents</li>
+          <li>• Contribution: ~2.65% of income (capped)</li>
+          <li>• Comprehensive coverage</li>
+          <li>• Access to all registered providers</li>
+          <li>• Prescription drugs included</li>
+          <li>• Hospital care covered</li>
+          <li>• Some waiting times for specialists</li>
+          <li>• Good for routine and chronic care</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private International Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Required for initial PR application</li>
+          <li>• Premium: €100-400/month</li>
+          <li>• Faster access to specialists</li>
+          <li>• Private hospital rooms</li>
+          <li>• Wider choice of doctors</li>
+          <li>• International coverage for travel</li>
+          <li>• Medical evacuation included</li>
+          <li>• English-speaking service</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Recommended Insurance Approach</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Application Phase</h4>
+        <p class="text-neutral-600">For your PR application, obtain private international insurance (Allianz Care, Cigna Global, or similar). This provides clear documentation and meets visa requirements. Budget €100-250/month for comprehensive coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">After Becoming Resident</h4>
+        <p class="text-neutral-600">Once tax resident in Cyprus, enroll in GeSY for comprehensive public coverage. You can then choose to maintain private insurance as supplement (faster access, private rooms) or primary coverage if you prefer private healthcare.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Travelers</h4>
+        <p class="text-neutral-600">If you travel frequently or spend significant time outside Cyprus, maintain international private insurance for global coverage. Allianz Care and Cigna Global provide seamless care worldwide without referrals back to Cyprus.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>GeSY tip:</strong> To enroll in GeSY, you need a Cyprus tax identification number and to register at your local healthcare center. Registration is done online through the GeSY portal. Once enrolled, you'll receive a GeSY card and can choose your personal doctor (GP) who acts as gatekeeper to specialists.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Cyprus Permanent Residence?"
+    description="Compare international insurers that meet Cypriot visa requirements."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For your Cyprus PR application, you'll need private health insurance. Here are the best options for different situations:
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">PR Application and Initial Period</h4>
+        <p class="text-neutral-600">Allianz Care or Cigna Global are reliable choices for the PR application. Both have established track records with Cyprus immigration and provide comprehensive documentation. Budget €150-300/month for solid coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Full-Time Cyprus Resident</h4>
+        <p class="text-neutral-600">Enroll in GeSY (public system) for basic coverage, then add a local private top-up (Eurolife, Metlife Cyprus) for faster specialist access and private rooms. This combination costs less than full international coverage while providing comprehensive care.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Split Time Between Cyprus and Elsewhere</h4>
+        <p class="text-neutral-600">Maintain international coverage (Allianz Care, Cigna Global) as primary insurance. These provide seamless global coverage without the hassle of coordinating between different national systems. Worth the premium for frequent travelers.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">GeSY provides good pediatric care for routine needs. Consider adding private insurance for faster access and English-speaking pediatricians. International schools often require proof of health insurance—international policies satisfy this requirement easily.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The Cyprus PR program involves the property investment, application fees, legal costs, and ongoing insurance. Here's what to budget:
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Cost Estimates</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">New Property (Typical Scenario)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Property (€300K + 5% VAT): <strong>€315,000</strong></li>
+            <li>Bank deposit: <strong>€30,000</strong></li>
+            <li>Application fees: <strong>€570</strong></li>
+            <li>Legal fees: <strong>€5,000-8,000</strong></li>
+            <li>Stamp duty: <strong>€600</strong></li>
+            <li>Insurance (year 1): <strong>€2,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total initial: <strong>€353,000-356,000</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">Ongoing Annual Costs</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Property maintenance: <strong>€1,000-3,000</strong></li>
+            <li>Property tax (immovable property): <strong>€0</strong> (abolished)</li>
+            <li>Health insurance: <strong>€1,500-3,500</strong></li>
+            <li>Common area fees (if applicable): <strong>€500-2,000</strong></li>
+            <li>Return visit (if living abroad): <strong>€500-1,500</strong></li>
+            <li class="pt-2 border-t font-semibold">Annual total: <strong>€3,500-10,000</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">VAT Considerations</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Reduced 5% VAT Rate</h4>
+        <p class="text-neutral-600">Available for primary residence: first 200m² at 5%, remainder at 19%. Applicant must commit to using as main residence for 10 years. Significant savings on larger properties—€300K property saves €42,000 vs standard rate.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Standard 19% VAT Rate</h4>
+        <p class="text-neutral-600">Applies to investment properties, second homes, and properties not used as primary residence. Factor this into your investment calculations—a €300K property becomes €357K with VAT.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">No VAT on Resale</h4>
+        <p class="text-neutral-600">Resale properties don't incur additional VAT (it was paid at original purchase). If buying resale for PR purposes, verify the property qualifies (full VAT paid, post-2004 construction).</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Cost perspective:</strong> At €300,000 investment, Cyprus offers the lowest property-based residence program in the EU. The bank deposit (€30,000) is locked for 3 years but returned with interest. Unlike Portugal or Spain, Cyprus grants permanent residence directly—no renewals needed. Factor in the tax savings from non-dom status for true ROI calculation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Cyprus PR application is straightforward with fast processing—typically 2 months from submission to approval. The process can largely be handled remotely until you travel to collect your residence permit.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Select and Purchase Property</h4>
+          <p class="text-neutral-600">Choose your property carefully—new development for standard route, or qualifying resale. Conduct due diligence on the developer and property. Sign the contract of sale and pay at least €200,000 deposit (remainder can be after approval). Property should be from a single development.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Open Cyprus Bank Account and Deposit €30,000</h4>
+          <p class="text-neutral-600">Open an account with a major Cypriot bank (Bank of Cyprus, Hellenic Bank). Deposit €30,000 in a 3-year fixed term deposit. This shows financial stability and commitment. The bank will provide confirmation letter for your application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Required Documents</h4>
+          <p class="text-neutral-600">Prepare: valid passport, criminal record certificate (from country of residence and citizenship), proof of annual income (€30,000+ from abroad), marriage certificate (if applicable), children's birth certificates, health insurance certificate, CV/resume. Documents need apostille and certified translation to Greek.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Applications are submitted to the Civil Registry and Migration Department in Nicosia. Your lawyer typically handles submission. Pay the €500 application fee per person. You don't need to be present for submission—can be done by power of attorney.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Application Review (Fast-Track)</h4>
+          <p class="text-neutral-600">Cyprus processes investment-based PR applications on a fast-track basis—typically 2 months. The Ministry of Interior reviews documentation, conducts security checks, and verifies the investment. You may be asked for additional documents during this period.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Approval</h4>
+          <p class="text-neutral-600">Upon approval, you'll be notified (typically through your lawyer) that your PR has been granted. You have 1 year from approval to enter Cyprus and collect your residence permit. Pay the €70 permit issuance fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Cyprus and Collect Permit</h4>
+          <p class="text-neutral-600">Enter Cyprus on your national passport (or visa-free if applicable). Visit the Civil Registry office with your passport and approval letter. Provide biometrics (photo, fingerprints). The physical PR card is typically ready in 1-2 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Maintain Your Status</h4>
+          <p class="text-neutral-600">Your PR is permanent as long as you: maintain the property investment, keep the bank deposit for 3 years (can release after), and visit Cyprus at least once every 2 years. There's no requirement to live in Cyprus full-time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Tax residency tip:</strong> To benefit from Cyprus's non-dom tax regime, you need to become tax resident (spend 183+ days in Cyprus, or 60+ days with other ties). PR alone doesn't make you tax resident. Plan your first year carefully if tax optimization is a goal—you may need to establish Cyprus as your center of vital interests.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Cyprus PR applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Retiree Couple, Paphos Beachfront</h3>
+        <p class="text-neutral-600 mb-4">Mid-60s, pension income of £45,000/year. Post-Brexit, wanted EU residence. Purchased €350,000 villa in Paphos coastal development.</p>
+        <p class="text-green-700 font-medium">Approved in 7 weeks. Straightforward documentation with UK pensions clearly shown. Using Allianz Care for first year (€220/month for couple), planning to add GeSY once settled. Enjoying Mediterranean retirement with easy access to UK for family visits. Property appreciating nicely.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Russian Tech Entrepreneur, Limassol</h3>
+        <p class="text-neutral-600 mb-4">38 years old, running software company remotely. €400K apartment in Limassol's new marina district. Annual income €150K from international clients.</p>
+        <p class="text-green-700 font-medium">Approved in 9 weeks (additional due diligence on source of funds). Became Cyprus tax resident for non-dom benefits—0% tax on dividends from his company restructured through Cyprus. Cigna Global for worldwide coverage. Limassol's Russian community and tech scene made integration easy.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Lebanese Family, Three Generations</h3>
+        <p class="text-neutral-600 mb-4">Couple (50s), two adult children (22, 24), and both sets of parents (70s). Purchased €550,000 property in Larnaca. Combined family income €100K from Lebanese businesses.</p>
+        <p class="text-amber-700 font-medium">Approved after 10 weeks—complex application with 8 family members required additional documentation. Higher income requirement for parents (€8K each pair). All family members now have EU permanent residence. Using combination of private insurance and GeSY. Children able to travel freely to EU universities.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">South African Investor, Commercial Property</h3>
+        <p class="text-neutral-600 mb-4">45 years old, wanted investment-focused route. Purchased €320,000 retail unit in Nicosia shopping center with 6% rental yield.</p>
+        <p class="text-green-700 font-medium">Approved in 8 weeks via commercial property route. Rental income covers insurance and maintenance with surplus. Not tax resident (visits periodically), but has EU entry point and investment generating income. Property managed by local agency. Considering citizenship after 5 years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian IT Consultant, Remote Worker</h3>
+        <p class="text-neutral-600 mb-4">35 years old, works remotely for US tech company earning $120K. Purchased €300,000 apartment in Limassol tech hub area.</p>
+        <p class="text-green-700 font-medium">Approved in 6 weeks. Clear salary documentation from employment contract. Cyprus PR allows him to work remotely for non-Cyprus employer. Became tax resident for non-dom benefits—salary from US company taxed at low Cyprus rates with no dividend tax on savings invested in markets. International insurance for global travel to client meetings.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Application Issues: Insufficient Documentation</h3>
+        <p class="text-neutral-600 mb-4">Applicant submitted with bank statements in foreign language without translation, criminal record from 10 years ago (instead of recent), and income proof that didn't clearly show foreign source.</p>
+        <p class="text-red-700 font-medium">Application delayed 6 weeks while additional documents requested. Eventually approved after providing: certified Greek translations, fresh criminal records (dated within 6 months), and employer letter confirming salary paid from abroad. Lesson: ensure all documents meet specific requirements before submission.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Cyprus Permanent Residence"
+    description="Find the right coverage for your new life in Cyprus—from application through residency."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Buying Property from Wrong Developer</h3>
+        <p class="text-neutral-600">Not all developers or properties qualify for the PR program. Verify the development has proper permits, the developer has track record, and the property meets the "new from developer" requirement. Due diligence on the developer is essential—some have had delivery delays or quality issues.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Proof of Foreign Income</h3>
+        <p class="text-neutral-600">Cyprus requires €30,000+ annual income from sources outside Cyprus. Employment contracts, pension statements, or investment income documentation must clearly show the foreign source. Rental income from properties abroad qualifies—get proper documentation from tenants or management companies.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Outdated or Incorrect Criminal Records</h3>
+        <p class="text-neutral-600">Criminal record certificates must be recent (typically within 6 months) and from all countries of residence/citizenship. Get certificates apostilled and translated. Some countries take weeks to issue—start early. Missing or outdated certificates delay applications significantly.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting the Biennial Visit Requirement</h3>
+        <p class="text-neutral-600">You must visit Cyprus at least once every 2 years to maintain PR status. Mark your calendar. Missing this requirement can technically invalidate your PR. A short visit counts—even a long weekend maintains compliance. Keep passport stamps as evidence.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Misunderstanding Work Rights</h3>
+        <p class="text-neutral-600">Cyprus investment PR does not allow you to work as an employee in Cyprus. You can manage your own investments, run your own company (if invested in shares), and work remotely for non-Cyprus employers. But you cannot take local employment. Understand this limitation before applying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Cyprus -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Cyprus</h2>
+
+    <p class="mb-4">
+      Cyprus has a modern healthcare system combining public (GeSY) and private options. The public system was reformed in 2019-2020 with the introduction of GeSY, providing universal coverage for all residents. Private healthcare is also well-developed with many English-speaking doctors.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Cyprus Healthcare System</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">GeSY Public System</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Universal coverage for residents</li>
+          <li>• Contribution: ~2.65% of income</li>
+          <li>• Free or low-cost GP visits</li>
+          <li>• Specialist referrals through GP</li>
+          <li>• Hospital treatment covered</li>
+          <li>• Prescription drugs subsidized</li>
+          <li>• Dental partially covered</li>
+          <li>• Quality improving since 2020 reform</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Several private hospitals</li>
+          <li>• Many English-speaking doctors</li>
+          <li>• Faster access to specialists</li>
+          <li>• Modern facilities</li>
+          <li>• Choice of doctor/hospital</li>
+          <li>• Good for complex procedures</li>
+          <li>• Medical tourism destination</li>
+          <li>• Costs lower than UK/Germany</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare by Location</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Limassol</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Largest private hospital concentration</li>
+          <li>• Mediterranean Hospital</li>
+          <li>• Many English-speaking doctors</li>
+          <li>• Growing expat medical community</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Nicosia</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Cyprus's main hospital (Nicosia General)</li>
+          <li>• Private options available</li>
+          <li>• Specialist concentration</li>
+          <li>• Medical school graduates</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Paphos</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Popular with British expats</li>
+          <li>• Paphos General Hospital</li>
+          <li>• English widely spoken</li>
+          <li>• Private clinics available</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Larnaca</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Growing healthcare infrastructure</li>
+          <li>• Larnaca General Hospital</li>
+          <li>• Private options developing</li>
+          <li>• Close to airport for medical travel</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Medical evacuation:</strong> For complex procedures not available in Cyprus, evacuation to Athens, Tel Aviv, or major European centers is common. Ensure your insurance includes medical evacuation coverage. Cyprus's location means you're 1-2 hours flight from advanced medical facilities in multiple countries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Cyprus part of the Schengen zone?</h3>
+        <p class="text-neutral-600">
+          No. Cyprus is an EU member but not part of the Schengen area. Your Cyprus PR gives you the right to live in Cyprus indefinitely, but you'll still need visas or ETIAS for Schengen countries (depending on your nationality). However, as an EU resident, many countries are accessible with minimal formality. Cyprus has its own visa policy aligned with EU principles.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How does the non-dom tax regime work?</h3>
+        <p class="text-neutral-600">
+          If you become Cyprus tax resident (183+ days, or 60+ with other conditions) without being "domiciled" in Cyprus, you pay 0% tax on dividends, interest, and rental income from abroad for 17 years. You're not domiciled if you weren't born in Cyprus or haven't been tax resident for 17+ of the last 20 years. This makes Cyprus extremely attractive for investors with international income streams.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get Cyprus citizenship through this program?</h3>
+        <p class="text-neutral-600">
+          Yes, after 5 years of legal residence (including at least 12 continuous months before application). You'll need to pass a Greek language test (basic level) and demonstrate integration. Cyprus allows dual citizenship. The citizenship-by-investment program (CBI) was abolished in 2020, but naturalization through residence remains available.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I want to sell my property?</h3>
+        <p class="text-neutral-600">
+          Your PR is tied to maintaining the investment. If you sell, you must reinvest in another qualifying property of equal or greater value to maintain PR status. If you've obtained citizenship, you can then sell without losing residence rights. Plan your exit strategy accordingly—you're committed to the €300K investment while on PR.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work in Cyprus with PR?</h3>
+        <p class="text-neutral-600">
+          The investment-based PR doesn't include work rights. You cannot be employed by a Cyprus company. However, you can: manage your own investments, be a director/shareholder in a Cyprus company, work remotely for non-Cyprus employers, and earn passive income. Many PR holders run businesses through their Cyprus companies while technically not being "employed."
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about the divided island situation?</h3>
+        <p class="text-neutral-600">
+          The Republic of Cyprus controls the southern portion of the island (where you'll invest and live). The northern portion is under Turkish occupation since 1974 and not internationally recognized. This doesn't affect daily life in the Republic—the south is safe, prosperous, and fully integrated with the EU. Crossing to the north is possible but requires passport control.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Cyprus offers the EU's most accessible property-based permanent residence program: €300,000 investment, 2-month processing, and genuine permanent status. For investors who want Mediterranean lifestyle, English-speaking environment, and exceptional tax benefits, Cyprus delivers remarkable value—especially post-Brexit for UK citizens seeking EU access.
+    </p>
+
+    <p class="mb-4">
+      The non-dom tax regime is a major differentiator. Zero tax on foreign dividends, interest, and rental income for 17 years is extraordinary—and legal under EU rules. Combined with no wealth tax and no inheritance tax, Cyprus becomes highly attractive for wealth preservation and international income.
+    </p>
+
+    <p class="mb-6">
+      The main trade-off is not being in the Schengen zone, which matters if you need frequent borderless travel in mainland Europe. The island's location means slightly more travel time to major European cities. But for those prioritizing tax efficiency, weather, and genuine permanent residence, Cyprus is hard to beat.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Cyprus permanent residence suits investors who value tax efficiency, English-speaking environment, and Mediterranean lifestyle over Schengen access. Come with €330,000+ (property plus bank deposit), clear documentation of foreign income, and realistic expectations about the work rights limitation. The non-dom tax benefits alone can make the investment pay for itself within years.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/cigna-global" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Cigna Global Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/cyprus/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cyprus Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance options in Cyprus</p>
+      </a>
+      <a href="/visas/investor-visa/in/malta" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Malta Investor Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare Malta's MPRP residence program</p>
+      </a>
+      <a href="/providers/allianz-care" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Allianz Care Review</h3>
+        <p class="text-neutral-600 text-sm">Comprehensive review of Allianz international health insurance</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

@@ -1,0 +1,928 @@
+---
+/**
+ * Malta Permanent Residence Programme (MPRP) - Long-form CRO-optimized page
+ * English-speaking EU, property or rental route
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-requirements", text: "Investment Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Malta", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Malta Health Insurance Guide", href: "/countries/malta/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Malta Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/malta" },
+];
+
+const investmentColumns = [
+  { key: "option", header: "Route" },
+  { key: "property", header: "Property Requirement" },
+  { key: "contribution", header: "Government Contribution" },
+  { key: "admin", header: "Admin Fee" },
+];
+
+const investmentRows = [
+  { option: "Purchase (South Malta/Gozo)", property: "€300,000 minimum", contribution: "€28,000", admin: "€40,000" },
+  { option: "Purchase (Rest of Malta)", property: "€350,000 minimum", contribution: "€28,000", admin: "€40,000" },
+  { option: "Rent (South Malta/Gozo)", property: "€10,000/year minimum", contribution: "€58,000", admin: "€40,000" },
+  { option: "Rent (Rest of Malta)", property: "€12,000/year minimum", contribution: "€58,000", admin: "€40,000" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "requirement", header: "MPRP Requirement" },
+  { key: "recommendation", header: "Our Recommendation" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Type", requirement: "Comprehensive health insurance", recommendation: "International or local private plan" },
+  { feature: "Coverage Area", requirement: "Must cover Malta and Schengen", recommendation: "Europe-wide coverage minimum" },
+  { feature: "Coverage Limits", requirement: "€30,000+ medical expenses", recommendation: "€1M+ or unlimited" },
+  { feature: "Duration", requirement: "Valid for visa period", recommendation: "Annual renewable policy" },
+  { feature: "Inpatient Care", requirement: "Required", recommendation: "Full hospitalization coverage" },
+  { feature: "Repatriation", requirement: "Recommended", recommendation: "Essential for non-EU nationals" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€180-400", strengths: "Comprehensive global coverage" },
+  { provider: "Allianz Care", type: "International", price: "€150-350", strengths: "Strong EU coverage, competitive" },
+  { provider: "BUPA Global", type: "International", price: "€200-450", strengths: "Premium service, mental health" },
+  { provider: "Atlas Insurance (Malta)", type: "Local", price: "€80-180", strengths: "Local network, lower cost" },
+  { provider: "GasanMamo", type: "Local", price: "€70-160", strengths: "Budget option, Malta-focused" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "purchase", header: "Purchase Route" },
+  { key: "rental", header: "Rental Route" },
+];
+
+const costRows = [
+  { item: "Government Contribution", purchase: "€28,000", rental: "€58,000" },
+  { item: "Administrative Fee", purchase: "€40,000", rental: "€40,000" },
+  { item: "Property (minimum)", purchase: "€300,000-350,000", rental: "€10,000-12,000/year" },
+  { item: "Charitable Donation", purchase: "€2,000", rental: "€2,000" },
+  { item: "Legal Fees", purchase: "€5,000-10,000", rental: "€3,000-6,000" },
+  { item: "Due Diligence", purchase: "€7,500 (main) + €5,000 (adult dependents)", rental: "Same" },
+  { item: "Health Insurance", purchase: "€100-400/month", rental: "€100-400/month" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Engage licensed agent and begin application", duration: "1-2 weeks", location: "Remote/Malta" },
+  { step: "Property search or rental agreement", duration: "2-8 weeks", location: "Malta" },
+  { step: "Submit application to Residency Malta Agency", duration: "1 day", location: "Via agent" },
+  { step: "Due diligence and background checks", duration: "4-6 months", location: "RMA processing" },
+  { step: "Letter of Approval in Principle", duration: "After due diligence", location: "RMA" },
+  { step: "Complete property purchase/lease and payments", duration: "2-4 weeks", location: "Malta" },
+  { step: "Biometrics and final approval", duration: "2-4 weeks", location: "Malta" },
+  { step: "Receive residence card", duration: "2-4 weeks", location: "Malta" },
+];
+---
+
+<PageShell
+  title="Malta Permanent Residence Programme 2026: Investment, Insurance & Application Guide"
+  description="Complete guide to Malta's MPRP investor residence. Property from €300,000 or rental from €10,000/year. English-speaking EU, Schengen access, and healthcare requirements explained."
+  headline="Malta Permanent Residence Programme: Investment & Insurance Guide"
+  subheadline="English-speaking EU residency through property investment or rental. Full guide to Malta's MPRP requirements, costs, and mandatory health insurance."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Investor Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/malta-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      English-Speaking EU
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Rental Option Available
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Malta's Permanent Residence Programme (MPRP) offers EU residency in the only fully English-speaking country in the Eurozone. Unlike most Golden Visas that require property purchase, Malta offers both purchase and rental options—making it accessible to those who prefer not to tie up capital in real estate.
+    </p>
+
+    <p class="mb-4">
+      The program replaced the Malta Residence and Visa Programme (MRVP) in 2021 with stricter requirements but clearer benefits. It grants permanent residence (not temporary), meaning no renewals needed once approved.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-3">Key Advantage: English-Speaking EU</h3>
+      <p class="text-green-800">
+        Malta is the only EU member state where English is an official language (alongside Maltese). All government services, healthcare, legal processes, and business operate in English. For English speakers seeking EU residency, this eliminates the language barrier that complicates life in Portugal, Spain, Greece, or Italy.
+      </p>
+    </div>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Malta MPRP</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Official name:</strong> Malta Permanent Residence Programme (MPRP)</li>
+        <li>• <strong>Property investment:</strong> €300,000-350,000 purchase or €10,000-12,000/year rent</li>
+        <li>• <strong>Government contribution:</strong> €28,000 (purchase) or €58,000 (rental)</li>
+        <li>• <strong>Assets required:</strong> €500,000 total (€150,000 must be liquid/financial)</li>
+        <li>• <strong>Minimum stay:</strong> No formal requirement (but cannot be absent for continuous 2+ years)</li>
+        <li>• <strong>Family included:</strong> Spouse, children, parents, grandparents</li>
+        <li>• <strong>Duration:</strong> Permanent (no renewal needed)</li>
+        <li>• <strong>Schengen access:</strong> Free travel in 27 Schengen countries</li>
+        <li>• <strong>Work rights:</strong> Cannot work in Malta under this program</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Malta's MPRP Stands Out</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Key Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• English is an official language</li>
+          <li>• Rental option available (no property purchase required)</li>
+          <li>• Permanent residence (not temporary)</li>
+          <li>• Include parents and grandparents</li>
+          <li>• Strong financial services sector</li>
+          <li>• Mediterranean lifestyle, safe country</li>
+          <li>• EU and Schengen member</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Higher total cost than Greece (government contribution)</li>
+          <li>• Cannot work as employee in Malta</li>
+          <li>• Small island (limited space)</li>
+          <li>• Hot summers (35°C+)</li>
+          <li>• No direct path to citizenship from MPRP</li>
+          <li>• Must show €500,000 in assets</li>
+          <li>• Longer processing (4-6 months)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Health insurance requirement:</strong> Comprehensive health insurance covering Malta is mandatory for the MPRP. You must provide proof of valid coverage with your application and maintain it permanently. Since Malta is small, evacuation coverage to larger EU hospitals is recommended for complex medical cases.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">The MPRP is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>English is your primary language</li>
+          <li>You have €500,000+ in assets to demonstrate</li>
+          <li>You prefer renting over buying property</li>
+          <li>You want permanent (not temporary) residence</li>
+          <li>You want to include elderly parents/grandparents</li>
+          <li>You value financial services access (banking, iGaming)</li>
+          <li>You enjoy Mediterranean island lifestyle</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want to minimize upfront costs (Greece is cheaper)</li>
+          <li>• You need to work as an employee</li>
+          <li>• You want citizenship pathway (MPRP doesn't lead to citizenship)</li>
+          <li>• You prefer larger country with more space</li>
+          <li>• Your assets are under €500,000</li>
+          <li>• You dislike hot climates</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Malta vs. Other EU Programs</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Greece Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€250,000 property minimum. Zero stay. Lower total cost. But no English, no rental option, temporary residence needing renewals.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Portugal Golden Visa</h4>
+        <p class="text-neutral-600 text-sm">€500,000 fund investment. 7 days/year stay. No property route. Citizenship in 5 years possible. Higher investment than Malta rental route.</p>
+      </div>
+      <div class="border border-neutral-200 rounded-lg p-4">
+        <h4 class="font-semibold text-neutral-900 mb-2">Ireland (Non-EU but English)</h4>
+        <p class="text-neutral-600 text-sm">€1M investment for Immigrant Investor Programme. English-speaking but not Schengen. Higher threshold, different benefits.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Malta's unique position:</strong> For English speakers who want EU/Schengen access without buying property, Malta is the only option. The rental route (€10,000-12,000/year + €58,000 contribution) provides permanent EU residence without tying up €300,000+ in real estate.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Requirements -->
+  <section id="investment-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Requirements</h2>
+
+    <p class="mb-4">
+      Malta's MPRP offers two routes: property purchase or rental. Both require a government contribution and proof of assets, but the rental route avoids large capital outlay on real estate.
+    </p>
+
+    <ComparisonTable columns={investmentColumns} rows={investmentRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Asset Requirements (Both Routes)</h3>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">You Must Demonstrate:</h4>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Total assets:</strong> €500,000 minimum worldwide</li>
+        <li>• <strong>Liquid/financial assets:</strong> €150,000 minimum (bank deposits, investments, etc.)</li>
+        <li>• These are declaration requirements—you don't transfer them to Malta</li>
+        <li>• Assets can include property, investments, business holdings, savings</li>
+        <li>• Must provide documentation (bank statements, valuations, etc.)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Property Purchase Route</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">South Malta/Gozo (€300,000)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Lower threshold (€300,000 vs €350,000)</li>
+          <li>• South Malta: Marsascala, Birgu, Senglea</li>
+          <li>• Gozo: Entire island qualifies</li>
+          <li>• Generally quieter, less developed</li>
+          <li>• Better value per square meter</li>
+          <li>• Less rental income potential</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Rest of Malta (€350,000)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Higher threshold (€350,000)</li>
+          <li>• Includes Sliema, St Julian's, Valletta</li>
+          <li>• Prime locations, better amenities</li>
+          <li>• Higher rental income potential</li>
+          <li>• More expensive per square meter</li>
+          <li>• Better resale market</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Rental Route</h3>
+
+    <p class="mb-4">
+      The rental route is unique among EU Golden Visas. You lease a property for at least 5 years instead of purchasing. The government contribution is higher (€58,000 vs €28,000) to compensate.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Rental Route Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>No €300,000+ capital tied up in property</li>
+          <li>Flexibility to move locations</li>
+          <li>No property maintenance responsibility</li>
+          <li>No exposure to Malta property market</li>
+          <li>Lower total upfront cost</li>
+          <li>Can rent in prime locations affordably</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Rental Route Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>Higher government contribution (€58,000 vs €28,000)</li>
+          <li>Ongoing rent commitment (€10,000-12,000/year)</li>
+          <li>No property asset to sell later</li>
+          <li>Must maintain lease for 5+ years</li>
+          <li>Rent payments are a cost, not investment</li>
+          <li>5-year rent = €50,000-60,000 (vs property ownership)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Which route to choose:</strong> If you have €400,000+ and want a property asset, purchase makes sense. If you prefer liquidity and don't want property management, the rental route provides EU residence with lower capital commitment. Over 10+ years, purchase typically works out cheaper.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Comprehensive health insurance is a strict requirement for the Malta MPRP. You must provide proof of valid coverage at application and maintain it permanently. The policy must cover Malta and ideally the entire Schengen area.
+      </p>
+    </div>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Your Insurance Must Cover</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Mandatory Coverage</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Medical expenses minimum €30,000</li>
+          <li>Hospitalization and surgery</li>
+          <li>Outpatient treatment</li>
+          <li>Valid in Malta</li>
+          <li>Annual renewable or multi-year</li>
+          <li>Covers all family members on application</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Recommended Coverage</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Europe-wide or global coverage</li>
+          <li>Medical evacuation (to larger EU hospitals)</li>
+          <li>Repatriation</li>
+          <li>Higher limits (€1M+ for comprehensive care)</li>
+          <li>Chronic condition coverage</li>
+          <li>Specialist consultations</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Malta-Specific Considerations</h3>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">Small Island Limitations</h4>
+      <ul class="space-y-2 text-amber-800">
+        <li>• Malta has one main hospital (Mater Dei) with good general care</li>
+        <li>• Some specialist treatments may require travel to Italy, UK, or Germany</li>
+        <li>• Private hospitals are small compared to major EU cities</li>
+        <li>• Evacuation coverage is important for complex cases</li>
+        <li>• English is spoken throughout the healthcare system</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Local vs. International Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Maltese Local Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Pro: Lower cost (€70-180/month)</li>
+          <li>Pro: Good local hospital network</li>
+          <li>Pro: English documentation</li>
+          <li>Pro: Easy claims process locally</li>
+          <li>Con: Coverage only in Malta</li>
+          <li>Con: Limited for travel/living elsewhere</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Those primarily living in Malta</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">International Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Pro: Europe-wide or global coverage</li>
+          <li>Pro: Covers treatment in larger EU hospitals</li>
+          <li>Pro: Better evacuation coverage</li>
+          <li>Pro: Covers you during Schengen travel</li>
+          <li>Con: Higher cost (€150-450/month)</li>
+          <li>Con: May need to pay and claim back</li>
+        </ul>
+        <p class="text-neutral-600 text-sm mt-3">Best for: Those traveling frequently or wanting access to top EU specialists</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Our recommendation:</strong> Since Malta is a small island and some specialist care may require travel to mainland Europe, international insurance with evacuation coverage is prudent. If you're healthy and staying primarily in Malta, local insurance is acceptable for visa purposes but consider supplementing with travel coverage.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for Malta MPRP?"
+    description="Compare international health insurance plans that meet Malta's visa requirements and cover you across Europe."
+    buttonText="Compare MPRP Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Both international and local insurers can satisfy Malta's MPRP requirements. Choose based on your lifestyle—local if you'll live primarily in Malta, international if you'll travel frequently or want access to specialists elsewhere in Europe.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Traveler, Uses Schengen Access</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care with Europe zone. Coverage across EU for business trips and holidays. Important since MPRP grants Schengen-wide travel rights. Budget €150-350/month.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Primarily Malta-Based, Budget-Conscious</h4>
+        <p class="text-neutral-600">Atlas Insurance or GasanMamo local plans. Good coverage at Mater Dei and private clinics. English support. Budget €70-150/month. Add travel insurance for trips outside Malta.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Retiree with Health Concerns</h4>
+        <p class="text-neutral-600">BUPA Global or Cigna Global with comprehensive coverage. Evacuation to UK/Italy for specialist treatment. Mental health and chronic condition coverage included. Budget €300-500/month depending on age.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family with Children</h4>
+        <p class="text-neutral-600">Allianz Care or Cigna Global family plans. Good pediatric coverage, family discounts. Malta has good children's services but international coverage provides options. Budget €400-700/month for family of 4.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Including Elderly Parents</h4>
+        <p class="text-neutral-600">MPRP allows including parents/grandparents. Expect higher premiums for 70+ (€400-800/month per person). International coverage recommended for age-related conditions requiring specialist treatment. Evacuation coverage critical.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Malta's MPRP has higher fixed costs than Greece's Golden Visa due to mandatory government contributions. However, the rental option provides a lower-capital alternative for those who don't want to purchase property.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total First-Year Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h4 class="text-lg font-semibold text-neutral-900 mb-3 text-center">Purchase Route</h4>
+        <ul class="space-y-2 mb-4">
+          <li><strong>Property:</strong> €300,000-350,000</li>
+          <li><strong>Government contribution:</strong> €28,000</li>
+          <li><strong>Administrative fee:</strong> €40,000</li>
+          <li><strong>Charitable donation:</strong> €2,000</li>
+          <li><strong>Due diligence:</strong> €7,500-15,000</li>
+          <li><strong>Legal fees:</strong> €5,000-10,000</li>
+          <li><strong>Stamp duty (5%):</strong> €15,000-17,500</li>
+          <li><strong>Insurance (year 1):</strong> €2,000-5,000</li>
+          <li class="border-t pt-2"><strong>Total:</strong> €400,000-470,000</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h4 class="text-lg font-semibold text-neutral-900 mb-3 text-center">Rental Route</h4>
+        <ul class="space-y-2 mb-4">
+          <li><strong>First year rent:</strong> €10,000-12,000</li>
+          <li><strong>Government contribution:</strong> €58,000</li>
+          <li><strong>Administrative fee:</strong> €40,000</li>
+          <li><strong>Charitable donation:</strong> €2,000</li>
+          <li><strong>Due diligence:</strong> €7,500-15,000</li>
+          <li><strong>Legal fees:</strong> €3,000-6,000</li>
+          <li><strong>Insurance (year 1):</strong> €2,000-5,000</li>
+          <li class="border-t pt-2"><strong>Total (Year 1):</strong> €125,000-140,000</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">5-Year Cost Comparison</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Purchase Route (5 Years)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Initial costs: ~€100,000 (excluding property)</li>
+          <li>Property: €300,000-350,000 (retained asset)</li>
+          <li>Insurance (5 years): €10,000-25,000</li>
+          <li>Property maintenance: €5,000-15,000</li>
+          <li class="border-t pt-2"><strong>Total outlay:</strong> €415,000-490,000</li>
+          <li><strong>But you own property worth:</strong> €300,000-400,000+</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Rental Route (5 Years)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>Initial costs: ~€110,000</li>
+          <li>5 years rent: €50,000-60,000</li>
+          <li>Insurance (5 years): €10,000-25,000</li>
+          <li class="border-t pt-2"><strong>Total outlay:</strong> €170,000-195,000</li>
+          <li><strong>No property asset retained</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Which is better value?</strong> Purchase route costs more upfront but you retain property (potential appreciation + rental income). Rental route costs less overall but money is spent, not invested. If you have the capital and want a property asset, purchase wins long-term. If liquidity matters more, rental provides EU residence with lower capital commitment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Malta MPRP requires using a licensed agent (mandatory) and involves thorough due diligence. Processing typically takes 4-6 months from application to residence card.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Engage a Licensed Agent</h4>
+          <p class="text-neutral-600">You must use an agent licensed by Residency Malta Agency (RMA). This is mandatory—you cannot apply directly. The agent guides you through the process, prepares documents, and submits the application. Budget €5,000-10,000 for agent/legal fees.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Property Search or Rental Agreement</h4>
+          <p class="text-neutral-600">Find a qualifying property to purchase (€300,000-350,000+) or a rental property (€10,000-12,000/year). For purchase, you typically sign a preliminary agreement (compromesso) at this stage. For rental, secure a 5+ year lease agreement.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Documentation</h4>
+          <p class="text-neutral-600">Compile required documents: valid passport, proof of €500,000 assets (€150,000 liquid), criminal record certificates (apostilled), health insurance, property agreement, and source of funds documentation. All documents must be in English or translated.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Your agent submits the application to Residency Malta Agency. Pay the due diligence fees (€7,500 main applicant, €5,000 per adult dependent). You'll receive confirmation of submission.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Due Diligence Process</h4>
+          <p class="text-neutral-600">RMA conducts thorough background checks—criminal records, source of funds, sanctions screening, and security checks. This takes 4-6 months. You may be asked for additional documentation during this period.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Letter of Approval in Principle</h4>
+          <p class="text-neutral-600">Once due diligence passes, you receive an Approval in Principle letter. This is conditional—you now have 4 months to complete the property transaction, make all payments, and fulfill remaining requirements.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Payments and Property</h4>
+          <p class="text-neutral-600">Pay the government contribution (€28,000 or €58,000), administrative fee (€40,000), and charitable donation (€2,000). Complete property purchase or formalize the rental lease. Provide evidence of health insurance.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Biometrics and Final Approval</h4>
+          <p class="text-neutral-600">Attend a biometrics appointment in Malta (fingerprints, photo). All applicants including family members must attend. Once complete, RMA issues final approval.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">9</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Residence Card</h4>
+          <p class="text-neutral-600">Your permanent residence card is issued within 2-4 weeks after final approval. This is a permanent residence permit—no renewals needed. You now have the right to reside in Malta and travel freely in Schengen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Processing times:</strong> Malta's MPRP typically takes 4-6 months from application to residence card, longer than Greece (1-3 months) but with less ongoing renewal requirements since residence is permanent. The due diligence phase accounts for most of the time.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Malta MPRP applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Post-Brexit Couple, Purchase Route</h3>
+        <p class="text-neutral-600 mb-4">Both 55, wanted English-speaking EU access. Had €400,000 available.</p>
+        <p class="text-green-700 font-medium">Bought €320,000 apartment in Sliema. Total costs ~€420,000. Approved in 5 months. Chose Cigna Global (€380/month total) for Europe-wide coverage. Delighted with English environment—no language barrier for banking, healthcare, or daily life. Use Schengen access for European travel.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Entrepreneur, Rental Route</h3>
+        <p class="text-neutral-600 mb-4">42 years old, wants EU base without tying up capital. Showed €600,000 assets.</p>
+        <p class="text-green-700 font-medium">Chose rental route—€12,000/year apartment in St Julian's. Total year 1 cost ~€130,000. Uses Malta as EU base for business while keeping capital invested in US markets. BUPA Global for worldwide coverage (€280/month). Happy with flexibility—can relocate within Malta easily.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian Family with Elderly Parents</h3>
+        <p class="text-neutral-600 mb-4">Couple (48, 45), two children (16, 12), wife's parents (72, 68). Total 6 applicants.</p>
+        <p class="text-amber-700 font-medium">Purchased €350,000 property. Total costs ~€500,000 (high due to 6 people). Due diligence took 7 months due to complexity. Insurance challenging for elderly parents (€650/month each). Overall satisfied but costs escalated significantly with extended family. English environment valuable for children's education.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">South African Business Owner, Gozo Property</h3>
+        <p class="text-neutral-600 mb-4">58 years old, semi-retired, wanted peaceful Mediterranean base.</p>
+        <p class="text-green-700 font-medium">Bought €305,000 farmhouse conversion in Gozo. Lower threshold (€300,000 zone) allowed better property. Total ~€400,000. Allianz Care Europe (€320/month). Loves Gozo's quieter pace. Notes Gozo has limited medical facilities—evacuation coverage essential. Uses main Malta and Sicily for specialist care.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">iGaming Professional, Rental Route</h3>
+        <p class="text-neutral-600 mb-4">35 years old, works remotely for EU iGaming company. Wants EU residence.</p>
+        <p class="text-amber-700 font-medium">MPRP doesn't allow employment in Malta—had to structure as contractor/consultant instead. Rental route (€11,000/year). Total year 1 ~€125,000. Works out fine as independent contractor serving Malta-based clients. Local insurance (€90/month) since primarily Malta-based. Notes work restriction carefully when planning.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Rejected Applicant—Source of Funds Issues</h3>
+        <p class="text-neutral-600 mb-4">50 years old, complex business holdings across multiple countries.</p>
+        <p class="text-red-700 font-medium">Due diligence extended to 8 months. Requested extensive documentation on fund sources. Complex offshore structures raised flags. Eventually withdrew application after receiving queries he couldn't satisfactorily answer. Lost due diligence fees (€7,500). Lesson: Ensure clean, documentable source of funds before applying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Malta MPRP"
+    description="Find coverage that meets Malta's permanent residence requirements and covers you across Europe."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Planning to Work as an Employee</h3>
+        <p class="text-neutral-600">The MPRP explicitly prohibits employment in Malta. You can own businesses, invest, work remotely for non-Maltese companies, or be self-employed. But you cannot take a job with a Maltese employer. If you need employment rights, consider the Global Residence Programme or standard work permits instead.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Total Costs</h3>
+        <p class="text-neutral-600">Beyond property/rent, you must pay €40,000 administrative fee, €28,000-58,000 government contribution, €2,000 donation, and €7,500+ due diligence fees. Many applicants focus on property cost and are surprised by additional €80,000-110,000 in mandatory payments.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Poor Source of Funds Documentation</h3>
+        <p class="text-neutral-600">Malta's due diligence is thorough. You must explain and document how you accumulated €500,000+ in assets. Complex structures, offshore holdings, or gaps in explanation cause delays or rejections. Prepare clean documentation before applying—bank statements, tax returns, business records, property valuations.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Citizenship Path</h3>
+        <p class="text-neutral-600">The MPRP does not lead to Maltese citizenship. It's permanent residence only. Maltese citizenship requires separate naturalization (15+ years of residence or the expensive Citizenship by Naturalization for Exceptional Services Direct Investment program). If citizenship is your goal, Portugal or Greece offer clearer paths.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Medical Evacuation Coverage</h3>
+        <p class="text-neutral-600">Malta is a small island with one main hospital. Complex surgeries, rare conditions, or specialized treatment may require travel to larger EU centers (Rome, Barcelona, London). Insurance without evacuation coverage could leave you paying out-of-pocket for treatment abroad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Malta -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Malta</h2>
+
+    <p class="mb-4">
+      Malta has a modern healthcare system with both public and private options. English is spoken throughout, making healthcare access straightforward for English speakers. However, the small island size means some specialist care requires travel to mainland Europe.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Healthcare (Via Insurance)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>Immediate access with valid insurance</li>
+          <li>Shorter wait times than public</li>
+          <li>Modern private hospitals and clinics</li>
+          <li>English spoken universally</li>
+          <li>Main hospitals: St James, Da Vinci, St Thomas</li>
+          <li>Direct billing with major international insurers</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Public Healthcare</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>Free for residents (Pink Card holders)</li>
+          <li>Main hospital: Mater Dei (800+ beds)</li>
+          <li>Good general and emergency care</li>
+          <li>Longer wait times for non-urgent care</li>
+          <li>English universally spoken</li>
+          <li>MPRP holders may not immediately qualify</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Key Healthcare Considerations</h3>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">Small Island Limitations</h4>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Specialist care:</strong> Some rare or complex conditions may require treatment in Italy, UK, or Germany</li>
+        <li>• <strong>Equipment:</strong> Latest medical technology may not always be available locally</li>
+        <li>• <strong>Capacity:</strong> Limited ICU beds and specialists compared to larger countries</li>
+        <li>• <strong>Evacuation:</strong> International insurance with evacuation is highly recommended</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Hospitals in Malta</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Mater Dei Hospital (Public)</h4>
+        <p class="text-neutral-600">Malta's main public hospital with 800+ beds. Full emergency, surgical, and specialist departments. Free for residents. Located in Msida, central Malta.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">St James Hospital (Private)</h4>
+        <p class="text-neutral-600">Leading private hospital. Direct billing with international insurers. Shorter waits, private rooms. Located in Sliema.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Da Vinci Hospital (Private)</h4>
+        <p class="text-neutral-600">Modern private facility with focus on day surgery and diagnostics. English throughout. Multiple locations.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Gozo General Hospital (Public)</h4>
+        <p class="text-neutral-600">The only hospital on Gozo. Good for emergencies and basic care, but serious cases transfer to Malta (Mater Dei) or abroad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work in Malta with the MPRP?</h3>
+        <p class="text-neutral-600">
+          No. The MPRP explicitly prohibits employment in Malta. You can own businesses, manage investments, work remotely for companies outside Malta, or be self-employed serving non-Maltese clients. But you cannot take a job with a Maltese employer. If you need to work in Malta, consider the Global Residence Programme or standard work permits.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is the MPRP renewable or truly permanent?</h3>
+        <p class="text-neutral-600">
+          The MPRP grants genuine permanent residence—no renewals needed. Once approved, you hold permanent residence as long as you maintain the qualifying conditions (property/rental, health insurance, no continuous 2+ year absence). This is an advantage over temporary programs like Greece's 5-year permits.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between MPRP and Malta citizenship programs?</h3>
+        <p class="text-neutral-600">
+          MPRP provides permanent residence, not citizenship. For citizenship, Malta offers the Citizenship by Naturalization for Exceptional Services Direct Investment (€750,000+ contribution, €700,000+ property, €10,000 donation, 36-month residency). This is separate, much more expensive, and has stricter requirements. Standard naturalization requires 15+ years of residence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I rent instead of buying property?</h3>
+        <p class="text-neutral-600">
+          Yes. Malta's MPRP is unique in offering a rental option. You can lease a property for €10,000-12,000/year (depending on location) instead of purchasing. The trade-off is a higher government contribution (€58,000 vs €28,000) and ongoing rent costs with no property asset. This suits those prioritizing liquidity over property ownership.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long do I need to stay in Malta?</h3>
+        <p class="text-neutral-600">
+          There's no formal minimum stay requirement. However, you cannot be absent from Malta for a continuous period of 2 or more years, or your status may be revoked. In practice, most MPRP holders visit Malta occasionally—for property management, banking, or enjoyment—but aren't required to live there.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I include elderly parents and grandparents?</h3>
+        <p class="text-neutral-600">
+          Yes. Malta's MPRP allows including parents and grandparents (of both main applicant and spouse) as dependents. This is a unique advantage—most Golden Visas only include spouses and minor children. Each dependent incurs additional due diligence fees (€5,000 for adults) and must have their own health insurance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Malta's MPRP is the best option for English speakers seeking EU residency without language barriers. It's the only EU member where English is an official language, making banking, healthcare, legal matters, and daily life straightforward.
+    </p>
+
+    <p class="mb-4">
+      The rental option is unique among European investor programs, offering EU residence without tying up €300,000+ in property. For those who prefer liquidity or don't want property management hassles, this is a compelling alternative.
+    </p>
+
+    <p class="mb-6">
+      However, Malta is more expensive than Greece when you add government contributions (€28,000-58,000) and administrative fees (€40,000). And it doesn't lead to citizenship—unlike Portugal's 5-year path. Choose Malta for language, lifestyle, and flexibility; choose Greece for pure value; choose Portugal for citizenship.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Malta's MPRP is ideal for English speakers who want permanent EU residence with minimal stay requirements and the option to rent instead of buy. The total cost is higher than Greece, but the English-speaking environment and rental flexibility may justify the premium. Health insurance is mandatory—budget €100-400/month for coverage that includes evacuation to larger EU hospitals.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/malta/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Malta Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Malta</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/malta" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Malta Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative for remote workers with €2,700/month income</p>
+      </a>
+      <a href="/visas/investor-visa/in/greece" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Greece Golden Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Greece's lower-cost property route</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

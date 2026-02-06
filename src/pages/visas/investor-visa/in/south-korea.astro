@@ -1,0 +1,954 @@
+---
+/**
+ * South Korea Investor/Entrepreneur Visa - Long-form CRO-optimized page
+ * D-8 Investment Visa, F-2 Resident, and F-5 Permanent Residence guide
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "investment-routes", text: "Investment Routes", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in South Korea", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "South Korea Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/south-korea" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Cigna Global Review", href: "/providers/cigna-global" },
+  { title: "Allianz Care Review", href: "/providers/allianz-care" },
+];
+
+const visaRoutesColumns = [
+  { key: "program", header: "Program" },
+  { key: "investment", header: "Investment Requirement" },
+  { key: "duration", header: "Duration" },
+  { key: "benefits", header: "Key Benefits" },
+];
+
+const visaRoutesRows = [
+  { program: "D-8-1 Corporate Investment", investment: "KRW 100M+ (~$75K)", duration: "2 years renewable", benefits: "Start/join Korean company, work permit" },
+  { program: "D-8-4 Tech Startup Visa", investment: "Government-backed startup", duration: "2 years renewable", benefits: "For approved tech startups, lower capital" },
+  { program: "F-2-7 Points System", investment: "Points (income, education, Korean)", duration: "5 years renewable", benefits: "Path to F-5, multiple employment" },
+  { program: "F-5-5 Investor PR", investment: "KRW 300M (~$225K)", duration: "Permanent", benefits: "Permanent residence, unrestricted work" },
+  { program: "F-5-6 Real Estate PR", investment: "KRW 500M-1.5B property", duration: "Permanent", benefits: "Property investment route, regional incentives" },
+];
+
+const insuranceColumns = [
+  { key: "program", header: "Visa Type" },
+  { key: "requirement", header: "Insurance Requirement" },
+  { key: "system", header: "Healthcare Access" },
+];
+
+const insuranceRows = [
+  { program: "D-8 Investment Visa", requirement: "Mandatory enrollment in NHI after 6 months", system: "National Health Insurance (NHI)" },
+  { program: "F-2 Long-term Resident", requirement: "Mandatory NHI enrollment", system: "Full NHI benefits" },
+  { program: "F-5 Permanent Resident", requirement: "Mandatory NHI enrollment", system: "Full NHI benefits, same as citizens" },
+  { program: "First 6 months", requirement: "Private insurance recommended", system: "NHI not available initially" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "National Health Insurance", type: "Government", price: "~KRW 150K-400K", strengths: "Comprehensive, once eligible" },
+  { provider: "Cigna Global", type: "International", price: "KRW 350K-800K", strengths: "First 6 months, premium coverage" },
+  { provider: "Allianz Care", type: "International", price: "KRW 300K-700K", strengths: "Gap coverage, global travelers" },
+  { provider: "Samsung Life", type: "Korean Local", price: "KRW 100K-300K", strengths: "Supplemental coverage" },
+  { provider: "Hanwha Life", type: "Korean Local", price: "KRW 100K-250K", strengths: "Local plans, Korean support" },
+  { provider: "DB Insurance", type: "Korean Local", price: "KRW 80K-200K", strengths: "Budget supplemental" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "D-8 Visa Fee", amount: "KRW 130,000 (~$100)", notes: "Visa application and stamp" },
+  { item: "D-8 Minimum Investment", amount: "KRW 100,000,000 (~$75K)", notes: "Corporate investment capital" },
+  { item: "F-5-5 Investor PR Investment", amount: "KRW 300,000,000 (~$225K)", notes: "Can include government bonds" },
+  { item: "F-5-6 Real Estate PR", amount: "KRW 500M-1.5B (~$375K-1.1M)", notes: "Property investment, varies by region" },
+  { item: "Business Registration", amount: "KRW 500K-2M", notes: "Legal, accounting setup" },
+  { item: "National Health Insurance", amount: "KRW 150K-400K/month", notes: "Income-based premiums" },
+  { item: "Private Insurance (gap)", amount: "KRW 100K-300K/month", notes: "Supplemental or first 6 months" },
+];
+
+const timelineColumns = [
+  { key: "program", header: "Program" },
+  { key: "processing", header: "Processing Time" },
+  { key: "notes", header: "Notes" },
+];
+
+const timelineRows = [
+  { program: "D-8 Investment Visa", processing: "4-8 weeks", notes: "Business plan review required" },
+  { program: "D-8-4 Startup Visa", processing: "2-4 weeks", notes: "Pre-approval from OASIS program" },
+  { program: "F-2-7 Points Visa", processing: "4-6 weeks", notes: "Requires minimum 80 points" },
+  { program: "F-5-5 Investor PR", processing: "2-4 months", notes: "Investment verification required" },
+  { program: "F-5-6 Real Estate PR", processing: "2-4 months", notes: "Property registration verified" },
+];
+---
+
+<PageShell
+  title="South Korea Investor Visa 2026: D-8, F-2 & F-5 Permanent Residence Guide"
+  description="Complete guide to South Korea investor visas. D-8 Investment (KRW 100M), F-5 Permanent Residence (KRW 300M), startup visa options, and paths to Korean citizenship."
+  headline="South Korea Investor Visa: Complete Guide"
+  subheadline="Everything you need to know about South Korea's investor visa options—D-8 Corporate Investment Visa, F-2 Long-term Resident, F-5 Permanent Residence, and paths to citizenship in Asia's most advanced economy."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Premium Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroImage="/images/countries/south-korea-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Korean Immigration
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Citizenship Pathway Available
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      South Korea offers structured pathways for investors and entrepreneurs seeking residence in Asia's fourth-largest economy. The D-8 Investment Visa provides entry for those investing KRW 100M+ (~$75,000) in a Korean company, while the F-5 Permanent Residence visa offers long-term stability for investors with KRW 300M+ (~$225,000). Unlike many Asian countries, South Korea offers a clear path to citizenship.
+    </p>
+
+    <p class="mb-4">
+      Korea attracts tech entrepreneurs, investors looking for stable markets, and those seeking high quality of life with world-class infrastructure. The country offers excellent healthcare through mandatory National Health Insurance, advanced technology ecosystem, and strategic location in Northeast Asia. The main challenges are high living costs (especially Seoul), language barriers, and competitive business environment.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: South Korea Investor Visas</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>D-8 Investment:</strong> KRW 100M+ (~$75K) corporate investment</li>
+        <li>• <strong>F-5 Investor PR:</strong> KRW 300M (~$225K) for permanent residence</li>
+        <li>• <strong>F-5 Real Estate:</strong> KRW 500M-1.5B property investment</li>
+        <li>• <strong>Processing:</strong> 4-8 weeks (D-8) to 2-4 months (F-5)</li>
+        <li>• <strong>Citizenship path:</strong> Yes, after 5 years residence</li>
+        <li>• <strong>Language:</strong> TOPIK Level 5+ for citizenship</li>
+        <li>• <strong>Healthcare:</strong> Mandatory NHI after 6 months</li>
+        <li>• <strong>Work rights:</strong> Restricted to sponsored company (D-8)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Choose South Korea?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• World-class healthcare system</li>
+          <li>• Advanced technology infrastructure</li>
+          <li>• Clear path to citizenship</li>
+          <li>• Strong economy, stable currency</li>
+          <li>• Excellent public transportation</li>
+          <li>• Four distinct seasons</li>
+          <li>• Safe, low crime rates</li>
+          <li>• Growing startup ecosystem</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• High cost of living (Seoul)</li>
+          <li>• Challenging Korean language</li>
+          <li>• Competitive business culture</li>
+          <li>• Complex visa requirements</li>
+          <li>• Cold winters, humid summers</li>
+          <li>• Work culture can be intense</li>
+          <li>• North Korea geopolitical factor</li>
+          <li>• Limited English outside cities</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Korea advantage:</strong> South Korea is one of few Asian countries offering clear citizenship pathway through investment. After 5 years of residence and TOPIK Level 5 Korean proficiency, investors can apply for naturalization. This makes Korea attractive for those seeking permanent ties to Asia, not just temporary residence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">South Korea is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• You want citizenship pathway in Asia</li>
+          <li>• You're building tech/innovation business</li>
+          <li>• You value world-class healthcare</li>
+          <li>• You appreciate four seasons climate</li>
+          <li>• You want stable, developed market</li>
+          <li>• You're willing to learn Korean</li>
+          <li>• You prefer modern urban lifestyle</li>
+          <li>• You want access to Northeast Asia</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want low cost of living</li>
+          <li>• You prefer warm climate year-round</li>
+          <li>• You need English-speaking environment</li>
+          <li>• You want simpler visa process</li>
+          <li>• You prefer relaxed business culture</li>
+          <li>• You're not committed to learning Korean</li>
+          <li>• You want immediate permanent residence</li>
+          <li>• You prefer lower investment thresholds</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">South Korea vs. Other Options</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-neutral-100">
+          <tr>
+            <th class="px-4 py-2 text-left">Country</th>
+            <th class="px-4 py-2 text-left">Investment Route</th>
+            <th class="px-4 py-2 text-left">Cost</th>
+            <th class="px-4 py-2 text-left">Citizenship Path</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">South Korea</td>
+            <td class="px-4 py-2">D-8 / F-5</td>
+            <td class="px-4 py-2">$75K-$225K</td>
+            <td class="px-4 py-2">Yes (5 years + Korean)</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Japan</td>
+            <td class="px-4 py-2">Business Manager</td>
+            <td class="px-4 py-2">~$40K+ (no minimum)</td>
+            <td class="px-4 py-2">Yes (5-10 years)</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2 font-medium">Singapore</td>
+            <td class="px-4 py-2">GIP</td>
+            <td class="px-4 py-2">$2.5M+</td>
+            <td class="px-4 py-2">Yes (after PR)</td>
+          </tr>
+          <tr class="border-b bg-neutral-50">
+            <td class="px-4 py-2 font-medium">Thailand</td>
+            <td class="px-4 py-2">Elite / LTR</td>
+            <td class="px-4 py-2">$17K-$28K</td>
+            <td class="px-4 py-2">No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Why Korea stands out:</strong> Korea offers the best combination of developed-market stability, healthcare access, and citizenship pathway in Asia. Investment thresholds are reasonable compared to Singapore, and the tech ecosystem is stronger than most regional alternatives. The main trade-off is the need to learn Korean for full integration.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Investment Routes -->
+  <section id="investment-routes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Investment Routes</h2>
+
+    <p class="mb-4">
+      South Korea offers multiple pathways based on investment level and business type. The D-8 visa is the standard entry point for corporate investors, while F-5 provides permanent residence for larger investments.
+    </p>
+
+    <ComparisonTable columns={visaRoutesColumns} rows={visaRoutesRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">D-8 Corporate Investment Visa</h3>
+
+    <div class="border-l-4 border-blue-500 pl-4 mb-6">
+      <p class="text-neutral-600 mb-4">The primary investor visa for foreign entrepreneurs. Requires KRW 100M+ investment in a Korean corporation:</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">D-8-1: Corporate Investment</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• Investment: KRW 100M+ (~$75,000)</li>
+            <li>• Duration: 2 years, renewable</li>
+            <li>• Register Korean corporation</li>
+            <li>• Must maintain business operations</li>
+            <li>• Work permit for own company</li>
+          </ul>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">D-8-4: Tech Startup Visa</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• Through OASIS program</li>
+            <li>• Lower capital requirements</li>
+            <li>• Government-backed incubators</li>
+            <li>• Duration: 2 years</li>
+            <li>• For innovative tech ventures</li>
+          </ul>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">D-8-2/3: Venture Investment</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• For VC-backed companies</li>
+            <li>• Investment in Korean startups</li>
+            <li>• Special zones eligible</li>
+            <li>• More flexibility on capital</li>
+            <li>• Must meet venture criteria</li>
+          </ul>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">Renewal Requirements</h4>
+          <ul class="space-y-1 text-neutral-700 text-sm">
+            <li>• Business must remain operational</li>
+            <li>• Employee Korean workers (bonus)</li>
+            <li>• Maintain investment level</li>
+            <li>• Tax compliance required</li>
+            <li>• Can convert to F-2/F-5 later</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">F-5 Permanent Residence (Investor)</h3>
+
+    <div class="border-l-4 border-green-500 pl-4 mb-6">
+      <p class="text-neutral-600 mb-4">Permanent residence for qualifying investors. Two main pathways:</p>
+
+      <div class="space-y-4">
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">F-5-5: Investment PR</h4>
+          <p class="text-neutral-700 text-sm">Invest KRW 300M (~$225,000) in qualifying assets: government bonds, stocks approved by Ministry of Justice, or business investment. Maintain investment for 5 years minimum. No employment restrictions after approval. Can include spouse and minor children.</p>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">F-5-6: Real Estate Investment PR</h4>
+          <p class="text-neutral-700 text-sm">Purchase qualifying real estate: KRW 500M-1.5B depending on location. Jeju Island has special KRW 500M threshold. Must be leisure/resort property or approved development. Maintain ownership for 5 years. Pathway to citizenship available after 5 years residence.</p>
+        </div>
+        <div class="bg-neutral-50 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-900 mb-2">F-5 Benefits</h4>
+          <p class="text-neutral-700 text-sm">Permanent residence with no employment restrictions. Can work for any employer or self-employ. Re-entry permit valid 2 years (extendable). Eligible for citizenship after 5 years. Family dependents included. Full National Health Insurance benefits.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">F-2-7 Points System</h3>
+
+    <div class="border-l-4 border-purple-500 pl-4 mb-6">
+      <p class="text-neutral-600 mb-4">An alternative pathway for those who don't meet F-5 investment thresholds. Points awarded for:</p>
+
+      <ul class="list-disc pl-6 space-y-2 mb-4 text-neutral-700">
+        <li>Income level (higher = more points)</li>
+        <li>Educational qualifications</li>
+        <li>Korean language ability (TOPIK)</li>
+        <li>Age (younger = more points)</li>
+        <li>Korean investment/assets</li>
+        <li>Years of Korean residence</li>
+      </ul>
+
+      <p class="text-neutral-600">Requires 80+ points for F-2-7 visa. Valid 5 years, renewable. After 3 years, can apply for F-5 with 100+ points. Good pathway for entrepreneurs building businesses in Korea over time.</p>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important:</strong> D-8 visa ties you to your specific business—you cannot work for other companies. F-2 and F-5 offer more flexibility but have higher requirements. Plan your pathway based on whether you want to build a specific business (D-8) or have broader economic freedom (F-2/F-5).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">National Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        South Korea requires all long-term residents (6+ months) to enroll in National Health Insurance (NHI). The system covers 70% of most medical costs with excellent quality. Private insurance is useful for the first 6 months before NHI eligibility and as supplemental coverage afterward.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      South Korea's healthcare system ranks among the world's best—advanced facilities, skilled doctors, and affordable costs thanks to NHI. Foreigners with long-term visas are included in this system, paying income-based premiums.
+    </p>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Strategy by Phase</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">First 6 Months</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• NHI not available yet</li>
+          <li>• International insurance essential</li>
+          <li>• Cigna or Allianz recommended</li>
+          <li>• Coverage: KRW 350K-700K/month</li>
+          <li>• Direct billing at major hospitals</li>
+          <li>• English-speaking support</li>
+          <li>• Emergency evacuation included</li>
+          <li>• Travel coverage for trips</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">After NHI Enrollment</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Mandatory NHI enrollment</li>
+          <li>• Premiums: KRW 150K-400K/month</li>
+          <li>• 70% coverage for most care</li>
+          <li>• Wide hospital network</li>
+          <li>• Consider supplemental for gaps</li>
+          <li>• Private rooms, dental extras</li>
+          <li>• Global coverage if traveling</li>
+          <li>• Cancer/major illness top-up</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">National Health Insurance (NHI) Details</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Premium Calculation</h4>
+        <p class="text-neutral-600">NHI premiums are based on income and assets. Employees pay ~3.5% of salary (split with employer). Self-employed/investors pay based on income declaration. Expect KRW 150,000-400,000/month for investor visa holders. Lower than private insurance with better coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Coverage Benefits</h4>
+        <p class="text-neutral-600">NHI covers approximately 70% of medical costs: outpatient visits (30% copay), hospitalization (20% copay), prescription drugs (30% copay), emergency care, and most procedures. Excludes cosmetic surgery, some dental work, and non-essential services. Annual out-of-pocket cap exists for major illness.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Supplemental Insurance Value</h4>
+        <p class="text-neutral-600">Many expats add Korean private insurance (Samsung Life, Hanwha) to cover NHI gaps: private hospital rooms, dental/vision, cancer coverage, and the 30% copay. Costs KRW 100K-200K/month extra. Also consider international plan (Cigna, Allianz) if you travel frequently outside Korea.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Best approach:</strong> Use international insurance (Cigna or Allianz) for first 6 months, then transition to NHI as primary with Korean supplemental insurance for gaps. Keep international coverage only if you travel frequently. NHI alone provides excellent care for most situations at lower cost than private-only options.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Korean investor visa?"
+    description="Compare international options for your first 6 months and supplemental coverage after NHI."
+    buttonText="Compare Premium Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Your insurance needs change as you progress through your Korean investor journey. International coverage is essential initially, then NHI becomes primary with optional supplemental coverage.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Phase</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">First 6 Months (Pre-NHI)</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care are the top choices. Both have strong networks at Korean hospitals (Severance, Samsung, Asan). Direct billing available. English support crucial for navigating Korean healthcare initially. Budget KRW 350K-600K/month for comprehensive coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-term with Travel Needs</h4>
+        <p class="text-neutral-600">Keep Cigna or Allianz alongside NHI if you travel frequently. These provide global coverage and higher limits than NHI for complex treatments. Cost: NHI (KRW 200K) + International (KRW 300K reduced plan) = KRW 500K/month. Worth it for active travelers.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Korea-Focused Living</h4>
+        <p class="text-neutral-600">NHI plus Korean supplemental (Samsung Life, Hanwha) is most cost-effective. NHI for primary care, Korean insurer for gaps and private rooms. Total: KRW 300K-400K/month. Korean insurers may require Korean language for claims processing—consider using an agent.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious</h4>
+        <p class="text-neutral-600">NHI alone provides excellent coverage at KRW 150K-400K/month. The 30% copay is manageable for routine care. Build emergency fund for copays instead of supplemental insurance. For serious illness, NHI has annual out-of-pocket caps that limit exposure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      South Korea investment costs vary significantly by pathway. D-8 requires minimum KRW 100M, while F-5 permanent residence demands KRW 300M-1.5B depending on route. Living costs are high, especially in Seoul.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Investment Estimates</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">D-8 Route (Year 1)</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Minimum investment: <strong>KRW 100,000,000</strong></li>
+            <li>Business setup: <strong>KRW 2,000,000</strong></li>
+            <li>Visa fees: <strong>KRW 130,000</strong></li>
+            <li>Insurance (6 months): <strong>KRW 2,400,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total: <strong>~KRW 105M (~$79,000)</strong></li>
+            <li class="text-sm text-neutral-500">+ ongoing business operations</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-3">F-5 Investor Route</h4>
+          <ul class="space-y-2 text-neutral-700">
+            <li>Investment (bonds/stocks): <strong>KRW 300,000,000</strong></li>
+            <li>Visa application: <strong>KRW 200,000</strong></li>
+            <li>Legal/documentation: <strong>KRW 3,000,000</strong></li>
+            <li>First year insurance: <strong>KRW 4,000,000</strong></li>
+            <li class="pt-2 border-t font-semibold">Total: <strong>~KRW 307M (~$230,000)</strong></li>
+            <li class="text-sm text-neutral-500">Investment maintained 5+ years</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Living Costs in South Korea</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Seoul</h4>
+        <p class="text-neutral-600">Most expensive Korean city. Modern apartment (2BR Gangnam): KRW 2-4M/month rent or KRW 500M+ jeonse deposit. Comfortable single lifestyle: KRW 4-6M/month. Couple: KRW 6-10M/month. Includes dining, transport, entertainment. International school: KRW 30-50M/year.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Busan</h4>
+        <p class="text-neutral-600">Korea's second city, more affordable. Modern apartment: KRW 1-2M/month. Comfortable lifestyle: KRW 3-4M/month single, KRW 4-6M couple. Beach lifestyle, strong expat community. Good international schools available. 2-3 hours from Seoul by KTX.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Other Cities</h4>
+        <p class="text-neutral-600">Daejeon, Daegu, Gwangju offer 20-40% lower costs than Seoul. Quality of life remains high with excellent infrastructure. Fewer English resources but growing expat communities. Good for investors with remote businesses or specific industry connections.</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Cost perspective:</strong> Korea's high living costs are offset by excellent infrastructure, safety, and services. Healthcare with NHI is remarkably affordable (KRW 200K/month vs $500+ in US). Public transport is world-class and cheap. The main expensive items are housing (especially Seoul) and international education.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Korean investor visa applications require careful documentation and often benefit from professional immigration assistance. Processing times vary by visa type and application completeness.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">D-8 Investment Visa Process</h3>
+
+    <div class="space-y-6 mb-8">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Business Planning</h4>
+          <p class="text-neutral-600">Develop viable business plan for Korean market. Identify industry, structure, and investment amount. Consider using immigration lawyer or consultant for guidance on visa-compatible business structures.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Company Registration</h4>
+          <p class="text-neutral-600">Register Korean corporation (주식회사 or 유한회사). Deposit KRW 100M+ paid-in capital. Open Korean bank account. Register with tax office. Process takes 2-4 weeks with professional assistance.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Visa Application</h4>
+          <p class="text-neutral-600">Apply at Korean embassy/consulate (abroad) or Immigration (in Korea on valid status). Submit: business registration, bank statements proving investment, business plan, passport, photos, application forms. Processing: 4-8 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Visa Issuance & Entry</h4>
+          <p class="text-neutral-600">Receive D-8 visa stamp (single entry) or Certificate of Visa Issuance (for consulate pickup). Enter Korea and register at Immigration within 90 days for Alien Registration Card (ARC).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Post-Arrival Setup</h4>
+          <p class="text-neutral-600">Complete Alien Registration within 90 days. Obtain ARC (required for banking, phone, etc.). Enroll in NHI after 6 months. Set up business operations. D-8 is initially 1-2 years, renewable with ongoing business activity.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">F-5 Investor PR Process</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Make Qualifying Investment</h4>
+          <p class="text-neutral-600">Invest KRW 300M in approved assets: government bonds, approved stocks, or business investment. Must be verifiable and maintained. Real estate route (F-5-6) requires KRW 500M-1.5B property purchase in designated areas.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Documentation</h4>
+          <p class="text-neutral-600">Investment verification documents, bank statements, property registration (if applicable), criminal background check, health examination, Korean residence history (if converting from other visa).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply at Immigration</h4>
+          <p class="text-neutral-600">Submit application at Korean Immigration office. Interview may be required. Processing: 2-4 months for thorough investment verification. Ministry of Justice makes final determination.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive F-5 Status</h4>
+          <p class="text-neutral-600">F-5 is permanent residence—no expiration. Must apply for re-entry permit (2 years) if leaving Korea for extended periods. Can work for any employer or self-employ. Eligible for citizenship after 5 years.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Professional help recommended:</strong> Korean immigration law is complex and documentation requirements are strict. Immigration lawyers or consultants (행정사) can navigate the system, ensure proper documentation, and communicate with Immigration in Korean. Budget KRW 3-5M for professional assistance—often saves time and prevents rejection.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for South Korea investor visa applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Tech Entrepreneur, D-8 Startup</h3>
+        <p class="text-neutral-600 mb-4">35 years old, SaaS founder, wants to expand to Korean market. KRW 150M investment. Applying through OASIS startup program.</p>
+        <p class="text-green-700 font-medium">D-8-4 approved in 3 weeks through OASIS fast-track. Established Seoul office with Korean co-founder. Used Cigna Global for first 6 months, then transitioned to NHI + Samsung Life supplemental. Business growing in Korean market. Considering F-2-7 points conversion in 2 years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chinese Investor, F-5-5 Route</h3>
+        <p class="text-neutral-600 mb-4">50 years old, real estate investor, wants permanent residence and eventual citizenship. KRW 400M available for investment.</p>
+        <p class="text-green-700 font-medium">Invested KRW 300M in Korean government bonds (safe, ~2.5% yield). F-5-5 approved in 3 months. Now living in Seoul, children in international school. Enrolled in Korean language course—targeting citizenship in 5 years. Appreciates NHI coverage and stability.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">European Retiree, F-5-6 Jeju</h3>
+        <p class="text-neutral-600 mb-4">58 years old, looking for retirement residence with citizenship option. Interested in Jeju Island property investment.</p>
+        <p class="text-green-700 font-medium">Purchased KRW 600M resort condominium in Jeju (qualifies for F-5-6). Approved in 4 months after property registration verification. Living in Jeju with seasonal Seoul visits. Learning Korean—targeting TOPIK 5 for citizenship eligibility. Lifestyle dramatically better than expected.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Japanese Entrepreneur, D-8 Restaurant</h3>
+        <p class="text-neutral-600 mb-4">42 years old, experienced restaurant owner, wants to open Japanese restaurant in Seoul. KRW 120M investment.</p>
+        <p class="text-green-700 font-medium">D-8-1 approved in 6 weeks. Opened restaurant in Itaewon district. Initial challenges with Korean licensing and suppliers, but business now profitable. Cultural proximity helps—Japanese language skills assist with Korean learning. Targeting F-2-7 conversion with restaurant success.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Indian IT Professional, F-2-7 Points</h3>
+        <p class="text-neutral-600 mb-4">38 years old, IT consultant with 5 years Korean experience on E-7 visa. High income, TOPIK 4, master's degree. Wants long-term residence.</p>
+        <p class="text-green-700 font-medium">Accumulated 92 points (income: 25, education: 15, Korean: 15, age: 15, residence: 22). F-2-7 approved in 5 weeks. Now has 5-year residence with freedom to change employers. Targeting F-5 conversion (100+ points needed) and eventually citizenship. Korean language improving steadily.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Application Rejected: Business Viability</h3>
+        <p class="text-neutral-600 mb-4">Applied for D-8 with vague business plan, minimal market research, and no clear revenue model. KRW 100M investment ready but purpose unclear.</p>
+        <p class="text-red-700 font-medium">Application rejected. Immigration questioned business viability—investment appeared designed solely for visa purposes, not genuine economic activity. Reapplied with detailed market analysis, concrete business operations plan, and office lease. Second application approved. Lesson: Immigration evaluates business legitimacy, not just investment amount.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for South Korea Investor Visa"
+    description="Find coverage for your first 6 months and supplemental plans alongside NHI."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Treating D-8 as Passive Investment</h3>
+        <p class="text-neutral-600">D-8 requires genuine business operations—you must run an actual company. Immigration checks that businesses are operational, have employees (ideally Korean), and conduct real commercial activity. "Parking" money in a shell company leads to renewal denial. If you want passive investment, choose F-5-5 (bonds) instead.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Korean Language Need</h3>
+        <p class="text-neutral-600">While not required for investor visas initially, Korean becomes essential. Business dealings, government paperwork, banking—all primarily in Korean. Citizenship requires TOPIK Level 5 (advanced). Start learning immediately upon arrival. Those who don't learn Korean remain permanent outsiders in business and society.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring Tax Obligations</h3>
+        <p class="text-neutral-600">Korea taxes worldwide income for residents. D-8 and F-5 holders are tax residents. Failure to file properly can jeopardize visa renewal and citizenship eligibility. Korean tax system is complex—hire Korean CPA from the start. Tax compliance is verified during visa renewals and citizenship applications.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Private Insurance Initially</h3>
+        <p class="text-neutral-600">NHI eligibility starts after 6 months. Medical emergencies happen—Korean hospitals provide excellent care but expect payment. Without insurance, serious treatment can cost tens of millions of won. International coverage for the first 6 months is essential, not optional.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Seoul Living Costs</h3>
+        <p class="text-neutral-600">Housing in Seoul is extraordinarily expensive. Jeonse (lump-sum deposit) system requires KRW 300M-800M+ for decent apartments. Monthly rent alternatively runs KRW 2-4M+ for comfortable housing. International schools cost KRW 30-50M/year. Budget realistically—many investors are shocked by Seoul costs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in South Korea -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in South Korea</h2>
+
+    <p class="mb-4">
+      South Korea's healthcare system consistently ranks among the world's best—combining advanced technology, skilled physicians, short wait times, and reasonable costs. The mandatory National Health Insurance makes quality care accessible to all long-term residents.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Korean Healthcare System</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">National Health Insurance (NHI)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Universal coverage for residents</li>
+          <li>• 70% coverage for most treatments</li>
+          <li>• Wide network of hospitals</li>
+          <li>• Income-based premiums</li>
+          <li>• Out-of-pocket caps for major illness</li>
+          <li>• Prescription drug coverage</li>
+          <li>• Mental health included</li>
+          <li>• Maternity care covered</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">System Advantages</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• Short waiting times (days, not months)</li>
+          <li>• Advanced medical technology</li>
+          <li>• Highly trained specialists</li>
+          <li>• Medical tourism destination</li>
+          <li>• Affordable compared to US/Europe</li>
+          <li>• Many English-speaking doctors</li>
+          <li>• Digital health records</li>
+          <li>• Excellent emergency care</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Major Hospitals</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Seoul</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Samsung Medical Center (best overall)</li>
+          <li>• Asan Medical Center (largest)</li>
+          <li>• Severance Hospital (Yonsei University)</li>
+          <li>• Seoul National University Hospital</li>
+          <li>• International clinics available</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Busan & Other Cities</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Busan National University Hospital</li>
+          <li>• Dong-A University Hospital</li>
+          <li>• Chungnam National (Daejeon)</li>
+          <li>• Kyungpook National (Daegu)</li>
+          <li>• Quality consistent nationwide</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Costs</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-2">Outpatient Visit</h4>
+          <p class="text-neutral-700">With NHI: KRW 15-30K</p>
+          <p class="text-neutral-500 text-sm">Without: KRW 50-100K</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-2">Specialist Consult</h4>
+          <p class="text-neutral-700">With NHI: KRW 30-50K</p>
+          <p class="text-neutral-500 text-sm">Without: KRW 100-200K</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900 mb-2">Hospital Day</h4>
+          <p class="text-neutral-700">With NHI: KRW 100-300K</p>
+          <p class="text-neutral-500 text-sm">Without: KRW 500K-1M</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>International patient services:</strong> Major Seoul hospitals (Samsung, Asan, Severance) have dedicated international patient centers with English-speaking coordinators, interpreters, and insurance processing. They're experienced with expat patients and international insurance. For complex care, these are excellent choices even if you have NHI.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get Korean citizenship through investment?</h3>
+        <p class="text-neutral-600">
+          Yes, but indirectly. Investment visas provide residence that can lead to citizenship after 5 years. Citizenship requirements: 5+ years continuous residence, TOPIK Level 5 Korean proficiency, basic civics test, financial stability, and renouncing other citizenships (Korea generally doesn't allow dual citizenship for naturalized citizens).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What Korean language level do I need for investor visa?</h3>
+        <p class="text-neutral-600">
+          Investor visas (D-8, F-5) don't require Korean proficiency. However, citizenship requires TOPIK Level 5 (advanced). Even without citizenship goals, Korean is practically essential for business and daily life. Most government services, banking, and business are conducted in Korean. Start learning immediately upon arrival.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I bring my family on investor visa?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouse and unmarried children under 18 can receive F-3 dependent visas. They can study (children) but need separate work permits to work. F-5 permanent residence includes family. Children may attend Korean public schools (free with NHI enrollment) or international schools (KRW 30-50M/year).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if my business fails?</h3>
+        <p class="text-neutral-600">
+          D-8 visa depends on maintaining business operations. If your business fails, you may need to: 1) Start new qualifying business, 2) Convert to different visa if eligible (F-2-7 points system, marriage visa, etc.), or 3) Leave Korea. F-5 permanent residence is more stable—you only need to maintain the investment amount, not necessarily business success.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How does the Jeju Investment program work?</h3>
+        <p class="text-neutral-600">
+          Jeju Island has special F-5-6 rules: invest KRW 500M+ in designated resort/leisure property (lower than mainland KRW 1.5B threshold). Must be specific approved developments. Provides F-5 permanent residence. Popular with Chinese investors. Property must be maintained; sale may affect visa status. Recent rule changes have tightened requirements—consult specialist.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is the OASIS startup visa worth it?</h3>
+        <p class="text-neutral-600">
+          For tech entrepreneurs, yes. OASIS (government startup incubator) provides: lower investment requirements, fast-track visa processing, office space, mentoring, and networking. Must pass screening showing innovative business concept. Ideal for tech/software startups. More selective than standard D-8 but significantly better support infrastructure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      South Korea offers one of Asia's most attractive investor pathways for those willing to make a real commitment. The D-8 visa provides entry at reasonable investment levels (~$75K), while F-5 permanent residence offers long-term stability. Most significantly, Korea provides a clear path to citizenship—rare among Asian developed economies.
+    </p>
+
+    <p class="mb-4">
+      The trade-offs are substantial: high living costs (especially Seoul), challenging language, competitive business culture, and complex bureaucracy. Korea rewards those who commit fully—learn the language, build genuine businesses, and integrate into society. Those seeking passive residence or English-speaking environments should look elsewhere (Thailand Elite, Singapore).
+    </p>
+
+    <p class="mb-6">
+      Healthcare through mandatory NHI is excellent and affordable. The first 6 months require private international insurance, then NHI provides comprehensive coverage. Supplemental Korean insurance can cover gaps. Overall healthcare costs are reasonable by developed-country standards.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        South Korea suits serious investors seeking developed-market stability, world-class healthcare, and eventual citizenship in Asia's fourth-largest economy. D-8 works for entrepreneurs building real businesses. F-5 suits those with KRW 300M+ for passive investment and immediate permanent residence. Commit to learning Korean and integrating—Korea rewards full commitment with an excellent quality of life.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare Premium Insurance
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Allianz Care Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/digital-nomad-visa/in/south-korea" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">South Korea Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Workation visa and remote work options</p>
+      </a>
+      <a href="/visas/investor-visa/in/japan" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Japan Investor Visa</h3>
+        <p class="text-neutral-600 text-sm">Business Manager visa comparison</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+      <a href="/providers/cigna-global" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Cigna Global Review</h3>
+        <p class="text-neutral-600 text-sm">Premium international health coverage</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
