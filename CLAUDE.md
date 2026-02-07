@@ -138,6 +138,27 @@ Key CRO elements: trust signals, split CTAs with `style="color: white !important
 - Uses PageShell with `heroImage="/images/countries/[country]-hero-bg.png"`
 - Note: Czech Republic requires PVZP/Maxima insurance (SafetyWing NOT accepted)
 
+**Problem/Solution Guide Pattern** - Educational guides at `/guides/[topic]`:
+- 9-section structure with TOC navigation
+- Uses PageShell with tocItems array
+- CTABox component with props (NOT slots): `title`, `description`, `buttonText`, `buttonHref`
+- ComparisonTable for data comparisons
+- Content guideline: Multiple paragraphs, max 4 lines each
+- 21 guides covering: insurance transitions, medications abroad, emergencies, family coverage, etc.
+
+## Environment Variables
+
+Create `.env` file (not committed to git) with:
+```
+IDEOGRAM_API_KEY=your_key_here
+PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+- `IDEOGRAM_API_KEY` - For AI image generation
+- `PUBLIC_GA_MEASUREMENT_ID` - Google Analytics 4 tracking (required for outbound click tracking)
+
+Note: GA tracking uses `window.gtag` for cross-script accessibility in Astro's inline script isolation.
+
 ## Progress Tracking
 
 See `docs/PROGRESS.md` for:

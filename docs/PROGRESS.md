@@ -7,7 +7,7 @@ Last updated: February 6, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,401
+**Total pages:** ~2,416
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -911,60 +911,50 @@ These 21 countries have manually created pages with custom hero images:
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Provider comparison pages | ~28 | Complete |
-| Problem/solution guides | 6 | Complete (with hero images) |
+| Problem/solution guides | 21 | Complete (6 original + 15 new) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 8 | Expanded to long-form (550-685 lines each) |
 | **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
 | **Retirement Visa pages** | **17** | **Complete (17 countries across 4 batches)** |
 | **Student Visa pages** | **34** | **Complete (all countries)** |
 | **Freelancer Visa pages** | **9** | **Complete (all countries)** |
-| **Investor Visa pages** | **40** | **In progress (28 new + 12 existing)** |
+| **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 
-**Total pages:** ~2,401
+**Total pages:** ~2,416
 
 ---
 
 ## Next Steps
 
-### Immediate Priorities
-1. **Retirement Visa Pages Complete (17 countries)** ✓
-   - Europe: Portugal, Spain, France, Italy, Greece, Malta, Croatia
-   - Asia: Thailand, Malaysia, Philippines, Indonesia, Vietnam
-   - Americas: Panama, Costa Rica, Mexico, Ecuador, Belize
-   - Optional expansion: UAE, Cyprus, Colombia, Nicaragua, Cambodia
+### Immediate Priorities (Next Session)
+1. **Work Permit Visa Pages** - Next visa type to build out
+   - 18 countries planned
+   - Focus on employment-based visa insurance requirements
+   - Follow established Visa × Country page pattern
 
-2. **Student Visa Pages Complete** ✓
-   - All 34 countries covered across 10 batches
-   - UK, Australia, Canada (Batch 1)
-   - Germany, France, Netherlands (Batch 2)
-   - Spain, Italy, Ireland (Batch 3)
-   - Japan, South Korea, Singapore (Batch 4)
-   - Switzerland, Austria, Belgium (Batch 5)
-   - Sweden, Denmark, Norway (Batch 6)
-   - New Zealand, Czech Republic, Poland, Portugal (Batch 7)
-   - Finland, Taiwan, Malaysia, Thailand (Batch 8)
-   - Hungary, UAE, China, India (Batch 9)
-   - Hong Kong, South Africa, Argentina, Chile (Batch 10)
+2. **More Problem/Solution Guides** - Additional topics available
+   - Insurance for digital nomad couples
+   - Dealing with insurance claim disputes
+   - Health insurance for part-year expats
 
-3. **Freelancer/Self-Employed Visa Pages Complete** ✓
-   - All 9 countries covered: Germany, Netherlands, Czech Republic, Spain, Portugal, France, Austria, UAE, Estonia
-
-4. **Other Visa Type × Country Pages** - Work Permit pages remaining:
-   - Investor/Entrepreneur Visa: 40 pages complete (12 existing + 28 new in 10 batches)
-   - Work Permit (18 countries planned) - next priority
-
-3. **Continue Country-Persona Expansion** - ~92 countries remaining
+3. **Country-Persona Expansion** - ~92 countries remaining
    - Batch 9: Middle East (Qatar, Bahrain, Kuwait, Oman, Saudi Arabia, Jordan)
    - Batch 10: Africa (Morocco, Tunisia, Ghana, Egypt, Kenya, Nigeria)
    - Target: 8-10 countries per batch
 
-4. **Continue Tier 3 Country Refinement** - ~110 countries remaining with generic content
+4. **Tier 3 Country Refinement** - ~110 countries with generic content
    - African growth markets (Tunisia, Ghana, Senegal, Rwanda, Nigeria)
    - Middle East gaps (Saudi Arabia, Jordan, Lebanon)
    - Central Asia (Kazakhstan, Uzbekistan)
 
+### Completed This Session (February 6, 2026)
+- ✅ Investor/Entrepreneur Visa pages: 40 total (28 new across 10 batches)
+- ✅ Problem/Solution guides: 21 total (15 new across 5 batches)
+- ✅ Fixed GA4 outbound click tracking (window.gtag for Astro script isolation)
+- ✅ Created .env configuration for GA tracking
+
 ### Medium-term Goals
-4. **Expand Condition × Country Pages** - Add more countries to the condition matrix
+1. **Expand Condition × Country Pages** - Add more countries to the condition matrix
    - Currently 27 countries × 10 conditions = 270 pages
    - Could expand to more destinations
 
