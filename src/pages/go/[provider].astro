@@ -46,21 +46,56 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
   </div>
 
   <script is:inline define:vars={{ externalUrl: provider.externalUrl, providerSlug, providerName: provider.name, GA_ID }}>
-    // Track outbound click
-    if (typeof gtag !== 'undefined' && GA_ID) {
-      gtag('event', 'outbound_click', {
-        'event_category': 'outbound',
-        'event_label': providerName,
-        'provider': providerSlug,
-        'destination_url': externalUrl,
-        'transport_type': 'beacon'
-      });
+    // Track outbound click with reliable redirect
+    var redirected = false;
+
+    function doRedirect() {
+      if (!redirected) {
+        redirected = true;
+        window.location.href = externalUrl;
+      }
     }
 
-    // Redirect after brief delay to ensure tracking fires
-    setTimeout(function() {
-      window.location.href = externalUrl;
-    }, 150);
+    // Fallback redirect - ensures user isn't stuck if GA fails
+    setTimeout(doRedirect, 1500);
+
+    // Wait for gtag to be ready, then track and redirect
+    function trackAndRedirect() {
+      if (typeof gtag === 'function') {
+        // GA4 event with callback
+        gtag('event', 'outbound_click', {
+          'event_category': 'outbound',
+          'event_label': providerName,
+          'link_url': externalUrl,
+          'provider': providerSlug,
+          'send_to': GA_ID,
+          'event_callback': doRedirect,
+          'event_timeout': 1000
+        });
+      } else {
+        // GA not available, redirect immediately
+        doRedirect();
+      }
+    }
+
+    // Check if gtag is ready, otherwise wait for it
+    if (GA_ID) {
+      if (typeof gtag === 'function') {
+        trackAndRedirect();
+      } else {
+        // Wait for gtag.js to load
+        var checkGtag = setInterval(function() {
+          if (typeof gtag === 'function') {
+            clearInterval(checkGtag);
+            trackAndRedirect();
+          }
+        }, 50);
+        // Stop checking after 1 second
+        setTimeout(function() { clearInterval(checkGtag); }, 1000);
+      }
+    } else {
+      doRedirect();
+    }
   </script>
 </body>
 </html>
