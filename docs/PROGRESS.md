@@ -13,7 +13,7 @@ Last updated: February 6, 2026
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 6 (with hero images)
+**Problem/solution guides:** 15 (6 original + 9 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
@@ -21,6 +21,30 @@ Last updated: February 6, 2026
 ---
 
 ## Completed Milestones
+
+### February 6, 2026 - Problem/Solution Guides Expansion (9 new guides)
+
+#### Problem/Solution Guides Created (3 batches)
+New problem/solution guides at `/guides/[topic]`:
+
+**Batch 1:**
+- Sick Abroad Without Insurance - emergency options, negotiating costs, prevention
+- Renewing Insurance Abroad - timing, continuity, provider switching
+- Insurance with Foreign Employer - local vs international, expat packages
+
+**Batch 2:**
+- Aging Out of Insurance - age limits, alternatives for 65+/70+
+- Understanding Exclusions - common exclusions, reading policy fine print
+- Telemedicine Abroad - virtual care options, when it works
+
+**Batch 3:**
+- Local vs International Insurance - comparing coverage types, when each is best
+- Insurance for Couples/Families - family plans, maternity, children coverage
+- Insurance When Moving Countries - transitions, continuity, timing moves
+
+**Total Problem/Solution guides: 15** (6 original + 9 new)
+
+---
 
 ### February 6, 2026 - Investor/Entrepreneur Visa Pages Batches 1-10 (28 countries)
 
