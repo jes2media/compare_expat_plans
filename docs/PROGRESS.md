@@ -13,7 +13,7 @@ Last updated: February 6, 2026
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 18 (6 original + 12 new problem/solution guides)
+**Problem/solution guides:** 21 (6 original + 15 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
@@ -47,7 +47,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Insurance Gaps Between Jobs - bridge coverage, continuity, transition timing
 - Emergency Protocols Abroad - step-by-step crisis guide, preparation checklist
 
-**Total Problem/Solution guides: 18** (6 original + 12 new)
+**Batch 5:**
+- Prescription Medications Abroad - drug availability, controlled substances, transferring prescriptions
+- Pet Insurance for Expats - coverage options, costs by country, finding vets abroad
+- Chronic Pain Management Abroad - medication access, finding specialists, alternative treatments
+
+**Total Problem/Solution guides: 21** (6 original + 15 new)
 
 ---
 
