@@ -7,13 +7,13 @@ Last updated: February 7, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,428
+**Total pages:** ~2,431
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 33 (6 original + 27 new problem/solution guides)
+**Problem/solution guides:** 36 (6 original + 30 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
@@ -72,7 +72,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Handling Medical Bills Abroad - payment options, direct billing, reimbursement, negotiating
 - Choosing Insurance Deductibles - how deductibles work, premium impact, strategies, calculations
 
-**Total Problem/Solution guides: 33** (6 original + 27 new)
+**Batch 10:**
+- Insurance During Visa Transitions - coverage gaps, timing strategies, country moves
+- Managing Chronic Conditions Abroad - medications, specialists, monitoring, emergency planning
+- Remote Work Visa Insurance - meeting requirements, country-specific rules, compliant providers
+
+**Total Problem/Solution guides: 36** (6 original + 30 new)
 
 ---
 
@@ -931,7 +936,7 @@ These 21 countries have manually created pages with custom hero images:
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Provider comparison pages | ~28 | Complete |
-| Problem/solution guides | 33 | Complete (6 original + 27 new) |
+| Problem/solution guides | 36 | Complete (6 original + 30 new) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 8 | Expanded to long-form (550-685 lines each) |
 | **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
@@ -940,7 +945,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Freelancer Visa pages** | **9** | **Complete (all countries)** |
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 
-**Total pages:** ~2,428
+**Total pages:** ~2,431
 
 ---
 
@@ -968,7 +973,7 @@ These 21 countries have manually created pages with custom hero images:
    - Central Asia (Kazakhstan, Uzbekistan)
 
 ### Completed This Session (February 7, 2026)
-- ✅ Problem/Solution guides: 33 total (12 new in Batches 6-9)
+- ✅ Problem/Solution guides: 36 total (15 new in Batches 6-10)
   - Insurance for Digital Nomad Couples
   - Insurance Claim Disputes
   - Part-Year Expat Insurance
@@ -981,6 +986,9 @@ These 21 countries have manually created pages with custom hero images:
   - Digital Nomad Family Insurance
   - Handling Medical Bills Abroad
   - Choosing Insurance Deductibles
+  - Insurance During Visa Transitions
+  - Managing Chronic Conditions Abroad
+  - Remote Work Visa Insurance
 
 ### Completed Previous Session (February 6, 2026)
 - ✅ Investor/Entrepreneur Visa pages: 40 total (28 new across 10 batches)
