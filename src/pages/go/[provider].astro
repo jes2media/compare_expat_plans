@@ -32,9 +32,9 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
       <script is:inline define:vars={{ GA_ID }}>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', GA_ID);
+        window.gtag = function(){dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', GA_ID);
       </script>
     </>
   )}
@@ -46,56 +46,22 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
   </div>
 
   <script is:inline define:vars={{ externalUrl: provider.externalUrl, providerSlug, providerName: provider.name, GA_ID }}>
-    // Track outbound click with reliable redirect
-    var redirected = false;
-
-    function doRedirect() {
-      if (!redirected) {
-        redirected = true;
-        window.location.href = externalUrl;
-      }
-    }
-
-    // Fallback redirect - ensures user isn't stuck if GA fails
-    setTimeout(doRedirect, 1500);
-
-    // Wait for gtag to be ready, then track and redirect
-    function trackAndRedirect() {
-      if (typeof gtag === 'function') {
-        // GA4 event with callback
-        gtag('event', 'outbound_click', {
-          'event_category': 'outbound',
-          'event_label': providerName,
-          'link_url': externalUrl,
-          'provider': providerSlug,
-          'send_to': GA_ID,
-          'event_callback': doRedirect,
-          'event_timeout': 1000
-        });
-      } else {
-        // GA not available, redirect immediately
-        doRedirect();
-      }
-    }
-
-    // Check if gtag is ready, otherwise wait for it
-    if (GA_ID) {
-      if (typeof gtag === 'function') {
-        trackAndRedirect();
-      } else {
-        // Wait for gtag.js to load
-        var checkGtag = setInterval(function() {
-          if (typeof gtag === 'function') {
-            clearInterval(checkGtag);
-            trackAndRedirect();
-          }
-        }, 50);
-        // Stop checking after 1 second
-        setTimeout(function() { clearInterval(checkGtag); }, 1000);
-      }
+    // Simple approach: send event, then redirect after delay
+    if (typeof window.gtag === 'function') {
+      console.log('Tracking outbound click:', providerName);
+      window.gtag('event', 'outbound_click', {
+        provider_name: providerName,
+        provider_slug: providerSlug,
+        destination_url: externalUrl
+      });
     } else {
-      doRedirect();
+      console.log('gtag not available');
     }
+
+    // Redirect after giving GA time to send
+    setTimeout(function() {
+      window.location.href = externalUrl;
+    }, 500);
   </script>
 </body>
 </html>
