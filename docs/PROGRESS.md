@@ -13,7 +13,7 @@ Last updated: February 6, 2026
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 15 (6 original + 9 new problem/solution guides)
+**Problem/solution guides:** 18 (6 original + 12 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
@@ -42,7 +42,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Insurance for Couples/Families - family plans, maternity, children coverage
 - Insurance When Moving Countries - transitions, continuity, timing moves
 
-**Total Problem/Solution guides: 15** (6 original + 9 new)
+**Batch 4:**
+- Pregnancy Planning Abroad - maternity insurance timing, where to deliver, costs
+- Insurance Gaps Between Jobs - bridge coverage, continuity, transition timing
+- Emergency Protocols Abroad - step-by-step crisis guide, preparation checklist
+
+**Total Problem/Solution guides: 18** (6 original + 12 new)
 
 ---
 
