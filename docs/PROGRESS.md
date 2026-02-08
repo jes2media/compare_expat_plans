@@ -7,13 +7,13 @@ Last updated: February 7, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,440
+**Total pages:** ~2,443
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 45 (6 original + 39 new problem/solution guides)
+**Problem/solution guides:** 48 (6 original + 42 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
@@ -92,7 +92,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Insurance Renewability and Age Limits - guaranteed renewability, entry vs renewal ages, provider policies
 - Understanding Coverage Limits - annual, lifetime, per-condition caps, choosing adequate protection
 
-**Total Problem/Solution guides: 45** (6 original + 39 new)
+**Batch 14:**
+- Sabbatical and Career Break Insurance - coverage during extended time off, COBRA, travel vs international
+- Direct Billing vs Reimbursement - payment models, finding direct billing, reimbursement process
+- Provider Networks Abroad - in-network benefits, finding providers, building your care team
+
+**Total Problem/Solution guides: 48** (6 original + 42 new)
 
 ---
 
@@ -951,7 +956,7 @@ These 21 countries have manually created pages with custom hero images:
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Provider comparison pages | ~28 | Complete |
-| Problem/solution guides | 45 | Complete (6 original + 39 new) |
+| Problem/solution guides | 48 | Complete (6 original + 42 new) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 8 | Expanded to long-form (550-685 lines each) |
 | **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
@@ -988,7 +993,7 @@ These 21 countries have manually created pages with custom hero images:
    - Central Asia (Kazakhstan, Uzbekistan)
 
 ### Completed This Session (February 7, 2026)
-- ✅ Problem/Solution guides: 45 total (24 new in Batches 6-13)
+- ✅ Problem/Solution guides: 48 total (27 new in Batches 6-14)
   - Insurance for Digital Nomad Couples
   - Insurance Claim Disputes
   - Part-Year Expat Insurance
@@ -1013,6 +1018,9 @@ These 21 countries have manually created pages with custom hero images:
   - Self-Employed Expat Insurance
   - Insurance Renewability and Age Limits
   - Understanding Coverage Limits
+  - Sabbatical and Career Break Insurance
+  - Direct Billing vs Reimbursement
+  - Provider Networks Abroad
 
 ### Completed Previous Session (February 6, 2026)
 - ✅ Investor/Entrepreneur Visa pages: 40 total (28 new across 10 batches)
