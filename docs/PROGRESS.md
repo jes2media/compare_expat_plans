@@ -7,13 +7,13 @@ Last updated: February 9, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,449
+**Total pages:** ~2,452
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 54 (6 original + 48 new problem/solution guides)
+**Problem/solution guides:** 57 (6 original + 51 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
@@ -107,7 +107,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Coordination of Benefits - how multiple plans work together, primary/secondary rules, claiming from both
 - Comparing International Insurance Plans - systematic guide to evaluating, comparing, and choosing plans
 
-**Total Problem/Solution guides: 54** (6 original + 48 new)
+**Batch 17:**
+- LGBTQ+ Expat Insurance - inclusive providers, partner coverage, specific coverage needs, destination considerations
+- Solo Female Expat Insurance - women's health coverage, finding female providers, safety considerations
+- Annual Insurance Review - how to review coverage annually, when to switch, renewal process
+
+**Total Problem/Solution guides: 57** (6 original + 51 new)
 
 ---
 
@@ -966,7 +971,7 @@ These 21 countries have manually created pages with custom hero images:
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Provider comparison pages | ~28 | Complete |
-| Problem/solution guides | 54 | Complete (6 original + 48 new) |
+| Problem/solution guides | 57 | Complete (6 original + 51 new) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 8 | Expanded to long-form (550-685 lines each) |
 | **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
@@ -975,7 +980,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Freelancer Visa pages** | **9** | **Complete (all countries)** |
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 
-**Total pages:** ~2,449
+**Total pages:** ~2,452
 
 ---
 
@@ -1003,7 +1008,7 @@ These 21 countries have manually created pages with custom hero images:
    - Central Asia (Kazakhstan, Uzbekistan)
 
 ### Completed This Session (February 9, 2026)
-- ✅ Problem/Solution guides: 54 total (33 new in Batches 6-16)
+- ✅ Problem/Solution guides: 57 total (36 new in Batches 6-17)
   - Insurance for Digital Nomad Couples
   - Insurance Claim Disputes
   - Part-Year Expat Insurance
@@ -1037,6 +1042,9 @@ These 21 countries have manually created pages with custom hero images:
   - Military and Veterans Insurance Abroad
   - Coordination of Benefits
   - Comparing International Insurance Plans
+  - LGBTQ+ Expat Insurance
+  - Solo Female Expat Insurance
+  - Annual Insurance Review
 
 ### Completed Previous Session (February 6, 2026)
 - ✅ Investor/Entrepreneur Visa pages: 40 total (28 new across 10 batches)
