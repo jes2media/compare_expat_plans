@@ -7,13 +7,13 @@ Last updated: February 9, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,470
+**Total pages:** ~2,473
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 75 (6 original + 69 new problem/solution guides)
+**Problem/solution guides:** 78 (6 original + 72 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 133 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa)
@@ -142,7 +142,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Natural Disasters and Insurance - coverage during earthquakes, hurricanes, floods; evacuation when healthcare overwhelmed
 - Medical Second Opinions Abroad - getting expert consultations while overseas, telemedicine, record gathering, making decisions
 
-**Total Problem/Solution guides: 75** (6 original + 69 new)
+**Batch 24:**
+- Grandparents Visiting Abroad - seniors visiting expat family, age restrictions, pre-existing conditions, trip duration strategies
+- Cross-Border Commuter Insurance - workers commuting between countries, multi-country coverage, tax implications, border considerations
+- Volunteer Worker Insurance - unpaid volunteers abroad, mission trips, gap years, conservation projects, organization-provided vs individual coverage
+
+**Total Problem/Solution guides: 78** (6 original + 72 new)
 
 ---
 
@@ -1010,7 +1015,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Freelancer Visa pages** | **9** | **Complete (all countries)** |
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 
-**Total pages:** ~2,470
+**Total pages:** ~2,473
 
 ---
 
