@@ -143,8 +143,8 @@ Key CRO elements: trust signals, split CTAs with `style="color: white !important
 - Uses PageShell with tocItems array
 - CTABox component with props (NOT slots): `title`, `description`, `buttonText`, `buttonHref`
 - ComparisonTable for data comparisons
-- Content guideline: Multiple paragraphs, max 4 lines each
-- 21 guides covering: insurance transitions, medications abroad, emergencies, family coverage, etc.
+- Content guideline: Multiple paragraphs per section, max 5 lines per paragraph
+- 81 guides covering: insurance transitions, medications abroad, emergencies, family coverage, chronic conditions, visa transitions, mental health, brokers, home leave, and more
 
 ## Environment Variables
 
@@ -166,3 +166,11 @@ See `docs/PROGRESS.md` for:
 - Completed milestones by date
 - Country refinement progress
 - Next steps and priorities
+
+**Current Stats (February 2026):**
+- Total pages: ~2,476
+- Problem/Solution guides: 81
+- Visa × Country pages: 133 (33 DNV + 17 Retirement + 34 Student + 9 Freelancer + 40 Investor)
+- Country-persona pages: 728 (91 countries × 8 personas)
+- Condition × Country pages: 270 (10 conditions × 27 countries)
+- Provider pages: 8 (long-form, 550-685 lines each)

@@ -1,6 +1,8 @@
 # SEO Scaling Plan: compareexpatplans.com
 
-Last updated: January 2026
+Last updated: February 2026
+
+**Current Progress:** ~2,476 pages live. Phase 4-5 complete. See `PROGRESS.md` for detailed breakdown.
 
 ---
 
@@ -595,26 +597,36 @@ Should I build this page?
 /best/[category]/                          # e.g., /best/expat-health-insurance/
 /compare/                                  # Comparison hub
 /compare/[provider-a]-vs-[provider-b]/     # e.g., /compare/cigna-global-vs-allianz-care/
-/compare/countries/[a]-vs-[b]/             # e.g., /compare/countries/spain-vs-portugal/ (NEW)
+/compare/countries/[a]-vs-[b]/             # e.g., /compare/countries/spain-vs-portugal/
 /countries/                                # Country hub
 /countries/[country]/insurance/            # e.g., /countries/spain/insurance/
 /countries/[country]/insurance/[provider]/ # e.g., /countries/spain/insurance/cigna-global/
 /countries/[country]/insurance/for-[persona]/ # e.g., /countries/spain/insurance/for-digital-nomads/
-/conditions/                               # Conditions hub (NEW)
-/conditions/[condition]/in/[country]/      # e.g., /conditions/diabetes/in/thailand/ (NEW)
+/conditions/                               # Conditions hub
+/conditions/[condition]/in/[country]/      # e.g., /conditions/diabetes/in/thailand/
+/visas/                                    # Visa hub
+/visas/[visa-type]/in/[country]/           # e.g., /visas/digital-nomad-visa/in/spain/
 /providers/                                # Provider hub
 /providers/[provider]/                     # e.g., /providers/cigna-global/
 /providers/[provider]/for-[persona]/       # e.g., /providers/cigna-global/for-digital-nomads/
 /insurance-for/                            # Persona/constraint hub
 /insurance-for/[persona]/                  # e.g., /insurance-for/digital-nomads/
-/guides/                                   # Guide hub
+/guides/                                   # Guide hub (81 pages)
 /guides/[topic]/                           # e.g., /guides/switching-insurance-abroad/
 /regions/                                  # Regional hub
 /regions/[region]/                         # e.g., /regions/southeast-asia/
 ```
 
+**Visa Types Available:**
+- `/visas/digital-nomad-visa/in/[country]` - 33 countries
+- `/visas/retirement-visa/in/[country]` - 17 countries
+- `/visas/student-visa/in/[country]` - 34 countries
+- `/visas/freelancer-visa/in/[country]` - 9 countries
+- `/visas/investor-visa/in/[country]` - 40 countries
+
 ---
 
 ## Document History
 
+- **February 2026:** Updated with current progress (~2,476 pages). Phases 4-5 largely complete. Added visa page routes and condition page routes.
 - **January 2026:** Initial version
