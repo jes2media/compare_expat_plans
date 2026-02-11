@@ -1,0 +1,752 @@
+---
+/**
+ * Germany EU Blue Card - Long-form CRO-optimized page
+ * Static page for work permit visa in Germany
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Germany", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Germany Health Insurance Guide", href: "/countries/germany/insurance" },
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "University Degree", details: "Recognized by Germany (anabin database)", evidence: "Degree certificate + transcript" },
+  { requirement: "Job Offer", details: "Matching your degree field", evidence: "Employment contract" },
+  { requirement: "Salary Threshold", details: "€45,300/year (general) or €41,042 (shortage)", evidence: "Stated in contract" },
+  { requirement: "Health Insurance", details: "Public (gesetzliche) or approved private", evidence: "Insurance confirmation letter" },
+  { requirement: "Valid Passport", details: "Valid for duration of stay", evidence: "Passport copy" },
+  { requirement: "No Criminal Record", details: "For serious offenses", evidence: "Police certificate (if requested)" },
+];
+
+const salaryColumns = [
+  { key: "category", header: "Category" },
+  { key: "threshold", header: "Salary Threshold 2026" },
+  { key: "notes", header: "Notes" },
+];
+
+const salaryRows = [
+  { category: "General professions", threshold: "€45,300/year", notes: "Standard EU Blue Card threshold" },
+  { category: "Shortage occupations (STEM, medical)", threshold: "€41,042/year", notes: "IT, engineering, doctors, nurses" },
+  { category: "New graduates (first 3 years)", threshold: "€41,042/year", notes: "Recently graduated from German/EU university" },
+  { category: "IT specialists (no degree)", threshold: "€41,042/year", notes: "3+ years IT experience, new 2024 rule" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "public", header: "Public (Gesetzlich)" },
+  { key: "private", header: "Private (Privat)" },
+];
+
+const insuranceRows = [
+  { feature: "Eligibility", public: "Income under €69,300/year", private: "Income over €69,300 or self-employed" },
+  { feature: "Cost", public: "~15% of income (half paid by employer)", private: "€200-600/month (age-dependent)" },
+  { feature: "Coverage", public: "Comprehensive, regulated", private: "Customizable, often broader" },
+  { feature: "Family", public: "Free for non-working spouse/children", private: "Each person pays separately" },
+  { feature: "Waiting times", public: "Same as German citizens", private: "Often shorter, private hospitals" },
+  { feature: "Visa acceptance", public: "Always accepted", private: 'Must be "substitutive" type' },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "TK (Techniker)", type: "Public", price: "~15% of income", strengths: "Best public option, English service" },
+  { provider: "AOK", type: "Public", price: "~15% of income", strengths: "Largest public insurer, wide network" },
+  { provider: "Cigna Global", type: "Private International", price: "€250-450", strengths: "Global coverage, portable" },
+  { provider: "Allianz Care", type: "Private International", price: "€200-400", strengths: "German roots, EU coverage" },
+  { provider: "Ottonova", type: "Private German", price: "€300-500", strengths: "Digital-first, English app" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "EU Blue Card Application", amount: "€100-140", notes: "Depends on duration" },
+  { item: "National Visa (D-visa)", amount: "€75", notes: "Entry visa from home country" },
+  { item: "Residence Permit Card", amount: "€100", notes: "Biometric card fee" },
+  { item: "Health Insurance", amount: "€100-500/month", notes: "Mandatory, varies by type" },
+  { item: "Degree Recognition (if needed)", amount: "€100-600", notes: "anabin check or formal recognition" },
+  { item: "Translation/Apostille", amount: "€50-200", notes: "For foreign documents" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Secure job offer meeting requirements", duration: "Varies", location: "Job search" },
+  { step: "Check degree recognition (anabin)", duration: "1-7 days", location: "Online" },
+  { step: "Apply for national visa (D-visa)", duration: "2-8 weeks", location: "German embassy" },
+  { step: "Arrange health insurance", duration: "1-2 weeks", location: "Online/insurance provider" },
+  { step: "Enter Germany", duration: "1 day", location: "Germany" },
+  { step: "Register address (Anmeldung)", duration: "1 day", location: "Bürgeramt" },
+  { step: "Apply for EU Blue Card", duration: "4-12 weeks", location: "Ausländerbehörde" },
+  { step: "Receive Blue Card", duration: "2-4 weeks", location: "Mail/pickup" },
+];
+---
+
+<PageShell
+  title="Germany EU Blue Card 2026: Requirements, Salary, Insurance & Application Guide"
+  description="Complete guide to the Germany EU Blue Card. Salary thresholds, mandatory health insurance, degree recognition, and step-by-step application process for skilled workers relocating to Germany."
+  headline="Germany EU Blue Card: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working in Germany—visa requirements, the €45,300 salary threshold, mandatory health insurance, and the complete application process for skilled workers."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/germany-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official German Immigration Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Health Insurance Mandatory
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The EU Blue Card is Germany's premier work permit for highly skilled non-EU workers. It offers faster permanent residence (as quick as 21 months with B1 German), EU-wide mobility, and access to Germany's excellent healthcare system. Germany issues more Blue Cards than any other EU country—over 70,000 in 2023 alone.
+    </p>
+
+    <p class="mb-4">
+      Unlike many countries where health insurance is optional or handled through a separate system, Germany requires health insurance as a legal condition for both residence permits and employment. You cannot receive your EU Blue Card without proving health insurance coverage. This makes understanding German health insurance essential before you arrive.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Germany EU Blue Card</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> EU Blue Card (Blaue Karte EU)</li>
+        <li>• <strong>Salary threshold:</strong> €45,300/year (€41,042 for shortage occupations)</li>
+        <li>• <strong>Health insurance:</strong> Mandatory—public or approved private</li>
+        <li>• <strong>Duration:</strong> Up to 4 years (tied to employment contract)</li>
+        <li>• <strong>Permanent residence:</strong> 21 months (B1 German) or 27 months (A1 German)</li>
+        <li>• <strong>EU mobility:</strong> Move to other EU countries after 12 months</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in Germany?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Tech hub:</strong> Berlin, Munich, and Hamburg are major tech centers</li>
+      <li><strong>Strong economy:</strong> Europe's largest economy, stable job market</li>
+      <li><strong>Work-life balance:</strong> 25-30 days vacation, strong labor protections</li>
+      <li><strong>Fast PR pathway:</strong> 21-27 months to permanent residence</li>
+      <li><strong>EU mobility:</strong> Blue Card allows working in other EU countries</li>
+      <li><strong>Free education:</strong> Public universities are tuition-free</li>
+      <li><strong>Healthcare quality:</strong> World-class German healthcare system</li>
+      <li><strong>Family benefits:</strong> Strong childcare, parental leave</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">EU Blue Card is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have a recognized university degree</li>
+          <li>✓ Your salary meets €45,300 (or €41,042 shortage)</li>
+          <li>✓ You want fast permanent residence (21-27 months)</li>
+          <li>✓ You might want EU mobility later</li>
+          <li>✓ You value comprehensive healthcare</li>
+          <li>✓ You're in IT, engineering, medicine, or STEM</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Your degree isn't recognized in Germany</li>
+          <li>• Your salary is below thresholds</li>
+          <li>• You don't want mandatory health insurance costs</li>
+          <li>• You prefer English-only work environment</li>
+          <li>• You need to start work immediately (visa takes time)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>2024 changes:</strong> IT specialists with 3+ years experience can now get Blue Cards without a degree. This is a significant change—previously, a university degree was always required. Salary threshold for IT without degree is €41,042.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The EU Blue Card requires a recognized university degree (or IT experience), a job offer meeting salary thresholds, and mandatory health insurance. Your degree must be recognized in Germany—check the anabin database before applying.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Salary Thresholds (2026)</h3>
+
+    <p class="mb-4">
+      Germany has two salary thresholds for the EU Blue Card. The lower threshold applies to shortage occupations (Mangelberufe) including IT, engineering, medicine, and natural sciences.
+    </p>
+
+    <ComparisonTable columns={salaryColumns} rows={salaryRows} />
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-green-800">
+        <strong>IT without degree:</strong> Since November 2024, IT specialists with at least 3 years of professional experience can apply for an EU Blue Card without a university degree. The salary threshold is €41,042. This is a major change for self-taught developers and bootcamp graduates.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Degree Recognition</h3>
+
+    <p class="mb-4">
+      Your university degree must be recognized as equivalent to a German degree. Check the anabin database (anabin.kmk.org) before applying. Degrees are rated H+ (recognized), H+/- (conditionally recognized), or H- (not recognized).
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>H+ rating:</strong> Degree is recognized, proceed with application</li>
+      <li><strong>H+/- rating:</strong> May need individual assessment (takes 3-4 months)</li>
+      <li><strong>H- rating:</strong> Degree not recognized, Blue Card not possible</li>
+      <li><strong>Not in database:</strong> Request assessment from ZAB (Zentralstelle für ausländisches Bildungswesen)</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Health Insurance is Mandatory in Germany</h3>
+      <p class="text-amber-800">
+        Unlike the UK or US, Germany requires health insurance by law. You cannot receive a residence permit, open a bank account, or legally work without proving health insurance coverage. This applies to everyone—citizens and residents alike.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Germany has a dual healthcare system: public (gesetzliche Krankenversicherung) and private (private Krankenversicherung). Most EU Blue Card holders earning under €69,300 must join public insurance. Those earning above this threshold can choose private insurance.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public vs. Private Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Which Insurance Should You Choose?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose Public Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You earn under €69,300/year</li>
+          <li>✓ You have a non-working spouse or children</li>
+          <li>✓ You want predictable, income-based costs</li>
+          <li>✓ You plan to stay long-term</li>
+          <li>✓ You're risk-averse about healthcare</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Consider Private Insurance If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You earn over €69,300/year</li>
+          <li>✓ You're young, single, and healthy</li>
+          <li>✓ You want faster access, private hospitals</li>
+          <li>✓ You might leave Germany within 5 years</li>
+          <li>✓ You want customizable coverage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+      <p class="text-red-800">
+        <strong>Warning about private insurance:</strong> Once you switch to private insurance, returning to public is very difficult (only possible if income drops below threshold AND you're under 55). Private premiums increase with age, while public premiums are income-based. Think carefully before choosing private.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance for Visa Application</h3>
+
+    <p class="mb-4">
+      For your initial visa/residence permit, you need proof of health insurance. Options include:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Public insurance confirmation:</strong> Letter from TK, AOK, or other public insurer confirming future coverage start date</li>
+      <li><strong>Private insurance (substitutive):</strong> Must be "substitutive" (krankenversicherungspflichtig-ersetzend) type, not travel insurance</li>
+      <li><strong>International insurance:</strong> Only accepted for initial entry visa; must switch to German insurance after arrival</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Employer enrollment:</strong> Most employers will enroll you in public insurance (TK is most popular for expats) as part of onboarding. Your first paycheck will already have health insurance contributions deducted. You don't need to arrange this yourself in most cases.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance before your German employer enrolls you?"
+    description="Compare international health insurance for the transition period."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Most Blue Card holders will use German public insurance through their employer. For those choosing private or needing interim coverage, here are the main options.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Most Blue Card Holders: TK (Public)</h4>
+        <p class="text-neutral-600">Techniker Krankenkasse (TK) is Germany's largest public insurer and most popular with expats. They offer English-language service, a good app, and straightforward enrollment. If you earn under €69,300, this is likely your best option.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">High Earners Wanting Private: Ottonova</h4>
+        <p class="text-neutral-600">Ottonova is a digital-first private insurer popular with tech workers. Their app is in English, claims are processed digitally, and they're designed for the modern worker. Good choice if you're young, healthy, and earning above the threshold.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Planning to Leave Germany: Cigna/Allianz Global</h4>
+        <p class="text-neutral-600">If you might not stay in Germany permanently, international insurance offers portability. Cigna Global and Allianz Care work across countries, so you keep coverage if you relocate. Note: these need to be supplemented with German insurance for visa compliance.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Interim Coverage Before Employment</h4>
+        <p class="text-neutral-600">If you need coverage between arrival and employment start, Feather (formerly Ottonova expat) offers month-to-month expat insurance that's accepted for visa purposes. This bridges the gap until employer enrollment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The EU Blue Card has relatively low administrative fees compared to other countries. The major ongoing cost is health insurance, which is mandatory and significant.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Monthly Health Insurance Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Public (€50,000 salary)</p>
+        <p class="text-3xl font-bold text-neutral-900">~€310/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Your share (employer pays half)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Public (€70,000 salary)</p>
+        <p class="text-3xl font-bold text-neutral-900">~€430/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Your share (capped at threshold)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Private (30-year-old)</p>
+        <p class="text-3xl font-bold text-neutral-900">€300-500/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Full cost (employer contributes)</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Total First-Year Costs</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Visa/permit fees:</strong> €175-315 total</li>
+      <li><strong>Document preparation:</strong> €50-600 (translations, recognition)</li>
+      <li><strong>Health insurance:</strong> €3,600-5,200/year (your net share)</li>
+      <li><strong>Relocation:</strong> Varies (flights, deposits, setup)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Employer contributions:</strong> In the German system, employers pay half of public insurance contributions. On a €50,000 salary, the total health insurance cost is ~€620/month, but you only pay ~€310. This is a significant benefit compared to countries where you pay the full premium.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The EU Blue Card process involves two steps: obtaining a national visa (D-visa) from a German embassy, then converting it to a Blue Card at the local Ausländerbehörde (foreigners office) after arrival.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Job Offer Meeting Requirements</h4>
+          <p class="text-neutral-600">Find a job paying at least €45,300 (or €41,042 for shortage occupations). The employer doesn't need special sponsorship—any German company can hire Blue Card candidates. Get a signed employment contract.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Check Degree Recognition</h4>
+          <p class="text-neutral-600">Search anabin.kmk.org for your university and degree. If rated H+, you're good. If H+/- or not listed, contact ZAB for formal recognition (3-4 months, €200). This step is critical—without recognition, no Blue Card.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for National Visa (D-Visa)</h4>
+          <p class="text-neutral-600">Book appointment at German embassy in your country. Bring: passport, employment contract, degree certificate, CV, proof of health insurance, passport photos. Processing takes 2-8 weeks depending on embassy.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Health Insurance</h4>
+          <p class="text-neutral-600">Contact TK or another public insurer to arrange coverage starting with your employment. They'll provide a confirmation letter for your visa application. Your employer's HR can often help with this.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Enter Germany and Register</h4>
+          <p class="text-neutral-600">Arrive in Germany and register your address (Anmeldung) at the local Bürgeramt within 14 days. You'll receive an Anmeldebestätigung—keep this safe, you'll need it for everything.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for EU Blue Card</h4>
+          <p class="text-neutral-600">Book appointment at Ausländerbehörde (foreigners office). Bring all documents plus Anmeldung. In cities like Berlin, appointments can take weeks to get—book early. Processing takes 4-12 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Blue Card</h4>
+          <p class="text-neutral-600">Your Blue Card will be mailed or ready for pickup. It's a credit-card-sized document with your photo and biometrics. This is your residence and work permit combined. Valid for up to 4 years.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Berlin bottleneck:</strong> The Berlin Ausländerbehörde is notoriously slow. Appointments can take months to get. Use services like "Berlin Bürgeramt appointment finder" bots, or consider registering in Brandenburg initially. Other cities (Munich, Hamburg) are generally faster.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for EU Blue Card holders in Germany:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from India, €65,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Berlin startup, degree from IIT, single.</p>
+        <p class="text-green-700 font-medium">✓ Degree recognized (H+), above threshold. Enrolled in TK (employer handled it). €320/month insurance cost. Berlin Ausländerbehörde took 3 months for appointment—used "fiktionsbescheinigung" to work meanwhile. Now on track for PR after 21 months.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Data Scientist from Brazil, €52,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Munich company, master's from USP, married.</p>
+        <p class="text-green-700 font-medium">✓ STEM role qualifies for €41,042 threshold. Wife covered under public insurance for free (not working). Munich Ausländerbehörde much faster than Berlin—Blue Card in 6 weeks. Learning German for faster PR path.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">IT Specialist from US, no degree, €55,000</h3>
+        <p class="text-neutral-600 mb-4">5 years experience, self-taught, Hamburg role.</p>
+        <p class="text-green-700 font-medium">✓ Qualifies under new 2024 IT-without-degree rule. Had to document 3 years experience thoroughly. Embassy initially confused about new rules—brought printed legislation. Got Blue Card successfully. Chose Ottonova private insurance (single, healthy, likes the app).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from UK, €48,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Post-Brexit, needs visa now, Frankfurt agency.</p>
+        <p class="text-amber-700 font-medium">△ Salary above threshold but degree recognition took 4 months (UK degree not in anabin). Had to use ZAB process. Interim used tourist visa—couldn't work, awkward start. Now sorted with TK public insurance. Lesson: start degree recognition early.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Nurse from Philippines, €42,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Hospital position, nursing degree.</p>
+        <p class="text-green-700 font-medium">✓ Healthcare is shortage occupation—€41,042 threshold applies. Required professional recognition (Anerkennung) for nursing credential plus language certification. Process took 8 months total but now has Blue Card with clear PR pathway.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Designer from Argentina, €38,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Creative agency, design degree.</p>
+        <p class="text-red-700 font-medium">✗ Salary below both thresholds (€45,300 general, €41,042 shortage). Design isn't a shortage occupation. Had to negotiate higher salary or consider regular work visa (§18b) instead of Blue Card. Ended up with §18b—no fast PR track, but at least working in Germany.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance Options for Germany"
+    description="Find the right coverage for your situation—public, private, or international."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Checking Degree Recognition First</h3>
+        <p class="text-neutral-600">If your degree isn't recognized (H+ in anabin), you cannot get a Blue Card. Check BEFORE accepting a job offer. ZAB recognition takes 3-4 months, so start early. Don't relocate and then discover the problem.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing Private Insurance Without Understanding the Lock-in</h3>
+        <p class="text-neutral-600">Once you opt for private insurance, returning to public is nearly impossible after age 55 or if income stays above threshold. Private premiums increase with age. Many expats regret this choice when starting a family (public covers family for free).</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Berlin Bureaucracy</h3>
+        <p class="text-neutral-600">Berlin's Ausländerbehörde is severely backlogged. Appointments can take 3+ months. Book immediately upon arrival. Use appointment-finder services. Or consider living in Brandenburg initially—they're much faster.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Registering Address Within 14 Days</h3>
+        <p class="text-neutral-600">You must register your address (Anmeldung) within 14 days of moving. Without this, you can't open bank accounts, get health insurance, or apply for residence permits. It's the foundation of German bureaucracy.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Travel Insurance Instead of Proper Health Insurance</h3>
+        <p class="text-neutral-600">Travel medical insurance is NOT accepted for residence permits. You need either German public insurance (gesetzlich) or approved private insurance (substitutive). SafetyWing, World Nomads, etc. will be rejected.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Germany -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Germany</h2>
+
+    <p class="mb-4">
+      Germany has one of the world's best healthcare systems, with universal coverage through either public or private insurance. Wait times are short compared to the UK, and quality is excellent. As a Blue Card holder with mandatory insurance, you'll have full access.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How German Healthcare Works</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hausarzt (GP) System</h4>
+        <p class="text-neutral-600">Register with a Hausarzt (general practitioner) near your home. They're your first point of contact and provide referrals to specialists. You can usually get appointments within days, not weeks.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialists (Fachärzte)</h4>
+        <p class="text-neutral-600">For specialists, you typically need a referral from your Hausarzt (Überweisung). Wait times vary—dermatologists and psychiatrists can take weeks, while urgent referrals are faster. Private insurance often gets faster appointments.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hospitals (Krankenhäuser)</h4>
+        <p class="text-neutral-600">Emergency rooms (Notaufnahme) are at hospitals. For non-emergencies, your Hausarzt refers you. Both public and private insurance cover hospital stays. Private insurance often includes private rooms.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Included in Both Public/Private</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP and specialist visits</li>
+          <li>✓ Hospital treatment</li>
+          <li>✓ Prescriptions (small copay)</li>
+          <li>✓ Mental health care</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Preventive care</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Limited/Extra Coverage</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Dental: Basic covered, crowns/implants limited</li>
+          <li>• Vision: Tests covered, glasses not</li>
+          <li>• Alternative medicine: Limited public, often private</li>
+          <li>• Private hospital rooms: Private insurance only</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding English-Speaking Doctors</h3>
+
+    <p class="mb-4">
+      In major cities (Berlin, Munich, Frankfurt, Hamburg), many doctors speak English. Use Doctolib or Jameda to find doctors and filter by language. In smaller cities, German ability becomes more important for healthcare.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Prescription system:</strong> German pharmacies (Apotheken) require prescriptions for most medications. Your doctor will give you a pink form (Kassenrezept for public) or blue form (Privatrezept for private). Take it to any Apotheke to fill.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is health insurance really mandatory in Germany?</h3>
+        <p class="text-neutral-600">
+          Yes, by law. Germany has Krankenversicherungspflicht—mandatory health insurance for all residents. You cannot get a residence permit, bank account, or legally work without it. This isn't optional like in some countries.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Should I choose public or private insurance?</h3>
+        <p class="text-neutral-600">
+          For most Blue Card holders, public insurance (gesetzlich) is the better choice. It covers family for free, costs are income-based, and you avoid the private insurance lock-in problem. Only consider private if you're young, single, high-earning, and might leave Germany within 5 years.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How fast can I get permanent residence?</h3>
+        <p class="text-neutral-600">
+          EU Blue Card holders can get permanent residence (Niederlassungserlaubnis) after 21 months with B1 German, or 27 months with A1 German. This is much faster than regular work permits (5 years). Start learning German early to qualify for the 21-month track.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I change jobs on the Blue Card?</h3>
+        <p class="text-neutral-600">
+          Yes, but in the first two years you need permission from the Ausländerbehörde to change employers. After two years, you can change freely as long as the new job still meets Blue Card requirements. Notify authorities of job changes within two weeks.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse work in Germany?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouses of Blue Card holders receive a residence permit with full work rights—no sponsorship needed. They can take any job. They're also covered by your public health insurance for free if not working.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if I lose my job?</h3>
+        <p class="text-neutral-600">
+          Blue Card holders have a 3-month grace period to find new employment. You must notify the Ausländerbehörde. During this period, you can receive unemployment benefits (Arbeitslosengeld) if you've contributed for 12+ months. Your health insurance continues.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The EU Blue Card offers one of Europe's most attractive skilled worker pathways. The fast track to permanent residence (21-27 months), EU mobility rights, and comprehensive healthcare make Germany compelling for long-term career building. The mandatory health insurance, while an adjustment for some, ensures excellent healthcare access.
+    </p>
+
+    <p class="mb-4">
+      For most Blue Card holders, public health insurance through TK or similar is the right choice. It's comprehensive, covers family members for free, and avoids the lock-in problems of private insurance. Unless you're young, single, high-earning, and planning to leave Germany within 5 years, stick with public.
+    </p>
+
+    <p class="mb-6">
+      The bureaucracy is real—especially in Berlin—but manageable with planning. Check degree recognition early, book Ausländerbehörde appointments immediately, and let your employer handle insurance enrollment. Within a few months, you'll have a clear path to permanent residence in Europe's largest economy.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The EU Blue Card requires mandatory health insurance—choose public for most situations. German healthcare is excellent, and the fast PR pathway (21-27 months) makes Germany attractive for skilled workers. Start degree recognition and German language learning early for the smoothest experience.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/germany/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to public vs. private insurance in Germany</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/uk" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Skilled Worker Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with the UK's work permit system</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

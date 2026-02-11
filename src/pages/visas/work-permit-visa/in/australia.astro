@@ -1,0 +1,806 @@
+---
+/**
+ * Australia Temporary Skill Shortage (TSS 482) Visa - Long-form CRO-optimized page
+ * Static page for work permit visa in Australia
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Australia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Australia Health Insurance Guide", href: "/countries/australia/insurance" },
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const streamColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "shortTerm", header: "Short-term Stream" },
+  { key: "mediumTerm", header: "Medium-term Stream" },
+  { key: "labour", header: "Labour Agreement" },
+];
+
+const streamRows = [
+  { feature: "Duration", shortTerm: "Up to 2 years", mediumTerm: "Up to 4 years", labour: "Up to 4 years" },
+  { feature: "Occupation list", shortTerm: "STSOL (Short-term)", mediumTerm: "MLTSSL (Medium/Long)", labour: "Per agreement" },
+  { feature: "PR pathway", shortTerm: "No", mediumTerm: "Yes (ENS 186)", labour: "Varies" },
+  { feature: "Renewals", shortTerm: "Once (onshore)", mediumTerm: "Unlimited", labour: "Per agreement" },
+  { feature: "Common roles", shortTerm: "Marketing, HR, Chefs", mediumTerm: "Engineers, IT, Medical", labour: "Regional, trade-specific" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Sponsorship", details: "Approved Australian employer sponsor", evidence: "Nomination from sponsor" },
+  { requirement: "Occupation", details: "On relevant skilled occupation list", evidence: "Skills assessment (some occupations)" },
+  { requirement: "Experience", details: "At least 2 years relevant experience", evidence: "Employment references, payslips" },
+  { requirement: "English Language", details: "IELTS 5.0 overall (5.0 each band) minimum", evidence: "IELTS, PTE, TOEFL, OET score" },
+  { requirement: "Health Insurance", details: "Adequate health cover for visa duration", evidence: "Insurance policy confirmation" },
+  { requirement: "Salary Threshold", details: "AUD $73,150/year (TSMIT) from July 2024", evidence: "Employment contract" },
+  { requirement: "Health & Character", details: "Medical exam, police checks", evidence: "Health exam, police certificates" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "medicare", header: "Medicare (RHCA countries)" },
+  { key: "private", header: "Private Health Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Eligibility", medicare: "UK, Ireland, NZ, Belgium, Netherlands, etc.", private: "All TSS 482 holders" },
+  { feature: "Cost", medicare: "Free (tax-funded)", private: "AUD $150-400/month" },
+  { feature: "GP visits", medicare: "Free or subsidized", private: "Often included, faster access" },
+  { feature: "Hospital", medicare: "Public hospitals free", private: "Private hospital choice" },
+  { feature: "Waiting times", medicare: "Public system waits", private: "Typically shorter" },
+  { feature: "Visa requirement", medicare: "Supplements but doesn't replace", private: "Required for visa" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (AUD)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Bupa Australia", type: "Australian Private", price: "$180-350", strengths: "Largest network, visa-compliant" },
+  { provider: "Medibank", type: "Australian Private", price: "$170-320", strengths: "Strong hospital cover" },
+  { provider: "NIB", type: "Australian Private", price: "$150-280", strengths: "Budget-friendly, good extras" },
+  { provider: "Cigna Global", type: "International", price: "$250-450", strengths: "Global coverage, portable" },
+  { provider: "Allianz Care", type: "International", price: "$220-400", strengths: "Worldwide cover, flexible" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (AUD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "$1,455-2,645", notes: "Short-term $1,455, Medium-term $2,645" },
+  { item: "Nomination Fee", amount: "$330", notes: "Paid by employer" },
+  { item: "Skilling Australians Fund", amount: "$1,200-1,800/year", notes: "Paid by employer (small/large business)" },
+  { item: "Health Exam", amount: "$300-500", notes: "Panel doctor examination" },
+  { item: "Police Checks", amount: "$50-150", notes: "Per country lived in" },
+  { item: "Skills Assessment", amount: "$300-1,000", notes: "Required for some occupations" },
+  { item: "English Test", amount: "$350-400", notes: "IELTS, PTE, or equivalent" },
+  { item: "Health Insurance", amount: "$1,800-4,200/year", notes: "Mandatory for visa duration" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "responsibility", header: "Who" },
+];
+
+const timelineRows = [
+  { step: "Employer becomes approved sponsor", duration: "4-6 weeks", responsibility: "Employer" },
+  { step: "Employer lodges nomination", duration: "1-4 months", responsibility: "Employer" },
+  { step: "Skills assessment (if required)", duration: "4-12 weeks", responsibility: "You" },
+  { step: "Health exam and police checks", duration: "2-4 weeks", responsibility: "You" },
+  { step: "Lodge visa application", duration: "1-2 hours", responsibility: "You" },
+  { step: "Visa processing", duration: "2-6 months", responsibility: "Home Affairs" },
+  { step: "Visa grant notification", duration: "Via email", responsibility: "Home Affairs" },
+  { step: "Travel to Australia", duration: "Within validity", responsibility: "You" },
+];
+---
+
+<PageShell
+  title="Australia TSS 482 Visa 2026: Requirements, Insurance & Application Guide"
+  description="Complete guide to Australia's Temporary Skill Shortage (TSS 482) visa. Occupation lists, salary thresholds, mandatory health insurance, and step-by-step application process for skilled workers."
+  headline="Australia TSS 482 Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working in Australia—visa streams, the $73,150 salary threshold, mandatory health insurance, and the complete application process for skilled workers."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/australia-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Home Affairs Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Health Insurance Mandatory
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The Temporary Skill Shortage (TSS) visa (subclass 482) is Australia's primary employer-sponsored work visa. It allows Australian employers to address labor shortages by sponsoring skilled overseas workers for up to 4 years. The medium-term stream offers a pathway to permanent residence through the Employer Nomination Scheme (ENS 186).
+    </p>
+
+    <p class="mb-4">
+      Unlike some countries, Australia requires private health insurance for TSS 482 holders throughout their stay—even if they're from countries with Reciprocal Health Care Agreements (RHCA). Understanding insurance options is essential, as inadequate coverage can affect your visa status.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Australia TSS 482 Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Temporary Skill Shortage (subclass 482)</li>
+        <li>• <strong>Streams:</strong> Short-term (2 years), Medium-term (4 years), Labour Agreement</li>
+        <li>• <strong>Salary threshold:</strong> AUD $73,150/year (TSMIT from July 2024)</li>
+        <li>• <strong>Health insurance:</strong> Mandatory private health insurance</li>
+        <li>• <strong>PR pathway:</strong> Medium-term stream leads to ENS 186</li>
+        <li>• <strong>Work rights:</strong> Full-time for sponsoring employer</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in Australia?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>High salaries:</strong> Competitive wages, especially in mining, tech, healthcare</li>
+      <li><strong>Quality of life:</strong> Great weather, outdoor lifestyle, safe cities</li>
+      <li><strong>PR pathway:</strong> Medium-term stream leads to permanent residence</li>
+      <li><strong>English speaking:</strong> No language barrier</li>
+      <li><strong>Strong economy:</strong> Low unemployment, growing sectors</li>
+      <li><strong>Work-life balance:</strong> 4 weeks annual leave, good working conditions</li>
+      <li><strong>Family friendly:</strong> Dependents can work and study</li>
+      <li><strong>Healthcare quality:</strong> Excellent medical facilities</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">TSS 482 is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Your occupation is on the skilled occupation list</li>
+          <li>✓ You have 2+ years relevant experience</li>
+          <li>✓ Salary meets $73,150 threshold</li>
+          <li>✓ You want a PR pathway (medium-term)</li>
+          <li>✓ You can arrange employer sponsorship</li>
+          <li>✓ You meet English requirements</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Your occupation isn't on the list</li>
+          <li>• Less than 2 years experience</li>
+          <li>• No employer willing to sponsor</li>
+          <li>• Salary below $73,150 threshold</li>
+          <li>• You prefer independent PR pathway (consider 189/190)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Understanding the Streams</h3>
+
+    <ComparisonTable columns={streamColumns} rows={streamRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>PR pathway tip:</strong> If you want permanent residence, ensure your occupation is on the Medium and Long-term Strategic Skills List (MLTSSL). Short-term stream occupations (STSOL) don't lead to PR via the employer nomination route.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The TSS 482 visa requires employer sponsorship, relevant experience, English proficiency, and health insurance. Your occupation must appear on Australia's skilled occupation lists, and some occupations require a formal skills assessment.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Salary Threshold (TSMIT)</h3>
+
+    <p class="mb-4">
+      The Temporary Skilled Migration Income Threshold (TSMIT) increased to AUD $73,150/year in July 2024. This is a significant increase from the previous $70,000 threshold. Your salary must meet or exceed this amount.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>Market salary rate:</strong> Beyond TSMIT, your salary must also meet the annual market salary rate—what an Australian would be paid for the same role. If the market rate is higher than $73,150, you must be paid the market rate.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Skills Assessments</h3>
+
+    <p class="mb-4">
+      Some occupations require a skills assessment from a relevant assessing authority. This verifies your qualifications and experience match Australian standards.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>IT professionals:</strong> ACS (Australian Computer Society)</li>
+      <li><strong>Engineers:</strong> Engineers Australia</li>
+      <li><strong>Accountants:</strong> CPA, CA ANZ, or IPA</li>
+      <li><strong>Medical professionals:</strong> AHPRA, relevant medical boards</li>
+      <li><strong>Trades:</strong> TRA (Trades Recognition Australia)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Check requirements early:</strong> Skills assessments can take 4-12 weeks. Start the process as soon as you have a job offer. Some assessments require additional qualifications or bridging courses, which add months.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Health Insurance is Mandatory for TSS 482</h3>
+      <p class="text-amber-800">
+        All TSS 482 visa holders must maintain "adequate health insurance" for the duration of their stay. This is a visa condition—letting insurance lapse can affect your visa status. Private health insurance from an Australian provider is required.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Australia has a two-tier healthcare system: Medicare (public) and private health insurance. While some TSS 482 holders from RHCA countries can access Medicare, this doesn't satisfy the visa's insurance requirement—you still need private cover.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Medicare vs. Private Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Reciprocal Health Care Agreement Countries</h3>
+
+    <p class="mb-4">
+      Citizens of these countries can access Medicare for essential medical treatment, but still need private insurance for the visa:
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-green-50 p-4 rounded-lg">
+        <h4 class="font-semibold text-green-900 mb-2">Full Coverage</h4>
+        <ul class="text-green-800 text-sm space-y-1">
+          <li>• United Kingdom</li>
+          <li>• Ireland</li>
+          <li>• New Zealand</li>
+          <li>• Belgium</li>
+          <li>• Netherlands</li>
+          <li>• Sweden</li>
+          <li>• Finland</li>
+          <li>• Norway</li>
+          <li>• Malta</li>
+          <li>• Slovenia</li>
+          <li>• Italy</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 p-4 rounded-lg">
+        <h4 class="font-semibold text-amber-900 mb-2">Limited Coverage</h4>
+        <ul class="text-amber-800 text-sm space-y-1">
+          <li>• RHCA covers "immediately necessary" treatment only</li>
+          <li>• Doesn't cover elective procedures</li>
+          <li>• Doesn't cover private hospitals</li>
+          <li>• Doesn't satisfy visa requirements</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-semibold text-blue-900 mb-2">No RHCA</h4>
+        <ul class="text-blue-800 text-sm space-y-1">
+          <li>• USA, Canada</li>
+          <li>• Most of Asia</li>
+          <li>• Most of Europe</li>
+          <li>• South America</li>
+          <li>• Africa</li>
+          <li>Must rely entirely on private insurance</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What "Adequate Health Insurance" Means</h3>
+
+    <p class="mb-4">
+      The Department of Home Affairs doesn't specify exact requirements, but your policy should cover:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Hospital treatment:</strong> Public and/or private hospital admission</li>
+      <li><strong>Medical services:</strong> GP visits, specialists, surgery</li>
+      <li><strong>Emergency care:</strong> Ambulance and emergency treatment</li>
+      <li><strong>Duration:</strong> Cover for your entire visa validity</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>OSHC not accepted:</strong> Overseas Student Health Cover (OSHC) is for students only. TSS 482 holders need standard private health insurance or overseas visitors health cover (OVHC) designed for working visa holders.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need health insurance for your TSS 482 visa?"
+    description="Compare plans from Australian and international providers."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      TSS 482 holders need private health insurance that meets visa requirements. Australian providers offer OVHC (Overseas Visitors Health Cover) specifically designed for working visa holders.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Visa Compliance Priority: Bupa Australia OVHC</h4>
+        <p class="text-neutral-600">Bupa's Overseas Visitors Health Cover (OVHC) is specifically designed for TSS 482 holders. It's widely accepted for visa purposes and includes hospital, medical, and emergency ambulance cover. The largest private health insurance network in Australia.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious: NIB OVHC</h4>
+        <p class="text-neutral-600">NIB offers competitive OVHC rates with solid coverage. Good choice if you're healthy and want to minimize costs while meeting visa requirements. Their extras cover (dental, optical) is competitively priced.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">International Portability: Cigna Global</h4>
+        <p class="text-neutral-600">If you might not stay in Australia long-term, or travel frequently, international insurance offers portability. Cigna Global covers you worldwide, so you keep the same policy if you relocate. Note: verify it meets Australian visa requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Coverage: Medibank</h4>
+        <p class="text-neutral-600">Medibank offers strong family OVHC packages covering spouses and children. Good maternity coverage (after waiting periods) and pediatric care. Dependents on 482 visas also need health insurance.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Waiting periods:</strong> Most Australian private health insurance has waiting periods—2 months for general treatment, 12 months for pre-existing conditions and pregnancy. Factor this into your planning, especially if you have known healthcare needs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The TSS 482 visa has significant costs, split between you and your employer. The visa application fee varies by stream, and health insurance is an ongoing cost throughout your stay.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Costs by Stream</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Short-term Stream (2 years)</p>
+        <p class="text-3xl font-bold text-neutral-900">AUD $5,500-8,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 2 years insurance + assessments</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Medium-term Stream (4 years)</p>
+        <p class="text-3xl font-bold text-neutral-900">AUD $10,000-15,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 4 years insurance + assessments</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Employer vs. Employee Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Employer Typically Pays</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Nomination fee: $330</li>
+          <li>• Skilling Australians Fund: $1,200-1,800/year</li>
+          <li>• Sometimes: Visa application fee</li>
+          <li>• Sometimes: Relocation costs</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">You Typically Pay</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Visa application: $1,455-2,645</li>
+          <li>• Health insurance: $1,800-4,200/year</li>
+          <li>• Skills assessment: $300-1,000</li>
+          <li>• Health exam: $300-500</li>
+          <li>• Police checks: $50-150 per country</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Negotiate costs:</strong> Some employers will cover all visa-related costs as part of relocation packages, especially for in-demand skills like IT and engineering. Ask during negotiations—this can save you $5,000-10,000.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The TSS 482 process involves three stages: employer sponsorship approval, occupation nomination, and visa application. The employer handles the first two steps; you handle the visa application.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Job Offer from Approved Sponsor</h4>
+          <p class="text-neutral-600">Find an employer who's either already an approved sponsor or willing to become one. The job must be on the relevant skilled occupation list and pay at least $73,150. Get a written job offer with salary details.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Applies for Sponsorship (if needed)</h4>
+          <p class="text-neutral-600">If not already approved, your employer applies to become a Standard Business Sponsor. This takes 4-6 weeks. Large companies are often already approved; check the sponsor register.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Lodges Nomination</h4>
+          <p class="text-neutral-600">Your employer nominates the specific position for you. This includes job details, salary, location, and evidence the position is genuine. Processing takes 1-4 months depending on case complexity.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Skills Assessment (if required)</h4>
+          <p class="text-neutral-600">Some occupations require skills assessment from a relevant body (ACS for IT, Engineers Australia for engineering, etc.). Start this early—it can take 4-12 weeks and may require additional documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Health Insurance</h4>
+          <p class="text-neutral-600">Get quotes from Australian OVHC providers (Bupa, Medibank, NIB). Purchase a policy that starts from your planned arrival date and covers your full visa period. Keep the policy certificate for your application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Health Exam and Police Checks</h4>
+          <p class="text-neutral-600">Attend a medical examination with a panel-approved doctor. Obtain police certificates from every country you've lived in for 12+ months in the past 10 years. These are valid for 12 months.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Lodge Visa Application</h4>
+          <p class="text-neutral-600">Apply online through ImmiAccount. Include nomination TRN, skills assessment, health insurance certificate, English test results, and all supporting documents. Pay the visa application fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Grant and Travel</h4>
+          <p class="text-neutral-600">Processing takes 2-6 months. You can apply from outside Australia (recommended) or onshore on a valid visa. Once granted, you'll receive a visa grant notification email. Travel within the validity period.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Processing times vary:</strong> Current processing times range from 50 days to 6+ months depending on occupation and completeness of application. Submit a complete application with all documents to avoid delays from additional information requests.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for TSS 482 visa holders in Australia:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from India, $120,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Sydney tech company, 5 years experience, medium-term stream.</p>
+        <p class="text-green-700 font-medium">✓ Well above salary threshold. ACS skills assessment took 8 weeks. Got Bupa OVHC ($180/month). Visa processed in 3 months. Now on PR pathway—will apply for ENS 186 after 3 years. Company covered all visa costs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chef from UK, $75,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Melbourne restaurant, short-term stream, RHCA country.</p>
+        <p class="text-amber-700 font-medium">△ Just above TSMIT. Has Medicare access via RHCA but still needed private insurance for visa. Got NIB OVHC basic ($150/month). Short-term stream—no PR pathway, but visa renewable once. Uses Medicare for bulk-billed GP visits, private for extras.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Civil Engineer from Philippines, $95,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Brisbane infrastructure project, medium-term stream.</p>
+        <p class="text-green-700 font-medium">✓ Engineers Australia assessment took 10 weeks (degree needed verification). No RHCA—fully dependent on private insurance. Got Medibank ($200/month). Visa processed in 4 months. Family joining on dependent visas—all need separate insurance.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from US, $85,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Perth agency, short-term stream.</p>
+        <p class="text-amber-700 font-medium">△ Marketing on STSOL list—no PR pathway. No RHCA, so no Medicare. Got Cigna Global (wanted US coverage for family visits). Short-term stream limits to 2 years with one renewal. May need to switch to different visa type for longer stay.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Registered Nurse from Ireland, $78,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Adelaide hospital, medium-term stream.</p>
+        <p class="text-green-700 font-medium">✓ Nursing on MLTSSL—PR pathway available. AHPRA registration required (took 6 weeks). Has Medicare via RHCA but got basic OVHC for visa compliance. Hospital helped with entire process. Clear path to ENS 186 and citizenship.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Accountant from China, $70,000 salary offer</h3>
+        <p class="text-neutral-600 mb-4">Small accounting firm, hoped for sponsorship.</p>
+        <p class="text-red-700 font-medium">✗ Salary below $73,150 TSMIT threshold—nomination rejected. Firm couldn't increase offer. Had to look for higher-paying positions or consider skilled independent visa (189) instead. Eventually found role at $78,000 with different firm.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Australian Work Visas"
+    description="Find visa-compliant health insurance for your TSS 482 application."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Letting Health Insurance Lapse</h3>
+        <p class="text-neutral-600">Maintaining adequate health insurance is a visa condition. If your policy expires or you cancel it, you're in breach. This can affect future visa applications and potentially lead to visa cancellation. Set up auto-renewal.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Medicare is Enough</h3>
+        <p class="text-neutral-600">Even if you're from an RHCA country and can access Medicare, you still need private health insurance for visa compliance. Medicare supplements your coverage but doesn't satisfy the visa requirement.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Checking Occupation List</h3>
+        <p class="text-neutral-600">Occupation lists change regularly. Confirm your specific ANZSCO code is on MLTSSL (for medium-term/PR pathway) or STSOL (short-term) before committing. An occupation removed from lists can derail plans.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Skills Assessment Time</h3>
+        <p class="text-neutral-600">Skills assessments can take 4-12 weeks, and some require additional qualifications or English tests. Start immediately once you have a job offer. Don't assume your qualifications will be automatically recognized.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Working for Wrong Employer</h3>
+        <p class="text-neutral-600">TSS 482 is tied to your sponsoring employer. You can't legally work for a different employer without changing your visa. If you want to change jobs, the new employer must become your sponsor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Australia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Australia</h2>
+
+    <p class="mb-4">
+      Australia has a high-quality healthcare system combining public Medicare and private insurance. As a TSS 482 holder, your access depends on your nationality and insurance choices. Even with Medicare access, private insurance is required for visa compliance.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Medicare for RHCA Countries</h3>
+
+    <p class="mb-4">
+      If you're from an RHCA country (UK, Ireland, NZ, etc.), you can access Medicare for "immediately necessary" treatment. This includes:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Bulk-billed GPs:</strong> Free visits at participating doctors</li>
+      <li><strong>Public hospitals:</strong> Free emergency and inpatient care</li>
+      <li><strong>PBS medications:</strong> Subsidized prescription medicines</li>
+      <li><strong>Medicare rebates:</strong> Partial refund on specialist visits</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+      <p class="text-amber-800">
+        <strong>RHCA limitations:</strong> Medicare through RHCA doesn't cover elective procedures, private hospitals, dental, optical, or ambulance in most states. It's not a full replacement for comprehensive health cover.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Using Private Health Insurance</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hospital Cover</h4>
+        <p class="text-neutral-600">Private insurance covers treatment in private hospitals, choice of doctor, and shorter wait times for elective surgery. In the public system, you take whoever's available with longer waits.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Extras Cover</h4>
+        <p class="text-neutral-600">Add extras cover for dental, optical, physiotherapy, and other services not covered by Medicare. Annual limits apply—check policy details.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Ambulance Cover</h4>
+        <p class="text-neutral-600">Ambulance isn't covered by Medicare in most states (only Tasmania and Queensland). Private insurance typically includes ambulance cover—essential given Australian distances.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Waiting Periods</h3>
+
+    <p class="mb-4">
+      Australian private health insurance has mandatory waiting periods:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>2 months:</strong> General treatments, psychiatric services</li>
+      <li><strong>6 months:</strong> Rehabilitation, palliative care</li>
+      <li><strong>12 months:</strong> Pre-existing conditions, pregnancy, assisted reproduction</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Plan ahead for pregnancy:</strong> Maternity coverage has a 12-month waiting period. If you're planning to start a family in Australia, arrange insurance at least a year before conception to have coverage when needed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need private health insurance if I have Medicare access?</h3>
+        <p class="text-neutral-600">
+          Yes. Private health insurance is a visa condition regardless of Medicare eligibility. RHCA-based Medicare access doesn't satisfy the requirement. You must maintain private cover for the duration of your visa.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch employers on a TSS 482?</h3>
+        <p class="text-neutral-600">
+          Yes, but the new employer must become your sponsor and lodge a new nomination. You'll need to apply for a new visa or have your existing visa transferred. You cannot work for the new employer until the process is complete.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the pathway to permanent residence?</h3>
+        <p class="text-neutral-600">
+          Medium-term stream TSS 482 holders can apply for Employer Nomination Scheme (ENS 186) visa after 3 years with the same employer. This is a direct permanent residence visa. Short-term stream doesn't have this pathway.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family work and study?</h3>
+        <p class="text-neutral-600">
+          Yes. Dependents (spouse/de facto partner, children) on TSS 482 secondary visas have full work and study rights. They also need their own health insurance. Children can attend government schools (may involve fees depending on state).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I lose my job?</h3>
+        <p class="text-neutral-600">
+          You have 60 days to find a new sponsor or apply for a different visa. During this period, your visa remains valid. If you can't find new sponsorship, you'll need to leave Australia or switch to another visa type (e.g., tourist visa for a short period).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is travel insurance enough for the visa?</h3>
+        <p class="text-neutral-600">
+          No. Travel insurance doesn't meet the "adequate health insurance" requirement. You need OVHC (Overseas Visitors Health Cover) from an Australian provider or comprehensive international health insurance that covers hospitalization and medical treatment in Australia.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The TSS 482 visa offers a solid pathway for skilled workers to live and work in Australia, with the medium-term stream providing a clear route to permanent residence. The mandatory health insurance requirement, while an added cost, ensures you have quality healthcare access in a country with excellent medical facilities.
+    </p>
+
+    <p class="mb-4">
+      For visa compliance, Australian OVHC providers (Bupa, Medibank, NIB) are the safest choice—they're designed specifically for working visa holders and widely accepted. If you're from an RHCA country, you'll have Medicare as a bonus, but still need the private cover for visa purposes.
+    </p>
+
+    <p class="mb-6">
+      The higher salary threshold ($73,150 from July 2024) and skills assessment requirements mean more preparation, but Australia's quality of life, working conditions, and PR pathway make it worth the effort for many skilled professionals.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The TSS 482 visa requires mandatory private health insurance—this is non-negotiable and must be maintained throughout your stay. Choose Australian OVHC for guaranteed visa compliance, and supplement with Medicare if you're from an RHCA country. Start skills assessment and insurance arrangements early for a smooth application.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/australia/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Australia Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to Medicare and private insurance in Australia</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/uk" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Skilled Worker Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with the UK's work permit system</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

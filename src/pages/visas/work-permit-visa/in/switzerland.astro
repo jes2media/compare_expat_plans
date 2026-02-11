@@ -1,0 +1,737 @@
+---
+/**
+ * Switzerland B Permit - Long-form CRO-optimized page
+ * Static page for work permit visa in Switzerland
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Switzerland", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Germany EU Blue Card", href: "/visas/work-permit-visa/in/germany" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Job Offer", details: "From Swiss employer willing to sponsor", evidence: "Employment contract" },
+  { requirement: "Qualifications", details: "Skills matching the role", evidence: "Degree certificates, experience letters" },
+  { requirement: "Labor Market Test (non-EU)", details: "Employer proves no EU candidate available", evidence: "Recruitment documentation" },
+  { requirement: "Salary", details: "Market rate (no fixed minimum)", evidence: "Stated in contract" },
+  { requirement: "Health Insurance", details: "LAMal mandatory within 3 months", evidence: "Insurance policy" },
+  { requirement: "Valid Passport", details: "Valid for duration of stay", evidence: "Passport copy" },
+  { requirement: "Clean Record", details: "No serious criminal convictions", evidence: "Police certificate" },
+];
+
+const permitColumns = [
+  { key: "permit", header: "Permit Type" },
+  { key: "duration", header: "Duration" },
+  { key: "forWhom", header: "For Whom" },
+  { key: "notes", header: "Notes" },
+];
+
+const permitRows = [
+  { permit: "L Permit (Short-term)", duration: "Up to 12 months", forWhom: "Temporary assignments", notes: "Non-renewable, limited" },
+  { permit: "B Permit (Residence)", duration: "1 year (renewable)", forWhom: "Employed residents", notes: "Standard work permit" },
+  { permit: "C Permit (Settlement)", duration: "Indefinite", forWhom: "Long-term residents", notes: "After 5-10 years on B" },
+  { permit: "G Permit (Cross-border)", duration: "5 years", forWhom: "Border commuters", notes: "Live abroad, work in CH" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "lamal", header: "LAMal (Mandatory)" },
+  { key: "supplement", header: "Supplementary (VVG)" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage", lamal: "Basic healthcare, hospital, maternity", supplement: "Private rooms, dental, alternative medicine" },
+  { feature: "Cost", lamal: "CHF 300-600/month (canton-dependent)", supplement: "CHF 50-300/month additional" },
+  { feature: "Deductible (Franchise)", lamal: "CHF 300-2,500 (you choose)", supplement: "Varies by plan" },
+  { feature: "Provider Choice", lamal: "Any Swiss doctor/hospital", supplement: "Often broader, cross-border" },
+  { feature: "Mandatory", lamal: "Yes—within 3 months of arrival", supplement: "No—optional enhancement" },
+  { feature: "Premium Factors", lamal: "Canton, age, franchise level", supplement: "Health status, coverage level" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (CHF)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "CSS", type: "LAMal + Supplement", price: "CHF 350-500", strengths: "Largest Swiss insurer, good app" },
+  { provider: "Helsana", type: "LAMal + Supplement", price: "CHF 350-550", strengths: "Strong network, family plans" },
+  { provider: "SWICA", type: "LAMal + Supplement", price: "CHF 380-520", strengths: "Prevention focus, wellness benefits" },
+  { provider: "Groupe Mutuel", type: "LAMal + Supplement", price: "CHF 320-480", strengths: "Often cheapest LAMal premiums" },
+  { provider: "Cigna Global", type: "International", price: "CHF 400-700", strengths: "Expats who may relocate" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (CHF)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "B Permit Application", amount: "CHF 150-200", notes: "Canton-dependent" },
+  { item: "Permit Renewal", amount: "CHF 100-150", notes: "Annual renewal" },
+  { item: "Health Insurance (LAMal)", amount: "CHF 300-600/month", notes: "Mandatory, canton-dependent" },
+  { item: "Supplementary Insurance", amount: "CHF 50-300/month", notes: "Optional" },
+  { item: "Document Translation", amount: "CHF 50-200", notes: "If required" },
+  { item: "Registration Fee", amount: "CHF 20-50", notes: "Commune registration" },
+];
+
+const cantonColumns = [
+  { key: "canton", header: "Canton" },
+  { key: "premium", header: "Avg LAMal Premium" },
+  { key: "notes", header: "Notes" },
+];
+
+const cantonRows = [
+  { canton: "Zug", premium: "CHF 280-350", notes: "Cheapest canton" },
+  { canton: "Appenzell IR", premium: "CHF 290-360", notes: "Low cost, rural" },
+  { canton: "Zurich", premium: "CHF 380-480", notes: "Major city, higher cost" },
+  { canton: "Basel-Stadt", premium: "CHF 420-520", notes: "Pharma hub, expensive" },
+  { canton: "Geneva", premium: "CHF 480-600", notes: "Most expensive canton" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Secure job offer from Swiss employer", duration: "Varies", location: "Job search" },
+  { step: "Employer submits permit application", duration: "1 day", location: "Canton migration office" },
+  { step: "Labor market test (non-EU only)", duration: "2-4 weeks", location: "SECO/Canton" },
+  { step: "Permit processing", duration: "4-12 weeks", location: "Canton migration office" },
+  { step: "Receive permit approval", duration: "1-2 weeks", location: "Mail/pickup" },
+  { step: "Enter Switzerland, register at commune", duration: "14 days", location: "Einwohnerkontrolle" },
+  { step: "Arrange LAMal health insurance", duration: "Within 3 months", location: "Insurance provider" },
+  { step: "Collect residence permit (Ausländerausweis)", duration: "2-4 weeks", location: "Migration office" },
+];
+---
+
+<PageShell
+  title="Switzerland Work Permit 2026: B Permit, LAMal Insurance & Application Guide"
+  description="Complete guide to Switzerland work permits. B Permit requirements, mandatory LAMal health insurance, canton variations, salary expectations, and step-by-step application for working in Switzerland."
+  headline="Switzerland Work Permit: Insurance & Requirements Guide"
+  subheadline="Everything about working in Switzerland—the B Permit system, mandatory LAMal insurance within 3 months, canton premium variations, non-EU quotas, and the complete application process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroBackgroundImage="/images/countries/switzerland-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Swiss Immigration Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      LAMal Insurance Mandatory
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Switzerland offers some of the world's highest salaries, exceptional quality of life, and a stable political environment. The B Permit (Aufenthaltsbewilligung B / Permis de séjour B) is the standard residence permit for employed foreigners, typically valid for one year and renewable as long as employment continues.
+    </p>
+
+    <p class="mb-4">
+      Health insurance in Switzerland works differently from most countries. There's no employer-provided coverage—instead, you must purchase LAMal (basic mandatory insurance) from an approved Swiss insurer within 3 months of arrival. Premiums vary significantly by canton, with Geneva costing nearly double what you'd pay in Zug. Understanding the franchise (deductible) system is key to managing costs.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Switzerland B Permit</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Permit type:</strong> B Permit (Aufenthaltsbewilligung B)</li>
+        <li>• <strong>Duration:</strong> 1 year (renewable annually)</li>
+        <li>• <strong>Health insurance:</strong> LAMal mandatory within 3 months</li>
+        <li>• <strong>Salary:</strong> Market rate (no fixed minimum, but very high)</li>
+        <li>• <strong>Settlement permit (C):</strong> After 5 years (EU) or 10 years (non-EU)</li>
+        <li>• <strong>Non-EU quotas:</strong> Annual limits apply (8,500 B permits in 2026)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in Switzerland?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Highest salaries in Europe:</strong> CHF 100,000+ common for skilled roles</li>
+      <li><strong>Quality of life:</strong> Zurich, Geneva consistently ranked top 5 globally</li>
+      <li><strong>Low taxes:</strong> Compared to neighboring countries (varies by canton)</li>
+      <li><strong>Stability:</strong> Political neutrality, strong economy, low unemployment</li>
+      <li><strong>Central location:</strong> Easy access to France, Germany, Italy, Austria</li>
+      <li><strong>International environment:</strong> UN, WHO, WTO, major multinationals</li>
+      <li><strong>Excellent healthcare:</strong> World-class Swiss medical system</li>
+      <li><strong>Multilingual:</strong> German, French, Italian regions</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Switzerland is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have a job offer from a Swiss employer</li>
+          <li>✓ You work in pharma, finance, tech, or international orgs</li>
+          <li>✓ You want the highest salaries in Europe</li>
+          <li>✓ You value stability, safety, and quality of life</li>
+          <li>✓ You're EU/EFTA citizen (easier permit process)</li>
+          <li>✓ You can handle high cost of living</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You're non-EU and employer can't justify hiring you</li>
+          <li>• High cost of living is a major concern</li>
+          <li>• You don't speak German, French, or Italian</li>
+          <li>• You want fast path to citizenship (10+ years in CH)</li>
+          <li>• You prefer employer-provided health insurance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>EU/EFTA advantage:</strong> Citizens of EU and EFTA countries have near-automatic access to Swiss work permits. No quotas, no labor market test, faster processing. Non-EU nationals face annual quotas (~8,500 B permits) and must prove no suitable EU candidate exists.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Switzerland's permit system is employer-driven. Your employer applies for the work permit through the canton migration office. Non-EU applicants need the employer to pass a labor market test proving no EU/EFTA candidate is available.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Permit Types</h3>
+
+    <p class="mb-4">
+      Switzerland has several permit types. Most employed workers start with a B Permit, which leads to the C Permit (permanent residence) after 5-10 years depending on nationality.
+    </p>
+
+    <ComparisonTable columns={permitColumns} rows={permitRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-amber-800">
+        <strong>Non-EU quota system:</strong> Switzerland limits non-EU/EFTA work permits to approximately 8,500 B permits per year. These are allocated to cantons and run out—especially in major cities. Employers often apply early in the quota year (starts November). Highly skilled workers in shortage occupations have better chances.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Nationality Differences</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">EU/EFTA Citizens</h4>
+        <p class="text-neutral-600">No labor market test, no quotas, streamlined process. Permit usually granted within 4-6 weeks. Can start work with confirmation letter before physical permit arrives.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Non-EU/EFTA Citizens (Third Country)</h4>
+        <p class="text-neutral-600">Labor market test required. Annual quotas apply. Employer must advertise role and prove no EU candidate suitable. Processing takes 8-12 weeks. Priority given to highly skilled workers.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Intra-Company Transfers</h4>
+        <p class="text-neutral-600">Multinationals transferring employees may have simplified process. Can be quota-exempt in some cases. Common for global companies with Swiss headquarters.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">LAMal is Mandatory—No Employer Coverage</h3>
+      <p class="text-red-800">
+        Unlike Germany or the UK, Swiss employers don't provide health insurance. You must personally arrange and pay for LAMal (basic mandatory insurance) within 3 months of arrival. Failure to do so results in automatic assignment to a provider—often at higher rates. This is a legal requirement, not optional.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Switzerland's health system has two parts: LAMal (mandatory basic insurance) and VVG (optional supplementary insurance). Everyone must have LAMal. Supplementary insurance adds extras like private hospital rooms, dental, and alternative medicine. Premiums vary dramatically by canton—where you live matters more than where you work.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">LAMal vs. Supplementary Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Canton Premium Variations</h3>
+
+    <p class="mb-4">
+      The same LAMal coverage can cost nearly double depending on which canton you live in. Geneva is most expensive; central Swiss cantons like Zug and Appenzell are cheapest. This is a major consideration when choosing where to live.
+    </p>
+
+    <ComparisonTable columns={cantonColumns} rows={cantonRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The Franchise (Deductible) Strategy</h3>
+
+    <p class="mb-4">
+      Swiss LAMal lets you choose your franchise (annual deductible) between CHF 300 and CHF 2,500. Higher franchise = lower monthly premium. After the franchise, you pay 10% of costs up to CHF 700/year (CHF 350 for children).
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose CHF 2,500 Franchise If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're young and healthy</li>
+          <li>✓ You rarely visit doctors</li>
+          <li>✓ You want lowest monthly premium</li>
+          <li>✓ You can afford CHF 2,500 if something happens</li>
+          <li>✓ You save CHF 1,000-1,500/year on premiums</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Choose CHF 300 Franchise If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You have chronic conditions</li>
+          <li>✓ You expect regular medical visits</li>
+          <li>✓ You prefer predictable costs</li>
+          <li>✓ You don't want surprise bills</li>
+          <li>✓ You're planning pregnancy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Math example:</strong> If CHF 2,500 franchise saves CHF 150/month vs CHF 300 franchise, that's CHF 1,800/year saved. If you don't use healthcare, you save CHF 1,800. If you have major costs, you pay CHF 2,200 more out-of-pocket (CHF 2,500 - CHF 300). Break-even is if you have ~CHF 2,500 in claims—unlikely for healthy adults.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need help choosing Swiss health insurance?"
+    description="Compare LAMal providers and find the best rates for your canton."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For LAMal, the coverage is identical by law—only price and service differ. Compare premiums at priminfo.admin.ch (official government comparison). For supplementary insurance, terms vary significantly.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Value LAMal: Groupe Mutuel or Assura</h4>
+        <p class="text-neutral-600">Often the cheapest LAMal premiums. Since basic coverage is identical by law, choosing the cheapest provider makes sense. Check priminfo.admin.ch for current rates in your canton.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Overall: CSS or SWICA</h4>
+        <p class="text-neutral-600">Slightly higher premiums but excellent service, good apps, and strong supplementary options. SWICA is particularly good for prevention and wellness benefits.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">May Leave Switzerland: Cigna Global</h4>
+        <p class="text-neutral-600">If you're uncertain about staying long-term, international insurance offers portability. Note: you still need LAMal for Swiss residence—international insurance would be supplementary or for after you leave.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Cross-Border Workers: SWICA or Helsana</h4>
+        <p class="text-neutral-600">If you live near borders and want coverage in France, Germany, or Italy, some providers offer better cross-border options. Check specific plans for EU treatment coverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Switzerland has low visa fees but high ongoing insurance costs. Health insurance is the major expense—budget CHF 300-600/month for LAMal alone. The high cost is offset by equally high salaries.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Monthly Insurance Cost Examples</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Living in Zug (cheapest)</p>
+        <p class="text-3xl font-bold text-neutral-900">CHF 300-350/month</p>
+        <p class="text-sm text-neutral-500 mt-2">LAMal with CHF 2,500 franchise</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Living in Zurich</p>
+        <p class="text-3xl font-bold text-neutral-900">CHF 400-480/month</p>
+        <p class="text-sm text-neutral-500 mt-2">LAMal with CHF 2,500 franchise</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Living in Geneva (most expensive)</p>
+        <p class="text-3xl font-bold text-neutral-900">CHF 500-600/month</p>
+        <p class="text-sm text-neutral-500 mt-2">LAMal with CHF 2,500 franchise</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Salary context:</strong> While CHF 500/month for insurance sounds high, Swiss salaries reflect this. A software developer earning CHF 120,000/year (common) pays ~5% of gross income on health insurance. In percentage terms, this is similar to other European countries—the absolute numbers are just larger.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Swiss work permit process is employer-driven. Your employer submits the application to the canton migration office. For non-EU workers, this includes a labor market test. Once approved, you enter Switzerland and register locally.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Job Offer from Swiss Employer</h4>
+          <p class="text-neutral-600">Find a job with a Swiss company willing to sponsor your permit. Major employers in Zurich, Geneva, Basel, and Zug are experienced with the process. Get a signed employment contract with start date, salary, and role details.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Submits Permit Application</h4>
+          <p class="text-neutral-600">Your employer applies to the canton migration office. For non-EU workers, they must demonstrate no suitable EU/EFTA candidate is available (labor market test). This includes documenting recruitment efforts.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Permit Approval</h4>
+          <p class="text-neutral-600">Processing takes 4-6 weeks for EU citizens, 8-12 weeks for non-EU. The canton may request additional documents. Your employer tracks progress and will inform you of the decision.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Visa and Enter Switzerland</h4>
+          <p class="text-neutral-600">Once approved, non-EU citizens may need to collect a visa from a Swiss embassy. EU citizens can enter directly with their ID. Enter Switzerland before your job start date to complete registration.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register at the Commune (Einwohnerkontrolle)</h4>
+          <p class="text-neutral-600">Within 14 days of arrival, register at your local commune office. Bring passport, rental contract, and work documents. You'll receive a registration confirmation (Anmeldebestätigung).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange LAMal Health Insurance</h4>
+          <p class="text-neutral-600">You have 3 months to arrange LAMal insurance. Compare providers at priminfo.admin.ch. Choose your franchise level. Coverage is backdated to your arrival date. Don't delay—auto-assignment is more expensive.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect Your Ausländerausweis (Residence Permit Card)</h4>
+          <p class="text-neutral-600">Your physical permit card arrives 2-4 weeks after registration. This is your proof of legal residence and work authorization. The card shows your permit type (B) and validity dates.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Quota timing:</strong> Non-EU permit quotas reset each November. Employers often submit applications in Q4/Q1 to secure quota slots. If you're non-EU and targeting Switzerland, timing your job search for fall/winter can improve chances. Quotas can run out by mid-year in competitive cantons.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for work permit applicants in Switzerland:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Engineer from Germany, CHF 140,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Zurich fintech, EU citizen, single.</p>
+        <p class="text-green-700 font-medium">✓ EU citizen = no quota, no labor market test. B Permit in 4 weeks. Chose Groupe Mutuel LAMal (cheapest in Zurich) with CHF 2,500 franchise = CHF 380/month. High salary easily covers costs. On track for C Permit in 5 years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Data Scientist from India, CHF 130,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Basel pharma company, PhD holder, married.</p>
+        <p class="text-green-700 font-medium">✓ Non-EU but highly skilled in shortage occupation. Employer successfully passed labor market test. Permit took 10 weeks. Wife on family reunion permit. Living in Zug (cheaper canton) = CHF 600/month for two people. Pharma experience = job security.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Investment Banker from UK, CHF 250,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Geneva private bank, post-Brexit non-EU.</p>
+        <p class="text-amber-700 font-medium">△ UK now non-EU, but financial expertise is in demand. Employer secured quota slot in November. Permit took 12 weeks. Geneva LAMal expensive (CHF 550/month) but salary covers it. Language requirement—improving French for client work.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from France, CHF 95,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Lausanne startup, EU citizen, family of 3.</p>
+        <p class="text-green-700 font-medium">✓ EU citizen = easy B Permit in 5 weeks. French-speaking role in French-speaking canton. Family LAMal costs significant (CHF 1,200/month for 3). Chose CHF 300 franchise for kids. French border nearby—some shopping in France to save money.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Mechanical Engineer from Brazil, CHF 110,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Winterthur manufacturing, non-EU.</p>
+        <p class="text-amber-700 font-medium">△ Engineering is respected but not shortage occupation. Employer struggled with labor market test—took 3 months to prove no EU candidate. Quota slot was tight. Got B Permit eventually. German lessons essential for integration in German-speaking area.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Hospitality Manager from Australia, CHF 70,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Zermatt luxury hotel, non-EU.</p>
+        <p class="text-red-700 font-medium">✗ Hospitality not shortage occupation. Labor market test failed—EU candidates available. Employer couldn't justify non-EU hire at this salary level. Advised to target higher-level positions or consider EU countries first for experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance Options for Switzerland"
+    description="Find the best LAMal rates for your canton and situation."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Waiting Too Long for LAMal</h3>
+        <p class="text-neutral-600">You have 3 months to arrange LAMal, but don't wait. If you miss the deadline, the canton assigns you a provider—usually at higher rates with less choice. Arrange insurance in your first month to avoid stress and get the best rates.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Comparing Cantons for Cost of Living</h3>
+        <p class="text-neutral-600">Geneva can cost CHF 200/month more than Zug for identical LAMal coverage. If your job allows flexible location, choosing a cheaper canton saves thousands annually. Consider commuting from lower-cost cantons to major cities.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing Wrong Franchise Level</h3>
+        <p class="text-neutral-600">Young, healthy people often save CHF 1,500+/year with CHF 2,500 franchise. But if you have ongoing medical needs, CHF 300 franchise may cost less overall. Do the math based on your actual healthcare usage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Non-EU Applicants Missing Quota Timing</h3>
+        <p class="text-neutral-600">Quotas reset in November. Applying in September for a January start is risky—slots may be gone. If you're non-EU, time your job search for fall applications. Major employers know to submit early; smaller companies may not.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Registering Within 14 Days</h3>
+        <p class="text-neutral-600">You must register at the commune (Einwohnerkontrolle) within 14 days of moving in. Without registration, you can't get your residence permit card, open bank accounts easily, or complete many administrative tasks. Don't delay.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Switzerland -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Switzerland</h2>
+
+    <p class="mb-4">
+      Swiss healthcare is world-class with short wait times and excellent facilities. The system is private but heavily regulated. With LAMal, you have access to any Swiss doctor or hospital. Quality is consistent across the country.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Swiss Healthcare Works</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hausarzt (GP) Model</h4>
+        <p class="text-neutral-600">Most people register with a Hausarzt (family doctor) who coordinates care. Some LAMal models require GP referral for specialist visits (HMO/Hausarzt models) in exchange for lower premiums.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialists</h4>
+        <p class="text-neutral-600">With standard LAMal, you can see specialists directly. Wait times are short—usually days to weeks, not months. Urban areas have more specialists; rural areas may require travel.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hospitals</h4>
+        <p class="text-neutral-600">LAMal covers general ward (shared rooms). Supplementary insurance upgrades to semi-private or private rooms. Major hospitals in Zurich, Geneva, Basel, Bern are excellent. Emergency care (Notfall) is available 24/7.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pharmacies (Apotheken)</h4>
+        <p class="text-neutral-600">Prescription medications are partially covered by LAMal after your franchise. Swiss pharmacists are highly trained and can advise on minor issues. Prices are higher than neighboring countries.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding English-Speaking Doctors</h3>
+
+    <p class="mb-4">
+      In Zurich, Geneva, and Basel, many doctors speak English. International communities are well-served. Use doctor search tools from your insurer or platforms like Doctolib.ch. In German-speaking areas, having basic German helps for medical discussions.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Cross-border care:</strong> Some Swiss LAMal plans cover treatment in neighboring countries (France, Germany, Italy, Austria). This can be useful for cheaper dental work or if you live near borders. Check your specific policy for EU treatment rules.</p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why doesn't my Swiss employer provide health insurance?</h3>
+        <p class="text-neutral-600">
+          Switzerland's system is individual-based, not employer-based. Everyone must buy their own LAMal. This actually provides portability—you keep your insurance between jobs. Employers may offer supplementary benefits but not basic LAMal.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between franchise levels?</h3>
+        <p class="text-neutral-600">
+          Franchise is your annual deductible (CHF 300 to CHF 2,500). Higher franchise = lower monthly premium. After paying your franchise, you pay 10% of remaining costs (capped at CHF 700/year). Healthy people usually save money with CHF 2,500 franchise.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can non-EU citizens get work permits?</h3>
+        <p class="text-neutral-600">
+          Yes, but it's harder. Employers must prove no EU candidate is suitable (labor market test), and annual quotas apply (~8,500 B permits). Highly skilled workers in shortage occupations have best chances. Major companies are experienced with the process.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until permanent residence (C Permit)?</h3>
+        <p class="text-neutral-600">
+          EU/EFTA citizens: 5 years of continuous residence. Non-EU citizens: 10 years (5 years for US, Canada, and some other nationalities by treaty). C Permit holders have permanent residence rights and don't need renewal.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family join me in Switzerland?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouse and children under 18 can join on family reunion permits. They have work rights. Each family member needs their own LAMal—budget accordingly. Children have lower premiums (often subsidized by cantons for lower incomes).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if I lose my job?</h3>
+        <p class="text-neutral-600">
+          B Permit holders have a grace period (usually 3-6 months) to find new employment. You may be eligible for unemployment benefits (RAV) if you've contributed. Your LAMal continues—you pay it yourself. If unemployed long-term, permit may not be renewed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Switzerland offers unmatched salaries and quality of life, but requires careful planning around health insurance. The LAMal system is different from other countries—no employer coverage, mandatory personal purchase, significant canton variations. Understanding the franchise system and comparing providers can save thousands annually.
+    </p>
+
+    <p class="mb-4">
+      For EU/EFTA citizens, the permit process is straightforward. For non-EU workers, securing a permit requires an employer who can justify the hire and timing applications for quota availability. The effort is worth it for those who qualify—Swiss salaries and stability are exceptional.
+    </p>
+
+    <p class="mb-6">
+      Budget CHF 300-600/month for LAMal depending on your canton and franchise choice. Live in a cheaper canton if possible. Choose high franchise if healthy. Compare providers at priminfo.admin.ch. Arrange insurance promptly after arrival—don't wait for the 3-month deadline.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Switzerland's B Permit requires mandatory LAMal health insurance (not employer-provided). Costs vary dramatically by canton—Geneva can cost double Zug. Choose your franchise wisely, compare at priminfo.admin.ch, and arrange coverage within 3 months of arrival. For non-EU workers, target quota timing and highly skilled roles.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/work-permit-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany EU Blue Card</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's work visa system</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/austria" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Austria Red-White-Red Card</h3>
+        <p class="text-neutral-600 text-sm">Compare with Austria's points-based system</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

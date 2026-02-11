@@ -1,0 +1,764 @@
+---
+/**
+ * Austria Red-White-Red Card - Long-form CRO-optimized page
+ * Static page for work permit visa in Austria
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Austria", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Germany EU Blue Card", href: "/visas/work-permit-visa/in/germany" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Points Threshold", details: "Minimum 70 points (varies by category)", evidence: "Qualification documents" },
+  { requirement: "University Degree", details: "Bachelor's or higher (earns points)", evidence: "Degree certificate + apostille" },
+  { requirement: "Job Offer", details: "Matching qualifications", evidence: "Employment contract/commitment" },
+  { requirement: "Salary Threshold", details: "55% of ASVG ceiling (~€37,000/year)", evidence: "Stated in employment contract" },
+  { requirement: "Health Insurance", details: "Automatic through employment (ÖGK)", evidence: "Employer registration" },
+  { requirement: "Valid Passport", details: "Valid for duration of stay", evidence: "Passport copy" },
+  { requirement: "Clean Criminal Record", details: "No serious offenses", evidence: "Police certificate (Strafregisterauszug)" },
+];
+
+const pointsColumns = [
+  { key: "category", header: "Category" },
+  { key: "criteria", header: "Criteria" },
+  { key: "points", header: "Points" },
+];
+
+const pointsRows = [
+  { category: "Qualifications", criteria: "PhD/Master's degree", points: "30 points" },
+  { category: "Qualifications", criteria: "Bachelor's degree", points: "20 points" },
+  { category: "Work Experience", criteria: "6+ years in field", points: "20 points" },
+  { category: "Work Experience", criteria: "3-5 years in field", points: "10 points" },
+  { category: "Age", criteria: "Under 30 years", points: "20 points" },
+  { category: "Age", criteria: "30-40 years", points: "15 points" },
+  { category: "Language", criteria: "German B1 or higher", points: "15 points" },
+  { category: "Language", criteria: "German A2", points: "10 points" },
+  { category: "Language", criteria: "English B1 or higher", points: "10 points" },
+  { category: "Salary", criteria: "Above 85% ASVG ceiling", points: "25 points" },
+  { category: "Austria Study", criteria: "Studied in Austria", points: "10 points" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "ogk", header: "ÖGK (Public)" },
+  { key: "private", header: "Private Supplement" },
+];
+
+const insuranceRows = [
+  { feature: "Enrollment", ogk: "Automatic through employment", private: "Optional, self-arranged" },
+  { feature: "Cost", ogk: "~18% of salary (half by employer)", private: "€100-400/month additional" },
+  { feature: "Coverage", ogk: "Comprehensive, all essential care", private: "Private rooms, shorter waits" },
+  { feature: "Family", ogk: "Low-income spouse/children covered", private: "Each person pays separately" },
+  { feature: "Doctors", ogk: "ÖGK-contracted doctors (Kassenärzte)", private: "Any doctor, private hospitals" },
+  { feature: "Visa Requirement", ogk: "Fulfilled automatically", private: "Not required, lifestyle choice" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "ÖGK", type: "Public (mandatory)", price: "~9% of salary", strengths: "All employed workers, comprehensive" },
+  { provider: "UNIQA", type: "Private supplement", price: "€100-200", strengths: "Private hospitals, single rooms" },
+  { provider: "Generali", type: "Private supplement", price: "€150-300", strengths: "Shorter waiting times" },
+  { provider: "Cigna Global", type: "International", price: "€250-400", strengths: "Expats who may relocate" },
+  { provider: "Allianz Care", type: "International", price: "€200-350", strengths: "EU-wide coverage, portable" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Red-White-Red Card Application", amount: "€160", notes: "Standard fee" },
+  { item: "Work Permit Extension", amount: "€120", notes: "After first 2 years" },
+  { item: "National Visa (D-visa)", amount: "€150", notes: "Entry visa from embassy" },
+  { item: "Health Insurance", amount: "Included in salary", notes: "ÖGK automatic deduction" },
+  { item: "Document Apostille", amount: "€50-200", notes: "For foreign documents" },
+  { item: "Translation (per page)", amount: "€30-50", notes: "Certified translator required" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Secure job offer from Austrian employer", duration: "Varies", location: "Job search" },
+  { step: "Gather documents, apostille, translate", duration: "2-4 weeks", location: "Home country" },
+  { step: "Employer applies for work permit", duration: "1 day", location: "AMS Austria" },
+  { step: "Apply for Red-White-Red Card", duration: "1 day", location: "Austrian embassy/MA35" },
+  { step: "Processing period", duration: "8-12 weeks", location: "MA35 Vienna/local authority" },
+  { step: "Receive visa/collect card", duration: "1-2 weeks", location: "Embassy/Austria" },
+  { step: "Register residence (Meldezettel)", duration: "3 days", location: "Magistrat/Gemeindeamt" },
+  { step: "Finalize insurance, start work", duration: "Immediate", location: "Austria" },
+];
+---
+
+<PageShell
+  title="Austria Red-White-Red Card 2026: Points System, Insurance & Application Guide"
+  description="Complete guide to Austria's Red-White-Red Card. Points-based requirements, mandatory ÖGK health insurance, salary thresholds, and step-by-step application for skilled workers moving to Austria."
+  headline="Austria Red-White-Red Card: Insurance & Requirements Guide"
+  subheadline="Everything about working in Austria—the 70-point threshold, mandatory ÖGK insurance through employment, Vienna's tech scene, and the complete application process for skilled workers."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroBackgroundImage="/images/countries/austria-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Austrian Immigration Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Health Insurance Mandatory (ÖGK)
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Austria's Red-White-Red Card (Rot-Weiß-Rot-Karte) is a points-based work permit for skilled non-EU workers. Unlike the German Blue Card's simple salary threshold, Austria requires you to score at least 70 points based on qualifications, experience, age, and language skills. Once approved, you get combined residence and work rights for two years.
+    </p>
+
+    <p class="mb-4">
+      Health insurance in Austria is straightforward for employed workers: it's automatic. When your employer registers you with the social insurance system, you're enrolled in ÖGK (Österreichische Gesundheitskasse) immediately. There's no separate application, no choice between providers, and no visa documentation needed—it's built into employment. Your contribution is deducted directly from your salary.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Austria Red-White-Red Card</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Red-White-Red Card (Rot-Weiß-Rot-Karte)</li>
+        <li>• <strong>Points threshold:</strong> Minimum 70 points (100 possible)</li>
+        <li>• <strong>Health insurance:</strong> Automatic through employment (ÖGK)</li>
+        <li>• <strong>Duration:</strong> 2 years initial, then Red-White-Red Card Plus</li>
+        <li>• <strong>Permanent residence:</strong> After 5 years (or 4 with A2 German)</li>
+        <li>• <strong>Family:</strong> Spouse/children can join immediately</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in Austria?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Vienna tech hub:</strong> Rapidly growing startup scene, many international companies</li>
+      <li><strong>High quality of life:</strong> Vienna consistently ranked world's most livable city</li>
+      <li><strong>Central location:</strong> Easy access to Germany, Switzerland, Czech Republic</li>
+      <li><strong>Strong salaries:</strong> Competitive with Switzerland, lower cost of living</li>
+      <li><strong>Excellent healthcare:</strong> World-class Austrian healthcare system</li>
+      <li><strong>Work-life balance:</strong> 25 vacation days minimum, strong labor protections</li>
+      <li><strong>German language:</strong> Same as Germany, opens EU opportunities</li>
+      <li><strong>Low taxes compared to Germany:</strong> Similar system, slightly lower rates</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Red-White-Red Card is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You can score 70+ points (degree + experience + age)</li>
+          <li>✓ You have a job offer from an Austrian employer</li>
+          <li>✓ You want automatic health insurance through work</li>
+          <li>✓ You value high quality of life (Vienna consistently #1)</li>
+          <li>✓ You speak German or are willing to learn</li>
+          <li>✓ You want a gateway to German-speaking Europe</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You can't reach 70 points</li>
+          <li>• You don't have a recognized qualification</li>
+          <li>• You're under 25 with limited experience</li>
+          <li>• You need English-only work environment</li>
+          <li>• You want faster permanent residence (Germany is 21 months)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Points system advantage:</strong> Unlike Germany's Blue Card which only cares about salary, Austria's system rewards qualifications and experience. A young PhD holder or experienced professional can qualify even with a moderate salary. Use the calculator at migration.gv.at to check your score.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Red-White-Red Card uses a points system where you need 70 points minimum (out of 100 possible) across multiple categories. Your employer must also apply for a labor market test unless you're a "very highly qualified" worker.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Points System Breakdown</h3>
+
+    <p class="mb-4">
+      Austria awards points across several categories. You need a total of at least 70 points from the combination below. The system favors young, highly educated workers with language skills.
+    </p>
+
+    <ComparisonTable columns={pointsColumns} rows={pointsRows} />
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-green-800">
+        <strong>Example calculation:</strong> Master's degree (30) + 4 years experience (10) + Age 32 (15) + German A2 (10) + English B1 (10) = 75 points. This would qualify. A bachelor's holder would need more experience or higher language skills.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Card Categories</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Very Highly Qualified Workers</h4>
+        <p class="text-neutral-600">For those with exceptional qualifications (PhD, senior experience, high salary). No labor market test required. Fastest processing.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Skilled Workers in Shortage Occupations</h4>
+        <p class="text-neutral-600">Listed occupations with workforce shortages (IT, engineering, healthcare). Lower points threshold, simplified process.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Other Key Workers</h4>
+        <p class="text-neutral-600">Skilled workers not in shortage list. Requires labor market test. Standard 70-point requirement.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Graduates of Austrian Universities</h4>
+        <p class="text-neutral-600">Fast-track for those who studied in Austria. Bonus points, simplified application, employer familiarity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Automatic in Austria</h3>
+      <p class="text-green-800">
+        Unlike Germany where you must choose a public insurer, Austria automatically enrolls all employed workers in ÖGK. Your employer handles registration, contributions are deducted from salary, and coverage begins on your first day of work. There's no separate insurance application for your visa.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Austria's social insurance system (Sozialversicherung) covers health, pension, and unemployment in one package. When your employer registers you, you're enrolled in ÖGK (Österreichische Gesundheitskasse) for health coverage. The total social insurance contribution is about 18% of salary, split roughly equally between you and your employer.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">ÖGK vs. Private Supplement</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What ÖGK Covers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Included in ÖGK (Free at Point of Use)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP and specialist visits</li>
+          <li>✓ Hospital treatment (general ward)</li>
+          <li>✓ Prescriptions (small copay €6.85)</li>
+          <li>✓ Maternity care and childbirth</li>
+          <li>✓ Mental health care</li>
+          <li>✓ Rehabilitation</li>
+          <li>✓ Medical transport when needed</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Not Covered / Limited</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Private hospital rooms (shared only)</li>
+          <li>• Doctors outside ÖGK network (Wahlärzte)</li>
+          <li>• Dental: basic covered, cosmetic not</li>
+          <li>• Glasses/contacts: limited</li>
+          <li>• Alternative medicine: not covered</li>
+          <li>• Non-urgent elective procedures: waiting lists</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Do You Need Private Insurance?</h3>
+
+    <p class="mb-4">
+      ÖGK coverage is comprehensive and most expats find it sufficient. Private supplementary insurance (Zusatzversicherung) is optional and adds benefits like private hospital rooms, choice of any doctor, and faster elective procedures. It's a lifestyle choice, not a necessity.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Wahlarzt (private doctor) system:</strong> Austria has two types of doctors—Kassenärzte (ÖGK-contracted, fully covered) and Wahlärzte (private, you pay upfront). ÖGK reimburses about 80% of Wahlarzt fees. Many expats see private doctors and get partial reimbursement, avoiding the need for supplementary insurance.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Before Employment Starts</h3>
+
+    <p class="mb-4">
+      If you arrive in Austria before your employment starts, you need interim coverage:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Travel insurance:</strong> Covers the gap for up to 90 days (sufficient for visa entry)</li>
+      <li><strong>Voluntary ÖGK:</strong> You can enroll voluntarily (~€450/month) if employment is delayed</li>
+      <li><strong>International insurance:</strong> Cigna/Allianz provide month-to-month options for transitions</li>
+    </ul>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need coverage before Austrian employment starts?"
+    description="Compare interim insurance options for the transition period."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Most Red-White-Red Card holders rely on ÖGK through employment—it's mandatory and comprehensive. Below are options for supplementary coverage or interim periods.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Most Workers: ÖGK Only</h4>
+        <p class="text-neutral-600">For employed workers, ÖGK provides excellent coverage at no extra cost (deducted from salary). Most expats find it sufficient. No action needed—your employer handles enrollment automatically.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Wanting Private Hospital/Doctors: UNIQA or Generali</h4>
+        <p class="text-neutral-600">Austrian private insurance supplements (Zusatzversicherung) add private rooms, shorter waits, and any-doctor access. UNIQA and Generali are the main providers. Expect €100-300/month depending on coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">May Leave Austria: Cigna/Allianz Global</h4>
+        <p class="text-neutral-600">If you might relocate within a few years, international insurance provides portability. Note: you still pay ÖGK through employment—international is additional coverage that moves with you.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Before Employment Starts: Short-term International</h4>
+        <p class="text-neutral-600">For the gap between arrival and employment, use travel insurance or short-term international coverage. Once employed, ÖGK takes over automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Austria has moderate visa fees compared to other EU countries. The major ongoing cost is social insurance (including health), which is automatically deducted from your salary.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Monthly Insurance Contributions</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">€45,000 salary</p>
+        <p class="text-3xl font-bold text-neutral-900">~€340/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Your share (employer pays similar)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">€65,000 salary</p>
+        <p class="text-3xl font-bold text-neutral-900">~€490/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Your share (caps at ceiling)</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Private supplement</p>
+        <p class="text-3xl font-bold text-neutral-900">€100-300/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Optional, in addition to ÖGK</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Included in Social Insurance</h3>
+
+    <p class="mb-4">
+      The ~18% deduction covers more than just health insurance:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Health insurance (ÖGK):</strong> ~7.65% total (3.87% your share)</li>
+      <li><strong>Pension insurance:</strong> ~22.8% total (10.25% your share)</li>
+      <li><strong>Unemployment insurance:</strong> ~6% total (3% your share)</li>
+      <li><strong>Other contributions:</strong> Accident insurance (employer-only), various funds</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Cost comparison:</strong> Austria's social insurance costs are similar to Germany but slightly lower. You're paying for comprehensive coverage including healthcare, pension, and unemployment protection—not just health insurance.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Red-White-Red Card application involves your employer, the Austrian labor market service (AMS), and the immigration authority (MA35 in Vienna or local authorities elsewhere). The process takes 8-12 weeks typically.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Job Offer from Austrian Employer</h4>
+          <p class="text-neutral-600">Find a job matching your qualifications. The employer must be willing to sponsor your Red-White-Red Card. Many Vienna tech companies are experienced with the process. Get a written job offer or employment contract.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Calculate Your Points</h4>
+          <p class="text-neutral-600">Use the official calculator at migration.gv.at. Ensure you can reach 70 points with documentation. If borderline, consider language certification (German A2/B1 adds 10-15 points) or document additional experience.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather and Prepare Documents</h4>
+          <p class="text-neutral-600">Collect degree certificates, work references, passport, police certificate. All foreign documents need apostille and certified German translation. Start early—this takes 2-4 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Initiates AMS Application</h4>
+          <p class="text-neutral-600">Your employer applies to AMS (Arbeitsmarktservice) for labor market approval. For very highly qualified workers or shortage occupations, this is simplified. AMS assesses whether no Austrian/EU worker is available.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Red-White-Red Card</h4>
+          <p class="text-neutral-600">Apply at the Austrian embassy in your country (if abroad) or MA35 Vienna (if already in Austria legally). Submit all documents, pay €160 fee. Application can be submitted while AMS approval is pending.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing takes 8-12 weeks. Track status through the authority's online portal. You may be asked for additional documents. No interview usually required for skilled workers.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Visa and Travel to Austria</h4>
+          <p class="text-neutral-600">Once approved, collect visa from embassy or receive confirmation to collect card in Austria. Travel to Austria, register your address (Meldezettel) within 3 days, and collect your physical card.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Start Work and Insurance Begins</h4>
+          <p class="text-neutral-600">When you start work, your employer registers you with social insurance. ÖGK coverage begins automatically on day one. You'll receive an e-card (health insurance card) by mail within 2 weeks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Vienna vs. other regions:</strong> MA35 (Vienna's immigration office) can be slower than regional authorities. If your employer is outside Vienna, the local Bezirkshauptmannschaft handles your application and may process faster. Vienna processes the majority of applications due to the city's international workforce.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Red-White-Red Card applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Engineer from India, €55,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Master's in CS, 4 years experience, age 29, basic German A1.</p>
+        <p class="text-green-700 font-medium">✓ Master's (30) + 4 years (10) + Under 30 (20) + English B1 (10) = 70 points. Qualified for shortage occupation route (IT). Got card in 10 weeks. ÖGK automatic, using Docfinder app to find English-speaking doctors.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Data Scientist from Brazil, €62,000 salary</h3>
+        <p class="text-neutral-600 mb-4">PhD in statistics, 2 years experience, age 32, German B1.</p>
+        <p class="text-green-700 font-medium">✓ PhD gives maximum qualification points. German B1 (15) + age (15) = well over 70. Classified as "very highly qualified"—no labor market test needed. Fast processing, card in 6 weeks. Added UNIQA supplement for private hospital access.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from US, €48,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Bachelor's degree, 7 years experience, age 35, no German.</p>
+        <p class="text-green-700 font-medium">✓ Bachelor's (20) + 6+ years (20) + age 30-40 (15) + English B1 (10) = 65 points. Borderline! Took German A2 course during application = 10 more points = 75. Got card after 12 weeks. Learning German was worth it for points and daily life.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer from Turkey, €42,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Bachelor's in design, 3 years experience, age 27, German A2.</p>
+        <p class="text-amber-700 font-medium">△ Bachelor's (20) + 3 years (10) + Under 30 (20) + German A2 (10) + English (10) = 70 exactly. Just made it. AMS labor market test took extra 3 weeks. Got card in 14 weeks total. Close call—if employer had offered €45,000, extra salary points would have helped.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Mechanical Engineer from China, €50,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Master's degree, 5 years experience, age 38, German B1.</p>
+        <p class="text-green-700 font-medium">✓ Master's (30) + 5 years (10) + age 30-40 (15) + German B1 (15) + English (10) = 80 points. Engineering is shortage occupation. Smooth process, 8 weeks. Wife came on family reunion card, also covered by ÖGK once she finds work.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Sales Manager from Nigeria, €38,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Bachelor's degree, 2 years experience, age 24, no German.</p>
+        <p class="text-red-700 font-medium">✗ Bachelor's (20) + 2 years experience (no points, need 3+) + age under 25 (0, not in points) + English (10) = only 30 points. Far below threshold. Would need Master's degree or 6+ years experience to qualify. Advised to study in Austria first or gain experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance Options for Austria"
+    description="Find supplementary coverage or interim insurance for your transition."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Calculating Points Before Job Search</h3>
+        <p class="text-neutral-600">Many people accept job offers then discover they don't have 70 points. Calculate your score first using migration.gv.at. If borderline, prioritize getting German language certification (A2 = 10 points, B1 = 15 points) before applying.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing Document Apostille/Translation</h3>
+        <p class="text-neutral-600">All foreign documents must be apostilled and translated by certified translators. This takes 2-4 weeks and many applications are delayed because documents weren't properly prepared. Start this process immediately after accepting a job offer.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming You Can Work While Application is Pending</h3>
+        <p class="text-neutral-600">Unlike some countries, you cannot work in Austria while your Red-White-Red Card is being processed (unless you have another valid work authorization). Plan finances for the 8-12 week wait or apply from your home country.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting to Register Address (Meldezettel)</h3>
+        <p class="text-neutral-600">You must register your address at the Magistrat/Gemeindeamt within 3 days of moving in. This is required to collect your Red-White-Red Card and for everything administrative. Without Meldezettel, you can't open bank accounts or complete the card process.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Understanding the Two-Year Transition</h3>
+        <p class="text-neutral-600">The initial Red-White-Red Card is tied to your employer for 2 years. After that, you get the "Plus" version with any-employer work rights. If you want to change jobs in the first 2 years, you need a new card application. Plan accordingly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Austria -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Austria</h2>
+
+    <p class="mb-4">
+      Austria has excellent healthcare with universal coverage through ÖGK. Quality is high, wait times reasonable, and costs are covered through social insurance. Most expats find the system works well once they understand how to navigate it.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Austrian Healthcare Works</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">E-Card System</h4>
+        <p class="text-neutral-600">You'll receive an e-card (electronic health card) after your employer registers you with ÖGK. This card is your proof of insurance—present it at every doctor visit. Replacement cards cost €12 if lost.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Kassenarzt vs. Wahlarzt</h4>
+        <p class="text-neutral-600">Kassenärzte (contracted doctors) accept your e-card directly—no payment required. Wahlärzte (private doctors) charge upfront; you submit receipts to ÖGK for ~80% reimbursement. Many expats prefer Wahlärzte for shorter waits and English.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialists and Referrals</h4>
+        <p class="text-neutral-600">You can see specialists directly without GP referral in Austria. However, many specialists have limited Kassenarzt appointments—you may wait weeks. Private specialists (Wahlärzte) often have faster availability.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hospitals</h4>
+        <p class="text-neutral-600">Emergency rooms (Notaufnahme) are free with e-card. For planned hospitalizations, ÖGK covers general ward. Private insurance adds single/double rooms. Vienna's AKH is one of Europe's largest teaching hospitals.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding English-Speaking Doctors</h3>
+
+    <p class="mb-4">
+      In Vienna and major cities, many doctors speak English. Use docfinder.at to search for doctors and filter by language. The international district (1st district, near UN) has many English-speaking practices catering to expats and diplomats.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Prescription system:</strong> Austrian pharmacies (Apotheken) require prescriptions for most medications. Get prescriptions from your doctor on the standard form. Some medications that are over-the-counter elsewhere require prescription in Austria. Night and weekend pharmacies operate on rotation—check apothekensuche.at.</p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to arrange health insurance separately for my visa?</h3>
+        <p class="text-neutral-600">
+          No. For employed Red-White-Red Card holders, health insurance is automatic through ÖGK when your employer registers you. You don't need to provide separate insurance documentation for the visa. Coverage begins when employment starts.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do I get 70 points if I only have a bachelor's degree?</h3>
+        <p class="text-neutral-600">
+          Bachelor's gives 20 points. Add 6+ years experience (20), young age under 30 (20), German B1 (15), English B1 (10) = 85 possible without master's. Focus on what you can control: get German certification (online courses like Goethe-Institut), document all work experience carefully.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I change employers with the Red-White-Red Card?</h3>
+        <p class="text-neutral-600">
+          The initial card is tied to your employer for 2 years. To change jobs, you need a new card application with the new employer. After 2 years, you receive the "Red-White-Red Card Plus" which allows work for any employer without restrictions.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is ÖGK coverage really sufficient or do I need private insurance?</h3>
+        <p class="text-neutral-600">
+          ÖGK covers all essential healthcare—GP, specialists, hospitals, prescriptions. Most expats find it sufficient. Private supplement adds convenience (private rooms, any doctor, shorter waits) but isn't necessary. Consider adding it after you've experienced the system.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse and children join me in Austria?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouse and dependent children can apply for family reunion from the start. They receive residence permits allowing family life. Spouse can work with a work permit. Children can attend school. Family members are covered by ÖGK if spouse works; otherwise, they need insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residence?</h3>
+        <p class="text-neutral-600">
+          Standard path is 5 years of legal residence. With German A2 certification and integration courses, you can apply after 4 years. You must have been legally employed, no long breaks in residence, and meet income requirements. The Red-White-Red Card counts toward this time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Austria's Red-White-Red Card offers a clear path for skilled workers willing to meet the 70-point threshold. The points system rewards qualifications and experience, making it accessible even with moderate salaries. Vienna's tech scene is growing, quality of life is exceptional, and the healthcare system through ÖGK is excellent.
+    </p>
+
+    <p class="mb-4">
+      For insurance, the Austrian system is simpler than Germany's. There's no choice between public and private—everyone employed gets ÖGK automatically. Coverage is comprehensive, costs are predictable (deducted from salary), and there's no visa documentation hassle. Supplementary private insurance is optional for those wanting extra convenience.
+    </p>
+
+    <p class="mb-6">
+      The main challenge is the points threshold. If you're a bachelor's holder with limited experience, you may need to invest in German language certification or gain more experience before qualifying. But for master's/PhD holders or those with 6+ years experience, the path is straightforward. Vienna is increasingly attractive for tech workers who want German-speaking Europe without Berlin's chaos or Switzerland's cost.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Red-White-Red Card requires 70 points but provides automatic ÖGK health insurance through employment—no separate application needed. Vienna offers excellent quality of life, growing tech sector, and simpler insurance than Germany. Calculate your points first, get German certification if borderline, and plan for the 8-12 week processing time.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/work-permit-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany EU Blue Card</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's skilled worker visa</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/switzerland" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Switzerland Work Permit</h3>
+        <p class="text-neutral-600 text-sm">Compare with Swiss B Permit system</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

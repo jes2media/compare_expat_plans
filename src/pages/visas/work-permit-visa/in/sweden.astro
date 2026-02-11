@@ -1,0 +1,734 @@
+---
+/**
+ * Sweden Work Permit - Long-form CRO-optimized page
+ * Static page for work permit visa in Sweden
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Sweden", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Germany EU Blue Card", href: "/visas/work-permit-visa/in/germany" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Job Offer", details: "Before applying (no job seeking visa)", evidence: "Employment contract" },
+  { requirement: "Salary", details: "SEK 27,360/month minimum (2026)", evidence: "Stated in contract" },
+  { requirement: "Terms Match Agreement", details: "Salary/conditions per collective agreement", evidence: "Union statement or equivalent" },
+  { requirement: "Insurance Coverage", details: "Employer must provide health, life, pension", evidence: "Insurance confirmation" },
+  { requirement: "Valid Passport", details: "Valid throughout stay", evidence: "Passport copy" },
+  { requirement: "Self-Support", details: "Able to support yourself", evidence: "Salary above threshold" },
+];
+
+const salaryColumns = [
+  { key: "category", header: "Category" },
+  { key: "requirement", header: "Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const salaryRows = [
+  { category: "Minimum Salary", requirement: "SEK 27,360/month", notes: "80% of Swedish median wage" },
+  { category: "Collective Agreement", requirement: "Match industry standards", notes: "Union-approved terms" },
+  { category: "Tech/Skilled Roles", requirement: "Typically SEK 40,000+", notes: "Market rates higher" },
+  { category: "EU Blue Card", requirement: "1.5x average salary", notes: "~SEK 56,000/month" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "public", header: "Swedish Healthcare" },
+  { key: "private", header: "Private Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Eligibility", public: "After personnummer registration", private: "Anyone" },
+  { feature: "Cost", public: "Tax-funded + patient fees", private: "SEK 500-2,000/month" },
+  { feature: "GP Visit", public: "SEK 200-350 per visit", private: "Often covered/reduced" },
+  { feature: "Specialist", public: "SEK 350-450 per visit", private: "Faster access" },
+  { feature: "Annual Cap (Högkostnadsskydd)", public: "SEK 1,300 max/year", private: "N/A" },
+  { feature: "Wait Times", public: "Can be long (vårdgaranti)", private: "Much shorter" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (SEK)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Swedish Public Healthcare", type: "Tax-funded", price: "Via taxes", strengths: "All registered residents" },
+  { provider: "Skandia", type: "Private Swedish", price: "SEK 500-1,500", strengths: "Shorter wait times" },
+  { provider: "Euro Accident", type: "Private Swedish", price: "SEK 400-1,200", strengths: "Employer plans common" },
+  { provider: "Cigna Global", type: "International", price: "SEK 2,500-4,500", strengths: "Expats who may relocate" },
+  { provider: "Allianz Care", type: "International", price: "SEK 2,200-4,000", strengths: "Global coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (SEK)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Work Permit Application", amount: "SEK 2,000", notes: "Standard processing" },
+  { item: "EU Blue Card Application", amount: "SEK 2,000", notes: "Same fee" },
+  { item: "Residence Card", amount: "SEK 400", notes: "Biometric card" },
+  { item: "Extension Application", amount: "SEK 1,000", notes: "For renewal" },
+  { item: "Private Insurance (if wanted)", amount: "SEK 6,000-18,000/year", notes: "Optional, for faster care" },
+  { item: "Healthcare Costs", amount: "Max SEK 1,300/year", notes: "Högkostnadsskydd cap" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Secure job offer from Swedish employer", duration: "Varies", location: "Job search" },
+  { step: "Employer provides union statement", duration: "1-2 weeks", location: "Union/employer" },
+  { step: "Apply for work permit online", duration: "1 day", location: "Migrationsverket online" },
+  { step: "Permit processing", duration: "1-4 months", location: "Migrationsverket" },
+  { step: "Biometrics at embassy (if required)", duration: "1 visit", location: "Swedish embassy" },
+  { step: "Receive decision", duration: "1-2 weeks", location: "Email/post" },
+  { step: "Travel to Sweden", duration: "As arranged", location: "Sweden" },
+  { step: "Register for personnummer", duration: "2-8 weeks", location: "Skatteverket" },
+];
+---
+
+<PageShell
+  title="Sweden Work Permit 2026: Requirements, Healthcare & Application Guide"
+  description="Complete guide to Sweden work permits. Salary requirements, collective agreements, Swedish healthcare system, personnummer registration, and step-by-step application for working in Sweden."
+  headline="Sweden Work Permit: Insurance & Requirements Guide"
+  subheadline="Everything about working in Sweden—the SEK 27,360 salary minimum, collective agreement requirements, tax-funded healthcare after personnummer, and the complete application process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroBackgroundImage="/images/countries/sweden-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Migrationsverket Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Tax-Funded Healthcare
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Sweden offers one of the world's best work-life balances, with generous parental leave, 25 vacation days minimum, and a strong social safety net. The Swedish work permit requires a job offer before applying—there's no job-seeking visa for non-EU workers. Salaries must meet minimum thresholds and match collective agreement standards.
+    </p>
+
+    <p class="mb-4">
+      Healthcare in Sweden is tax-funded and universal for registered residents. Once you have a personnummer (personal identity number), you access the same system as Swedish citizens. Patient fees exist (SEK 200-350 per visit) but are capped at SEK 1,300 per year (högkostnadsskydd). Wait times can be long for non-urgent care—many expats add private insurance for faster access.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Sweden Work Permit</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Permit type:</strong> Work Permit (Arbetstillstånd)</li>
+        <li>• <strong>Minimum salary:</strong> SEK 27,360/month (2026)</li>
+        <li>• <strong>Healthcare:</strong> Tax-funded after personnummer registration</li>
+        <li>• <strong>Duration:</strong> Up to 2 years (renewable)</li>
+        <li>• <strong>Permanent residence:</strong> After 4 years of work</li>
+        <li>• <strong>Processing time:</strong> 1-4 months (can be longer)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in Sweden?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Work-life balance:</strong> 25 vacation days, generous parental leave (480 days)</li>
+      <li><strong>Tech hub:</strong> Stockholm is Europe's startup capital (Spotify, Klarna, etc.)</li>
+      <li><strong>High salaries:</strong> Competitive pay, especially in tech and engineering</li>
+      <li><strong>Excellent healthcare:</strong> Universal coverage, capped costs</li>
+      <li><strong>English fluency:</strong> 90%+ of Swedes speak English</li>
+      <li><strong>Quality of life:</strong> Clean environment, low crime, high trust society</li>
+      <li><strong>Gender equality:</strong> Strong workplace equality and family support</li>
+      <li><strong>Nature access:</strong> Allemansrätten (right to roam), outdoor culture</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Sweden is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have a job offer from a Swedish employer</li>
+          <li>✓ You value work-life balance above salary</li>
+          <li>✓ You work in tech, gaming, engineering, or life sciences</li>
+          <li>✓ You want universal healthcare after registration</li>
+          <li>✓ You're comfortable with high taxes for high benefits</li>
+          <li>✓ Family-friendly policies matter to you</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You don't have a job offer yet (no job-seeking visa)</li>
+          <li>• Long dark winters concern you</li>
+          <li>• You want to maximize take-home pay (high taxes)</li>
+          <li>• You need immediate healthcare access</li>
+          <li>• Processing delays are problematic</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Collective agreement requirement:</strong> Swedish work permits require employment terms that match collective agreements (kollektivavtal). Even if your employer isn't unionized, they must offer equivalent salary and conditions. This protects workers but means your employer needs union confirmation or equivalent documentation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Sweden's work permit system is straightforward but requires a job offer upfront. There's no way to enter Sweden to look for work as a non-EU citizen. Your employer must provide terms matching collective agreements, and you must meet the minimum salary threshold.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Salary Requirements</h3>
+
+    <p class="mb-4">
+      The minimum salary is set at 80% of the Swedish median wage. Your actual salary should match what's normal for your profession—checked against collective agreements.
+    </p>
+
+    <ComparisonTable columns={salaryColumns} rows={salaryRows} />
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-green-800">
+        <strong>Insurance from employer:</strong> Your Swedish employer must provide health insurance, life insurance, occupational pension, and work injury insurance. These are standard in Sweden and usually arranged through collective agreements. This is separate from the public healthcare system.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Collective Agreement (Kollektivavtal)</h3>
+
+    <p class="mb-4">
+      Swedish work permits require proof that your employment terms match collective agreement standards. This means:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>If employer has kollektivavtal:</strong> Union provides statement confirming your terms are compliant</li>
+      <li><strong>If employer lacks kollektivavtal:</strong> Union reviews offer and confirms equivalent terms</li>
+      <li><strong>Union involvement:</strong> Relevant unions must be notified of your hiring</li>
+      <li><strong>Standard terms:</strong> Salary, working hours, vacation, insurance must meet standards</li>
+    </ul>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Union review process:</strong> When your employer submits a work permit application, relevant unions are notified and can review the terms. This usually takes 1-2 weeks. If terms don't meet standards, the union may object and the permit could be denied. Ensure your employer offers market-rate conditions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Healthcare is Tax-Funded After Registration</h3>
+      <p class="text-green-800">
+        Once you register for a personnummer at Skatteverket (Swedish Tax Agency), you access the same tax-funded healthcare as Swedish citizens. There's no separate insurance to buy—healthcare is funded through your income taxes. Patient fees exist but are capped at SEK 1,300/year for outpatient care.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Sweden's healthcare is regionally managed (21 regions). Quality is high, but wait times for non-urgent care can be long. The vårdgaranti (healthcare guarantee) promises GP access within 3 days, specialist within 90 days, treatment within 90 days—but this isn't always met. Many professionals add private insurance for faster access.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public vs. Private Healthcare</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The Personnummer Issue</h3>
+
+    <p class="mb-4">
+      There's a gap between arriving in Sweden and getting your personnummer. Registration at Skatteverket can take 2-8 weeks, sometimes longer. During this period:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Before Personnummer</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Emergency care available (may pay more)</li>
+          <li>• Employer insurance covers you</li>
+          <li>• May need to use coordination number</li>
+          <li>• Some administrative difficulties</li>
+          <li>• Private insurance helps bridge gap</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">After Personnummer</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Full healthcare access</li>
+          <li>✓ Register at local vårdcentral</li>
+          <li>✓ Högkostnadsskydd cost cap applies</li>
+          <li>✓ Prescription subsidies apply</li>
+          <li>✓ Same rights as Swedish citizens</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Högkostnadsskydd (Cost Protection)</h3>
+
+    <p class="mb-4">
+      Sweden has two cost protection schemes that cap your out-of-pocket expenses:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Healthcare (frikort):</strong> After paying SEK 1,300 in patient fees within 12 months, remaining care is free</li>
+      <li><strong>Prescriptions:</strong> After SEK 2,600 in prescription costs within 12 months, remaining prescriptions are free</li>
+      <li><strong>Combined maximum:</strong> SEK 3,900/year for all outpatient healthcare and prescriptions</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Private insurance purpose:</strong> Private insurance in Sweden isn't about coverage (public is comprehensive) but about <em>speed</em>. With private insurance, you skip queues and get specialist appointments in days instead of months. Common among professionals who value time. Employer-provided private insurance is an increasingly common benefit.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need faster healthcare access in Sweden?"
+    description="Compare private insurance options to skip waiting times."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Public healthcare is comprehensive—private insurance is about speed and convenience. Many Swedish employers now offer private healthcare insurance as a benefit.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Most Workers: Public Healthcare + Employer Private</h4>
+        <p class="text-neutral-600">After personnummer registration, public healthcare covers you. If your employer offers private insurance (sjukvårdsförsäkring), use it for faster specialist access. This is the most common setup for professionals in Sweden.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">No Employer Private Insurance: Skandia or Euro Accident</h4>
+        <p class="text-neutral-600">If your employer doesn't provide private insurance and you want faster access, buy individually from Skandia or Euro Accident. SEK 500-1,500/month for comprehensive coverage with minimal wait times.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">May Leave Sweden: Cigna or Allianz Global</h4>
+        <p class="text-neutral-600">If you might relocate, international insurance offers portability. More expensive than local options but continues coverage if you move. Useful for expats with uncertain long-term plans.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Before Personnummer: Employer Insurance + Travel Medical</h4>
+        <p class="text-neutral-600">Your employer's insurance covers you from day one. For the personnummer gap, travel medical insurance provides additional backup. Emergency care is available regardless of registration status.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Sweden has moderate visa fees and low direct healthcare costs (capped at SEK 1,300/year for outpatient care). Healthcare is primarily funded through taxes—you don't pay monthly premiums unless choosing private insurance.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Annual Healthcare Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Public Only (Light User)</p>
+        <p class="text-3xl font-bold text-neutral-900">SEK 500-1,000/year</p>
+        <p class="text-sm text-neutral-500 mt-2">Few GP visits, no frikort</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Public Only (Heavy User)</p>
+        <p class="text-3xl font-bold text-neutral-900">SEK 1,300/year max</p>
+        <p class="text-sm text-neutral-500 mt-2">Högkostnadsskydd cap</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">+ Private Insurance</p>
+        <p class="text-3xl font-bold text-neutral-900">SEK 7,000-18,000/year</p>
+        <p class="text-sm text-neutral-500 mt-2">For faster access</p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Hidden cost: taxes:</strong> Swedish healthcare is funded through income taxes (~30% municipal + ~20% national for high earners). While there's no insurance premium, you're paying through taxes. Net salaries are lower than gross suggests. The trade-off is comprehensive coverage and social security.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Swedish work permit applications are submitted online through Migrationsverket. Your employer creates an "offer of employment" in the system, you complete your part, and pay the fee. Processing times vary—typically 1-4 months but can be longer.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Job Offer from Swedish Employer</h4>
+          <p class="text-neutral-600">Find a job meeting salary requirements (SEK 27,360+ monthly). Ensure terms match collective agreement standards. Get signed employment contract with role, salary, start date, and working conditions specified.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Obtains Union Statement</h4>
+          <p class="text-neutral-600">Your employer contacts the relevant union(s) for a statement confirming your terms meet collective agreement standards. This takes 1-2 weeks. If employer has kollektivavtal, this is straightforward. If not, union reviews the offer.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Creates Offer in Migrationsverket System</h4>
+          <p class="text-neutral-600">Your employer logs into Migrationsverket's e-service and creates an "offer of employment." They enter job details, salary, working conditions, and upload union statement. You'll receive a reference number.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Your Application Online</h4>
+          <p class="text-neutral-600">Using the reference number, complete your part of the application. Upload passport, photo, sign the application digitally. Pay SEK 2,000 fee. Application is now with Migrationsverket.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Provide Biometrics (If Required)</h4>
+          <p class="text-neutral-600">Depending on your nationality and visa requirements, you may need to visit a Swedish embassy for biometrics (photo, fingerprints). Some nationalities can provide these after arrival. Check requirements for your country.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Decision</h4>
+          <p class="text-neutral-600">Processing takes 1-4 months on average. You can check status online. Migrationsverket may request additional documents. Once approved, you receive a decision letter. Residence permit card is issued after arrival.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Sweden and Start Work</h4>
+          <p class="text-neutral-600">With approval letter (and visa if required), travel to Sweden. You can start work immediately. Visit Migrationsverket office to complete residence permit card. Your employer's insurance covers you from day one.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register for Personnummer</h4>
+          <p class="text-neutral-600">Register at Skatteverket (Tax Agency) for your personnummer. Bring passport, residence permit, employment contract, lease agreement. Processing takes 2-8 weeks. Once issued, you can access full healthcare, banking, and services.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Processing delays:</strong> Migrationsverket processing times have been long in recent years. While official target is 4 months, it can take longer. Start early, track your case online, and don't resign your current job until you have approval. Certified employers (fast-track) get decisions in 10-20 days.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for work permit applicants in Sweden:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from India, SEK 55,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Stockholm tech company, computer science degree.</p>
+        <p class="text-green-700 font-medium">✓ Well above minimum, tech union (Unionen) statement obtained quickly. Certified employer = 15 day processing. Personnummer in 3 weeks. Employer provides Skandia private insurance. Stockholm tech scene thriving. English sufficient everywhere.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Game Developer from Poland, SEK 42,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Malmö gaming studio, EU citizen.</p>
+        <p class="text-green-700 font-medium">✓ EU citizen = no work permit needed. Just register at Skatteverket for personnummer. Full healthcare access after registration. Gaming industry strong in Malmö (King, Massive). Above minimum salary. Easy Copenhagen access via Öresund bridge.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Data Scientist from US, SEK 65,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Fintech company in Stockholm, master's degree.</p>
+        <p class="text-green-700 font-medium">✓ High salary, easy union approval. Non-certified employer = 3 month processing. Personnummer took 6 weeks (summer backlog). Healthcare gap covered by employer insurance. Added private insurance for faster specialist access. Learning Swedish for integration.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Nurse from Philippines, SEK 32,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Hospital in Gothenburg, nursing degree.</p>
+        <p class="text-amber-700 font-medium">△ Above minimum but needs Swedish nursing license validation. Socialstyrelsen process took 8 months. Work permit approved after license confirmed. Healthcare worker shortage = strong job security. Learning Swedish essential for patient care. Took longer but worth it.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from Brazil, SEK 38,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Startup in Stockholm, 5 years experience.</p>
+        <p class="text-green-700 font-medium">✓ Above minimum, startup willing to match collective agreement terms. Union review took extra time (startup unfamiliar with process). Permit approved in 2.5 months. Startup doesn't offer private insurance—bought individual Skandia plan. Fast-paced but good experience.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chef from Thailand, SEK 26,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Restaurant in Malmö, culinary training.</p>
+        <p class="text-red-700 font-medium">✗ Below minimum salary threshold (SEK 27,360). Union objected to terms. Employer couldn't increase salary to meet minimum. Application denied. Would need higher-paying position to qualify. Restaurant industry often struggles with salary thresholds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance Options for Sweden"
+    description="Find private coverage for faster specialist access."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Coming to Sweden Without a Job Offer</h3>
+        <p class="text-neutral-600">There's no job-seeking visa for non-EU citizens. You cannot enter Sweden to look for work—you need a job offer and approved work permit before arrival. Tourist visa doesn't allow job searching. Find the job first, then apply.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Accepting Below-Minimum Salary</h3>
+        <p class="text-neutral-600">If your salary is below SEK 27,360/month, your permit will be denied. The union will object, and Migrationsverket will reject the application. Ensure your offer meets the minimum AND matches collective agreement standards for your profession.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Delaying Personnummer Registration</h3>
+        <p class="text-neutral-600">Register at Skatteverket immediately after arrival. Without personnummer, you can't access full healthcare, open bank accounts easily, or use many services. The longer you wait, the more difficult daily life becomes. Bring all required documents on first visit.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Using Certified Employer Fast-Track</h3>
+        <p class="text-neutral-600">If your employer is certified by Migrationsverket, processing takes 10-20 days instead of months. Ask your employer if they're certified. If not, suggest they apply—it speeds up hiring significantly and helps attract international talent.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Immediate Healthcare Access</h3>
+        <p class="text-neutral-600">Full healthcare access requires personnummer registration, which takes weeks. Your employer's insurance covers you initially, but you may face administrative issues. Consider travel medical insurance for the gap period if you have health concerns.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Sweden -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Sweden</h2>
+
+    <p class="mb-4">
+      Swedish healthcare is tax-funded and decentralized across 21 regions. Quality is high, but wait times for non-urgent care can be significant. The system prioritizes based on medical need, not ability to pay. Once registered with personnummer, you access the same care as any Swedish citizen.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Swedish Healthcare Works</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Vårdcentral (Health Center)</h4>
+        <p class="text-neutral-600">Register at a local vårdcentral after getting personnummer. This is your primary care provider. GP visits cost SEK 200-350. You can change vårdcentral freely. Many offer drop-in or same-day appointments for urgent issues.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialists</h4>
+        <p class="text-neutral-600">Referral from GP usually required. Wait times vary—can be weeks to months depending on specialty and urgency. The vårdgaranti promises 90 days max, but this isn't always met. Private insurance provides faster specialist access.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hospitals</h4>
+        <p class="text-neutral-600">Emergency rooms (akutmottagning) are free for life-threatening situations. Other ER visits cost ~SEK 400. Inpatient care costs SEK 120/day maximum. Major hospitals in Stockholm (Karolinska), Gothenburg (Sahlgrenska), Malmö (Skåne University Hospital) are excellent.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">1177 Vårdguiden</h4>
+        <p class="text-neutral-600">Call 1177 for healthcare advice 24/7. Nurses assess your situation and advise whether to visit vårdcentral, ER, or self-care. Website 1177.se has health information in English. Very useful for navigating the system.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding English-Speaking Care</h3>
+
+    <p class="mb-4">
+      Most Swedish healthcare providers speak English, especially in Stockholm, Gothenburg, and Malmö. Some vårdcentraler specifically cater to expats. Major hospitals have interpretation services. Use 1177.se to find providers and check language availability.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Private healthcare (privat vård):</strong> Private clinics like Capio, Aleris, and Doktor24 offer faster appointments. Some accept public funding (you pay same fees as public), others are fully private. With private insurance, you access these with minimal wait. Many employers now include private healthcare as a benefit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need private health insurance in Sweden?</h3>
+        <p class="text-neutral-600">
+          No—after personnummer registration, public healthcare covers you. Private insurance is optional and primarily used for faster access to specialists and elective procedures. Many Swedish professionals have private insurance through employers. It's a convenience, not a necessity.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the collective agreement requirement?</h3>
+        <p class="text-neutral-600">
+          Swedish work permits require that your employment terms match collective agreement (kollektivavtal) standards for your industry. This means appropriate salary, working hours, vacation, and insurance. Unions review offers and can object if terms are substandard. This protects workers from exploitation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until permanent residence?</h3>
+        <p class="text-neutral-600">
+          After 4 years of continuous work in Sweden on work permits, you can apply for permanent residence. You must have held valid permits throughout and met all conditions. Permanent residence provides indefinite stay and isn't tied to employment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I change employers on a work permit?</h3>
+        <p class="text-neutral-600">
+          For the first 2 years, your permit is tied to the specific employer. Changing jobs requires a new work permit application. After 2 years, you can change employers within the same occupation without new application. After 4 years, you have permanent residence and full flexibility.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family join me?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouse/partner and children under 21 can apply for residence permits. Apply simultaneously with your work permit for faster processing. Spouse receives work authorization. Family members access healthcare after personnummer registration.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the personnummer and why is it important?</h3>
+        <p class="text-neutral-600">
+          The personnummer is Sweden's personal identity number—essential for everything from healthcare to banking to phone contracts. You get it by registering at Skatteverket. Without it, daily life is difficult. Apply immediately upon arrival and bring all required documents.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Sweden offers exceptional work-life balance, comprehensive social benefits, and a thriving tech scene. The work permit system is straightforward for skilled workers meeting salary requirements, though processing times can be long. The collective agreement requirement ensures fair terms—your employer must offer market-rate conditions.
+    </p>
+
+    <p class="mb-4">
+      Healthcare is tax-funded and excellent quality, though wait times for non-urgent care can be frustrating. The personnummer is essential for full access—register immediately upon arrival. Private insurance is optional but valuable for faster specialist access, especially as many employers now provide it.
+    </p>
+
+    <p class="mb-6">
+      High taxes mean lower take-home pay than gross salary suggests, but you get comprehensive social security, healthcare, and one of the world's best work environments. For tech workers, the Stockholm ecosystem rivals any in Europe. If work-life balance and social benefits matter to you, Sweden delivers.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Sweden's work permit requires a job offer meeting SEK 27,360+ salary and collective agreement terms. Healthcare is tax-funded after personnummer registration (2-8 weeks). Private insurance is optional for faster access. Processing takes 1-4 months—certified employers are faster. Excellent choice for work-life balance and tech careers.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/work-permit-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany EU Blue Card</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's work visa system</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/netherlands" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Kennismigrant</h3>
+        <p class="text-neutral-600 text-sm">Compare with the Dutch highly skilled visa</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

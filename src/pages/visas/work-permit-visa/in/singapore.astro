@@ -1,0 +1,751 @@
+---
+/**
+ * Singapore Employment Pass - Long-form CRO-optimized page
+ * Static page for work permit visa in Singapore
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Singapore", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Singapore Health Insurance Guide", href: "/countries/singapore/insurance" },
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const passColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "ep", header: "Employment Pass" },
+  { key: "spass", header: "S Pass" },
+  { key: "pep", header: "Personalised EP" },
+];
+
+const passRows = [
+  { feature: "Salary minimum", ep: "S$5,000+ (varies by age/sector)", spass: "S$3,150+", pep: "S$22,500+ fixed monthly" },
+  { feature: "Target", ep: "Professionals, managers, executives", spass: "Mid-skilled workers", pep: "High-earning top talent" },
+  { feature: "Quota", ep: "No quota", spass: "Company quota applies", pep: "No quota" },
+  { feature: "Dependents", ep: "DP for S$6,000+; LTVP for S$12,000+", spass: "DP for S$6,000+", pep: "Yes" },
+  { feature: "Duration", ep: "Up to 2 years (new), 3 years (renewal)", spass: "Up to 2 years", pep: "3 years" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Job Offer", details: "From Singapore-registered company", evidence: "Employment contract" },
+  { requirement: "Salary", details: "S$5,000+ (higher for older/experienced)", evidence: "Contract with salary" },
+  { requirement: "Qualifications", details: "Good university degree", evidence: "Degree certificates, transcripts" },
+  { requirement: "Experience", details: "Relevant professional experience", evidence: "Employment letters, CV" },
+  { requirement: "COMPASS Framework", details: "Points-based assessment (from Sep 2023)", evidence: "Evaluated by MOM" },
+  { requirement: "Skills Bonus", details: "Extra points for shortage skills", evidence: "Qualifications in priority sectors" },
+];
+
+const compassColumns = [
+  { key: "criteria", header: "COMPASS Criteria" },
+  { key: "points", header: "Points Available" },
+  { key: "description", header: "Description" },
+];
+
+const compassRows = [
+  { criteria: "Salary", points: "0-20 points", description: "Relative to sector benchmarks" },
+  { criteria: "Qualifications", points: "0-20 points", description: "Degree from top institution = more points" },
+  { criteria: "Diversity", points: "0-20 points", description: "Nationality diversity in company" },
+  { criteria: "Support for Local Employment", points: "0-20 points", description: "Company's share of local PMETs" },
+  { criteria: "Skills Bonus", points: "0-20 points", description: "Strategic Economic Priorities" },
+  { criteria: "Minimum Required", points: "40 points", description: "Must score 40+ to pass" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (SGD)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "$300-600", strengths: "Comprehensive, global network" },
+  { provider: "BUPA Global", type: "International", price: "$350-700", strengths: "Premium care, no limits" },
+  { provider: "Allianz Care", type: "International", price: "$280-550", strengths: "Good value, strong Asia" },
+  { provider: "AXA Singapore", type: "Local", price: "$200-400", strengths: "Local network, affordable" },
+  { provider: "Great Eastern", type: "Local", price: "$150-350", strengths: "Budget, Singapore-focused" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (SGD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "EP Application Fee", amount: "$105", notes: "Per application" },
+  { item: "EP Issuance Fee", amount: "$225", notes: "Upon approval" },
+  { item: "Multiple Journey Visa", amount: "$30", notes: "If nationality requires" },
+  { item: "Dependant Pass (DP)", amount: "$105 + $225", notes: "Per dependant" },
+  { item: "Medical Exam", amount: "$80-150", notes: "If required by employer" },
+  { item: "Health Insurance", amount: "$2,400-7,200/year", notes: "Employer required to provide" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "responsibility", header: "Who" },
+];
+
+const timelineRows = [
+  { step: "Job offer from Singapore employer", duration: "Varies", responsibility: "You + Employer" },
+  { step: "Employer submits EP application", duration: "1 hour online", responsibility: "Employer" },
+  { step: "COMPASS assessment", duration: "Part of processing", responsibility: "MOM" },
+  { step: "MOM processing", duration: "3-8 weeks", responsibility: "MOM" },
+  { step: "In-Principle Approval (IPA)", duration: "Received online", responsibility: "MOM" },
+  { step: "Travel to Singapore", duration: "IPA valid 6 months", responsibility: "You" },
+  { step: "Complete formalities, medical", duration: "1-3 days", responsibility: "You" },
+  { step: "EP card issued", duration: "4 working days", responsibility: "MOM" },
+];
+---
+
+<PageShell
+  title="Singapore Employment Pass 2026: COMPASS, Salary, Insurance & Application Guide"
+  description="Complete guide to Singapore's Employment Pass. COMPASS points system, salary thresholds by age, employer-provided insurance requirements, and step-by-step application process for professionals."
+  headline="Singapore Employment Pass: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working in Singapore—COMPASS framework, salary thresholds, employer insurance requirements, and the complete application process for professionals."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/singapore-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official MOM Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      COMPASS Framework
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The Employment Pass (EP) is Singapore's work visa for foreign professionals, managers, and executives. It's the most common path for skilled workers to work in Singapore, offering access to one of Asia's most dynamic economies. Since September 2023, all EP applications must pass the COMPASS framework—a points-based assessment ensuring quality candidates.
+    </p>
+
+    <p class="mb-4">
+      Singapore's healthcare is excellent but not free. The government requires employers to provide medical insurance for all EP holders. Understanding what's covered—and what gaps remain—is essential for planning your healthcare in Singapore.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Singapore Employment Pass</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Pass type:</strong> Employment Pass (for professionals earning S$5,000+)</li>
+        <li>• <strong>Salary threshold:</strong> S$5,000/month minimum (higher for older candidates)</li>
+        <li>• <strong>COMPASS:</strong> Must score 40+ points on points-based framework</li>
+        <li>• <strong>Healthcare:</strong> Employer must provide medical insurance</li>
+        <li>• <strong>Duration:</strong> Up to 2 years (new), 3 years (renewal)</li>
+        <li>• <strong>Dependants:</strong> Spouse/children eligible at S$6,000+ salary</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in Singapore?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Business hub:</strong> Gateway to Asia, regional HQ for multinationals</li>
+      <li><strong>Low taxes:</strong> Top marginal rate 24%, no capital gains tax</li>
+      <li><strong>Safe and clean:</strong> Among world's safest, most livable cities</li>
+      <li><strong>English speaking:</strong> Official language, no language barrier</li>
+      <li><strong>World-class healthcare:</strong> Top hospitals and specialists</li>
+      <li><strong>Strategic location:</strong> Easy travel to all of Asia-Pacific</li>
+      <li><strong>Strong economy:</strong> High salaries, stable currency</li>
+      <li><strong>Infrastructure:</strong> Excellent transport, digital services</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Singapore EP is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You earn S$5,000+ monthly (more if older)</li>
+          <li>✓ You have a good university degree</li>
+          <li>✓ You want to work in Asia's business hub</li>
+          <li>✓ You value low taxes</li>
+          <li>✓ Your employer can pass COMPASS</li>
+          <li>✓ You want world-class healthcare</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Salary below S$5,000 (consider S Pass)</li>
+          <li>• No university degree (harder to qualify)</li>
+          <li>• Employer has poor COMPASS scores</li>
+          <li>• You want path to citizenship (very difficult)</li>
+          <li>• You prefer larger living spaces (SG is small)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Work Pass Types Compared</h3>
+
+    <ComparisonTable columns={passColumns} rows={passRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Age-based salary requirements:</strong> The S$5,000 minimum is for young candidates. MOM expects higher salaries for older workers: ~S$10,500 for mid-40s professionals in non-financial sectors, higher in financial services. Check the Self-Assessment Tool on MOM's website.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Employment Pass requires a job offer from a Singapore company, meeting salary thresholds, having good qualifications, and passing the COMPASS framework. Since September 2023, COMPASS adds a points-based layer ensuring EP holders meet quality benchmarks.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">COMPASS Framework (Since Sep 2023)</h3>
+
+    <p class="mb-4">
+      COMPASS (Complementarity Assessment Framework) evaluates EP applications on multiple criteria. You must score at least 40 points to qualify. Points come from both individual and employer-related factors.
+    </p>
+
+    <ComparisonTable columns={compassColumns} rows={compassRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-amber-800">
+        <strong>COMPASS matters:</strong> Even with good qualifications and high salary, your EP can be rejected if your employer scores poorly on diversity or local employment. Research your potential employer's workforce composition. Tech startups with few locals may struggle.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Salary Requirements by Age</h3>
+
+    <p class="mb-4">
+      MOM expects salaries to reflect experience. Rough benchmarks for EP approval:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Fresh graduates (early 20s):</strong> S$5,000+ minimum</li>
+      <li><strong>Early career (late 20s):</strong> S$5,500-7,000+</li>
+      <li><strong>Mid-career (30s):</strong> S$7,000-10,000+</li>
+      <li><strong>Senior (40s):</strong> S$10,000-15,000+</li>
+      <li><strong>Financial services:</strong> Add 10-20% to above</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Use the SAT:</strong> MOM's Self-Assessment Tool (SAT) at mom.gov.sg gives you a preliminary assessment of your EP eligibility. Run your details through before accepting a job offer to avoid surprises.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Employers Must Provide Medical Insurance</h3>
+      <p class="text-green-800">
+        Since January 2023, all Singapore employers are legally required to provide medical insurance for EP and S Pass holders. This must cover at least S$15,000/year in inpatient care. Your employer handles this—you don't need to arrange your own for the visa.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Singapore has no public healthcare for foreigners. The excellent hospital system operates on a pay-as-you-go or insurance basis. While employer insurance covers basics, many expats supplement with additional coverage for comprehensive protection.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What Employer Insurance Typically Covers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Usually Covered</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Hospitalization (S$15,000+ minimum)</li>
+          <li>✓ Surgery and procedures</li>
+          <li>✓ Emergency care</li>
+          <li>✓ Some outpatient visits</li>
+          <li>✓ Basic prescriptions</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Often Limited or Excluded</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Dental care</li>
+          <li>• Vision care</li>
+          <li>• Maternity (or long waiting period)</li>
+          <li>• Pre-existing conditions</li>
+          <li>• Mental health</li>
+          <li>• Coverage outside Singapore</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Should You Get Additional Insurance?</h3>
+
+    <p class="mb-4">
+      Employer insurance meets the legal minimum, but may not be comprehensive. Consider additional coverage if:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>You have pre-existing conditions:</strong> Employer plans often exclude them</li>
+      <li><strong>You're planning pregnancy:</strong> Maternity coverage may be limited</li>
+      <li><strong>You travel frequently:</strong> Employer plans may only cover Singapore</li>
+      <li><strong>You want private hospital choice:</strong> Basic plans may restrict hospitals</li>
+      <li><strong>Mental health needs:</strong> Often excluded from basic plans</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Review employer benefits carefully:</strong> Good employers offer more than the S$15,000 minimum. Ask for the policy document before accepting. Top companies provide comprehensive packages covering outpatient, dental, and even maternity.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Want coverage beyond employer-provided insurance?"
+    description="Compare plans from top providers for expats in Singapore."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      If your employer's insurance is basic, or you want comprehensive coverage, these providers offer plans for expats in Singapore. International insurers are popular for their global coverage and portability.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Comprehensive Coverage: Cigna Global</h4>
+        <p class="text-neutral-600">Cigna Global offers excellent coverage in Singapore with access to top hospitals (Raffles, Gleneagles, Mount Elizabeth). Strong for international coverage if you travel. Good mental health benefits included.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Premium No-Limits: BUPA Global</h4>
+        <p class="text-neutral-600">BUPA's global plans have no annual limits and cover Singapore's expensive private hospitals without restriction. Best for those wanting top-tier care without worrying about coverage caps.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Singapore-Focused: AXA Singapore</h4>
+        <p class="text-neutral-600">If you'll primarily use healthcare in Singapore and want lower premiums, local insurers like AXA Singapore and Great Eastern offer competent coverage at lower cost than international plans.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Maternity Coverage</h4>
+        <p class="text-neutral-600">Maternity is expensive in Singapore ($10,000-25,000 for delivery). If planning pregnancy, ensure your plan covers maternity—most have 10-12 month waiting periods. Cigna and BUPA have good maternity options.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The Employment Pass has modest government fees. The larger costs are healthcare insurance (employer-provided) and living expenses in Singapore.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Application Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">EP Holder Only</p>
+        <p class="text-3xl font-bold text-neutral-900">S$330-360</p>
+        <p class="text-sm text-neutral-500 mt-2">Application + issuance + visa</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">With Spouse + Child</p>
+        <p class="text-3xl font-bold text-neutral-900">S$990-1,080</p>
+        <p class="text-sm text-neutral-500 mt-2">EP + 2 Dependant Passes</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Pays What</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Employer Typically Pays</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• EP application and issuance fees</li>
+          <li>• Medical insurance (mandatory)</li>
+          <li>• Sometimes: Dependant Pass fees</li>
+          <li>• Sometimes: Relocation allowance</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">You Typically Pay</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Multiple Journey Visa (if required)</li>
+          <li>• Dependant Passes (sometimes)</li>
+          <li>• Supplementary insurance (optional)</li>
+          <li>• Relocation costs (varies)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Low taxes offset costs:</strong> Singapore's low income tax (0-24% progressive, with generous deductions) means more take-home pay. For many expats, the tax savings alone cover insurance and other costs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      EP applications are submitted by your employer through MOM's EP Online portal. The process is straightforward and mostly digital. Processing typically takes 3-8 weeks.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Accept Job Offer from Singapore Company</h4>
+          <p class="text-neutral-600">Ensure the salary meets EP thresholds for your age/experience. Use MOM's Self-Assessment Tool (SAT) to check eligibility. Get a signed employment contract with job details and salary.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Submits EP Application</h4>
+          <p class="text-neutral-600">Your employer's HR submits the application via EP Online. They'll need your passport, educational certificates, employment history, and a passport photo. You'll receive a notification when submitted.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">COMPASS Assessment</h4>
+          <p class="text-neutral-600">MOM evaluates your application against COMPASS criteria. Points are calculated for salary, qualifications, and employer-related factors. You need 40+ points to pass. This is automatic during processing.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive In-Principle Approval (IPA)</h4>
+          <p class="text-neutral-600">If approved, you receive an In-Principle Approval letter. This is valid for 6 months and allows you to enter Singapore to complete EP formalities. Your employer can print this for you.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Singapore</h4>
+          <p class="text-neutral-600">Enter Singapore using your IPA letter. Present it to immigration along with your passport. You can start work immediately—the IPA allows you to work while the actual EP card is processed.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Formalities</h4>
+          <p class="text-neutral-600">Your employer's HR will guide you through registering your fingerprints and photo at MOM's Employment Pass Services Centre. Some employers arrange a medical checkup. This takes 1-3 days.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive EP Card</h4>
+          <p class="text-neutral-600">Your Employment Pass card is issued within 4 working days after registration. It's mailed to your employer or can be collected. This card is your work and residence permit in Singapore.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Fast processing:</strong> Singapore's EP process is efficient. Many applications are processed in 3-4 weeks. Complex cases (unusual qualifications, new companies) may take longer. Your employer can check status via EP Online.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Employment Pass holders in Singapore:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Engineer from India, S$8,500 salary</h3>
+        <p class="text-neutral-600 mb-4">Mid-career, joining a multinational tech company.</p>
+        <p class="text-green-700 font-medium">✓ Strong COMPASS score (good salary, degree, diverse employer). EP approved in 3 weeks. Employer provides comprehensive insurance including outpatient and dental. Added Cigna Global for family visits home and maternity planning.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Director from UK, S$15,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Senior role, regional HQ in Singapore.</p>
+        <p class="text-green-700 font-medium">✓ Salary well above threshold, top university degree. COMPASS easily passed. Wife gets Dependant Pass with work rights. Employer provides BUPA Global with full family coverage. Low taxes mean higher net pay than London.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Data Analyst from Philippines, S$5,500 salary</h3>
+        <p class="text-neutral-600 mb-4">Entry-level role at local startup.</p>
+        <p class="text-amber-700 font-medium">△ Salary barely meets threshold. COMPASS was tight—employer's low local hiring rate hurt. EP approved after 6 weeks with additional documentation. Basic employer insurance only; added AXA Singapore supplementary plan.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Finance Professional from US, S$12,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Bank, financial sector thresholds apply.</p>
+        <p class="text-green-700 font-medium">✓ Financial sector salary threshold met. Bank provides excellent benefits—comprehensive BUPA, dental, vision. Dependant Passes for wife and children. Healthcare quality exceeds US experience.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Design Manager from Australia, S$7,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Creative agency, no degree.</p>
+        <p class="text-amber-700 font-medium">△ No university degree is challenging. Had to demonstrate exceptional portfolio and 10+ years experience. EP approved with additional supporting documents. Employer provides Great Eastern basic plan; added personal comprehensive cover.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Junior Consultant from China, S$4,800 salary</h3>
+        <p class="text-neutral-600 mb-4">Small consulting firm, fresh graduate.</p>
+        <p class="text-red-700 font-medium">✗ Salary below S$5,000 minimum. Employer tried to proceed anyway—rejected by MOM. Had to renegotiate salary to S$5,200 and reapply. Lesson: check thresholds before accepting offers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance Options for Singapore"
+    description="Find comprehensive coverage to supplement employer-provided insurance."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Accepting Below-Threshold Salary</h3>
+        <p class="text-neutral-600">The S$5,000 minimum is just the start. Older candidates need higher salaries. Use MOM's Self-Assessment Tool before accepting any offer. An EP rejection wastes everyone's time and may affect future applications.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Understanding COMPASS Impact</h3>
+        <p class="text-neutral-600">Your personal qualifications matter, but so does your employer's profile. A startup with few local employees may struggle to pass COMPASS even for qualified candidates. Research potential employers.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Employer Insurance is Comprehensive</h3>
+        <p class="text-neutral-600">The mandatory minimum (S$15,000 inpatient) is quite basic. A serious hospital stay in Singapore can cost S$50,000+. Review your employer's actual policy and consider supplementary coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing Dependant Pass Requirements</h3>
+        <p class="text-neutral-600">Spouse and children can only join if you earn S$6,000+ monthly. For Long-Term Visit Pass (parents), you need S$12,000+. Plan family moves carefully based on your salary level.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Letting IPA Expire</h3>
+        <p class="text-neutral-600">The In-Principle Approval is valid for 6 months. You must enter Singapore and complete EP formalities within this window. If it expires, your employer must reapply.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Singapore -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Singapore</h2>
+
+    <p class="mb-4">
+      Singapore has world-class healthcare with excellent hospitals and specialists. The system is primarily private for foreigners—there's no public healthcare access for EP holders. Your employer's insurance and any supplementary coverage fund your care.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Singapore's Healthcare System</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Private Hospitals</h4>
+        <p class="text-neutral-600">Mount Elizabeth, Raffles Hospital, Gleneagles—these are world-class facilities with short waits and excellent care. Most expat insurance covers private hospitals. Costs are high but so is quality.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Restructured (Public) Hospitals</h4>
+        <p class="text-neutral-600">Singapore General Hospital, NUH, Tan Tock Seng—these are government-run but operate as private for foreigners. You pay unsubsidized rates. Quality is excellent; costs are lower than private but still significant.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">GP Clinics</h4>
+        <p class="text-neutral-600">Private GP clinics are everywhere. Walk-in consultations cost S$50-100. Many accept insurance direct billing. For minor issues, GPs are convenient and affordable.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Costs Without Insurance</h3>
+
+    <p class="mb-4">
+      Singapore healthcare is expensive without coverage:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP visit:</strong> S$50-100</li>
+      <li><strong>Specialist consultation:</strong> S$150-400</li>
+      <li><strong>ER visit:</strong> S$500-2,000</li>
+      <li><strong>Hospital day (private):</strong> S$1,000-3,000</li>
+      <li><strong>Surgery:</strong> S$5,000-50,000+</li>
+      <li><strong>Childbirth:</strong> S$10,000-25,000</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>High quality worth the cost:</strong> Singapore ranks among the world's best healthcare systems. Doctor training is rigorous, facilities are modern, and wait times are minimal. Many expats find the quality exceeds their home countries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to arrange my own health insurance?</h3>
+        <p class="text-neutral-600">
+          No. Since January 2023, employers are legally required to provide medical insurance for EP holders (minimum S$15,000/year inpatient coverage). You may want to supplement this with additional coverage, but the basics are handled by your employer.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is COMPASS and why does it matter?</h3>
+        <p class="text-neutral-600">
+          COMPASS is a points-based framework for EP applications since September 2023. You must score 40+ points across criteria including salary, qualifications, and employer factors. Even qualified candidates can be rejected if their employer's profile doesn't contribute enough points.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse work in Singapore?</h3>
+        <p class="text-neutral-600">
+          If your salary is S$6,000+, your spouse can get a Dependant Pass (DP). DP holders can work with a Letter of Consent (LOC) from MOM—this is relatively easy to obtain if an employer wants to hire them.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How hard is it to get permanent residence?</h3>
+        <p class="text-neutral-600">
+          Permanent Residence (PR) in Singapore is discretionary and competitive. EP holders can apply after 6 months but approval rates are low. Factors include salary, sector, community involvement, and Singapore's economic needs. Most applicants apply multiple times before success.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I change employers on an EP?</h3>
+        <p class="text-neutral-600">
+          Yes. Your new employer must apply for a new EP for you. You can remain in Singapore during the transition. The new EP must meet current requirements and pass COMPASS. There's no need to leave the country.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I lose my job?</h3>
+        <p class="text-neutral-600">
+          Your EP is tied to your employer—if you lose your job, you have a short grace period to find a new employer willing to apply for your EP, or you must leave Singapore. There's no specific timeframe stated by MOM, but realistically you have weeks, not months.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Singapore's Employment Pass offers access to one of Asia's most dynamic economies with world-class healthcare, low taxes, and excellent quality of life. The COMPASS framework has made requirements more transparent but also more demanding—your employer's profile matters as much as your own qualifications.
+    </p>
+
+    <p class="mb-4">
+      Healthcare is handled well: employers must provide insurance, and Singapore's medical facilities are excellent. The main consideration is whether employer-provided coverage is comprehensive enough, especially for maternity, mental health, or pre-existing conditions. Many expats supplement with international plans.
+    </p>
+
+    <p class="mb-6">
+      For professionals in finance, tech, and regional business roles, Singapore offers compelling opportunities. The lack of a clear PR pathway is a consideration for long-term planning, but the immediate benefits—low taxes, safety, efficiency—make it attractive for many skilled workers.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Singapore Employment Pass includes employer-provided health insurance (mandatory since 2023). Review your employer's policy carefully—the S$15,000 minimum may not be comprehensive. Consider supplementary coverage for maternity, mental health, or if you have pre-existing conditions.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/singapore/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Singapore Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Singapore</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/uae" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UAE Work Permit</h3>
+        <p class="text-neutral-600 text-sm">Compare with Dubai/UAE's work visa system</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

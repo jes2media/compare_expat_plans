@@ -1,0 +1,770 @@
+---
+/**
+ * Canada Work Permit (LMIA-based) - Long-form CRO-optimized page
+ * Static page for work permit visa in Canada
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Canada", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Canada Health Insurance Guide", href: "/countries/canada/insurance" },
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const permitColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "lmia", header: "LMIA Work Permit" },
+  { key: "exempt", header: "LMIA-Exempt" },
+  { key: "iec", header: "IEC Working Holiday" },
+];
+
+const permitRows = [
+  { feature: "Employer requirement", lmia: "Must obtain LMIA", exempt: "No LMIA needed", iec: "No employer needed" },
+  { feature: "Processing time", lmia: "2-5 months total", exempt: "2-8 weeks", iec: "8-16 weeks" },
+  { feature: "Duration", lmia: "Up to 3 years", exempt: "Varies by category", iec: "1-2 years" },
+  { feature: "PR pathway", lmia: "Yes (Express Entry)", exempt: "Varies", iec: "Can lead to LMIA job" },
+  { feature: "Common users", lmia: "Most skilled workers", exempt: "Intra-company, CUSMA", iec: "Youth 18-35" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Job Offer", details: "From Canadian employer with positive LMIA", evidence: "LMIA number + job offer letter" },
+  { requirement: "Qualifications", details: "Meet job requirements", evidence: "Degrees, certifications, experience letters" },
+  { requirement: "Language", details: "English/French ability (some jobs)", evidence: "IELTS, CELPIP, TEF (if required)" },
+  { requirement: "Medical Exam", details: "Required for some countries/jobs", evidence: "Panel physician exam" },
+  { requirement: "Police Certificate", details: "Criminal background check", evidence: "Police certificates from countries lived" },
+  { requirement: "Biometrics", details: "Fingerprints and photo", evidence: "Appointment at VAC" },
+  { requirement: "Proof of Funds", details: "Show you can support yourself initially", evidence: "Bank statements" },
+];
+
+const insuranceColumns = [
+  { key: "province", header: "Province" },
+  { key: "waitPeriod", header: "Wait Period" },
+  { key: "coverage", header: "Provincial Coverage" },
+  { key: "recommendation", header: "Private Insurance Need" },
+];
+
+const insuranceRows = [
+  { province: "Ontario", waitPeriod: "3 months", coverage: "OHIP after wait", recommendation: "Essential for 3 months" },
+  { province: "British Columbia", waitPeriod: "3 months", coverage: "MSP after wait", recommendation: "Essential for 3 months" },
+  { province: "Alberta", waitPeriod: "3 months", coverage: "AHCIP after wait", recommendation: "Essential for 3 months" },
+  { province: "Quebec", waitPeriod: "3 months", coverage: "RAMQ after wait", recommendation: "Essential for 3 months" },
+  { province: "Manitoba", waitPeriod: "None", coverage: "Immediate", recommendation: "Optional, for extras" },
+  { province: "Saskatchewan", waitPeriod: "3 months", coverage: "After wait", recommendation: "Essential for 3 months" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (CAD)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Manulife", type: "Canadian", price: "$100-250", strengths: "Waiting period coverage, newcomers" },
+  { provider: "Blue Cross", type: "Canadian", price: "$80-200", strengths: "Affordable, good network" },
+  { provider: "Cigna Global", type: "International", price: "$200-400", strengths: "Portable, global coverage" },
+  { provider: "Allianz Care", type: "International", price: "$180-350", strengths: "Worldwide, flexible" },
+  { provider: "Guard.me", type: "Canadian", price: "$50-120", strengths: "Budget, basic coverage" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (CAD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Work Permit Application", amount: "$155", notes: "Online application fee" },
+  { item: "Open Work Permit Holder Fee", amount: "$100", notes: "Additional if open permit" },
+  { item: "Biometrics", amount: "$85", notes: "Fingerprints and photo" },
+  { item: "LMIA Application", amount: "$1,000", notes: "Paid by employer" },
+  { item: "Medical Exam", amount: "$200-400", notes: "If required" },
+  { item: "Police Certificates", amount: "$50-150", notes: "Per country" },
+  { item: "Private Insurance (3 months)", amount: "$300-750", notes: "During provincial wait period" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "responsibility", header: "Who" },
+];
+
+const timelineRows = [
+  { step: "Job offer from Canadian employer", duration: "Varies", responsibility: "You + Employer" },
+  { step: "Employer applies for LMIA", duration: "2-4 months", responsibility: "Employer" },
+  { step: "LMIA approved", duration: "Decision received", responsibility: "ESDC" },
+  { step: "You apply for work permit", duration: "1-2 hours online", responsibility: "You" },
+  { step: "Biometrics appointment", duration: "1 day", responsibility: "VAC" },
+  { step: "Medical exam (if required)", duration: "1-2 weeks", responsibility: "Panel physician" },
+  { step: "Work permit processing", duration: "2-8 weeks", responsibility: "IRCC" },
+  { step: "Receive decision", duration: "Via online account", responsibility: "IRCC" },
+  { step: "Travel to Canada", duration: "Port of entry", responsibility: "You" },
+];
+---
+
+<PageShell
+  title="Canada Work Permit 2026: LMIA, Requirements, Insurance & Application Guide"
+  description="Complete guide to Canada Work Permits. LMIA process, provincial healthcare waiting periods, private insurance requirements, and step-by-step application process for workers relocating to Canada."
+  headline="Canada Work Permit: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working in Canada—LMIA-based permits, provincial healthcare waiting periods, mandatory private insurance, and the complete application process for skilled workers."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/canada-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official IRCC Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Provincial Healthcare Access
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Canada's work permit system allows skilled foreign workers to fill labor shortages across the country. The most common route is the LMIA-based work permit, where employers must prove no Canadian worker is available. With a strong economy, excellent quality of life, and clear pathways to permanent residence, Canada remains one of the top destinations for skilled workers.
+    </p>
+
+    <p class="mb-4">
+      Unlike countries with national healthcare from day one, Canada's provincial healthcare systems have waiting periods—typically 3 months. During this time, you must have private health insurance. Understanding this gap is critical, as a medical emergency without coverage can cost tens of thousands of dollars.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Canada Work Permit</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Permit type:</strong> LMIA-based Work Permit (employer-sponsored)</li>
+        <li>• <strong>LMIA requirement:</strong> Employer must obtain positive Labour Market Impact Assessment</li>
+        <li>• <strong>Healthcare:</strong> Provincial coverage after 0-3 month waiting period</li>
+        <li>• <strong>Duration:</strong> Typically 1-3 years (tied to job offer)</li>
+        <li>• <strong>PR pathway:</strong> Express Entry (Canadian Experience Class) after 1 year</li>
+        <li>• <strong>Work rights:</strong> For sponsoring employer only (closed permit)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in Canada?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Quality of life:</strong> Consistently ranked among world's best places to live</li>
+      <li><strong>Clear PR pathway:</strong> Express Entry offers 6-month permanent residence processing</li>
+      <li><strong>Strong economy:</strong> Low unemployment, growing tech and healthcare sectors</li>
+      <li><strong>Universal healthcare:</strong> Provincial coverage after waiting period</li>
+      <li><strong>English/French:</strong> Work in either official language</li>
+      <li><strong>Family friendly:</strong> Spouse gets open work permit, children can study</li>
+      <li><strong>Multicultural:</strong> Welcoming immigration culture</li>
+      <li><strong>Proximity to US:</strong> Easy travel, similar time zones</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Canada Work Permit is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have a job offer from a Canadian employer</li>
+          <li>✓ You want a clear path to permanent residence</li>
+          <li>✓ You value universal healthcare (after wait)</li>
+          <li>✓ You want your spouse to work freely</li>
+          <li>✓ You're comfortable with colder climate</li>
+          <li>✓ You have skilled work experience</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You don't have a job offer yet (consider Express Entry)</li>
+          <li>• Employer can't/won't obtain LMIA</li>
+          <li>• You need immediate healthcare coverage</li>
+          <li>• You prefer warmer climate year-round</li>
+          <li>• You want to be self-employed (different permit)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Work Permit Types Compared</h3>
+
+    <ComparisonTable columns={permitColumns} rows={permitRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Express Entry advantage:</strong> After 1 year of skilled Canadian work experience, you can apply through the Canadian Experience Class (CEC)—one of the fastest routes to permanent residence. Many workers get PR invitations within 6-12 months of becoming eligible.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The LMIA-based work permit requires your Canadian employer to first obtain a positive Labour Market Impact Assessment, proving no Canadian worker is available for the role. Once they have the LMIA, you can apply for your work permit.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The LMIA Process</h3>
+
+    <p class="mb-4">
+      The Labour Market Impact Assessment (LMIA) is your employer's responsibility. They must demonstrate they tried to hire Canadians first through advertising and recruitment. The process involves:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Job advertising:</strong> Minimum 4 weeks on Job Bank + 2 other methods</li>
+      <li><strong>Recruitment efforts:</strong> Document all applicants and why Canadians weren't hired</li>
+      <li><strong>Prevailing wage:</strong> Must offer at least the median wage for the occupation</li>
+      <li><strong>Application fee:</strong> $1,000 per position (employer pays)</li>
+      <li><strong>Processing:</strong> 2-4 months depending on occupation and region</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <p class="text-green-800">
+        <strong>Global Talent Stream:</strong> For high-demand tech occupations, the Global Talent Stream offers expedited LMIA processing (2 weeks) and work permit processing (2 weeks). If you're in AI, software development, or other tech roles, ask your employer about this option.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">LMIA-Exempt Categories</h3>
+
+    <p class="mb-4">
+      Some work permits don't require LMIA, including:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Intra-company transfers:</strong> Executives, managers, specialized knowledge workers</li>
+      <li><strong>CUSMA (formerly NAFTA):</strong> US and Mexican professionals in listed occupations</li>
+      <li><strong>International agreements:</strong> CPTPP, trade agreements</li>
+      <li><strong>Spousal open work permit:</strong> Spouses of skilled workers</li>
+      <li><strong>Post-graduation work permit:</strong> Canadian graduates</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Provincial Healthcare Has a Waiting Period</h3>
+      <p class="text-amber-800">
+        Canada's healthcare is provincial, not federal. Most provinces have a 3-month waiting period before work permit holders can access provincial health insurance. During this period, you MUST have private health insurance. A hospital visit without coverage can cost $5,000-50,000+.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Each province manages its own health insurance program (OHIP in Ontario, MSP in BC, RAMQ in Quebec, etc.). Rules vary by province—Manitoba offers immediate coverage, while most others require a 3-month wait.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Provincial Healthcare by Province</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Provincial Healthcare Covers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Covered by Provincial Plans</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Doctor visits (GP and specialists)</li>
+          <li>✓ Hospital stays and surgery</li>
+          <li>✓ Diagnostic tests (X-rays, blood work)</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Mental health (psychiatry)</li>
+          <li>✓ Emergency care</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">NOT Covered (Need Private)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Prescription drugs (outside hospital)</li>
+          <li>• Dental care</li>
+          <li>• Vision care (glasses, contacts)</li>
+          <li>• Physiotherapy</li>
+          <li>• Ambulance (some provinces)</li>
+          <li>• Private hospital rooms</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Insurance Recommendations</h3>
+
+    <p class="mb-4">
+      You need private insurance for two situations:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Waiting period coverage:</strong> Essential for the first 3 months in most provinces</li>
+      <li><strong>Extended health benefits:</strong> For prescriptions, dental, vision after provincial coverage starts</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Employer benefits:</strong> Many Canadian employers offer extended health benefits covering prescriptions, dental, and vision. This supplements provincial healthcare and often starts from day one. Ask about benefits during job negotiations.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need coverage during the provincial waiting period?"
+    description="Compare plans from top providers for workers relocating to Canada."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For the provincial waiting period, you need comprehensive medical insurance. Several Canadian and international providers offer plans specifically designed for newcomers.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Waiting Period Coverage: Manulife CoverMe</h4>
+        <p class="text-neutral-600">Manulife's CoverMe plans are specifically designed for newcomers to Canada. They offer 3-month policies perfectly timed for the provincial waiting period, with good hospital and emergency coverage. Popular with work permit holders.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious: Blue Cross</h4>
+        <p class="text-neutral-600">Blue Cross offers affordable newcomer plans with solid basic coverage. Good choice if you're healthy and want to minimize costs during the waiting period. Available in most provinces.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Portable/International: Cigna Global</h4>
+        <p class="text-neutral-600">If you travel frequently or might relocate, international insurance offers portability. Cigna Global covers you in Canada and worldwide. More expensive but valuable if your situation might change.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Extended Benefits: Sun Life/Great-West Life</h4>
+        <p class="text-neutral-600">After provincial coverage starts, many workers add extended health insurance for prescriptions, dental, and vision. These Canadian insurers offer individual plans if your employer doesn't provide benefits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The work permit application has relatively low government fees. The major costs are the LMIA (paid by employer) and private insurance during the waiting period.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Costs (Your Share)</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Basic Application</p>
+        <p class="text-3xl font-bold text-neutral-900">CAD $540-740</p>
+        <p class="text-sm text-neutral-500 mt-2">Permit + biometrics + insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">With Medical Exam</p>
+        <p class="text-3xl font-bold text-neutral-900">CAD $740-1,140</p>
+        <p class="text-sm text-neutral-500 mt-2">Add medical + police certificates</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Employer vs. Employee Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Employer Pays</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• LMIA application: $1,000 per position</li>
+          <li>• Recruitment costs: Varies</li>
+          <li>• Sometimes: Work permit fees</li>
+          <li>• Sometimes: Relocation assistance</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">You Pay</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Work permit: $155</li>
+          <li>• Biometrics: $85</li>
+          <li>• Medical exam: $200-400 (if required)</li>
+          <li>• Police certificates: $50-150</li>
+          <li>• Private insurance: $300-750 (3 months)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Negotiate relocation:</strong> Many Canadian employers offer relocation packages covering work permit fees, moving costs, and sometimes initial housing. For in-demand roles (tech, healthcare), this is often negotiable.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The LMIA work permit is a two-stage process: your employer obtains the LMIA, then you apply for the work permit. The employer's LMIA takes the longest—your work permit application is relatively quick once you have the LMIA.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Job Offer from Canadian Employer</h4>
+          <p class="text-neutral-600">Find an employer willing to sponsor you. They must be a legitimate Canadian business. The job must pay at least the prevailing wage for the occupation and region. Get a written offer letter with job details.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Applies for LMIA</h4>
+          <p class="text-neutral-600">Your employer submits an LMIA application to Employment and Social Development Canada (ESDC). They must prove they advertised the job and couldn't find suitable Canadian workers. This takes 2-4 months.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Positive LMIA</h4>
+          <p class="text-neutral-600">Once approved, your employer receives a positive LMIA letter with an LMIA number. They share this with you. The LMIA is valid for 6 months—you must apply for your work permit within this window.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Work Permit Online</h4>
+          <p class="text-neutral-600">Submit your work permit application through IRCC's online portal. Include: LMIA number, job offer letter, passport, qualifications, and any required medical/police documents. Pay the $155 fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Biometrics</h4>
+          <p class="text-neutral-600">Book an appointment at a Visa Application Centre (VAC) for fingerprints and photo. Pay the $85 biometrics fee. Bring your passport and appointment confirmation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Medical Exam (if required)</h4>
+          <p class="text-neutral-600">Applicants from certain countries or for certain jobs (healthcare, childcare) need a medical exam from a panel physician. IRCC will instruct you if required. Allow 1-2 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Decision</h4>
+          <p class="text-neutral-600">Processing times vary by country of residence—typically 2-8 weeks. Check your online account for updates. If approved, you'll receive a Port of Entry Letter of Introduction.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Canada</h4>
+          <p class="text-neutral-600">Present your Letter of Introduction at the Canadian port of entry. The border officer will issue your actual work permit document. Have your job offer letter and employer contact ready.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Arrange insurance before travel:</strong> Have your private health insurance in place before you arrive in Canada. The provincial waiting period starts from your arrival date—you need coverage immediately.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for work permit holders in Canada:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from India, $95,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Toronto tech company, Global Talent Stream.</p>
+        <p class="text-green-700 font-medium">✓ Employer used Global Talent Stream—LMIA in 2 weeks, work permit in 3 weeks. Got Manulife 3-month coverage ($250/month). OHIP kicked in after 3 months. Now has employer benefits covering prescriptions and dental. Applied for Express Entry after 1 year.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Nurse from Philippines, $75,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Vancouver hospital, healthcare worker stream.</p>
+        <p class="text-green-700 font-medium">✓ Healthcare worker LMIA fast-tracked. Required medical exam and nursing credential verification. BC MSP started after 3 months with Blue Cross bridge coverage. Hospital benefits excellent. Clear PR pathway through healthcare programs.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from UK, $80,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Montreal agency, standard LMIA process.</p>
+        <p class="text-amber-700 font-medium">△ LMIA took 4 months—longer than expected. Had to maintain UK job until approved. Arrived in Quebec, RAMQ 3-month wait. Chose Cigna Global for portability (travels to UK often). Learning French for Quebec integration.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chef from Mexico, CUSMA professional</h3>
+        <p class="text-neutral-600 mb-4">Calgary restaurant, LMIA-exempt.</p>
+        <p class="text-green-700 font-medium">✓ CUSMA meant no LMIA required—work permit in 6 weeks. Alberta 3-month wait for AHCIP. Used Guard.me budget insurance ($100/month). Spouse got open work permit and found job immediately. Family settling well.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Engineer from Germany, $110,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Manitoba mining company.</p>
+        <p class="text-green-700 font-medium">✓ Manitoba has no waiting period—provincial coverage from day one. Still got travel insurance for first week just in case. Employer provides comprehensive benefits. Enjoying lower cost of living outside major cities. PR application in progress.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Accountant from Nigeria, $65,000 salary offer</h3>
+        <p class="text-neutral-600 mb-4">Small firm, LMIA challenges.</p>
+        <p class="text-red-700 font-medium">✗ LMIA denied—ESDC found employer didn't advertise adequately and offered below prevailing wage. Had to find different employer willing to do LMIA properly. Lost 6 months. Second employer successful with proper process and competitive salary.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Canadian Workers"
+    description="Find the right coverage for the provincial waiting period."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Arriving Without Private Insurance</h3>
+        <p class="text-neutral-600">Most provinces have a 3-month waiting period. A single ER visit without coverage can cost $5,000-20,000. An appendectomy? $30,000+. Always have private insurance before you land.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Registering for Provincial Healthcare Immediately</h3>
+        <p class="text-neutral-600">The waiting period starts when you register, not when you arrive. Register with Service Ontario, ICBC, or your province's health ministry in your first week. Delaying registration extends your waiting period.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Working for a Different Employer</h3>
+        <p class="text-neutral-600">Closed work permits only allow you to work for the employer on your LMIA. Working for anyone else is illegal and can result in deportation and future inadmissibility. If you want to change jobs, you need a new LMIA and work permit.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Letting the LMIA Expire</h3>
+        <p class="text-neutral-600">LMIA is valid for 6 months. You must apply for your work permit within this window. If it expires, your employer must apply for a new LMIA. Don't delay your application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Understanding Provincial Differences</h3>
+        <p class="text-neutral-600">Healthcare rules vary by province. Manitoba has no waiting period; Quebec requires French documentation; Alberta has different registration. Research your specific province before arriving.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Canada -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Canada</h2>
+
+    <p class="mb-4">
+      Canada has universal healthcare, but it's administered provincially. Each province has its own health insurance plan (OHIP, MSP, RAMQ, etc.) with different rules. Work permit holders are generally eligible for provincial coverage after a waiting period.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Canadian Healthcare Works</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Doctor</h4>
+        <p class="text-neutral-600">Canadians typically have a family doctor (GP) for routine care. Finding one can take time—many areas have doctor shortages. Walk-in clinics are available for those without a family doctor.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialists</h4>
+        <p class="text-neutral-600">Specialist referrals come through your family doctor. Wait times vary by specialty and urgency—cancer care is fast, but non-urgent orthopedics can take months.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Hospitals</h4>
+        <p class="text-neutral-600">Emergency rooms are available 24/7. For life-threatening emergencies, care is immediate. For non-urgent ER visits, expect long waits. Urgent care clinics handle moderate issues faster.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What Provincial Healthcare Covers</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Doctor visits:</strong> Family doctor and specialists (with referral)</li>
+      <li><strong>Hospital care:</strong> Emergency, surgery, inpatient treatment</li>
+      <li><strong>Diagnostic tests:</strong> X-rays, MRIs, blood tests (when ordered by doctor)</li>
+      <li><strong>Maternity:</strong> Prenatal, delivery, postnatal care</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What You Need Private Insurance For</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Prescription drugs:</strong> Provincial plans have limited drug coverage</li>
+      <li><strong>Dental:</strong> Not covered by provincial plans</li>
+      <li><strong>Vision:</strong> Eye exams and glasses not covered for working adults</li>
+      <li><strong>Physiotherapy:</strong> Limited coverage unless hospitalized</li>
+      <li><strong>Mental health:</strong> Psychologists not covered (psychiatrists are)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Employer benefits matter:</strong> Good Canadian employers provide extended health benefits covering prescriptions, dental, and vision. This is a significant part of compensation—factor it into job offers. Benefits often start from day one.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long is the provincial healthcare waiting period?</h3>
+        <p class="text-neutral-600">
+          Most provinces have a 3-month waiting period (Ontario, BC, Alberta, Quebec, Saskatchewan). Manitoba has no waiting period—coverage starts immediately. Check your specific province's rules.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I change employers on a work permit?</h3>
+        <p class="text-neutral-600">
+          With a closed work permit (most LMIA-based), you can only work for the employer on your permit. To change employers, the new employer must obtain their own LMIA and you must apply for a new work permit.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do I get permanent residence?</h3>
+        <p class="text-neutral-600">
+          After 1 year of skilled Canadian work experience, you can apply through Express Entry's Canadian Experience Class (CEC). With good English/French scores and work experience, many applicants receive PR invitations within 6-12 months.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse work in Canada?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouses of work permit holders in skilled occupations (NOC TEER 0, 1, 2, 3) are eligible for an open work permit. They can work for any employer without needing their own LMIA. This is a major benefit of Canadian work permits.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if my work permit expires before PR is approved?</h3>
+        <p class="text-neutral-600">
+          If you've applied for PR and your work permit is expiring, you can apply for a Bridging Open Work Permit (BOWP). This allows you to continue working while your PR application is processed. You need to be eligible for the BOWP when applying.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need travel insurance within Canada?</h3>
+        <p class="text-neutral-600">
+          Once you have provincial healthcare, you're covered across Canada for emergency care. However, some provinces don't cover ambulance costs, and non-emergency care may not be fully covered outside your home province. Many Canadians carry travel insurance for trips.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Canada's work permit system offers one of the clearest pathways from temporary work to permanent residence. The LMIA process takes time, but once you're in Canada with skilled work experience, Express Entry provides a fast track to PR. The universal healthcare system is excellent once you're past the provincial waiting period.
+    </p>
+
+    <p class="mb-4">
+      The critical insurance consideration is the 3-month waiting period in most provinces. You must have private coverage before you arrive—Canadian healthcare costs are high without insurance. Budget $250-750 for three months of comprehensive coverage.
+    </p>
+
+    <p class="mb-6">
+      For skilled workers seeking a stable, high-quality-of-life destination with genuine permanent residence prospects, Canada remains one of the best options globally. The combination of spouse work rights, pathway to PR, and eventual citizenship makes the initial LMIA hurdle worthwhile.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Canada offers excellent work permits with a clear PR pathway, but requires private health insurance during the 3-month provincial waiting period. Arrange coverage before you arrive, register for provincial healthcare immediately, and take advantage of employer benefits once available.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/canada/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Canada Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to provincial healthcare and private insurance in Canada</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/australia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Australia TSS 482 Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Australia's work permit system</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

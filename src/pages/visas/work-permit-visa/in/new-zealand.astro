@@ -1,0 +1,774 @@
+---
+/**
+ * New Zealand Accredited Employer Work Visa - Long-form CRO-optimized page
+ * Static page for work permit visa in New Zealand
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in New Zealand", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Australia Skilled Worker Visa", href: "/visas/work-permit-visa/in/australia" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Accredited Employer", details: "Employer must hold AEWV accreditation", evidence: "Employer's accreditation number" },
+  { requirement: "Job Token", details: "Employer applies for Job Check approval", evidence: "Job Check token from MBIE" },
+  { requirement: "Qualifications", details: "Skills matching the job requirements", evidence: "Degree/trade certificates" },
+  { requirement: "Salary Threshold", details: "Median wage NZ$31.61/hour (2026)", evidence: "Employment agreement" },
+  { requirement: "Health Insurance", details: "Strongly recommended (not visa requirement)", evidence: "Insurance policy (for visa support)" },
+  { requirement: "Medical Check", details: "Required for stays over 12 months", evidence: "INZ-approved doctor examination" },
+  { requirement: "Police Certificate", details: "Required for stays over 24 months", evidence: "Police clearance from all countries" },
+  { requirement: "English Proficiency", details: "Required for some occupations", evidence: "IELTS or equivalent (if applicable)" },
+];
+
+const salaryColumns = [
+  { key: "category", header: "Category" },
+  { key: "threshold", header: "Hourly Rate (NZD)" },
+  { key: "annual", header: "Annual Equivalent" },
+];
+
+const salaryRows = [
+  { category: "Standard AEWV", threshold: "NZ$31.61/hour", annual: "~NZ$65,700/year" },
+  { category: "Green List Tier 1", threshold: "No minimum", annual: "Based on occupation" },
+  { category: "Green List Tier 2", threshold: "Varies by role", annual: "Occupation-specific" },
+  { category: "Care workforce", threshold: "NZ$29.66/hour", annual: "~NZ$61,700/year" },
+  { category: "Construction/Infrastructure", threshold: "NZ$29.66/hour", annual: "~NZ$61,700/year" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "public", header: "Public Healthcare" },
+  { key: "private", header: "Private Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Eligibility", public: "Limited for work visa holders", private: "Anyone can purchase" },
+  { feature: "Cost", public: "Free where eligible, fees otherwise", private: "NZ$100-400/month" },
+  { feature: "GP Visits", public: "NZ$50-80 per visit (subsidized)", private: "Often covered or reimbursed" },
+  { feature: "Hospital", public: "Free emergency, long waits elective", private: "Private hospitals, faster access" },
+  { feature: "Specialists", public: "Long waiting lists (months)", private: "Direct access, weeks not months" },
+  { feature: "ACC Coverage", public: "All accidents covered (all residents)", private: "Doesn't replace ACC" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost (NZD)" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Southern Cross", type: "NZ Local", price: "NZ$150-300", strengths: "Largest NZ insurer, wide network" },
+  { provider: "nib", type: "NZ Local", price: "NZ$100-250", strengths: "Flexible plans, good value" },
+  { provider: "Cigna Global", type: "International", price: "NZ$300-500", strengths: "Expats who may relocate" },
+  { provider: "Allianz Care", type: "International", price: "NZ$250-450", strengths: "Global coverage, portable" },
+  { provider: "Orbit Protect", type: "Expat-focused", price: "NZ$80-200", strengths: "Budget-friendly, work visa holders" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (NZD)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "AEWV Application Fee", amount: "NZ$750", notes: "Standard processing" },
+  { item: "Immigration Levy", amount: "NZ$35", notes: "Online application levy" },
+  { item: "Medical Examination", amount: "NZ$300-500", notes: "INZ-approved doctor" },
+  { item: "Police Certificate", amount: "NZ$0-100", notes: "Varies by country" },
+  { item: "Health Insurance (annual)", amount: "NZ$1,200-4,800", notes: "Strongly recommended" },
+  { item: "Employer Accreditation", amount: "NZ$740-3,870", notes: "Paid by employer" },
+  { item: "Job Check Application", amount: "NZ$690", notes: "Paid by employer per role" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Find job with accredited employer", duration: "Varies", location: "Job search" },
+  { step: "Employer applies for Job Check", duration: "1-4 weeks", location: "MBIE online" },
+  { step: "Receive job token", duration: "1-2 days", location: "Email" },
+  { step: "Gather documents (medicals, police)", duration: "2-6 weeks", location: "Home country" },
+  { step: "Apply for AEWV online", duration: "1 day", location: "Immigration NZ online" },
+  { step: "Processing period", duration: "3-8 weeks", location: "Immigration NZ" },
+  { step: "Receive visa approval", duration: "1-2 days", location: "Email" },
+  { step: "Travel to New Zealand, start work", duration: "As arranged", location: "New Zealand" },
+];
+---
+
+<PageShell
+  title="New Zealand Work Visa 2026: AEWV Requirements, Insurance & Application Guide"
+  description="Complete guide to New Zealand's Accredited Employer Work Visa (AEWV). Salary thresholds, health insurance recommendations, Green List occupations, and step-by-step application process."
+  headline="New Zealand Work Visa: Insurance & Requirements Guide"
+  subheadline="Everything about working in New Zealand—the AEWV system, NZ$31.61/hour threshold, why private health insurance matters, Green List fast-track, and the complete application process."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/best/expat-health-insurance"
+  heroBackgroundImage="/images/countries/new-zealand-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Immigration NZ Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Private Insurance Recommended
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The Accredited Employer Work Visa (AEWV) is New Zealand's main work visa for skilled workers from overseas. Introduced in 2022, it replaced several older visa types and requires employers to be accredited before they can hire internationally. This puts more responsibility on employers but simplifies the process for workers.
+    </p>
+
+    <p class="mb-4">
+      Health insurance in New Zealand is different from Europe. While ACC (Accident Compensation Corporation) covers all accidents for everyone in the country, the public health system has long waiting lists and work visa holders have limited access to subsidized care. Most expats get private health insurance—it's not legally required, but it's strongly recommended to avoid paying full price for healthcare or waiting months for treatment.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: New Zealand AEWV</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Accredited Employer Work Visa (AEWV)</li>
+        <li>• <strong>Salary threshold:</strong> NZ$31.61/hour (~NZ$65,700/year)</li>
+        <li>• <strong>Health insurance:</strong> Not required, but strongly recommended</li>
+        <li>• <strong>Duration:</strong> Up to 5 years (depends on role and residence pathway)</li>
+        <li>• <strong>Residence pathway:</strong> Green List roles → direct residence; others → 2 years</li>
+        <li>• <strong>Family:</strong> Partner and children can join (separate visa)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in New Zealand?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Work-life balance:</strong> Famous for outdoor lifestyle, 4 weeks annual leave minimum</li>
+      <li><strong>Skills shortage:</strong> Many roles on Green List with fast residence pathway</li>
+      <li><strong>Safe and stable:</strong> Low crime, strong institutions, high trust society</li>
+      <li><strong>English speaking:</strong> No language barriers for most workers</li>
+      <li><strong>ACC coverage:</strong> All accidents covered—unique comprehensive system</li>
+      <li><strong>Tech hub growth:</strong> Auckland and Wellington have growing tech scenes</li>
+      <li><strong>Clear PR pathway:</strong> Green List roles get residence quickly</li>
+      <li><strong>Family-friendly:</strong> Excellent schools, healthcare for residents</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">AEWV is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Your occupation is on the Green List</li>
+          <li>✓ Salary meets NZ$31.61/hour threshold</li>
+          <li>✓ You have a job offer from an accredited employer</li>
+          <li>✓ You value work-life balance and nature</li>
+          <li>✓ You're comfortable with private health insurance</li>
+          <li>✓ You want clear pathway to residence</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Employer isn't accredited (they must apply first)</li>
+          <li>• Salary is below threshold</li>
+          <li>• You expect universal healthcare access</li>
+          <li>• You prefer major city amenities (NZ is small)</li>
+          <li>• Distance from family is a concern</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Green List advantage:</strong> If your occupation is on the Green List Tier 1, you can apply for residence immediately upon arrival. Tier 2 occupations require 2 years of work first. Check the Green List at immigration.govt.nz before applying—it changes periodically based on skills shortages.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The AEWV system has three parts: employer accreditation, job check, and worker visa. Your employer handles the first two; you handle the visa application. The process is designed to ensure genuine jobs with fair conditions.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Salary Thresholds (2026)</h3>
+
+    <p class="mb-4">
+      New Zealand sets a median wage threshold that's adjusted annually. Most AEWV applications require at least the median wage. Some roles have exemptions or different requirements.
+    </p>
+
+    <ComparisonTable columns={salaryColumns} rows={salaryRows} />
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-green-800">
+        <strong>Green List occupations:</strong> These are roles New Zealand specifically needs. Tier 1 (immediate residence) includes: ICT roles (software engineers, developers), medical professionals (doctors, nurses, physiotherapists), engineers (civil, mechanical, electrical), and more. Tier 2 (residence after 2 years) includes construction managers, chefs, and various trades.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Employer Accreditation</h3>
+
+    <p class="mb-4">
+      Your employer must be accredited before they can hire you. There are three accreditation types:
+    </p>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Standard Accreditation</h4>
+        <p class="text-neutral-600">For employers hiring 1-5 migrant workers. Must show good workplace practices, pay at least median wage, and commit to employing New Zealanders. Costs NZ$740, valid 12 months initially.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">High-Volume Accreditation</h4>
+        <p class="text-neutral-600">For employers hiring 6+ migrant workers. More scrutiny, higher fees (NZ$3,870), but 24-month validity. Large employers, recruitment agencies, and major companies use this tier.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Franchisee Accreditation</h4>
+        <p class="text-neutral-600">For franchisees hiring migrant workers. Requires franchisor to have high-volume accreditation. Common in hospitality and retail sectors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-amber-900 mb-2">Health Insurance is Not Required—But You'll Want It</h3>
+      <p class="text-amber-800">
+        Unlike European countries, New Zealand doesn't mandate health insurance for work visa holders. However, work visa holders have limited access to subsidized public healthcare. Without insurance, you'll pay full price for GP visits, wait months for specialist appointments, and face significant costs for any medical issue. Most expats get private insurance.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      New Zealand's healthcare system works differently from European universal healthcare. ACC covers all accidents (unique globally), but illness and non-accident conditions go through the public system—with limited access for work visa holders. Private insurance fills the gap.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Public Healthcare vs. Private Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What ACC Covers (Everyone Gets This)</h3>
+
+    <p class="mb-4">
+      ACC (Accident Compensation Corporation) is unique to New Zealand. It covers ALL accidents for everyone in the country—citizens, residents, and visitors alike. If you're injured in an accident (car crash, sports injury, workplace accident, even tripping on the street), ACC covers:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">ACC Covers (Accidents)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Emergency treatment</li>
+          <li>✓ Surgery and hospital stays</li>
+          <li>✓ Rehabilitation</li>
+          <li>✓ Physiotherapy</li>
+          <li>✓ Income replacement (80% of salary)</li>
+          <li>✓ Long-term support if needed</li>
+        </ul>
+      </div>
+
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">ACC Does NOT Cover (Illness)</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Cancer or other illnesses</li>
+          <li>✗ Heart attacks, strokes</li>
+          <li>✗ Mental health conditions</li>
+          <li>✗ Chronic conditions (diabetes, etc.)</li>
+          <li>✗ Infections, flu, COVID</li>
+          <li>✗ Pre-existing conditions</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Work Visa Holder Healthcare Access</h3>
+
+    <p class="mb-4">
+      As a work visa holder, your public healthcare access is limited:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP visits:</strong> You pay NZ$50-80 per visit (no subsidy)</li>
+      <li><strong>Emergency department:</strong> Free for emergencies</li>
+      <li><strong>Public hospital:</strong> Free if admitted, but long waiting lists</li>
+      <li><strong>Specialists:</strong> Waiting lists of months, or pay privately</li>
+      <li><strong>Prescriptions:</strong> Some subsidized, many full price</li>
+      <li><strong>Dental:</strong> Not covered, pay full price</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>After 2 years:</strong> If you hold a work visa leading to residence (like AEWV), you may become eligible for more subsidized care after 2 years. Full resident healthcare access comes with residence visa approval.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Most Expats Get Private Insurance</h3>
+
+    <p class="mb-4">
+      Without private insurance as a work visa holder:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>A GP visit costs NZ$50-80 each time (vs. ~NZ$20 for residents)</li>
+      <li>Specialist appointments may take 6+ months through public system</li>
+      <li>Non-urgent surgery can have year-long waiting lists</li>
+      <li>Mental health services are severely limited</li>
+      <li>Dental work is 100% out of pocket (routine cleaning ~NZ$150)</li>
+    </ul>
+
+    <p class="mt-4">
+      Private insurance typically costs NZ$100-300/month but gives you immediate access to GPs, specialists within weeks, private hospitals, and comprehensive coverage. Most employers strongly encourage or provide insurance for their AEWV workers.
+    </p>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need health insurance for New Zealand?"
+    description="Compare local and international plans for work visa holders."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For work visa holders in New Zealand, you have two main options: local NZ insurers (Southern Cross, nib) or international insurers (Cigna, Allianz). Local insurers understand the NZ system; international insurers offer portability.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Most Work Visa Holders: Southern Cross</h4>
+        <p class="text-neutral-600">New Zealand's largest health insurer with the widest network. Good claims process, local customer service, and plans designed for the NZ healthcare system. The "Wellbeing" plans are popular with expats.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious: nib or Orbit Protect</h4>
+        <p class="text-neutral-600">nib offers flexible plans with lower premiums. Orbit Protect specifically targets work visa holders with affordable coverage. Good if you're young and healthy, just need basic coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">May Leave NZ: Cigna Global or Allianz Care</h4>
+        <p class="text-neutral-600">If you might relocate after a few years, international insurance offers portability. Coverage continues if you move countries. Higher premiums but more flexibility.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Employer-Provided Insurance</h4>
+        <p class="text-neutral-600">Many NZ employers provide health insurance as a benefit, especially for AEWV workers. Check what's offered—it may be Southern Cross group cover. You can often upgrade the cover at your own expense.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The AEWV has moderate visa fees, but medical examination and health insurance add to costs. Your employer pays the accreditation and job check fees; you pay the visa application and health requirements.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Monthly Insurance Costs</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Basic Cover (nib/Orbit)</p>
+        <p class="text-3xl font-bold text-neutral-900">NZ$100-150/month</p>
+        <p class="text-sm text-neutral-500 mt-2">GP, specialists, basic hospital</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comprehensive (Southern Cross)</p>
+        <p class="text-3xl font-bold text-neutral-900">NZ$200-300/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Full coverage, dental, optical</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">International (Cigna/Allianz)</p>
+        <p class="text-3xl font-bold text-neutral-900">NZ$300-500/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Global coverage, portable</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Total First-Year Costs (Your Share)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>AEWV application:</strong> NZ$785 (visa + levy)</li>
+      <li><strong>Medical examination:</strong> NZ$300-500</li>
+      <li><strong>Police certificate:</strong> NZ$0-100</li>
+      <li><strong>Health insurance:</strong> NZ$1,200-3,600 (varies by plan)</li>
+      <li><strong>Total upfront:</strong> ~NZ$2,500-5,000</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Employer contributions:</strong> Many employers cover or subsidize health insurance for AEWV workers, especially in skilled roles. The employer pays accreditation (NZ$740-3,870) and job check (NZ$690) fees. Some also reimburse visa application costs. Negotiate this in your offer.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The AEWV process has three steps: employer accreditation, job check, and your visa application. If your employer is already accredited, the process is faster. Most of the work happens online through Immigration NZ's portal.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Find Job with Accredited Employer</h4>
+          <p class="text-neutral-600">Search for jobs in New Zealand, focusing on accredited employers. Many job listings mention AEWV eligibility. Seek.co.nz and LinkedIn are main job boards. Tech companies, healthcare providers, and large employers are usually accredited.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Completes Job Check</h4>
+          <p class="text-neutral-600">Your employer submits a Job Check application, demonstrating the role pays at least median wage, they've tried to hire locally, and conditions are fair. This takes 1-4 weeks. Once approved, you receive a job token.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Get Medical Examination (If Required)</h4>
+          <p class="text-neutral-600">For stays over 12 months, you need a medical certificate from an INZ-approved doctor. This includes chest X-ray and general health check. Book early—some doctors have limited availability. Keep the certificate; you'll upload it with your application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Police Certificate (If Required)</h4>
+          <p class="text-neutral-600">For stays over 24 months, you need police clearances from all countries you've lived in for 5+ years since age 17. Processing times vary by country—some take weeks. Start this process as soon as you have a job offer.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Health Insurance</h4>
+          <p class="text-neutral-600">While not mandatory, arrange insurance before applying. Southern Cross and nib offer online quotes. Having insurance shows you've prepared properly and can strengthen your application. Some employers provide this.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply Online for AEWV</h4>
+          <p class="text-neutral-600">Log into Immigration NZ online, enter your job token, upload documents (passport, employment agreement, qualifications, medical, police certificate if applicable). Pay NZ$785 fee. Submit application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing takes 3-8 weeks typically. Check status online. Immigration NZ may request additional documents. Green List occupations often process faster. You may be asked to verify qualifications.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Visa and Travel to NZ</h4>
+          <p class="text-neutral-600">Approval comes via email with e-visa. Print it or have it on your phone. Travel to New Zealand, clear immigration, and start work. Register with IRD (tax), open bank account, and get set up.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Green List fast-track:</strong> If your occupation is on Green List Tier 1, you can apply for residence visa immediately after arriving in NZ. This runs parallel to your AEWV. Tier 2 occupations can apply for residence after 2 years of work. Check the current Green List—it's updated regularly based on skills shortages.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for AEWV applicants:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from UK, NZ$120,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Auckland tech company, 5 years experience, Green List Tier 1.</p>
+        <p class="text-green-700 font-medium">✓ Green List Tier 1—applied for residence immediately upon arrival. AEWV took 4 weeks. Employer provided Southern Cross comprehensive cover. Now has residence visa, full healthcare access. Total process: 3 months from job offer to residence.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Registered Nurse from Philippines, NZ$75,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Wellington hospital, NZREX registration complete.</p>
+        <p class="text-green-700 font-medium">✓ Healthcare worker on Green List. Nursing registration took 6 months (start early!). AEWV processed in 3 weeks once registration complete. Hospital provides insurance as part of employment package. Clear pathway to residence.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from US, NZ$85,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Auckland agency, not on Green List.</p>
+        <p class="text-green-700 font-medium">✓ Above median wage, job check approved. AEWV took 6 weeks. Got nib insurance independently (~NZ$150/month). Will apply for residence after 2 years of skilled employment. Good setup but longer residence path than Green List roles.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Chef from India, NZ$55,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Restaurant in Queenstown, Green List Tier 2.</p>
+        <p class="text-amber-700 font-medium">△ Salary below median (NZ$65,700) but chefs have exemption. AEWV approved after 5 weeks. Employer covers basic insurance. On Green List Tier 2—can apply for residence after 2 years. Tourism town means seasonal variation in hours.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Civil Engineer from Brazil, NZ$95,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Infrastructure project in Christchurch, Green List Tier 1.</p>
+        <p class="text-green-700 font-medium">✓ Engineering on Green List Tier 1. Had to verify qualifications with IPENZ (took 8 weeks). AEWV processed in 3 weeks after that. Applied for residence immediately. Family (wife, child) on partnership visa—all arriving together.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Retail Manager from South Africa, NZ$58,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Large retail chain in Auckland, not on Green List.</p>
+        <p class="text-red-700 font-medium">✗ Salary below median wage threshold (NZ$65,700). Retail manager not on exemption list. Employer tried Job Check but rejected. Would need higher salary or different role. Advised to look at roles meeting median wage or on shortage list.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance Options for New Zealand"
+    description="Find the right coverage for your AEWV—local or international."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Public Healthcare Will Cover You</h3>
+        <p class="text-neutral-600">Work visa holders have limited access to subsidized public healthcare. You'll pay full price for GP visits (NZ$50-80) and face long waits for specialists. Get private insurance before arriving—don't wait until you need care.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Checking Employer Accreditation</h3>
+        <p class="text-neutral-600">Only accredited employers can hire AEWV workers. If your employer isn't accredited, they must apply first—this adds 2-4 weeks. Ask about accreditation status before accepting an offer. Check the employer accreditation list online.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Leaving Police Certificates Too Late</h3>
+        <p class="text-neutral-600">Some countries take 8-12 weeks for police certificates. You need clearances from every country you've lived in for 5+ years since age 17 (for stays over 24 months). Start these requests immediately when you decide to apply.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Understanding the Median Wage Requirement</h3>
+        <p class="text-neutral-600">Most AEWV roles require at least NZ$31.61/hour (median wage). This is about NZ$65,700/year full-time. Some occupations have exemptions, but check before assuming your offer qualifies. Below-threshold offers get rejected at Job Check.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Skipping Qualification Verification</h3>
+        <p class="text-neutral-600">For regulated professions (engineering, nursing, teaching, etc.), you must register with NZ professional bodies BEFORE applying. This can take months. Don't accept a job offer until you understand the registration timeline and requirements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in New Zealand -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in New Zealand</h2>
+
+    <p class="mb-4">
+      New Zealand has a two-tier healthcare system: public (government-funded) and private. Work visa holders have limited public access but can use private healthcare with insurance. The unique ACC system covers all accidents regardless of visa status.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How New Zealand Healthcare Works</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">General Practitioners (GPs)</h4>
+        <p class="text-neutral-600">Register with a local GP clinic. Work visa holders pay NZ$50-80 per visit (residents pay ~NZ$20). With private insurance, you can claim most of this back. After-hours clinics cost more. Book appointments online or by phone.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Public Hospitals</h4>
+        <p class="text-neutral-600">Emergency departments are free for everyone. Inpatient hospital care is free if admitted. But the issue is waiting lists—elective procedures can take months or years. Private insurance gives access to private hospitals with shorter waits.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialists</h4>
+        <p class="text-neutral-600">Public specialist appointments have long waiting lists (often 6+ months). Your GP refers you. With private insurance, you can see private specialists directly, usually within weeks. This is the main reason expats get insurance.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">ACC (Accidents)</h4>
+        <p class="text-neutral-600">ACC covers all accidents for everyone in NZ—no exceptions. If you're injured in any accident, treatment is covered. ACC also provides income replacement (80% of salary) if you can't work due to injury. This is funded by levies, not insurance premiums.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Finding Doctors</h3>
+
+    <p class="mb-4">
+      Register with a GP clinic near your home or work—you need to enroll to access subsidized rates (when eligible). Use healthpoint.co.nz to find clinics. In Auckland and Wellington, many practices are accepting new patients. Rural areas may have limited options.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Prescriptions:</strong> Prescriptions are filled at pharmacies (chemists). Many medications are government-subsidized at NZ$5 per item. Some medications that are over-the-counter elsewhere require prescription in NZ. Repeat prescriptions can often be managed online.</p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is health insurance mandatory for AEWV?</h3>
+        <p class="text-neutral-600">
+          No, it's not a visa requirement. However, work visa holders have limited public healthcare access and pay higher fees. Most AEWV holders get private insurance to avoid paying full price for GP visits and waiting months for specialist appointments. Immigration NZ "strongly recommends" it.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's covered by ACC?</h3>
+        <p class="text-neutral-600">
+          ACC covers ALL accidents for everyone in New Zealand—citizens, residents, visa holders, even tourists. If you're injured in any accident (car crash, sports, workplace, tripping), treatment is covered. It also provides income replacement at 80% of salary. Illness is NOT covered—that's why you need health insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do I get residence from AEWV?</h3>
+        <p class="text-neutral-600">
+          Green List Tier 1 occupations can apply for residence immediately upon arrival. Tier 2 occupations can apply after 2 years of work. Other occupations need to accumulate points through the Skilled Migrant Category (SMC) after 2+ years. Check if your role is on the Green List—it significantly speeds up residence.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I change employers on AEWV?</h3>
+        <p class="text-neutral-600">
+          Yes, but you need a new job token from the new employer and apply for visa variation. The new employer must be accredited and complete their own Job Check. This takes 4-6 weeks typically. You can work for your current employer while the variation processes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my partner and children come with me?</h3>
+        <p class="text-neutral-600">
+          Yes. Your partner can apply for a Partnership-based Work Visa (open work rights). Dependent children can apply for dependent visas (study rights). They apply separately but are linked to your AEWV. Partner can work for any employer; children can attend school.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if I lose my job?</h3>
+        <p class="text-neutral-600">
+          AEWV is employer-specific. If you lose your job, you have a grace period to find new employment and apply for visa variation. Immigration NZ recommends notifying them and finding a new accredited employer. You cannot simply work for a different employer without a new token.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The AEWV offers a clear pathway to working and eventually living in New Zealand—especially for Green List occupations. The employer accreditation system means legitimate employers with fair conditions, and the job check ensures you're paid properly. For tech workers, healthcare professionals, and engineers, the path to residence can be remarkably fast.
+    </p>
+
+    <p class="mb-4">
+      Health insurance isn't legally required, but it's practically essential. Work visa holders pay significantly more for public healthcare and face long waiting lists. Budget NZ$100-300/month for insurance—it's the cost of actual healthcare access in New Zealand. Many employers provide or subsidize coverage, so negotiate this in your offer.
+    </p>
+
+    <p class="mb-6">
+      The unique benefit of New Zealand is ACC—universal accident coverage for everyone. If you're injured in any accident, treatment is fully covered. This is unlike anywhere else in the world. Combined with private health insurance for illness, you get comprehensive protection. The lifestyle, work-life balance, and natural beauty make NZ compelling for those who can meet the salary threshold.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        AEWV requires an accredited employer and median wage salary (NZ$31.61/hour), with optional but strongly recommended private health insurance. ACC covers all accidents; insurance covers illness. Green List occupations get fast residence. New Zealand offers exceptional lifestyle for those who plan healthcare coverage properly.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/work-permit-visa/in/australia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Australia Skilled Worker Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Australia's work visa system</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/uk" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Skilled Worker Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with the UK's points-based system</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

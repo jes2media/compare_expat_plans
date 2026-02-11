@@ -1,0 +1,764 @@
+---
+/**
+ * UK Skilled Worker Visa - Long-form CRO-optimized page
+ * Static page for work permit visa in the UK
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in the UK", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "UK Health Insurance Guide", href: "/countries/uk/insurance" },
+  { title: "Insurance for Remote Workers", href: "/insurance-for/remote-workers" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "evidence", header: "Evidence Needed" },
+];
+
+const requirementsRows = [
+  { requirement: "Certificate of Sponsorship", details: "From licensed UK employer", evidence: "CoS reference number" },
+  { requirement: "Job Skill Level", details: "RQF Level 3+ (A-level equivalent)", evidence: "Job description in CoS" },
+  { requirement: "Salary Threshold", details: "£38,700/year or going rate (whichever higher)", evidence: "Stated in CoS" },
+  { requirement: "English Language", details: "B1 level (IELTS 4.0+)", evidence: "Test certificate or degree from English-taught course" },
+  { requirement: "Financial Maintenance", details: "£1,270 in bank for 28 days (waived if employer certifies)", evidence: "Bank statements or CoS certification" },
+  { requirement: "Criminal Record", details: "No serious convictions", evidence: "Police certificate (some nationalities)" },
+];
+
+const salaryColumns = [
+  { key: "scenario", header: "Scenario" },
+  { key: "minimum", header: "Minimum Salary" },
+  { key: "notes", header: "Notes" },
+];
+
+const salaryRows = [
+  { scenario: "General threshold (2024+)", minimum: "£38,700/year", notes: "Up from £26,200 in 2023" },
+  { scenario: "Health & Care Worker", minimum: "£29,000/year", notes: "Discounted for NHS, care sector" },
+  { scenario: "New entrant (under 26, new grad)", minimum: "£30,960/year", notes: "70% of going rate for first 4 years" },
+  { scenario: "PhD in subject relevant to job", minimum: "£34,830/year", notes: "90% of standard" },
+  { scenario: "STEM PhD relevant to job", minimum: "£30,960/year", notes: "80% of standard" },
+  { scenario: "Shortage occupation", minimum: "£30,960/year", notes: "80% of standard, check SOL" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "coverage", header: "Coverage" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", coverage: "£1,000,000+", price: "£150-350", strengths: "Comprehensive, global network" },
+  { provider: "BUPA Global", coverage: "£500,000+", price: "£180-400", strengths: "UK specialists, no wait times" },
+  { provider: "Allianz Care", coverage: "£500,000+", price: "£130-280", strengths: "Good value, EU coverage" },
+  { provider: "Aetna International", coverage: "£500,000+", price: "£160-320", strengths: "US coverage included" },
+  { provider: "AXA Global", coverage: "£500,000+", price: "£140-300", strengths: "Fast claims, strong UK network" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (GBP)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "£719-£1,500", notes: "Depends on duration and sponsor type" },
+  { item: "Immigration Health Surcharge", amount: "£1,035/year", notes: "Mandatory for NHS access" },
+  { item: "Certificate of Sponsorship", amount: "£239 (paid by employer)", notes: "Employer responsibility" },
+  { item: "Immigration Skills Charge", amount: "£364-1,000/year", notes: "Paid by employer (small/large)" },
+  { item: "Priority Processing", amount: "£500", notes: "Optional, 5 working days" },
+  { item: "Super Priority", amount: "£1,000", notes: "Optional, next working day" },
+  { item: "English Test (if needed)", amount: "£170-210", notes: "IELTS or equivalent" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "responsibility", header: "Who" },
+];
+
+const timelineRows = [
+  { step: "Job offer from licensed sponsor", duration: "Varies", responsibility: "You + Employer" },
+  { step: "Employer assigns Certificate of Sponsorship", duration: "1-5 days", responsibility: "Employer" },
+  { step: "Complete online visa application", duration: "1-2 hours", responsibility: "You" },
+  { step: "Pay visa fee and IHS", duration: "Same day", responsibility: "You" },
+  { step: "Biometric appointment", duration: "1 day", responsibility: "Visa center" },
+  { step: "Processing time", duration: "3-8 weeks", responsibility: "UKVI" },
+  { step: "Receive decision", duration: "By email", responsibility: "UKVI" },
+  { step: "Collect BRP in UK", duration: "Within 10 days of arrival", responsibility: "You" },
+];
+---
+
+<PageShell
+  title="UK Skilled Worker Visa 2026: Requirements, Salary, Insurance & Application Guide"
+  description="Complete guide to the UK Skilled Worker Visa. Salary thresholds, NHS access via IHS, sponsorship requirements, and step-by-step application process for workers relocating to the UK."
+  headline="UK Skilled Worker Visa: Insurance & Requirements Guide"
+  subheadline="Everything you need to know about working in the UK—visa requirements, the new £38,700 salary threshold, NHS healthcare access, and the complete application process for skilled workers."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Health Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/uk-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated February 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official UKVI Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      NHS Access via IHS
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      The UK Skilled Worker Visa is the primary route for non-UK nationals to work in Britain. Replacing the old Tier 2 (General) visa in 2020, it allows skilled workers with job offers from licensed UK employers to live and work in the UK for up to 5 years, with a pathway to permanent settlement (Indefinite Leave to Remain).
+    </p>
+
+    <p class="mb-4">
+      The visa underwent significant changes in April 2024, with the general salary threshold increasing from £26,200 to £38,700. This higher bar makes the Skilled Worker Visa more selective, though exceptions exist for health workers, shortage occupations, and new entrants. Healthcare access comes through the Immigration Health Surcharge (IHS), now £1,035/year, giving you full NHS access.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: UK Skilled Worker Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Skilled Worker Visa (replaced Tier 2 General in 2020)</li>
+        <li>• <strong>Salary threshold:</strong> £38,700/year or going rate (whichever higher)</li>
+        <li>• <strong>Healthcare access:</strong> Full NHS via Immigration Health Surcharge (£1,035/year)</li>
+        <li>• <strong>Duration:</strong> Up to 5 years per application</li>
+        <li>• <strong>Settlement:</strong> ILR eligible after 5 years continuous residence</li>
+        <li>• <strong>Dependents:</strong> Spouse/partner and children can join</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Why Work in the UK?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Global business hub:</strong> London is a leading financial and tech center</li>
+      <li><strong>English language:</strong> No language barrier for English speakers</li>
+      <li><strong>NHS healthcare:</strong> Comprehensive healthcare via IHS</li>
+      <li><strong>Settlement pathway:</strong> 5-year path to permanent residence (ILR)</li>
+      <li><strong>Dependents included:</strong> Bring spouse and children</li>
+      <li><strong>No cap:</strong> Unlike old Tier 2, no annual visa cap</li>
+      <li><strong>Switch employers:</strong> Can change jobs (need new sponsor)</li>
+      <li><strong>Global recognition:</strong> UK work experience valued worldwide</li>
+    </ul>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">UK Skilled Worker Visa is Right If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You have a job offer from a licensed UK sponsor</li>
+          <li>✓ Your salary meets the £38,700 threshold (or exception)</li>
+          <li>✓ Your job is skilled (RQF Level 3+)</li>
+          <li>✓ You want a path to permanent residence</li>
+          <li>✓ You want comprehensive NHS healthcare</li>
+          <li>✓ You want to bring family members</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Your job pays below £38,700 (check exceptions first)</li>
+          <li>• Your employer isn't a licensed sponsor</li>
+          <li>• You want to freelance (Skilled Worker requires employment)</li>
+          <li>• You prefer lower cost of living (UK is expensive)</li>
+          <li>• You don't meet English language requirements</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>April 2024 changes:</strong> The salary threshold increased from £26,200 to £38,700. If you're earning below this, check if you qualify for an exception—Health & Care workers, new entrants (under 26), shortage occupations, and PhD holders have lower thresholds.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Skilled Worker Visa requires a job offer from a licensed UK sponsor, meeting salary thresholds, and demonstrating English language ability. The sponsorship system means your employer plays a central role in your visa.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Salary Thresholds (2024+)</h3>
+
+    <p class="mb-4">
+      The general salary threshold is now £38,700/year, but several categories qualify for lower thresholds. Your salary must meet BOTH the general threshold AND the "going rate" for your occupation code (whichever is higher).
+    </p>
+
+    <ComparisonTable columns={salaryColumns} rows={salaryRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6 mb-6">
+      <p class="text-amber-800">
+        <strong>Going rate check:</strong> Even if you meet the general threshold, your salary must meet the "going rate" for your SOC occupation code. A software developer earning £38,700 may not qualify if the going rate for software developers is higher. Always check both requirements.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Licensed Sponsor Requirement</h3>
+
+    <p class="mb-4">
+      Your employer must hold a valid Sponsor Licence from the Home Office. Only licensed sponsors can issue Certificates of Sponsorship. You can check if a company is a licensed sponsor on the UK government's Register of Licensed Sponsors.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Large companies:</strong> Most major employers are licensed sponsors</li>
+      <li><strong>SMEs:</strong> Smaller companies may need to apply (£536-£1,476 fee)</li>
+      <li><strong>Startups:</strong> Can sponsor but need to demonstrate genuine vacancy</li>
+      <li><strong>Sponsor duties:</strong> Employers must track your attendance and report changes</li>
+    </ul>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">NHS Access Through Immigration Health Surcharge</h3>
+      <p class="text-green-800">
+        The Skilled Worker Visa includes NHS access through the mandatory Immigration Health Surcharge (IHS). At £1,035/year, this gives you the same healthcare as British residents. Private health insurance is NOT required for the visa but may be offered by employers or purchased personally for faster access.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Unlike many countries, the UK doesn't require private health insurance for work visas. The IHS covers GP visits, hospital treatment, and most NHS services. However, many employers offer private health insurance as a benefit, and some workers choose to supplement NHS with private coverage for faster access.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">NHS vs. Private Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">NHS (via IHS)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Cost:</strong> £1,035/year (mandatory)</li>
+          <li>• <strong>GP access:</strong> Free, registration required</li>
+          <li>• <strong>Hospital care:</strong> Free, may have waits</li>
+          <li>• <strong>Specialists:</strong> Referral required, 18-week target</li>
+          <li>• <strong>Prescriptions:</strong> £9.90/item (England)</li>
+          <li>• <strong>Dental:</strong> Subsidized, not free</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Private Insurance</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• <strong>Cost:</strong> £100-400/month</li>
+          <li>• <strong>GP access:</strong> Same-day appointments</li>
+          <li>• <strong>Hospital care:</strong> Private rooms, no waits</li>
+          <li>• <strong>Specialists:</strong> Direct access, days not months</li>
+          <li>• <strong>Prescriptions:</strong> Often included</li>
+          <li>• <strong>Dental:</strong> Usually included</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">When to Add Private Insurance</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">NHS Only is Usually Fine If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're generally healthy</li>
+          <li>✓ You can wait for non-urgent care</li>
+          <li>✓ You want to minimize costs</li>
+          <li>✓ Your employer doesn't offer private cover</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Add Private Insurance If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You want same-day GP appointments</li>
+          <li>✓ You have ongoing health conditions</li>
+          <li>✓ You need mental health support</li>
+          <li>✓ You travel frequently (NHS is UK-only)</li>
+          <li>✓ Employer offers it as a benefit</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Employer private health insurance:</strong> Many UK employers offer private health insurance (PMI) as a benefit. This typically costs nothing extra to you and supplements NHS access. Ask during job negotiations—it's a valuable benefit worth £1,500-5,000/year.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Want private insurance to supplement NHS coverage?"
+    description="Compare plans from top providers for workers relocating to the UK."
+    buttonText="Compare Health Insurance Plans"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Since NHS access is included via IHS, private insurance is optional. These providers offer comprehensive plans for expat workers who want faster care or global coverage beyond the UK.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">UK-Only Coverage Needed</h4>
+        <p class="text-neutral-600">BUPA Global has the strongest UK private hospital network. They're a UK-based insurer with long-standing relationships with private hospitals. Ideal if you'll primarily use healthcare in the UK and want the fastest access to UK specialists.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent International Travel</h4>
+        <p class="text-neutral-600">Cigna Global and Allianz Care offer seamless international coverage. If your job involves travel or you visit family abroad regularly, these provide coverage outside the UK where NHS doesn't apply. Important for consultants, sales roles, and multi-site positions.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">US Coverage Required</h4>
+        <p class="text-neutral-600">Aetna International includes US coverage as standard, critical if you travel to or from the US. US healthcare costs are extreme—a single emergency without coverage can cost $50,000+. If US exposure is likely, this is essential.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global and Allianz Care have the most favorable underwriting for pre-existing conditions. Cigna offers moratorium-based policies, while Allianz provides clear cover after waiting periods. NHS will cover pre-existing conditions anyway, but private speeds up access.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      The Skilled Worker Visa involves several costs, split between you and your employer. The Immigration Health Surcharge is the largest personal cost at £1,035/year.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Total Costs by Duration</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">3-Year Visa</p>
+        <p class="text-3xl font-bold text-neutral-900">£3,800-4,600</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 3 years IHS</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">5-Year Visa</p>
+        <p class="text-3xl font-bold text-neutral-900">£5,900-6,700</p>
+        <p class="text-sm text-neutral-500 mt-2">Visa + 5 years IHS</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Settlement (ILR)</p>
+        <p class="text-3xl font-bold text-neutral-900">+£2,885</p>
+        <p class="text-sm text-neutral-500 mt-2">After 5 years continuous</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Employer vs. Employee Costs</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Employer Pays</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Certificate of Sponsorship: £239</li>
+          <li>• Immigration Skills Charge: £364-1,000/year</li>
+          <li>• Sponsor Licence (if needed): £536-1,476</li>
+          <li>• Sometimes: Visa fee and IHS (negotiable)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">You Pay</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Visa application fee: £719-1,500</li>
+          <li>• Immigration Health Surcharge: £1,035/year</li>
+          <li>• English test (if needed): £170-210</li>
+          <li>• Priority processing (optional): £500-1,000</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Negotiate visa costs:</strong> Some employers will cover visa fees and IHS as part of relocation packages, especially for senior or hard-to-fill roles. It's worth asking—this can save you £5,000+ over a 5-year visa.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Skilled Worker Visa application is done online through gov.uk. Your employer must first assign you a Certificate of Sponsorship (CoS), then you complete your application, pay fees, and attend a biometric appointment.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Job Offer from Licensed Sponsor</h4>
+          <p class="text-neutral-600">Find a job with a company that holds a Sponsor Licence. Verify on the Register of Licensed Sponsors. The job must meet skill and salary thresholds. Once you accept, HR will begin the CoS process.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Employer Assigns Certificate of Sponsorship</h4>
+          <p class="text-neutral-600">Your employer submits your details to the Home Office Sponsorship Management System and receives a unique CoS reference number. This contains your job details, salary, and start date. Processing takes 1-5 days.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Online Application</h4>
+          <p class="text-neutral-600">Apply at gov.uk/skilled-worker-visa. Enter your CoS reference number, personal details, travel history, and criminal record information. The form auto-populates some data from your CoS. Be completely accurate.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Pay Visa Fee and IHS</h4>
+          <p class="text-neutral-600">Pay the visa application fee (£719-1,500) and Immigration Health Surcharge (£1,035/year × visa duration) online. Keep payment confirmations. You can optionally add priority (£500) or super priority (£1,000) processing.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Biometric Appointment</h4>
+          <p class="text-neutral-600">Book an appointment at a visa application center for fingerprints and photo. Bring your passport, appointment confirmation, and any supporting documents. Some countries offer premium lounges for faster service.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Decision</h4>
+          <p class="text-neutral-600">Standard processing is 3 weeks, but can take up to 8 weeks. Priority is 5 working days, super priority is next working day. You'll receive an email when decided. If approved, your passport gets an entry vignette.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Collect BRP Card in UK</h4>
+          <p class="text-neutral-600">Enter the UK using your vignette (valid 90 days). Within 10 days of arrival, collect your Biometric Residence Permit (BRP) from the location specified in your decision letter. The BRP is your proof of right to work.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Start date timing:</strong> You can enter the UK up to 14 days before your CoS start date. Plan travel accordingly—your employer can't change the start date after CoS is assigned without canceling and reissuing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for Skilled Worker Visa holders in the UK:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from India, £55,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Joining a London fintech startup, single, healthy.</p>
+        <p class="text-green-700 font-medium">✓ Comfortably exceeds salary threshold. Employer covered visa fees as part of offer. Uses NHS for routine care, employer provides BUPA for specialists. IHS cost (£5,175 for 5 years) felt steep but NHS works well. On track for ILR.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Nurse from Philippines, Health & Care route</h3>
+        <p class="text-neutral-600 mb-4">NHS hospital position, £32,000 salary.</p>
+        <p class="text-green-700 font-medium">✓ Qualifies under Health & Care Worker route (lower threshold, reduced IHS). NHS trust handled all sponsorship. Fast-tracked CoS through health sector priority. Works in NHS system daily so understands it well. Excellent experience overall.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from US, £45,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Mid-size company in Manchester, spouse joining.</p>
+        <p class="text-amber-700 font-medium">△ Salary just meets threshold. Added Cigna Global because family travel to US frequently—NHS doesn't cover US visits. Spouse visa cost additional £3,000+. Total relocation costs were high but company covered visa fees. Satisfied overall.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Engineer from Nigeria, £42,000 salary offer</h3>
+        <p class="text-neutral-600 mb-4">Construction firm, specialized role.</p>
+        <p class="text-amber-700 font-medium">△ Initially worried about threshold but role is on Shortage Occupation List, so 80% rate applies. CoS took longer than expected (3 weeks). Now working, but NHS GP registration took a month in new area. Added IMG Global for interim coverage.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Recent Graduate from Germany, £35,000 salary</h3>
+        <p class="text-neutral-600 mb-4">First job at consulting firm, under 26.</p>
+        <p class="text-green-700 font-medium">✓ Qualifies as "new entrant" at 70% threshold (£30,960 minimum). Company is large, licensed sponsor with streamlined process. Super priority processing for quick start. No private insurance needed—healthy and NHS fine for basics.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Teacher from Australia, £32,000 salary</h3>
+        <p class="text-neutral-600 mb-4">Secondary school position, not meeting threshold.</p>
+        <p class="text-red-700 font-medium">✗ Teaching isn't on Shortage Occupation List for this subject. Salary below £38,700 threshold and no exception applies. School couldn't increase offer. Had to pursue Youth Mobility Scheme instead (2-year limit, no settlement path). Consider different route.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for UK Workers"
+    description="Find the right coverage to supplement NHS during your UK employment."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/best/expat-health-insurance"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Accepting a Job Below the Salary Threshold</h3>
+        <p class="text-neutral-600">The £38,700 threshold is firm unless you qualify for an exception. Don't assume you can negotiate salary later—the CoS locks in your salary, and underpaying is illegal for sponsors. Verify before accepting.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Checking Sponsor Licence Status</h3>
+        <p class="text-neutral-600">Only licensed sponsors can issue CoS. If a company promises sponsorship but isn't licensed, you'll waste months. Check the Register of Licensed Sponsors on gov.uk before accepting any offer dependent on sponsorship.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the CoS Expiry Window</h3>
+        <p class="text-neutral-600">A Certificate of Sponsorship is valid for 3 months. You must submit your visa application within this window. If you miss it, your employer must assign a new CoS—delaying your start date and potentially causing issues.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Registering with a GP Immediately</h3>
+        <p class="text-neutral-600">NHS access requires GP registration. Some areas have limited capacity—register in your first week, not when you're sick. Use the NHS website to find GPs accepting new patients near your address.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Forgetting to Report Changes to Sponsor</h3>
+        <p class="text-neutral-600">Your employer must report changes (address, job duties, salary) to the Home Office. If you move or your role changes, tell HR immediately. Unreported changes can affect your visa validity and future applications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in the UK -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in the UK</h2>
+
+    <p class="mb-4">
+      The NHS (National Health Service) provides comprehensive healthcare to UK residents. As a Skilled Worker Visa holder who's paid the Immigration Health Surcharge, you have full NHS access—the same as British citizens.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">NHS Coverage</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Free Services</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP consultations</li>
+          <li>✓ Hospital treatment (A&E, inpatient, outpatient)</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Vaccinations</li>
+          <li>✓ Sexual health clinics</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Paid/Partial Coverage</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Prescriptions: £9.90/item (England)</li>
+          <li>• Dental: Subsidized £26-£320 per course</li>
+          <li>• Eye tests: £20-30</li>
+          <li>• Glasses/contacts: Not covered</li>
+          <li>• Cosmetic procedures</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Using the NHS as a Worker</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Register with a GP</h4>
+        <p class="text-neutral-600">Find a GP surgery near your home or work. You can register at any surgery accepting patients. You'll need your BRP/passport and proof of address. Registration is free and essential for NHS access.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">NHS App</h4>
+        <p class="text-neutral-600">Download the NHS App to book GP appointments, order repeat prescriptions, and access your health records. It's the most convenient way to manage NHS healthcare.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergency Care</h4>
+        <p class="text-neutral-600">For emergencies, call 999 or go to A&E. For urgent non-emergencies, call 111 for advice. NHS 111 can direct you to the right service—walk-in centers, urgent care, or A&E.</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Typical NHS Wait Times</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>GP appointment:</strong> Same day to 3 weeks (varies by surgery)</li>
+      <li><strong>Specialist referral:</strong> Target is 18 weeks (often longer)</li>
+      <li><strong>A&E treatment:</strong> Target is 4 hours</li>
+      <li><strong>Mental health (NHS):</strong> 4-18 weeks for talking therapies</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Occupational health:</strong> Many UK employers provide occupational health services separate from NHS. This can include health assessments, flu jabs, and workplace wellbeing programs. Check what your employer offers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need private health insurance for the Skilled Worker Visa?</h3>
+        <p class="text-neutral-600">
+          No. The Immigration Health Surcharge (IHS) gives you NHS access, which satisfies visa requirements. Private insurance is optional—many workers use NHS only, while others add private coverage for faster access or employer-provided benefits.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I change employers on a Skilled Worker Visa?</h3>
+        <p class="text-neutral-600">
+          Yes, but you need a new sponsor and must apply to update your visa before changing jobs. You cannot work for the new employer until the application is approved. This typically takes 3-8 weeks (faster with priority processing).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens if I lose my job?</h3>
+        <p class="text-neutral-600">
+          Your employer must report the end of sponsorship, and your visa technically becomes invalid. However, you have a grace period to find a new sponsor and apply to update your visa. UKVI generally allows a reasonable time (60 days) to find new sponsorship.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my spouse work in the UK?</h3>
+        <p class="text-neutral-600">
+          Yes. Dependents on a Skilled Worker dependent visa have full work rights—they can take any job without sponsorship. They also have NHS access through their own IHS payment.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do I qualify for settlement (ILR)?</h3>
+        <p class="text-neutral-600">
+          After 5 years of continuous lawful residence on a qualifying visa (including Skilled Worker), you can apply for Indefinite Leave to Remain. You must meet the salary threshold at time of ILR application, pass the Life in the UK test, and meet English language requirements.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get an IHS refund if I leave early?</h3>
+        <p class="text-neutral-600">
+          Yes. If you leave the UK before your visa expires, you can apply for a refund of unused IHS for complete remaining years. Apply through the Home Office website after leaving. Partial year refunds are not available.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      The UK Skilled Worker Visa remains one of the most straightforward paths for skilled professionals to work in the UK, despite the higher salary threshold introduced in 2024. The integrated NHS healthcare system, accessed through the mandatory Immigration Health Surcharge, eliminates the complexity of securing private health insurance for visa purposes.
+    </p>
+
+    <p class="mb-4">
+      For most workers, NHS provides adequate healthcare. Private insurance becomes valuable if you want faster access, have ongoing health conditions requiring specialist care, or travel internationally (NHS is UK-only). Many employers offer private health insurance as a benefit—this is worth negotiating as part of your package.
+    </p>
+
+    <p class="mb-6">
+      The 5-year path to settlement (ILR) makes the UK attractive for long-term career building. Combined with dependent work rights and a clear sponsorship system, the Skilled Worker Visa provides stability and a genuine route to permanent residence.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The UK Skilled Worker Visa includes NHS healthcare through the Immigration Health Surcharge. Private insurance is optional but valuable for faster care, mental health support, and international coverage. If your employer offers private health insurance as a benefit, take it—otherwise, NHS covers most healthcare needs adequately.
+      </p>
+      <a href="/best/expat-health-insurance" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+        Compare Health Insurance Plans →
+      </a>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/uk/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in the UK</p>
+      </a>
+      <a href="/insurance-for/remote-workers" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Insurance for Remote Workers</h3>
+        <p class="text-neutral-600 text-sm">Best insurance options for remote and hybrid workers</p>
+      </a>
+      <a href="/visas/work-permit-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany EU Blue Card</h3>
+        <p class="text-neutral-600 text-sm">Compare with Germany's work permit system</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>
