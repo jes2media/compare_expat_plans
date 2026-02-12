@@ -13,7 +13,7 @@ Last updated: February 11, 2026
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 87 (6 original + 81 new problem/solution guides)
+**Problem/solution guides:** 90 (6 original + 84 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -246,7 +246,12 @@ New problem/solution guides at `/guides/[topic]`:
 - High-Risk Destination Insurance - coverage for conflict zones, unstable regions, evacuation, security services
 - Pandemic and Epidemic Coverage - treatment coverage, exclusions, evacuation during outbreaks, lessons from COVID-19
 
-**Total Problem/Solution guides: 87** (6 original + 81 new)
+**Batch 28:**
+- Gig Economy Expat Insurance - coverage for freelancers with multiple clients, variable income strategies
+- Repatriation of Remains - insurance for death abroad, costs, process, planning ahead
+- Insurance Portability When Moving Countries - keeping coverage through relocations, avoiding gaps
+
+**Total Problem/Solution guides: 90** (6 original + 84 new)
 
 ---
 
@@ -1115,7 +1120,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 | **Work Permit Visa pages** | **18** | **Complete (Batches 1-6: UK, Germany, Australia, Canada, Singapore, UAE, France, Netherlands, Japan, Hong Kong, South Korea, Ireland, Switzerland, Austria, New Zealand, Belgium, Sweden, Spain)** |
 
-**Total pages:** ~2,500
+**Total pages:** ~2,503
 
 ---
 
