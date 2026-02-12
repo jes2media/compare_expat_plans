@@ -13,7 +13,7 @@ Last updated: February 11, 2026
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 84 (6 original + 78 new problem/solution guides)
+**Problem/solution guides:** 87 (6 original + 81 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -241,7 +241,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Expat Wedding and Partner Coverage - how marriage affects insurance, adding a spouse, different nationalities, timing
 - Extended Family Visits Insurance - coverage for visiting parents/grandparents, age factors, pre-existing conditions, duration strategies
 
-**Total Problem/Solution guides: 84** (6 original + 78 new)
+**Batch 27:**
+- Insurance Cancellation and Refunds - how to cancel, refund expectations, timing, avoiding pitfalls
+- High-Risk Destination Insurance - coverage for conflict zones, unstable regions, evacuation, security services
+- Pandemic and Epidemic Coverage - treatment coverage, exclusions, evacuation during outbreaks, lessons from COVID-19
+
+**Total Problem/Solution guides: 87** (6 original + 81 new)
 
 ---
 
@@ -1110,7 +1115,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 | **Work Permit Visa pages** | **18** | **Complete (Batches 1-6: UK, Germany, Australia, Canada, Singapore, UAE, France, Netherlands, Japan, Hong Kong, South Korea, Ireland, Switzerland, Austria, New Zealand, Belgium, Sweden, Spain)** |
 
-**Total pages:** ~2,497
+**Total pages:** ~2,500
 
 ---
 
