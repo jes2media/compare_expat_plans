@@ -13,7 +13,7 @@ Last updated: February 11, 2026
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 81 (6 original + 75 new problem/solution guides)
+**Problem/solution guides:** 84 (6 original + 78 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -236,7 +236,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Emergency Room vs Urgent Care Abroad - navigating emergency care systems, cost differences, when to use which, finding care
 - Insurance Brokers Explained - when to use a broker, how they're paid, finding reputable brokers, working with brokers
 
-**Total Problem/Solution guides: 81** (6 original + 75 new)
+**Batch 26:**
+- Accident-Only Insurance - when accident-only coverage makes sense, limitations, who should consider it, better alternatives
+- Expat Wedding and Partner Coverage - how marriage affects insurance, adding a spouse, different nationalities, timing
+- Extended Family Visits Insurance - coverage for visiting parents/grandparents, age factors, pre-existing conditions, duration strategies
+
+**Total Problem/Solution guides: 84** (6 original + 78 new)
 
 ---
 
@@ -1105,7 +1110,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 | **Work Permit Visa pages** | **18** | **Complete (Batches 1-6: UK, Germany, Australia, Canada, Singapore, UAE, France, Netherlands, Japan, Hong Kong, South Korea, Ireland, Switzerland, Austria, New Zealand, Belgium, Sweden, Spain)** |
 
-**Total pages:** ~2,494
+**Total pages:** ~2,497
 
 ---
 
