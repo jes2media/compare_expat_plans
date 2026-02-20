@@ -7,13 +7,13 @@ Last updated: February 15, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,527
+**Total pages:** ~2,530
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 114 (6 original + 108 new problem/solution guides)
+**Problem/solution guides:** 117 (6 original + 111 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -291,7 +291,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Medical Equipment Insurance - CPAP, oxygen concentrators, insulin pumps, dialysis equipment abroad
 - Financial Hardship Insurance - rebuilding coverage after bankruptcy, job loss, coverage gaps
 
-**Total Problem/Solution guides: 114** (6 original + 108 new)
+**Batch 37:**
+- International Adoption Insurance - coverage during adoption process, adding child to policy, pre-existing conditions
+- Missionary and Humanitarian Insurance - NGO workers, remote locations, evacuation, K&R, health-sharing ministries
+- Gap Year and Sabbatical Insurance - career breaks, COBRA vs travel vs IPMI, activity coverage, returning to work
+
+**Total Problem/Solution guides: 117** (6 original + 111 new)
 
 ---
 
@@ -1160,7 +1165,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 | **Work Permit Visa pages** | **18** | **Complete (Batches 1-6: UK, Germany, Australia, Canada, Singapore, UAE, France, Netherlands, Japan, Hong Kong, South Korea, Ireland, Switzerland, Austria, New Zealand, Belgium, Sweden, Spain)** |
 
-**Total pages:** ~2,527
+**Total pages:** ~2,530
 
 ---
 
