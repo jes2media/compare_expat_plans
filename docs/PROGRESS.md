@@ -7,13 +7,13 @@ Last updated: March 1, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,569
+**Total pages:** ~2,572
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 156 (6 original + 150 new problem/solution guides)
+**Problem/solution guides:** 159 (6 original + 153 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -361,7 +361,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Executive Insurance - C-suite roles, board service, global leadership, career transitions
 - Pharma/Biotech Insurance - clinical operations, regulatory affairs, medical affairs, commercial
 
-**Total Problem/Solution guides: 156** (6 original + 150 new)
+**Batch 51:**
+- Energy Professional Insurance - offshore operations, remote sites, renewable energy, rotation work
+- Hospitality Management Insurance - hotel management, resort operations, pre-opening teams
+- Education Administrator Insurance - school leadership, university admin, education organizations
+
+**Total Problem/Solution guides: 159** (6 original + 153 new)
 
 ---
 
@@ -1220,7 +1225,7 @@ These 21 countries have manually created pages with custom hero images:
 | Regional hub pages | 10 | Complete (9 regions + index) |
 | Provider-persona pages | 40 | Complete (5 providers × 8 personas) |
 | Provider comparison pages | ~28 | Complete |
-| Problem/solution guides | 156 | Complete (6 original + 150 new) |
+| Problem/solution guides | 159 | Complete (6 original + 153 new) |
 | Constraint pages | 12 | Complete (8 original + 4 new) |
 | Provider pages | 8 | Expanded to long-form (550-685 lines each) |
 | **Digital Nomad Visa pages** | **33** | **Complete (all countries)** |
@@ -1230,7 +1235,7 @@ These 21 countries have manually created pages with custom hero images:
 | **Investor Visa pages** | **40** | **Complete (28 new + 12 existing)** |
 | **Work Permit Visa pages** | **18** | **Complete (Batches 1-6: UK, Germany, Australia, Canada, Singapore, UAE, France, Netherlands, Japan, Hong Kong, South Korea, Ireland, Switzerland, Austria, New Zealand, Belgium, Sweden, Spain)** |
 
-**Total pages:** ~2,569
+**Total pages:** ~2,572
 
 ---
 
