@@ -7,13 +7,13 @@ Last updated: March 1, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,584
+**Total pages:** ~2,587
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 171 (6 original + 165 new problem/solution guides)
+**Problem/solution guides:** 174 (6 original + 168 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -386,7 +386,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Government Contractor Insurance - defense contractors, development contractors, contingency operations, DBA coverage
 - Startup Founder Insurance - bootstrapped founders, funded startups, accelerators, scaling internationally
 
-**Total Problem/Solution guides: 171** (6 original + 165 new)
+**Batch 56:**
+- Data Science/AI Professional Insurance - machine learning engineers, research scientists, tech company roles, consulting
+- Cybersecurity Professional Insurance - security operations, penetration testing, incident response, government/defense
+- Venture Capital/Private Equity Insurance - fund operations, deal sourcing, portfolio management, global investing
+
+**Total Problem/Solution guides: 174** (6 original + 168 new)
 
 ---
 
