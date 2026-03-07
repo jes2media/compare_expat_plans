@@ -7,13 +7,13 @@ Last updated: March 1, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,599
+**Total pages:** ~2,602
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 186 (6 original + 180 new problem/solution guides)
+**Problem/solution guides:** 189 (6 original + 183 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -411,7 +411,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Business Analyst Insurance - tech companies, consulting/contract, remote analysis, specializations
 - Solutions Architect Insurance - tech companies, consulting/vendors, remote architecture, specializations
 
-**Total Problem/Solution guides: 186** (6 original + 180 new)
+**Batch 61:**
+- Database Administrator Insurance - tech companies, consulting/contract, remote DBA, on-call demands
+- Network Engineer Insurance - enterprise networks, service providers, data centers, on-call demands
+- Cloud Engineer Insurance - cloud providers, enterprise cloud, consulting, remote cloud work
+
+**Total Problem/Solution guides: 189** (6 original + 183 new)
 
 ---
 
