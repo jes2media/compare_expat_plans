@@ -7,13 +7,13 @@ Last updated: March 1, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,608
+**Total pages:** ~2,611
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 195 (6 original + 189 new problem/solution guides)
+**Problem/solution guides:** 198 (6 original + 192 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -426,7 +426,12 @@ New problem/solution guides at `/guides/[topic]`:
 - ML Engineer Insurance - AI companies, tech giants, research roles, competitive field demands
 - Embedded Systems Engineer Insurance - hardware companies, automotive, industrial, lab environments
 
-**Total Problem/Solution guides: 195** (6 original + 189 new)
+**Batch 64:**
+- Engineering Manager Insurance - tech companies, leadership demands, remote management, global teams
+- Tech Executive Insurance - CTOs/VPs, executive benefits, global leadership, board/advisory roles
+- Technical Recruiter Insurance - tech companies, agency recruiting, remote recruiting, quota pressure
+
+**Total Problem/Solution guides: 198** (6 original + 192 new)
 
 ---
 
