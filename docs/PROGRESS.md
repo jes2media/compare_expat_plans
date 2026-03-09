@@ -7,13 +7,13 @@ Last updated: March 1, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,614
+**Total pages:** ~2,617
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 201 (6 original + 195 new problem/solution guides)
+**Problem/solution guides:** 204 (6 original + 198 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -436,7 +436,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Customer Success Manager Insurance - SaaS companies, client demands, remote CSM, renewal pressure
 - Technical Program Manager Insurance - tech companies, program demands, deadline pressure, cross-functional coordination
 
-**Total Problem/Solution guides: 201** (6 original + 195 new)
+**Batch 66:**
+- Sales Engineer Insurance - tech companies, technical sales, customer demos, travel demands, quota pressure
+- Implementation Engineer Insurance - tech companies, customer deployments, project-based work, go-live pressure
+- Site Reliability Engineer Insurance - tech companies, on-call responsibilities, incident response, system monitoring
+
+**Total Problem/Solution guides: 204** (6 original + 198 new)
 
 ---
 
