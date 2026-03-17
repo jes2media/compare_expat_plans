@@ -7,13 +7,13 @@ Last updated: March 16, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,641
+**Total pages:** ~2,644
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 228 (6 original + 222 new problem/solution guides)
+**Problem/solution guides:** 231 (6 original + 225 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -481,7 +481,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Patent Attorney Insurance - law firms, corporate IP, international patent filing, litigation
 - Quantitative Analyst Insurance - hedge funds, investment banks, prop trading, financial centers
 
-**Total Problem/Solution guides: 228** (6 original + 222 new)
+**Batch 75:**
+- Architect Insurance - architecture firms, international projects, construction sites, design studios
+- Industrial Designer Insurance - product design, consultancies, tech companies, manufacturing travel
+- Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
+
+**Total Problem/Solution guides: 231** (6 original + 225 new)
 
 ---
 
