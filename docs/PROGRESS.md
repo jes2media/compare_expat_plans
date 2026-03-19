@@ -7,13 +7,13 @@ Last updated: March 16, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,659
+**Total pages:** ~2,662
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 246 (6 original + 240 new problem/solution guides)
+**Problem/solution guides:** 249 (6 original + 243 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -511,7 +511,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Hedge Fund Manager Insurance - fund operations, global markets, trading stress, alternative investments
 - Private Equity Insurance - deal execution, portfolio management, mega-funds, PE careers
 
-**Total Problem/Solution guides: 246** (6 original + 240 new)
+**Batch 81:**
+- Data Scientist Insurance - tech companies, AI/ML roles, remote work, data science careers
+- Dentist Insurance - dental practice abroad, licensing, occupational health, oral healthcare
+- Pharmacist Insurance - pharmacy practice abroad, licensing, clinical roles, pharmaceutical careers
+
+**Total Problem/Solution guides: 249** (6 original + 243 new)
 
 ---
 
