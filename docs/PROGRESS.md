@@ -7,13 +7,13 @@ Last updated: March 16, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,668
+**Total pages:** ~2,671
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 255 (6 original + 249 new problem/solution guides)
+**Problem/solution guides:** 258 (6 original + 252 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -526,7 +526,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Speech Therapist Insurance - SLP practice abroad, healthcare and education settings
 - Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
 
-**Total Problem/Solution guides: 255** (6 original + 249 new)
+**Batch 84:**
+- Radiographer Insurance - medical imaging abroad, radiation safety, diagnostic imaging careers
+- Dietitian Insurance - clinical nutrition abroad, healthcare and wellness settings
+- Audiologist Insurance - hearing healthcare abroad, audiology practice, hearing aid dispensing
+
+**Total Problem/Solution guides: 258** (6 original + 252 new)
 
 ---
 
