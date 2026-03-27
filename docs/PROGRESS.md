@@ -1,19 +1,19 @@
 # Project Progress Log
 
-Last updated: March 16, 2026
+Last updated: March 26, 2026
 
 ---
 
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,716
+**Total pages:** ~2,719
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 291 (6 original + 285 new problem/solution guides)
+**Problem/solution guides:** 294 (6 original + 288 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -586,7 +586,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Sommelier Insurance - wine service abroad, beverage programs, wine travel
 - Pastry Chef Insurance - patisserie positions abroad, bakery work, pastry hazards
 
-**Total Problem/Solution guides: 291** (6 original + 285 new)
+**Batch 96:**
+- Interior Designer Insurance - design projects abroad, client work globally, site visits
+- Landscape Architect Insurance - site work abroad, environmental design, project oversight
+- Jeweler Insurance - jewelry design abroad, gemstone sourcing, bench work hazards
+
+**Total Problem/Solution guides: 294** (6 original + 288 new)
 
 ---
 
