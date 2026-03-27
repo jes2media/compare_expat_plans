@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,758
+**Total pages:** ~2,761
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 333 (6 original + 327 new problem/solution guides)
+**Problem/solution guides:** 336 (6 original + 330 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -656,7 +656,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Addiction Counselor Insurance - substance abuse treatment abroad, recovery support, treatment facilities
 - Marriage Therapist Insurance - couples therapy abroad, family counseling, MFT practice
 
-**Total Problem/Solution guides: 333** (6 original + 327 new)
+**Batch 110:**
+- Lactation Consultant Insurance - IBCLC practice abroad, breastfeeding support, maternal-infant health
+- Sleep Consultant Insurance - sleep coaching abroad, infant sleep training, family sleep support
+- Forensic Psychologist Insurance - forensic psychology abroad, court evaluations, legal psychology
+
+**Total Problem/Solution guides: 336** (6 original + 330 new)
 
 ---
 
