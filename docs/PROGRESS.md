@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,746
+**Total pages:** ~2,749
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 321 (6 original + 315 new problem/solution guides)
+**Problem/solution guides:** 324 (6 original + 318 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -636,7 +636,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Reiki Practitioner Insurance - energy healing abroad, wellness centers, holistic practice
 - Ayurvedic Practitioner Insurance - Ayurveda abroad, traditional medicine, spa treatments
 
-**Total Problem/Solution guides: 321** (6 original + 315 new)
+**Batch 106:**
+- Doula Insurance - birth support abroad, postpartum care, expat family support
+- Art Therapist Insurance - creative arts therapy abroad, mental health settings, schools
+- Music Therapist Insurance - music therapy abroad, healthcare settings, rehabilitation
+
+**Total Problem/Solution guides: 324** (6 original + 318 new)
 
 ---
 
