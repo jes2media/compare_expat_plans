@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,806
+**Total pages:** ~2,809
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 381 (6 original + 375 new problem/solution guides)
+**Problem/solution guides:** 384 (6 original + 378 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -735,6 +735,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Transplant Coordinator Insurance - organ transplant programs abroad, on-call demands, waitlist management
 - Organ Procurement Specialist Insurance - OPO work abroad, donor coordination, grief support
 - Perfusionist Insurance - cardiac surgery support abroad, heart-lung machines, ECMO
+
+**Batch 126:**
+- Sterile Processing Technician Insurance - instrument sterilization abroad, central supply, infection control
+- Healthcare Simulation Specialist Insurance - medical education abroad, simulation centers, clinical training
+- Child Life Specialist Insurance - pediatric support abroad, therapeutic play, children's hospitals
 
 **Total Problem/Solution guides: 378** (6 original + 372 new)
 
