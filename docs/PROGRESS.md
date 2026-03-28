@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,797
+**Total pages:** ~2,800
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 372 (6 original + 366 new problem/solution guides)
+**Problem/solution guides:** 375 (6 original + 369 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -721,7 +721,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Drug Safety Associate Insurance - case processing abroad, safety databases, regulatory timelines
 - Medical Writer Insurance - regulatory writing abroad, clinical study reports, scientific publications
 
-**Total Problem/Solution guides: 372** (6 original + 366 new)
+**Batch 123:**
+- Healthcare IT Specialist Insurance - health systems implementation abroad, clinical applications, network support
+- EHR Specialist Insurance - electronic health record implementation abroad, Epic/Cerner consulting, go-live support
+- Health Informatics Specialist Insurance - clinical informatics abroad, digital health research, data science
+
+**Total Problem/Solution guides: 375** (6 original + 369 new)
 
 ---
 
