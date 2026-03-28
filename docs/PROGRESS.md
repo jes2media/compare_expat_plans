@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,821
+**Total pages:** ~2,824
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 396 (6 original + 390 new problem/solution guides)
+**Problem/solution guides:** 399 (6 original + 393 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -760,6 +760,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Childbirth Educator Insurance - prenatal education abroad, birth preparation, maternal health
 - Exercise Physiologist Insurance - clinical exercise abroad, cardiac rehabilitation, fitness assessment
 - Group Fitness Instructor Insurance - fitness classes abroad, gym instruction, resort fitness
+
+**Batch 131:**
+- Pilates Instructor Insurance - Pilates teaching abroad, reformer instruction, movement education
+- Athletic Trainer Insurance - sports medicine abroad, athlete care, sideline treatment
+- Sports Medicine Physician Insurance - team physician abroad, athlete care, international sports
 
 **Total Problem/Solution guides: 378** (6 original + 372 new)
 
