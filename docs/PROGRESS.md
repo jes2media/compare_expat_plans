@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,842
+**Total pages:** ~2,845
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 417 (6 original + 411 new problem/solution guides)
+**Problem/solution guides:** 420 (6 original + 414 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -795,6 +795,11 @@ New problem/solution guides at `/guides/[topic]`:
 - School Nurse Insurance - school health abroad, pediatric nursing, NCSN certification
 - Infusion Nurse Insurance - IV therapy abroad, vascular access, CRNI certification
 - Cardiac Rehab Nurse Insurance - cardiac rehabilitation abroad, post-cardiac care, CCRP certification
+
+**Batch 138:**
+- Correctional Nurse Insurance - prison healthcare abroad, incarcerated patient care, CCHP certification
+- Occupational Health Nurse Insurance - workplace health abroad, employee wellness, COHN certification
+- Public Health Nurse Insurance - community health abroad, population health, APHN-BC certification
 
 **Total Problem/Solution guides: 378** (6 original + 372 new)
 
