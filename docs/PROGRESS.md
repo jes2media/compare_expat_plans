@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,908
+**Total pages:** ~2,911
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -906,7 +906,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Educator Insurance - nursing education abroad, clinical teaching
 - Agency Nurse Insurance - travel nursing abroad, flexible staffing
 
-**Total Problem/Solution guides: 459** (6 original + 453 new)
+**Batch 160:**
+- Infection Prevention Nurse Insurance - infection control abroad, healthcare epidemiology
+- Float Pool Nurse Insurance - flexible unit staffing abroad, multi-unit nursing
+- Per Diem Nurse Insurance - PRN nursing abroad, flexible scheduling
+
+**Total Problem/Solution guides: 462** (6 original + 456 new)
 
 ---
 
