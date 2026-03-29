@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,905
+**Total pages:** ~2,908
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -901,7 +901,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Discharge Planning Nurse Insurance - hospital transition coordination abroad
 - Anticoagulation Nurse Insurance - blood thinner management abroad, CACP certification
 
-**Total Problem/Solution guides: 456** (6 original + 450 new)
+**Batch 159:**
+- IV Therapy Nurse Insurance - infusion nursing abroad, vascular access
+- Nurse Educator Insurance - nursing education abroad, clinical teaching
+- Agency Nurse Insurance - travel nursing abroad, flexible staffing
+
+**Total Problem/Solution guides: 459** (6 original + 453 new)
 
 ---
 
