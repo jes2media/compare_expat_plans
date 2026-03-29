@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,899
+**Total pages:** ~2,902
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -891,7 +891,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Navigator Insurance - patient navigation abroad, care coordination
 - Lactation Nurse Insurance - breastfeeding support abroad, IBCLC practice
 
-**Total Problem/Solution guides: 450** (6 original + 444 new)
+**Batch 157:**
+- Telephonic Nurse Insurance - remote nursing practice abroad, telehealth triage
+- Aesthetics Nurse Insurance - cosmetic nursing abroad, injectable treatments
+- Diabetes Educator Nurse Insurance - diabetes management education abroad, CDCES certification
+
+**Total Problem/Solution guides: 453** (6 original + 447 new)
 
 ---
 
