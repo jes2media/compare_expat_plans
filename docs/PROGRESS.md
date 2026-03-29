@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,887
+**Total pages:** ~2,890
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 462 (6 original + 456 new problem/solution guides)
+**Problem/solution guides:** 465 (6 original + 459 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -870,6 +870,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Continence Nurse Insurance - bladder and bowel care nursing abroad, CCCN certification
 - Geriatric Nurse Insurance - elderly care nursing abroad, gerontology, GERO-BC certification
 - Maternal-Fetal Medicine Nurse Insurance - high-risk pregnancy nursing abroad, perinatology
+
+**Batch 153:**
+- Legal Nurse Consultant Insurance - medical-legal consulting abroad, LNCC certification
+- Forensic Nurse Insurance - violence intervention nursing abroad, SANE certification
+- Nurse Advocate Insurance - patient advocacy nursing abroad, healthcare navigation
 
 **Total Problem/Solution guides: 444** (6 original + 438 new)
 
