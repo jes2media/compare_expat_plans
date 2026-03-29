@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,830
+**Total pages:** ~2,833
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 405 (6 original + 399 new problem/solution guides)
+**Problem/solution guides:** 408 (6 original + 402 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -775,6 +775,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Pedorthist Insurance - therapeutic footwear abroad, diabetic foot care, orthotic devices
 - Prosthetist-Orthotist Insurance - prosthetic limbs abroad, orthotic braces, humanitarian P&O work
 - Lymphedema Therapist Insurance - manual lymphatic drainage abroad, cancer survivorship, CDT therapy
+
+**Batch 134:**
+- Wound Care Nurse Insurance - chronic wound management abroad, wound healing, WOCN certification
+- Oncology Nurse Insurance - cancer care abroad, chemotherapy administration, OCN certification
+- Hospice Nurse Insurance - end-of-life care abroad, palliative nursing, CHPN certification
 
 **Total Problem/Solution guides: 378** (6 original + 372 new)
 
