@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,854
+**Total pages:** ~2,857
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 429 (6 original + 423 new problem/solution guides)
+**Problem/solution guides:** 432 (6 original + 426 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -816,7 +816,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Psychiatric Nurse Insurance - mental health nursing abroad, behavioral health, PMH-BC certification
 - Clinical Research Nurse Insurance - clinical trials abroad, research coordination, GCP training
 
-**Total Problem/Solution guides: 429** (6 original + 423 new)
+**Batch 142:**
+- Nurse Educator Insurance - nursing education abroad, academic nursing, CNE certification
+- Pain Management Nurse Insurance - chronic pain care abroad, interventional pain, ASPMN certification
+- Palliative Care Nurse Insurance - comfort-focused care abroad, serious illness, CHPN certification
+
+**Total Problem/Solution guides: 432** (6 original + 426 new)
 
 ---
 
