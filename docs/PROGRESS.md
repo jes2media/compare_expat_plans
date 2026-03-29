@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,902
+**Total pages:** ~2,905
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -896,7 +896,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Aesthetics Nurse Insurance - cosmetic nursing abroad, injectable treatments
 - Diabetes Educator Nurse Insurance - diabetes management education abroad, CDCES certification
 
-**Total Problem/Solution guides: 453** (6 original + 447 new)
+**Batch 158:**
+- Triage Nurse Insurance - emergency assessment abroad, urgent care triage
+- Discharge Planning Nurse Insurance - hospital transition coordination abroad
+- Anticoagulation Nurse Insurance - blood thinner management abroad, CACP certification
+
+**Total Problem/Solution guides: 456** (6 original + 450 new)
 
 ---
 
