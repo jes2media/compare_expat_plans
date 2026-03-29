@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,896
+**Total pages:** ~2,899
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -886,7 +886,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Holistic Nurse Insurance - integrative nursing abroad, complementary therapies
 - Risk Management Nurse Insurance - healthcare risk mitigation abroad, CPHRM certification
 
-**Total Problem/Solution guides: 447** (6 original + 441 new)
+**Batch 156:**
+- Cruise Ship Nurse Insurance - maritime nursing abroad, shipboard healthcare
+- Nurse Navigator Insurance - patient navigation abroad, care coordination
+- Lactation Nurse Insurance - breastfeeding support abroad, IBCLC practice
+
+**Total Problem/Solution guides: 450** (6 original + 444 new)
 
 ---
 
