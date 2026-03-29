@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,893
+**Total pages:** ~2,896
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -881,7 +881,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Military Nurse Insurance - military nursing transitions, veteran healthcare abroad
 - Parish Nurse Insurance - faith community nursing abroad, congregational health ministry
 
-**Total Problem/Solution guides: 444** (6 original + 438 new)
+**Batch 155:**
+- Camp Nurse Insurance - summer camp nursing abroad, seasonal youth healthcare
+- Holistic Nurse Insurance - integrative nursing abroad, complementary therapies
+- Risk Management Nurse Insurance - healthcare risk mitigation abroad, CPHRM certification
+
+**Total Problem/Solution guides: 447** (6 original + 441 new)
 
 ---
 
