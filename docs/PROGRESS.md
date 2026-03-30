@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,920
+**Total pages:** ~2,923
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 474 (6 original + 468 new problem/solution guides)
+**Problem/solution guides:** 477 (6 original + 471 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -925,6 +925,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Research Nurse Insurance - clinical trials abroad, research coordination
 - Quality Improvement Nurse Insurance - healthcare quality abroad, patient safety
 - Utilization Review Nurse Insurance - healthcare utilization abroad, insurance review
+
+**Batch 164:**
+- Appeals Nurse Insurance - insurance appeals abroad, medical necessity review
+- Prior Authorization Nurse Insurance - healthcare authorization abroad, medical approval
+- Population Health Nurse Insurance - community health abroad, health outcomes
 
 **Total Problem/Solution guides: 465** (6 original + 459 new)
 
