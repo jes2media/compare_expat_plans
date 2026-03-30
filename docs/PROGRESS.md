@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,947
+**Total pages:** ~2,950
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -961,7 +961,11 @@ New problem/solution guides at `/guides/[topic]`:
 **Batch 171:**
 
 **Batch 172:**
-- Aesthetic Nurse Insurance - cosmetic nursing abroad
+
+**Batch 173:**
+- Cardiac Rehabilitation Nurse Insurance - cardiovascular recovery abroad
+- Transplant Coordinator Nurse Insurance - organ transplant coordination internationally
+- Infection Control Nurse Insurance - infection prevention abroad- Aesthetic Nurse Insurance - cosmetic nursing abroad
 - Wound Care Nurse Insurance - wound management internationally
 - Diabetes Educator Nurse Insurance - diabetes education abroad- Forensic Nurse Insurance - medical-legal nursing abroad
 - Legal Nurse Consultant Insurance - LNC practice internationally
@@ -969,7 +973,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 471** (6 original + 465 new)
+**Total Problem/Solution guides: 474** (6 original + 468 new)
 
 ---
 
