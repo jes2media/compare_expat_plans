@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,929
+**Total pages:** ~2,932
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 483 (6 original + 477 new problem/solution guides)
+**Problem/solution guides:** 486 (6 original + 480 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -940,6 +940,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Risk Management Nurse Insurance - patient safety abroad, liability prevention
 - Patient Safety Nurse Insurance - safety culture abroad, harm prevention
 - Performance Improvement Nurse Insurance - healthcare metrics abroad, process improvement
+
+**Batch 167:**
+- Revenue Cycle Nurse Insurance - healthcare revenue abroad, billing support
+- Documentation Specialist Nurse Insurance - clinical documentation abroad, CDI
+- Chart Auditor Nurse Insurance - medical record auditing abroad, compliance review
 
 **Total Problem/Solution guides: 465** (6 original + 459 new)
 
