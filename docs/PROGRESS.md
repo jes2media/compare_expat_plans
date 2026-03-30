@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,911
+**Total pages:** ~2,914
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -911,7 +911,12 @@ New problem/solution guides at `/guides/[topic]`:
 - Float Pool Nurse Insurance - flexible unit staffing abroad, multi-unit nursing
 - Per Diem Nurse Insurance - PRN nursing abroad, flexible scheduling
 
-**Total Problem/Solution guides: 462** (6 original + 456 new)
+**Batch 161:**
+- Charge Nurse Insurance - shift leadership abroad, unit supervision
+- Nurse Manager Insurance - nursing administration abroad, department leadership
+- Staff Development Nurse Insurance - nursing education abroad, employee training
+
+**Total Problem/Solution guides: 465** (6 original + 459 new)
 
 ---
 
