@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,950
+**Total pages:** ~2,953
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -963,7 +963,11 @@ New problem/solution guides at `/guides/[topic]`:
 **Batch 172:**
 
 **Batch 173:**
-- Cardiac Rehabilitation Nurse Insurance - cardiovascular recovery abroad
+
+**Batch 174:**
+- Pain Management Nurse Insurance - chronic pain treatment abroad
+- Palliative Care Nurse Insurance - serious illness care internationally
+- Hospice Nurse Insurance - end-of-life care abroad- Cardiac Rehabilitation Nurse Insurance - cardiovascular recovery abroad
 - Transplant Coordinator Nurse Insurance - organ transplant coordination internationally
 - Infection Control Nurse Insurance - infection prevention abroad- Aesthetic Nurse Insurance - cosmetic nursing abroad
 - Wound Care Nurse Insurance - wound management internationally
@@ -973,7 +977,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 474** (6 original + 468 new)
+**Total Problem/Solution guides: 477** (6 original + 471 new)
 
 ---
 
