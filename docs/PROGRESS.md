@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,941
+**Total pages:** ~2,944
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -957,11 +957,15 @@ New problem/solution guides at `/guides/[topic]`:
 - Nursing Dean Insurance - nursing school leadership abroad, academic administration
 
 **Batch 170:**
-- Chief Nursing Officer Insurance - nursing executive leadership abroad
+
+**Batch 171:**
+- Forensic Nurse Insurance - medical-legal nursing abroad
+- Legal Nurse Consultant Insurance - LNC practice internationally
+- Correctional Nurse Insurance - detention healthcare abroad- Chief Nursing Officer Insurance - nursing executive leadership abroad
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 465** (6 original + 459 new)
+**Total Problem/Solution guides: 468** (6 original + 462 new)
 
 ---
 
