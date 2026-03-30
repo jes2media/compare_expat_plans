@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,956
+**Total pages:** ~2,959
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -967,7 +967,11 @@ New problem/solution guides at `/guides/[topic]`:
 **Batch 174:**
 
 **Batch 175:**
-- Rehabilitation Nurse Insurance - functional recovery nursing abroad
+
+**Batch 176:**
+- Endoscopy Nurse Insurance - GI procedural nursing abroad
+- Urology Nurse Insurance - urological care internationally
+- Dermatology Nurse Insurance - skin care nursing abroad- Rehabilitation Nurse Insurance - functional recovery nursing abroad
 - Stroke Nurse Insurance - acute stroke care internationally
 - Neuroscience Nurse Insurance - neurological nursing abroad- Pain Management Nurse Insurance - chronic pain treatment abroad
 - Palliative Care Nurse Insurance - serious illness care internationally
@@ -981,7 +985,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 480** (6 original + 474 new)
+**Total Problem/Solution guides: 483** (6 original + 477 new)
 
 ---
 
