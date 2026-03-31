@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,974
+**Total pages:** ~2,977
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 495 (6 original + 492 new problem/solution guides)
+**Problem/solution guides:** 495 (6 original + 495 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -491,6 +491,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Real Estate Agent Insurance
 - Physical Therapist Insurance- Automotive Engineer Insurance - OEMs, suppliers, EV companies, vehicle testing, global manufacturing
 
+**Batch 77:**
+- Veterinarian Insurance
+- Pharmacist Insurance
+- Psychologist Insurance
 **Batch 74:**
 - Actuary Insurance - insurance companies, consulting firms, pension funds, credential portability
 - Patent Attorney Insurance - law firms, corporate IP, international patent filing, litigation
@@ -509,11 +513,19 @@ New problem/solution guides at `/guides/[topic]`:
 - Real Estate Agent Insurance
 - Physical Therapist Insurance- Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
 
+**Batch 77:**
+- Veterinarian Insurance
+- Pharmacist Insurance
+- Psychologist Insurance
 **Batch 76:**
 - Physician Insurance - international hospitals, locum work, medical missions, Gulf state healthcare
 - Nurse Practitioner Insurance - advanced practice nursing, travel nursing, scope of practice
 - Physical Therapist Insurance - sports teams, rehabilitation centers, international clinics
 
+**Batch 77:**
+- Veterinarian Insurance
+- Pharmacist Insurance
+- Psychologist Insurance
 **Batch 77:**
 - Professor Insurance - sabbaticals, visiting positions, international universities, academic careers
 - Research Scientist Insurance - postdocs, research institutes, national labs, scientific collaborations
@@ -1016,7 +1028,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 552** (6 original + 492 new)
+**Total Problem/Solution guides: 555** (6 original + 495 new)
 
 ---
 
