@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,995
+**Total pages:** ~2,998
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -525,7 +525,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance**Batch 75:**
-- Architect Insurance - architecture firms, international projects, construction sites, design studios
+
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance- Architect Insurance - architecture firms, international projects, construction sites, design studios
 
 **Batch 75:**
 - Flight Attendant Insurance
@@ -571,7 +575,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance**Batch 77:**
-- Veterinarian Insurance
+
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance- Veterinarian Insurance
 - Pharmacist Insurance
 - Psychologist Insurance
 
@@ -604,7 +612,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance**Batch 78:**
-- Corporate Lawyer Insurance - BigLaw, in-house counsel, international transactions, deal work
+
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance- Corporate Lawyer Insurance - BigLaw, in-house counsel, international transactions, deal work
 - Management Consultant Insurance - MBB, Big Four, client travel, project intensity
 - Investment Banker Insurance - bulge bracket, M&A advisory, financial centers, deal execution
 
@@ -627,7 +639,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance- Airline Pilot Insurance - flight crew, medical certification, layover healthcare, aviation careers
-- Ship Captain Insurance - merchant marine, cruise lines, maritime healthcare, port access
+
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance- Ship Captain Insurance - merchant marine, cruise lines, maritime healthcare, port access
 
 **Batch 80:**
 - Venture Capitalist Insurance - fund management, portfolio support, startup ecosystems, VC careers
@@ -642,7 +658,11 @@ New problem/solution guides at `/guides/[topic]`:
 **Batch 82:**
 - Optometrist Insurance - eye care practice abroad, scope of practice, vision care settings
 - Chiropractor Insurance - chiropractic practice abroad, manual therapy demands, regulatory status
-- Paramedic Insurance - emergency services abroad, occupational hazards, EMS career mobility
+
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance- Paramedic Insurance - emergency services abroad, occupational hazards, EMS career mobility
 
 **Batch 83:**
 - Midwife Insurance - midwifery practice abroad, birth settings, maternity care systems
@@ -653,6 +673,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Audiologist Insurance
 - Chiropractor Insurance- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
 
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance
 **Batch 84:**
 - Radiographer Insurance - medical imaging abroad, radiation safety, diagnostic imaging careers
 - Dietitian Insurance - clinical nutrition abroad, healthcare and wellness settings
@@ -696,7 +720,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
-- Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
+
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance- Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
 
 **Batch 89:**
 - Archaeologist Insurance - fieldwork abroad, excavation site coverage, remote location risks
@@ -921,7 +949,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance
-**Batch 132:**
+
+**Batch 84:**
+- Nutritionist Insurance
+- Massage Therapist Insurance
+- Acupuncturist Insurance**Batch 132:**
 - Sports Psychologist Insurance - performance psychology abroad, athlete mental health, team psychology
 - Hand Therapist Insurance - upper extremity rehabilitation abroad, splinting, hand surgery support
 - Aquatic Therapist Insurance - pool-based rehabilitation abroad, hydrotherapy, water therapy
@@ -1148,7 +1180,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 573** (6 original + 507 new)
+**Total Problem/Solution guides: 576** (6 original + 507 new)
 
 ---
 
