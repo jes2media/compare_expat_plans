@@ -7,13 +7,13 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,986
+**Total pages:** ~2,989
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
 **Condition × Country pages:** 270 (10 conditions × 27 countries)
 **Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 495 (6 original + 504 new problem/solution guides)
+**Problem/solution guides:** 495 (6 original + 507 new problem/solution guides)
 **Constraint pages:** 12 (condition-specific guides)
 **Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
 **Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
@@ -510,7 +510,11 @@ New problem/solution guides at `/guides/[topic]`:
 - HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance- Patent Attorney Insurance - law firms, corporate IP, international patent filing, litigation
-- Quantitative Analyst Insurance - hedge funds, investment banks, prop trading, financial centers
+
+**Batch 81:**
+- Sports Coach Insurance
+- Fitness Instructor Insurance
+- Athletic Trainer Insurance- Quantitative Analyst Insurance - hedge funds, investment banks, prop trading, financial centers
 
 **Batch 75:**
 - Architect Insurance - architecture firms, international projects, construction sites, design studios
@@ -544,7 +548,11 @@ New problem/solution guides at `/guides/[topic]`:
 - HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance- Nurse Practitioner Insurance - advanced practice nursing, travel nursing, scope of practice
-- Physical Therapist Insurance - sports teams, rehabilitation centers, international clinics
+
+**Batch 81:**
+- Sports Coach Insurance
+- Fitness Instructor Insurance
+- Athletic Trainer Insurance- Physical Therapist Insurance - sports teams, rehabilitation centers, international clinics
 
 **Batch 77:**
 - Veterinarian Insurance
@@ -565,7 +573,11 @@ New problem/solution guides at `/guides/[topic]`:
 - HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance- Research Scientist Insurance - postdocs, research institutes, national labs, scientific collaborations
-- University Administrator Insurance - international campuses, education organizations, global higher ed
+
+**Batch 81:**
+- Sports Coach Insurance
+- Fitness Instructor Insurance
+- Athletic Trainer Insurance- University Administrator Insurance - international campuses, education organizations, global higher ed
 
 **Batch 78:**
 - Corporate Lawyer Insurance - BigLaw, in-house counsel, international transactions, deal work
@@ -576,7 +588,11 @@ New problem/solution guides at `/guides/[topic]`:
 - HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance
-**Batch 79:**
+
+**Batch 81:**
+- Sports Coach Insurance
+- Fitness Instructor Insurance
+- Athletic Trainer Insurance**Batch 79:**
 - Diplomat Insurance - embassy postings, hardship locations, diplomatic immunity, foreign service
 - Airline Pilot Insurance - flight crew, medical certification, layover healthcare, aviation careers
 - Ship Captain Insurance - merchant marine, cruise lines, maritime healthcare, port access
@@ -629,7 +645,11 @@ New problem/solution guides at `/guides/[topic]`:
 - HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance
-**Batch 88:**
+
+**Batch 81:**
+- Sports Coach Insurance
+- Fitness Instructor Insurance
+- Athletic Trainer Insurance**Batch 88:**
 - Graphic Designer Insurance - freelance design abroad, agency employment, remote creative work
 - Economist Insurance - economic practice abroad, academic and policy roles, international organizations
 - Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
@@ -1076,7 +1096,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 564** (6 original + 504 new)
+**Total Problem/Solution guides: 567** (6 original + 507 new)
 
 ---
 
