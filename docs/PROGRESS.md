@@ -993,7 +993,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 534** (6 original + 483 new)
+**Total Problem/Solution guides: 537** (6 original + 483 new)
 
 ---
 
