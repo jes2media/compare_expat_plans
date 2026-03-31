@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,989
+**Total pages:** ~2,992
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -516,6 +516,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Fitness Instructor Insurance
 - Athletic Trainer Insurance- Quantitative Analyst Insurance - hedge funds, investment banks, prop trading, financial centers
 
+**Batch 82:**
+- Optometrist Insurance
+- Occupational Therapist Insurance
+- Speech Therapist Insurance
 **Batch 75:**
 - Architect Insurance - architecture firms, international projects, construction sites, design studios
 
@@ -554,6 +558,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Fitness Instructor Insurance
 - Athletic Trainer Insurance- Physical Therapist Insurance - sports teams, rehabilitation centers, international clinics
 
+**Batch 82:**
+- Optometrist Insurance
+- Occupational Therapist Insurance
+- Speech Therapist Insurance
 **Batch 77:**
 - Veterinarian Insurance
 - Pharmacist Insurance
@@ -579,6 +587,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Fitness Instructor Insurance
 - Athletic Trainer Insurance- University Administrator Insurance - international campuses, education organizations, global higher ed
 
+**Batch 82:**
+- Optometrist Insurance
+- Occupational Therapist Insurance
+- Speech Therapist Insurance
 **Batch 78:**
 - Corporate Lawyer Insurance - BigLaw, in-house counsel, international transactions, deal work
 - Management Consultant Insurance - MBB, Big Four, client travel, project intensity
@@ -593,7 +605,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Sports Coach Insurance
 - Fitness Instructor Insurance
 - Athletic Trainer Insurance**Batch 79:**
-- Diplomat Insurance - embassy postings, hardship locations, diplomatic immunity, foreign service
+
+**Batch 82:**
+- Optometrist Insurance
+- Occupational Therapist Insurance
+- Speech Therapist Insurance- Diplomat Insurance - embassy postings, hardship locations, diplomatic immunity, foreign service
 - Airline Pilot Insurance - flight crew, medical certification, layover healthcare, aviation careers
 - Ship Captain Insurance - merchant marine, cruise lines, maritime healthcare, port access
 
@@ -650,7 +666,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Sports Coach Insurance
 - Fitness Instructor Insurance
 - Athletic Trainer Insurance**Batch 88:**
-- Graphic Designer Insurance - freelance design abroad, agency employment, remote creative work
+
+**Batch 82:**
+- Optometrist Insurance
+- Occupational Therapist Insurance
+- Speech Therapist Insurance- Graphic Designer Insurance - freelance design abroad, agency employment, remote creative work
 - Economist Insurance - economic practice abroad, academic and policy roles, international organizations
 - Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
 
@@ -867,7 +887,11 @@ New problem/solution guides at `/guides/[topic]`:
 **Batch 131:**
 - Pilates Instructor Insurance - Pilates teaching abroad, reformer instruction, movement education
 - Athletic Trainer Insurance - sports medicine abroad, athlete care, sideline treatment
-- Sports Medicine Physician Insurance - team physician abroad, athlete care, international sports
+
+**Batch 82:**
+- Optometrist Insurance
+- Occupational Therapist Insurance
+- Speech Therapist Insurance- Sports Medicine Physician Insurance - team physician abroad, athlete care, international sports
 
 **Batch 132:**
 - Sports Psychologist Insurance - performance psychology abroad, athlete mental health, team psychology
@@ -1096,7 +1120,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 567** (6 original + 507 new)
+**Total Problem/Solution guides: 570** (6 original + 507 new)
 
 ---
 
