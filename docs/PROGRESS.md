@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,992
+**Total pages:** ~2,995
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -520,7 +520,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Optometrist Insurance
 - Occupational Therapist Insurance
 - Speech Therapist Insurance
-**Batch 75:**
+
+**Batch 83:**
+- Social Worker Insurance
+- Audiologist Insurance
+- Chiropractor Insurance**Batch 75:**
 - Architect Insurance - architecture firms, international projects, construction sites, design studios
 
 **Batch 75:**
@@ -562,7 +566,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Optometrist Insurance
 - Occupational Therapist Insurance
 - Speech Therapist Insurance
-**Batch 77:**
+
+**Batch 83:**
+- Social Worker Insurance
+- Audiologist Insurance
+- Chiropractor Insurance**Batch 77:**
 - Veterinarian Insurance
 - Pharmacist Insurance
 - Psychologist Insurance
@@ -591,7 +599,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Optometrist Insurance
 - Occupational Therapist Insurance
 - Speech Therapist Insurance
-**Batch 78:**
+
+**Batch 83:**
+- Social Worker Insurance
+- Audiologist Insurance
+- Chiropractor Insurance**Batch 78:**
 - Corporate Lawyer Insurance - BigLaw, in-house counsel, international transactions, deal work
 - Management Consultant Insurance - MBB, Big Four, client travel, project intensity
 - Investment Banker Insurance - bulge bracket, M&A advisory, financial centers, deal execution
@@ -610,7 +622,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Optometrist Insurance
 - Occupational Therapist Insurance
 - Speech Therapist Insurance- Diplomat Insurance - embassy postings, hardship locations, diplomatic immunity, foreign service
-- Airline Pilot Insurance - flight crew, medical certification, layover healthcare, aviation careers
+
+**Batch 83:**
+- Social Worker Insurance
+- Audiologist Insurance
+- Chiropractor Insurance- Airline Pilot Insurance - flight crew, medical certification, layover healthcare, aviation careers
 - Ship Captain Insurance - merchant marine, cruise lines, maritime healthcare, port access
 
 **Batch 80:**
@@ -631,7 +647,11 @@ New problem/solution guides at `/guides/[topic]`:
 **Batch 83:**
 - Midwife Insurance - midwifery practice abroad, birth settings, maternity care systems
 - Speech Therapist Insurance - SLP practice abroad, healthcare and education settings
-- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
+
+**Batch 83:**
+- Social Worker Insurance
+- Audiologist Insurance
+- Chiropractor Insurance- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
 
 **Batch 84:**
 - Radiographer Insurance - medical imaging abroad, radiation safety, diagnostic imaging careers
@@ -671,7 +691,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Optometrist Insurance
 - Occupational Therapist Insurance
 - Speech Therapist Insurance- Graphic Designer Insurance - freelance design abroad, agency employment, remote creative work
-- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
+
+**Batch 83:**
+- Social Worker Insurance
+- Audiologist Insurance
+- Chiropractor Insurance- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
 - Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
 
 **Batch 89:**
@@ -893,6 +917,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Occupational Therapist Insurance
 - Speech Therapist Insurance- Sports Medicine Physician Insurance - team physician abroad, athlete care, international sports
 
+**Batch 83:**
+- Social Worker Insurance
+- Audiologist Insurance
+- Chiropractor Insurance
 **Batch 132:**
 - Sports Psychologist Insurance - performance psychology abroad, athlete mental health, team psychology
 - Hand Therapist Insurance - upper extremity rehabilitation abroad, splinting, hand surgery support
@@ -1120,7 +1148,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 570** (6 original + 507 new)
+**Total Problem/Solution guides: 573** (6 original + 507 new)
 
 ---
 
