@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,968
+**Total pages:** ~2,971
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -480,7 +480,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Insurance
 - Pilot Insurance
 - Architect Insurance- Aerospace Engineer Insurance - defense contractors, space companies, aircraft manufacturers, security clearances
-- Biotech Researcher Insurance - pharmaceutical companies, academic research, clinical trials, lab work
+
+**Batch 75:**
+- Flight Attendant Insurance
+- Dentist Insurance
+- Accountant Insurance- Biotech Researcher Insurance - pharmaceutical companies, academic research, clinical trials, lab work
 - Automotive Engineer Insurance - OEMs, suppliers, EV companies, vehicle testing, global manufacturing
 
 **Batch 74:**
@@ -490,7 +494,11 @@ New problem/solution guides at `/guides/[topic]`:
 
 **Batch 75:**
 - Architect Insurance - architecture firms, international projects, construction sites, design studios
-- Industrial Designer Insurance - product design, consultancies, tech companies, manufacturing travel
+
+**Batch 75:**
+- Flight Attendant Insurance
+- Dentist Insurance
+- Accountant Insurance- Industrial Designer Insurance - product design, consultancies, tech companies, manufacturing travel
 - Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
 
 **Batch 76:**
@@ -1000,7 +1008,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 546** (6 original + 486 new)
+**Total Problem/Solution guides: 549** (6 original + 489 new)
 
 ---
 
