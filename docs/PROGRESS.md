@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,010
+**Total pages:** ~3,013
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -550,7 +550,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance- Dentist Insurance
-- Accountant Insurance- Industrial Designer Insurance - product design, consultancies, tech companies, manufacturing travel
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance- Accountant Insurance- Industrial Designer Insurance - product design, consultancies, tech companies, manufacturing travel
 
 **Batch 76:**
 - Lawyer Insurance
@@ -616,7 +620,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance**Batch 78:**
-- Marine Biologist Insurance
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance- Marine Biologist Insurance
 - Geologist Insurance
 - Environmental Scientist Insurance**Batch 77:**
 
@@ -669,7 +677,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance**Batch 80:**
-- HR Manager Insurance
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance- HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance
 
@@ -712,7 +724,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance- Hedge Fund Manager Insurance - fund operations, global markets, trading stress, alternative investments
-- Private Equity Insurance - deal execution, portfolio management, mega-funds, PE careers
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance- Private Equity Insurance - deal execution, portfolio management, mega-funds, PE careers
 
 **Batch 81:**
 - Data Scientist Insurance - tech companies, AI/ML roles, remote work, data science careers
@@ -748,6 +764,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Art Director Insurance
 - UX Designer Insurance- Speech Therapist Insurance - SLP practice abroad, healthcare and education settings
 
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance
 **Batch 83:**
 - Social Worker Insurance
 - Audiologist Insurance
@@ -778,6 +798,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Art Director Insurance
 - UX Designer Insurance- Audiologist Insurance - hearing healthcare abroad, audiology practice, hearing aid dispensing
 
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance
 **Batch 85:**
 - Podiatrist Insurance - foot and ankle care abroad, surgical scope variations, private practice considerations
 - Respiratory Therapist Insurance - critical care RT abroad, cardiopulmonary care, primarily North American profession
@@ -816,7 +840,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance
-**Batch 83:**
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance**Batch 83:**
 - Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
@@ -845,7 +873,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance- Journalist Insurance - foreign correspondence, conflict zones, freelance vs staff coverage
-- Translator Insurance - freelance language work, conference interpreting, location-independent careers
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance- Translator Insurance - freelance language work, conference interpreting, location-independent careers
 
 **Batch 90:**
 - Historian Insurance - archival research abroad, academic positions, fellowship coverage
@@ -927,6 +959,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Art Director Insurance
 - UX Designer Insurance- Acupuncturist Insurance - TCM practice abroad, integrative clinics, needle work
 
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance
 **Batch 85:**
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
@@ -946,7 +982,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance**Batch 104:**
-- Osteopath Insurance - osteopathic medicine abroad, manual therapy, musculoskeletal care
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance- Osteopath Insurance - osteopathic medicine abroad, manual therapy, musculoskeletal care
 - Reflexologist Insurance - reflexology abroad, spa settings, wellness practice
 - Homeopath Insurance - homeopathic medicine abroad, classical practice, holistic care
 
@@ -1118,7 +1158,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Museum Curator Insurance
 - Art Director Insurance
 - UX Designer Insurance
-**Batch 133:**
+
+**Batch 89:**
+- Sound Engineer Insurance
+- Music Producer Insurance
+- DJ Insurance**Batch 133:**
 - Pedorthist Insurance - therapeutic footwear abroad, diabetic foot care, orthotic devices
 - Prosthetist-Orthotist Insurance - prosthetic limbs abroad, orthotic braces, humanitarian P&O work
 - Lymphedema Therapist Insurance - manual lymphatic drainage abroad, cancer survivorship, CDT therapy
@@ -1340,7 +1384,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 588** (6 original + 507 new)
+**Total Problem/Solution guides: 591** (6 original + 507 new)
 
 ---
 
