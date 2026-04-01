@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,019
+**Total pages:** ~3,022
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -565,7 +565,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance**Batch 76:**
-- Lawyer Insurance
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Lawyer Insurance
 - Real Estate Agent Insurance
 - Physical Therapist Insurance- Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
 
@@ -644,6 +648,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Interpreter Insurance
 - Language Tutor Insurance- Environmental Scientist Insurance**Batch 77:**
 
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance
 **Batch 79:**
 - Economist Insurance
 - Actuary Insurance
@@ -709,6 +717,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Interpreter Insurance
 - Language Tutor Insurance- Supply Chain Manager Insurance
 
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance
 **Batch 81:**
 - Sports Coach Insurance
 - Fitness Instructor Insurance
@@ -763,7 +775,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance**Batch 81:**
-- Data Scientist Insurance - tech companies, AI/ML roles, remote work, data science careers
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Data Scientist Insurance - tech companies, AI/ML roles, remote work, data science careers
 - Dentist Insurance - dental practice abroad, licensing, occupational health, oral healthcare
 - Pharmacist Insurance - pharmacy practice abroad, licensing, clinical roles, pharmaceutical careers
 
@@ -810,7 +826,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance- Social Worker Insurance
-- Audiologist Insurance
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Audiologist Insurance
 - Chiropractor Insurance- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
 
 **Batch 84:**
@@ -852,7 +872,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance- Podiatrist Insurance - foot and ankle care abroad, surgical scope variations, private practice considerations
-- Respiratory Therapist Insurance - critical care RT abroad, cardiopulmonary care, primarily North American profession
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Respiratory Therapist Insurance - critical care RT abroad, cardiopulmonary care, primarily North American profession
 - Medical Laboratory Scientist Insurance - clinical lab practice abroad, diagnostic testing, occupational safety
 
 **Batch 86:**
@@ -903,7 +927,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance- Audiologist Insurance
-- Chiropractor Insurance- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Chiropractor Insurance- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
 
 **Batch 84:**
 - Nutritionist Insurance
@@ -944,7 +972,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance**Batch 90:**
-- Historian Insurance - archival research abroad, academic positions, fellowship coverage
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Historian Insurance - archival research abroad, academic positions, fellowship coverage
 - Anthropologist Insurance - ethnographic fieldwork, remote research sites, extended stays
 - Sociologist Insurance - international research, policy work, comparative studies
 
@@ -1037,7 +1069,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance- Yoga Instructor Insurance
-- Pilates Instructor Insurance
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Pilates Instructor Insurance
 - Life Coach Insurance- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
 
 **Batch 86:**
@@ -1070,6 +1106,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Interpreter Insurance
 - Language Tutor Insurance- Homeopath Insurance - homeopathic medicine abroad, classical practice, holistic care
 
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance
 **Batch 105:**
 - Aromatherapist Insurance - essential oil therapy abroad, spa settings, botanical wellness
 - Reiki Practitioner Insurance - energy healing abroad, wellness centers, holistic practice
@@ -1253,7 +1293,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Translator Insurance
 - Interpreter Insurance
 - Language Tutor Insurance- Prosthetist-Orthotist Insurance - prosthetic limbs abroad, orthotic braces, humanitarian P&O work
-- Lymphedema Therapist Insurance - manual lymphatic drainage abroad, cancer survivorship, CDT therapy
+
+**Batch 92:**
+- Academic Researcher Insurance
+- University Professor Insurance
+- Lab Technician Insurance- Lymphedema Therapist Insurance - manual lymphatic drainage abroad, cancer survivorship, CDT therapy
 
 **Batch 134:**
 - Wound Care Nurse Insurance - chronic wound management abroad, wound healing, WOCN certification
@@ -1472,7 +1516,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 597** (6 original + 507 new)
+**Total Problem/Solution guides: 600** (6 original + 507 new)
 
 ---
 
