@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,025
+**Total pages:** ~3,028
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -409,7 +409,11 @@ New problem/solution guides at `/guides/[topic]`:
 **Batch 60:**
 - Scrum Master/Agile Coach Insurance - tech company roles, consulting, remote coaching, transformation work
 - Business Analyst Insurance - tech companies, consulting/contract, remote analysis, specializations
-- Solutions Architect Insurance - tech companies, consulting/vendors, remote architecture, specializations
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance- Solutions Architect Insurance - tech companies, consulting/vendors, remote architecture, specializations
 
 **Batch 61:**
 - Database Administrator Insurance - tech companies, consulting/contract, remote DBA, on-call demands
@@ -575,7 +579,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance- Real Estate Agent Insurance
-- Physical Therapist Insurance- Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance- Physical Therapist Insurance- Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
 
 **Batch 77:**
 - Veterinarian Insurance
@@ -661,7 +669,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance**Batch 79:**
-- Economist Insurance
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance- Economist Insurance
 - Actuary Insurance
 - Investment Banker Insurance- Professor Insurance - sabbaticals, visiting positions, international universities, academic careers
 
@@ -734,7 +746,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance**Batch 81:**
-- Sports Coach Insurance
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance- Sports Coach Insurance
 - Fitness Instructor Insurance
 - Athletic Trainer Insurance**Batch 79:**
 
@@ -797,7 +813,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance- Dentist Insurance - dental practice abroad, licensing, occupational health, oral healthcare
-- Pharmacist Insurance - pharmacy practice abroad, licensing, clinical roles, pharmaceutical careers
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance- Pharmacist Insurance - pharmacy practice abroad, licensing, clinical roles, pharmaceutical careers
 
 **Batch 82:**
 - Optometrist Insurance - eye care practice abroad, scope of practice, vision care settings
@@ -853,6 +873,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Analyst Insurance
 - Business Analyst Insurance- Chiropractor Insurance- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
 
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance
 **Batch 84:**
 - Nutritionist Insurance
 - Massage Therapist Insurance
@@ -903,6 +927,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Analyst Insurance
 - Business Analyst Insurance- Medical Laboratory Scientist Insurance - clinical lab practice abroad, diagnostic testing, occupational safety
 
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance
 **Batch 86:**
 - Veterinarian Insurance - veterinary practice abroad, zoonotic disease exposure, animal care settings
 - Mechanical Engineer Insurance - manufacturing and industrial engineering abroad, corporate assignments
@@ -961,7 +989,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance
-**Batch 84:**
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance**Batch 84:**
 - Nutritionist Insurance
 - Massage Therapist Insurance
 - Acupuncturist Insurance- Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
@@ -1010,7 +1042,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance- Anthropologist Insurance - ethnographic fieldwork, remote research sites, extended stays
-- Sociologist Insurance - international research, policy work, comparative studies
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance- Sociologist Insurance - international research, policy work, comparative studies
 
 **Batch 91:**
 - Political Scientist Insurance - international research, policy work, unstable region fieldwork
@@ -1112,6 +1148,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Analyst Insurance
 - Business Analyst Insurance- Life Coach Insurance- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
 
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance
 **Batch 86:**
 - Journalist Insurance
 - Photographer Insurance
@@ -1151,7 +1191,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance**Batch 105:**
-- Aromatherapist Insurance - essential oil therapy abroad, spa settings, botanical wellness
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance- Aromatherapist Insurance - essential oil therapy abroad, spa settings, botanical wellness
 - Reiki Practitioner Insurance - energy healing abroad, wellness centers, holistic practice
 - Ayurvedic Practitioner Insurance - Ayurveda abroad, traditional medicine, spa treatments
 
@@ -1343,7 +1387,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Data Scientist Insurance
 - Data Analyst Insurance
 - Business Analyst Insurance
-**Batch 134:**
+
+**Batch 94:**
+- Product Manager Insurance
+- Project Manager Insurance
+- Scrum Master Insurance**Batch 134:**
 - Wound Care Nurse Insurance - chronic wound management abroad, wound healing, WOCN certification
 - Oncology Nurse Insurance - cancer care abroad, chemotherapy administration, OCN certification
 - Hospice Nurse Insurance - end-of-life care abroad, palliative nursing, CHPN certification
@@ -1560,7 +1608,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 603** (6 original + 507 new)
+**Total Problem/Solution guides: 606** (6 original + 507 new)
 
 ---
 
