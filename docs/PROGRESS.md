@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,037
+**Total pages:** ~3,040
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -429,7 +429,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance- Database Administrator Insurance - tech companies, consulting/contract, remote DBA, on-call demands
-- Network Engineer Insurance - enterprise networks, service providers, data centers, on-call demands
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- Network Engineer Insurance - enterprise networks, service providers, data centers, on-call demands
 - Cloud Engineer Insurance - cloud providers, enterprise cloud, consulting, remote cloud work
 
 **Batch 62:**
@@ -466,7 +470,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance**Batch 67:**
-- IT Project Manager Insurance - technology projects, stakeholder management, deadline pressure, remote PM work
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- IT Project Manager Insurance - technology projects, stakeholder management, deadline pressure, remote PM work
 - Information Security Analyst Insurance - security operations, threat monitoring, compliance, incident response
 - Systems Administrator Insurance - server management, on-call responsibilities, infrastructure support, data centers
 
@@ -619,7 +627,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance- Veterinarian Insurance
-- Pharmacist Insurance
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- Pharmacist Insurance
 - Psychologist Insurance
 
 **Batch 78:**
@@ -721,7 +733,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance
-**Batch 80:**
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance**Batch 80:**
 - HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance- Research Scientist Insurance - postdocs, research institutes, national labs, scientific collaborations
@@ -810,7 +826,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance
-**Batch 82:**
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance**Batch 82:**
 - Optometrist Insurance
 - Occupational Therapist Insurance
 - Speech Therapist Insurance- Diplomat Insurance - embassy postings, hardship locations, diplomatic immunity, foreign service
@@ -889,7 +909,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance- Optometrist Insurance - eye care practice abroad, scope of practice, vision care settings
-- Chiropractor Insurance - chiropractic practice abroad, manual therapy demands, regulatory status
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- Chiropractor Insurance - chiropractic practice abroad, manual therapy demands, regulatory status
 
 **Batch 84:**
 - Nutritionist Insurance
@@ -960,7 +984,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance- Massage Therapist Insurance
-- Acupuncturist Insurance
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- Acupuncturist Insurance
 
 **Batch 85:**
 - Yoga Instructor Insurance
@@ -1026,7 +1054,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance- Mechanical Engineer Insurance - manufacturing and industrial engineering abroad, corporate assignments
-- Civil Engineer Insurance - infrastructure projects abroad, construction site safety, development work
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- Civil Engineer Insurance - infrastructure projects abroad, construction site safety, development work
 
 **Batch 87:**
 - Electrical Engineer Insurance - power systems and electronics abroad, industrial and tech sectors
@@ -1102,6 +1134,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Test Engineer Insurance
 - Quality Manager Insurance- Acupuncturist Insurance- Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
 
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance
 **Batch 85:**
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
@@ -1166,7 +1202,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance- Political Scientist Insurance - international research, policy work, unstable region fieldwork
-- Librarian Insurance - international schools, academic libraries abroad, information careers
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- Librarian Insurance - international schools, academic libraries abroad, information careers
 - Archivist Insurance - heritage preservation, government archives, records management abroad
 
 **Batch 92:**
@@ -1283,7 +1323,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance- Photographer Insurance
-- Videographer Insurance- Naturopath Insurance - naturopathic medicine abroad, integrative settings, holistic care
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance- Videographer Insurance- Naturopath Insurance - naturopathic medicine abroad, integrative settings, holistic care
 
 **Batch 87:**
 - Interior Designer Insurance
@@ -1339,7 +1383,11 @@ New problem/solution guides at `/guides/[topic]`:
 - QA Engineer Insurance
 - Test Engineer Insurance
 - Quality Manager Insurance
-**Batch 106:**
+
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance**Batch 106:**
 - Doula Insurance - birth support abroad, postpartum care, expat family support
 - Art Therapist Insurance - creative arts therapy abroad, mental health settings, schools
 - Music Therapist Insurance - music therapy abroad, healthcare settings, rehabilitation
@@ -1548,6 +1596,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Test Engineer Insurance
 - Quality Manager Insurance- Hospice Nurse Insurance - end-of-life care abroad, palliative nursing, CHPN certification
 
+**Batch 98:**
+- Technical Writer Insurance
+- Documentation Specialist Insurance
+- Knowledge Manager Insurance
 **Batch 135:**
 - NICU Nurse Insurance - neonatal intensive care abroad, premature infant care, RNC-NIC certification
 - Labor and Delivery Nurse Insurance - obstetric nursing abroad, childbirth support, RNC-OB certification
@@ -1760,7 +1812,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 615** (6 original + 507 new)
+**Total Problem/Solution guides: 618** (6 original + 507 new)
 
 ---
 
