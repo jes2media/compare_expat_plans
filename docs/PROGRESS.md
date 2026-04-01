@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,001
+**Total pages:** ~3,004
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -535,7 +535,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance
-**Batch 75:**
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance**Batch 75:**
 - Flight Attendant Insurance
 - Dentist Insurance
 - Accountant Insurance- Industrial Designer Insurance - product design, consultancies, tech companies, manufacturing travel
@@ -589,7 +593,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance- Pharmacist Insurance
-- Psychologist Insurance
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance- Psychologist Insurance
 
 **Batch 78:**
 - Marine Biologist Insurance
@@ -630,7 +638,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance- Management Consultant Insurance - MBB, Big Four, client travel, project intensity
-- Investment Banker Insurance - bulge bracket, M&A advisory, financial centers, deal execution
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance- Investment Banker Insurance - bulge bracket, M&A advisory, financial centers, deal execution
 
 **Batch 80:**
 - HR Manager Insurance
@@ -661,7 +673,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance
-**Batch 80:**
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance**Batch 80:**
 - Venture Capitalist Insurance - fund management, portfolio support, startup ecosystems, VC careers
 - Hedge Fund Manager Insurance - fund operations, global markets, trading stress, alternative investments
 - Private Equity Insurance - deal execution, portfolio management, mega-funds, PE careers
@@ -684,7 +700,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance
-**Batch 83:**
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance**Batch 83:**
 - Midwife Insurance - midwifery practice abroad, birth settings, maternity care systems
 - Speech Therapist Insurance - SLP practice abroad, healthcare and education settings
 
@@ -702,7 +722,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance**Batch 84:**
-- Radiographer Insurance - medical imaging abroad, radiation safety, diagnostic imaging careers
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance- Radiographer Insurance - medical imaging abroad, radiation safety, diagnostic imaging careers
 - Dietitian Insurance - clinical nutrition abroad, healthcare and wellness settings
 - Audiologist Insurance - hearing healthcare abroad, audiology practice, hearing aid dispensing
 
@@ -754,7 +778,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance
-**Batch 89:**
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance**Batch 89:**
 - Archaeologist Insurance - fieldwork abroad, excavation site coverage, remote location risks
 - Journalist Insurance - foreign correspondence, conflict zones, freelance vs staff coverage
 - Translator Insurance - freelance language work, conference interpreting, location-independent careers
@@ -824,6 +852,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Nutritionist Insurance - nutrition consulting abroad, wellness careers, clinical work
 - Life Coach Insurance - coaching abroad, executive coaching, remote practice
 
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance
 **Batch 103:**
 - Acupuncturist Insurance - TCM practice abroad, integrative clinics, needle work
 
@@ -831,7 +863,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
-- Naturopath Insurance - naturopathic medicine abroad, integrative settings, holistic care
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance- Naturopath Insurance - naturopathic medicine abroad, integrative settings, holistic care
 
 **Batch 104:**
 - Osteopath Insurance - osteopathic medicine abroad, manual therapy, musculoskeletal care
@@ -991,7 +1027,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance- Sports Psychologist Insurance - performance psychology abroad, athlete mental health, team psychology
-- Hand Therapist Insurance - upper extremity rehabilitation abroad, splinting, hand surgery support
+
+**Batch 86:**
+- Journalist Insurance
+- Photographer Insurance
+- Videographer Insurance- Hand Therapist Insurance - upper extremity rehabilitation abroad, splinting, hand surgery support
 - Aquatic Therapist Insurance - pool-based rehabilitation abroad, hydrotherapy, water therapy
 
 **Batch 133:**
@@ -1216,7 +1256,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 579** (6 original + 507 new)
+**Total Problem/Solution guides: 582** (6 original + 507 new)
 
 ---
 
