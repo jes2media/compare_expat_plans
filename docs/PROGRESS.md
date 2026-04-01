@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,040
+**Total pages:** ~3,043
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -434,7 +434,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- Network Engineer Insurance - enterprise networks, service providers, data centers, on-call demands
-- Cloud Engineer Insurance - cloud providers, enterprise cloud, consulting, remote cloud work
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance- Cloud Engineer Insurance - cloud providers, enterprise cloud, consulting, remote cloud work
 
 **Batch 62:**
 - Mobile Developer Insurance - iOS/Android, tech companies, startups/agencies, freelance, remote work
@@ -475,7 +479,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- IT Project Manager Insurance - technology projects, stakeholder management, deadline pressure, remote PM work
-- Information Security Analyst Insurance - security operations, threat monitoring, compliance, incident response
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance- Information Security Analyst Insurance - security operations, threat monitoring, compliance, incident response
 - Systems Administrator Insurance - server management, on-call responsibilities, infrastructure support, data centers
 
 **Batch 68:**
@@ -632,7 +640,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- Pharmacist Insurance
-- Psychologist Insurance
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance- Psychologist Insurance
 
 **Batch 78:**
 - Marine Biologist Insurance
@@ -738,7 +750,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance**Batch 80:**
-- HR Manager Insurance
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance- HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance- Research Scientist Insurance - postdocs, research institutes, national labs, scientific collaborations
 
@@ -831,7 +847,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance**Batch 82:**
-- Optometrist Insurance
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance- Optometrist Insurance
 - Occupational Therapist Insurance
 - Speech Therapist Insurance- Diplomat Insurance - embassy postings, hardship locations, diplomatic immunity, foreign service
 
@@ -915,6 +935,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- Chiropractor Insurance - chiropractic practice abroad, manual therapy demands, regulatory status
 
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance
 **Batch 84:**
 - Nutritionist Insurance
 - Massage Therapist Insurance
@@ -990,6 +1014,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- Acupuncturist Insurance
 
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance
 **Batch 85:**
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
@@ -1060,6 +1088,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- Civil Engineer Insurance - infrastructure projects abroad, construction site safety, development work
 
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance
 **Batch 87:**
 - Electrical Engineer Insurance - power systems and electronics abroad, industrial and tech sectors
 - Environmental Scientist Insurance - field research abroad, conservation work, consulting projects
@@ -1138,7 +1170,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance
-**Batch 85:**
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance**Batch 85:**
 - Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance
@@ -1207,7 +1243,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- Librarian Insurance - international schools, academic libraries abroad, information careers
-- Archivist Insurance - heritage preservation, government archives, records management abroad
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance- Archivist Insurance - heritage preservation, government archives, records management abroad
 
 **Batch 92:**
 - Museum Curator Insurance - curatorial positions abroad, exhibition travel, art handling
@@ -1329,6 +1369,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance- Videographer Insurance- Naturopath Insurance - naturopathic medicine abroad, integrative settings, holistic care
 
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance
 **Batch 87:**
 - Interior Designer Insurance
 - Fashion Designer Insurance
@@ -1388,7 +1432,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance**Batch 106:**
-- Doula Insurance - birth support abroad, postpartum care, expat family support
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance- Doula Insurance - birth support abroad, postpartum care, expat family support
 - Art Therapist Insurance - creative arts therapy abroad, mental health settings, schools
 - Music Therapist Insurance - music therapy abroad, healthcare settings, rehabilitation
 
@@ -1600,7 +1648,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Technical Writer Insurance
 - Documentation Specialist Insurance
 - Knowledge Manager Insurance
-**Batch 135:**
+
+**Batch 99:**
+- Training Specialist Insurance
+- Instructional Designer Insurance
+- Learning Manager Insurance**Batch 135:**
 - NICU Nurse Insurance - neonatal intensive care abroad, premature infant care, RNC-NIC certification
 - Labor and Delivery Nurse Insurance - obstetric nursing abroad, childbirth support, RNC-OB certification
 - ICU Nurse Insurance - critical care nursing abroad, intensive care units, CCRN certification
@@ -1812,7 +1864,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 618** (6 original + 507 new)
+**Total Problem/Solution guides: 621** (6 original + 507 new)
 
 ---
 
