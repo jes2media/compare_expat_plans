@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~2,998
+**Total pages:** ~3,001
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -531,6 +531,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Massage Therapist Insurance
 - Acupuncturist Insurance- Architect Insurance - architecture firms, international projects, construction sites, design studios
 
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance
 **Batch 75:**
 - Flight Attendant Insurance
 - Dentist Insurance
@@ -580,7 +584,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Nutritionist Insurance
 - Massage Therapist Insurance
 - Acupuncturist Insurance- Veterinarian Insurance
-- Pharmacist Insurance
+
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance- Pharmacist Insurance
 - Psychologist Insurance
 
 **Batch 78:**
@@ -617,7 +625,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Nutritionist Insurance
 - Massage Therapist Insurance
 - Acupuncturist Insurance- Corporate Lawyer Insurance - BigLaw, in-house counsel, international transactions, deal work
-- Management Consultant Insurance - MBB, Big Four, client travel, project intensity
+
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance- Management Consultant Insurance - MBB, Big Four, client travel, project intensity
 - Investment Banker Insurance - bulge bracket, M&A advisory, financial centers, deal execution
 
 **Batch 80:**
@@ -645,6 +657,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Massage Therapist Insurance
 - Acupuncturist Insurance- Ship Captain Insurance - merchant marine, cruise lines, maritime healthcare, port access
 
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance
 **Batch 80:**
 - Venture Capitalist Insurance - fund management, portfolio support, startup ecosystems, VC careers
 - Hedge Fund Manager Insurance - fund operations, global markets, trading stress, alternative investments
@@ -664,6 +680,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Massage Therapist Insurance
 - Acupuncturist Insurance- Paramedic Insurance - emergency services abroad, occupational hazards, EMS career mobility
 
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance
 **Batch 83:**
 - Midwife Insurance - midwifery practice abroad, birth settings, maternity care systems
 - Speech Therapist Insurance - SLP practice abroad, healthcare and education settings
@@ -677,7 +697,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Nutritionist Insurance
 - Massage Therapist Insurance
 - Acupuncturist Insurance
-**Batch 84:**
+
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance**Batch 84:**
 - Radiographer Insurance - medical imaging abroad, radiation safety, diagnostic imaging careers
 - Dietitian Insurance - clinical nutrition abroad, healthcare and wellness settings
 - Audiologist Insurance - hearing healthcare abroad, audiology practice, hearing aid dispensing
@@ -726,6 +750,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Massage Therapist Insurance
 - Acupuncturist Insurance- Marine Biologist Insurance - marine research abroad, diving safety, remote ocean fieldwork
 
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance
 **Batch 89:**
 - Archaeologist Insurance - fieldwork abroad, excavation site coverage, remote location risks
 - Journalist Insurance - foreign correspondence, conflict zones, freelance vs staff coverage
@@ -798,7 +826,11 @@ New problem/solution guides at `/guides/[topic]`:
 
 **Batch 103:**
 - Acupuncturist Insurance - TCM practice abroad, integrative clinics, needle work
-- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
+
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
 - Naturopath Insurance - naturopathic medicine abroad, integrative settings, holistic care
 
 **Batch 104:**
@@ -954,7 +986,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Nutritionist Insurance
 - Massage Therapist Insurance
 - Acupuncturist Insurance**Batch 132:**
-- Sports Psychologist Insurance - performance psychology abroad, athlete mental health, team psychology
+
+**Batch 85:**
+- Yoga Instructor Insurance
+- Pilates Instructor Insurance
+- Life Coach Insurance- Sports Psychologist Insurance - performance psychology abroad, athlete mental health, team psychology
 - Hand Therapist Insurance - upper extremity rehabilitation abroad, splinting, hand surgery support
 - Aquatic Therapist Insurance - pool-based rehabilitation abroad, hydrotherapy, water therapy
 
@@ -1180,7 +1216,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 576** (6 original + 507 new)
+**Total Problem/Solution guides: 579** (6 original + 507 new)
 
 ---
 
