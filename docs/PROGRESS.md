@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,016
+**Total pages:** ~3,019
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -560,7 +560,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance
-**Batch 76:**
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance**Batch 76:**
 - Lawyer Insurance
 - Real Estate Agent Insurance
 - Physical Therapist Insurance- Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
@@ -634,7 +638,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance- Geologist Insurance
-- Environmental Scientist Insurance**Batch 77:**
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Environmental Scientist Insurance**Batch 77:**
 
 **Batch 79:**
 - Economist Insurance
@@ -695,7 +703,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance- Recruiter Insurance
-- Supply Chain Manager Insurance
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Supply Chain Manager Insurance
 
 **Batch 81:**
 - Sports Coach Insurance
@@ -746,7 +758,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance
-**Batch 81:**
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance**Batch 81:**
 - Data Scientist Insurance - tech companies, AI/ML roles, remote work, data science careers
 - Dentist Insurance - dental practice abroad, licensing, occupational health, oral healthcare
 - Pharmacist Insurance - pharmacy practice abroad, licensing, clinical roles, pharmaceutical careers
@@ -789,7 +805,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance**Batch 83:**
-- Social Worker Insurance
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Social Worker Insurance
 - Audiologist Insurance
 - Chiropractor Insurance- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
 
@@ -827,7 +847,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance**Batch 85:**
-- Podiatrist Insurance - foot and ankle care abroad, surgical scope variations, private practice considerations
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Podiatrist Insurance - foot and ankle care abroad, surgical scope variations, private practice considerations
 - Respiratory Therapist Insurance - critical care RT abroad, cardiopulmonary care, primarily North American profession
 - Medical Laboratory Scientist Insurance - clinical lab practice abroad, diagnostic testing, occupational safety
 
@@ -874,7 +898,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance- Social Worker Insurance
-- Audiologist Insurance
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Audiologist Insurance
 - Chiropractor Insurance- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
 
 **Batch 84:**
@@ -911,7 +939,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance
-**Batch 90:**
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance**Batch 90:**
 - Historian Insurance - archival research abroad, academic positions, fellowship coverage
 - Anthropologist Insurance - ethnographic fieldwork, remote research sites, extended stays
 - Sociologist Insurance - international research, policy work, comparative studies
@@ -1000,7 +1032,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance**Batch 85:**
-- Yoga Instructor Insurance
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Yoga Instructor Insurance
 - Pilates Instructor Insurance
 - Life Coach Insurance- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
 
@@ -1028,7 +1064,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance- Reflexologist Insurance - reflexology abroad, spa settings, wellness practice
-- Homeopath Insurance - homeopathic medicine abroad, classical practice, holistic care
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Homeopath Insurance - homeopathic medicine abroad, classical practice, holistic care
 
 **Batch 105:**
 - Aromatherapist Insurance - essential oil therapy abroad, spa settings, botanical wellness
@@ -1208,7 +1248,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Actor Insurance
 - Film Director Insurance
 - Screenwriter Insurance- Pedorthist Insurance - therapeutic footwear abroad, diabetic foot care, orthotic devices
-- Prosthetist-Orthotist Insurance - prosthetic limbs abroad, orthotic braces, humanitarian P&O work
+
+**Batch 91:**
+- Translator Insurance
+- Interpreter Insurance
+- Language Tutor Insurance- Prosthetist-Orthotist Insurance - prosthetic limbs abroad, orthotic braces, humanitarian P&O work
 - Lymphedema Therapist Insurance - manual lymphatic drainage abroad, cancer survivorship, CDT therapy
 
 **Batch 134:**
@@ -1428,7 +1472,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 594** (6 original + 507 new)
+**Total Problem/Solution guides: 597** (6 original + 507 new)
 
 ---
 
