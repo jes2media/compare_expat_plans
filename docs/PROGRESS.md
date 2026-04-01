@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,022
+**Total pages:** ~3,025
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -570,7 +570,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance- Lawyer Insurance
-- Real Estate Agent Insurance
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance- Real Estate Agent Insurance
 - Physical Therapist Insurance- Creative Director Insurance - advertising agencies, brand studios, campaigns, production travel
 
 **Batch 77:**
@@ -652,7 +656,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance
-**Batch 79:**
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance**Batch 79:**
 - Economist Insurance
 - Actuary Insurance
 - Investment Banker Insurance- Professor Insurance - sabbaticals, visiting positions, international universities, academic careers
@@ -721,7 +729,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance
-**Batch 81:**
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance**Batch 81:**
 - Sports Coach Insurance
 - Fitness Instructor Insurance
 - Athletic Trainer Insurance**Batch 79:**
@@ -780,7 +792,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance- Data Scientist Insurance - tech companies, AI/ML roles, remote work, data science careers
-- Dentist Insurance - dental practice abroad, licensing, occupational health, oral healthcare
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance- Dentist Insurance - dental practice abroad, licensing, occupational health, oral healthcare
 - Pharmacist Insurance - pharmacy practice abroad, licensing, clinical roles, pharmaceutical careers
 
 **Batch 82:**
@@ -831,7 +847,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance- Audiologist Insurance
-- Chiropractor Insurance- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance- Chiropractor Insurance- Occupational Therapist Insurance - OT practice abroad, rehabilitation, community settings
 
 **Batch 84:**
 - Nutritionist Insurance
@@ -877,7 +897,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance- Respiratory Therapist Insurance - critical care RT abroad, cardiopulmonary care, primarily North American profession
-- Medical Laboratory Scientist Insurance - clinical lab practice abroad, diagnostic testing, occupational safety
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance- Medical Laboratory Scientist Insurance - clinical lab practice abroad, diagnostic testing, occupational safety
 
 **Batch 86:**
 - Veterinarian Insurance - veterinary practice abroad, zoonotic disease exposure, animal care settings
@@ -933,6 +957,10 @@ New problem/solution guides at `/guides/[topic]`:
 - University Professor Insurance
 - Lab Technician Insurance- Chiropractor Insurance- Economist Insurance - economic practice abroad, academic and policy roles, international organizations
 
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance
 **Batch 84:**
 - Nutritionist Insurance
 - Massage Therapist Insurance
@@ -977,7 +1005,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance- Historian Insurance - archival research abroad, academic positions, fellowship coverage
-- Anthropologist Insurance - ethnographic fieldwork, remote research sites, extended stays
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance- Anthropologist Insurance - ethnographic fieldwork, remote research sites, extended stays
 - Sociologist Insurance - international research, policy work, comparative studies
 
 **Batch 91:**
@@ -1074,7 +1106,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance- Pilates Instructor Insurance
-- Life Coach Insurance- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance- Life Coach Insurance- Herbalist Insurance - botanical medicine abroad, herbal preparations, plant work
 
 **Batch 86:**
 - Journalist Insurance
@@ -1110,7 +1146,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Academic Researcher Insurance
 - University Professor Insurance
 - Lab Technician Insurance
-**Batch 105:**
+
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance**Batch 105:**
 - Aromatherapist Insurance - essential oil therapy abroad, spa settings, botanical wellness
 - Reiki Practitioner Insurance - energy healing abroad, wellness centers, holistic practice
 - Ayurvedic Practitioner Insurance - Ayurveda abroad, traditional medicine, spa treatments
@@ -1299,6 +1339,10 @@ New problem/solution guides at `/guides/[topic]`:
 - University Professor Insurance
 - Lab Technician Insurance- Lymphedema Therapist Insurance - manual lymphatic drainage abroad, cancer survivorship, CDT therapy
 
+**Batch 93:**
+- Data Scientist Insurance
+- Data Analyst Insurance
+- Business Analyst Insurance
 **Batch 134:**
 - Wound Care Nurse Insurance - chronic wound management abroad, wound healing, WOCN certification
 - Oncology Nurse Insurance - cancer care abroad, chemotherapy administration, OCN certification
@@ -1516,7 +1560,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 600** (6 original + 507 new)
+**Total Problem/Solution guides: 603** (6 original + 507 new)
 
 ---
 
