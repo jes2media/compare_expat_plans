@@ -7,7 +7,7 @@ Last updated: March 26, 2026
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,007
+**Total pages:** ~3,010
 **Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
 **Country-persona pages:** 728 (91 countries × 8 personas)
 **Country-provider pages:** 171 (enhanced template)
@@ -545,7 +545,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance- Flight Attendant Insurance
-- Dentist Insurance
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance- Dentist Insurance
 - Accountant Insurance- Industrial Designer Insurance - product design, consultancies, tech companies, manufacturing travel
 
 **Batch 76:**
@@ -607,7 +611,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance
-**Batch 78:**
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance**Batch 78:**
 - Marine Biologist Insurance
 - Geologist Insurance
 - Environmental Scientist Insurance**Batch 77:**
@@ -656,7 +664,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance
-**Batch 80:**
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance**Batch 80:**
 - HR Manager Insurance
 - Recruiter Insurance
 - Supply Chain Manager Insurance
@@ -695,7 +707,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance- Venture Capitalist Insurance - fund management, portfolio support, startup ecosystems, VC careers
-- Hedge Fund Manager Insurance - fund operations, global markets, trading stress, alternative investments
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance- Hedge Fund Manager Insurance - fund operations, global markets, trading stress, alternative investments
 - Private Equity Insurance - deal execution, portfolio management, mega-funds, PE careers
 
 **Batch 81:**
@@ -726,7 +742,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance- Midwife Insurance - midwifery practice abroad, birth settings, maternity care systems
-- Speech Therapist Insurance - SLP practice abroad, healthcare and education settings
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance- Speech Therapist Insurance - SLP practice abroad, healthcare and education settings
 
 **Batch 83:**
 - Social Worker Insurance
@@ -752,7 +772,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance- Dietitian Insurance - clinical nutrition abroad, healthcare and wellness settings
-- Audiologist Insurance - hearing healthcare abroad, audiology practice, hearing aid dispensing
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance- Audiologist Insurance - hearing healthcare abroad, audiology practice, hearing aid dispensing
 
 **Batch 85:**
 - Podiatrist Insurance - foot and ankle care abroad, surgical scope variations, private practice considerations
@@ -788,6 +812,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Occupational Therapist Insurance
 - Speech Therapist Insurance- Graphic Designer Insurance - freelance design abroad, agency employment, remote creative work
 
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance
 **Batch 83:**
 - Social Worker Insurance
 - Audiologist Insurance
@@ -812,7 +840,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance- Archaeologist Insurance - fieldwork abroad, excavation site coverage, remote location risks
-- Journalist Insurance - foreign correspondence, conflict zones, freelance vs staff coverage
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance- Journalist Insurance - foreign correspondence, conflict zones, freelance vs staff coverage
 - Translator Insurance - freelance language work, conference interpreting, location-independent careers
 
 **Batch 90:**
@@ -889,7 +921,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance**Batch 103:**
-- Acupuncturist Insurance - TCM practice abroad, integrative clinics, needle work
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance- Acupuncturist Insurance - TCM practice abroad, integrative clinics, needle work
 
 **Batch 85:**
 - Yoga Instructor Insurance
@@ -905,7 +941,11 @@ New problem/solution guides at `/guides/[topic]`:
 - Interior Designer Insurance
 - Fashion Designer Insurance
 - Graphic Designer Insurance
-**Batch 104:**
+
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance**Batch 104:**
 - Osteopath Insurance - osteopathic medicine abroad, manual therapy, musculoskeletal care
 - Reflexologist Insurance - reflexology abroad, spa settings, wellness practice
 - Homeopath Insurance - homeopathic medicine abroad, classical practice, holistic care
@@ -1074,6 +1114,10 @@ New problem/solution guides at `/guides/[topic]`:
 - Fashion Designer Insurance
 - Graphic Designer Insurance- Aquatic Therapist Insurance - pool-based rehabilitation abroad, hydrotherapy, water therapy
 
+**Batch 88:**
+- Museum Curator Insurance
+- Art Director Insurance
+- UX Designer Insurance
 **Batch 133:**
 - Pedorthist Insurance - therapeutic footwear abroad, diabetic foot care, orthotic devices
 - Prosthetist-Orthotist Insurance - prosthetic limbs abroad, orthotic braces, humanitarian P&O work
@@ -1296,7 +1340,7 @@ New problem/solution guides at `/guides/[topic]`:
 - Nurse Consultant Insurance - healthcare consulting abroad, advisory services
 - Nurse Entrepreneur Insurance - healthcare business ownership abroad, startups
 
-**Total Problem/Solution guides: 585** (6 original + 507 new)
+**Total Problem/Solution guides: 588** (6 original + 507 new)
 
 ---
 
