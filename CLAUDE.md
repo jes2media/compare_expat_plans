@@ -167,10 +167,14 @@ See `docs/PROGRESS.md` for:
 - Country refinement progress
 - Next steps and priorities
 
-**Current Stats (February 2026):**
-- Total pages: ~2,476
-- Problem/Solution guides: 81
-- Visa × Country pages: 133 (33 DNV + 17 Retirement + 34 Student + 9 Freelancer + 40 Investor)
-- Country-persona pages: 728 (91 countries × 8 personas)
-- Condition × Country pages: 270 (10 conditions × 27 countries)
-- Provider pages: 8 (long-form, 550-685 lines each)
+**Current Stats (April 2026):**
+- Static .astro files: 1,089
+- Problem/Solution guides: 652 (588 profession + 64 topic)
+- Visa × Country pages: 152 (33 DNV + 17 Retirement + 34 Student + 9 Freelancer + 40 Investor + 18 Work Permit)
+- "Best" comparison pages: 7
+- Provider pages: 9 (long-form reviews)
+- Country pages: 22 (core landing pages)
+- Compare pages: 29 (country vs country)
+- Dynamic routes generate additional pages from data files (personas × countries, conditions × countries, providers × countries)
+
+**Next Priority:** "Best" comparison pages and Provider vs Provider comparisons (high conversion potential)

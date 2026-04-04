@@ -1,22 +1,30 @@
 # Project Progress Log
 
-Last updated: March 26, 2026
+Last updated: April 3, 2026
 
 ---
 
 ## Current Status
 
 **Phase:** 6 - Programmatic Page Expansion
-**Total pages:** ~3,226
-**Countries refined with detailed content:** 63 (8 Tier 1 + 12 Tier 2 + 43 Tier 3 across 11 batches)
-**Country-persona pages:** 728 (91 countries × 8 personas)
-**Country-provider pages:** 171 (enhanced template)
-**Condition × Country pages:** 270 (10 conditions × 27 countries)
-**Country comparison pages:** 29 (country vs country)
-**Problem/solution guides:** 495 (6 original + 507 new problem/solution guides)
-**Constraint pages:** 12 (condition-specific guides)
-**Provider pages:** 8 (all expanded to long-form ~550-685 lines each)
-**Visa × Country pages:** 151 (33 Digital Nomad Visa + 17 Retirement Visa + 34 Student Visa + 9 Freelancer Visa + 40 Investor Visa + 18 Work Permit Visa)
+
+### Static Pages (1,089 .astro files)
+- **Problem/Solution guides:** 652 (588 profession + 64 topic guides)
+- **Visa × Country pages:** 152 (33 DNV + 17 Retirement + 34 Student + 9 Freelancer + 40 Investor + 18 Work Permit)
+- **Country pages:** 22 (core landing pages)
+- **Compare pages:** 29 (country vs country)
+- **Insurance-for (Personas):** 25 audience-specific pages
+- **Provider pages:** 9 (long-form reviews)
+- **"Best" comparison pages:** 7
+
+### Dynamic Routes (generate additional pages from data)
+- `/insurance-for/[persona]/in/[country]` - Persona × Country matrix
+- `/conditions/[condition]/in/[country]` - Condition × Country matrix
+- `/providers/[provider]/in/[country]` - Provider × Country matrix
+- `/visas/[visaType]/in/[country]` - Visa × Country matrix
+
+### Next Priority
+"Best" comparison pages and Provider vs Provider comparisons (high conversion, bottom-of-funnel)
 
 ---
 

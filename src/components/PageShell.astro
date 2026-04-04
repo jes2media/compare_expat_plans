@@ -55,6 +55,7 @@ interface Props {
   ctaDescription?: string;
   ctaButtonText?: string;
   ctaButtonHref?: string;
+  showHeroCta?: boolean;
   breadcrumbs?: BreadcrumbItem[];
   faqs?: FAQItem[];
 }
@@ -98,6 +99,7 @@ const {
   ctaDescription = 'See plans that match your needs and budget.',
   ctaButtonText = 'Compare Plans Now',
   ctaButtonHref = '/best/expat-health-insurance',
+  showHeroCta = true,
   breadcrumbs = [],
   faqs = [],
 } = Astro.props;
@@ -206,15 +208,17 @@ const faqSchema = faqs.length > 0 ? {
           {subheadline && (
             <p class="text-lg text-neutral-900 mb-6">{subheadline}</p>
           )}
-          <div class="flex flex-col sm:flex-row gap-3 mb-6">
-            <a
-              href={ctaButtonHref}
-              class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
-              style="color: white;"
-            >
-              {ctaButtonText}
-            </a>
-          </div>
+          {showHeroCta && (
+            <div class="flex flex-col sm:flex-row gap-3 mb-6">
+              <a
+                href={ctaButtonHref}
+                class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+                style="color: white;"
+              >
+                {ctaButtonText}
+              </a>
+            </div>
+          )}
           <Disclosure />
         </div>
         {heroImage && (
