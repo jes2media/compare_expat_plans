@@ -1,6 +1,6 @@
 # Project Progress Log
 
-Last updated: April 3, 2026
+Last updated: April 6, 2026
 
 ---
 
@@ -15,7 +15,7 @@ Last updated: April 3, 2026
 - **Compare pages:** 29 (country vs country)
 - **Insurance-for (Personas):** 25 audience-specific pages
 - **Provider pages:** 9 (long-form reviews)
-- **"Best" comparison pages:** 7
+- **"Best" comparison pages:** 51
 
 ### Dynamic Routes (generate additional pages from data)
 - `/insurance-for/[persona]/in/[country]` - Persona × Country matrix
@@ -24,11 +24,57 @@ Last updated: April 3, 2026
 - `/visas/[visaType]/in/[country]` - Visa × Country matrix
 
 ### Next Priority
-"Best" comparison pages and Provider vs Provider comparisons (high conversion, bottom-of-funnel)
+Provider vs Provider comparisons and additional niche "Best" pages
 
 ---
 
 ## Completed Milestones
+
+### April 6, 2026 - "Best" Comparison Pages Expansion (51 pages)
+
+#### Major expansion of "Best" comparison pages at `/best/`
+
+**Coverage Type Pages (15):**
+- inpatient-insurance, outpatient-insurance, wellness-insurance
+- maternity-insurance, dental-vision-insurance, mental-health-insurance
+- prescription-coverage-insurance, cancer-coverage-insurance, chronic-condition-insurance
+- emergency-evacuation-insurance, air-ambulance-insurance, fertility-insurance
+- telemedicine-insurance, pre-existing-conditions-insurance, no-underwriting-insurance
+
+**Regional Pages (6):**
+- europe-insurance, asia-insurance, latin-america-insurance
+- middle-east-insurance, africa-insurance, worldwide-insurance
+
+**Audience Pages (15):**
+- digital-nomad-insurance, remote-worker-insurance, freelancer-insurance
+- entrepreneur-insurance, retiree-health-insurance, senior-insurance
+- student-insurance, family-health-insurance, couples-insurance
+- first-time-expat-insurance, high-net-worth-insurance, lgbtq-friendly-insurance
+- small-business-insurance, us-expat-insurance, expat-health-insurance
+
+**Feature/Attribute Pages (9):**
+- direct-billing-insurance, claims-processing-insurance, customer-service-insurance
+- app-experience-insurance, network-size-insurance, visa-compliant-insurance
+- budget-insurance, premium-insurance, multi-country-insurance
+
+**Duration Pages (3):**
+- annual-insurance, long-stay-insurance, short-term-expat-insurance
+
+**Specialty Pages (3):**
+- adventure-sports-insurance, us-coverage-insurance, budget-expat-insurance
+
+**Page structure (consistent across all):**
+- Top Picks section with 4 recommendation cards (emoji icons)
+- "Why [Topic] Matters" explanation section
+- ComparisonTable comparing 4-5 providers
+- Detailed Reviews of top 3-4 providers
+- Topic-specific deep-dive sections
+- FAQs (5-6 questions)
+- Disclaimer footer
+
+**Hero images:** All 51 pages have AI-generated hero images (16:9 ratio, no text)
+
+---
 
 ### February 10, 2026 - Work Permit Visa Pages Batch 1 (3 countries)
 
