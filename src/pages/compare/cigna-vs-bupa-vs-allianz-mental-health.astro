@@ -4,329 +4,358 @@ import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
-  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
-  { id: 'comparison-table', text: 'Side-by-Side Comparison', level: 2 },
-  { id: 'cigna', text: 'Cigna Global', level: 2 },
-  { id: 'bupa', text: 'Bupa Global', level: 2 },
-  { id: 'allianz', text: 'Allianz Care', level: 2 },
-  { id: 'pricing', text: 'Pricing Comparison', level: 2 },
-  { id: 'mental-health-details', text: 'Mental Health Coverage Details', level: 2 },
-  { id: 'best-for', text: 'Which Is Best For You?', level: 2 },
-  { id: 'faqs', text: 'FAQs', level: 2 },
+  { id: "quick-verdict", title: "Quick Verdict" },
+  { id: "comparison", title: "Side-by-Side Comparison" },
+  { id: "cigna", title: "Cigna Global" },
+  { id: "bupa", title: "Bupa Global" },
+  { id: "allianz", title: "Allianz Partners" },
+  { id: "pricing", title: "Pricing Comparison" },
+  { id: "mental-health-details", title: "Mental Health Coverage" },
+  { id: "best-for", title: "Best For" },
+  { id: "faqs", title: "FAQs" },
 ];
 
 const relatedLinks = [
-  { href: '/guides/mental-health-abroad', text: 'Mental Health Abroad Guide' },
-  { href: '/best/expat-health-insurance', text: 'Best Expat Insurance' },
-  { href: '/providers/cigna-global', text: 'Cigna Global Review' },
-  { href: '/providers/bupa-global', text: 'Bupa Global Review' },
-  { href: '/providers/allianz-care', text: 'Allianz Care Review' },
+  { href: "/providers/cigna-global", title: "Cigna Global Review" },
+  { href: "/providers/bupa-global", title: "Bupa Global Review" },
+  { href: "/providers/allianz-partners", title: "Allianz Partners Review" },
+  { href: "/guides/mental-health-expat", title: "Mental Health for Expats" },
+  { href: "/best/international-health-insurance", title: "Best International Insurance" },
 ];
 
 const mainComparisonColumns = [
-  { key: 'feature', header: 'Feature' },
-  { key: 'cigna', header: 'Cigna Global' },
-  { key: 'bupa', header: 'Bupa Global' },
-  { key: 'allianz', header: 'Allianz Care' },
+  { key: "feature", header: "Feature", isRowHeader: true },
+  { key: "cigna", header: "Cigna Global" },
+  { key: "bupa", header: "Bupa Global" },
+  { key: "allianz", header: "Allianz Partners" },
 ];
 
 const mainComparisonRows = [
-  { feature: 'Outpatient Therapy', cigna: 'Up to 30 sessions', bupa: 'Up to 25 sessions', allianz: 'Up to 20 sessions' },
-  { feature: 'Inpatient Psychiatric', cigna: '60 days/year', bupa: '45 days/year', allianz: '30 days/year' },
-  { feature: 'Psychologist Coverage', cigna: 'Full coverage', bupa: 'Full coverage', allianz: 'Limited coverage' },
-  { feature: 'Psychiatrist Coverage', cigna: 'Full coverage', bupa: 'Full coverage', allianz: 'Full coverage' },
-  { feature: 'Teletherapy', cigna: 'Included', bupa: 'Included', allianz: 'Included' },
-  { feature: 'Waiting Period', cigna: '12 months', bupa: '12 months', allianz: '12-24 months' },
-  { feature: 'Pre-existing Exclusion', cigna: '2 years symptom-free', bupa: '2 years moratorium', allianz: 'Often permanent' },
-  { feature: 'Crisis Coverage', cigna: 'Immediate', bupa: 'Immediate', allianz: 'Immediate' },
+  { feature: "Outpatient Therapy", cigna: "Unlimited sessions", bupa: "Up to 30 sessions/year", allianz: "Up to 20 sessions/year" },
+  { feature: "Inpatient Treatment", cigna: "Full coverage", bupa: "90-day limit/year", allianz: "60-day limit/year" },
+  { feature: "Psychiatry Visits", cigna: "Included", bupa: "Included", allianz: "Limited visits" },
+  { feature: "Waiting Period", cigna: "2 years", bupa: "2 years", allianz: "2 years" },
+  { feature: "Pre-existing Conditions", cigna: "Case-by-case", bupa: "Moratorium option", allianz: "Full underwriting" },
+  { feature: "Telehealth Therapy", cigna: "Included", bupa: "Included", allianz: "Additional cost" },
+  { feature: "Crisis Support", cigna: "24/7 helpline", bupa: "24/7 helpline", allianz: "Business hours" },
+  { feature: "Substance Abuse", cigna: "Covered", bupa: "Limited coverage", allianz: "Excluded on base" },
+  { feature: "Provider Network", cigna: "Global network", bupa: "Extensive network", allianz: "Regional focus" },
 ];
 
 const pricingColumns = [
-  { key: 'profile', header: 'Profile' },
-  { key: 'cigna', header: 'Cigna Global' },
-  { key: 'bupa', header: 'Bupa Global' },
-  { key: 'allianz', header: 'Allianz Care' },
+  { key: "profile", header: "Profile", isRowHeader: true },
+  { key: "cigna", header: "Cigna Global" },
+  { key: "bupa", header: "Bupa Global" },
+  { key: "allianz", header: "Allianz Partners" },
 ];
 
 const pricingRows = [
-  { profile: 'Base plan (no mental health)', cigna: '$280/mo', bupa: '$320/mo', allianz: '$220/mo' },
-  { profile: 'With mental health coverage', cigna: '$350-420/mo', bupa: '$400-500/mo', allianz: '$280-350/mo' },
-  { profile: 'Mental health add-on cost', cigna: '+$70-140/mo', bupa: '+$80-180/mo', allianz: '+$60-130/mo' },
-  { profile: 'Individual session copay', cigna: '$0-50', bupa: '$0-50', allianz: '$20-60' },
+  { profile: "35-year-old, individual", cigna: "$4,800–6,200/yr", bupa: "$4,400–5,800/yr", allianz: "$3,200–4,600/yr" },
+  { profile: "45-year-old, individual", cigna: "$6,500–8,400/yr", bupa: "$6,000–7,800/yr", allianz: "$4,600–6,200/yr" },
+  { profile: "Couple (both 40)", cigna: "$11,200–14,800/yr", bupa: "$10,200–13,400/yr", allianz: "$7,800–10,400/yr" },
+  { profile: "Family (2 adults, 2 kids)", cigna: "$18,400–24,600/yr", bupa: "$16,800–22,400/yr", allianz: "$13,200–17,800/yr" },
 ];
 ---
 
 <PageShell
-  title="Cigna vs Bupa vs Allianz for Mental Health Coverage | 2025 Comparison"
-  description="Compare Cigna Global, Bupa Global, and Allianz Care for mental health coverage. Expert analysis of therapy sessions, psychiatric care, teletherapy, and crisis support for expats."
-  headline="Cigna vs Bupa vs Allianz: Best Mental Health Coverage"
-  subheadline="Complete comparison for expats prioritizing mental health support—covering therapy, psychiatry, teletherapy, and crisis care abroad."
-  heroImage="/images/pages/provider-card-generic.png"
+  title="Cigna vs Bupa vs Allianz: Mental Health Coverage for Expats (2025)"
+  description="Compare mental health coverage from Cigna Global, Bupa Global, and Allianz Partners. Detailed analysis of therapy limits, psychiatric care, and crisis support."
+  headline="Cigna vs Bupa vs Allianz: Mental Health Coverage Compared"
+  intro="Living abroad brings unique mental health challenges—isolation, culture shock, career stress, and being far from support networks. Finding insurance that truly covers mental health care is crucial. Here's how Cigna Global, Bupa Global, and Allianz Partners compare for psychiatric and psychological coverage."
   tocItems={tocItems}
   relatedLinks={relatedLinks}
-  ctaButtonText="Get Quotes"
-  ctaButtonHref="/get-quotes"
 >
+  <!-- Quick Verdict -->
   <section id="quick-verdict" class="mb-12">
     <h2 class="text-3xl font-bold text-neutral-800 mb-6">Quick Verdict</h2>
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
         <h3 class="text-xl font-bold text-primary-800 mb-2">Cigna Global</h3>
-        <p class="text-primary-700 mb-3">Best Mental Health Overall</p>
-        <p class="text-neutral-700 text-sm mb-4">Highest therapy limits (30 sessions), best inpatient days (60), and pathway to cover pre-existing conditions. Industry leader for mental health.</p>
-        <a href="/providers/cigna-global" class="inline-block bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition text-sm" style="color: white !important;">Learn More</a>
+        <p class="text-primary-700 font-semibold mb-2">Best Overall Mental Health Coverage</p>
+        <p class="text-neutral-700 text-sm">Unlimited outpatient therapy, comprehensive inpatient coverage, and strong telehealth options. Higher premiums but most complete coverage.</p>
       </div>
       <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
         <h3 class="text-xl font-bold text-purple-800 mb-2">Bupa Global</h3>
-        <p class="text-purple-700 mb-3">Best Provider Network</p>
-        <p class="text-neutral-700 text-sm mb-4">Excellent therapist network and digital mental health tools. Strong support infrastructure with care coordination.</p>
-        <a href="/providers/bupa-global" class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition text-sm" style="color: white !important;">Learn More</a>
+        <p class="text-purple-700 font-semibold mb-2">Strong Coverage with Limits</p>
+        <p class="text-neutral-700 text-sm">30 sessions per year covers most needs. Moratorium underwriting helpful for those with history. Good balance of coverage and cost.</p>
       </div>
       <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-        <h3 class="text-xl font-bold text-green-800 mb-2">Allianz Care</h3>
-        <p class="text-green-700 mb-3">Budget Option</p>
-        <p class="text-neutral-700 text-sm mb-4">Basic mental health coverage at the lowest price. Adequate for those wanting some coverage without premium costs.</p>
-        <a href="/providers/allianz-care" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition text-sm" style="color: white !important;">Learn More</a>
+        <h3 class="text-xl font-bold text-green-800 mb-2">Allianz Partners</h3>
+        <p class="text-green-700 font-semibold mb-2">Budget-Friendly Basic Coverage</p>
+        <p class="text-neutral-700 text-sm">Lower premiums but more limited mental health benefits. 20 sessions may feel restrictive. Best for those with minimal mental health needs.</p>
       </div>
     </div>
   </section>
 
-  <section id="comparison-table" class="mb-12">
+  <!-- Side-by-Side Comparison Table -->
+  <section id="comparison" class="mb-12">
     <h2 class="text-3xl font-bold text-neutral-800 mb-6">Side-by-Side Comparison</h2>
     <ComparisonTable columns={mainComparisonColumns} rows={mainComparisonRows} />
   </section>
 
+  <!-- Cigna Global Section -->
   <section id="cigna" class="mb-12">
     <h2 class="text-3xl font-bold text-neutral-800 mb-6">Cigna Global</h2>
-    <div class="flex flex-wrap gap-2 mb-4">
-      <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium">30 Sessions</span>
-      <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium">60 Inpatient Days</span>
-      <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium">Pre-existing Path</span>
+    <div class="bg-primary-50 rounded-lg p-6 mb-6">
+      <h3 class="text-xl font-semibold text-primary-800 mb-4">Mental Health Highlights</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 mt-1">✓</span>
+          <span><strong>Unlimited outpatient therapy:</strong> No cap on sessions with licensed therapists and psychologists</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 mt-1">✓</span>
+          <span><strong>Comprehensive inpatient care:</strong> Psychiatric hospitalization fully covered when medically necessary</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 mt-1">✓</span>
+          <span><strong>Telehealth integration:</strong> Virtual therapy sessions covered at same rate as in-person</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 mt-1">✓</span>
+          <span><strong>Substance abuse coverage:</strong> Rehabilitation programs included in mental health benefits</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 mt-1">✓</span>
+          <span><strong>24/7 crisis support:</strong> Emergency mental health helpline available globally</span>
+        </li>
+      </ul>
     </div>
-
-    <p class="text-neutral-700 mb-4">Cigna Global offers the most comprehensive mental health coverage in the international insurance market. Their 30 outpatient therapy sessions per year exceed competitors significantly—enough for weekly therapy for over half the year. For those managing anxiety, depression, or ongoing mental health needs, this matters.</p>
-
-    <p class="text-neutral-700 mb-4">Inpatient psychiatric coverage at 60 days is industry-leading, important for severe depression, bipolar episodes, or crisis situations. Perhaps most importantly, Cigna has a pathway to eventually cover pre-existing mental health conditions: after 2 years symptom-free (no treatment), conditions can become covered.</p>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-        <h4 class="font-bold text-green-800 mb-2">Mental Health Strengths</h4>
-        <ul class="text-green-700 text-sm space-y-1">
-          <li>• 30 outpatient therapy sessions</li>
-          <li>• 60 days inpatient psychiatric</li>
-          <li>• Pre-existing can become covered</li>
-          <li>• Teletherapy fully supported</li>
-          <li>• No separate mental health limit</li>
-        </ul>
-      </div>
-      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <h4 class="font-bold text-amber-800 mb-2">Considerations</h4>
-        <ul class="text-amber-700 text-sm space-y-1">
-          <li>• 12-month waiting period</li>
-          <li>• Higher premiums for coverage</li>
-          <li>• Some regions limited providers</li>
-          <li>• Prior auth may be needed</li>
-        </ul>
-      </div>
-    </div>
-
-    <a href="/providers/cigna-global" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition font-medium" style="color: white !important;">Get Cigna Quote</a>
+    <p class="text-neutral-700 mb-4">
+      Cigna Global offers the most comprehensive mental health coverage among major international insurers. The unlimited outpatient therapy benefit stands out—most competitors cap sessions, but Cigna recognizes that mental health treatment often requires ongoing care that shouldn't be arbitrarily limited.
+    </p>
+    <p class="text-neutral-700">
+      The 2-year waiting period for mental health benefits applies to new conditions only. If you've been continuously insured with Cigna, there's no waiting period for new episodes. This makes Cigna particularly valuable for long-term expats who want consistent coverage.
+    </p>
   </section>
 
+  <!-- Bupa Global Section -->
   <section id="bupa" class="mb-12">
     <h2 class="text-3xl font-bold text-neutral-800 mb-6">Bupa Global</h2>
-    <div class="flex flex-wrap gap-2 mb-4">
-      <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Provider Network</span>
-      <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Digital Tools</span>
-      <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Care Coordination</span>
+    <div class="bg-purple-50 rounded-lg p-6 mb-6">
+      <h3 class="text-xl font-semibold text-purple-800 mb-4">Mental Health Highlights</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li class="flex items-start gap-2">
+          <span class="text-purple-600 mt-1">✓</span>
+          <span><strong>30 outpatient sessions:</strong> Covers most therapy needs for anxiety, depression, and adjustment issues</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-600 mt-1">✓</span>
+          <span><strong>90-day inpatient limit:</strong> Substantial coverage for psychiatric hospitalization</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-600 mt-1">✓</span>
+          <span><strong>Moratorium underwriting:</strong> Easier approval for those with mental health history</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-600 mt-1">✓</span>
+          <span><strong>Global provider network:</strong> Access to quality mental health professionals worldwide</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-600 mt-1">✓</span>
+          <span><strong>Virtual GP access:</strong> Includes mental health consultations via Bupa's telehealth platform</span>
+        </li>
+      </ul>
     </div>
-
-    <p class="text-neutral-700 mb-4">Bupa Global's mental health coverage stands out for its support infrastructure. Their therapist network is carefully vetted, and the Bupa app includes digital mental health tools—guided meditation, CBT resources, and mental wellness assessments. This ecosystem approach goes beyond just paying for sessions.</p>
-
-    <p class="text-neutral-700 mb-4">Coverage includes 25 outpatient sessions and 45 inpatient days—solid limits for most needs. The moratorium approach to pre-existing conditions means after 2 years without treatment, conditions automatically become covered. Care coordinators help navigate mental health resources in unfamiliar countries.</p>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-        <h4 class="font-bold text-green-800 mb-2">Mental Health Strengths</h4>
-        <ul class="text-green-700 text-sm space-y-1">
-          <li>• Vetted therapist network</li>
-          <li>• Digital mental health tools</li>
-          <li>• Care coordination support</li>
-          <li>• 25 outpatient sessions</li>
-          <li>• Moratorium for pre-existing</li>
-        </ul>
-      </div>
-      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <h4 class="font-bold text-amber-800 mb-2">Considerations</h4>
-        <ul class="text-amber-700 text-sm space-y-1">
-          <li>• Fewer sessions than Cigna</li>
-          <li>• 45 days inpatient (vs 60)</li>
-          <li>• Highest premiums</li>
-          <li>• 12-month waiting period</li>
-        </ul>
-      </div>
-    </div>
-
-    <a href="/providers/bupa-global" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition font-medium" style="color: white !important;">Get Bupa Quote</a>
+    <p class="text-neutral-700 mb-4">
+      Bupa Global strikes a practical balance between coverage and cost. The 30-session annual limit works for most expats dealing with adjustment challenges, situational depression, or anxiety. For those needing more intensive treatment, the sessions can be supplemented with psychiatrist visits.
+    </p>
+    <p class="text-neutral-700">
+      The moratorium underwriting option deserves attention. If you have a history of mental health treatment, Bupa won't automatically decline you—they'll exclude pre-existing conditions for 2 years, then review for coverage. This pathway helps expats with managed conditions get otherwise comprehensive coverage.
+    </p>
   </section>
 
+  <!-- Allianz Partners Section -->
   <section id="allianz" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Allianz Care</h2>
-    <div class="flex flex-wrap gap-2 mb-4">
-      <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Budget Option</span>
-      <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Basic Coverage</span>
-      <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Crisis Support</span>
+    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Allianz Partners</h2>
+    <div class="bg-green-50 rounded-lg p-6 mb-6">
+      <h3 class="text-xl font-semibold text-green-800 mb-4">Mental Health Highlights</h3>
+      <ul class="space-y-2 text-neutral-700">
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span><strong>20 outpatient sessions:</strong> Basic coverage for short-term therapy needs</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span><strong>60-day inpatient limit:</strong> Coverage for psychiatric hospitalization with restrictions</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span><strong>Lower premiums:</strong> More affordable option for budget-conscious expats</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span><strong>Upgrade options:</strong> Enhanced mental health benefits available as add-on</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-amber-600 mt-1">△</span>
+          <span><strong>Substance abuse:</strong> Not covered on base plans—requires enhanced tier</span>
+        </li>
+      </ul>
     </div>
-
-    <p class="text-neutral-700 mb-4">Allianz Care offers mental health coverage at the most affordable price point, but with meaningful limitations. Coverage includes 20 outpatient sessions and 30 inpatient days—adequate for minor issues or crisis support, but limiting for ongoing therapy needs.</p>
-
-    <p class="text-neutral-700 mb-4">Pre-existing mental health conditions are often permanently excluded, making Allianz less suitable if you have a history of depression, anxiety, or other conditions. However, for those without prior mental health treatment who want basic coverage as a safety net, Allianz provides value.</p>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-        <h4 class="font-bold text-green-800 mb-2">Mental Health Strengths</h4>
-        <ul class="text-green-700 text-sm space-y-1">
-          <li>• Most affordable option</li>
-          <li>• 20 sessions often sufficient</li>
-          <li>• Crisis coverage included</li>
-          <li>• Teletherapy supported</li>
-          <li>• Psychiatry fully covered</li>
-        </ul>
-      </div>
-      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <h4 class="font-bold text-amber-800 mb-2">Considerations</h4>
-        <ul class="text-amber-700 text-sm space-y-1">
-          <li>• Lowest session limits (20)</li>
-          <li>• 30 days inpatient only</li>
-          <li>• Pre-existing often excluded</li>
-          <li>• Longer waiting period (12-24 mo)</li>
-          <li>• Session copays likely</li>
-        </ul>
-      </div>
-    </div>
-
-    <a href="/providers/allianz-care" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-medium" style="color: white !important;">Get Allianz Quote</a>
+    <p class="text-neutral-700 mb-4">
+      Allianz Partners offers the most affordable option, but mental health coverage reflects this positioning. The 20-session limit feels restrictive compared to competitors—you could exhaust this in under six months of weekly therapy. Those with ongoing mental health needs should factor in out-of-pocket costs.
+    </p>
+    <p class="text-neutral-700">
+      The telehealth therapy option requiring additional cost is notable. While Cigna and Bupa include virtual mental health sessions, Allianz treats them as an add-on. In a world where remote therapy has become standard, this feels behind the curve.
+    </p>
   </section>
 
+  <!-- CTA Box -->
   <CTABox
-    title="Compare Mental Health Coverage Quotes"
-    description="Get personalized quotes with mental health benefits from all three providers."
-    buttonText="Get Free Quotes"
-    buttonHref="/get-quotes"
+    title="Get Mental Health Coverage Quotes"
+    description="Compare plans from Cigna, Bupa, and Allianz that include comprehensive mental health benefits."
+    buttonText="Compare Plans Now"
+    buttonHref="https://www.thimble.com/expat-insurance-quotes"
   />
 
+  <!-- Pricing Comparison -->
   <section id="pricing" class="mb-12">
     <h2 class="text-3xl font-bold text-neutral-800 mb-6">Pricing Comparison</h2>
-    <p class="text-neutral-700 mb-6">Mental health coverage adds to premiums—here's what to expect:</p>
+    <p class="text-neutral-700 mb-6">
+      These estimates reflect comprehensive plans with full mental health benefits. Prices vary based on age, location, deductible, and coverage level. Mental health coverage is typically included in core plans—not available as a standalone purchase.
+    </p>
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
-    <p class="text-sm text-neutral-600 mt-4">*Mental health may be included in comprehensive plans or offered as an add-on. Prices for individual coverage, age 35, Europe-based.</p>
+    <p class="text-sm text-neutral-500 mt-4">
+      *Prices based on worldwide coverage excluding US. Higher deductibles can reduce premiums 20-30%.
+    </p>
   </section>
 
+  <!-- Mental Health Details Section -->
   <section id="mental-health-details" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Mental Health Coverage Details</h2>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-bold text-neutral-800 mb-3">What's Typically Covered</h3>
-        <ul class="text-neutral-700 text-sm space-y-2">
-          <li>• Psychotherapy sessions</li>
-          <li>• Psychiatrist consultations</li>
-          <li>• Psychiatric medications</li>
-          <li>• Inpatient psychiatric care</li>
-          <li>• Crisis intervention</li>
-          <li>• Teletherapy sessions</li>
-          <li>• Psychological assessments</li>
-        </ul>
+    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Understanding Mental Health Coverage</h2>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Waiting Periods</h3>
+        <p class="text-neutral-700 mb-3">
+          All three insurers impose a 2-year waiting period for mental health benefits. This means if you develop anxiety or depression after purchasing the policy, you'll wait 2 years before coverage kicks in for treatment of that condition.
+        </p>
+        <p class="text-neutral-700">
+          However, if you're already being treated for a mental health condition when you apply, it's considered pre-existing and subject to underwriting decisions—not waiting periods. Understanding this distinction matters when planning your coverage.
+        </p>
       </div>
-      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-bold text-neutral-800 mb-3">Common Exclusions</h3>
-        <ul class="text-neutral-700 text-sm space-y-2">
-          <li>• Pre-existing conditions (varies)</li>
-          <li>• Substance abuse treatment</li>
-          <li>• Couples/family therapy (usually)</li>
-          <li>• Learning disabilities</li>
-          <li>• Developmental disorders (often)</li>
-          <li>• Non-evidence-based therapies</li>
-        </ul>
-      </div>
-    </div>
 
-    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-      <h3 class="text-xl font-bold text-blue-800 mb-3">Pre-existing Mental Health Conditions</h3>
-      <p class="text-blue-700 mb-4">This is the crucial consideration—each insurer handles history differently:</p>
-      <div class="grid md:grid-cols-3 gap-4">
-        <div>
-          <h4 class="font-bold text-blue-800 mb-2">Cigna</h4>
-          <p class="text-blue-700 text-sm">2-year moratorium: conditions become covered after 2 years symptom-free. Can also apply for underwritten coverage with potential exclusions or loadings.</p>
-        </div>
-        <div>
-          <h4 class="font-bold text-blue-800 mb-2">Bupa</h4>
-          <p class="text-blue-700 text-sm">2-year moratorium standard. After 2 years without treatment, conditions automatically covered. Medical underwriting also available.</p>
-        </div>
-        <div>
-          <h4 class="font-bold text-blue-800 mb-2">Allianz</h4>
-          <p class="text-blue-700 text-sm">Often permanently excluded. Stricter approach to pre-existing mental health. Best for those without history seeking basic coverage.</p>
-        </div>
+      <div>
+        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Telehealth Therapy</h3>
+        <p class="text-neutral-700 mb-3">
+          Remote therapy has transformed mental health care for expats. Finding English-speaking therapists in countries like Japan or Thailand can be challenging, but telehealth connects you with providers worldwide. Cigna and Bupa include telehealth therapy at no extra cost.
+        </p>
+        <p class="text-neutral-700">
+          Allianz charges extra for telehealth therapy, which is increasingly unusual in today's market. Consider this when comparing total costs—the premium savings may not offset out-of-pocket telehealth expenses.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Crisis Support</h3>
+        <p class="text-neutral-700 mb-3">
+          Mental health emergencies don't follow business hours. Cigna and Bupa offer 24/7 crisis support hotlines staffed by mental health professionals. Allianz's support is more limited, with full services only during business hours.
+        </p>
+        <p class="text-neutral-700">
+          For expats in time zones far from their insurer's headquarters, 24/7 support can be critical. Being in Tokyo at 3 AM in crisis and reaching only voicemail isn't acceptable for premium-priced insurance.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Substance Abuse Coverage</h3>
+        <p class="text-neutral-700 mb-3">
+          Cigna includes substance abuse treatment in their mental health benefits—rehabilitation, detox programs, and ongoing counseling. Bupa offers limited coverage, often requiring pre-authorization and having caps on treatment duration.
+        </p>
+        <p class="text-neutral-700">
+          Allianz excludes substance abuse entirely on base plans. If this coverage matters to you, you'll need to upgrade to their enhanced tier, significantly narrowing the price gap with competitors.
+        </p>
       </div>
     </div>
   </section>
 
+  <!-- Best For Section -->
   <section id="best-for" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Which Is Best For You?</h2>
-    <div class="space-y-4">
-      <div class="bg-primary-50 border-l-4 border-primary-600 p-4">
-        <h3 class="font-bold text-primary-800 mb-2">Choose Cigna Global if:</h3>
-        <ul class="text-primary-700 space-y-1">
-          <li>• Mental health coverage is a priority</li>
-          <li>• You want the highest session limits</li>
-          <li>• You have pre-existing conditions to eventually cover</li>
-          <li>• Inpatient psychiatric coverage may be needed</li>
+    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Best For</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-primary-50 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-primary-800 mb-3">Choose Cigna If...</h3>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• You need unlimited therapy sessions</li>
+          <li>• Comprehensive coverage matters more than cost</li>
+          <li>• You want substance abuse included</li>
+          <li>• 24/7 crisis support is important</li>
+          <li>• You prefer extensive telehealth options</li>
+          <li>• You plan to stay abroad long-term</li>
         </ul>
       </div>
-      <div class="bg-purple-50 border-l-4 border-purple-600 p-4">
-        <h3 class="font-bold text-purple-800 mb-2">Choose Bupa Global if:</h3>
-        <ul class="text-purple-700 space-y-1">
-          <li>• Provider network quality matters</li>
-          <li>• You want digital mental health tools</li>
-          <li>• Care coordination support is valuable</li>
-          <li>• You prefer an integrated wellness approach</li>
+      <div class="bg-purple-50 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-purple-800 mb-3">Choose Bupa If...</h3>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• 30 sessions/year meets your needs</li>
+          <li>• You have mental health history needing moratorium option</li>
+          <li>• You want good coverage at moderate cost</li>
+          <li>• 90-day inpatient coverage is sufficient</li>
+          <li>• You value their global provider network</li>
+          <li>• Balance of price and coverage matters</li>
         </ul>
       </div>
-      <div class="bg-green-50 border-l-4 border-green-600 p-4">
-        <h3 class="font-bold text-green-800 mb-2">Choose Allianz Care if:</h3>
-        <ul class="text-green-700 space-y-1">
-          <li>• Budget is your main concern</li>
-          <li>• No prior mental health history</li>
-          <li>• Basic safety net coverage is sufficient</li>
-          <li>• You're primarily seeking crisis coverage</li>
+      <div class="bg-green-50 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-green-800 mb-3">Choose Allianz If...</h3>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Budget is your primary concern</li>
+          <li>• You have minimal mental health needs</li>
+          <li>• 20 sessions/year is sufficient</li>
+          <li>• You don't need substance abuse coverage</li>
+          <li>• You'll pay out-of-pocket for telehealth</li>
+          <li>• Lower premiums outweigh coverage limits</li>
         </ul>
       </div>
     </div>
   </section>
 
+  <!-- FAQs Section -->
   <section id="faqs" class="mb-12">
     <h2 class="text-3xl font-bold text-neutral-800 mb-6">Frequently Asked Questions</h2>
     <div class="space-y-6">
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="text-lg font-bold text-neutral-800 mb-2">Do I need to disclose my mental health history?</h3>
-        <p class="text-neutral-700">Yes, absolutely. Failing to disclose treatment history can void your entire policy if discovered. Be honest on applications—insurers may offer coverage with exclusions or moratoriums, but undisclosed conditions mean no coverage when you need it most.</p>
+        <h3 class="font-semibold text-neutral-800 mb-2">Can I get coverage with a pre-existing mental health condition?</h3>
+        <p class="text-neutral-700">
+          Yes, but with limitations. All three insurers require disclosure and may exclude treatment for that specific condition. Bupa's moratorium option is most flexible—they'll exclude the condition for 2 years, then review. Cigna evaluates case-by-case. Allianz tends to be stricter with permanent exclusions.
+        </p>
       </div>
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="text-lg font-bold text-neutral-800 mb-2">Can I use my home country therapist via teletherapy?</h3>
-        <p class="text-neutral-700">Generally yes, if your plan covers teletherapy and the therapist is licensed. Some insurers require providers to be in their network; others reimburse any licensed professional. Confirm with your insurer, especially regarding cross-border licensing and reimbursement rates.</p>
+        <h3 class="font-semibold text-neutral-800 mb-2">Are marriage/couples counseling covered?</h3>
+        <p class="text-neutral-700">
+          Generally no. These insurers cover mental health treatment for diagnosed conditions, not relationship counseling. However, if one partner has a diagnosed condition and couples therapy is part of their treatment plan, Cigna and Bupa may cover it with proper documentation.
+        </p>
       </div>
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="text-lg font-bold text-neutral-800 mb-2">What counts as a "session" for coverage limits?</h3>
-        <p class="text-neutral-700">Typically a 45-60 minute session with a licensed psychologist, psychiatrist, or in some cases clinical social worker. Some plans count psychiatric medication management visits as sessions; others don't. Check your policy for specific definitions.</p>
+        <h3 class="font-semibold text-neutral-800 mb-2">Do I need referrals for mental health care?</h3>
+        <p class="text-neutral-700">
+          Cigna and Bupa allow self-referral to mental health professionals—no GP visit required first. Allianz may require initial GP consultation for some plans. However, all insurers benefit from having a treatment plan from your provider for pre-authorization of extended care.
+        </p>
       </div>
       <div class="bg-neutral-50 rounded-lg p-6">
-        <h3 class="text-lg font-bold text-neutral-800 mb-2">Is medication covered under mental health benefits?</h3>
-        <p class="text-neutral-700">Psychiatric medications prescribed by a covered psychiatrist are typically included under your prescription drug benefits, not mental health limits. This means your therapy sessions and medications usually have separate limits—check your specific plan for details.</p>
+        <h3 class="font-semibold text-neutral-800 mb-2">What types of therapists are covered?</h3>
+        <p class="text-neutral-700">
+          Psychiatrists, psychologists, and licensed clinical therapists are covered by all three. Cigna has the broadest definition, sometimes covering EMDR specialists and trauma therapists. Bupa and Allianz focus on traditional psychotherapy and psychiatric care.
+        </p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-800 mb-2">How do session limits work annually?</h3>
+        <p class="text-neutral-700">
+          Session limits reset each policy year. With Bupa's 30 sessions, you could do weekly therapy for 7 months before hitting the cap. Allianz's 20 sessions lasts about 5 months of weekly therapy. Cigna's unlimited coverage means no planning around session limits.
+        </p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-800 mb-2">Is medication for mental health conditions covered?</h3>
+        <p class="text-neutral-700">
+          Yes, psychiatric medications are covered under prescription drug benefits, separate from therapy session limits. All three insurers cover standard psychiatric medications including antidepressants, anti-anxiety medications, and mood stabilizers when prescribed by a qualified provider.
+        </p>
       </div>
     </div>
   </section>
 
-  <div class="bg-neutral-100 rounded-lg p-6 text-sm text-neutral-600">
-    <p><strong>Disclaimer:</strong> Mental health coverage varies significantly by plan level, region, and individual circumstances. Pre-existing condition policies are strictly enforced. Always verify current coverage, session limits, and exclusions directly with providers before purchasing. This comparison is for informational purposes only and does not constitute medical or insurance advice.</p>
-  </div>
+  <!-- Disclaimer -->
+  <aside class="bg-neutral-100 border border-neutral-200 rounded-lg p-6 text-sm text-neutral-600 mb-8">
+    <p class="font-semibold mb-2">Disclaimer</p>
+    <p>
+      Coverage details vary by specific plan, policy year, and individual circumstances. Mental health benefits are subject to waiting periods, pre-authorization requirements, and provider network limitations. This comparison reflects general plan features—always verify specific benefits with insurers before purchasing. If you're experiencing a mental health crisis, contact emergency services or a crisis helpline immediately.
+    </p>
+  </aside>
 </PageShell>
