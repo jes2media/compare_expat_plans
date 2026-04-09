@@ -4,160 +4,173 @@ import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
-  { id: 'quick-verdict', title: 'Quick Verdict' },
-  { id: 'comparison', title: 'Side-by-Side Comparison' },
-  { id: 'cigna', title: 'Cigna Global' },
-  { id: 'bupa', title: 'Bupa Global' },
-  { id: 'allianz', title: 'Allianz Care' },
-  { id: 'pricing', title: 'Pricing Comparison' },
-  { id: 'sports-details', title: 'Sport-by-Sport Coverage' },
-  { id: 'best-for', title: 'Best For' },
-  { id: 'faqs', title: 'FAQs' },
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'comparison', text: 'Side-by-Side Comparison', level: 2 },
+  { id: 'cigna', text: 'Cigna Global', level: 2 },
+  { id: 'bupa', text: 'Bupa Global', level: 2 },
+  { id: 'allianz', text: 'Allianz Care', level: 2 },
+  { id: 'pricing', text: 'Pricing Comparison', level: 2 },
+  { id: 'sports-details', text: 'Sport-by-Sport Coverage', level: 2 },
+  { id: 'best-for', text: 'Best For', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
 ];
 
 const relatedLinks = [
-  { href: '/providers/cigna-global', title: 'Cigna Global Full Review' },
-  { href: '/providers/bupa-global', title: 'Bupa Global Full Review' },
-  { href: '/providers/allianz-care', title: 'Allianz Care Full Review' },
-  { href: '/guides/adventure-sports-insurance', title: 'Adventure Sports Guide' },
-  { href: '/best/adventure-sports-insurance', title: 'Best Adventure Sports Insurance' },
+  { title: 'Cigna Global Full Review', href: '/providers/cigna-global' },
+  { title: 'Bupa Global Full Review', href: '/providers/bupa-global' },
+  { title: 'Allianz Care Full Review', href: '/providers/allianz-care' },
+  { title: 'Adventure Sports Guide', href: '/guides/adventure-sports-insurance' },
+  { title: 'Best Adventure Sports Insurance', href: '/best/adventure-sports-insurance' },
 ];
 
-const mainComparisonColumns = ['Sport/Activity', 'Cigna Global', 'Bupa Global', 'Allianz Care'];
+const mainComparisonColumns = [
+  { key: 'sport', header: 'Sport/Activity' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
 const mainComparisonRows = [
-  ['Skiing (recreational)', 'Covered—standard', 'Covered—standard', 'Covered—standard'],
-  ['Skiing (off-piste)', 'Covered—most plans', 'Check plan terms', 'May require add-on'],
-  ['Scuba diving (≤30m)', 'Covered—standard', 'Covered—standard', 'Covered—standard'],
-  ['Scuba diving (>30m)', 'Excluded or add-on', 'Excluded or add-on', 'Excluded'],
-  ['Rock climbing (indoor)', 'Covered—standard', 'Covered—standard', 'Covered—standard'],
-  ['Rock climbing (outdoor)', 'Covered—most plans', 'Covered—most plans', 'May have limits'],
-  ['Mountain biking', 'Covered—standard', 'Covered—standard', 'Covered—standard'],
-  ['Paragliding/skydiving', 'Excluded—add-on possible', 'Excluded—add-on possible', 'Excluded'],
-  ['Marathon/triathlon', 'Covered—standard', 'Covered—standard', 'Covered—standard'],
-  ['Martial arts (recreational)', 'Covered—standard', 'Covered—standard', 'Covered—standard'],
+  { sport: 'Skiing (recreational)', cigna: 'Covered—standard', bupa: 'Covered—standard', allianz: 'Covered—standard' },
+  { sport: 'Skiing (off-piste)', cigna: 'Covered—most plans', bupa: 'Check plan terms', allianz: 'May require add-on' },
+  { sport: 'Scuba diving (≤30m)', cigna: 'Covered—standard', bupa: 'Covered—standard', allianz: 'Covered—standard' },
+  { sport: 'Scuba diving (>30m)', cigna: 'Excluded or add-on', bupa: 'Excluded or add-on', allianz: 'Excluded' },
+  { sport: 'Rock climbing (indoor)', cigna: 'Covered—standard', bupa: 'Covered—standard', allianz: 'Covered—standard' },
+  { sport: 'Rock climbing (outdoor)', cigna: 'Covered—most plans', bupa: 'Covered—most plans', allianz: 'May have limits' },
+  { sport: 'Mountain biking', cigna: 'Covered—standard', bupa: 'Covered—standard', allianz: 'Covered—standard' },
+  { sport: 'Paragliding/skydiving', cigna: 'Excluded—add-on possible', bupa: 'Excluded—add-on possible', allianz: 'Excluded' },
+  { sport: 'Marathon/triathlon', cigna: 'Covered—standard', bupa: 'Covered—standard', allianz: 'Covered—standard' },
+  { sport: 'Martial arts (recreational)', cigna: 'Covered—standard', bupa: 'Covered—standard', allianz: 'Covered—standard' },
 ];
 
-const pricingColumns = ['Plan Type', 'Cigna Global', 'Bupa Global', 'Allianz Care'];
+const pricingColumns = [
+  { key: 'planType', header: 'Plan Type' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
 const pricingRows = [
-  ['Standard (recreational sports)', '$3,500-5,000/yr', '$3,200-4,500/yr', '$3,000-4,200/yr'],
-  ['Enhanced (adventure add-on)', '$4,200-6,000/yr', '$3,800-5,500/yr', 'Limited availability'],
-  ['Extreme sports add-on', '+$500-1,500/yr', '+$400-1,200/yr', 'Case-by-case'],
-  ['Search & rescue coverage', 'Up to $50,000', 'Up to $25,000', 'Plan dependent'],
-  ['Evacuation (adventure)', 'Comprehensive', 'Comprehensive', 'Standard'],
+  { planType: 'Standard (recreational sports)', cigna: '$3,500-5,000/yr', bupa: '$3,200-4,500/yr', allianz: '$3,000-4,200/yr' },
+  { planType: 'Enhanced (adventure add-on)', cigna: '$4,200-6,000/yr', bupa: '$3,800-5,500/yr', allianz: 'Limited availability' },
+  { planType: 'Extreme sports add-on', cigna: '+$500-1,500/yr', bupa: '+$400-1,200/yr', allianz: 'Case-by-case' },
+  { planType: 'Search & rescue coverage', cigna: 'Up to $50,000', bupa: 'Up to $25,000', allianz: 'Plan dependent' },
+  { planType: 'Evacuation (adventure)', cigna: 'Comprehensive', bupa: 'Comprehensive', allianz: 'Standard' },
 ];
 ---
 
 <PageShell
   title="Cigna vs Bupa vs Allianz: Adventure Sports Coverage 2025"
   description="Compare adventure sports coverage from Cigna, Bupa, and Allianz. Skiing, scuba diving, rock climbing, and extreme sports coverage for active expats."
-  headline="Cigna vs Bupa vs Allianz"
-  subheadline="Which Provider is Best for Adventure Sports Coverage?"
-  heroImage="/images/compare/adventure-sports-hero.png"
+  headline="Cigna vs Bupa vs Allianz: Adventure Sports Coverage"
+  subheadline="Which insurer best covers your active lifestyle? Skiing, diving, climbing, and more."
+  heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
 >
-  <section id="quick-verdict" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Quick Verdict</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-primary-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-primary-800 mb-3">Cigna Global</h3>
-        <p class="text-neutral-700 mb-4">Best overall for adventure sports. Most activities covered as standard, with clear add-on options for extreme sports. Strong search and rescue coverage included.</p>
-        <p class="text-sm font-medium text-primary-700">Best for: Serious adventure enthusiasts</p>
-      </div>
-      <div class="bg-purple-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-purple-800 mb-3">Bupa Global</h3>
-        <p class="text-neutral-700 mb-4">Good middle ground with reasonable adventure coverage. Most recreational activities covered, though extreme sports require careful add-on selection.</p>
-        <p class="text-sm font-medium text-purple-700">Best for: Active but not extreme lifestyles</p>
-      </div>
-      <div class="bg-green-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-green-800 mb-3">Allianz Care</h3>
-        <p class="text-neutral-700 mb-4">More conservative approach to adventure sports. Basic recreational activities covered, but significant exclusions for higher-risk activities.</p>
-        <p class="text-sm font-medium text-green-700">Best for: Casual recreational activities</p>
-      </div>
-    </div>
-  </section>
+  <h2 id="quick-verdict">Quick Verdict</h2>
 
-  <section id="comparison" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Side-by-Side Comparison</h2>
+  <div class="grid md:grid-cols-3 gap-4 my-6">
+    <div class="bg-primary-50 border-2 border-primary-300 rounded-lg p-5">
+      <p class="text-xs font-semibold text-primary-600 uppercase tracking-wide mb-1">Best Overall</p>
+      <p class="text-xl font-bold text-neutral-900 mb-2">Cigna Global</p>
+      <p class="text-sm text-neutral-600 mb-3">Best overall for adventure sports. Most activities covered as standard, with clear add-on options. Strong search and rescue coverage.</p>
+      <a href="/providers/cigna-global" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">Learn More</a>
+    </div>
+    <div class="bg-purple-50 border-2 border-purple-300 rounded-lg p-5">
+      <p class="text-xs font-semibold text-purple-600 uppercase tracking-wide mb-1">Good Middle Ground</p>
+      <p class="text-xl font-bold text-neutral-900 mb-2">Bupa Global</p>
+      <p class="text-sm text-neutral-600 mb-3">Good for active but not extreme lifestyles. Most recreational activities covered, reasonable adventure add-ons.</p>
+      <a href="/providers/bupa-global" class="inline-block w-full text-center bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">Learn More</a>
+    </div>
+    <div class="bg-green-50 border-2 border-green-300 rounded-lg p-5">
+      <p class="text-xs font-semibold text-green-600 uppercase tracking-wide mb-1">Best for Recreational</p>
+      <p class="text-xl font-bold text-neutral-900 mb-2">Allianz Care</p>
+      <p class="text-sm text-neutral-600 mb-3">Conservative approach to adventure sports. Basic recreational activities covered, but significant exclusions for higher-risk.</p>
+      <a href="/providers/allianz-care" class="inline-block w-full text-center bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">Learn More</a>
+    </div>
+  </div>
+
+  <h2 id="comparison">Side-by-Side Comparison</h2>
+
+  <div class="my-6">
     <ComparisonTable columns={mainComparisonColumns} rows={mainComparisonRows} />
-    <p class="text-sm text-neutral-500 mt-4">Coverage varies by specific plan level. "Standard" means typically covered on comprehensive plans. Always verify specific activities with your insurer before participating.</p>
-  </section>
+  </div>
 
-  <section id="cigna" class="mb-12">
-    <div class="bg-primary-50 rounded-lg p-8">
-      <h2 class="text-3xl font-bold text-primary-800 mb-4">Cigna Global</h2>
-      <p class="text-lg text-neutral-700 mb-6">Cigna Global takes the most adventure-friendly approach among major international insurers. Their comprehensive plans cover most recreational and moderate adventure activities as standard, with clear pathways to add extreme sports coverage.</p>
+  <p class="text-sm text-neutral-500">Coverage varies by specific plan level. "Standard" means typically covered on comprehensive plans. Always verify specific activities with your insurer before participating.</p>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Adventure Sports Strengths</h3>
-      <ul class="list-disc pl-6 mb-6 space-y-2 text-neutral-700">
-        <li>Recreational skiing, snowboarding, scuba (≤30m), climbing covered as standard</li>
-        <li>Off-piste skiing included on most comprehensive plans</li>
-        <li>Mountain biking, surfing, and water sports included</li>
-        <li>Search and rescue coverage up to $50,000</li>
-        <li>Clear add-on options for extreme sports (skydiving, paragliding)</li>
-        <li>Emergency evacuation includes adventure locations</li>
-      </ul>
+  <h2 id="cigna">Cigna Global</h2>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Limitations</h3>
-      <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-        <li>Professional/competitive sports require separate coverage</li>
-        <li>Deep scuba (>30m) excluded or requires add-on</li>
-        <li>Some extreme activities excluded entirely</li>
-        <li>Participation in events without safety standards may void coverage</li>
-      </ul>
-    </div>
-  </section>
+  <div class="bg-primary-50 rounded-lg p-6 my-6">
+    <p class="text-lg text-neutral-700 mb-4">Cigna Global takes the most adventure-friendly approach among major international insurers. Their comprehensive plans cover most recreational and moderate adventure activities as standard, with clear pathways to add extreme sports coverage.</p>
 
-  <section id="bupa" class="mb-12">
-    <div class="bg-purple-50 rounded-lg p-8">
-      <h2 class="text-3xl font-bold text-purple-800 mb-4">Bupa Global</h2>
-      <p class="text-lg text-neutral-700 mb-6">Bupa Global offers solid coverage for active lifestyles without the premium pricing of ultra-adventure policies. Good for expats who enjoy sports recreationally but aren't pushing extreme limits.</p>
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Adventure Sports Strengths</h3>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-neutral-700">
+      <li>Recreational skiing, snowboarding, scuba (≤30m), climbing covered as standard</li>
+      <li>Off-piste skiing included on most comprehensive plans</li>
+      <li>Mountain biking, surfing, and water sports included</li>
+      <li>Search and rescue coverage up to $50,000</li>
+      <li>Clear add-on options for extreme sports (skydiving, paragliding)</li>
+      <li>Emergency evacuation includes adventure locations</li>
+    </ul>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Adventure Sports Strengths</h3>
-      <ul class="list-disc pl-6 mb-6 space-y-2 text-neutral-700">
-        <li>Recreational skiing, swimming, cycling covered as standard</li>
-        <li>Scuba diving to 30m on most plans</li>
-        <li>Indoor and outdoor climbing typically covered</li>
-        <li>Running events (marathons, triathlons) included</li>
-        <li>Water sports (kayaking, paddleboarding) covered</li>
-        <li>Add-on options for additional adventure activities</li>
-      </ul>
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Limitations</h3>
+    <ul class="list-disc pl-6 space-y-1 text-neutral-700">
+      <li>Professional/competitive sports require separate coverage</li>
+      <li>Deep scuba (>30m) excluded or requires add-on</li>
+      <li>Some extreme activities excluded entirely</li>
+      <li>Participation in events without safety standards may void coverage</li>
+    </ul>
+  </div>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Limitations</h3>
-      <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-        <li>Off-piste skiing may require verification</li>
-        <li>Search and rescue limits lower than Cigna</li>
-        <li>Extreme sports add-ons less comprehensive</li>
-        <li>Some activities require pre-approval</li>
-      </ul>
-    </div>
-  </section>
+  <h2 id="bupa">Bupa Global</h2>
 
-  <section id="allianz" class="mb-12">
-    <div class="bg-green-50 rounded-lg p-8">
-      <h2 class="text-3xl font-bold text-green-800 mb-4">Allianz Care</h2>
-      <p class="text-lg text-neutral-700 mb-6">Allianz Care takes a more conservative approach to adventure sports, focusing on recreational activities with clear exclusions for higher-risk pursuits. Good value if your activities stay within standard recreational bounds.</p>
+  <div class="bg-purple-50 rounded-lg p-6 my-6">
+    <p class="text-lg text-neutral-700 mb-4">Bupa Global offers solid coverage for active lifestyles without the premium pricing of ultra-adventure policies. Good for expats who enjoy sports recreationally but aren't pushing extreme limits.</p>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Adventure Sports Strengths</h3>
-      <ul class="list-disc pl-6 mb-6 space-y-2 text-neutral-700">
-        <li>Recreational skiing on marked slopes covered</li>
-        <li>Swimming, gym, and basic fitness activities covered</li>
-        <li>Standard scuba diving on recreational plans</li>
-        <li>Cycling and running events typically covered</li>
-        <li>Competitive pricing for standard coverage</li>
-        <li>Clear terms about what's included</li>
-      </ul>
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Adventure Sports Strengths</h3>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-neutral-700">
+      <li>Recreational skiing, swimming, cycling covered as standard</li>
+      <li>Scuba diving to 30m on most plans</li>
+      <li>Indoor and outdoor climbing typically covered</li>
+      <li>Running events (marathons, triathlons) included</li>
+      <li>Water sports (kayaking, paddleboarding) covered</li>
+      <li>Add-on options for additional adventure activities</li>
+    </ul>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Limitations</h3>
-      <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-        <li>Off-piste skiing often excluded or requires add-on</li>
-        <li>Limited extreme sports add-on options</li>
-        <li>Rock climbing coverage may be restricted</li>
-        <li>Paragliding, skydiving typically excluded</li>
-        <li>Search and rescue coverage varies</li>
-      </ul>
-    </div>
-  </section>
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Limitations</h3>
+    <ul class="list-disc pl-6 space-y-1 text-neutral-700">
+      <li>Off-piste skiing may require verification</li>
+      <li>Search and rescue limits lower than Cigna</li>
+      <li>Extreme sports add-ons less comprehensive</li>
+      <li>Some activities require pre-approval</li>
+    </ul>
+  </div>
+
+  <h2 id="allianz">Allianz Care</h2>
+
+  <div class="bg-green-50 rounded-lg p-6 my-6">
+    <p class="text-lg text-neutral-700 mb-4">Allianz Care takes a more conservative approach to adventure sports, focusing on recreational activities with clear exclusions for higher-risk pursuits. Good value if your activities stay within standard recreational bounds.</p>
+
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Adventure Sports Strengths</h3>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-neutral-700">
+      <li>Recreational skiing on marked slopes covered</li>
+      <li>Swimming, gym, and basic fitness activities covered</li>
+      <li>Standard scuba diving on recreational plans</li>
+      <li>Cycling and running events typically covered</li>
+      <li>Competitive pricing for standard coverage</li>
+      <li>Clear terms about what's included</li>
+    </ul>
+
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Limitations</h3>
+    <ul class="list-disc pl-6 space-y-1 text-neutral-700">
+      <li>Off-piste skiing often excluded or requires add-on</li>
+      <li>Limited extreme sports add-on options</li>
+      <li>Rock climbing coverage may be restricted</li>
+      <li>Paragliding, skydiving typically excluded</li>
+      <li>Search and rescue coverage varies</li>
+    </ul>
+  </div>
 
   <CTABox
     title="Stay Covered While You Explore"
@@ -166,142 +179,141 @@ const pricingRows = [
     buttonHref="/best/adventure-sports-insurance"
   />
 
-  <section id="pricing" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Pricing for Adventure Coverage</h2>
-    <p class="text-neutral-600 mb-6">Annual premiums for a 35-year-old active expat. Adventure add-ons increase costs but prevent expensive claim denials.</p>
+  <h2 id="pricing">Pricing for Adventure Coverage</h2>
+
+  <p class="text-neutral-600 mb-4">Annual premiums for a 35-year-old active expat. Adventure add-ons increase costs but prevent expensive claim denials.</p>
+
+  <div class="my-6">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
-    <p class="text-sm text-neutral-500 mt-4">Search and rescue coverage is critical for remote adventures—helicopter evacuation can cost $20,000-50,000 out of pocket.</p>
-  </section>
+  </div>
 
-  <section id="sports-details" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Sport-by-Sport Coverage Details</h2>
+  <p class="text-sm text-neutral-500">Search and rescue coverage is critical for remote adventures—helicopter evacuation can cost $20,000-50,000 out of pocket.</p>
 
-    <div class="space-y-6">
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Skiing & Snowboarding</h3>
-        <p class="text-neutral-700 mb-3">On-piste recreational skiing is covered by all three providers on comprehensive plans. Off-piste skiing is where they differ:</p>
-        <ul class="list-disc pl-6 space-y-1 text-neutral-700">
-          <li><strong>Cigna:</strong> Off-piste generally covered on comprehensive plans</li>
-          <li><strong>Bupa:</strong> Off-piste coverage varies—check specific plan terms</li>
-          <li><strong>Allianz:</strong> Off-piste often excluded or requires add-on</li>
-        </ul>
-        <p class="text-neutral-700 mt-3">Backcountry skiing with avalanche risk may require specialized coverage from all providers. Heli-skiing is typically excluded without specific add-ons.</p>
-      </div>
+  <h2 id="sports-details">Sport-by-Sport Coverage Details</h2>
 
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Scuba Diving</h3>
-        <p class="text-neutral-700 mb-3">Recreational diving to 30 meters with proper certification is covered by all three. Beyond that:</p>
-        <ul class="list-disc pl-6 space-y-1 text-neutral-700">
-          <li><strong>Cigna:</strong> Add-on available for deeper diving; technical diving may be case-by-case</li>
-          <li><strong>Bupa:</strong> Similar approach—30m standard, deeper requires add-on</li>
-          <li><strong>Allianz:</strong> More restrictive on depth limits; add-ons limited</li>
-        </ul>
-        <p class="text-neutral-700 mt-3">Decompression treatment and hyperbaric chambers are typically covered when diving within plan limits. Diving without certification may void all coverage.</p>
-      </div>
-
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Rock Climbing</h3>
-        <p class="text-neutral-700 mb-3">Indoor climbing is universally covered. Outdoor climbing varies:</p>
-        <ul class="list-disc pl-6 space-y-1 text-neutral-700">
-          <li><strong>Cigna:</strong> Outdoor climbing typically covered on comprehensive plans</li>
-          <li><strong>Bupa:</strong> Outdoor climbing covered on most plans; verify rope vs bouldering</li>
-          <li><strong>Allianz:</strong> May have specific exclusions for technical routes or altitude</li>
-        </ul>
-        <p class="text-neutral-700 mt-3">Alpine climbing, ice climbing, and mountaineering above certain altitudes often require specific declarations or add-ons from all providers.</p>
-      </div>
-
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Air Sports</h3>
-        <p class="text-neutral-700 mb-3">Paragliding, hang gliding, and skydiving are typically excluded from standard health insurance:</p>
-        <ul class="list-disc pl-6 space-y-1 text-neutral-700">
-          <li><strong>Cigna:</strong> Add-on possible for tandem/recreational; solo may be excluded</li>
-          <li><strong>Bupa:</strong> Limited add-on options; primarily covers tandem experiences</li>
-          <li><strong>Allianz:</strong> Generally excluded; case-by-case for one-time experiences</li>
-        </ul>
-        <p class="text-neutral-700 mt-3">Regular participants in air sports should consider dedicated aviation/adventure sports policies rather than relying on health insurance add-ons.</p>
-      </div>
-
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Water Sports</h3>
-        <p class="text-neutral-700 mb-3">Most recreational water sports are covered:</p>
-        <ul class="list-disc pl-6 space-y-1 text-neutral-700">
-          <li>Surfing, kiteboarding, wakeboarding—generally covered by all three</li>
-          <li>White water rafting—covered up to certain grades (typically III-IV)</li>
-          <li>Jet skiing, water skiing—covered as recreational activities</li>
-          <li>Kayaking, paddleboarding—covered as standard</li>
-        </ul>
-        <p class="text-neutral-700 mt-3">Competition-level water sports or extreme conditions (Class V+ rapids, big wave surfing) may require specific coverage.</p>
-      </div>
+  <div class="space-y-4 my-6">
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Skiing & Snowboarding</h3>
+      <p class="text-neutral-700 mb-2">On-piste recreational skiing is covered by all three providers on comprehensive plans. Off-piste skiing is where they differ:</p>
+      <ul class="list-disc pl-6 space-y-1 text-neutral-700 text-sm">
+        <li><strong>Cigna:</strong> Off-piste generally covered on comprehensive plans</li>
+        <li><strong>Bupa:</strong> Off-piste coverage varies—check specific plan terms</li>
+        <li><strong>Allianz:</strong> Off-piste often excluded or requires add-on</li>
+      </ul>
+      <p class="text-neutral-700 mt-2 text-sm">Backcountry skiing with avalanche risk may require specialized coverage from all providers. Heli-skiing is typically excluded without specific add-ons.</p>
     </div>
-  </section>
 
-  <section id="best-for" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Best For</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-primary-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-primary-800 mb-3">Choose Cigna If:</h3>
-        <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-          <li>Adventure sports are central to your lifestyle</li>
-          <li>You want comprehensive coverage as standard</li>
-          <li>High search and rescue limits matter</li>
-          <li>You do off-piste skiing regularly</li>
-          <li>You need clear extreme sports add-ons</li>
-        </ul>
-      </div>
-      <div class="bg-purple-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-purple-800 mb-3">Choose Bupa If:</h3>
-        <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-          <li>You're active but not extreme</li>
-          <li>You want balanced value and coverage</li>
-          <li>Recreational skiing and diving suffice</li>
-          <li>You don't need extensive air sports coverage</li>
-          <li>Mental health + activity coverage matters</li>
-        </ul>
-      </div>
-      <div class="bg-green-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-green-800 mb-3">Choose Allianz If:</h3>
-        <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-          <li>Your activities are standard recreational</li>
-          <li>Budget is a primary concern</li>
-          <li>You stay on marked slopes and shallow dives</li>
-          <li>You don't need extreme sports coverage</li>
-          <li>Clear, straightforward terms matter more than breadth</li>
-        </ul>
-      </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Scuba Diving</h3>
+      <p class="text-neutral-700 mb-2">Recreational diving to 30 meters with proper certification is covered by all three. Beyond that:</p>
+      <ul class="list-disc pl-6 space-y-1 text-neutral-700 text-sm">
+        <li><strong>Cigna:</strong> Add-on available for deeper diving; technical diving may be case-by-case</li>
+        <li><strong>Bupa:</strong> Similar approach—30m standard, deeper requires add-on</li>
+        <li><strong>Allianz:</strong> More restrictive on depth limits; add-ons limited</li>
+      </ul>
+      <p class="text-neutral-700 mt-2 text-sm">Decompression treatment and hyperbaric chambers are typically covered when diving within plan limits. Diving without certification may void all coverage.</p>
     </div>
-  </section>
 
-  <section id="faqs" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Frequently Asked Questions</h2>
-    <div class="space-y-6">
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">Do I need to declare adventure activities when applying?</h3>
-        <p class="text-neutral-700">Yes, for higher-risk activities. Standard recreational sports don't require declaration, but regular participation in activities like off-piste skiing, deep diving, or climbing should be disclosed. Non-disclosure could void claims. When in doubt, declare it.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">What's the difference between recreational and professional sports coverage?</h3>
-        <p class="text-neutral-700">Recreational means you're not competing for money or sponsored. Once you're paid, competing in leagues, or sponsored, you typically need professional sports coverage. Amateur competitions (local races, climbing comps) are usually still recreational.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">Does travel insurance or health insurance cover adventure sports better?</h3>
-        <p class="text-neutral-700">Travel insurance often has broader adventure sports coverage for short trips. Health insurance provides ongoing coverage for injuries and rehabilitation. If you live as an expat and do regular adventure sports, you need both: health insurance as your base, potentially supplemented by activity-specific travel coverage for trips.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">What happens if I'm injured doing an excluded activity?</h3>
-        <p class="text-neutral-700">Your claim will be denied. You'll pay out of pocket for emergency treatment, hospital stays, and rehabilitation. Search and rescue costs (potentially $20,000+) fall on you. This is why accurate coverage matters—a denied claim from a skiing accident could cost $50,000+.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">Is search and rescue coverage really necessary?</h3>
-        <p class="text-neutral-700">In remote areas, absolutely. Helicopter rescue from mountains can cost $10,000-50,000. In some countries (Switzerland, France), rescue is partially subsidized; in others (USA, Canada), it's fully private. If you ski, climb, or hike in remote areas, search and rescue coverage is worth the premium.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">Can I add coverage for specific activities mid-year?</h3>
-        <p class="text-neutral-700">Sometimes, but not always. Some insurers allow mid-term add-ons with additional premium. Others require waiting until renewal. If you're planning a specific adventure trip, contact your insurer beforehand. Don't assume coverage extends to new activities without confirmation.</p>
-      </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Rock Climbing</h3>
+      <p class="text-neutral-700 mb-2">Indoor climbing is universally covered. Outdoor climbing varies:</p>
+      <ul class="list-disc pl-6 space-y-1 text-neutral-700 text-sm">
+        <li><strong>Cigna:</strong> Outdoor climbing typically covered on comprehensive plans</li>
+        <li><strong>Bupa:</strong> Outdoor climbing covered on most plans; verify rope vs bouldering</li>
+        <li><strong>Allianz:</strong> May have specific exclusions for technical routes or altitude</li>
+      </ul>
+      <p class="text-neutral-700 mt-2 text-sm">Alpine climbing, ice climbing, and mountaineering above certain altitudes often require specific declarations or add-ons from all providers.</p>
     </div>
-  </section>
 
-  <div class="bg-neutral-100 rounded-lg p-6 mb-12">
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Air Sports</h3>
+      <p class="text-neutral-700 mb-2">Paragliding, hang gliding, and skydiving are typically excluded from standard health insurance:</p>
+      <ul class="list-disc pl-6 space-y-1 text-neutral-700 text-sm">
+        <li><strong>Cigna:</strong> Add-on possible for tandem/recreational; solo may be excluded</li>
+        <li><strong>Bupa:</strong> Limited add-on options; primarily covers tandem experiences</li>
+        <li><strong>Allianz:</strong> Generally excluded; case-by-case for one-time experiences</li>
+      </ul>
+      <p class="text-neutral-700 mt-2 text-sm">Regular participants in air sports should consider dedicated aviation/adventure sports policies rather than relying on health insurance add-ons.</p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Water Sports</h3>
+      <p class="text-neutral-700 mb-2">Most recreational water sports are covered:</p>
+      <ul class="list-disc pl-6 space-y-1 text-neutral-700 text-sm">
+        <li>Surfing, kiteboarding, wakeboarding—generally covered by all three</li>
+        <li>White water rafting—covered up to certain grades (typically III-IV)</li>
+        <li>Jet skiing, water skiing—covered as recreational activities</li>
+        <li>Kayaking, paddleboarding—covered as standard</li>
+      </ul>
+      <p class="text-neutral-700 mt-2 text-sm">Competition-level water sports or extreme conditions (Class V+ rapids, big wave surfing) may require specific coverage.</p>
+    </div>
+  </div>
+
+  <h2 id="best-for">Best For</h2>
+
+  <div class="grid md:grid-cols-3 gap-4 my-6">
+    <div class="bg-primary-50 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-primary-800 mb-3">Choose Cigna If:</h3>
+      <ul class="list-disc pl-5 space-y-1 text-neutral-700 text-sm">
+        <li>Adventure sports are central to your lifestyle</li>
+        <li>You want comprehensive coverage as standard</li>
+        <li>High search and rescue limits matter</li>
+        <li>You do off-piste skiing regularly</li>
+        <li>You need clear extreme sports add-ons</li>
+      </ul>
+    </div>
+    <div class="bg-purple-50 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-purple-800 mb-3">Choose Bupa If:</h3>
+      <ul class="list-disc pl-5 space-y-1 text-neutral-700 text-sm">
+        <li>You're active but not extreme</li>
+        <li>You want balanced value and coverage</li>
+        <li>Recreational skiing and diving suffice</li>
+        <li>You don't need extensive air sports coverage</li>
+        <li>Mental health + activity coverage matters</li>
+      </ul>
+    </div>
+    <div class="bg-green-50 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-green-800 mb-3">Choose Allianz If:</h3>
+      <ul class="list-disc pl-5 space-y-1 text-neutral-700 text-sm">
+        <li>Your activities are standard recreational</li>
+        <li>Budget is a primary concern</li>
+        <li>You stay on marked slopes and shallow dives</li>
+        <li>You don't need extreme sports coverage</li>
+        <li>Clear, straightforward terms matter more than breadth</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="faqs">Frequently Asked Questions</h2>
+
+  <div class="space-y-4 my-6">
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Do I need to declare adventure activities when applying?</h3>
+      <p class="text-neutral-700">Yes, for higher-risk activities. Standard recreational sports don't require declaration, but regular participation in activities like off-piste skiing, deep diving, or climbing should be disclosed. Non-disclosure could void claims. When in doubt, declare it.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">What's the difference between recreational and professional sports coverage?</h3>
+      <p class="text-neutral-700">Recreational means you're not competing for money or sponsored. Once you're paid, competing in leagues, or sponsored, you typically need professional sports coverage. Amateur competitions (local races, climbing comps) are usually still recreational.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Does travel insurance or health insurance cover adventure sports better?</h3>
+      <p class="text-neutral-700">Travel insurance often has broader adventure sports coverage for short trips. Health insurance provides ongoing coverage for injuries and rehabilitation. If you live as an expat and do regular adventure sports, you need both: health insurance as your base, potentially supplemented by activity-specific travel coverage for trips.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">What happens if I'm injured doing an excluded activity?</h3>
+      <p class="text-neutral-700">Your claim will be denied. You'll pay out of pocket for emergency treatment, hospital stays, and rehabilitation. Search and rescue costs (potentially $20,000+) fall on you. This is why accurate coverage matters—a denied claim from a skiing accident could cost $50,000+.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Is search and rescue coverage really necessary?</h3>
+      <p class="text-neutral-700">In remote areas, absolutely. Helicopter rescue from mountains can cost $10,000-50,000. In some countries (Switzerland, France), rescue is partially subsidized; in others (USA, Canada), it's fully private. If you ski, climb, or hike in remote areas, search and rescue coverage is worth the premium.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Can I add coverage for specific activities mid-year?</h3>
+      <p class="text-neutral-700">Sometimes, but not always. Some insurers allow mid-term add-ons with additional premium. Others require waiting until renewal. If you're planning a specific adventure trip, contact your insurer beforehand. Don't assume coverage extends to new activities without confirmation.</p>
+    </div>
+  </div>
+
+  <div class="bg-neutral-100 rounded-lg p-5 my-6">
     <p class="text-sm text-neutral-600">
       <strong>Disclaimer:</strong> Adventure sports coverage varies significantly by plan, activity definition, and specific circumstances. This comparison provides general guidance only. Always verify coverage for specific activities directly with your insurer before participating. Safety precautions, proper certification, and appropriate equipment are typically required for coverage to apply.
     </p>
