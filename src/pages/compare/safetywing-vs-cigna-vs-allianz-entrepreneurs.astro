@@ -4,270 +4,283 @@ import CTABox from '../../components/CTABox.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 
 const tocItems = [
-  { id: 'quick-verdict', title: 'Quick Verdict' },
-  { id: 'comparison', title: 'Side-by-Side Comparison' },
-  { id: 'safetywing', title: 'SafetyWing' },
-  { id: 'cigna', title: 'Cigna Global' },
-  { id: 'allianz', title: 'Allianz Care' },
-  { id: 'pricing', title: 'Pricing Comparison' },
-  { id: 'entrepreneur-details', title: 'Entrepreneur Coverage Details' },
-  { id: 'best-for', title: 'Best For' },
-  { id: 'faqs', title: 'FAQs' },
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'comparison', text: 'Side-by-Side Comparison', level: 2 },
+  { id: 'safetywing', text: 'SafetyWing', level: 2 },
+  { id: 'cigna', text: 'Cigna Global', level: 2 },
+  { id: 'allianz', text: 'Allianz Care', level: 2 },
+  { id: 'pricing', text: 'Pricing Comparison', level: 2 },
+  { id: 'entrepreneur-considerations', text: 'Entrepreneur Considerations', level: 2 },
+  { id: 'best-for', text: 'Best For', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
 ];
 
 const relatedLinks = [
-  { href: '/providers/safetywing', title: 'SafetyWing Full Review' },
-  { href: '/providers/cigna-global', title: 'Cigna Global Full Review' },
-  { href: '/providers/allianz-care', title: 'Allianz Care Full Review' },
-  { href: '/insurance-for/digital-nomads', title: 'Digital Nomad Insurance' },
-  { href: '/guides/self-employed-expat-insurance', title: 'Self-employed Expat Guide' },
+  { title: 'SafetyWing Full Review', href: '/providers/safetywing' },
+  { title: 'Cigna Global Full Review', href: '/providers/cigna-global' },
+  { title: 'Allianz Care Full Review', href: '/providers/allianz-care' },
+  { title: 'Insurance for Entrepreneurs', href: '/insurance-for/entrepreneurs' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
 ];
 
-const mainComparisonColumns = ['Feature', 'SafetyWing', 'Cigna Global', 'Allianz Care'];
+const mainComparisonColumns = [
+  { key: 'feature', header: 'Feature' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
 const mainComparisonRows = [
-  ['Target Market', 'Startups & nomads', 'Established business owners', 'Growing businesses'],
-  ['Monthly Billing', 'Yes—flexible', 'Annual only', 'Annual only'],
-  ['Medical Maximum', '$250,000', '$1-2 million+', '$1-2 million+'],
-  ['Outpatient Coverage', 'Limited', 'Comprehensive', 'Comprehensive'],
-  ['Preventive Care', 'Not included', 'Included', 'Plan dependent'],
-  ['Mental Health', 'Basic', 'Comprehensive', 'Good coverage'],
-  ['Multi-country Coverage', 'Worldwide', 'Worldwide', 'Regional zones'],
-  ['Team Coverage Option', 'Remote Health (teams)', 'Group plans available', 'Group plans available'],
-  ['Ease of Purchase', 'Online in minutes', 'Broker/application', 'Broker/application'],
+  { feature: 'Startup-friendly', safetywing: 'Built for startups', cigna: 'Enterprise focus', allianz: 'Individual plans' },
+  { feature: 'Monthly payments', safetywing: 'Yes—subscription', cigna: 'Monthly option', allianz: 'Monthly option' },
+  { feature: 'Cash flow friendly', safetywing: 'Very—no annual commit', cigna: 'Less flexible', allianz: 'Moderate' },
+  { feature: 'Team coverage', safetywing: 'Remote Health (teams)', cigna: 'Corporate plans', allianz: 'Group plans' },
+  { feature: 'Visa compliance', safetywing: 'Most countries', cigna: 'Strong', allianz: 'Strong' },
+  { feature: 'Coverage limits', safetywing: '$250,000', cigna: '$1M+', allianz: '$1M+' },
+  { feature: 'Mental health', safetywing: 'Limited', cigna: 'Good', allianz: 'Good' },
+  { feature: 'Maternity', safetywing: 'Limited', cigna: 'Full (waiting period)', allianz: 'Full (waiting period)' },
 ];
 
-const pricingColumns = ['Profile', 'SafetyWing', 'Cigna Global', 'Allianz Care'];
+const pricingColumns = [
+  { key: 'scenario', header: 'Scenario' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
 const pricingRows = [
-  ['Solo founder, 30s', '$576/year', '$3,500-5,000/yr', '$3,000-4,500/yr'],
-  ['Established owner, 40s', '$720/year', '$4,500-6,500/yr', '$4,000-5,800/yr'],
-  ['Small team (5 people)', '$2,880/year', '$15,000-25,000/yr', '$14,000-22,000/yr'],
-  ['High deductible option', 'N/A', '$2,000-3,000/yr', '$1,800-2,800/yr'],
-  ['With US coverage', '$1,200/year', '+$2,000-4,000/yr', '+$1,500-3,000/yr'],
+  { scenario: 'Founder, age 30', safetywing: '$50/mo ($600/yr)', cigna: '$250/mo ($3,000/yr)', allianz: '$220/mo ($2,640/yr)' },
+  { scenario: 'Founder, age 40', safetywing: '$75/mo ($900/yr)', cigna: '$380/mo ($4,560/yr)', allianz: '$320/mo ($3,840/yr)' },
+  { scenario: 'Team of 5 (avg age 32)', safetywing: '$250/mo ($3,000/yr)', cigna: 'Quote required', allianz: 'Quote required' },
+  { scenario: 'With US coverage', safetywing: 'Limited (30 days/90)', cigna: '+40-50%', allianz: '+40-50%' },
+  { scenario: 'Maternity add-on', safetywing: 'Not available', cigna: '+$2,000-4,000/yr', allianz: '+$1,800-3,500/yr' },
 ];
 ---
 
 <PageShell
-  title="SafetyWing vs Cigna vs Allianz: Entrepreneur Insurance Comparison 2025"
-  description="Compare SafetyWing, Cigna, and Allianz for entrepreneurs and business owners abroad. From startup founders to established business owners."
-  headline="SafetyWing vs Cigna vs Allianz"
-  subheadline="Which Provider is Best for Entrepreneurs & Business Owners?"
-  heroImage="/images/compare/entrepreneurs-hero.png"
+  title="SafetyWing vs Cigna vs Allianz: Best for Entrepreneurs 2025"
+  description="Compare SafetyWing, Cigna, and Allianz for entrepreneurs abroad. Startup-friendly pricing, team coverage, cash flow flexibility, and founder protection."
+  headline="SafetyWing vs Cigna vs Allianz: Entrepreneur Insurance"
+  subheadline="Which insurer is best for founders and entrepreneurs abroad? Startup budgets, team coverage, and protection that scales with your business."
+  heroImage="/images/pages/provider-card-generic.png"
   tocItems={tocItems}
   relatedLinks={relatedLinks}
 >
-  <section id="quick-verdict" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Quick Verdict</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-primary-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-primary-800 mb-3">SafetyWing</h3>
-        <p class="text-neutral-700 mb-4">Best for bootstrapped founders and early-stage entrepreneurs who need affordable, flexible coverage while building their business.</p>
-        <p class="text-sm font-medium text-primary-700">From $48/month</p>
-      </div>
-      <div class="bg-purple-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-purple-800 mb-3">Cigna Global</h3>
-        <p class="text-neutral-700 mb-4">Best for established business owners who can afford comprehensive coverage and want premium healthcare access worldwide.</p>
-        <p class="text-sm font-medium text-purple-700">From $3,500/year</p>
-      </div>
-      <div class="bg-green-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-green-800 mb-3">Allianz Care</h3>
-        <p class="text-neutral-700 mb-4">Best balance of comprehensive coverage and value, with good group plan options for entrepreneurs growing their teams.</p>
-        <p class="text-sm font-medium text-green-700">From $3,000/year</p>
-      </div>
-    </div>
-  </section>
+  <h2 id="quick-verdict">Quick Verdict</h2>
 
-  <section id="comparison" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Side-by-Side Comparison</h2>
+  <div class="grid md:grid-cols-3 gap-4 my-6">
+    <div class="bg-primary-50 border-2 border-primary-300 rounded-lg p-5">
+      <p class="text-xs font-semibold text-primary-600 uppercase tracking-wide mb-1">Best for Early Stage</p>
+      <p class="text-xl font-bold text-neutral-900 mb-2">SafetyWing</p>
+      <p class="text-sm text-neutral-600 mb-3">Built for startups with monthly subscription. Most affordable option. Cancel anytime—perfect for uncertain runway.</p>
+      <a href="/providers/safetywing" class="inline-block w-full text-center bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">Learn More</a>
+    </div>
+    <div class="bg-purple-50 border-2 border-purple-300 rounded-lg p-5">
+      <p class="text-xs font-semibold text-purple-600 uppercase tracking-wide mb-1">Best for Funded Startups</p>
+      <p class="text-xl font-bold text-neutral-900 mb-2">Cigna Global</p>
+      <p class="text-sm text-neutral-600 mb-3">Comprehensive coverage for founders who can afford it. Best for post-funding entrepreneurs with families.</p>
+      <a href="/providers/cigna-global" class="inline-block w-full text-center bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">Learn More</a>
+    </div>
+    <div class="bg-orange-50 border-2 border-orange-300 rounded-lg p-5">
+      <p class="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-1">Best Balance</p>
+      <p class="text-xl font-bold text-neutral-900 mb-2">Allianz Care</p>
+      <p class="text-sm text-neutral-600 mb-3">Good coverage at mid-range pricing. Strong visa compliance. Solid choice for established entrepreneurs.</p>
+      <a href="/providers/allianz-care" class="inline-block w-full text-center bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors no-underline" style="color: white !important;">Learn More</a>
+    </div>
+  </div>
+
+  <h2 id="comparison">Side-by-Side Comparison</h2>
+
+  <div class="my-6">
     <ComparisonTable columns={mainComparisonColumns} rows={mainComparisonRows} />
-  </section>
+  </div>
 
-  <section id="safetywing" class="mb-12">
-    <div class="bg-primary-50 rounded-lg p-8">
-      <h2 class="text-3xl font-bold text-primary-800 mb-4">SafetyWing</h2>
-      <p class="text-lg text-neutral-700 mb-6">SafetyWing was built for the startup and remote work community. Their Nomad Insurance and Remote Health products are designed for location-independent entrepreneurs who need flexibility and affordability.</p>
-      
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Entrepreneur Strengths</h3>
-      <ul class="list-disc pl-6 mb-6 space-y-2 text-neutral-700">
-        <li>Extremely affordable—fits bootstrap budgets</li>
-        <li>Monthly billing with no annual commitment</li>
-        <li>Purchase online in minutes without paperwork</li>
-        <li>Works anywhere in the world</li>
-        <li>Remote Health product for small distributed teams</li>
-      </ul>
+  <h2 id="safetywing">SafetyWing</h2>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Limitations</h3>
-      <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-        <li>$250,000 medical maximum—lower than premium options</li>
-        <li>Limited outpatient and preventive care</li>
-        <li>No coverage for pre-existing conditions</li>
-        <li>Mental health coverage is basic</li>
-        <li>May be insufficient for serious health needs</li>
-      </ul>
-    </div>
-  </section>
+  <div class="bg-primary-50 rounded-lg p-6 my-6">
+    <p class="text-lg text-neutral-700 mb-4">SafetyWing was founded by entrepreneurs for entrepreneurs. Their subscription model with no annual commitment is perfect for founders managing uncertain cash flow. They also offer Remote Health for covering distributed teams.</p>
 
-  <section id="cigna" class="mb-12">
-    <div class="bg-purple-50 rounded-lg p-8">
-      <h2 class="text-3xl font-bold text-purple-800 mb-4">Cigna Global</h2>
-      <p class="text-lg text-neutral-700 mb-6">Cigna Global provides premium international health insurance suitable for successful entrepreneurs who prioritize comprehensive healthcare. Their global network and service quality match the expectations of established business owners.</p>
-      
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Entrepreneur Strengths</h3>
-      <ul class="list-disc pl-6 mb-6 space-y-2 text-neutral-700">
-        <li>Comprehensive coverage including preventive care</li>
-        <li>High medical limits ($1-2 million+) for serious situations</li>
-        <li>Excellent mental health coverage—important for high-stress founders</li>
-        <li>Global network works across multiple business locations</li>
-        <li>Professional service matching business owner expectations</li>
-      </ul>
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Entrepreneur Strengths</h3>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-neutral-700">
+      <li>Monthly subscription—no annual commitment</li>
+      <li>Most affordable option ($45-85/month)</li>
+      <li>Cancel anytime—essential for uncertain runway</li>
+      <li>Remote Health product for teams</li>
+      <li>Founded by startup founders</li>
+      <li>Simple, fast signup</li>
+    </ul>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Limitations</h3>
-      <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-        <li>Significant cost—$3,500-6,500+ annually</li>
-        <li>Annual commitment required</li>
-        <li>Application process more complex than SafetyWing</li>
-        <li>May be overkill for early-stage entrepreneurs</li>
-      </ul>
-    </div>
-  </section>
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Limitations</h3>
+    <ul class="list-disc pl-6 space-y-1 text-neutral-700">
+      <li>Lower coverage limit ($250,000)</li>
+      <li>Limited US coverage (30 days/90)</li>
+      <li>No maternity coverage</li>
+      <li>Mental health very limited</li>
+      <li>Not accepted for some visa types</li>
+    </ul>
+  </div>
 
-  <section id="allianz" class="mb-12">
-    <div class="bg-green-50 rounded-lg p-8">
-      <h2 class="text-3xl font-bold text-green-800 mb-4">Allianz Care</h2>
-      <p class="text-lg text-neutral-700 mb-6">Allianz Care offers solid international coverage at competitive prices, making it attractive for entrepreneurs who've outgrown basic coverage but aren't ready for premium pricing. Good group options for growing teams.</p>
-      
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Entrepreneur Strengths</h3>
-      <ul class="list-disc pl-6 mb-6 space-y-2 text-neutral-700">
-        <li>Competitive pricing for comprehensive coverage</li>
-        <li>Flexible plan options to match business growth</li>
-        <li>Good group plans for small teams</li>
-        <li>High deductible options reduce costs</li>
-        <li>Strong European network for EU-based entrepreneurs</li>
-      </ul>
+  <h2 id="cigna">Cigna Global</h2>
 
-      <h3 class="text-xl font-semibold text-neutral-800 mb-3">Limitations</h3>
-      <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-        <li>Regional zone pricing complicates multi-country operations</li>
-        <li>Mental health coverage varies by plan</li>
-        <li>Less flexible than SafetyWing for nomadic entrepreneurs</li>
-        <li>Annual commitment required</li>
-      </ul>
-    </div>
-  </section>
+  <div class="bg-purple-50 rounded-lg p-6 my-6">
+    <p class="text-lg text-neutral-700 mb-4">Cigna Global offers comprehensive coverage for entrepreneurs who've raised funding or have stable revenue. Their higher coverage limits and maternity options suit founders planning families or needing premium protection.</p>
+
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Entrepreneur Strengths</h3>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-neutral-700">
+      <li>Comprehensive coverage ($1M+ limits)</li>
+      <li>Full maternity coverage available</li>
+      <li>Good mental health benefits</li>
+      <li>Corporate plans for growing teams</li>
+      <li>Strong visa compliance</li>
+      <li>Global network for mobile founders</li>
+    </ul>
+
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Limitations</h3>
+    <ul class="list-disc pl-6 space-y-1 text-neutral-700">
+      <li>Expensive—5-6x SafetyWing cost</li>
+      <li>Annual commitment typically required</li>
+      <li>Corporate feel—not startup-focused</li>
+      <li>Complex plan structures</li>
+    </ul>
+  </div>
+
+  <h2 id="allianz">Allianz Care</h2>
+
+  <div class="bg-orange-50 rounded-lg p-6 my-6">
+    <p class="text-lg text-neutral-700 mb-4">Allianz Care offers a middle ground for entrepreneurs—better coverage than SafetyWing at lower cost than Cigna. Good for established entrepreneurs who want comprehensive protection without enterprise pricing.</p>
+
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Entrepreneur Strengths</h3>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-neutral-700">
+      <li>Mid-range pricing with good coverage</li>
+      <li>Monthly payment options available</li>
+      <li>Maternity coverage with waiting period</li>
+      <li>Good mental health coverage</li>
+      <li>Strong visa compliance</li>
+      <li>Group plans for small teams</li>
+    </ul>
+
+    <h3 class="text-lg font-semibold text-neutral-800 mb-3">Limitations</h3>
+    <ul class="list-disc pl-6 space-y-1 text-neutral-700">
+      <li>Not as startup-focused as SafetyWing</li>
+      <li>Annual terms more common</li>
+      <li>Less flexible than subscription model</li>
+      <li>Network weaker outside Europe</li>
+    </ul>
+  </div>
 
   <CTABox
-    title="Building a Business Abroad?"
-    description="Get coverage that matches your business stage—from bootstrapped startup to established enterprise."
+    title="Find Coverage for Your Entrepreneurial Journey"
+    description="Compare plans that fit founder budgets. From bootstrapped to funded—insurance that scales with your business."
     buttonText="Compare Entrepreneur Plans"
-    buttonHref="/insurance-for/entrepreneurs"
+    buttonHref="/best/expat-health-insurance"
   />
 
-  <section id="pricing" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Pricing Comparison</h2>
-    <p class="text-neutral-600 mb-6">Estimated costs for entrepreneurs at different stages. Prices vary by age, location, and coverage selections.</p>
+  <h2 id="pricing">Pricing Comparison</h2>
+
+  <p class="text-neutral-600 mb-4">Monthly and annual costs for entrepreneurs. SafetyWing's subscription model offers dramatically lower upfront costs.</p>
+
+  <div class="my-6">
     <ComparisonTable columns={pricingColumns} rows={pricingRows} />
-    <p class="text-sm text-neutral-500 mt-4">SafetyWing Nomad Insurance pricing. Cigna and Allianz ranges reflect different coverage tiers. Team pricing assumes similar-age employees.</p>
-  </section>
+  </div>
 
-  <section id="entrepreneur-details" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Entrepreneur Coverage Considerations</h2>
-    
-    <div class="space-y-6">
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Business Stage Matters</h3>
-        <p class="text-neutral-700">Early-stage founders often need to minimize costs while building—SafetyWing at $576/year makes sense. Once you're generating significant revenue, the additional $3,000-5,000 for comprehensive coverage becomes worthwhile. The transition typically happens when your business can comfortably afford proper healthcare as an operating expense.</p>
-      </div>
+  <p class="text-sm text-neutral-500">SafetyWing is 3-5x cheaper than traditional insurers. The trade-off is lower coverage limits and fewer benefits. As your business grows, you may want to upgrade to more comprehensive coverage.</p>
 
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Mental Health for Founders</h3>
-        <p class="text-neutral-700">Entrepreneurship is stressful. Burnout, anxiety, and depression affect many founders. SafetyWing's basic mental health coverage may not suffice for those needing ongoing support. Cigna's comprehensive mental health benefits, including therapy and psychiatric care, provide better support for high-pressure founder lifestyles.</p>
-      </div>
+  <h2 id="entrepreneur-considerations">Entrepreneur Considerations</h2>
 
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Team Coverage Considerations</h3>
-        <p class="text-neutral-700">When hiring employees, health coverage becomes a competitive benefit. SafetyWing Remote Health offers affordable team coverage ($199/month for 5 employees). Cigna and Allianz group plans provide more comprehensive benefits that attract senior talent. Consider what coverage level helps you compete for the best people.</p>
-      </div>
-
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Multi-country Operations</h3>
-        <p class="text-neutral-700">Many entrepreneurs work from multiple countries or relocate frequently. SafetyWing and Cigna handle this seamlessly with worldwide coverage. Allianz's regional zones can complicate coverage if you frequently move between regions. Ensure your plan covers all countries where you operate.</p>
-      </div>
-
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-neutral-800 mb-3">Business Expense Considerations</h3>
-        <p class="text-neutral-700">International health insurance is typically tax-deductible as a business expense for self-employed entrepreneurs. This can effectively reduce the cost by your marginal tax rate. Higher-quality coverage becomes more attractive when you factor in tax benefits. Consult your accountant for specific guidance.</p>
-      </div>
+  <div class="space-y-4 my-6">
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Cash Flow Management</h3>
+      <p class="text-neutral-700">Startup cash flow is unpredictable. SafetyWing's monthly subscription with no annual commitment preserves cash. Cigna and Allianz typically require annual commitments or charge premiums for monthly payment. When runway is uncertain, flexibility matters more than comprehensive coverage.</p>
     </div>
-  </section>
 
-  <section id="best-for" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Best For</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-primary-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-primary-800 mb-3">Choose SafetyWing If:</h3>
-        <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-          <li>You're bootstrapping and budget-conscious</li>
-          <li>You need flexible monthly billing</li>
-          <li>You're generally healthy with no major conditions</li>
-          <li>You prioritize simplicity over comprehensiveness</li>
-          <li>You're early-stage with limited revenue</li>
-        </ul>
-      </div>
-      <div class="bg-purple-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-purple-800 mb-3">Choose Cigna If:</h3>
-        <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-          <li>Your business generates solid revenue</li>
-          <li>You want comprehensive coverage</li>
-          <li>Mental health support matters to you</li>
-          <li>You have or expect to have health needs</li>
-          <li>Premium service quality is important</li>
-        </ul>
-      </div>
-      <div class="bg-green-50 rounded-lg p-6">
-        <h3 class="text-xl font-semibold text-green-800 mb-3">Choose Allianz If:</h3>
-        <ul class="list-disc pl-6 space-y-2 text-neutral-700">
-          <li>You want good coverage at competitive prices</li>
-          <li>You're building a team and need group options</li>
-          <li>You're based primarily in Europe</li>
-          <li>High deductible plans appeal to you</li>
-          <li>You want middle-ground between basic and premium</li>
-        </ul>
-      </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Coverage as You Scale</h3>
+      <p class="text-neutral-700">Many founders start with SafetyWing and upgrade as their business grows. Post-Series A, comprehensive coverage becomes affordable and worthwhile. Cigna and Allianz offer corporate plans for growing teams. Your insurance needs evolve with your company—don't overcommit early, but don't stay underinsured as you scale.</p>
     </div>
-  </section>
 
-  <section id="faqs" class="mb-12">
-    <h2 class="text-3xl font-bold text-neutral-800 mb-6">Frequently Asked Questions</h2>
-    <div class="space-y-6">
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">Should I get individual coverage or a group plan for my small team?</h3>
-        <p class="text-neutral-700">For 1-3 people, individual plans are often simpler. At 5+ employees, group plans typically provide better rates and easier administration. SafetyWing Remote Health works well for small distributed teams. Cigna and Allianz group plans become cost-effective at larger team sizes.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">Can I upgrade from SafetyWing to Cigna later?</h3>
-        <p class="text-neutral-700">Yes, you can switch providers. However, any conditions that developed while on SafetyWing would be considered pre-existing by Cigna. It's often better to upgrade before health issues develop. There's no formal transition process—simply purchase the new policy and cancel the old one.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">Is health insurance tax deductible for entrepreneurs?</h3>
-        <p class="text-neutral-700">In most jurisdictions, health insurance is a deductible business expense for self-employed individuals. US entrepreneurs can typically deduct 100% of health insurance premiums. Rules vary by country—consult a tax professional familiar with your tax situation.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">What coverage do I need for investor meetings in the US?</h3>
-        <p class="text-neutral-700">Short US trips for meetings are typically covered under worldwide plans. Extended US stays (especially if raising from US investors) may need US-specific coverage given high healthcare costs. Cigna and Allianz offer robust US coverage. SafetyWing's US coverage has limitations—check the fine print.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">How do I provide insurance for international contractors?</h3>
-        <p class="text-neutral-700">Contractors are typically responsible for their own insurance. However, offering coverage as a benefit can help attract talent. SafetyWing Remote Health is popular for contractor teams. For employees (not contractors), local labor laws may require specific coverage—check local requirements.</p>
-      </div>
-      <div class="bg-white border border-neutral-200 rounded-lg p-6">
-        <h3 class="font-semibold text-neutral-800 mb-2">What if I need to return home for medical treatment?</h3>
-        <p class="text-neutral-700">Cigna and Allianz include home country coverage options. SafetyWing covers 30 days per 90-day period in your home country. For serious conditions, your insurer's case management team can arrange treatment in your home country or appropriate medical center.</p>
-      </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Team Coverage</h3>
+      <p class="text-neutral-700">Building a remote team? SafetyWing's Remote Health covers distributed teams affordably. Cigna and Allianz offer group plans but at higher cost. Team coverage can be a recruiting advantage—especially for competitive talent markets. Consider insurance as part of your compensation package.</p>
     </div>
-  </section>
 
-  <div class="bg-neutral-100 rounded-lg p-6 mb-12">
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Visa and Residency Requirements</h3>
+      <p class="text-neutral-700">Entrepreneur visas often require health insurance. Portugal's D2, Spain's entrepreneur visa, Germany's self-employment visa—all have requirements. Cigna and Allianz have strong visa compliance. SafetyWing works for most but may not be accepted everywhere. Verify requirements before choosing.</p>
+    </div>
+
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2">Founder Family Planning</h3>
+      <p class="text-neutral-700">Planning to start a family while building your company? SafetyWing doesn't offer maternity. Cigna and Allianz have maternity coverage with waiting periods (10-12 months). If family planning is on your horizon, factor this into your choice—or plan to upgrade before conception.</p>
+    </div>
+  </div>
+
+  <h2 id="best-for">Best For</h2>
+
+  <div class="grid md:grid-cols-3 gap-4 my-6">
+    <div class="bg-primary-50 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-primary-800 mb-3">Choose SafetyWing If:</h3>
+      <ul class="list-disc pl-5 space-y-1 text-neutral-700 text-sm">
+        <li>You're bootstrapped or early-stage</li>
+        <li>Cash flow flexibility is essential</li>
+        <li>You're young and healthy</li>
+        <li>No US coverage needed</li>
+        <li>No near-term family plans</li>
+      </ul>
+    </div>
+    <div class="bg-purple-50 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-purple-800 mb-3">Choose Cigna If:</h3>
+      <ul class="list-disc pl-5 space-y-1 text-neutral-700 text-sm">
+        <li>You've raised funding</li>
+        <li>Comprehensive coverage matters</li>
+        <li>You're planning a family</li>
+        <li>Mental health support needed</li>
+        <li>You have a growing team</li>
+      </ul>
+    </div>
+    <div class="bg-orange-50 rounded-lg p-5">
+      <h3 class="text-lg font-semibold text-orange-800 mb-3">Choose Allianz If:</h3>
+      <ul class="list-disc pl-5 space-y-1 text-neutral-700 text-sm">
+        <li>You want balanced value</li>
+        <li>European base</li>
+        <li>Revenue stable but not huge</li>
+        <li>Good coverage without premium cost</li>
+        <li>Strong visa compliance needed</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="faqs">Frequently Asked Questions</h2>
+
+  <div class="space-y-4 my-6">
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Should I use personal or business funds for insurance?</h3>
+      <p class="text-neutral-700">Most founders pay personally, especially early-stage. As your company formalizes, health insurance can become a company expense—often tax-advantaged. Consult your accountant about the best structure. Corporate-paid insurance may be taxable income in some jurisdictions.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Can I get an entrepreneur visa with SafetyWing?</h3>
+      <p class="text-neutral-700">SafetyWing works for many entrepreneur visas but not all. Some countries require minimum coverage levels or specific documentation SafetyWing can't provide. Cigna and Allianz have stronger visa compliance. Verify your specific visa requirements—the wrong insurance can delay or derail your application.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">What if my startup fails—can I cancel insurance easily?</h3>
+      <p class="text-neutral-700">SafetyWing allows cancellation anytime—month-to-month flexibility. Cigna and Allianz typically have annual terms, though you can sometimes exit with penalties. If startup failure is a real risk (it always is), SafetyWing's flexibility provides valuable optionality.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Should I insure my co-founders and early team?</h3>
+      <p class="text-neutral-700">Insurance can be a recruiting and retention tool. SafetyWing's Remote Health makes team coverage affordable. As you grow, comprehensive corporate coverage becomes expected. Early-stage, it's often a founder decision whether to provide coverage or let team members self-insure.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">When should I upgrade from SafetyWing to comprehensive coverage?</h3>
+      <p class="text-neutral-700">Common triggers: raising significant funding, starting a family, developing health conditions that make $250K limits inadequate, or needing visa-compliant coverage SafetyWing can't provide. Many founders upgrade post-Series A when comprehensive coverage becomes affordable relative to company resources.</p>
+    </div>
+    <div class="bg-white border border-neutral-200 rounded-lg p-5">
+      <h3 class="font-semibold text-neutral-800 mb-2">Is founder burnout and mental health covered?</h3>
+      <p class="text-neutral-700">SafetyWing has very limited mental health coverage. Cigna and Allianz offer good coverage including therapy sessions. Founder mental health is real—building companies is stressful. If you anticipate needing mental health support, choose Cigna or Allianz despite higher costs.</p>
+    </div>
+  </div>
+
+  <div class="bg-neutral-100 rounded-lg p-5 my-6">
     <p class="text-sm text-neutral-600">
-      <strong>Disclaimer:</strong> Insurance needs vary based on individual circumstances, business structure, and location. This comparison is for informational purposes only. Verify current coverage options, pricing, and terms directly with providers. Consider consulting an insurance broker for complex business situations.
+      <strong>Disclaimer:</strong> Entrepreneur insurance needs vary by business stage, location, and personal circumstances. Tax treatment of insurance premiums depends on business structure and jurisdiction. Visa requirements should be verified independently. Coverage options and pricing change regularly.
     </p>
   </div>
 </PageShell>
