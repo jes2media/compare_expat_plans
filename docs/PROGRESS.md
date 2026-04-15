@@ -13,7 +13,7 @@ Last updated: April 15, 2026
 - **Visa × Country pages:** 181 (33 DNV + 17 Retirement + 34 Student + 38 Freelancer + 40 Investor + 18 Work Permit)
 - **Country pages:** 22 (core landing pages)
 - **Compare pages:** 29 (country vs country) + 183 provider comparisons
-- **Insurance-for (Personas):** 25 audience-specific pages
+- **Insurance-for (Personas):** 31 audience-specific pages (25 base + 6 seniors country pages)
 - **Provider pages:** 9 (long-form reviews)
 - **"Best" comparison pages:** 51
 
@@ -95,6 +95,17 @@ Seniors/retirees content expansion (highest engagement audience per GA data)
 ---
 
 ## Completed Milestones
+
+### April 15, 2026 - Seniors Country Pages Expansion
+Created 6 static seniors insurance guides for top retirement destinations:
+- `/insurance-for/seniors/in/portugal` - D7 visa, SNS access, provider options
+- `/insurance-for/seniors/in/spain` - Non-lucrative visa, Sanitas, strict insurance requirements
+- `/insurance-for/seniors/in/mexico` - IMSS, GeoBlue for Americans, affordable healthcare
+- `/insurance-for/seniors/in/thailand` - LTR visa, Pacific Cross, medical tourism
+- `/insurance-for/seniors/in/greece` - Golden Visa, AMKA, island considerations
+- `/insurance-for/seniors/in/colombia` - EPS system, Medellín expat community
+
+These pages target the high-engagement senior audience identified in GA data.
 
 ### April 15, 2026 - Freelancer Visa + Provider Comparison Expansion
 
