@@ -1,0 +1,694 @@
+---
+/**
+ * GeoBlue vs Now Health International - Provider Comparison
+ * US Blue Cross network vs Asia-Pacific specialist
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Direct Billing', level: 2 },
+  { id: 'regional-strengths', text: 'Regional Strengths', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'real-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'GeoBlue Review', href: '/providers/geoblue' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Best US Expat Insurance', href: '/best/us-expat-insurance' },
+  { title: 'Mexico Insurance Guide', href: '/countries/mexico/insurance' },
+  { title: 'Thailand Insurance Guide', href: '/countries/thailand/insurance' },
+];
+
+const coverageColumns = [
+  { key: 'feature', header: 'Coverage Feature' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const coverageRows = [
+  { feature: 'Inpatient Hospital', geoblue: 'Up to $5M (Xplorer)', nowhealth: 'Up to $2.6M' },
+  { feature: 'Outpatient Care', geoblue: 'Full coverage', nowhealth: 'Full coverage' },
+  { feature: 'Mental Health', geoblue: 'Included (varies by plan)', nowhealth: 'Included (enhanced)' },
+  { feature: 'Maternity', geoblue: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Dental', geoblue: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Vision', geoblue: 'Optional add-on', nowhealth: 'Included in some plans' },
+  { feature: 'Wellness/Preventive', geoblue: 'Included', nowhealth: 'Included' },
+  { feature: 'Medical Evacuation', geoblue: '$500K - $1M', nowhealth: 'Up to $1M' },
+  { feature: 'Alternative Medicine', geoblue: 'Limited', nowhealth: 'Traditional Chinese Medicine included' },
+  { feature: 'US Coverage', geoblue: 'Excellent (BCBS network)', nowhealth: 'Limited (add-on)' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30 (excl. US)', geoblue: '$120-180/mo', nowhealth: '$120-170/mo' },
+  { profile: 'Single, Age 40 (excl. US)', geoblue: '$180-260/mo', nowhealth: '$180-250/mo' },
+  { profile: 'Single, Age 50 (excl. US)', geoblue: '$300-420/mo', nowhealth: '$280-380/mo' },
+  { profile: 'Single, Age 30 (incl. US)', geoblue: '$200-320/mo', nowhealth: '$200-300/mo' },
+  { profile: 'Family of 4 (incl. US)', geoblue: '$600-900/mo', nowhealth: '$520-700/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const networkRows = [
+  { region: 'Global Network Size', geoblue: '1.5M+ (via BCBS alliance)', nowhealth: '900K+ providers' },
+  { region: 'United States', geoblue: 'Excellent (BCBS native)', nowhealth: 'Limited' },
+  { region: 'Europe', geoblue: 'Strong', nowhealth: 'Good' },
+  { region: 'Hong Kong', geoblue: 'Good', nowhealth: 'Excellent (HQ)' },
+  { region: 'Singapore', geoblue: 'Good', nowhealth: 'Excellent' },
+  { region: 'UAE/Middle East', geoblue: 'Good', nowhealth: 'Excellent' },
+  { region: 'Latin America', geoblue: 'Strong', nowhealth: 'Good' },
+  { region: 'Thailand', geoblue: 'Good', nowhealth: 'Strong' },
+  { region: 'Direct Billing', geoblue: 'Excellent globally', nowhealth: 'Strong in Asia' },
+];
+
+const plansColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'geoblue', header: 'GeoBlue' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const plansRows = [
+  { tier: 'Entry Level', geoblue: 'Xplorer Essential', nowhealth: 'WorldCare Lite' },
+  { tier: 'Mid-Range', geoblue: 'Xplorer', nowhealth: 'WorldCare Classic' },
+  { tier: 'Comprehensive', geoblue: 'Xplorer Premier', nowhealth: 'WorldCare Prestige' },
+  { tier: 'Deductible Range', geoblue: '$0 - $5,000', nowhealth: '$0 - $5,000' },
+  { tier: 'Annual Maximum', geoblue: '$1M - $5M', nowhealth: '$2.6M (Prestige)' },
+  { tier: 'Lifetime Maximum', geoblue: '$5M - Unlimited', nowhealth: 'Unlimited' },
+];
+---
+
+<PageShell
+  title="GeoBlue vs Now Health 2026: Complete Comparison for Expats"
+  description="In-depth comparison of GeoBlue and Now Health International for expats. US coverage via Blue Cross network vs Asia-Pacific expertise. Coverage, pricing, and which to choose."
+  headline="GeoBlue vs Now Health: Which Is Better for You?"
+  subheadline="Blue Cross Blue Shield's global arm meets Hong Kong's Asia-Pacific specialist. Two different approaches for different expat needs."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref="/go/geoblue"
+  heroBackgroundImage="/images/pages/provider-card-generic.png"
+>
+
+  <!-- Quick Verdict Box -->
+  <section id="quick-verdict" class="scroll-mt-24 mb-12">
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-xl p-6">
+      <h2 class="text-2xl font-bold text-primary-900 mb-4">Quick Verdict</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose GeoBlue If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're American and want BCBS network access</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need strong US coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value direct billing in the US</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Latin America or Europe</span>
+            </li>
+          </ul>
+          <a href="/go/geoblue" class="mt-4 inline-block bg-primary-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get GeoBlue Quote →
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Now Health If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Asia or Middle East</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You don't need US coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value Traditional Chinese Medicine</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want enhanced mental health benefits</span>
+            </li>
+          </ul>
+          <a href="/go/now-health" class="mt-4 inline-block bg-white text-primary-700 font-semibold px-5 py-2 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+            Get Now Health Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      GeoBlue and Now Health represent two different philosophies in international health insurance. GeoBlue is the global arm of Blue Cross Blue Shield, America's most recognized health insurance brand, offering expats seamless access to the US healthcare system alongside worldwide coverage. Now Health, founded in Hong Kong by industry veterans, focuses on delivering expert service and value in Asia-Pacific and Middle East markets.
+    </p>
+
+    <p class="mb-4">
+      For Americans abroad, GeoBlue is often the default consideration—the Blue Cross name is familiar and trusted. But if you're not American, or you're based in Asia without US ties, Now Health frequently delivers better value and regional expertise.
+    </p>
+
+    <p class="mb-6">
+      Both are legitimate, well-established insurers. GeoBlue benefits from BCBS's massive network and brand trust. Now Health benefits from focused expertise in high-cost healthcare markets like Hong Kong and Singapore where attention to detail matters.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">GeoBlue at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Blue Cross Blue Shield Association</li>
+          <li><strong>Founded:</strong> 2008 (BCBS dates to 1929)</li>
+          <li><strong>Network:</strong> 1.5M+ via BCBS Global Core</li>
+          <li><strong>Headquarters:</strong> King of Prussia, Pennsylvania, USA</li>
+          <li><strong>Best For:</strong> Americans abroad, US coverage needs</li>
+          <li><strong>Pricing:</strong> Mid-to-premium tier</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Now Health at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Now Health International</li>
+          <li><strong>Founded:</strong> 2012 (by Cigna/Aetna veterans)</li>
+          <li><strong>Network:</strong> 900K+ providers</li>
+          <li><strong>Headquarters:</strong> Hong Kong</li>
+          <li><strong>Best For:</strong> Asia/Middle East expats, value seekers</li>
+          <li><strong>Pricing:</strong> Competitive mid-tier</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Comparison -->
+  <section id="coverage-comparison" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison</h2>
+
+    <p class="mb-4">
+      Both insurers offer comprehensive international health coverage. GeoBlue provides higher maximum limits and superior US integration, while Now Health includes unique benefits like Traditional Chinese Medicine and enhanced mental health coverage.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Plan Tiers Compared</h3>
+
+    <ComparisonTable columns={plansColumns} rows={plansRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Key difference:</strong> GeoBlue's connection to Blue Cross Blue Shield gives it unmatched US coverage—virtually every US hospital accepts BCBS. Now Health's advantage is regional expertise in Asia and included benefits like TCM that GeoBlue doesn't offer.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Coverage Highlights</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-5">
+        <h4 class="font-semibold text-green-900 mb-3">GeoBlue Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ BCBS network access (US gold standard)</li>
+          <li>✓ Higher coverage maximums (up to $5M)</li>
+          <li>✓ Excellent US direct billing</li>
+          <li>✓ Familiar US-style coverage structure</li>
+          <li>✓ Strong Latin America coverage</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-5">
+        <h4 class="font-semibold text-blue-900 mb-3">Now Health Strengths</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Traditional Chinese Medicine coverage</li>
+          <li>✓ Enhanced mental health benefits</li>
+          <li>✓ Vision included in some plans</li>
+          <li>✓ Superior Asia hospital relationships</li>
+          <li>✓ Often better pricing in Asia</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- First CTA -->
+  <CTABox
+    variant="highlight"
+    title="Ready to compare quotes?"
+    description="Get personalized pricing from both GeoBlue and Now Health based on your specific situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/go/geoblue"
+  />
+
+  <!-- Pricing -->
+  <section id="pricing" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing Breakdown</h2>
+
+    <p class="mb-4">
+      GeoBlue and Now Health are competitively priced for their respective markets. GeoBlue tends to be slightly more expensive, reflecting the BCBS brand premium and comprehensive US coverage. Now Health often undercuts GeoBlue by 10-15% for Asia-based expats.
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Pricing note:</strong> GeoBlue's pricing includes robust US coverage—you pay for it whether you use it or not. If you don't need US coverage, Now Health often provides better value. But for Americans with US ties, GeoBlue's US integration is worth the premium.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Deductible Options</h3>
+
+    <p class="mb-4">
+      Both insurers offer similar deductible structures with comparable premium discounts:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">GeoBlue Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$250 — ~10% discount</li>
+          <li>$500 — ~15% discount</li>
+          <li>$1,000 — ~22% discount</li>
+          <li>$2,500 — ~30% discount</li>
+          <li>$5,000 — ~38% discount</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~15% discount</li>
+          <li>$1,500 — ~25% discount</li>
+          <li>$3,000 — ~35% discount</li>
+          <li>$5,000 — ~40% discount</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Network & Direct Billing -->
+  <section id="network-access" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network & Direct Billing</h2>
+
+    <p class="mb-4">
+      GeoBlue's connection to Blue Cross Blue Shield gives it exceptional network strength, especially in the US. Now Health's smaller but focused network excels in Asia-Pacific where they've cultivated deep hospital relationships.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Direct Billing Experience</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">GeoBlue Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          GeoBlue's BCBS connection means virtually every US hospital accepts direct billing. Show your GeoBlue card and the hospital handles the rest. This is GeoBlue's killer feature for Americans.
+        </p>
+        <p class="text-neutral-600">
+          Internationally, GeoBlue's Global Core network offers direct billing at major hospitals in most countries. Not as seamless as in the US, but still smooth at partner facilities.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Now Health excels at direct billing in Asia-Pacific. Hong Kong, Singapore, Thailand, and UAE hospitals know them well. Their local teams maintain personal relationships with hospital billing departments.
+        </p>
+        <p class="text-neutral-600">
+          In the US, Now Health's direct billing is more limited. Members typically pay upfront and file for reimbursement, which Now Health processes efficiently but isn't as smooth as GeoBlue's native US coverage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Strengths -->
+  <section id="regional-strengths" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Regional Strengths</h2>
+
+    <p class="mb-6">
+      Your location strongly influences which insurer serves you better:
+    </p>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">United States</h3>
+        <p class="text-neutral-600"><strong>Winner: GeoBlue (clearly)</strong> — GeoBlue IS Blue Cross Blue Shield internationally. Every US hospital that accepts BCBS (virtually all of them) accepts GeoBlue. For US coverage, nothing beats this connection. Now Health can add US coverage, but it's not comparable.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Latin America & Caribbean</h3>
+        <p class="text-neutral-600"><strong>Winner: GeoBlue</strong> — GeoBlue has strong presence in Mexico, Costa Rica, Panama, and Caribbean nations popular with American retirees. Now Health covers these areas but isn't specialized.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Hong Kong & Singapore</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's home turf. Superior hospital relationships and local expertise. Better value in these expensive healthcare markets. GeoBlue works but isn't optimized for Asia.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">UAE & Middle East</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health has expanded aggressively in Dubai and Abu Dhabi. Better hospital networks and often better pricing. GeoBlue is adequate but less specialized.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thailand & Southeast Asia</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — TCM coverage is valuable here. Better Bangkok hospital relationships. Now Health's regional expertise shows. GeoBlue covers the region adequately but without regional specialization.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Europe</h3>
+        <p class="text-neutral-600"><strong>Winner: GeoBlue (slight edge)</strong> — Both are adequate for Europe. GeoBlue's larger network gives it an edge. Neither specializes in Europe—consider Allianz or AXA for Europe-focused coverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claims Experience -->
+  <section id="claims-experience" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+
+    <p class="mb-4">
+      Both insurers process claims professionally. GeoBlue benefits from BCBS infrastructure; Now Health benefits from regional expertise and smaller scale allowing personal attention.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">GeoBlue Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email</li>
+          <li><strong>Processing time:</strong> 5-10 business days</li>
+          <li><strong>Reimbursement:</strong> Direct deposit, check</li>
+          <li><strong>Languages:</strong> English, Spanish</li>
+          <li><strong>24/7 support:</strong> Yes</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          GeoBlue's mobile app is excellent—modern, easy to use, with real-time claims tracking. Their 24/7 support line is staffed by knowledgeable agents. The BCBS brand means established processes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email</li>
+          <li><strong>Processing time:</strong> 5-7 business days</li>
+          <li><strong>Reimbursement:</strong> Direct deposit preferred</li>
+          <li><strong>Languages:</strong> English, Chinese, Arabic</li>
+          <li><strong>Support hours:</strong> Extended hours (Asia-focused)</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Now Health's Hong Kong team handles claims efficiently. Members report good communication and fast turnaround in Asia. Chinese and Arabic language support serves their core markets well.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Both perform well:</strong> Neither has significant claims complaints. GeoBlue's app and 24/7 support are slightly more polished. Now Health's regional teams provide more personalized service in Asia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Second CTA -->
+  <CTABox
+    title="Get personalized quotes from both providers"
+    description="Compare actual pricing for your specific situation—age, location, coverage needs, and family size."
+    buttonText="Compare Quotes Now"
+    buttonHref="/go/geoblue"
+  />
+
+  <!-- Pre-existing Conditions -->
+  <section id="pre-existing-conditions" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pre-existing Conditions</h2>
+
+    <p class="mb-4">
+      Both insurers require medical underwriting with similar approaches to pre-existing conditions.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">GeoBlue Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Full medical underwriting</li>
+          <li>• Case-by-case evaluation</li>
+          <li>• May exclude, load premium, or add waiting periods</li>
+          <li>• Typically 12-24 month wait for pre-existing</li>
+          <li>• Some plans offer "look-back" periods</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Medical underwriting required</li>
+          <li>• Individual assessment</li>
+          <li>• Exclusions or premium loading possible</li>
+          <li>• Generally 24-month wait for pre-existing</li>
+          <li>• Some flexibility for group transitions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Always disclose pre-existing conditions fully. Non-disclosure can void your policy. Both insurers investigate claims related to pre-existing conditions carefully.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="real-scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how each insurer typically performs in realistic expat situations:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Retiree in Costa Rica</h3>
+        <p class="text-neutral-600 mb-3">68-year-old, needs coverage for annual US visits to doctors. Familiar with Blue Cross from career.</p>
+        <p class="text-green-700 font-medium">→ <strong>GeoBlue Xplorer</strong> — BCBS familiarity plus excellent US coverage. Can see US doctors seamlessly during visits home. Costa Rica coverage is strong. Brand trust matters for retirees.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Entrepreneur in Singapore</h3>
+        <p class="text-neutral-600 mb-3">42-year-old, no US ties. Values comprehensive coverage and local expertise.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Singapore is Now Health's strength. No need for US coverage means better value. Better local hospital relationships. Clear choice for this scenario.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Tech Worker in Amsterdam</h3>
+        <p class="text-neutral-600 mb-3">35-year-old, healthy, visits family in US twice yearly. Company provides insurance budget.</p>
+        <p class="text-green-700 font-medium">→ <strong>GeoBlue Xplorer</strong> — US visits require solid US coverage. BCBS network means easy doctor access in US. Europe coverage adequate. Worth paying for BCBS connection.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Couple in Thailand</h3>
+        <p class="text-neutral-600 mb-3">Both 55, use Traditional Chinese Medicine. No Americas travel planned.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — TCM coverage is valuable for their lifestyle. Thailand is Now Health territory. No need for US coverage. Better value and regional expertise.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Family in Dubai</h3>
+        <p class="text-neutral-600 mb-3">Family of 4, kids in school. Parents age 40. Visit US grandparents annually.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Either works—compare quotes</strong> — GeoBlue provides better US coverage for annual visits. Now Health provides better Dubai expertise. Family pricing may favor one over the other. Get actual quotes.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Canadian Digital Nomad in Hong Kong</h3>
+        <p class="text-neutral-600 mb-3">28-year-old, healthy, no US ties. Budget-conscious but wants quality coverage.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Lite</strong> — Hong Kong is Now Health's home turf. Better pricing without US coverage overhead. Strong local coverage. GeoBlue's BCBS advantage doesn't help a Canadian.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Choose Which -->
+  <section id="who-should-choose" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose Which</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">Choose GeoBlue If You:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are American and value BCBS network</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need strong US coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Visit the US regularly</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Latin America or Caribbean</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want familiar US-style insurance</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value 24/7 English support</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want higher coverage maximums ($5M)</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Choose Now Health If You:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Asia/Middle East long-term</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Don't need US coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value Traditional Chinese Medicine</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want enhanced mental health coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer regional expertise over global brand</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are in Hong Kong, Singapore, or UAE</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want better value without US coverage premium</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      GeoBlue and Now Health serve different markets with different strengths. The choice is clearer than many comparisons: it depends heavily on your nationality and US coverage needs.
+    </p>
+
+    <p class="mb-4">
+      <strong>GeoBlue</strong> is the natural choice for Americans abroad. The Blue Cross Blue Shield connection means seamless US coverage—no other international insurer can match this. If you're American and visit the US regularly, GeoBlue's premium is worth it.
+    </p>
+
+    <p class="mb-4">
+      <strong>Now Health</strong> is the smarter choice for non-Americans in Asia and Middle East who don't need US coverage. Their regional expertise, TCM coverage, and better pricing serve these markets better than GeoBlue's US-focused offering.
+    </p>
+
+    <p class="mb-6">
+      The exception: Americans in Asia who rarely visit the US might find Now Health sufficient. But if you value the BCBS safety net for any potential US healthcare needs, GeoBlue remains the safer choice.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        GeoBlue for Americans and those needing US coverage. Now Health for Asia/Middle East expats without US ties. Both are solid insurers—match their strengths to your nationality and location.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/geoblue" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get GeoBlue Quote →
+        </a>
+        <a href="/go/now-health" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Now Health Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is GeoBlue the same as Blue Cross Blue Shield?</h3>
+        <p class="text-neutral-600">
+          GeoBlue is the international health insurance arm of Blue Cross Blue Shield. It's part of the BCBS Association and uses BCBS networks, but is specifically designed for expats and travelers. Your GeoBlue card works at BCBS providers in the US.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can non-Americans use GeoBlue?</h3>
+        <p class="text-neutral-600">
+          Yes, GeoBlue accepts non-US citizens. However, GeoBlue's main advantage—BCBS network access—is most valuable for those who need US healthcare. Non-Americans without US ties often find better value elsewhere.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which is better for families?</h3>
+        <p class="text-neutral-600">
+          Depends on location and nationality. For American families abroad, GeoBlue provides valuable US coverage for visits home. For non-American families in Asia, Now Health typically offers better value and regional coverage.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between them?</h3>
+        <p class="text-neutral-600">
+          Yes, but you'll undergo new underwriting. Pre-existing conditions developed on one plan become pre-existing on the other with typical 24-month waiting periods. Neither guarantees accepting your previous coverage terms.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which has the better mobile app?</h3>
+        <p class="text-neutral-600">
+          GeoBlue's app is more polished with better features—facility finder, digital ID cards, real-time claims tracking, and 24/7 support access. Now Health's app handles basics well but isn't as feature-rich. If app experience matters significantly, GeoBlue has the edge.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about maternity coverage?</h3>
+        <p class="text-neutral-600">
+          Both offer maternity as an optional add-on with 10-12 month waiting periods. Coverage and pricing are similar. Neither includes maternity in base plans. Add the coverage before conception for best results.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</PageShell>

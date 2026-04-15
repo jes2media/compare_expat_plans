@@ -1,0 +1,703 @@
+---
+/**
+ * Allianz Care vs Now Health International - Provider Comparison
+ * High-conversion CRO-optimized comparison for global vs Asia-focused expats
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Direct Billing', level: 2 },
+  { id: 'regional-strengths', text: 'Regional Strengths', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'real-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Allianz Care Review', href: '/providers/allianz-care' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Singapore Insurance Guide', href: '/countries/singapore/insurance' },
+  { title: 'UAE Insurance Guide', href: '/countries/uae/insurance' },
+  { title: 'France Insurance Guide', href: '/countries/france/insurance' },
+];
+
+const coverageColumns = [
+  { key: 'feature', header: 'Coverage Feature' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const coverageRows = [
+  { feature: 'Inpatient Hospital', allianz: 'Up to €3M (Premium)', nowhealth: 'Up to $2.6M' },
+  { feature: 'Outpatient Care', allianz: 'Full coverage', nowhealth: 'Full coverage' },
+  { feature: 'Mental Health', allianz: 'Included (limits apply)', nowhealth: 'Included (enhanced)' },
+  { feature: 'Maternity', allianz: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Dental', allianz: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Vision', allianz: 'Optional add-on', nowhealth: 'Included in some plans' },
+  { feature: 'Wellness/Preventive', allianz: 'Included', nowhealth: 'Included' },
+  { feature: 'Medical Evacuation', allianz: 'Unlimited', nowhealth: 'Up to $1M' },
+  { feature: 'Alternative Medicine', allianz: 'Limited', nowhealth: 'Traditional Chinese Medicine included' },
+  { feature: 'Chronic Conditions', allianz: 'Covered after waiting period', nowhealth: 'Covered after waiting period' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30 (Asia excl. US)', allianz: '€140-190/mo', nowhealth: '$120-170/mo' },
+  { profile: 'Single, Age 40 (Asia excl. US)', allianz: '€200-280/mo', nowhealth: '$180-250/mo' },
+  { profile: 'Single, Age 50 (Asia excl. US)', allianz: '€320-420/mo', nowhealth: '$280-380/mo' },
+  { profile: 'Couple, Age 35 (Asia excl. US)', allianz: '€280-380/mo', nowhealth: '$250-350/mo' },
+  { profile: 'Family of 4 (Asia excl. US)', allianz: '€480-650/mo', nowhealth: '$420-600/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const networkRows = [
+  { region: 'Global Network Size', allianz: '1M+ providers', nowhealth: '900K+ providers' },
+  { region: 'Europe', allianz: 'Excellent (HQ region)', nowhealth: 'Good' },
+  { region: 'Middle East', allianz: 'Excellent', nowhealth: 'Excellent' },
+  { region: 'Hong Kong', allianz: 'Strong', nowhealth: 'Excellent (HQ)' },
+  { region: 'Singapore', allianz: 'Strong', nowhealth: 'Excellent' },
+  { region: 'Thailand', allianz: 'Good', nowhealth: 'Strong' },
+  { region: 'China (Mainland)', allianz: 'Good', nowhealth: 'Excellent' },
+  { region: 'USA', allianz: 'Good (add-on)', nowhealth: 'Limited (add-on)' },
+  { region: 'Direct Billing', allianz: 'Extensive globally', nowhealth: 'Strong in Asia' },
+];
+
+const plansColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'allianz', header: 'Allianz Care' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const plansRows = [
+  { tier: 'Entry Level', allianz: 'Essential', nowhealth: 'WorldCare Lite' },
+  { tier: 'Mid-Range', allianz: 'Classic', nowhealth: 'WorldCare Classic' },
+  { tier: 'Comprehensive', allianz: 'Premium', nowhealth: 'WorldCare Prestige' },
+  { tier: 'Deductible Range', allianz: '€0 - €10,000', nowhealth: '$0 - $5,000' },
+  { tier: 'Annual Maximum', allianz: '€3M (Premium)', nowhealth: '$2.6M (Prestige)' },
+  { tier: 'Lifetime Maximum', allianz: 'Unlimited', nowhealth: 'Unlimited' },
+];
+---
+
+<PageShell
+  title="Allianz Care vs Now Health 2026: Complete Comparison for Expats"
+  description="In-depth comparison of Allianz Care and Now Health International for expats. Coverage, pricing, networks, claims experience, and which is best for your situation."
+  headline="Allianz Care vs Now Health: Which Is Better for You?"
+  subheadline="European heritage meets Asia-Pacific expertise. Two strong international insurers compared—coverage, pricing, networks, and who each one suits best."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref="/go/allianz-care"
+  heroBackgroundImage="/images/pages/provider-card-generic.png"
+>
+
+  <!-- Quick Verdict Box -->
+  <section id="quick-verdict" class="scroll-mt-24 mb-12">
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-xl p-6">
+      <h2 class="text-2xl font-bold text-primary-900 mb-4">Quick Verdict</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Allianz Care If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Europe or move between regions</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want a German-backed insurer's stability</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need strong European hospital networks</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You prefer unlimited evacuation coverage</span>
+            </li>
+          </ul>
+          <a href="/go/allianz-care" class="mt-4 inline-block bg-primary-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get Allianz Quote →
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Now Health If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Asia or Middle East long-term</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want 10-20% lower premiums</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value Traditional Chinese Medicine coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want enhanced mental health benefits</span>
+            </li>
+          </ul>
+          <a href="/go/now-health" class="mt-4 inline-block bg-white text-primary-700 font-semibold px-5 py-2 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+            Get Now Health Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Allianz Care and Now Health International represent different approaches to international health insurance. Allianz, part of the German insurance giant, brings European stability and a truly global network. Now Health, founded by industry veterans in Hong Kong, focuses on delivering value and expertise in the Asia-Pacific and Middle East markets.
+    </p>
+
+    <p class="mb-4">
+      For expats choosing between them, geography matters most. Allianz excels in Europe and offers seamless coverage for those who move between continents. Now Health delivers better value and deeper local relationships in Asia, where they've built their business from the ground up.
+    </p>
+
+    <p class="mb-6">
+      Both are reputable insurers with strong financial backing. Allianz has the weight of one of the world's largest insurance groups behind it. Now Health, though younger, has grown steadily since 2012 and maintains solid reinsurance relationships.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Allianz Care at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Allianz SE (Germany)</li>
+          <li><strong>Founded:</strong> 1890 (Allianz); Care division 2000s</li>
+          <li><strong>Network:</strong> 1M+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Munich, Germany</li>
+          <li><strong>Best For:</strong> Europe-based expats, global mobility</li>
+          <li><strong>Pricing:</strong> Mid-to-premium tier</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Now Health at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Now Health International</li>
+          <li><strong>Founded:</strong> 2012 (by Cigna/Aetna veterans)</li>
+          <li><strong>Network:</strong> 900K+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Hong Kong</li>
+          <li><strong>Best For:</strong> Asia/Middle East expats, value seekers</li>
+          <li><strong>Pricing:</strong> 10-20% below Allianz typically</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Comparison -->
+  <section id="coverage-comparison" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison</h2>
+
+    <p class="mb-4">
+      Both insurers provide comprehensive international health coverage. The core benefits—inpatient, outpatient, emergency care—are comparable. Differences appear in specific benefits and regional add-ons.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Plan Tiers Compared</h3>
+
+    <ComparisonTable columns={plansColumns} rows={plansRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Key difference:</strong> Allianz offers higher annual maximums (€3M vs $2.6M) and unlimited evacuation. Now Health includes Traditional Chinese Medicine and enhanced mental health in base plans. Choose based on which benefits matter more to you.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Coverage Highlights</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-5">
+        <h4 class="font-semibold text-green-900 mb-3">Allianz Care Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Higher coverage maximums (€3M)</li>
+          <li>✓ Unlimited medical evacuation</li>
+          <li>✓ Stronger European network</li>
+          <li>✓ German regulatory oversight</li>
+          <li>✓ Multi-currency options</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-5">
+        <h4 class="font-semibold text-blue-900 mb-3">Now Health Strengths</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Traditional Chinese Medicine coverage</li>
+          <li>✓ Enhanced mental health benefits</li>
+          <li>✓ Vision included in some plans</li>
+          <li>✓ Stronger Asia hospital relationships</li>
+          <li>✓ More competitive pricing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- First CTA -->
+  <CTABox
+    variant="highlight"
+    title="Ready to compare quotes?"
+    description="Get personalized pricing from both Allianz Care and Now Health based on your specific situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Pricing -->
+  <section id="pricing" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing Breakdown</h2>
+
+    <p class="mb-4">
+      Now Health typically prices 10-20% below Allianz for comparable coverage, particularly in Asia and Middle East. The gap is smaller for comprehensive plans and younger applicants. Here are representative monthly premiums:
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Pricing note:</strong> These are indicative ranges for comprehensive plans excluding US coverage. Actual premiums vary by exact plan, deductible, age, and health history. Allianz quotes in EUR; Now Health typically in USD. Exchange rates affect comparisons.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Drives the Price Difference?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Operational focus:</strong> Allianz maintains global infrastructure; Now Health focuses on Asia efficiency</li>
+      <li><strong>Brand premium:</strong> Allianz's name recognition commands higher prices</li>
+      <li><strong>Coverage maximums:</strong> Allianz's €3M cap costs more to underwrite than $2.6M</li>
+      <li><strong>Evacuation coverage:</strong> Unlimited evacuation is expensive to provide</li>
+      <li><strong>Regional expertise:</strong> Now Health's narrower focus allows cost savings passed to members</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Deductible Impact</h3>
+
+    <p class="mb-4">
+      Both insurers offer significant discounts for higher deductibles. Choosing a €2,500/$2,500 deductible typically reduces premiums by 25-35%.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Allianz Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>€0 — Full premium</li>
+          <li>€500 — ~12% discount</li>
+          <li>€1,500 — ~22% discount</li>
+          <li>€3,000 — ~32% discount</li>
+          <li>€10,000 — ~45% discount</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~15% discount</li>
+          <li>$1,500 — ~25% discount</li>
+          <li>$3,000 — ~35% discount</li>
+          <li>$5,000 — ~40% discount</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Network & Direct Billing -->
+  <section id="network-access" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network & Direct Billing</h2>
+
+    <p class="mb-4">
+      Network quality directly impacts your healthcare experience. Both insurers maintain extensive networks, but their regional strengths differ significantly.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Direct Billing Experience</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Allianz Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Allianz's global network enables direct billing across Europe, Middle East, and Asia. Their guarantee of payment system is well-established at major international hospitals. The MyHealth app shows in-network facilities and can initiate pre-authorization.
+        </p>
+        <p class="text-neutral-600">
+          European hospitals particularly recognize Allianz, making direct billing smooth in the UK, Germany, France, and Spain. In Asia, coverage is good but not as deeply established as regional specialists.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Now Health has cultivated strong direct billing relationships throughout Asia and Middle East. Hong Kong and Singapore hospitals know them well—often better than larger global insurers. Their regional focus translates to smoother experiences at top Asian medical centers.
+        </p>
+        <p class="text-neutral-600">
+          Outside Asia, direct billing is available but less consistent. Members report occasionally needing to pay upfront and claim reimbursement in Europe or the Americas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Strengths -->
+  <section id="regional-strengths" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Regional Strengths</h2>
+
+    <p class="mb-6">
+      Where you live should heavily influence your choice. Here's how each insurer performs by region:
+    </p>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Europe (UK, Germany, France, Spain)</h3>
+        <p class="text-neutral-600"><strong>Winner: Allianz Care</strong> — Allianz's European heritage shows. Deeper hospital relationships, smoother direct billing, and better recognition at European medical centers. If you're Europe-based, Allianz is the natural choice.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Hong Kong & Singapore</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's headquarters are in Hong Kong. Their hospital relationships here are exceptional. Singapore coverage is equally strong. For these financial hubs, Now Health delivers better value and smoother experiences.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">UAE & Middle East</h3>
+        <p class="text-neutral-600"><strong>Winner: Tie (slight edge to Now Health on price)</strong> — Both are strong in the UAE market. Allianz has established presence; Now Health has grown aggressively. Now Health's pricing advantage makes them attractive for cost-conscious expats.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thailand & Southeast Asia</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's Traditional Chinese Medicine coverage appeals to many Southeast Asia expats. Their network at Bangkok's international hospitals is strong. Better value in this price-sensitive market.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">China (Mainland)</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's Hong Kong base and Chinese-speaking staff give them advantages navigating mainland healthcare. Better hospital relationships in tier-1 cities.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">United States</h3>
+        <p class="text-neutral-600"><strong>Winner: Allianz Care (if needed)</strong> — Neither specializes in US coverage, but Allianz's global network handles US needs better. If US coverage is important, consider Cigna Global instead of either option here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claims Experience -->
+  <section id="claims-experience" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+
+    <p class="mb-4">
+      Claims processing is where insurance companies prove their worth. Both Allianz and Now Health have good reputations, with different strengths.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Allianz Care Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email, mail</li>
+          <li><strong>Processing time:</strong> 5-10 business days</li>
+          <li><strong>Reimbursement:</strong> Multiple currency options</li>
+          <li><strong>Languages:</strong> 20+ languages</li>
+          <li><strong>24/7 support:</strong> Yes, global assistance</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Allianz's MyHealth app enables mobile claims submission. Their global service centers operate around the clock. Multi-currency reimbursement is useful for frequent travelers.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email</li>
+          <li><strong>Processing time:</strong> 5-7 business days</li>
+          <li><strong>Reimbursement:</strong> USD, HKD, or local currency</li>
+          <li><strong>Languages:</strong> English, Chinese, Arabic</li>
+          <li><strong>Support hours:</strong> Extended hours (Asia-focused)</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Now Health members consistently report fast claims processing in Asia. Their Hong Kong team handles claims efficiently with good communication. Not 24/7, but covers Asian business hours well.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Both perform well:</strong> Neither has significant claims complaints. For routine claims, expect 5-10 day processing. Complex claims require more time with either insurer but are handled professionally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Second CTA -->
+  <CTABox
+    title="Get personalized quotes from both providers"
+    description="Compare actual pricing for your specific situation—age, location, coverage needs, and family size."
+    buttonText="Compare Quotes Now"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Pre-existing Conditions -->
+  <section id="pre-existing-conditions" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pre-existing Conditions</h2>
+
+    <p class="mb-4">
+      Both insurers require medical underwriting and handle pre-existing conditions similarly. Full disclosure is essential with either.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Allianz Care Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Full medical underwriting required</li>
+          <li>• Case-by-case evaluation</li>
+          <li>• May exclude, load premium, or apply waiting periods</li>
+          <li>• Moratorium option in some markets</li>
+          <li>• Typically 24-month wait for pre-existing coverage</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Medical underwriting required</li>
+          <li>• Individual assessment</li>
+          <li>• Exclusions or premium loading possible</li>
+          <li>• Generally 24-month wait for pre-existing</li>
+          <li>• Some flexibility for group transitions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Always disclose pre-existing conditions completely. Non-disclosure can void your entire policy. Both insurers investigate claims related to pre-existing conditions, and denied claims due to non-disclosure are common across the industry.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="real-scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how each insurer typically performs in common expat situations:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">German Engineer in Singapore</h3>
+        <p class="text-neutral-600 mb-3">38-year-old, single, wants comprehensive coverage. May return to Germany in 3-5 years.</p>
+        <p class="text-green-700 font-medium">→ <strong>Allianz Care Classic</strong> — European continuity matters for potential return. German-backed insurer provides peace of mind. Slight premium over Now Health worth it for flexibility.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Family in Hong Kong</h3>
+        <p class="text-neutral-600 mb-3">Family of 4, parents age 42. Settled in Hong Kong long-term. Budget matters with school fees.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Hong Kong is Now Health's home turf. 15-20% savings adds up for a family. Excellent local hospital relationships. Kids' coverage comprehensive.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">French Executive in Dubai</h3>
+        <p class="text-neutral-600 mb-3">50-year-old, married, corporate assignment. Company provides insurance choice. Wants premium coverage.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Either works—compare quotes</strong> — Both strong in UAE. Allianz offers European continuity if assignment changes. Now Health offers better value. Let actual quotes decide.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Retiree in Thailand</h3>
+        <p class="text-neutral-600 mb-3">65-year-old couple, uses both Western and traditional medicine. Fixed retirement income.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — TCM coverage is valuable in Thailand. Better pricing for retirees. Strong Bangkok hospital network. Savings significant at this age.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Tech Worker in London</h3>
+        <p class="text-neutral-600 mb-3">32-year-old, healthy, startup employee. Company doesn't provide insurance. May move within Europe.</p>
+        <p class="text-green-700 font-medium">→ <strong>Allianz Care Essential</strong> — Europe is Allianz territory. Flexibility for moves within EU. German insurer recognition at UK/EU hospitals. Competitive for young healthy individuals.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple with Pre-existing Conditions</h3>
+        <p class="text-neutral-600 mb-3">Both 55, one has controlled Type 2 diabetes, other has mild asthma. Moving to Singapore.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Get quotes from both</strong> — Underwriting determines pricing. Now Health may be more competitive in Singapore. Both will cover after waiting periods. Compare actual quotes with full disclosure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Choose Which -->
+  <section id="who-should-choose" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose Which</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">Choose Allianz Care If You:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Europe or may relocate there</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value German/European regulatory oversight</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Move between continents frequently</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want higher coverage maximums (€3M)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need unlimited evacuation coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer 24/7 multilingual support</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want multi-currency payment flexibility</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Choose Now Health If You:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Asia/Middle East long-term</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want 10-20% lower premiums</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value Traditional Chinese Medicine</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want enhanced mental health coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer regional expertise over global scale</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are in Hong Kong, Singapore, or mainland China</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Don't need extensive European coverage</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Both Allianz Care and Now Health International are solid choices for international health insurance. They serve different markets well, and the right choice depends primarily on where you live.
+    </p>
+
+    <p class="mb-4">
+      <strong>Allianz Care</strong> is the better choice for Europe-based expats, those who value German insurance stability, or people who move between continents. You pay a modest premium for global infrastructure and higher coverage limits.
+    </p>
+
+    <p class="mb-4">
+      <strong>Now Health</strong> is the smarter choice for Asia and Middle East expats who want excellent coverage at better prices. Their regional focus translates to deeper hospital relationships and smoother experiences in their core markets.
+    </p>
+
+    <p class="mb-6">
+      If you're in a region where both perform equally (like UAE), get quotes from both. The actual pricing for your specific profile may make the decision clear.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Allianz Care for European coverage and global mobility. Now Health for Asia/Middle East value and expertise. Both are reputable insurers—match their strengths to your location.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get Allianz Care Quote →
+        </a>
+        <a href="/go/now-health" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Now Health Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Now Health as financially stable as Allianz?</h3>
+        <p class="text-neutral-600">
+          Allianz SE is one of the world's largest insurers, giving Allianz Care exceptional financial backing. Now Health is smaller but maintains strong reinsurance relationships and has operated profitably since 2012. Both will pay claims—Allianz just has deeper pockets if catastrophe strikes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between Allianz and Now Health?</h3>
+        <p class="text-neutral-600">
+          Yes, but you'll undergo new underwriting. Pre-existing conditions may be treated as new. If you're switching from a group plan, ask about continuous coverage credits. Neither insurer guarantees accepting your previous coverage terms.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which is better for families?</h3>
+        <p class="text-neutral-600">
+          Both offer comprehensive family coverage. Allianz is better for globally mobile families or those in Europe. Now Health can save an Asia-based family $1,500-3,000/year with comparable coverage. Children's benefits are strong with both insurers.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do mobile apps compare?</h3>
+        <p class="text-neutral-600">
+          Allianz's MyHealth app is more polished with more features—facility finder, claims tracking, digital ID cards, and 24/7 support access. Now Health's app covers basics well but isn't as feature-rich. If app experience matters, Allianz has the edge.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about maternity coverage?</h3>
+        <p class="text-neutral-600">
+          Both offer maternity as an optional add-on with 10-12 month waiting periods. Coverage limits and pricing are similar. Neither covers pregnancy complications arising from pre-existing conditions. Add maternity before conception for best coverage.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which processes claims faster?</h3>
+        <p class="text-neutral-600">
+          Both process routine claims in 5-10 business days. Now Health members in Asia often report slightly faster processing due to local operations. Allianz's global infrastructure can mean more consistent processing regardless of where you file from.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</PageShell>

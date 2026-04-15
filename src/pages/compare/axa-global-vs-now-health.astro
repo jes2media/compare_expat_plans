@@ -1,0 +1,703 @@
+---
+/**
+ * AXA Global vs Now Health International - Provider Comparison
+ * High-conversion CRO-optimized comparison for French/global vs Asia-focused expats
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Direct Billing', level: 2 },
+  { id: 'regional-strengths', text: 'Regional Strengths', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'real-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'AXA Global Review', href: '/providers/axa-global' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'France Insurance Guide', href: '/countries/france/insurance' },
+  { title: 'Singapore Insurance Guide', href: '/countries/singapore/insurance' },
+  { title: 'UAE Insurance Guide', href: '/countries/uae/insurance' },
+];
+
+const coverageColumns = [
+  { key: 'feature', header: 'Coverage Feature' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const coverageRows = [
+  { feature: 'Inpatient Hospital', axa: 'Up to €2M (Exclusive)', nowhealth: 'Up to $2.6M' },
+  { feature: 'Outpatient Care', axa: 'Full coverage', nowhealth: 'Full coverage' },
+  { feature: 'Mental Health', axa: 'Included (limits apply)', nowhealth: 'Included (enhanced)' },
+  { feature: 'Maternity', axa: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Dental', axa: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Vision', axa: 'Optional add-on', nowhealth: 'Included in some plans' },
+  { feature: 'Wellness/Preventive', axa: 'Included', nowhealth: 'Included' },
+  { feature: 'Medical Evacuation', axa: 'Up to €1M', nowhealth: 'Up to $1M' },
+  { feature: 'Alternative Medicine', axa: 'Limited', nowhealth: 'Traditional Chinese Medicine included' },
+  { feature: 'Chronic Conditions', axa: 'Covered after waiting period', nowhealth: 'Covered after waiting period' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30 (Asia excl. US)', axa: '€130-180/mo', nowhealth: '$120-170/mo' },
+  { profile: 'Single, Age 40 (Asia excl. US)', axa: '€190-260/mo', nowhealth: '$180-250/mo' },
+  { profile: 'Single, Age 50 (Asia excl. US)', axa: '€300-400/mo', nowhealth: '$280-380/mo' },
+  { profile: 'Couple, Age 35 (Asia excl. US)', axa: '€270-360/mo', nowhealth: '$250-350/mo' },
+  { profile: 'Family of 4 (Asia excl. US)', axa: '€450-620/mo', nowhealth: '$420-600/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const networkRows = [
+  { region: 'Global Network Size', axa: '1.6M+ providers', nowhealth: '900K+ providers' },
+  { region: 'Europe', axa: 'Excellent', nowhealth: 'Good' },
+  { region: 'France', axa: 'Exceptional (HQ)', nowhealth: 'Good' },
+  { region: 'Hong Kong', axa: 'Strong', nowhealth: 'Excellent (HQ)' },
+  { region: 'Singapore', axa: 'Strong', nowhealth: 'Excellent' },
+  { region: 'UAE/Middle East', axa: 'Strong', nowhealth: 'Excellent' },
+  { region: 'Thailand', axa: 'Good', nowhealth: 'Strong' },
+  { region: 'China (Mainland)', axa: 'Good', nowhealth: 'Excellent' },
+  { region: 'Direct Billing', axa: 'Extensive globally', nowhealth: 'Strong in Asia' },
+];
+
+const plansColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'axa', header: 'AXA Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const plansRows = [
+  { tier: 'Entry Level', axa: 'Essential', nowhealth: 'WorldCare Lite' },
+  { tier: 'Mid-Range', axa: 'Comfort', nowhealth: 'WorldCare Classic' },
+  { tier: 'Comprehensive', axa: 'Exclusive', nowhealth: 'WorldCare Prestige' },
+  { tier: 'Deductible Range', axa: '€0 - €5,000', nowhealth: '$0 - $5,000' },
+  { tier: 'Annual Maximum', axa: '€2M (Exclusive)', nowhealth: '$2.6M (Prestige)' },
+  { tier: 'Lifetime Maximum', axa: 'Unlimited', nowhealth: 'Unlimited' },
+];
+---
+
+<PageShell
+  title="AXA Global vs Now Health 2026: Complete Comparison for Expats"
+  description="In-depth comparison of AXA Global Healthcare and Now Health International for expats. Coverage, pricing, networks, claims experience, and which is best for your situation."
+  headline="AXA Global vs Now Health: Which Is Better for You?"
+  subheadline="French global insurance heritage meets Hong Kong's Asia-Pacific expertise. Two respected insurers compared on coverage, pricing, and regional strengths."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref="/go/axa-global"
+  heroBackgroundImage="/images/pages/provider-card-generic.png"
+>
+
+  <!-- Quick Verdict Box -->
+  <section id="quick-verdict" class="scroll-mt-24 mb-12">
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-xl p-6">
+      <h2 class="text-2xl font-bold text-primary-900 mb-4">Quick Verdict</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose AXA Global If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Europe (especially France)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want a massive global network (1.6M+)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value French regulatory protection</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need multi-currency flexibility</span>
+            </li>
+          </ul>
+          <a href="/go/axa-global" class="mt-4 inline-block bg-primary-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get AXA Quote →
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Now Health If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Asia or Middle East long-term</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want 10-15% lower premiums</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value Traditional Chinese Medicine coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want enhanced mental health benefits</span>
+            </li>
+          </ul>
+          <a href="/go/now-health" class="mt-4 inline-block bg-white text-primary-700 font-semibold px-5 py-2 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+            Get Now Health Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      AXA Global Healthcare and Now Health International serve different markets with different strategies. AXA, backed by the French insurance giant, operates one of the world's largest provider networks and emphasizes global reach. Now Health, founded in Hong Kong by industry veterans, focuses on delivering superior value and service in Asia and the Middle East.
+    </p>
+
+    <p class="mb-4">
+      The choice often comes down to geography. AXA excels in Europe and provides seamless coverage for globally mobile expats. Now Health delivers better pricing and deeper local expertise in their core Asian markets. Both insurers are financially stable and have solid claims reputations.
+    </p>
+
+    <p class="mb-6">
+      If you're comparing these two, you're likely in Asia or the Middle East weighing AXA's global brand against Now Health's regional focus. This guide helps you understand which insurer better fits your specific situation.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">AXA Global at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> AXA SA (France)</li>
+          <li><strong>Founded:</strong> 1816 (AXA origins); Global division 1999</li>
+          <li><strong>Network:</strong> 1.6M+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Paris, France</li>
+          <li><strong>Best For:</strong> Europe, globally mobile professionals</li>
+          <li><strong>Pricing:</strong> Mid-tier (competitive for global coverage)</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Now Health at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Now Health International</li>
+          <li><strong>Founded:</strong> 2012 (by Cigna/Aetna veterans)</li>
+          <li><strong>Network:</strong> 900K+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Hong Kong</li>
+          <li><strong>Best For:</strong> Asia/Middle East expats, value seekers</li>
+          <li><strong>Pricing:</strong> 10-15% below AXA typically</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Comparison -->
+  <section id="coverage-comparison" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison</h2>
+
+    <p class="mb-4">
+      Both insurers provide comprehensive international health coverage with similar core benefits. The differences are in specific features, regional add-ons, and coverage maximums.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Plan Tiers Compared</h3>
+
+    <ComparisonTable columns={plansColumns} rows={plansRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Key difference:</strong> Now Health's top-tier annual maximum ($2.6M) is actually higher than AXA's (€2M ≈ $2.2M). Now Health also includes Traditional Chinese Medicine and has enhanced mental health benefits in base plans, while AXA requires add-ons.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Coverage Highlights</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-5">
+        <h4 class="font-semibold text-green-900 mb-3">AXA Global Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Largest provider network (1.6M+)</li>
+          <li>✓ Strong European hospital relationships</li>
+          <li>✓ Multi-currency premium payments</li>
+          <li>✓ SecureFit wellness program included</li>
+          <li>✓ Active&Fit gym network access</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-5">
+        <h4 class="font-semibold text-blue-900 mb-3">Now Health Strengths</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Traditional Chinese Medicine coverage</li>
+          <li>✓ Enhanced mental health benefits</li>
+          <li>✓ Vision included in some plans</li>
+          <li>✓ Higher annual maximum ($2.6M)</li>
+          <li>✓ Better Asia hospital relationships</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- First CTA -->
+  <CTABox
+    variant="highlight"
+    title="Ready to compare quotes?"
+    description="Get personalized pricing from both AXA Global and Now Health based on your specific situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/go/axa-global"
+  />
+
+  <!-- Pricing -->
+  <section id="pricing" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing Breakdown</h2>
+
+    <p class="mb-4">
+      Now Health generally prices 10-15% below AXA for comparable coverage in Asia. The gap is smaller than with premium insurers like Cigna or Bupa because AXA already positions itself competitively. Here are representative monthly premiums:
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Pricing note:</strong> These are indicative ranges for comprehensive plans excluding US coverage. AXA quotes in EUR; Now Health in USD. At current exchange rates, the price difference is modest—often $20-50/month for individuals. Consider both actual quotes before deciding.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Drives the Price Difference?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Network scope:</strong> AXA's larger global network costs more to maintain</li>
+      <li><strong>European infrastructure:</strong> AXA's Paris operations serve global compliance needs</li>
+      <li><strong>Regional efficiency:</strong> Now Health's Asia focus allows streamlined operations</li>
+      <li><strong>Brand recognition:</strong> AXA's global brand commands modest premium</li>
+      <li><strong>Wellness programs:</strong> AXA includes gym access and wellness apps</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Deductible Impact</h3>
+
+    <p class="mb-4">
+      Both insurers offer similar deductible structures with comparable discounts. A €2,500/$2,500 deductible typically saves 25-35% on premiums.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">AXA Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>€0 — Full premium</li>
+          <li>€500 — ~12% discount</li>
+          <li>€1,500 — ~22% discount</li>
+          <li>€2,500 — ~30% discount</li>
+          <li>€5,000 — ~40% discount</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~15% discount</li>
+          <li>$1,500 — ~25% discount</li>
+          <li>$3,000 — ~35% discount</li>
+          <li>$5,000 — ~40% discount</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Network & Direct Billing -->
+  <section id="network-access" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network & Direct Billing</h2>
+
+    <p class="mb-4">
+      AXA operates one of the largest healthcare networks globally. Now Health has a smaller but highly focused network in Asia and Middle East. Your location determines which network serves you better.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Direct Billing Experience</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">AXA Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          AXA's extensive network means direct billing is available at most major international hospitals worldwide. Their guarantee of payment system is well-recognized, and their mobile app helps locate in-network facilities with direct billing capability.
+        </p>
+        <p class="text-neutral-600">
+          In Europe, AXA's French heritage shows—exceptional hospital relationships across the continent. In Asia, direct billing works well at major hospitals but may require more advance coordination than regional specialists.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Now Health has cultivated deep relationships with hospitals across Asia and Middle East. Hong Kong, Singapore, Dubai, and Bangkok hospitals know them well—often providing smoother direct billing than larger global insurers.
+        </p>
+        <p class="text-neutral-600">
+          Outside their core markets, direct billing is available but less consistent. European or American hospitals may require upfront payment with reimbursement, though Now Health processes these claims quickly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Strengths -->
+  <section id="regional-strengths" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Regional Strengths</h2>
+
+    <p class="mb-6">
+      Location matters significantly in this comparison. Here's how each insurer performs by region:
+    </p>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Europe (France, UK, Germany, Spain)</h3>
+        <p class="text-neutral-600"><strong>Winner: AXA Global</strong> — AXA's French headquarters means exceptional European coverage. Direct billing at virtually every major hospital. French regulatory oversight provides additional consumer protections.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Hong Kong & Singapore</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's home territory. Superior hospital relationships, faster claims processing, and local expertise. The 10-15% price advantage is most significant here.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">UAE & Middle East</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health (slight edge)</strong> — Both are strong in UAE. Now Health's aggressive regional expansion has built excellent hospital networks. Pricing advantage makes them attractive. AXA is solid but slightly more expensive.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thailand & Southeast Asia</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Traditional Chinese Medicine coverage appeals in this region. Strong Bangkok hospital relationships. Better pricing for the budget-conscious Southeast Asia market.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">China (Mainland)</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's Hong Kong base and Chinese-speaking staff make mainland China their strength. Better hospital relationships in tier-1 cities. Smoother navigation of the Chinese healthcare system.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">United States</h3>
+        <p class="text-neutral-600"><strong>Winner: AXA Global (if needed)</strong> — Neither specializes in US coverage, but AXA's larger global network handles US needs better. If frequent US coverage is important, consider Cigna Global instead.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claims Experience -->
+  <section id="claims-experience" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+
+    <p class="mb-4">
+      Both insurers have solid claims processing reputations. The experience differs based on where you're located and how you submit claims.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">AXA Global Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email, mail</li>
+          <li><strong>Processing time:</strong> 5-10 business days</li>
+          <li><strong>Reimbursement:</strong> Multiple currency options</li>
+          <li><strong>Languages:</strong> 15+ languages</li>
+          <li><strong>24/7 support:</strong> Yes, global service line</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          AXA's mobile app is polished and handles claims well. Multi-currency reimbursement is useful for travelers. Their global service line operates around the clock with multilingual support.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email</li>
+          <li><strong>Processing time:</strong> 5-7 business days</li>
+          <li><strong>Reimbursement:</strong> USD, HKD, or local currency</li>
+          <li><strong>Languages:</strong> English, Chinese, Arabic</li>
+          <li><strong>Support hours:</strong> Extended hours (Asia-focused)</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Now Health's Asia-based claims team processes quickly with good communication. Members report responsive support and fast turnaround within their core markets. Not 24/7 but covers Asian business hours well.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Both perform well:</strong> Neither has significant claims complaints. In Asia, Now Health often processes faster due to local operations. AXA's global infrastructure means more consistent experience worldwide. Choose based on location, not claims reputation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Second CTA -->
+  <CTABox
+    title="Get personalized quotes from both providers"
+    description="Compare actual pricing for your specific situation—age, location, coverage needs, and family size."
+    buttonText="Compare Quotes Now"
+    buttonHref="/go/axa-global"
+  />
+
+  <!-- Pre-existing Conditions -->
+  <section id="pre-existing-conditions" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pre-existing Conditions</h2>
+
+    <p class="mb-4">
+      Both insurers require medical underwriting and take similar approaches to pre-existing conditions. Full disclosure is required with either.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">AXA Global Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Full medical underwriting</li>
+          <li>• Case-by-case evaluation</li>
+          <li>• May exclude, load premium, or add waiting periods</li>
+          <li>• Moratorium option available</li>
+          <li>• Typically 24-month wait for pre-existing coverage</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Medical underwriting required</li>
+          <li>• Individual assessment</li>
+          <li>• Exclusions or premium loading possible</li>
+          <li>• Generally 24-month wait for pre-existing</li>
+          <li>• Some flexibility for group plan transitions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Always disclose pre-existing conditions completely. Non-disclosure can void your entire policy. Both insurers investigate claims related to pre-existing conditions, and denied claims due to non-disclosure are common industry-wide.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="real-scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how each insurer typically performs in common expat situations:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">French Manager in Singapore</h3>
+        <p class="text-neutral-600 mb-3">40-year-old, married with one child. Will return to France in 4 years. Wants quality coverage that works in both countries.</p>
+        <p class="text-green-700 font-medium">→ <strong>AXA Global Comfort</strong> — French insurer for French expat makes sense. Excellent Singapore coverage plus seamless France transition when returning. Worth the modest premium over Now Health for this situation.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Family in Hong Kong</h3>
+        <p class="text-neutral-600 mb-3">Family of 4, parents age 38. Settled in Hong Kong for foreseeable future. Budget matters with expensive school fees.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Hong Kong is Now Health's home turf. 10-15% savings adds up significantly for a family. Superior local hospital relationships. Kids' coverage is comprehensive.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Consultant in Dubai</h3>
+        <p class="text-neutral-600 mb-3">45-year-old, single, travels frequently to Europe for work. Needs coverage that works well in both regions.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Either works—compare quotes</strong> — Both are strong in UAE with good European coverage. AXA's larger network may help with European travel. Now Health's pricing may tip the balance. Get actual quotes.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Canadian Retiree in Thailand</h3>
+        <p class="text-neutral-600 mb-3">62-year-old couple, uses both Western medicine and acupuncture. Fixed retirement income, price-sensitive.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — TCM coverage is valuable for their lifestyle. Better pricing for retirees on fixed income. Strong Bangkok hospital network. Savings significant at this age.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">German Entrepreneur in Shanghai</h3>
+        <p class="text-neutral-600 mb-3">35-year-old, healthy, building a business in China. Needs reliable coverage in a complex healthcare market.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Mainland China is Now Health's strength. Chinese-speaking support staff. Better hospital relationships in Shanghai. Navigating Chinese healthcare is easier with regional expertise.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple with Pre-existing Conditions</h3>
+        <p class="text-neutral-600 mb-3">Both 52, one has managed hypertension. Moving to UAE for a 5-year assignment.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Get quotes from both</strong> — Underwriting will determine actual pricing. Both handle hypertension similarly with waiting periods. The 10-15% price difference may narrow or widen based on your specific health profile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Choose Which -->
+  <section id="who-should-choose" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose Which</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">Choose AXA Global If You:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Europe or French-speaking regions</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value French regulatory protection</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need the largest possible provider network</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Travel between Europe and Asia frequently</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want 24/7 multilingual support</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer multi-currency payment flexibility</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value included wellness programs</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Choose Now Health If You:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Asia/Middle East long-term</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want 10-15% lower premiums</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value Traditional Chinese Medicine</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want enhanced mental health coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer regional expertise over global scale</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are in Hong Kong, Singapore, or mainland China</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want higher annual coverage maximums ($2.6M)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      AXA Global Healthcare and Now Health International are both competent international health insurers. The choice is primarily geographic—where you live determines which one serves you better.
+    </p>
+
+    <p class="mb-4">
+      <strong>AXA Global</strong> is the better choice for Europe-based expats, those who value French regulatory oversight, or people who travel frequently between Europe and Asia. Their massive network and global infrastructure justify the modest price premium.
+    </p>
+
+    <p class="mb-4">
+      <strong>Now Health</strong> is the smarter choice for Asia and Middle East expats who want quality coverage at better prices. Their regional expertise, TCM coverage, and enhanced mental health benefits make them well-suited for their core markets.
+    </p>
+
+    <p class="mb-6">
+      The price difference between these two is smaller than with premium insurers like Cigna or Bupa. If you're in a region where both perform well (UAE, Singapore), get quotes from both—the actual numbers may make the decision clear.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        AXA Global for European coverage and global network scale. Now Health for Asia/Middle East value and regional expertise. Both are reliable—match their strengths to your location.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/axa-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get AXA Global Quote →
+        </a>
+        <a href="/go/now-health" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Now Health Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is AXA Global the same as AXA PPP?</h3>
+        <p class="text-neutral-600">
+          No. AXA Global Healthcare serves international expats worldwide. AXA PPP is a UK-specific product for domestic UK residents. If you're an expat outside the UK, you want AXA Global Healthcare.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between AXA and Now Health?</h3>
+        <p class="text-neutral-600">
+          Yes, but you'll undergo new underwriting. Pre-existing conditions may be treated as new. Neither insurer guarantees accepting your previous coverage terms. Time your switch carefully, ideally at annual renewal.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which has better customer service?</h3>
+        <p class="text-neutral-600">
+          AXA offers 24/7 multilingual support with broader language coverage. Now Health provides excellent service during Asian business hours with English, Chinese, and Arabic support. In Asia, Now Health members often report more responsive service.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about dental and maternity?</h3>
+        <p class="text-neutral-600">
+          Both offer dental and maternity as optional add-ons with similar pricing and waiting periods (10-12 months for maternity). Neither includes these in base plans. Compare specific add-on costs when getting quotes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which mobile app is better?</h3>
+        <p class="text-neutral-600">
+          AXA's app is more feature-rich with wellness tracking, gym finder, and telemedicine integration. Now Health's app handles claims and facility finding well but is less polished. If app experience matters significantly, AXA has the edge.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Should I get quotes from both?</h3>
+        <p class="text-neutral-600">
+          Yes, if you're genuinely considering both. The actual premium for your specific situation may differ from published ranges. Both offer free quotes, and comparing real numbers beats any comparison article.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</PageShell>

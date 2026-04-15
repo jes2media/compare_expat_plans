@@ -1,0 +1,699 @@
+---
+/**
+ * SafetyWing vs Now Health International - Provider Comparison
+ * Budget nomad insurance vs comprehensive Asia-focused coverage
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Direct Billing', level: 2 },
+  { id: 'use-cases', text: 'Use Cases', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'limitations', text: 'Key Limitations', level: 2 },
+  { id: 'real-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'SafetyWing Review', href: '/providers/safetywing' },
+  { title: 'Best Budget Expat Insurance', href: '/best/budget-expat-insurance' },
+  { title: 'Digital Nomad Insurance', href: '/best/digital-nomad-insurance' },
+  { title: 'Thailand Insurance Guide', href: '/countries/thailand/insurance' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+];
+
+const coverageColumns = [
+  { key: 'feature', header: 'Coverage Feature' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const coverageRows = [
+  { feature: 'Coverage Maximum', safetywing: '$250,000 lifetime', nowhealth: '$2.6M annual' },
+  { feature: 'Inpatient Hospital', safetywing: 'Up to $250K (shared limit)', nowhealth: 'Up to $2.6M' },
+  { feature: 'Outpatient Care', safetywing: 'Limited ($3K deductible)', nowhealth: 'Full coverage' },
+  { feature: 'Mental Health', safetywing: 'Not covered', nowhealth: 'Included (enhanced)' },
+  { feature: 'Maternity', safetywing: 'Not covered', nowhealth: 'Optional add-on' },
+  { feature: 'Dental', safetywing: 'Emergency only ($1K)', nowhealth: 'Optional add-on' },
+  { feature: 'Vision', safetywing: 'Not covered', nowhealth: 'Included in some plans' },
+  { feature: 'Wellness/Preventive', safetywing: 'Not covered', nowhealth: 'Included' },
+  { feature: 'Medical Evacuation', safetywing: '$100,000', nowhealth: 'Up to $1M' },
+  { feature: 'Pre-existing Conditions', safetywing: 'Acute onset only', nowhealth: 'Covered after waiting period' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30 (Nomad)', safetywing: '$45/mo', nowhealth: '$120-170/mo' },
+  { profile: 'Single, Age 40 (Nomad)', safetywing: '$76/mo', nowhealth: '$180-250/mo' },
+  { profile: 'Single, Age 50 (Remote)', safetywing: 'Not available (age limit 39)', nowhealth: '$280-380/mo' },
+  { profile: 'Couple, Age 35', safetywing: '$90/mo', nowhealth: '$250-350/mo' },
+  { profile: 'Family with 1 child', safetywing: '$90/mo (kids free)', nowhealth: '$350-480/mo' },
+];
+
+const networkColumns = [
+  { key: 'aspect', header: 'Aspect' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const networkRows = [
+  { aspect: 'Network Type', safetywing: 'No formal network', nowhealth: '900K+ providers' },
+  { aspect: 'Direct Billing', safetywing: 'Limited (emergencies)', nowhealth: 'Extensive in Asia' },
+  { aspect: 'Hospital Choice', safetywing: 'Any hospital (reimburse)', nowhealth: 'In-network preferred' },
+  { aspect: 'Claims Process', safetywing: 'Reimbursement model', nowhealth: 'Direct billing or reimburse' },
+  { aspect: 'Pre-authorization', safetywing: 'For planned procedures', nowhealth: 'For hospitalizations' },
+];
+
+const limitationsColumns = [
+  { key: 'limitation', header: 'Limitation' },
+  { key: 'safetywing', header: 'SafetyWing' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const limitationsRows = [
+  { limitation: 'Age Limit', safetywing: '39 (Nomad), 69 (Remote)', nowhealth: 'Typically 70-75' },
+  { limitation: 'Home Country Coverage', safetywing: '30-90 days/year', nowhealth: 'Full coverage (if selected)' },
+  { limitation: 'Pre-existing Conditions', safetywing: 'Acute onset only', nowhealth: 'Covered after 24 months' },
+  { limitation: 'Chronic Conditions', safetywing: 'Not covered', nowhealth: 'Covered' },
+  { limitation: 'Mental Health', safetywing: 'Excluded', nowhealth: 'Included' },
+  { limitation: 'Pregnancy', safetywing: 'Excluded', nowhealth: 'Optional add-on' },
+];
+---
+
+<PageShell
+  title="SafetyWing vs Now Health 2026: Budget vs Comprehensive Expat Insurance"
+  description="Comparing SafetyWing's budget nomad insurance with Now Health's comprehensive international coverage. Who should choose which, pricing, coverage gaps, and honest recommendations."
+  headline="SafetyWing vs Now Health: Budget vs Comprehensive"
+  subheadline="Two fundamentally different products for different needs. SafetyWing's $45/month simplicity vs Now Health's full international coverage. Here's how to choose."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref="/go/safetywing"
+  heroBackgroundImage="/images/pages/provider-card-generic.png"
+>
+
+  <!-- Quick Verdict Box -->
+  <section id="quick-verdict" class="scroll-mt-24 mb-12">
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-xl p-6">
+      <h2 class="text-2xl font-bold text-primary-900 mb-4">Quick Verdict</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose SafetyWing If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're under 40 and healthy</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're a digital nomad constantly moving</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>Budget is your primary concern</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You only need catastrophic/emergency coverage</span>
+            </li>
+          </ul>
+          <a href="/go/safetywing" class="mt-4 inline-block bg-primary-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get SafetyWing Quote →
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Now Health If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need real health insurance (not travel coverage)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're settling in one country long-term</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need mental health, maternity, or preventive care</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You have or may develop health conditions</span>
+            </li>
+          </ul>
+          <a href="/go/now-health" class="mt-4 inline-block bg-white text-primary-700 font-semibold px-5 py-2 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+            Get Now Health Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      SafetyWing and Now Health aren't really competitors—they're fundamentally different products for different needs. SafetyWing is travel medical insurance designed for digital nomads who need basic emergency coverage at minimal cost. Now Health is comprehensive international health insurance for expats who need actual healthcare.
+    </p>
+
+    <p class="mb-4">
+      The price difference is dramatic: SafetyWing costs $45/month for a 30-year-old, while Now Health costs $120-170/month. But the coverage difference is equally dramatic. SafetyWing won't cover routine care, mental health, maternity, pre-existing conditions, or most outpatient visits. Now Health covers all of these.
+    </p>
+
+    <p class="mb-6">
+      Choosing between them is really about understanding what you need. If you're a healthy 28-year-old nomad who just needs "something" in case of a motorcycle accident in Bali, SafetyWing works. If you're an expat who actually uses healthcare—doctor visits, prescriptions, mental health support—you need Now Health or similar.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">SafetyWing at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Product Type:</strong> Travel medical insurance</li>
+          <li><strong>Founded:</strong> 2017 (startup)</li>
+          <li><strong>Underwriter:</strong> Tokio Marine HCC</li>
+          <li><strong>Coverage Max:</strong> $250,000 lifetime</li>
+          <li><strong>Best For:</strong> Young, healthy nomads</li>
+          <li><strong>Pricing:</strong> Budget (~$45/mo)</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Now Health at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Product Type:</strong> International health insurance</li>
+          <li><strong>Founded:</strong> 2012 (by industry veterans)</li>
+          <li><strong>Underwriter:</strong> Now Health International</li>
+          <li><strong>Coverage Max:</strong> $2.6M annual</li>
+          <li><strong>Best For:</strong> Expats needing real coverage</li>
+          <li><strong>Pricing:</strong> Mid-tier ($120-250/mo)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important distinction:</strong> SafetyWing is travel insurance that happens to have no end date. Now Health is health insurance that happens to work internationally. These are different products—the comparison is about which product type suits your needs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Coverage Comparison -->
+  <section id="coverage-comparison" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison</h2>
+
+    <p class="mb-4">
+      The coverage gap between SafetyWing and Now Health is substantial. SafetyWing covers emergencies and accidents well. Everything else—routine care, mental health, maternity, chronic conditions—requires Now Health or similar comprehensive insurance.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mt-6">
+      <p class="text-red-800">
+        <strong>Critical gap:</strong> SafetyWing's $250,000 lifetime maximum sounds adequate until you realize it's lifetime, not annual. A single serious hospitalization could exhaust this limit. Now Health's $2.6M annual maximum resets every year.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What SafetyWing Actually Covers</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-5">
+        <h4 class="font-semibold text-green-900 mb-3">SafetyWing Covers Well</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Emergency room visits</li>
+          <li>✓ Hospitalization from accidents</li>
+          <li>✓ Emergency surgery</li>
+          <li>✓ COVID-19 treatment (if hospitalized)</li>
+          <li>✓ Medical evacuation ($100K)</li>
+          <li>✓ Trip interruption ($2,500)</li>
+        </ul>
+      </div>
+
+      <div class="border border-red-200 bg-red-50 rounded-lg p-5">
+        <h4 class="font-semibold text-red-900 mb-3">SafetyWing Does NOT Cover</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Routine doctor visits</li>
+          <li>✗ Mental health (any)</li>
+          <li>✗ Maternity (any)</li>
+          <li>✗ Pre-existing conditions</li>
+          <li>✗ Chronic disease management</li>
+          <li>✗ Preventive care / checkups</li>
+          <li>✗ Prescriptions (non-emergency)</li>
+          <li>✗ Vision and dental (non-emergency)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- First CTA -->
+  <CTABox
+    variant="highlight"
+    title="Not sure which you need?"
+    description="SafetyWing for emergency-only coverage, Now Health for comprehensive health insurance. Get quotes from both to see the price difference."
+    buttonText="Compare Both Options"
+    buttonHref="/go/safetywing"
+  />
+
+  <!-- Pricing -->
+  <section id="pricing" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing Breakdown</h2>
+
+    <p class="mb-4">
+      SafetyWing costs roughly 70% less than Now Health. But you're not comparing equivalent products—you're comparing emergency coverage to comprehensive health insurance. The real question is whether you need actual health insurance or just emergency backup.
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Note:</strong> SafetyWing Nomad Insurance is only available until age 39. SafetyWing Remote Health (ages 18-69) is a different product with higher prices and better coverage—but still not comprehensive like Now Health.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Cost Per Use Analysis</h3>
+
+    <p class="mb-4">
+      SafetyWing's value depends entirely on how much healthcare you use:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>If you never use healthcare:</strong> SafetyWing saves you $75-150/month</li>
+      <li><strong>If you visit a doctor twice/year:</strong> SafetyWing's deductible erases much of the savings</li>
+      <li><strong>If you need mental health support:</strong> SafetyWing covers $0—Now Health covers treatment</li>
+      <li><strong>If you get pregnant:</strong> SafetyWing covers $0—Now Health covers delivery (with add-on)</li>
+      <li><strong>If you develop a chronic condition:</strong> SafetyWing covers nothing ongoing—Now Health covers management</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Hidden Costs with SafetyWing</h3>
+
+    <div class="bg-neutral-50 rounded-lg p-5">
+      <ul class="space-y-3 text-neutral-700">
+        <li><strong>$250 deductible per injury/illness:</strong> That doctor visit for food poisoning? You pay first $250.</li>
+        <li><strong>Outpatient care:</strong> $3,000 deductible means you pay most outpatient expenses yourself.</li>
+        <li><strong>No preventive care:</strong> Annual checkups, vaccinations, screenings—all out of pocket.</li>
+        <li><strong>No prescriptions:</strong> Ongoing medications not covered.</li>
+        <li><strong>Exclusions:</strong> Mental health, maternity, pre-existing = pay 100% yourself.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Network & Direct Billing -->
+  <section id="network-access" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network & Direct Billing</h2>
+
+    <p class="mb-4">
+      SafetyWing operates differently from traditional insurers. There's no formal provider network—you go to any hospital and file for reimbursement. Now Health maintains a 900K+ provider network with direct billing.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What This Means in Practice</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">SafetyWing Process</h4>
+        <ol class="space-y-2 text-neutral-600 list-decimal pl-5">
+          <li>Go to any hospital or clinic</li>
+          <li>Pay out of pocket (bring a credit card with high limit)</li>
+          <li>Collect all receipts and documentation</li>
+          <li>Submit claim via app or email</li>
+          <li>Wait for reimbursement (typically 2-4 weeks)</li>
+        </ol>
+        <p class="mt-3 text-amber-700 text-sm">
+          <strong>Caution:</strong> For major hospitalizations, SafetyWing can arrange direct payment, but you may need to pay upfront and wait for reimbursement.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Process</h4>
+        <ol class="space-y-2 text-neutral-600 list-decimal pl-5">
+          <li>Find in-network hospital via app</li>
+          <li>Show insurance card at reception</li>
+          <li>Hospital bills Now Health directly</li>
+          <li>You pay only your portion (if any)</li>
+          <li>No claim filing for direct billing visits</li>
+        </ol>
+        <p class="mt-3 text-green-700 text-sm">
+          <strong>Advantage:</strong> Major hospitalizations handled directly. No large out-of-pocket payments required at in-network facilities.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section id="use-cases" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Use Cases</h2>
+
+    <p class="mb-6">
+      These products serve different lifestyles. Here's who each one is designed for:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">SafetyWing Is Designed For:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Digital nomads:</strong> Changing countries every few months, no fixed address</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Young and healthy:</strong> Under 40, no ongoing health issues</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Budget-conscious:</strong> Willing to pay out of pocket for routine care</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Emergency-only mindset:</strong> Just want catastrophic coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Short-term travelers:</strong> Gap year, sabbatical, extended trip</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Now Health Is Designed For:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Settled expats:</strong> Living in one country for years</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Any age:</strong> Coverage available well into retirement</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Active healthcare users:</strong> Regular checkups, prescriptions, specialist visits</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Mental health needs:</strong> Therapy, psychiatric care covered</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Family planning:</strong> Maternity coverage available</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span><strong>Health conditions:</strong> Pre-existing covered after waiting period</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claims Experience -->
+  <section id="claims-experience" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+
+    <p class="mb-4">
+      Both insurers process claims adequately, but the experience differs significantly due to their different models.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">SafetyWing Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App or email</li>
+          <li><strong>Processing:</strong> 2-4 weeks typical</li>
+          <li><strong>Reimbursement:</strong> Bank transfer</li>
+          <li><strong>Support:</strong> Email and chat</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          SafetyWing's startup DNA shows—modern app, quick responses, but sometimes lacks the depth of traditional insurers for complex claims. Most members report straightforward claims paid without issues.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email</li>
+          <li><strong>Processing:</strong> 5-7 business days</li>
+          <li><strong>Reimbursement:</strong> Direct or bank transfer</li>
+          <li><strong>Support:</strong> Phone, email, extended hours</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Now Health's Asia-based team handles claims professionally. Direct billing at in-network hospitals means many members never file a claim manually. Complex claims get individual attention.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Second CTA -->
+  <CTABox
+    title="Compare actual quotes"
+    description="See the real price difference for your specific age and situation. Both offer instant online quotes."
+    buttonText="Get Quotes Now"
+    buttonHref="/go/safetywing"
+  />
+
+  <!-- Limitations -->
+  <section id="limitations" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Key Limitations</h2>
+
+    <p class="mb-4">
+      Understanding each product's limitations is crucial for making the right choice:
+    </p>
+
+    <ComparisonTable columns={limitationsColumns} rows={limitationsRows} />
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mt-6">
+      <p class="text-red-800">
+        <strong>SafetyWing's biggest limitation:</strong> If you develop a health condition while covered by SafetyWing, it becomes a pre-existing condition when switching to comprehensive insurance. Starting with proper health insurance avoids this trap.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="real-scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how each product performs in realistic expat situations:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Motorcycle Accident in Bali</h3>
+        <p class="text-neutral-600 mb-3">Broken leg, emergency surgery, 5-day hospitalization. Total: $15,000.</p>
+        <p class="text-green-700 font-medium">→ <strong>SafetyWing covers it</strong> — After $250 deductible, SafetyWing pays $14,750. This is exactly what SafetyWing is designed for. Now Health would also cover this fully.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Recurring Anxiety Treatment</h3>
+        <p class="text-neutral-600 mb-3">Weekly therapy sessions at $100/session. Monthly: $400.</p>
+        <p class="text-red-700 font-medium">→ <strong>SafetyWing covers $0</strong> — Mental health is excluded entirely. You pay 100% out of pocket. Now Health covers therapy visits under mental health benefits.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Planned Pregnancy</h3>
+        <p class="text-neutral-600 mb-3">Prenatal care, delivery, postnatal. Estimate: $8,000.</p>
+        <p class="text-red-700 font-medium">→ <strong>SafetyWing covers $0</strong> — Maternity is excluded. Now Health covers with optional maternity add-on (10-12 month waiting period applies).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Diabetes Diagnosis</h3>
+        <p class="text-neutral-600 mb-3">You're diagnosed with Type 2 diabetes. Need ongoing medication and monitoring.</p>
+        <p class="text-red-700 font-medium">→ <strong>SafetyWing covers initial ER visit only</strong> — Ongoing management is not covered. Now Health covers ongoing care. If you switch to Now Health after diagnosis, diabetes is pre-existing with 24-month wait.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Annual Health Checkup</h3>
+        <p class="text-neutral-600 mb-3">Standard preventive screening: blood work, physical exam. Cost: $200.</p>
+        <p class="text-red-700 font-medium">→ <strong>SafetyWing covers $0</strong> — Preventive care excluded. You pay 100%. Now Health includes wellness benefits covering annual checkups.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Food Poisoning Treatment</h3>
+        <p class="text-neutral-600 mb-3">Doctor visit, IV fluids, anti-nausea meds. Total: $300.</p>
+        <p class="text-amber-700 font-medium">→ <strong>SafetyWing: you pay $250 deductible, they pay $50</strong> — The $250 deductible per illness erases most benefit. Now Health covers with only your plan's deductible (if any).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Choose Which -->
+  <section id="who-should-choose" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose Which</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">SafetyWing Makes Sense If You:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are under 40 and genuinely healthy</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Travel constantly (new country every few months)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Would pay cash for routine doctor visits anyway</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Have no mental health needs</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Won't need maternity coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Just want catastrophic backup</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Budget is the #1 priority</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Now Health Makes Sense If You:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are 40+ (SafetyWing Nomad unavailable)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Live in one country long-term</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Use healthcare regularly (checkups, prescriptions)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need or may need mental health support</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are planning pregnancy</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Have any health conditions</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want direct billing at hospitals</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need visa-compliant insurance</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      SafetyWing and Now Health serve different purposes. SafetyWing is travel insurance—good for emergencies, useless for actual healthcare. Now Health is health insurance—comprehensive coverage for people who need medical care beyond emergencies.
+    </p>
+
+    <p class="mb-4">
+      <strong>SafetyWing</strong> works for healthy young nomads who genuinely just need catastrophic coverage. The $45/month price is attractive, and for the right person, it's sufficient. But understand what you're giving up: mental health, maternity, preventive care, chronic condition management, and most routine medical needs.
+    </p>
+
+    <p class="mb-4">
+      <strong>Now Health</strong> is actual health insurance. If you're settling in Asia or the Middle East, use healthcare regularly, have any health concerns, or simply want real coverage, the $120-170/month is worth it. You get comprehensive care, direct billing, and peace of mind.
+    </p>
+
+    <p class="mb-6">
+      The trap to avoid: Starting with SafetyWing, developing a health condition, then finding that condition is pre-existing when you try to upgrade to real insurance. If you can afford Now Health now, it's the safer long-term choice.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        SafetyWing for young, healthy nomads who just need emergency backup. Now Health for anyone who actually uses healthcare or plans to live abroad long-term. Different products for different needs.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/safetywing" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get SafetyWing Quote →
+        </a>
+        <a href="/go/now-health" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Now Health Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I use SafetyWing as my only insurance?</h3>
+        <p class="text-neutral-600">
+          Technically yes, but understand the gaps. SafetyWing won't cover routine care, mental health, maternity, or pre-existing conditions. If you're healthy, rarely see doctors, and just want emergency backup, it can work. If you use healthcare regularly, you'll end up paying significant out-of-pocket costs.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is SafetyWing valid for visas?</h3>
+        <p class="text-neutral-600">
+          Some countries accept SafetyWing for visa applications, others don't. Countries requiring comprehensive health insurance (like Germany, Czech Republic, or Spain's TIE) typically don't accept SafetyWing. Check specific visa requirements—Now Health is more likely to be accepted for visa purposes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if I get sick while on SafetyWing?</h3>
+        <p class="text-neutral-600">
+          SafetyWing covers the emergency treatment. But if you develop an ongoing condition—diabetes, autoimmune disease, mental health issues—subsequent care isn't covered. Worse, when you switch to comprehensive insurance, it's a pre-existing condition with waiting periods.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch from SafetyWing to Now Health later?</h3>
+        <p class="text-neutral-600">
+          Yes, but you'll undergo new underwriting. Any conditions developed while on SafetyWing become pre-existing with Now Health—typically 24-month waiting period before coverage. This is why starting with comprehensive insurance is often smarter long-term.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which is better for families?</h3>
+        <p class="text-neutral-600">
+          Now Health, definitively. SafetyWing's free kids under 10 sounds good, but children need pediatrician visits, vaccinations, and routine care—none covered by SafetyWing. Families typically use healthcare more and need comprehensive coverage.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is SafetyWing actually insurance?</h3>
+        <p class="text-neutral-600">
+          SafetyWing is travel medical insurance, underwritten by Tokio Marine HCC (a legitimate insurer). It's real insurance—just a limited type designed for travel emergencies, not comprehensive health coverage. The distinction matters when understanding what it does and doesn't cover.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</PageShell>
