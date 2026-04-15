@@ -1,6 +1,6 @@
 # Project Progress Log
 
-Last updated: April 13, 2026
+Last updated: April 15, 2026
 
 ---
 
@@ -8,11 +8,11 @@ Last updated: April 13, 2026
 
 **Phase:** 6 - Programmatic Page Expansion
 
-### Static Pages (~1,100 .astro files)
+### Static Pages (~1,125 .astro files)
 - **Problem/Solution guides:** 652 (588 profession + 64 topic guides)
-- **Visa × Country pages:** 164 (33 DNV + 17 Retirement + 34 Student + 21 Freelancer + 40 Investor + 18 Work Permit)
+- **Visa × Country pages:** 181 (33 DNV + 17 Retirement + 34 Student + 38 Freelancer + 40 Investor + 18 Work Permit)
 - **Country pages:** 22 (core landing pages)
-- **Compare pages:** 29 (country vs country) + 90+ provider comparisons
+- **Compare pages:** 29 (country vs country) + 183 provider comparisons
 - **Insurance-for (Personas):** 25 audience-specific pages
 - **Provider pages:** 9 (long-form reviews)
 - **"Best" comparison pages:** 51
@@ -24,7 +24,7 @@ Last updated: April 13, 2026
 - `/visas/[visaType]/in/[country]` - Visa × Country matrix
 
 ### Next Priority
-Provider vs Provider comparisons (high conversion based on GA data)
+Analyze GA data to identify highest-converting page types and content gaps
 
 ---
 
@@ -63,6 +63,31 @@ Provider vs Provider comparisons (high conversion based on GA data)
 ---
 
 ## Completed Milestones
+
+### April 15, 2026 - Freelancer Visa + Provider Comparison Expansion
+
+#### Freelancer Visa Pages (17 new pages)
+Added 17 new freelancer visa pages at `/visas/freelancer-visa/in/[country]`:
+
+Belgium, Bulgaria, Croatia, Cyprus, Denmark, Finland, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Malta, Poland, Romania, Slovenia, Sweden
+
+**Total freelancer visa pages now:** 38 countries
+
+#### Now Health Comparison Pages (8 new pages)
+Added comprehensive Now Health comparison pages at `/compare/`:
+
+- Cigna Global vs Now Health
+- Bupa Global vs Now Health
+- Aetna International vs Now Health
+- Allianz Care vs Now Health
+- AXA Global vs Now Health
+- SafetyWing vs Now Health
+- IMG Global vs Now Health
+- GeoBlue vs Now Health
+
+**Total provider comparison pages now:** 183
+
+---
 
 ### April 13, 2026 - Freelancer Visa Pages Batch (12 pages)
 
