@@ -1,6 +1,6 @@
 # Project Progress Log
 
-Last updated: April 6, 2026
+Last updated: April 13, 2026
 
 ---
 
@@ -8,11 +8,11 @@ Last updated: April 6, 2026
 
 **Phase:** 6 - Programmatic Page Expansion
 
-### Static Pages (1,089 .astro files)
+### Static Pages (~1,100 .astro files)
 - **Problem/Solution guides:** 652 (588 profession + 64 topic guides)
-- **Visa × Country pages:** 152 (33 DNV + 17 Retirement + 34 Student + 9 Freelancer + 40 Investor + 18 Work Permit)
+- **Visa × Country pages:** 164 (33 DNV + 17 Retirement + 34 Student + 21 Freelancer + 40 Investor + 18 Work Permit)
 - **Country pages:** 22 (core landing pages)
-- **Compare pages:** 29 (country vs country)
+- **Compare pages:** 29 (country vs country) + 90+ provider comparisons
 - **Insurance-for (Personas):** 25 audience-specific pages
 - **Provider pages:** 9 (long-form reviews)
 - **"Best" comparison pages:** 51
@@ -24,11 +24,71 @@ Last updated: April 6, 2026
 - `/visas/[visaType]/in/[country]` - Visa × Country matrix
 
 ### Next Priority
-Provider vs Provider comparisons and additional niche "Best" pages
+Provider vs Provider comparisons (high conversion based on GA data)
+
+---
+
+## Google Analytics Insights (Jan 1 - Apr 13, 2026)
+
+### Top Traffic Pages
+| Page | Views | Users | Avg Engagement |
+|------|-------|-------|----------------|
+| Homepage | 356 | 291 | 4s |
+| /go/cigna-global/ | 266 | 210 | 1.5s |
+| /best/expat-health-insurance/ | 227 | 174 | 33s |
+| /research-reports/... | 194 | 157 | 34s |
+| /providers/cigna-global/ | 86 | 72 | 57s |
+| /compare/ | 83 | 55 | 31s |
+| /best/budget-expat-insurance/ | 80 | 60 | 16s |
+| /providers/allianz-care/ | 72 | 64 | 17s |
+| /compare/cigna-global-vs-allianz-care/ | 69 | 50 | 45s |
+
+### Key Insights
+1. **Cigna Global is #1 affiliate click** (266 views on /go/cigna-global/)
+2. **"Best" pages drive traffic** - /best/expat-health-insurance/ = 227 views
+3. **Provider comparisons have high engagement** - 45-55s average
+4. **Student visas outperform freelancer visas** - 2-4x traffic
+5. **High engagement pages worth noting:**
+   - /visas/work-permit-visa/in/switzerland = 240s
+   - /visas/student-visa/in/denmark/ = 160s
+   - /compare/cigna-vs-bupa-vs-aetna-executives = 178s
+   - /guides/pre-existing-conditions-abroad/ = 157s
+
+### Conversion Priority (based on data)
+1. **Provider vs Provider comparisons** - High engagement, close to purchase decision
+2. **"Best" pages** - High traffic, top of funnel
+3. **Student visa pages** - More traffic than freelancer pages
+4. **Freelancer visa pages** - Lower traffic but good for SEO long-term
 
 ---
 
 ## Completed Milestones
+
+### April 13, 2026 - Freelancer Visa Pages Batch (12 pages)
+
+Added 12 new freelancer visa pages at `/visas/freelancer-visa/in/[country]`:
+
+**Batch 1-2:** Bulgaria, Cyprus, Hungary, Slovenia
+**Batch 3-4:** Poland, Latvia, Lithuania, Belgium
+**Batch 5-6:** Sweden, Finland, Denmark, Ireland
+
+**Key differentiators by country:**
+- **Bulgaria:** €2,300-2,600/month, 10% flat tax (EU's lowest), new DNV Dec 2025
+- **Cyprus:** €3,500/month net, up to 3 years, non-dom tax benefits, NOT Schengen
+- **Hungary:** €3,000/month + €10,000 savings, White Card, NO path to PR
+- **Slovenia:** €3,200/month, 12-month non-renewable, strict verification
+- **Poland:** No DNV—uses JDG self-employment, ~€850/month, path to PR
+- **Latvia:** €2,857/month, OECD requirement, path to PR after 2 years
+- **Lithuania:** Startup Visa, NO minimum income, requires MVP/innovation
+- **Belgium:** Professional Card, €2,131/month, regional processing (Flanders fastest)
+- **Sweden:** Self-employment permit, SEK 200,000, 12-20 month processing (!), 51% ownership
+- **Finland:** Startup Permit (2-week fast-track with Business Finland) or Entrepreneur Permit
+- **Denmark:** Startup Denmark, 75 permits/year cap, innovative business required
+- **Ireland:** Stamp 0 (no Irish clients, doesn't count toward citizenship) or STEP (€50,000)
+
+Updated `visaCountryMatrix.ts`: now 26 countries in freelancer-visa array.
+
+---
 
 ### April 6, 2026 - "Best" Comparison Pages Expansion (51 pages)
 
