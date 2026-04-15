@@ -1,0 +1,862 @@
+---
+/**
+ * Italy Freelancer Visa - Long-form CRO-optimized page
+ * Lavoro Autonomo (Self-Employment) Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Italy", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Italy Health Insurance Guide", href: "/countries/italy/insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Italy Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/italy" },
+  { title: "Spain Freelancer Visa", href: "/visas/freelancer-visa/in/spain" },
+];
+
+const visaTypesColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "lavoroAutonomo", header: "Lavoro Autonomo" },
+  { key: "digitalNomad", header: "Digital Nomad Visa" },
+];
+
+const visaTypesRows = [
+  { feature: "Income Requirement", lavoroAutonomo: "€8,500/year minimum", digitalNomad: "€28,000/year minimum" },
+  { feature: "Client Location", lavoroAutonomo: "Can work with Italian clients", digitalNomad: "Foreign clients only" },
+  { feature: "Quota System", lavoroAutonomo: "Yes (limited slots)", digitalNomad: "No quota limits" },
+  { feature: "Initial Duration", lavoroAutonomo: "2 years", digitalNomad: "1 year" },
+  { feature: "Renewable", lavoroAutonomo: "Yes, indefinitely", digitalNomad: "Yes, up to 2 more years" },
+  { feature: "Path to Residency", lavoroAutonomo: "Yes (after 5 years)", digitalNomad: "Limited pathway" },
+  { feature: "Italian Tax Resident", lavoroAutonomo: "Yes", digitalNomad: "Possible (after 183 days)" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€8,500/year gross", notes: "Must prove financial sustainability" },
+  { requirement: "Nulla Osta", details: "Authorization from Sportello Unico", notes: "Required before visa application" },
+  { requirement: "Accommodation", details: "Rental contract or property ownership", notes: "Or hospitality declaration" },
+  { requirement: "Health Insurance", details: "Valid coverage in Italy", notes: "Required for entire stay" },
+  { requirement: "Professional Requirements", details: "Varies by profession", notes: "Some require Italian qualifications" },
+  { requirement: "Criminal Record", details: "Clean background check", notes: "Apostilled from home country" },
+  { requirement: "Quota Availability", details: "Must apply during Decreto Flussi", notes: "Usually early in year" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "italian", header: "Italian Private (Unisalute, etc.)" },
+  { key: "international", header: "International (Cigna, Allianz)" },
+];
+
+const insuranceRows = [
+  { feature: "Monthly Cost", italian: "€80-200", international: "€150-400" },
+  { feature: "Visa Acceptance", italian: "Always accepted", international: "Accepted with proper documentation" },
+  { feature: "Coverage Area", italian: "Italy only", international: "Worldwide" },
+  { feature: "Pre-existing Conditions", italian: "Often excluded", international: "Varies by plan" },
+  { feature: "English Support", italian: "Limited", international: "Full English support" },
+  { feature: "Direct Billing", italian: "Yes, in network", international: "Yes, global network" },
+  { feature: "SSN Access Later", italian: "Can supplement SSN", international: "Separate from SSN" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€200-400", strengths: "Comprehensive global coverage, large network" },
+  { provider: "Allianz Care", type: "International", price: "€180-350", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "Bupa Global", type: "International", price: "€220-450", strengths: "Premium coverage, excellent service" },
+  { provider: "AXA Global", type: "International", price: "€170-320", strengths: "Good value, solid coverage" },
+  { provider: "Unisalute", type: "Italian", price: "€80-150", strengths: "Local network, lower cost, Italian support" },
+  { provider: "Generali", type: "Italian", price: "€100-180", strengths: "Major Italian insurer, good network" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€116", notes: "National visa fee" },
+  { item: "Nulla Osta Fee", amount: "€50-100", notes: "Work authorization" },
+  { item: "Residence Permit (Permesso)", amount: "€70-100", notes: "Applied for after arrival" },
+  { item: "Health Insurance", amount: "€80-400/month", notes: "Italian or international" },
+  { item: "Codice Fiscale", amount: "Free", notes: "Tax identification number" },
+  { item: "Commercialista (Accountant)", amount: "€100-250/month", notes: "Highly recommended" },
+  { item: "INPS Social Security", amount: "~26% of income", notes: "Gestione Separata fund" },
+  { item: "Income Tax", amount: "5-15% flat rate", notes: "Regime forfettario option" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Wait for Decreto Flussi opening", duration: "Usually January-March", location: "Monitor announcements" },
+  { step: "Submit Nulla Osta application", duration: "Within application window", location: "Sportello Unico online" },
+  { step: "Wait for Nulla Osta approval", duration: "30-120 days", location: "Italian authorities" },
+  { step: "Apply for visa at consulate", duration: "1-2 weeks after Nulla Osta", location: "Italian embassy/consulate" },
+  { step: "Visa processing", duration: "30-90 days", location: "Consulate" },
+  { step: "Arrive in Italy", duration: "After visa issued", location: "Italy" },
+  { step: "Apply for Permesso di Soggiorno", duration: "Within 8 days of arrival", location: "Post office (Poste Italiane)" },
+  { step: "Receive Permesso", duration: "30-90 days", location: "Questura (police HQ)" },
+  { step: "Register for Codice Fiscale", duration: "1 day", location: "Agenzia delle Entrate" },
+  { step: "Open Partita IVA", duration: "1-2 weeks", location: "Agenzia delle Entrate" },
+];
+---
+
+<PageShell
+  title="Italy Freelancer Visa 2026: Lavoro Autonomo Requirements, Insurance & Guide"
+  description="Complete guide to Italy's Freelancer Visa (Lavoro Autonomo). €8,500 minimum income, quota system, mandatory health insurance, and step-by-step application process for self-employed professionals."
+  headline="Italy Freelancer Visa: Lavoro Autonomo Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Italy—Lavoro Autonomo vs Digital Nomad visa, quota system timing, health insurance options, flat-rate tax regime, and the path to Italian residency."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/countries/italy-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Official Italian Requirements
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Low €8,500 Income Threshold
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Italy offers one of Europe's most accessible freelancer visas in terms of income requirements—just €8,500 per year minimum. The Lavoro Autonomo (self-employment) visa allows non-EU nationals to work as freelancers, consultants, or independent professionals in Italy, with the ability to take on Italian clients and build a long-term career in the country.
+    </p>
+
+    <p class="mb-4">
+      However, the Lavoro Autonomo visa operates under Italy's annual quota system (Decreto Flussi), which limits the number of work permits issued each year. This creates a competitive application process with specific timing windows—usually opening in January or February. Missing the window means waiting another year.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Italy Freelancer Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Lavoro Autonomo (Self-Employment Work Visa)</li>
+        <li>• <strong>Income requirement:</strong> €8,500/year gross minimum</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—Italian private or qualifying international insurance</li>
+        <li>• <strong>Duration:</strong> Initial 2 years, renewable</li>
+        <li>• <strong>Quota system:</strong> Yes—must apply during Decreto Flussi window</li>
+        <li>• <strong>Path to PR:</strong> Permanent residence after 5 years of legal residency</li>
+        <li>• <strong>Tax regime:</strong> Regime forfettario offers 5-15% flat tax rate</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Lavoro Autonomo vs. Digital Nomad Visa: Which to Choose?</h3>
+
+    <p class="mb-4">
+      Italy now offers two main paths for freelancers: the traditional Lavoro Autonomo visa and the newer Digital Nomad Visa (introduced 2024). Understanding the differences is crucial for choosing the right path.
+    </p>
+
+    <ComparisonTable columns={visaTypesColumns} rows={visaTypesRows} />
+
+    <div class="grid md:grid-cols-2 gap-6 mt-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose Lavoro Autonomo If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>• You want to work with Italian clients</li>
+          <li>• You plan to stay long-term (5+ years)</li>
+          <li>• You want permanent residency pathway</li>
+          <li>• You earn under €28,000/year</li>
+          <li>• You want to build an Italian business</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Choose Digital Nomad Visa If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• You only work with foreign clients</li>
+          <li>• You earn €28,000+/year</li>
+          <li>• You want to avoid quota system</li>
+          <li>• You prefer flexible, shorter stays</li>
+          <li>• You work for a foreign employer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Important distinction:</strong> The Digital Nomad Visa does not allow you to work with Italian clients. If your business model includes serving the Italian market, the Lavoro Autonomo visa is your only option. The Digital Nomad Visa is strictly for those whose income comes entirely from outside Italy.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Italy is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want a low income threshold (€8,500/year)</li>
+          <li>✓ You dream of living in Rome, Milan, or Florence</li>
+          <li>✓ You can plan around quota system timing</li>
+          <li>✓ You want favorable tax treatment (5-15% flat rate)</li>
+          <li>✓ You value quality of life over bureaucratic simplicity</li>
+          <li>✓ You're comfortable with Italian administrative pace</li>
+          <li>✓ You want access to EU's third-largest economy</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need visa approval quickly (quota system takes months)</li>
+          <li>• You can't wait for Decreto Flussi window</li>
+          <li>• You want minimal bureaucracy (try Estonia)</li>
+          <li>• You need to start working in Italy immediately</li>
+          <li>• You don't speak any Italian (daily life is harder)</li>
+          <li>• Your profession requires Italian-only licensing</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Timing matters:</strong> The Decreto Flussi typically opens in January or February each year. If you're reading this in March and the window has closed, you'll need to wait until next year—or consider the Digital Nomad Visa as an alternative if you qualify (€28,000+ income, foreign clients only).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Lavoro Autonomo visa requires proving that your freelance activity is economically viable and that you can support yourself in Italy. Unlike Germany or Portugal, Italy uses a quota system that limits how many self-employment visas are issued each year.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The Decreto Flussi (Quota System) Explained</h3>
+
+    <p class="mb-4">
+      Italy's annual quota decree (Decreto Flussi) sets limits on how many non-EU workers can enter Italy for various purposes, including self-employment. The self-employment quota is typically much smaller than employment quotas—often just a few thousand slots for the entire country.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">Decreto Flussi Key Points:</h4>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Timing:</strong> Usually opens January-March (dates announced late December)</li>
+        <li>• <strong>Application method:</strong> Online through Sportello Unico per l'Immigrazione</li>
+        <li>• <strong>Speed matters:</strong> Quotas often fill within days or hours of opening</li>
+        <li>• <strong>Limited slots:</strong> Self-employment quotas are small compared to total work permits</li>
+        <li>• <strong>Competition:</strong> High demand means preparation before opening is essential</li>
+        <li>• <strong>Annual cycle:</strong> If you miss the window, wait until next year (or use DNV if eligible)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Nulla Osta Application</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Proof of income/financial resources</li>
+          <li>• Business plan or activity description</li>
+          <li>• Proof of accommodation in Italy</li>
+          <li>• Professional qualifications (if applicable)</li>
+          <li>• Health insurance documentation</li>
+          <li>• Criminal record certificate (apostilled)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Visa Application at Consulate</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Approved Nulla Osta</li>
+          <li>• Completed visa application form</li>
+          <li>• Passport photos (biometric)</li>
+          <li>• Flight itinerary or booking</li>
+          <li>• Health insurance confirmation</li>
+          <li>• Proof of sufficient funds</li>
+          <li>• Visa fee payment (€116)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Nulla Osta (Work Authorization)</h3>
+
+    <p class="mb-4">
+      Before you can apply for the visa at an Italian consulate, you need a Nulla Osta—a work authorization issued by the local Sportello Unico per l'Immigrazione in the Italian province where you plan to live. This is the critical step that depends on the quota system.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Who applies:</strong> You apply directly online through the Ministry of Interior portal</li>
+      <li><strong>When:</strong> Only during the Decreto Flussi application window</li>
+      <li><strong>Processing:</strong> 30-120 days depending on the province</li>
+      <li><strong>Validity:</strong> Once approved, you have 6 months to apply for the visa</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Province matters:</strong> Processing times vary significantly by province. Milan and Rome have longer wait times due to volume. Smaller cities like Bologna, Florence, or Palermo may process faster. Choose your intended residence strategically if timing is critical.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Italy requires all visa applicants to have valid health insurance covering the duration of their stay. Unlike some EU countries, Italy accepts both Italian private insurance and qualifying international health insurance for the initial visa application. However, once you become a tax resident and start paying into INPS, you may gain access to the public healthcare system (SSN).
+      </p>
+    </div>
+
+    <p class="mb-4">
+      For freelancers, you have two main options: Italian private insurance (like Unisalute or Generali) which is cheaper but Italy-only, or international insurance (like Cigna or Allianz) which is more expensive but provides worldwide coverage and is useful if you travel frequently.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Italian vs. International Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Which Insurance Should You Choose?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose Italian Private Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You plan to stay primarily in Italy</li>
+          <li>✓ Budget is a primary concern</li>
+          <li>✓ You speak some Italian</li>
+          <li>✓ You don't travel frequently</li>
+          <li>✓ You'll gain SSN access eventually</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Choose International Insurance If:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ You travel outside Italy frequently</li>
+          <li>✓ You want English-language support</li>
+          <li>✓ You have pre-existing conditions to cover</li>
+          <li>✓ You want global emergency coverage</li>
+          <li>✓ You may relocate from Italy later</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Access to SSN (Public Healthcare)</h3>
+
+    <p class="mb-4">
+      Italy's public healthcare system (Servizio Sanitario Nazionale or SSN) is available to legal residents who pay into the social security system (INPS). As a freelancer paying INPS contributions, you should eventually qualify for SSN enrollment—though the process can take several months.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-blue-900 mb-3">SSN Enrollment for Freelancers:</h4>
+      <ul class="space-y-2 text-blue-800">
+        <li>• <strong>Eligibility:</strong> Legal residents paying INPS contributions</li>
+        <li>• <strong>Cost:</strong> Free once enrolled (funded through taxes/INPS)</li>
+        <li>• <strong>Coverage:</strong> GP visits, hospital care, prescriptions (small copays)</li>
+        <li>• <strong>Enrollment:</strong> Apply at local ASL (Azienda Sanitaria Locale)</li>
+        <li>• <strong>Timing:</strong> May take 3-6 months after starting INPS payments</li>
+        <li>• <strong>Keep private insurance:</strong> Until SSN enrollment confirmed</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Don't drop private insurance too early:</strong> SSN enrollment can be slow, and there may be gaps in coverage. Keep your private or international insurance active until you have your SSN health card (tessera sanitaria) and have verified your enrollment with your local ASL.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Italian freelancer visa?"
+    description="Compare international and Italian private options for self-employed professionals."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For the visa application, Italian authorities accept both Italian private insurance and comprehensive international insurance. Your choice depends on budget, travel needs, and whether you want Italian-language or English-language support.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Freelancer, Staying in Italy</h4>
+        <p class="text-neutral-600">Start with Italian private insurance (Unisalute, Generali) at €80-150/month. Once you're paying INPS and gain SSN access, you can reduce private coverage to a supplement. This is the most cost-effective path for long-term residents.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Traveler or Digital Professional</h4>
+        <p class="text-neutral-600">International insurance (Cigna Global, Allianz Care) provides worldwide coverage. If your work takes you across Europe or globally, international coverage means you're protected everywhere. Budget €200-400/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Relocating to Italy</h4>
+        <p class="text-neutral-600">For families, Italian insurance is often more cost-effective since you're adding multiple people. Alternatively, international family plans from Cigna or Bupa cover the whole family under one policy with global coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Italian insurers often exclude pre-existing conditions. International insurers like Cigna Global or Allianz Care may cover them after waiting periods or with specific plans. Check coverage carefully before committing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Freelancing in Italy involves several costs: visa fees, insurance, tax advisor (commercialista), and social security contributions. However, Italy's favorable tax regime for new residents can significantly reduce your effective tax rate.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">The Regime Forfettario (Flat Tax)</h3>
+
+    <p class="mb-4">
+      Italy offers freelancers an attractive flat-rate tax regime called Regime Forfettario. If you qualify, you pay a flat 15% tax on income (or just 5% for your first 5 years as a new activity). This replaces the progressive income tax rates that can reach 43%.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">Regime Forfettario Benefits:</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>Tax rate:</strong> 5% for first 5 years, then 15%</li>
+        <li>• <strong>Income limit:</strong> Up to €85,000/year revenue</li>
+        <li>• <strong>No VAT:</strong> You don't charge or pay VAT</li>
+        <li>• <strong>Simplified accounting:</strong> Much less bookkeeping required</li>
+        <li>• <strong>INPS still applies:</strong> Social security (~26%) is separate</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Southern Italy (Budget)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Palermo, Naples, Bari</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Rome/Florence (Moderate)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,500-3,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, comfortable</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Milan (Higher Cost)</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,000-4,500</p>
+        <p class="text-sm text-neutral-500 mt-2">City center living</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Rome Example)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (own apartment):</strong> €1,000-1,500/month (varies by neighborhood)</li>
+      <li><strong>Health insurance:</strong> €100-300/month (until SSN access)</li>
+      <li><strong>Commercialista:</strong> €100-250/month (essential for compliance)</li>
+      <li><strong>Living expenses:</strong> €500-800/month (food, transport, utilities)</li>
+      <li><strong>Coworking space:</strong> €150-300/month (optional)</li>
+      <li><strong>INPS contribution:</strong> ~26% of income (deducted quarterly)</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Tax advantage calculation:</strong> A freelancer earning €50,000/year under Regime Forfettario pays ~5-15% income tax plus ~26% INPS. Effective rate is roughly 31-41%—significantly less than the 43%+ that high earners pay under normal progressive taxation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Italian freelancer visa process has two main stages: obtaining the Nulla Osta (work authorization) during the Decreto Flussi window, then applying for the actual visa at an Italian consulate. After arrival, you'll apply for your residence permit (Permesso di Soggiorno).
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Monitor Decreto Flussi Announcements</h4>
+          <p class="text-neutral-600">The Ministry of Interior typically announces the new year's quotas and application dates in December or January. Follow official channels and expat forums for announcements. Have all documents ready before the window opens.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Nulla Osta Application</h4>
+          <p class="text-neutral-600">On the opening day (often called "Click Day"), submit your application through the Sportello Unico portal. The system can be overwhelmed—start early in the morning. Quotas may fill within hours for popular categories.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Nulla Osta Approval</h4>
+          <p class="text-neutral-600">Processing takes 30-120 days depending on the province. You may be called for an interview at the Sportello Unico. Once approved, you'll receive the authorization document allowing you to apply for the visa.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Visa at Italian Consulate</h4>
+          <p class="text-neutral-600">With your Nulla Osta in hand, schedule an appointment at the Italian consulate in your home country. Bring all required documents, pay the €116 fee, and submit your application. Processing typically takes 30-90 days.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive in Italy</h4>
+          <p class="text-neutral-600">Enter Italy with your visa. You have 8 days to apply for your Permesso di Soggiorno (residence permit). Find your accommodation, confirm your address, and prepare for the next administrative steps.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Permesso di Soggiorno</h4>
+          <p class="text-neutral-600">Go to a post office (Poste Italiane) and request the immigration kit. Complete the forms, attach your documents, and submit the application. You'll receive an appointment date at the Questura (police headquarters).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Attend Questura Appointment</h4>
+          <p class="text-neutral-600">At the Questura, you'll submit biometrics (fingerprints, photo) and verify your documents. The Permesso is typically issued 30-90 days later. Your post office receipt serves as proof of legal residence while waiting.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Set Up Your Freelance Business</h4>
+          <p class="text-neutral-600">Get your Codice Fiscale (tax ID) at the Agenzia delle Entrate. Open a Partita IVA (VAT number) for freelance activity. Find a commercialista to handle taxes. Register with INPS for social security contributions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Patience required:</strong> The Italian bureaucratic process is notoriously slow. Total time from Decreto Flussi opening to receiving your Permesso can be 6-12 months. Plan accordingly and don't book one-way flights until your visa is actually issued.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Italy's Lavoro Autonomo visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer from Canada, Strong Portfolio</h3>
+        <p class="text-neutral-600 mb-4">Applied with letters from 3 potential Italian clients, portfolio, and CAD$15,000 savings. 31 years old.</p>
+        <p class="text-green-700 font-medium">✓ Nulla Osta approved in 45 days. Visa issued in 6 weeks. Now earning €4,000/month in Milan under Regime Forfettario. Paying 5% tax plus INPS. Very happy with quality of life despite initial bureaucratic frustrations.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant from US, First Time in Italy</h3>
+        <p class="text-neutral-600 mb-4">English-only speaker, planning to serve US clients remotely from Florence. 28 years old.</p>
+        <p class="text-amber-700 font-medium">△ Applied for Lavoro Autonomo but realized Digital Nomad Visa was better fit (foreign clients only). Switched applications mid-process, adding 3 months delay. Eventually approved for DNV. Recommends researching visa types carefully before applying.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Web Developer from India, Strong Technical Skills</h3>
+        <p class="text-neutral-600 mb-4">5 years experience, applying from Mumbai. Submitted on Click Day morning.</p>
+        <p class="text-green-700 font-medium">✓ Got into quota despite high competition. Nulla Osta took 90 days (Rome province is slow). Started with Cigna Global insurance (€220/month) for English support. Now building Italian client base while maintaining remote US clients.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Photographer from Brazil, Missed Deadline</h3>
+        <p class="text-neutral-600 mb-4">Tried to apply 2 hours after Click Day opening. Quota already full.</p>
+        <p class="text-red-700 font-medium">✗ Missed the quota—self-employment slots filled within 90 minutes. Had to wait entire year for next Decreto Flussi. Lesson learned: set alarms, be online at exact opening time, have fast internet connection. Successfully applied the following year.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Architect from UK, Regulated Profession</h3>
+        <p class="text-neutral-600 mb-4">Qualified UK architect wanting to practice in Italy. 42 years old.</p>
+        <p class="text-amber-700 font-medium">△ Discovered architecture requires Italian registration (Ordine degli Architetti). Had to get qualifications recognized, pass Italian language exam, and register with professional order. Process took 18 months total but now fully licensed to practice.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Writer from Australia, Low Income</h3>
+        <p class="text-neutral-600 mb-4">Earning AUD$20,000/year (~€12,000). Planning to live cheaply in Sicily.</p>
+        <p class="text-green-700 font-medium">✓ Income exceeded €8,500 minimum, so qualified despite modest earnings. Living costs in Palermo are low (~€1,200/month total). Italian insurance (€90/month) kept costs down. Quality of life excellent on a writer's budget.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Italian Freelancers"
+    description="Find the right coverage for your self-employment in Italy—Italian or international options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the Decreto Flussi Window</h3>
+        <p class="text-neutral-600">The quota system means timing is everything. If you're not online when the application window opens (often at 9:00 AM Italian time), you may miss out entirely. Self-employment quotas are limited and can fill within hours. Set multiple alarms and have a fast internet connection.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Choosing Wrong Visa Type</h3>
+        <p class="text-neutral-600">If you only work with foreign clients, the Digital Nomad Visa (€28,000/year minimum, no quota) may be easier than Lavoro Autonomo. If you want Italian clients, only Lavoro Autonomo works. Understand the differences before applying—switching mid-process causes delays.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Hiring a Commercialista</h3>
+        <p class="text-neutral-600">Italian tax law is complex, especially the Regime Forfettario rules, INPS calculations, and quarterly filings. The €100-250/month for a commercialista is essential—DIY tax filing often results in errors, penalties, and lost deductions. Find one before you arrive.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating INPS Contributions</h3>
+        <p class="text-neutral-600">While the 5-15% flat tax sounds attractive, INPS social security contributions add roughly 26% on top. Your effective tax rate is 31-41%, not 5-15%. Budget for both when calculating your take-home income.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Dropping Insurance Before SSN Confirmation</h3>
+        <p class="text-neutral-600">SSN (public healthcare) enrollment can take months after you start paying INPS. Keep your private insurance active until you have your tessera sanitaria and verified enrollment. Gaps in coverage can be problematic for permit renewals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Italy -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Italy</h2>
+
+    <p class="mb-4">
+      Italy has a high-quality public healthcare system (Servizio Sanitario Nazionale or SSN) that ranks among the best in Europe. As a legal resident paying INPS contributions, you should eventually qualify for SSN coverage—though initially you'll rely on private insurance.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What's Covered</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">SSN Coverage (Once Enrolled)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP (medico di base) consultations</li>
+          <li>✓ Specialist referrals</li>
+          <li>✓ Hospital care and surgeries</li>
+          <li>✓ Prescription medications (small copay)</li>
+          <li>✓ Emergency care</li>
+          <li>✓ Maternity care</li>
+          <li>✓ Mental health services</li>
+          <li>✓ Preventive screenings</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Often Requires Private Insurance</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Dental care (limited SSN coverage)</li>
+          <li>• Vision care and glasses</li>
+          <li>• Faster specialist appointments</li>
+          <li>• Private hospital rooms</li>
+          <li>• Alternative medicine</li>
+          <li>• Non-essential procedures</li>
+          <li>• Coverage while abroad</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How to Access Healthcare</h3>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Getting Your Medico di Base</h4>
+        <p class="text-neutral-600">Once enrolled in SSN, you choose a general practitioner (medico di base) from a list at your local ASL. This doctor handles routine care and referrals to specialists. Most GPs have limited English—consider this when choosing.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Specialist Appointments</h4>
+        <p class="text-neutral-600">For specialists under SSN, you need a referral from your medico di base. Wait times can be long (weeks to months). Many Italians use private insurance or pay out-of-pocket (€80-200) for faster access to specialists.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 118 for emergencies. Hospital emergency rooms (Pronto Soccorso) are available 24/7 and treat everyone regardless of insurance status. For urgent but non-emergency care, some cities have guardia medica (medical guard) services.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Language tip:</strong> While doctors in major cities may speak some English, healthcare in Italy largely operates in Italian. Consider learning basic medical vocabulary or bringing a translator app. In emergencies, hospitals usually find someone who speaks English, but routine care benefits from Italian language skills.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Italy's freelancer visa?</h3>
+        <p class="text-neutral-600">
+          The Lavoro Autonomo visa requires just €8,500/year gross minimum—one of the lowest thresholds in Europe. However, you must demonstrate that your freelance activity is sustainable. If you earn significantly more, consider whether the Digital Nomad Visa (€28,000/year, foreign clients only) might be simpler since it avoids the quota system.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How does the Decreto Flussi quota system work?</h3>
+        <p class="text-neutral-600">
+          Each year, Italy sets quotas for different types of work permits. Self-employment quotas are limited—often just a few thousand slots nationally. Applications open on a specific date (usually January-March), and slots can fill within hours. You must apply during this window; missing it means waiting until next year.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Italian for the freelancer visa?</h3>
+        <p class="text-neutral-600">
+          Italian language is not a visa requirement. However, daily life—dealing with bureaucracy, healthcare, landlords, and the Questura—is significantly easier with Italian. Many freelancers manage in English in major cities like Milan and Rome, but expect challenges. Basic Italian is highly recommended.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the Regime Forfettario and should I use it?</h3>
+        <p class="text-neutral-600">
+          The Regime Forfettario is a flat-rate tax scheme offering 5% tax for your first 5 years (then 15%), instead of progressive rates up to 43%. It's available to freelancers earning under €85,000/year. Most freelancers should use it—your commercialista can confirm eligibility. Note: INPS contributions (~26%) are separate and still apply.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work with Italian clients on the Digital Nomad Visa?</h3>
+        <p class="text-neutral-600">
+          No. The Digital Nomad Visa explicitly requires that your income comes from clients or employers outside Italy. If you want to serve the Italian market, you need the Lavoro Autonomo visa. Mixing client types can jeopardize your visa status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residence?</h3>
+        <p class="text-neutral-600">
+          After 5 years of continuous legal residence in Italy, you can apply for the EU long-term residence permit (Permesso di Soggiorno UE per soggiornanti di lungo periodo). Requirements include: stable income, adequate accommodation, Italian language proficiency, and no significant absences from Italy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Italy's Lavoro Autonomo visa offers a genuine path to freelancing in one of Europe's most desirable countries. The €8,500/year income threshold is remarkably low, and the Regime Forfettario tax scheme (5-15%) makes Italy surprisingly tax-friendly for new freelancers.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the quota system (requiring precise timing and preparation) and the famously slow Italian bureaucracy. You'll need patience, organization, and ideally some Italian language skills to navigate the process smoothly.
+    </p>
+
+    <p class="mb-6">
+      For freelancers who dream of living in Rome, Milan, Florence, or the Italian countryside—and who can plan around the Decreto Flussi calendar—this visa opens the door to la dolce vita with a path to permanent residency after 5 years.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        The Italian freelancer visa is best for those who can plan ahead (quota system timing), tolerate bureaucracy, and dream of building a life in Italy. The low income threshold (€8,500/year) and favorable tax regime make it financially accessible. Health insurance is mandatory—budget €80-400/month depending on your choice of Italian or international coverage.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/countries/italy/insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Italy Health Insurance Guide</h3>
+        <p class="text-neutral-600 text-sm">Complete guide to healthcare and insurance in Italy</p>
+      </a>
+      <a href="/visas/digital-nomad-visa/in/italy" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Italy Digital Nomad Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative for remote workers with foreign clients</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/spain" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Spain's autónomo visa options</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

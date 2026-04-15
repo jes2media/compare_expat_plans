@@ -1,0 +1,793 @@
+---
+/**
+ * Slovenia Freelancer Visa - Long-form CRO-optimized page
+ * Digital Nomad Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Slovenia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Hungary Freelancer Visa", href: "/visas/freelancer-visa/in/hungary" },
+  { title: "Austria Freelancer Visa", href: "/visas/freelancer-visa/in/austria" },
+  { title: "Croatia Freelancer Visa", href: "/visas/freelancer-visa/in/croatia" },
+];
+
+const applicantTypesColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "remoteEmployee", header: "Remote Employee" },
+  { key: "freelancer", header: "Freelancer" },
+  { key: "businessOwner", header: "Business Owner" },
+];
+
+const applicantTypesRows = [
+  { feature: "Eligibility", remoteEmployee: "Foreign employer contract", freelancer: "Foreign clients only", businessOwner: "Foreign-registered company" },
+  { feature: "Income Proof", remoteEmployee: "Employment contract", freelancer: "Client contracts + ongoing work", businessOwner: "Business registration + income" },
+  { feature: "Work Type", remoteEmployee: "Remote for foreign company", freelancer: "Independent contractor", businessOwner: "Remote business management" },
+  { feature: "Documentation", remoteEmployee: "Contract with remote clause", freelancer: "Self-employment certificate", businessOwner: "Company registration" },
+  { feature: "Best For", remoteEmployee: "Full-time remote workers", freelancer: "Platform workers, consultants", businessOwner: "Startup founders" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€3,200-3,300/month", notes: "2x average Slovenian salary" },
+  { requirement: "Work Type", details: "Remote for foreign entities", notes: "Already working remotely required" },
+  { requirement: "Health Insurance", details: "International coverage", notes: "Must cover entire stay" },
+  { requirement: "Accommodation", details: "Proof of housing in Slovenia", notes: "Temporary booking acceptable" },
+  { requirement: "Criminal Record", details: "Clean background check", notes: "From home country" },
+  { requirement: "Passport Validity", details: "6+ months beyond stay", notes: "Non-EU/EEA passport" },
+  { requirement: "No Slovenian Work", details: "Cannot serve Slovenian market", notes: "Foreign clients only" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "travel", header: "Travel Insurance" },
+  { key: "international", header: "International Health Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Acceptance", travel: "May not meet requirements", international: "Fully accepted" },
+  { feature: "Coverage Duration", travel: "30-90 days", international: "Annual renewable" },
+  { feature: "Coverage Scope", travel: "Emergency only", international: "Comprehensive" },
+  { feature: "Pre-existing Conditions", travel: "Excluded", international: "Varies by plan" },
+  { feature: "Routine Care", travel: "Not covered", international: "Usually included" },
+  { feature: "Monthly Cost", travel: "€30-80", international: "€100-280" },
+  { feature: "Recommendation", travel: "Not sufficient for 1 year", international: "Required for DNV" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€140-300", strengths: "Comprehensive coverage, EU network" },
+  { provider: "Allianz Care", type: "International", price: "€120-260", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€65-110", strengths: "Budget-friendly, nomad-focused" },
+  { provider: "Genki", type: "Nomad Insurance", price: "€55-95", strengths: "European-focused, good value" },
+  { provider: "World Nomads", type: "Travel/Nomad", price: "€70-140", strengths: "Adventure activities included" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€77", notes: "Residence permit application" },
+  { item: "Health Insurance", amount: "€100-280/month", notes: "International required" },
+  { item: "Rent (Ljubljana)", amount: "€600-1,000/month", notes: "1-bedroom apartment" },
+  { item: "Rent (Coast/Rural)", amount: "€400-700/month", notes: "Piran, Bled, smaller towns" },
+  { item: "Utilities", amount: "€100-150/month", notes: "Electricity, heating, internet" },
+  { item: "Living Expenses", amount: "€500-800/month", notes: "Food, transport, leisure" },
+  { item: "Total Monthly (Single)", amount: "€1,400-2,300", notes: "Comfortable lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-3 weeks", location: "Home country" },
+  { step: "Apply at embassy or in Slovenia", duration: "1 day", location: "Slovenian embassy OR Slovenia" },
+  { step: "Application processing", duration: "30-60 days", location: "Administrative unit processes" },
+  { step: "Receive approval notification", duration: "After processing", location: "Email/post" },
+  { step: "Collect residence permit", duration: "After approval", location: "Slovenia" },
+  { step: "Register local address", duration: "Within days of arrival", location: "Administrative unit" },
+];
+---
+
+<PageShell
+  title="Slovenia Freelancer Visa 2026: Digital Nomad Visa Requirements, Insurance & Guide"
+  description="Complete guide to Slovenia's new Digital Nomad Visa for freelancers. €3,200/month income, 12-month permit, Schengen access, Alpine nature, and step-by-step application process."
+  headline="Slovenia Freelancer Visa: Digital Nomad Visa Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Slovenia—new DNV launched November 2025, €3,200/month income requirement, Schengen Zone access, stunning Alpine nature, and central European location."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      New DNV Launched Nov 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Nature & Quality of Life
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Slovenia officially launched its Digital Nomad Visa on November 21, 2025, becoming one of the newest EU countries to welcome remote workers. This small but stunning Alpine country offers what many digital nomads dream of: affordable European living, exceptional natural beauty, central location bordering Italy, Austria, Hungary, and Croatia, and full Schengen Zone access.
+    </p>
+
+    <p class="mb-4">
+      The Slovenian DNV is a temporary residence permit—not a work visa—designed for professionals who already work remotely for entities outside Slovenia. The income requirement (approximately €3,200-3,300/month) reflects Slovenia's policy of attracting high-earning professionals while maintaining manageable costs.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Slovenia Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Digital Nomad Temporary Residence Permit</li>
+        <li>• <strong>Income requirement:</strong> €3,200-3,300/month (2x average salary)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—international coverage required</li>
+        <li>• <strong>Duration:</strong> 12 months (non-renewable, 6-month gap before reapply)</li>
+        <li>• <strong>Schengen access:</strong> Yes—travel freely in Schengen Zone</li>
+        <li>• <strong>Currency:</strong> Euro (since 2007)</li>
+        <li>• <strong>Work restriction:</strong> Cannot work for Slovenian companies/clients</li>
+        <li>• <strong>Family:</strong> Can accompany with additional income proof</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Can Apply?</h3>
+
+    <p class="mb-4">
+      Slovenia's DNV targets established remote workers who can prove ongoing work relationships with entities outside Slovenia. The key emphasis is that you must already be working remotely—this isn't for those planning to start freelancing.
+    </p>
+
+    <ComparisonTable columns={applicantTypesColumns} rows={applicantTypesRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Already working requirement:</strong> Immigration officers verify not just that you can work remotely, but that you are already doing so. You need to demonstrate an ongoing flow of work—contracts, recent invoices, and active client relationships. This isn't a visa for aspiring digital nomads.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Slovenia is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You love nature and outdoor activities</li>
+          <li>✓ You earn €3,200+/month from foreign sources</li>
+          <li>✓ You want central European location</li>
+          <li>✓ You value safety and quality of life</li>
+          <li>✓ You want Schengen Zone access</li>
+          <li>✓ You appreciate smaller, quieter countries</li>
+          <li>✓ You're already actively working remotely</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want a large city with nightlife (try Budapest, Lisbon)</li>
+          <li>• You need more than 1 year initially</li>
+          <li>• Your income is below €3,200/month</li>
+          <li>• You're new to remote work (need track record)</li>
+          <li>• You prefer warm Mediterranean climate</li>
+          <li>• You want path to permanent residency</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Unique advantage:</strong> Slovenia's central location means you're within easy reach of Vienna (3 hours), Venice (2 hours), Zagreb (1.5 hours), and Munich (4 hours). For digital nomads who love weekend trips, this geographic position is unbeatable.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Slovenia's DNV has a notably high income threshold—approximately two times the average Slovenian salary. The authorities are strict about income documentation, checking every document to ensure you're a high-income specialist.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Requirement Details</h3>
+
+    <p class="mb-4">
+      Slovenia requires proof of earning at least two average monthly salaries. In 2026, this translates to approximately €3,200-3,300/month. Importantly, you cannot simply show savings—you must demonstrate ongoing income.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Income Documentation Must Show:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Consistent earnings:</strong> Bank statements showing regular deposits</li>
+        <li>• <strong>Ongoing work:</strong> Active contracts or employment, not just past income</li>
+        <li>• <strong>Foreign source:</strong> Income must come from outside Slovenia</li>
+        <li>• <strong>Family increase:</strong> Additional income required if bringing dependents</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Application</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Employment contract with remote work clause OR</li>
+          <li>• Self-employment certificate + client contracts</li>
+          <li>• Bank statements showing income</li>
+          <li>• International health insurance</li>
+          <li>• Criminal record certificate</li>
+          <li>• Proof of accommodation in Slovenia</li>
+          <li>• Passport photos</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Freelancers Specifically</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Contracts with foreign clients</li>
+          <li>• Proof of ongoing task flow</li>
+          <li>• Recent invoices</li>
+          <li>• Platform earnings history (if applicable)</li>
+          <li>• Self-employment registration from home country</li>
+          <li>• Client testimonials or recommendations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Strict verification:</strong> Slovenia's immigration office scrutinizes freelancer applications carefully. They want to see that you have ongoing work, not just potential work. Prepare comprehensive documentation showing active client relationships and recent completed projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Slovenia requires international health insurance covering your entire 12-month stay. The insurance must provide comprehensive coverage—basic travel insurance won't suffice for a year-long residence permit.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Since the DNV is a 12-month permit, you need insurance that covers the full duration without gaps. Annual international health insurance policies are the standard choice.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Travel vs. International Health Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance for Families</h3>
+
+    <p class="mb-4">
+      If you're bringing family members, each person needs their own health insurance coverage. Family plans from international insurers can cover everyone under one policy, often at better rates than individual plans.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose International Health Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're staying the full 12 months</li>
+          <li>✓ You want routine care included</li>
+          <li>✓ You have pre-existing conditions</li>
+          <li>✓ You'll travel within Schengen</li>
+          <li>✓ You want seamless coverage</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Travel Insurance Limitations:</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Unlikely to meet 12-month requirement</li>
+          <li>△ Multiple renewals needed</li>
+          <li>△ Emergency-only coverage</li>
+          <li>△ No pre-existing conditions</li>
+          <li>△ Coverage gaps risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Recommendation:</strong> For Slovenia's 12-month DNV, invest in proper annual international health insurance from the start. It simplifies the application, provides better coverage, and avoids complications during your stay.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Slovenia digital nomad visa?"
+    description="Compare international health insurance plans accepted for Slovenia's DNV application."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Slovenia's DNV, you need insurance that provides full coverage for 12 months. These providers offer plans well-suited for digital nomads in Slovenia.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Full-Time Slovenia Resident</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage with good regional networks. Budget €120-260/month for solid protection including routine care and specialists in Ljubljana's private clinics.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Nomad</h4>
+        <p class="text-neutral-600">SafetyWing or Genki offer nomad-focused coverage at €55-110/month. Good for healthy freelancers who primarily need emergency and hospitalization coverage while enjoying Slovenia's outdoor lifestyle.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Adventure Enthusiast</h4>
+        <p class="text-neutral-600">If you plan to ski, hike, or engage in adventure sports in Slovenia's Alps, ensure your policy covers these activities. World Nomads includes adventure sports; check other policies for exclusions.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care may cover pre-existing conditions after waiting periods. Discuss your medical history during the quote process—full disclosure is essential.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Slovenia offers moderate costs by Western European standards—more affordable than Austria or Italy but slightly higher than Hungary or Croatia. Ljubljana, the capital, is the most expensive area; coastal towns and rural areas offer better value.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Why Slovenia?</h3>
+
+    <p class="mb-4">
+      Slovenia's appeal goes beyond costs—it offers exceptional quality of life. With just 2 million people, the country combines Alpine mountains, Mediterranean coast, and green forests within a compact area. Ljubljana is consistently ranked among Europe's most livable small cities.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">Slovenia's Unique Advantages:</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>Nature access:</strong> Alps, lakes, caves, coast—all within 2 hours</li>
+        <li>• <strong>Safety:</strong> One of Europe's safest countries</li>
+        <li>• <strong>Size:</strong> Small country, everything accessible</li>
+        <li>• <strong>Central location:</strong> Italy, Austria, Croatia, Hungary all border</li>
+        <li>• <strong>Digital infrastructure:</strong> Excellent internet throughout</li>
+        <li>• <strong>Euro currency:</strong> Stable, no exchange hassles</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget (Rural/Shared)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,200-1,600</p>
+        <p class="text-sm text-neutral-500 mt-2">Small towns, shared housing</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable (Ljubljana)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,800-2,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment in center</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Living</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,500-3,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Bled, coast, frequent dining</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Ljubljana)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1BR apartment):</strong> €600-900/month (city center)</li>
+      <li><strong>Health insurance:</strong> €100-220/month</li>
+      <li><strong>Utilities:</strong> €100-150/month (electricity, heating, internet)</li>
+      <li><strong>Groceries:</strong> €250-350/month</li>
+      <li><strong>Dining out:</strong> €100-200/month</li>
+      <li><strong>Transport:</strong> €40-60/month (bike-friendly city)</li>
+      <li><strong>Coworking:</strong> €100-180/month (optional)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Living tip:</strong> Ljubljana is very bike-friendly with extensive cycle paths. Many digital nomads forgo cars entirely, using bikes for daily transport and trains/rentals for weekend trips to the coast or mountains.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Slovenia offers flexibility in where you apply—you can submit your application at a Slovenian embassy abroad or, if you're already legally in Slovenia (e.g., as a tourist), directly at the relevant administrative authority. Processing typically takes 30-60 days.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Documents</h4>
+          <p class="text-neutral-600">Collect required documents: employment contract or freelance contracts with foreign clients, proof of ongoing income (bank statements), criminal record certificate, and accommodation proof (even a temporary booking works).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Health Insurance</h4>
+          <p class="text-neutral-600">Purchase international health insurance covering your 12-month stay in Slovenia. Obtain an official certificate showing coverage dates, amounts, and Slovenia as covered territory.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Choose Application Location</h4>
+          <p class="text-neutral-600">Decide whether to apply at a Slovenian embassy in your home country or travel to Slovenia first (visa-free for many nationalities) and apply at an administrative unit before any current permit expires.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Submit your application with all documents and pay the €77 fee. If applying at an embassy, follow their appointment process. If in Slovenia, submit to the local administrative unit (upravna enota).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing takes 30-60 days. The authorities may contact you for additional documents or clarification. Track your application status through the embassy or administrative unit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Residence Permit</h4>
+          <p class="text-neutral-600">Once approved, collect your 12-month residence permit. If you applied abroad, you may need to travel to Slovenia to collect it. Register your local address at the administrative unit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Set Up Local Life</h4>
+          <p class="text-neutral-600">Open a Slovenian bank account, find longer-term accommodation if needed, and explore Ljubljana's coworking spaces. Connect with the small but growing digital nomad community through meetups and online groups.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>In-country application tip:</strong> Many applicants visit Slovenia first as tourists, explore the country, find accommodation, then apply locally. This approach lets you experience Slovenia before committing and may speed up the overall process.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Slovenia's new Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Engineer from US, Remote for Tech Company</h3>
+        <p class="text-neutral-600 mb-4">Works for Seattle company earning $9,000/month. Outdoor enthusiast, loves hiking and skiing. 32 years old.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 40 days. Employment contract made income proof straightforward. Now living in Ljubljana, skiing in Kranjska Gora on weekends. Calls it "the best decision for work-life balance." Venice and Vienna weekend trips are a bonus.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer from UK, Freelance Clients</h3>
+        <p class="text-neutral-600 mb-4">Earning £4,500/month from UK and US clients. Applied from Slovenia after tourist visit. 28 years old.</p>
+        <p class="text-green-700 font-medium">✓ Freelance contracts and recent invoices accepted. Authorities checked ongoing work carefully. Living near Lake Bled part-time, Ljubljana part-time. Loves the nature access and slower pace compared to London.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant from Australia, Strong Income</h3>
+        <p class="text-neutral-600 mb-4">Earning AUD $8,000/month (~€5,000). Multiple Australian and US clients. 35 years old.</p>
+        <p class="text-green-700 font-medium">✓ Well above income threshold. Applied at Ljubljana embassy in Canberra. Approved in 50 days. Time zone overlap with Asia-Pacific works for morning calls. Afternoons free for exploring Alps and Adriatic coast.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Creator, Borderline Income</h3>
+        <p class="text-neutral-600 mb-4">YouTuber earning €3,000-3,500/month. Income varies month to month based on ad revenue.</p>
+        <p class="text-amber-700 font-medium">△ Initial questions about income consistency—some months below threshold. Provided additional documentation showing €3,400 average over 6 months. Approved after providing supplemental bank statements. Lesson: prepare for scrutiny if income varies.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">New Freelancer, Only 3 Months History</h3>
+        <p class="text-neutral-600 mb-4">Recently quit corporate job to freelance. Good income (€4,000/month) but short track record.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—Slovenia requires proof of ongoing established work, not recent starts. Authorities questioned sustainability with only 3 months history. Advised to apply after 6-12 months of freelancing. Consider Hungary's simpler requirements in the meantime.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple with Combined Remote Income</h3>
+        <p class="text-neutral-600 mb-4">Both work remotely—she earns €4,000/month, he earns €2,500/month. Want to live together in Slovenia.</p>
+        <p class="text-green-700 font-medium">✓ She qualified independently. He applied with her as family member, showing combined household income. Both approved. Living in Ljubljana city center. Note: family members can accompany but need to show sufficient combined income.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Slovenia Digital Nomads"
+    description="Find the right coverage for your DNV application—comprehensive international health insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Without Established Work History</h3>
+        <p class="text-neutral-600">Slovenia specifically requires that you already work remotely, not that you plan to. Immigration checks documents carefully to verify ongoing work relationships. New freelancers with only a few months of history often face rejection. Build 6-12 months of track record first.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Showing Only Savings, Not Income</h3>
+        <p class="text-neutral-600">Unlike some countries, Slovenia requires ongoing income proof—not just bank savings. You must demonstrate €3,200+/month coming in regularly, not a lump sum sitting in your account. Bank statements must show regular deposits from work.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Renewal</h3>
+        <p class="text-neutral-600">Slovenia's DNV is for 12 months only, non-renewable. After the year ends, you must wait at least 6 months before reapplying. If you want continuous EU residence, consider other options like Portugal or Spain's renewable permits.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Weak Freelancer Documentation</h3>
+        <p class="text-neutral-600">For freelancers, authorities want to see contracts with clients, recent invoices, and proof of ongoing work. A vague statement that you "work online" isn't sufficient. Prepare comprehensive documentation of your client relationships.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Inadequate Health Insurance</h3>
+        <p class="text-neutral-600">Short-term travel insurance won't meet Slovenia's 12-month residence permit requirements. Invest in proper annual international health insurance from the start. Attempting to patch together 90-day policies creates gaps and complications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Slovenia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Slovenia</h2>
+
+    <p class="mb-4">
+      Slovenia has a high-quality healthcare system with both public (mandatory insurance for residents) and private options. DNV holders typically rely on international insurance for private care, which provides access to modern facilities throughout the country.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare (Recommended)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ High-quality facilities in Ljubljana</li>
+          <li>✓ Short wait times</li>
+          <li>✓ English-speaking doctors available</li>
+          <li>✓ GP visits: €50-80</li>
+          <li>✓ Specialist visits: €70-120</li>
+          <li>✓ Accepted by international insurers</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Public Healthcare (ZZZS)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Requires mandatory health contributions</li>
+          <li>△ DNV holders typically not enrolled</li>
+          <li>△ High quality when enrolled</li>
+          <li>△ Slovenian language often needed</li>
+          <li>△ Some wait times for specialists</li>
+          <li>△ Good emergency care regardless</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Costs (Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP consultation:</strong> €50-80</li>
+      <li><strong>Specialist visit:</strong> €70-120</li>
+      <li><strong>Blood tests:</strong> €30-70</li>
+      <li><strong>X-ray or ultrasound:</strong> €50-90</li>
+      <li><strong>MRI scan:</strong> €200-350</li>
+      <li><strong>Dental cleaning:</strong> €60-90</li>
+      <li><strong>Emergency care:</strong> Public hospitals treat emergencies regardless of insurance</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Ljubljana healthcare:</strong> The main private clinics include Medicofit, Diagnostični Center Bled, and various specialists in the city center. Many doctors in Ljubljana speak English, especially in private practice catering to internationals.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Emergency Services</h3>
+
+    <p class="mb-4">
+      Call 112 for emergencies. Public hospitals treat everyone in emergencies regardless of insurance status. University Medical Centre Ljubljana (UKCL) is the main hospital for serious emergencies and complex care.
+    </p>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Slovenia's digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          Slovenia requires approximately €3,200-3,300/month, which equals two times the average Slovenian salary. You must demonstrate ongoing income through bank statements and contracts—savings alone don't satisfy the requirement.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I renew Slovenia's digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          No. Slovenia's DNV is for 12 months only and is not renewable. After your year ends, you must leave and wait at least 6 months before applying again. If you need continuous EU residence, consider Portugal or Spain's renewable options.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family come with me to Slovenia?</h3>
+        <p class="text-neutral-600">
+          Yes, family members can accompany you if you demonstrate sufficient additional income to support them. Each family member needs their own health insurance, and the overall household income must cover everyone's living costs.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Slovenia part of the Schengen Zone?</h3>
+        <p class="text-neutral-600">
+          Yes. Slovenia is a full Schengen member and uses the Euro. Your DNV residence permit allows visa-free travel throughout the Schengen Area—perfect for weekend trips to Italy, Austria, Croatia, or beyond.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to already be working remotely to apply?</h3>
+        <p class="text-neutral-600">
+          Yes. Slovenia requires proof that you are already actively working remotely—not just that you could work remotely. Immigration officers check for ongoing work relationships, recent projects, and steady income flow. New freelancers often face rejection.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How affordable is Slovenia compared to other EU countries?</h3>
+        <p class="text-neutral-600">
+          Slovenia is more affordable than Western Europe (Austria, Italy, France) but slightly higher than Eastern Europe (Hungary, Romania, Bulgaria). Ljubljana costs roughly €1,800-2,400/month for comfortable living. The quality of life relative to cost is excellent.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Slovenia's new Digital Nomad Visa (launched November 2025) offers something unique: access to one of Europe's most beautiful, safe, and livable countries. For nature-loving digital nomads who dream of Alpine peaks, turquoise lakes, and Mediterranean coastline—all within a 2-hour drive—Slovenia is hard to beat.
+    </p>
+
+    <p class="mb-4">
+      The €3,200+/month income requirement is higher than some alternatives, and the 12-month non-renewable limit means this isn't a long-term settlement solution. But for a year of exceptional quality of life with Schengen access and central European location, Slovenia makes a compelling case.
+    </p>
+
+    <p class="mb-6">
+      The main requirements to keep in mind: you must already be actively working remotely (this isn't for beginners), and you need comprehensive documentation of your work relationships. If you meet these criteria and value nature, safety, and quality of life over big-city nightlife, Slovenia could be your ideal EU base.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Slovenia's DNV is perfect for established remote workers who prioritize nature access, safety, and quality of life. The €3,200/month income requirement targets higher earners, and the strict work verification means you need solid documentation. Budget €100-220/month for health insurance—essential for the visa and access to quality healthcare.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/hungary" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Hungary Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Simplified documentation, no apostille needed</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/austria" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Austria Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Alpine neighbor with German-speaking culture</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/croatia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Croatia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Adriatic coast, no Croatian tax requirement</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

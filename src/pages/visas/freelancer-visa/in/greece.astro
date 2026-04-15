@@ -1,0 +1,750 @@
+---
+/**
+ * Greece Freelancer/Digital Nomad Visa - Long-form CRO-optimized page
+ * Digital Nomad Visa guide with insurance requirements for freelancers
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Greece", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Digital Nomad Insurance", href: "/best/digital-nomad-insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Portugal Freelancer Visa", href: "/visas/freelancer-visa/in/portugal" },
+  { title: "Croatia Freelancer Visa", href: "/visas/freelancer-visa/in/croatia" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€3,500/month net", notes: "+20% for spouse, +15% per child" },
+  { requirement: "Work Arrangement", details: "Foreign employer or clients", notes: "Cannot work for Greek companies" },
+  { requirement: "Health Insurance", details: "Long-term residency coverage", notes: "Travel insurance not accepted" },
+  { requirement: "Accommodation", details: "Rental agreement or ownership", notes: "Greek address required" },
+  { requirement: "Criminal Record", details: "Clean background check", notes: "From home country + any 12+ month residence" },
+  { requirement: "Declaration Letter", details: "Statement of work arrangement", notes: "Confirms no Greek employment" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "required", header: "Required" },
+  { key: "recommended", header: "Recommended" },
+];
+
+const insuranceRows = [
+  { feature: "Type", required: "Long-term residency insurance", recommended: "Comprehensive international" },
+  { feature: "Coverage Area", required: "Greece", recommended: "Worldwide" },
+  { feature: "Duration", required: "Full visa/permit period", recommended: "Annual renewable" },
+  { feature: "Hospital Care", required: "Required", recommended: "Unlimited" },
+  { feature: "Outpatient Care", required: "Required", recommended: "Comprehensive" },
+  { feature: "Family Coverage", required: "Each member covered", recommended: "Family plan" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€200-400", strengths: "Comprehensive, widely accepted" },
+  { provider: "Allianz Care", type: "International", price: "€180-350", strengths: "Strong EU coverage, good value" },
+  { provider: "Bupa Global", type: "International", price: "€220-450", strengths: "Premium coverage, excellent service" },
+  { provider: "AXA Global", type: "International", price: "€170-320", strengths: "Solid coverage, competitive pricing" },
+  { provider: "IMG Global", type: "International", price: "€150-300", strengths: "Flexible plans, good network" },
+  { provider: "Greek Private", type: "Local", price: "€100-200", strengths: "Lower cost, local network" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€75-150", notes: "Varies by consulate" },
+  { item: "Residence Permit Fee", amount: "€150", notes: "After arrival in Greece" },
+  { item: "Health Insurance", amount: "€100-400/month", notes: "Long-term coverage required" },
+  { item: "Accommodation (Athens)", amount: "€600-1,200/month", notes: "City center apartment" },
+  { item: "Accommodation (Islands)", amount: "€500-1,000/month", notes: "Off-season rates" },
+  { item: "Living Expenses", amount: "€700-1,000/month", notes: "Food, transport, utilities" },
+  { item: "Income Tax (<183 days)", amount: "€0", notes: "Non-resident status" },
+  { item: "Income Tax (>183 days)", amount: "50% reduction available", notes: "Special nomad regime" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Obtain criminal record certificate", duration: "1-3 weeks", location: "Home country" },
+  { step: "Secure health insurance", duration: "1-3 days", location: "Online" },
+  { step: "Book accommodation", duration: "1-2 weeks", location: "Online/Greece" },
+  { step: "Submit visa application", duration: "1 day", location: "Greek consulate" },
+  { step: "Visa processing", duration: "1-3 months", location: "Greek authorities" },
+  { step: "Receive visa and travel", duration: "After approval", location: "Greece" },
+  { step: "Apply for residence permit", duration: "Within 30 days of arrival", location: "Local migration office" },
+  { step: "Receive 2-year permit", duration: "1-2 months", location: "Greece" },
+];
+---
+
+<PageShell
+  title="Greece Freelancer Visa 2026: Digital Nomad Requirements, Insurance & Guide"
+  description="Complete guide to Greece's Digital Nomad Visa for freelancers. €3,500/month income, long-term health insurance required, 2-year residence permit, and island lifestyle options."
+  headline="Greece Digital Nomad Visa for Freelancers: Requirements & Insurance Guide"
+  subheadline="Everything you need to know about freelancing in Greece—income requirements, mandatory health insurance, 2-year residence permit, tax benefits, and Mediterranean island lifestyle."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare International Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      2-Year Residence Permit
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      50% Tax Reduction Available
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Greece launched its Digital Nomad Visa in 2021, offering remote workers the chance to live in one of Europe's most iconic destinations. From Athens' vibrant urban scene to the legendary Greek islands, the visa provides access to Mediterranean lifestyle with a clear path to longer-term residency through a 2-year renewable permit.
+    </p>
+
+    <p class="mb-4">
+      The €3,500/month net income requirement is moderate by European standards, and Greece offers attractive tax benefits—no tax liability for stays under 183 days, and a 50% tax reduction for longer stays under the special nomad regime. Combined with affordable living costs, Greece presents strong value for qualified freelancers.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Greece Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Digital Nomad Visa / Remote Work Residence Permit</li>
+        <li>• <strong>Income requirement:</strong> €3,500/month net (+20% spouse, +15% per child)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—long-term residency coverage (travel insurance not accepted)</li>
+        <li>• <strong>Initial visa:</strong> 12 months</li>
+        <li>• <strong>Residence permit:</strong> 2 years, renewable</li>
+        <li>• <strong>Tax benefit:</strong> Under 183 days = no Greek tax; over 183 days = 50% reduction available</li>
+        <li>• <strong>Processing time:</strong> 1-3 months</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Qualifies?</h3>
+
+    <p class="mb-4">
+      Greece's Digital Nomad Visa is designed for non-EU nationals who work remotely for employers or clients based outside Greece. Freelancers with international clients are fully eligible.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Eligible Applicants</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Remote employees of foreign companies</li>
+          <li>✓ Freelancers with international clients</li>
+          <li>✓ Self-employed with foreign business</li>
+          <li>✓ Digital entrepreneurs serving foreign markets</li>
+          <li>✓ Consultants with foreign contracts</li>
+          <li>✓ Non-EU/EEA nationals</li>
+        </ul>
+      </div>
+
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Not Eligible</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Working for Greek companies</li>
+          <li>✗ Providing services to Greek clients</li>
+          <li>✗ Employed by Greek-registered entities</li>
+          <li>✗ Running a business in Greece</li>
+          <li>✗ EU/EEA citizens (already have rights)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Island life option:</strong> Unlike many digital nomad visas tied to capital cities, Greece offers genuine flexibility. You can base yourself in Athens, Thessaloniki, or on islands like Crete, Rhodes, Corfu, or the Cyclades. Internet infrastructure varies—research connectivity before choosing remote island locations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Greece is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You earn €3,500+/month net from foreign sources</li>
+          <li>✓ You dream of Mediterranean/island lifestyle</li>
+          <li>✓ You want 2-year renewable residence permit</li>
+          <li>✓ You appreciate ancient history and culture</li>
+          <li>✓ You want affordable EU living costs</li>
+          <li>✓ You prefer warm climate most of the year</li>
+          <li>✓ Tax optimization is important to you</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You earn less than €3,500/month</li>
+          <li>• You need ultra-reliable internet (some areas)</li>
+          <li>• You don't speak any Greek (daily life challenge)</li>
+          <li>• You need English-speaking environment (try Malta)</li>
+          <li>• You want established nomad community (smaller here)</li>
+          <li>• 1-3 month processing time is too slow</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Seasonal considerations:</strong> Greek islands are magical in spring and fall but can be crowded (and expensive) in summer and very quiet in winter with limited services. Athens offers year-round consistency. Consider your preferred lifestyle when choosing where to base yourself.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Greece's Digital Nomad Visa requires proof of stable foreign income, comprehensive health insurance (travel insurance is explicitly rejected), and documentation showing you work remotely for non-Greek entities.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Requirements Breakdown</h3>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">Income Thresholds:</h4>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Single applicant:</strong> €3,500/month net</li>
+        <li>• <strong>With spouse/partner:</strong> €4,200/month (+20%)</li>
+        <li>• <strong>With spouse + 1 child:</strong> €4,830/month (+15% per child)</li>
+        <li>• <strong>With spouse + 2 children:</strong> €5,355/month</li>
+        <li>• <strong>Documentation:</strong> 6 months of bank statements/payslips</li>
+        <li>• <strong>Source:</strong> Must be from foreign employer or clients</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Required Documents</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Visa application form</li>
+          <li>• Employment contract or freelance agreements</li>
+          <li>• 6 months bank statements/payslips</li>
+          <li>• Declaration letter (no Greek employment)</li>
+          <li>• Health insurance certificate</li>
+          <li>• Proof of accommodation</li>
+          <li>• Criminal record certificate</li>
+          <li>• Passport photos</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Document Notes</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Criminal record from home country required</li>
+          <li>• Also from any country with 12+ month residence</li>
+          <li>• Documents may need apostille</li>
+          <li>• Translation to Greek may be required</li>
+          <li>• Insurance must be long-term (not travel)</li>
+          <li>• Declaration letter format varies by consulate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Two-stage process:</strong> You first obtain a 12-month Digital Nomad Visa at a Greek consulate abroad. After arriving in Greece, you apply for a 2-year residence permit within 30 days. The residence permit is renewable as long as you continue meeting requirements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Long-Term Health Insurance Required</h3>
+      <p class="text-green-800">
+        Greece explicitly requires long-term residency health insurance—travel insurance is not accepted. Your policy must cover medical and hospital care in Greece for the entire duration of your visa/residence permit, and extend to any family members included in your application.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The insurance must be from a provider authorized to operate in Greece (which includes most major international insurers). Budget nomad insurance may not qualify—verify your policy meets residency requirements before applying.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Requirements</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Qualifies?</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Not Accepted</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Travel medical insurance</li>
+          <li>✗ Short-term emergency coverage</li>
+          <li>✗ Trip cancellation insurance</li>
+          <li>✗ Policies not covering Greece</li>
+          <li>✗ Policies shorter than visa duration</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Accepted</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Comprehensive international health insurance</li>
+          <li>✓ Annual policies covering Greece</li>
+          <li>✓ Greek private health insurance</li>
+          <li>✓ EU-compliant health coverage</li>
+          <li>✓ Policies from authorized providers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>SafetyWing note:</strong> SafetyWing Nomad Insurance is travel medical insurance, which Greece explicitly doesn't accept for this visa. You need comprehensive international health insurance like Cigna Global, Allianz Care, or Greek private insurance.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need long-term insurance for Greece's visa?"
+    description="Compare comprehensive international health insurance meeting Greece's requirements."
+    buttonText="Compare International Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Greece requires long-term residency health insurance. International health insurers are widely accepted, as are Greek private insurance companies. Choose based on whether you'll travel outside Greece and your coverage preferences.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Overall: Cigna Global or Allianz Care</h4>
+        <p class="text-neutral-600">Major international insurers with comprehensive coverage, EU networks, and clear visa compliance. Both are widely accepted for Greek residency applications. Budget €180-400/month depending on plan level.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget Option: Greek Private Insurance</h4>
+        <p class="text-neutral-600">Greek insurers like Interamerican or Ethniki offer local coverage at lower prices (€100-200/month). Good if you'll stay primarily in Greece and don't need worldwide coverage. Ensure policy meets visa requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Traveler: International with Global Coverage</h4>
+        <p class="text-neutral-600">If you'll travel across Europe or globally, choose international insurance with worldwide coverage. Bupa Global or AXA Global provide seamless coverage whether you're on a Greek island or visiting clients elsewhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Greece offers excellent value—affordable living costs, quality healthcare, and attractive tax benefits for digital nomads. Athens is moderate by European standards; islands can be cheaper off-season or more expensive during summer.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Monthly Budget Examples</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Athens (Budget)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Shared flat, basic lifestyle</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Athens (Comfortable)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,500-3,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, good insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Islands (Off-Season)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,800-2,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Sep-Jun, quieter life</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Tax Benefits</h3>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">Digital Nomad Tax Treatment:</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>Under 183 days:</strong> Not Greek tax resident—no Greek income tax</li>
+        <li>• <strong>Over 183 days:</strong> Tax resident, but 50% tax reduction available</li>
+        <li>• <strong>Standard tax rate:</strong> Progressive 9-44% (but 50% reduction applies)</li>
+        <li>• <strong>Effective rate:</strong> Roughly 4.5-22% with nomad reduction</li>
+        <li>• <strong>Social security:</strong> Not required under nomad regime</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Tax planning:</strong> The 50% reduction for nomads staying 183+ days makes Greece competitive with "tax-free" destinations when you factor in actual rates. Consult a Greek tax advisor to optimize your situation—the rules can be complex.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Greek Digital Nomad Visa is a two-stage process: obtain the initial visa at a Greek consulate abroad, then convert it to a 2-year residence permit after arriving in Greece. Processing takes 1-3 months.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Required Documents</h4>
+          <p class="text-neutral-600">Collect 6 months of income proof, employment contracts or freelance agreements, criminal record certificate (from home country and any country where you lived 12+ months), and prepare your declaration letter confirming no Greek employment.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Long-Term Health Insurance</h4>
+          <p class="text-neutral-600">Purchase comprehensive health insurance covering Greece for the full visa duration. Get a certificate or policy document clearly stating coverage scope and duration. Travel insurance will be rejected.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Book Accommodation</h4>
+          <p class="text-neutral-600">Secure rental accommodation in Greece with a signed lease agreement. Initial booking can be flexible, but you need a Greek address for the application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply at Greek Consulate</h4>
+          <p class="text-neutral-600">Schedule an appointment at the Greek consulate in your home country. Submit all documents, pay the visa fee (€75-150), and attend the interview if required.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing typically takes 1-3 months. You may be asked for additional documents. Once approved, collect your 12-month visa and plan your move.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Apply for Residence Permit</h4>
+          <p class="text-neutral-600">Within 30 days of arrival, apply for your 2-year residence permit at the local migration office (Αποκεντρωμένη Διοίκηση). Bring your visa, passport, and supporting documents. Pay the €150 permit fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive 2-Year Residence Permit</h4>
+          <p class="text-neutral-600">After 1-2 months, receive your residence permit valid for 2 years. This can be renewed as long as you continue meeting income and insurance requirements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Greece's Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from US, Island Dream</h3>
+        <p class="text-neutral-600 mb-4">Earning $6,000/month, wanted to work from Crete. Applied with strong documentation.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 6 weeks. Now based in Heraklion, Crete. Uses Cigna Global insurance (€250/month). Excellent quality of life, affordable rent (€700/month), but had to get Starlink for reliable internet in some areas.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Designer with Travel Insurance</h3>
+        <p class="text-neutral-600 mb-4">Applied with SafetyWing, didn't realize travel insurance wouldn't be accepted.</p>
+        <p class="text-red-700 font-medium">✗ Application rejected for insufficient insurance. Had to purchase Allianz Care comprehensive plan and reapply. Lost 2 months. Lesson: Greece explicitly requires long-term residency insurance, not travel medical.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UK Consultant, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">Wanted EU base after Brexit. €5,000/month income from UK clients.</p>
+        <p class="text-green-700 font-medium">✓ Perfect solution for maintaining EU access. Approved with 2-year permit. Based in Athens, travels across EU for client meetings. Using the 50% tax reduction since staying over 183 days. Very satisfied.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Creator, Family Application</h3>
+        <p class="text-neutral-600 mb-4">Applying with spouse and one child. Needed to meet higher income threshold.</p>
+        <p class="text-green-700 font-medium">✓ Required €4,830/month (€3,500 + 20% + 15%). Earning €5,500/month, qualified easily. All family members needed insurance. Now homeschooling child while based in Thessaloniki. Family-friendly environment.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Photographer, Island-Hopping Plans</h3>
+        <p class="text-neutral-600 mb-4">Wanted to move between different Greek islands throughout the year.</p>
+        <p class="text-amber-700 font-medium">△ Visa approved but faced practical challenges. Need fixed address for residence permit. Internet varies significantly by island. Now uses Athens apartment as official base, visits islands for shorter periods. Works but requires planning.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant, Borderline Income</h3>
+        <p class="text-neutral-600 mb-4">Earning €3,400/month—just below the €3,500 requirement.</p>
+        <p class="text-red-700 font-medium">✗ Application rejected for insufficient income. Options: increase rates, find additional clients, or consider Portugal (lower threshold). Reapplied after securing new contract bringing income to €4,200/month. Approved on second attempt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Greek Digital Nomad Visa"
+    description="Find comprehensive coverage meeting Greece's long-term residency requirements."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Travel Insurance Instead of Health Insurance</h3>
+        <p class="text-neutral-600">Greece explicitly rejects travel medical insurance. SafetyWing, World Nomads, and similar travel policies don't qualify. You need comprehensive long-term health insurance—this is the most common rejection reason.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the Residence Permit Deadline</h3>
+        <p class="text-neutral-600">After arriving with your visa, you have 30 days to apply for the residence permit. Missing this deadline can complicate your status. Book your appointment at the migration office immediately upon arrival.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Family Income Requirements</h3>
+        <p class="text-neutral-600">The +20% for spouse and +15% per child adds up quickly. A couple with two kids needs €5,355/month, not €3,500. Calculate your required threshold before applying and ensure you meet it consistently.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Getting Criminal Records from All Countries</h3>
+        <p class="text-neutral-600">You need criminal record certificates from your home country AND any country where you lived for 12+ months. Missing one of these will delay or reject your application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Island Internet is Reliable</h3>
+        <p class="text-neutral-600">Not a visa mistake, but a practical one. Some Greek islands have excellent connectivity; others don't. Research internet infrastructure before choosing your location. Athens and Thessaloniki are safe bets; remote islands may need Starlink.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Greece -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Greece</h2>
+
+    <p class="mb-4">
+      Greece has a mixed public-private healthcare system. As a digital nomad visa holder, you'll rely on your private insurance. Private healthcare is generally good quality and affordable by Western European standards.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Good private hospitals in Athens/Thessaloniki</li>
+          <li>✓ Many doctors trained internationally</li>
+          <li>✓ English spoken in private facilities</li>
+          <li>✓ Affordable private care costs</li>
+          <li>✓ Modern equipment in major centers</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Public system has long wait times</li>
+          <li>• Islands have limited facilities</li>
+          <li>• Complex cases need Athens transfer</li>
+          <li>• English less common outside cities</li>
+          <li>• Must pay then claim from insurance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Island healthcare:</strong> Major islands (Crete, Rhodes, Corfu) have hospitals, but smaller islands may only have health centers. For serious conditions, you'll be transferred to Athens. Ensure your insurance covers medical evacuation if you're based on a remote island.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Greece's Digital Nomad Visa?</h3>
+        <p class="text-neutral-600">
+          €3,500/month net for a single applicant. Add 20% for a spouse (€4,200 total) and 15% for each child (€4,830 for spouse + one child). Income must come from foreign employers or clients—you cannot work for Greek companies.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why doesn't Greece accept travel insurance?</h3>
+        <p class="text-neutral-600">
+          Greece requires long-term residency health insurance covering medical and hospital care for your entire stay. Travel insurance is designed for short trips and emergencies, not comprehensive coverage. You need annual international health insurance or Greek private insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long can I stay in Greece with this visa?</h3>
+        <p class="text-neutral-600">
+          The initial visa is 12 months. After arriving, you convert it to a 2-year residence permit. The permit is renewable indefinitely as long as you continue meeting income and insurance requirements. Total potential stay is unlimited with renewals.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I pay Greek taxes as a digital nomad?</h3>
+        <p class="text-neutral-600">
+          It depends on your stay duration. Under 183 days = not Greek tax resident, no Greek tax. Over 183 days = tax resident, but eligible for 50% tax reduction under the nomad regime. The effective rate with reduction is roughly 4.5-22% depending on income.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I live on a Greek island year-round?</h3>
+        <p class="text-neutral-600">
+          Yes, but consider practicalities. Larger islands (Crete, Rhodes, Corfu) have year-round services, healthcare, and reliable internet. Smaller islands may have limited winter services and variable connectivity. Research your specific island choice carefully.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long does the application process take?</h3>
+        <p class="text-neutral-600">
+          Typically 1-3 months for the initial visa at the consulate. After arriving in Greece, the residence permit takes another 1-2 months. Plan for 3-5 months total from application to having your residence permit in hand.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Greece's Digital Nomad Visa offers a compelling combination: iconic Mediterranean lifestyle, affordable living costs, attractive tax benefits, and a renewable 2-year residence permit. The €3,500/month income requirement is achievable for established freelancers, and the 50% tax reduction makes it competitive with "tax-free" alternatives.
+    </p>
+
+    <p class="mb-4">
+      The main challenges are the strict insurance requirements (travel insurance rejected), 1-3 month processing time, and practical considerations if you want island life (internet reliability, healthcare access). Greek language skills help but aren't required.
+    </p>
+
+    <p class="mb-6">
+      For freelancers earning €3,500+/month who dream of Mediterranean living—whether in vibrant Athens or on a Greek island—this visa delivers genuine lifestyle value with a clear path to long-term residency.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Greece's Digital Nomad Visa is best for freelancers earning €3,500+/month who want Mediterranean lifestyle with tax benefits. Long-term health insurance is mandatory (travel insurance rejected)—budget €100-400/month. Processing takes 1-3 months; plan accordingly.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/best/digital-nomad-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Digital Nomad Insurance</h3>
+        <p class="text-neutral-600 text-sm">Compare insurance for location-independent workers</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/croatia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Croatia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative Mediterranean destination</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Portugal's D7 visa</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

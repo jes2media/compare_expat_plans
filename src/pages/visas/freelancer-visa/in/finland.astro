@@ -1,0 +1,797 @@
+---
+/**
+ * Finland Freelancer Visa - Long-form CRO-optimized page
+ * Startup & Entrepreneur Residence Permit guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Finland", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Sweden Freelancer Visa", href: "/visas/freelancer-visa/in/sweden" },
+  { title: "Estonia Freelancer Visa", href: "/visas/freelancer-visa/in/estonia" },
+  { title: "Germany Freelancer Visa", href: "/visas/freelancer-visa/in/germany" },
+];
+
+const permitColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "startup", header: "Startup Permit" },
+  { key: "entrepreneur", header: "Entrepreneur Permit" },
+];
+
+const permitRows = [
+  { feature: "Who It's For", startup: "Innovative startups, tech founders", entrepreneur: "Established business owners" },
+  { feature: "Key Requirement", startup: "Business Finland eligibility statement", entrepreneur: "Profitable Finnish business" },
+  { feature: "Business Type", startup: "New, scalable, innovative", entrepreneur: "Any self-employed activity" },
+  { feature: "Processing Time", startup: "2 weeks (fast-track)", entrepreneur: "2-4 months" },
+  { feature: "Income Requirement", startup: "€1,030-1,210/month", entrepreneur: "Business must be profitable" },
+  { feature: "Duration", startup: "2 years initial", entrepreneur: "1-4 years" },
+  { feature: "Best For", startup: "Tech entrepreneurs", entrepreneur: "Traditional freelancers" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const startupRequirementsRows = [
+  { requirement: "Eligibility Statement", details: "From Business Finland", notes: "Must be <4 months old" },
+  { requirement: "Business Type", details: "Innovative, scalable startup", notes: "Tech/innovation focus" },
+  { requirement: "Team", details: "2-5 founders recommended", notes: "Solo founders possible" },
+  { requirement: "Income Threshold", details: "€1,030-1,210/month", notes: "Varies by location" },
+  { requirement: "Health Insurance", details: "Required for visa", notes: "Comprehensive coverage" },
+  { requirement: "Business Plan", details: "For Business Finland review", notes: "Demonstrate innovation" },
+  { requirement: "Duration", details: "2 years initial", notes: "Renewable" },
+];
+
+const entrepreneurRequirementsRows = [
+  { requirement: "Finnish Business ID", details: "Y-tunnus required", notes: "Must register company first" },
+  { requirement: "Business Type", details: "Private trader or company owner", notes: "Work actively in Finland" },
+  { requirement: "Profitability", details: "Business must support you", notes: "ELY Centre evaluates" },
+  { requirement: "Work Location", details: "In Finland", notes: "Not pure remote work" },
+  { requirement: "Health Insurance", details: "Required for visa", notes: "Comprehensive coverage" },
+  { requirement: "ELY Centre Approval", details: "Partial decision required", notes: "Evaluates business viability" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private International" },
+  { key: "kela", header: "Finnish Kela System" },
+];
+
+const insuranceRows = [
+  { feature: "When Required", private: "Visa application + initial months", kela: "After Kela registration" },
+  { feature: "Coverage Scope", private: "Comprehensive", kela: "Universal public healthcare" },
+  { feature: "Pre-existing Conditions", private: "Varies by plan", kela: "Covered" },
+  { feature: "Monthly Cost", private: "€100-280", kela: "Tax-funded + small fees" },
+  { feature: "GP Visit", private: "Covered after deductible", kela: "€20-40" },
+  { feature: "Hospital", private: "Covered", kela: "€50/day max" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€130-280", strengths: "Transition coverage, global network" },
+  { provider: "Allianz Care", type: "International", price: "€120-260", strengths: "Strong Nordic coverage" },
+  { provider: "If Insurance", type: "Nordic Insurer", price: "€80-180", strengths: "Finnish presence, local expertise" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€65-110", strengths: "Budget-friendly initial coverage" },
+  { provider: "Finnish Kela", type: "Public System", price: "Tax-funded", strengths: "After registration, comprehensive" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Startup Permit Fee (Online)", amount: "€240", notes: "Fast-track available" },
+  { item: "Entrepreneur Permit Fee", amount: "€470-610", notes: "Includes ELY evaluation" },
+  { item: "Health Insurance (Initial)", amount: "€100-280/month", notes: "Until Kela registration" },
+  { item: "Rent (Helsinki)", amount: "€1,200-1,800/month", notes: "1-bedroom apartment" },
+  { item: "Rent (Other Cities)", amount: "€700-1,100/month", notes: "Tampere, Turku, Oulu" },
+  { item: "Living Expenses", amount: "€600-900/month", notes: "Food, transport, leisure" },
+  { item: "Total Monthly (Single)", amount: "€2,000-3,000", notes: "Helsinki lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const startupTimelineRows = [
+  { step: "Prepare business plan/pitch", duration: "2-4 weeks", location: "Home country" },
+  { step: "Apply for Business Finland statement", duration: "1-2 weeks", location: "Online" },
+  { step: "Receive eligibility statement", duration: "2-4 weeks", location: "Business Finland" },
+  { step: "Apply for residence permit", duration: "1 day", location: "Enter Finland portal" },
+  { step: "Fast-track processing", duration: "2 weeks", location: "Migri" },
+  { step: "Receive startup permit", duration: "After approval", location: "Finland or embassy" },
+  { step: "Register with Kela", duration: "After arrival", location: "Kela office" },
+];
+---
+
+<PageShell
+  title="Finland Freelancer Visa 2026: Startup & Entrepreneur Permit Requirements, Insurance & Guide"
+  description="Complete guide to Finland's Startup Permit and Entrepreneur Residence Permit. Business Finland pathway, 2-week fast-track, €1,030/month income, world's happiest country, and Nordic quality of life."
+  headline="Finland Freelancer Visa: Startup & Entrepreneur Permit Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Finland—startup permit with 2-week fast-track, entrepreneur residence permit, Business Finland pathway, world-class education, and Nordic social benefits."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      2-Week Fast-Track Available
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      World's Happiest Country
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Finland doesn't have a dedicated digital nomad visa, but offers two pathways for self-employed foreigners: the Startup Entrepreneur Permit (for innovative tech founders) and the Entrepreneur Residence Permit (for established business owners). The startup route is particularly attractive—with Business Finland approval, you can get a permit in just 2 weeks.
+    </p>
+
+    <p class="mb-4">
+      Finland consistently ranks as the world's happiest country, with excellent education, comprehensive social benefits, and pristine nature. Helsinki has emerged as a tech hub, attracting startups with its talent pool, clean environment, and high quality of life. The trade-off is strict requirements and high costs.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Finland Self-Employment Options</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Two pathways:</strong> Startup Permit or Entrepreneur Permit</li>
+        <li>• <strong>Fast-track:</strong> 2 weeks with Business Finland approval</li>
+        <li>• <strong>Income requirement:</strong> €1,030-1,210/month (varies by city)</li>
+        <li>• <strong>Health insurance:</strong> Required initially, then Kela system</li>
+        <li>• <strong>Duration:</strong> 2 years (startup) or 1-4 years (entrepreneur)</li>
+        <li>• <strong>No freelancer visa:</strong> Pure freelancers need other permit types</li>
+        <li>• <strong>Schengen access:</strong> Yes—travel freely in Schengen Zone</li>
+        <li>• <strong>Path to PR:</strong> Yes—4 years continuous residence</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Two Pathways Compared</h3>
+
+    <p class="mb-4">
+      Your choice depends on your business type. Tech entrepreneurs with innovative, scalable ideas should pursue the Startup Permit. Traditional freelancers or established business owners need the Entrepreneur Permit.
+    </p>
+
+    <ComparisonTable columns={permitColumns} rows={permitRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>No pure freelancer visa:</strong> Finland doesn't offer a permit specifically for freelancers or "light entrepreneurs" (kevytyrittäjät). If you work through invoicing services or don't have a registered company, you'll need another residence permit type first, then can do freelance work alongside it.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Finland is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're building an innovative tech startup</li>
+          <li>✓ You want fast processing (2-week startup route)</li>
+          <li>✓ You value work-life balance and nature</li>
+          <li>✓ You have a scalable business idea</li>
+          <li>✓ You appreciate Nordic social systems</li>
+          <li>✓ You want access to EU tech talent</li>
+          <li>✓ You can handle cold, dark winters</li>
+          <li>✓ You want a path to EU citizenship</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You're a traditional freelancer (no startup)</li>
+          <li>• Your business isn't innovative/scalable</li>
+          <li>• You work remotely for foreign clients only</li>
+          <li>• High cost of living is a concern</li>
+          <li>• You can't handle winter darkness</li>
+          <li>• You need a large expat community</li>
+          <li>• You prefer Mediterranean climate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Startup route advantage:</strong> If you can get Business Finland's eligibility statement, the 2-week fast-track processing is one of the fastest in Europe. But you need a genuinely innovative, scalable business concept—not traditional consulting or freelancing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Requirements differ significantly between the Startup Permit and Entrepreneur Permit. Choose based on your business type and situation.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Startup Entrepreneur Permit Requirements</h3>
+
+    <ComparisonTable columns={requirementsColumns} rows={startupRequirementsRows} />
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Business Finland Eligibility Statement:</h4>
+      <p class="text-primary-800 mb-3">
+        This is the key to the startup route. Business Finland evaluates:
+      </p>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Innovation:</strong> Is your idea genuinely new or innovative?</li>
+        <li>• <strong>Scalability:</strong> Can the business grow beyond local market?</li>
+        <li>• <strong>Team:</strong> Do founders have relevant skills/experience?</li>
+        <li>• <strong>Business model:</strong> Is the plan viable and realistic?</li>
+        <li>• <strong>Global potential:</strong> Can this succeed internationally?</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Entrepreneur Residence Permit Requirements</h3>
+
+    <ComparisonTable columns={requirementsColumns} rows={entrepreneurRequirementsRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>ELY Centre evaluation:</strong> For the Entrepreneur Permit, your application goes through the Centre for Economic Development (ELY Centre) for a partial decision. They evaluate whether your business is profitable and can support you financially. This adds processing time.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Requirements</h3>
+
+    <p class="mb-4">
+      Finland's income threshold varies by location. Larger cities have higher thresholds:
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Helsinki Area</p>
+        <p class="text-2xl font-bold text-neutral-900">€1,210/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Highest threshold</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Major Cities</p>
+        <p class="text-2xl font-bold text-neutral-900">€1,090/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Tampere, Turku, Oulu</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Other Areas</p>
+        <p class="text-2xl font-bold text-neutral-900">€1,030/month</p>
+        <p class="text-sm text-neutral-500 mt-2">Smaller cities</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Startup Permit Documents</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Business Finland eligibility statement (< 4 months old)</li>
+          <li>• Valid passport</li>
+          <li>• Business plan/pitch deck</li>
+          <li>• Proof of income/savings</li>
+          <li>• Health insurance certificate</li>
+          <li>• Passport photos</li>
+          <li>• Team member information</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Entrepreneur Permit Documents</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Finnish Business ID (Y-tunnus)</li>
+          <li>• Valid passport</li>
+          <li>• Business registration documents</li>
+          <li>• Financial statements</li>
+          <li>• Business plan showing profitability</li>
+          <li>• Health insurance certificate</li>
+          <li>• Proof of secured income</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Private Insurance → Kela System</h3>
+      <p class="text-green-800">
+        Health insurance is required for your visa application. After arriving and registering, you'll join Kela (Finland's social insurance institution) for public healthcare access. Plan for 2-4 months of private coverage during the transition.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Finland has excellent public healthcare through Kela. Once registered and working, you access municipal health services with minimal fees. Private international insurance covers the gap until registration.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private vs. Finnish Kela System</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Kela Registration</h3>
+
+    <p class="mb-4">
+      After arriving with your residence permit, register with Kela for social insurance benefits. As a self-employed person, you'll pay YEL pension contributions which also provide healthcare access.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">What Kela Provides:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Municipal healthcare:</strong> GP visits, specialists, hospitals</li>
+        <li>• <strong>Prescription subsidies:</strong> Significant discounts on medications</li>
+        <li>• <strong>Maternity/paternity benefits:</strong> Generous parental leave</li>
+        <li>• <strong>Sickness allowance:</strong> If you can't work due to illness</li>
+        <li>• <strong>Occupational healthcare:</strong> Subsidized for entrepreneurs</li>
+      </ul>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Private healthcare option:</strong> Many Finnish residents supplement with private healthcare (Terveystalo, Mehiläinen) for faster access and English-speaking doctors. Private insurance or pay-per-visit options available.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Finland startup/entrepreneur permit?"
+    description="Compare international health insurance plans for your visa application and transition period."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      You need comprehensive health insurance for the visa application. These providers offer plans suitable for Finland-bound entrepreneurs during the transition to Kela.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Visa Application Phase</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage accepted for visa applications. Budget €120-280/month for 2-4 months until Kela registration.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Nordic Insurer Option</h4>
+        <p class="text-neutral-600">If Insurance (one of the largest Nordic insurers) offers Finland-focused coverage with local expertise and coordination with Finnish healthcare providers.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget Option</h4>
+        <p class="text-neutral-600">SafetyWing offers nomad coverage at €65-110/month. Verify it meets Finnish visa requirements for minimum coverage levels.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">After Kela Registration</h4>
+        <p class="text-neutral-600">Once in the Kela system, private insurance is optional. Many expats maintain supplementary private coverage (€50-150/month) for faster access to private clinics like Terveystalo or Mehiläinen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Finland is expensive—one of the priciest countries in Europe. Helsinki rivals Stockholm for cost of living. High costs are offset by excellent public services, safety, and quality of life.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Tax and Social Contributions</h3>
+
+    <p class="mb-4">
+      Finnish self-employed persons pay income tax plus mandatory YEL pension contributions. The tax burden is significant but funds comprehensive benefits.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Finnish Taxes for Self-Employed:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Income tax:</strong> Progressive 6-44% (central + municipal)</li>
+        <li>• <strong>YEL pension:</strong> ~24% of declared income</li>
+        <li>• <strong>VAT:</strong> 25.5% on most goods/services</li>
+        <li>• <strong>Effective rate:</strong> 40-55% total tax burden typical</li>
+        <li>• <strong>Benefits received:</strong> Healthcare, pension, parental leave, safety net</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost by City</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Helsinki</p>
+        <p class="text-2xl font-bold text-neutral-900">€2,200-3,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Most expensive</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Tampere/Turku</p>
+        <p class="text-2xl font-bold text-neutral-900">€1,600-2,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Major cities</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Oulu/Smaller</p>
+        <p class="text-2xl font-bold text-neutral-900">€1,400-2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Lower cost</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Startup ecosystem support:</strong> Helsinki offers good startup support—Maria 01 (startup campus), Business Finland grants, and angel investor networks. Espoo (Aalto University area) has strong tech presence. These resources can offset high living costs for serious startups.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Startup Permit offers a 2-week fast-track with Business Finland approval. The Entrepreneur Permit takes 2-4 months due to ELY Centre evaluation. Choose based on your business type.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Startup Permit Timeline</h3>
+
+    <ComparisonTable columns={timelineColumns} rows={startupTimelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step: Startup Permit Route</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Startup Pitch</h4>
+          <p class="text-neutral-600">Develop a compelling pitch deck showing your innovative business idea, scalability, team, and market potential. Business Finland evaluates innovation, not just viability. You need a genuinely new concept.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply to Business Finland</h4>
+          <p class="text-neutral-600">Submit your application for an Eligibility Statement through Business Finland's website. Include your business plan, team info, and innovation rationale. Evaluation takes 2-4 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Eligibility Statement</h4>
+          <p class="text-neutral-600">If approved, you receive a positive Eligibility Statement valid for 4 months. This unlocks the fast-track visa process. If rejected, you can revise and reapply or consider the Entrepreneur Permit route.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Residence Permit</h4>
+          <p class="text-neutral-600">Submit your residence permit application through Enter Finland portal. Attach the Eligibility Statement (must be < 4 months old), proof of income/savings, health insurance, and passport. Pay €240 online fee.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Fast-Track Processing</h4>
+          <p class="text-neutral-600">With Business Finland approval, Migri processes your startup permit in approximately 2 weeks. This is remarkably fast for European immigration. You may need biometrics at an embassy or service point.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Move to Finland</h4>
+          <p class="text-neutral-600">Collect your residence permit card. Move to Finland. Initial permit is valid for 2 years. Register your company, find accommodation, and connect with the startup ecosystem.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register with Kela & Start Operations</h4>
+          <p class="text-neutral-600">Register with Kela for social insurance. Set up YEL pension contributions. Open bank account. Join Finnish startup networks—Slush, Maria 01, local meetups. Start building your business.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>2-week advantage:</strong> Finland's Startup Permit is one of the fastest business immigration routes in Europe when you have Business Finland approval. Compare this to Sweden's 12-20 months or Germany's 3-6 months.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for entrepreneurs applying for Finland's permits:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">AI Startup Founders from US</h3>
+        <p class="text-neutral-600 mb-4">Three-person team with ML expertise. Building AI tool for Nordic logistics industry. Strong technical backgrounds, clear innovation.</p>
+        <p class="text-green-700 font-medium">✓ Business Finland approved. Eligibility Statement in 3 weeks. Startup permit in 2 weeks after that. Now based in Espoo near Aalto, building product, hiring Finnish engineers. Planning to apply for Slush pitch competition.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Solo Web Developer from India</h3>
+        <p class="text-neutral-600 mb-4">Freelance developer, wants to live in Finland. Works for international clients remotely. No startup idea, traditional freelancing.</p>
+        <p class="text-red-700 font-medium">✗ Startup route rejected—no innovation/scalability. Entrepreneur Permit also problematic since pure freelancing with no Finnish business activity. Advised to consider Estonia e-Residency or Germany freelancer visa instead.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Game Studio from Canada</h3>
+        <p class="text-neutral-600 mb-4">Two founders with indie game experience. Developing mobile games. Finland has strong game industry (Supercell, Rovio heritage).</p>
+        <p class="text-green-700 font-medium">✓ Business Finland enthusiastic—game development is a Finnish strength. Fast-tracked through startup route. Now in Helsinki, connected with Finnish game development community, accessing industry mentorship and potential publishing deals.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Restaurant Owner from Thailand</h3>
+        <p class="text-neutral-600 mb-4">10 years restaurant experience. Wants to open Thai restaurant in Helsinki. Not a startup, but established entrepreneur.</p>
+        <p class="text-amber-700 font-medium">△ Startup route not applicable (not innovative/scalable). Applied for Entrepreneur Permit instead. ELY Centre evaluation took 3 months. Eventually approved with solid business plan and proof of restaurant experience. Restaurant now open in Helsinki.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">SaaS Founder, Weak Pitch</h3>
+        <p class="text-neutral-600 mb-4">Solo founder with "Uber for X" idea. No clear innovation beyond existing solutions. Limited market research.</p>
+        <p class="text-red-700 font-medium">✗ Business Finland rejected—idea not sufficiently innovative or differentiated. Advised to develop unique value proposition and reapply, or pursue Entrepreneur Permit with profitable business first.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Cleantech Startup from Germany</h3>
+        <p class="text-neutral-600 mb-4">Two founders with engineering backgrounds. Developing renewable energy monitoring technology. Strong sustainability angle.</p>
+        <p class="text-green-700 font-medium">✓ Business Finland approved—cleantech is priority sector. Fast-track processing. Now in Tampere, partnering with Finnish energy companies for pilot projects. Finland's cleantech ecosystem providing valuable connections.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Finland Entrepreneurs"
+    description="Find the right coverage for your startup or entrepreneur permit application."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying as Startup Without Innovation</h3>
+        <p class="text-neutral-600">The Startup Permit requires genuine innovation and scalability. Traditional consulting, freelancing, or "Uber for X" ideas without clear differentiation get rejected. Business Finland evaluates innovation seriously—this isn't a backdoor for any business.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expired Eligibility Statement</h3>
+        <p class="text-neutral-600">Business Finland's Eligibility Statement expires after 4 months. If you wait too long to apply for the residence permit, you'll need a new statement. Apply promptly after receiving approval.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting to Freelance Without Permit</h3>
+        <p class="text-neutral-600">Finland doesn't offer a pure freelancer visa. You can't simply work as a "light entrepreneur" (kevytyrittäjä) without another residence permit basis. You need Startup Permit, Entrepreneur Permit, or other valid permit first.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Winter</h3>
+        <p class="text-neutral-600">Finnish winters are dark and cold. Helsinki has ~6 hours daylight in December. Many expats struggle with Seasonal Affective Disorder (SAD). Plan for light therapy, active social life, and winter sports to cope.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">No Finnish Network</h3>
+        <p class="text-neutral-600">Building business in Finland requires local connections. Finns value trust and long-term relationships. Arrive prepared to network actively—Slush, Maria 01, industry events. Don't expect to succeed working only with foreign clients remotely.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Finland -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Finland</h2>
+
+    <p class="mb-4">
+      Finland has excellent public healthcare through municipal health centers and hospitals. As a registered entrepreneur paying social contributions, you access Kela benefits including healthcare subsidies.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Public Healthcare (Kela)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Municipal health centers (terveyskeskus)</li>
+          <li>✓ GP visit: €20-40</li>
+          <li>✓ Hospital: €50/day maximum</li>
+          <li>✓ Prescriptions subsidized</li>
+          <li>✓ High quality nationwide</li>
+          <li>✓ Available after registration</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Terveystalo, Mehiläinen (major chains)</li>
+          <li>• GP visit: €60-100</li>
+          <li>• Faster appointments</li>
+          <li>• English widely spoken</li>
+          <li>• Pay-per-visit or insurance</li>
+          <li>• Available immediately</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Occupational Healthcare (Työterveyshuolto)</h3>
+
+    <p class="mb-4">
+      Finnish entrepreneurs can access subsidized occupational healthcare. Kela reimburses part of the costs. This covers work-related health issues and preventive care.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Practical tip:</strong> Many expats use public healthcare for major issues and private clinics for convenience (faster access, English). Private clinic visit €60-100 is affordable for occasional use without insurance.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the difference between Startup and Entrepreneur Permits?</h3>
+        <p class="text-neutral-600">
+          Startup Permit is for innovative, scalable businesses—requires Business Finland approval but offers 2-week processing. Entrepreneur Permit is for established business owners—any profitable self-employment, but requires ELY Centre evaluation (2-4 months). Choose based on whether you have innovation or existing business.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I freelance in Finland?</h3>
+        <p class="text-neutral-600">
+          Not directly—there's no pure freelancer visa. You need another residence permit first (startup, entrepreneur, employee, or other). Once you have valid residence, you can do freelance work alongside it. "Light entrepreneurship" (invoicing services) isn't a basis for residence permit.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How fast is the 2-week processing?</h3>
+        <p class="text-neutral-600">
+          With Business Finland approval, Migri processes Startup Permits in approximately 2 weeks. This is real fast-tracking—one of the quickest business immigration routes in Europe. But getting Business Finland approval first takes 2-4 weeks, so total timeline is about 4-6 weeks.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Finnish?</h3>
+        <p class="text-neutral-600">
+          Not legally required, and Helsinki's tech scene operates largely in English. But Finnish integration improves long-term success—business relationships, daily life, citizenship eligibility (requires language test). English works for startup world; Finnish helps for broader business.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How dark is Finnish winter?</h3>
+        <p class="text-neutral-600">
+          Helsinki: ~6 hours of daylight in December, sun rises ~9am and sets ~3pm. Northern Finland (Lapland) has polar night—sun doesn't rise at all for weeks. Summers compensate with midnight sun. Plan for light therapy, vitamin D, and active social life to handle winter darkness.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What's the path to permanent residency?</h3>
+        <p class="text-neutral-600">
+          4 years of continuous residence with valid permit. You must maintain your business and meet permit requirements throughout. After 4 years, apply for permanent residence (P permit). Finnish citizenship requires 5 years residence plus language test (Finnish or Swedish).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Finland offers one of Europe's fastest business immigration routes—if you qualify. The Startup Permit with Business Finland approval takes just 2 weeks, but requires genuine innovation and scalability. Traditional freelancers without startup concepts need the slower Entrepreneur Permit route.
+    </p>
+
+    <p class="mb-4">
+      The Finnish trade-off is clear: high costs and dark winters in exchange for world-class quality of life, excellent startup ecosystem (especially gaming and cleantech), and path to EU citizenship. Finland consistently ranks as the world's happiest country—there's substance behind the reputation.
+    </p>
+
+    <p class="mb-6">
+      For tech entrepreneurs with genuinely innovative ideas, Finland deserves serious consideration. The 2-week fast-track, Business Finland support, and strong talent pool make it compelling. For traditional freelancers or remote workers, other EU options may be more appropriate.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Finland's Startup Permit offers 2-week processing with Business Finland approval—exceptional speed for tech entrepreneurs. Budget €100-280/month for health insurance during the 2-4 month transition to Kela. The high living costs and winter darkness are real, but so are the benefits: world's happiest country, excellent startup ecosystem, and path to EU citizenship.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/sweden" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Sweden Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Self-employment permit, longer processing</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/estonia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Estonia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Digital nomad visa + e-Residency</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Freiberufler visa for liberal professions</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

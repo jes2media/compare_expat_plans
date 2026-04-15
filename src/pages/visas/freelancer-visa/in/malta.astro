@@ -1,0 +1,788 @@
+---
+/**
+ * Malta Freelancer/Nomad Visa - Long-form CRO-optimized page
+ * Nomad Residence Permit guide with insurance requirements for freelancers
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Malta", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Digital Nomad Insurance", href: "/best/digital-nomad-insurance" },
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Portugal Freelancer Visa", href: "/visas/freelancer-visa/in/portugal" },
+  { title: "Spain Freelancer Visa", href: "/visas/freelancer-visa/in/spain" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€3,500/month (€42,000/year)", notes: "From remote work only" },
+  { requirement: "Proof of Future Income", details: "€17,500 (5 months)", notes: "Contracts must show ongoing work" },
+  { requirement: "Bank Statements", details: "3 months required", notes: "Showing €3,500+ average" },
+  { requirement: "Health Insurance", details: "€100,000 minimum coverage", notes: "EU and UK coverage required" },
+  { requirement: "Accommodation", details: "Rental or purchase agreement", notes: "Maltese address required" },
+  { requirement: "Background Check", details: "Clean criminal record", notes: "Background verification required" },
+  { requirement: "Minimum Stay", details: "5 months/year in Malta", notes: "Required for renewal" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "minimum", header: "Minimum Required" },
+  { key: "recommended", header: "Recommended" },
+];
+
+const insuranceRows = [
+  { feature: "Coverage Amount", minimum: "€100,000", recommended: "€500,000+" },
+  { feature: "Geographic Coverage", minimum: "EU + UK + Malta", recommended: "Worldwide" },
+  { feature: "Inpatient Care", minimum: "Required", recommended: "Unlimited" },
+  { feature: "Outpatient Care", minimum: "Not specified", recommended: "Included" },
+  { feature: "Emergency Evacuation", minimum: "Not specified", recommended: "Included" },
+  { feature: "Pre-existing Conditions", minimum: "Not specified", recommended: "Coverage available" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€200-400", strengths: "Comprehensive, exceeds requirements" },
+  { provider: "Allianz Care", type: "International", price: "€180-350", strengths: "Strong EU coverage, good network" },
+  { provider: "Bupa Global", type: "International", price: "€220-450", strengths: "Premium coverage, excellent service" },
+  { provider: "AXA Global", type: "International", price: "€170-320", strengths: "Good value, solid coverage" },
+  { provider: "IMG Global", type: "International", price: "€150-300", strengths: "Flexible plans, competitive pricing" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€45-85", strengths: "Budget option (verify €100k coverage)" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Application Fee", amount: "€300", notes: "Non-refundable" },
+  { item: "Health Insurance", amount: "€150-400/month", notes: "Must meet €100k minimum" },
+  { item: "Accommodation", amount: "€800-1,500/month", notes: "Varies by location" },
+  { item: "Living Expenses", amount: "€800-1,200/month", notes: "Food, transport, utilities" },
+  { item: "Coworking Space", amount: "€150-300/month", notes: "Optional" },
+  { item: "Income Tax (Year 1)", amount: "0% possible", notes: "Tax exemption available" },
+  { item: "Income Tax (Year 2+)", amount: "10%", notes: "Flat rate on Malta-sourced" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Apostille and translate documents", duration: "1-2 weeks", location: "Home country" },
+  { step: "Secure accommodation", duration: "1-2 weeks", location: "Online/Malta" },
+  { step: "Obtain health insurance", duration: "1-3 days", location: "Online" },
+  { step: "Submit online application", duration: "1 day", location: "Residency Malta portal" },
+  { step: "Application processing", duration: "Up to 30 working days", location: "Residency Malta Agency" },
+  { step: "Receive approval", duration: "After processing", location: "Email notification" },
+  { step: "Collect residence permit", duration: "Schedule appointment", location: "Malta" },
+];
+---
+
+<PageShell
+  title="Malta Freelancer Visa 2026: Nomad Residence Permit Requirements & Insurance Guide"
+  description="Complete guide to Malta's Nomad Residence Permit for freelancers. €3,500/month income, €100,000 insurance minimum, up to 4 years stay, and English-speaking EU island life."
+  headline="Malta Nomad Residence Permit for Freelancers: Requirements & Insurance Guide"
+  subheadline="Everything you need to know about freelancing in Malta—income requirements, €100,000 health insurance minimum, renewable up to 4 years, tax considerations, and English-speaking Mediterranean lifestyle."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare International Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      English Official Language
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Up to 4 Years Stay
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Malta's Nomad Residence Permit offers freelancers and remote workers a unique proposition: English-speaking EU lifestyle in the Mediterranean sun. As a former British colony, Malta operates in English, making it uniquely accessible for Anglophone digital nomads who want European residency without language barriers.
+    </p>
+
+    <p class="mb-4">
+      The permit allows stays of up to 4 years (1 year initial, renewable 3 times), making it one of Europe's longest digital nomad visas. Malta's strategic location, excellent internet infrastructure, and established expat community have made it a hub for remote workers, particularly in gaming, fintech, and tech sectors.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Malta Nomad Residence Permit</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Nomad Residence Permit (NRP)</li>
+        <li>• <strong>Income requirement:</strong> €3,500/month (€42,000/year)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—€100,000 minimum coverage for EU/UK</li>
+        <li>• <strong>Duration:</strong> 1 year, renewable 3 times (max 4 years)</li>
+        <li>• <strong>Minimum stay:</strong> 5 months per year in Malta required</li>
+        <li>• <strong>Application fee:</strong> €300 (non-refundable)</li>
+        <li>• <strong>Language:</strong> English is official—no language barrier</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Qualifies?</h3>
+
+    <p class="mb-4">
+      Malta's NRP is designed for non-EU/EEA nationals who work remotely for foreign employers, run businesses registered abroad, or freelance for international clients. The key requirement is that your work and income must come from outside Malta.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Eligible Applicants</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Remote employees of foreign companies</li>
+          <li>✓ Freelancers with foreign clients</li>
+          <li>✓ Business owners (company abroad)</li>
+          <li>✓ Consultants serving foreign markets</li>
+          <li>✓ Contract workers for foreign entities</li>
+          <li>✓ Non-EU/EEA/Swiss nationals</li>
+        </ul>
+      </div>
+
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Not Eligible</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Working for Maltese companies</li>
+          <li>✗ Providing services to Malta-based clients</li>
+          <li>✗ Passive income only (dividends, rental)</li>
+          <li>✗ Company subsidiary in Malta</li>
+          <li>✗ EU/EEA/Swiss citizens (don't need it)</li>
+          <li>✗ Those unable to meet minimum stay</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>English advantage:</strong> Malta is the only EU country where English is an official language (alongside Maltese). Everything from banking to healthcare to government services operates in English, making it exceptionally accessible for Anglophone freelancers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Malta is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You earn €3,500+/month from foreign sources</li>
+          <li>✓ English-speaking environment is important</li>
+          <li>✓ You want up to 4 years of EU residency</li>
+          <li>✓ You work in tech, gaming, or fintech</li>
+          <li>✓ You prefer island/Mediterranean lifestyle</li>
+          <li>✓ You can spend 5+ months/year in Malta</li>
+          <li>✓ You want established expat community</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You earn less than €3,500/month</li>
+          <li>• You want path to permanent residency</li>
+          <li>• You prefer lower cost of living</li>
+          <li>• You want to travel extensively (5-month rule)</li>
+          <li>• You can't afford €100k insurance minimum</li>
+          <li>• You prefer mainland Europe access</li>
+          <li>• Small island life doesn't appeal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Island considerations:</strong> Malta is small (316 km²)—roughly the size of a small city. Some people love the community feel; others feel confined after a few months. The 5-month minimum stay requirement means you can travel, but must maintain Malta as your base. Consider a trial visit before committing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Malta's Nomad Residence Permit has clear requirements administered by the Residency Malta Agency. The €3,500/month income threshold is higher than some EU alternatives, but the 4-year duration and English environment compensate for serious remote workers.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Documentation</h3>
+
+    <p class="mb-4">
+      Malta requires proof that your income comes from professional activities—not passive sources. You need to demonstrate both current income and contracted future earnings.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">Income Proof Requirements:</h4>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Bank statements:</strong> 3 months showing €3,500+ monthly average</li>
+        <li>• <strong>Future income proof:</strong> Contracts guaranteeing €17,500 over next 5 months</li>
+        <li>• <strong>Acceptable sources:</strong> Employment salary, freelance income, business income</li>
+        <li>• <strong>Not acceptable:</strong> Dividends, interest, rental income, capital gains</li>
+        <li>• <strong>Freelancers:</strong> Need service contracts with foreign clients</li>
+        <li>• <strong>Employees:</strong> Need employment contract with foreign employer</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Required Documents</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (biographic page)</li>
+          <li>• CV/resume (education and work history)</li>
+          <li>• Employment contract or freelance agreements</li>
+          <li>• 3 months bank statements</li>
+          <li>• Health insurance certificate (€100k+)</li>
+          <li>• Health declaration form</li>
+          <li>• Proof of accommodation in Malta</li>
+          <li>• Application fee payment (€300)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Document Requirements</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Documents must be apostilled</li>
+          <li>• Non-English documents need translation</li>
+          <li>• Translations must be notarized</li>
+          <li>• All documents must be recent</li>
+          <li>• Contracts must show foreign employer/client</li>
+          <li>• Insurance must specify Malta + EU + UK</li>
+          <li>• Accommodation: rental or purchase proof</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Minimum Stay Requirement</h3>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>5-month rule:</strong> To renew your permit, you must spend at least 5 cumulative months per year physically in Malta. This doesn't mean consecutive months—you can split it up. But if you travel extensively and don't meet this threshold, renewal will be denied. Track your days carefully.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">€100,000 Minimum Coverage Required</h3>
+      <p class="text-green-800">
+        Malta has one of the highest insurance requirements for digital nomad visas: a minimum €100,000 coverage for the European Union (including Malta) and the UK. This is significantly more than most countries require, effectively mandating comprehensive international health insurance.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Budget nomad insurance plans may not meet Malta's requirements. Verify that any policy you consider explicitly provides at least €100,000 coverage and includes Malta, EU, and UK in the coverage area.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Requirements Breakdown</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What This Means in Practice</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">May Not Qualify</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ Basic travel insurance</li>
+          <li>✗ Short-term emergency-only policies</li>
+          <li>✗ Plans with &lt;€100,000 coverage</li>
+          <li>✗ Plans not covering Malta specifically</li>
+          <li>✗ Plans excluding EU or UK coverage</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Will Qualify</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Comprehensive international health insurance</li>
+          <li>✓ Plans with €100,000+ coverage</li>
+          <li>✓ Global or EU-wide policies</li>
+          <li>✓ Annual policies (not short-term)</li>
+          <li>✓ Plans from recognized international insurers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>SafetyWing note:</strong> SafetyWing Nomad Insurance may meet Malta's requirements depending on the plan level, but verify the coverage amount explicitly. Their standard plan may fall short of the €100,000 minimum. Consider Cigna Global, Allianz Care, or similar comprehensive providers to ensure compliance.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need €100,000+ insurance for Malta's visa?"
+    description="Compare comprehensive international health insurance meeting Malta's requirements."
+    buttonText="Compare International Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      Malta's €100,000 minimum effectively requires comprehensive international health insurance. Budget nomad insurance may not qualify. Here are providers that consistently meet Malta's requirements.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Best Overall: Cigna Global</h4>
+        <p class="text-neutral-600">Cigna Global's international health plans easily exceed Malta's €100,000 requirement with unlimited or multi-million coverage options. Large provider network, excellent customer service, and widely recognized. Budget €200-400/month.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Good Value: Allianz Care</h4>
+        <p class="text-neutral-600">Allianz Care offers strong EU coverage at competitive prices. Well-established in Europe, good network in Malta, and plans clearly exceeding the €100,000 threshold. Budget €180-350/month.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Premium Choice: Bupa Global</h4>
+        <p class="text-neutral-600">Bupa Global provides premium coverage with excellent service and comprehensive benefits. Higher cost but peace of mind and superior claims experience. Budget €220-450/month.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget Option: Verify Carefully</h4>
+        <p class="text-neutral-600">SafetyWing or similar nomad insurance may work if you select plans meeting the €100,000 threshold. Contact the provider directly to confirm coverage amounts before applying. Don't assume—verify in writing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Malta is more expensive than mainland Southern Europe but offers English environment and established expat infrastructure. The €100,000 insurance requirement adds to costs compared to other nomad visas.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Monthly Budget Examples</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget Lifestyle</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,000-2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Shared flat, basic insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,000-4,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, good insurance</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium</p>
+        <p class="text-3xl font-bold text-neutral-900">€4,500-6,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Prime location, premium coverage</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Tax Considerations</h3>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">Tax Treatment:</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>Year 1:</strong> Can apply for tax exemption on foreign income</li>
+        <li>• <strong>Year 2+:</strong> 10% flat tax rate may apply</li>
+        <li>• <strong>Foreign income:</strong> Generally not taxed in Malta if not remitted</li>
+        <li>• <strong>Malta-sourced income:</strong> Would be taxed (but you can't have any)</li>
+        <li>• <strong>Home country:</strong> Check your tax residency obligations</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Tax advice recommended:</strong> Malta's tax situation for nomads can be complex. The exemption in year one and 10% rate in subsequent years depends on your specific circumstances. Consult a Malta-based tax advisor to understand your obligations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Malta's application process is straightforward and handled online through the Residency Malta Agency. Processing typically takes up to 30 working days, making it one of the faster EU digital nomad visas.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather and Prepare Documents</h4>
+          <p class="text-neutral-600">Collect your CV, employment contracts or freelance agreements, 3 months of bank statements, and passport. Get documents apostilled and translated if not in English.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Health Insurance</h4>
+          <p class="text-neutral-600">Purchase health insurance with minimum €100,000 coverage for EU, UK, and Malta. Obtain a certificate or policy document clearly stating coverage amounts and geographic scope.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrange Accommodation</h4>
+          <p class="text-neutral-600">Secure rental accommodation in Malta—a signed rental agreement or property purchase document. Short-term Airbnb may not suffice; you need a proper lease agreement.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Health Declaration</h4>
+          <p class="text-neutral-600">Fill out the health declaration form required by Malta. This confirms you don't have conditions that would be a public health concern.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Online Application</h4>
+          <p class="text-neutral-600">Apply through the Residency Malta Agency portal (nomad.residencymalta.gov.mt). Upload all documents, pay the €300 application fee, and submit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Background Verification</h4>
+          <p class="text-neutral-600">Malta conducts background checks on all applicants. This is part of the processing time. Ensure your record is clean and be prepared to provide additional information if requested.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Approval and Travel</h4>
+          <p class="text-neutral-600">Once approved (up to 30 working days), you'll receive notification to collect your residence permit. Travel to Malta and complete the final steps.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Renewal process:</strong> To renew, you must have spent at least 5 months in Malta during the permit year. Apply for renewal before expiry with updated documents showing continued income and insurance. You can renew up to 3 times (4 years total).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Malta's Nomad Residence Permit:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from US, Gaming Industry</h3>
+        <p class="text-neutral-600 mb-4">Works remotely for US gaming company. Attracted by Malta's gaming industry cluster. Earning $7,000/month.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 25 days. Malta's gaming/iGaming hub offers networking and potential local opportunities (if he eventually wants to work locally). Chose Cigna Global (€280/month) for comprehensive coverage. Very happy with English-speaking environment.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Writer from Australia, Budget Conscious</h3>
+        <p class="text-neutral-600 mb-4">Earning AUD$5,500/month (~€3,600). Wanted to use SafetyWing to save money.</p>
+        <p class="text-amber-700 font-medium">△ Initial application questioned insurance coverage. SafetyWing plan didn't clearly show €100,000 minimum. Had to upgrade to Allianz Care (€200/month) and resubmit. Approved on second attempt. Lesson: verify insurance meets exact requirements.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant from UK, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">UK freelancer wanting to maintain EU base. Multiple clients across Europe.</p>
+        <p class="text-green-700 font-medium">✓ Perfect solution for post-Brexit EU access. Approved quickly with strong documentation. Uses Malta as base for client meetings across EU. English environment made transition seamless. Now on second renewal (year 3).</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Digital Nomad, Heavy Traveler</h3>
+        <p class="text-neutral-600 mb-4">Travels 8+ months per year. Wanted Malta permit as EU base.</p>
+        <p class="text-red-700 font-medium">✗ First year permit granted, but renewal denied—failed to meet 5-month minimum stay. Must spend at least 5 months per year in Malta. Now using Portugal's visa instead (no minimum stay). Malta requires genuine residence.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Crypto/Fintech Professional from Singapore</h3>
+        <p class="text-neutral-600 mb-4">Works in blockchain space, attracted by Malta's crypto-friendly reputation.</p>
+        <p class="text-green-700 font-medium">✓ Malta's progressive stance on fintech and blockchain made it ideal choice. Strong professional community in the sector. Approved within 3 weeks. Active in Malta Blockchain Association events. Planning to stay full 4 years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelancer with Passive Income Mix</h3>
+        <p class="text-neutral-600 mb-4">Has €2,500/month freelance income plus €1,500/month dividend income.</p>
+        <p class="text-red-700 font-medium">✗ Application rejected. Only €2,500 qualified (professional income)—dividends don't count. Needed €3,500/month from professional activities. Had to increase freelance work before reapplying successfully.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Malta Nomad Permit"
+    description="Find coverage meeting Malta's €100,000 minimum requirement."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insurance Below €100,000 Minimum</h3>
+        <p class="text-neutral-600">Malta explicitly requires €100,000 minimum coverage for EU, UK, and Malta. Budget nomad insurance often falls short. Verify coverage amounts in writing before applying—don't assume your existing policy qualifies.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Including Passive Income in Calculations</h3>
+        <p class="text-neutral-600">Malta only counts professional income—salary, freelance fees, business income. Dividends, rental income, interest, and capital gains don't count toward the €3,500/month requirement. Ensure your professional income alone meets the threshold.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Failing the 5-Month Minimum Stay</h3>
+        <p class="text-neutral-600">Unlike some nomad visas, Malta requires genuine residence—5 months per year minimum. If you're a heavy traveler, track your days carefully. Falling short means renewal denial. Consider if Malta's residency requirement fits your lifestyle.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Future Income Proof</h3>
+        <p class="text-neutral-600">You need contracts showing €17,500 income over the next 5 months—not just historical bank statements. Freelancers must have signed agreements or letters of intent. Vague "ongoing client relationships" may not suffice.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Permanent Residency Path</h3>
+        <p class="text-neutral-600">The Nomad Residence Permit maxes out at 4 years and does not lead to permanent residency or citizenship. If long-term settlement is your goal, consider other visa categories or countries with PR pathways.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Malta -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Malta</h2>
+
+    <p class="mb-4">
+      Malta has excellent healthcare—a mix of public and private systems with English-speaking medical staff. As a Nomad Residence Permit holder, you'll rely on your private insurance, but Malta's medical facilities are high quality.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Quality</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Excellent private hospitals</li>
+          <li>✓ All doctors speak English</li>
+          <li>✓ Modern facilities and equipment</li>
+          <li>✓ Short wait times (private)</li>
+          <li>✓ Good specialist availability</li>
+          <li>✓ Familiar British-influenced system</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Considerations</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Public system has longer waits</li>
+          <li>• Small island = limited specialists</li>
+          <li>• Complex cases may need mainland EU</li>
+          <li>• Higher costs than mainland Europe</li>
+          <li>• Must use private system (no public access)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Accessing Healthcare</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Private Clinics</h4>
+        <p class="text-neutral-600">Malta has excellent private clinics including St. James Hospital, St. Thomas Hospital, and various specialist practices. English is standard. Expect to pay €50-150 for GP visits, then claim from insurance.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pharmacies</h4>
+        <p class="text-neutral-600">Pharmacies are common and pharmacists can advise on minor ailments. Most medications available, though some may require prescription. All operate in English.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Emergencies</h4>
+        <p class="text-neutral-600">Call 112 for emergencies. Mater Dei Hospital is the main public hospital with 24/7 emergency department. Even as a private patient, emergencies are handled. Present insurance details for billing.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Medical tourism:</strong> Despite being small, Malta attracts medical tourists for certain procedures due to quality and English environment. Dental care and some elective procedures are priced competitively with excellent quality.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Malta's Nomad Residence Permit?</h3>
+        <p class="text-neutral-600">
+          You need €3,500/month (€42,000/year) from professional activities—employment, freelancing, or business income. Passive income (dividends, rental, interest) does not count. You must also show contracts guaranteeing €17,500 over the next 5 months.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why does Malta require €100,000 health insurance?</h3>
+        <p class="text-neutral-600">
+          Malta wants to ensure nomads can cover significant medical expenses without burdening the public system. The €100,000 minimum for EU/UK/Malta coverage ensures comprehensive protection. This is higher than most countries require and effectively mandates full international health insurance.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I renew the permit and stay more than 4 years?</h3>
+        <p class="text-neutral-600">
+          The Nomad Residence Permit can be renewed 3 times (1 year initial + 3 renewals = 4 years maximum). After 4 years, you cannot renew further and must leave or switch to a different visa category. The NRP does not lead to permanent residency.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the 5-month minimum stay requirement?</h3>
+        <p class="text-neutral-600">
+          To renew your permit, you must spend at least 5 cumulative months per year physically in Malta. This doesn't need to be consecutive—you can travel and return. But if you spend more than 7 months outside Malta, you won't qualify for renewal.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Malta expensive to live in?</h3>
+        <p class="text-neutral-600">
+          Malta is moderate to expensive by EU standards—more than Portugal or Eastern Europe, less than London or Switzerland. Expect €2,000-4,000/month for comfortable living including rent and insurance. The English environment and 4-year duration may justify the premium for many nomads.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work for Maltese clients on this visa?</h3>
+        <p class="text-neutral-600">
+          No. The Nomad Residence Permit is exclusively for remote work serving foreign (non-Maltese) clients or employers. Providing services to Malta-based companies or individuals makes you ineligible. All income must come from outside Malta.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Malta's Nomad Residence Permit offers a unique proposition: up to 4 years of EU residency in an English-speaking Mediterranean environment. For Anglophone freelancers who find language barriers challenging elsewhere in Europe, Malta eliminates that friction entirely.
+    </p>
+
+    <p class="mb-4">
+      The trade-offs are real: higher insurance requirements (€100,000 minimum), mandatory 5-month annual stay, higher cost of living than mainland Southern Europe, and small island life isn't for everyone. There's also no path to permanent residency.
+    </p>
+
+    <p class="mb-6">
+      For freelancers earning €3,500+/month who want English-speaking EU life with excellent infrastructure and established expat community, Malta delivers. The gaming/fintech hub adds professional networking opportunities in those sectors.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Malta's Nomad Residence Permit is best for Anglophone freelancers earning €3,500+/month who want English-speaking EU life for up to 4 years. The €100,000 insurance minimum requires comprehensive international coverage—budget €150-400/month. Must spend 5+ months/year in Malta for renewals.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/best/digital-nomad-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Digital Nomad Insurance</h3>
+        <p class="text-neutral-600 text-sm">Compare insurance for location-independent workers</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Alternative with lower income requirement</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/spain" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Spain Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Compare with Spain's autónomo options</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

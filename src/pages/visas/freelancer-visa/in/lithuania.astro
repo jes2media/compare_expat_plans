@@ -1,0 +1,812 @@
+---
+/**
+ * Lithuania Freelancer Visa - Long-form CRO-optimized page
+ * Startup Visa and National D Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Lithuania", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Latvia Freelancer Visa", href: "/visas/freelancer-visa/in/latvia" },
+  { title: "Estonia Freelancer Visa", href: "/visas/freelancer-visa/in/estonia" },
+  { title: "Poland Freelancer Visa", href: "/visas/freelancer-visa/in/poland" },
+];
+
+const visaOptionsColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "startup", header: "Startup Visa" },
+  { key: "nationalD", header: "National D Visa" },
+  { key: "schengen", header: "Schengen Visa" },
+];
+
+const visaOptionsRows = [
+  { feature: "Duration", startup: "1 year, renewable", nationalD: "Up to 1 year", schengen: "90 days / 180 days" },
+  { feature: "Income Requirement", startup: "No minimum", nationalD: "Sufficient funds", schengen: "Sufficient funds" },
+  { feature: "Business Required", startup: "Yes (innovative startup)", nationalD: "Yes (self-employment)", schengen: "No" },
+  { feature: "Path to PR", startup: "Yes", nationalD: "Yes (after 5 years)", schengen: "No" },
+  { feature: "Work Allowed", startup: "Own startup only", nationalD: "Self-employed only", schengen: "No work allowed" },
+  { feature: "Processing Time", startup: "Up to 60 days", nationalD: "30-60 days", schengen: "15 days" },
+  { feature: "Best For", startup: "Tech entrepreneurs", nationalD: "Freelancers, consultants", schengen: "Short visits" },
+];
+
+const startupRequirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const startupRequirementsRows = [
+  { requirement: "Innovative Solution", details: "Startup must deliver innovation", notes: "Tech, product, or service innovation" },
+  { requirement: "MVP or Prototype", details: "Minimum Viable Product required", notes: "Functional prototype expected" },
+  { requirement: "Founder Status", details: "Must be founder of the startup", notes: "Not for employees or contractors" },
+  { requirement: "Business Traction", details: "Some level demonstrated", notes: "Early customers, revenue, or users" },
+  { requirement: "Health Insurance", details: "Medical insurance required", notes: "International coverage" },
+  { requirement: "Sufficient Funds", details: "Self-sufficient during stay", notes: "No specific minimum" },
+  { requirement: "Business Registration", details: "Within 120 days of permit", notes: "Must establish company in Lithuania" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "travel", header: "Travel Insurance" },
+  { key: "international", header: "International Health Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Acceptance", travel: "For short stays", international: "Required for longer stays" },
+  { feature: "Coverage Duration", travel: "30-90 days", international: "Annual renewable" },
+  { feature: "Coverage Scope", travel: "Emergency only", international: "Comprehensive" },
+  { feature: "Pre-existing Conditions", travel: "Excluded", international: "Varies by plan" },
+  { feature: "Routine Care", travel: "Not covered", international: "Usually included" },
+  { feature: "Monthly Cost", travel: "€30-80", international: "€100-280" },
+  { feature: "Recommendation", travel: "Schengen visits only", international: "Startup/D visa required" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€130-280", strengths: "Comprehensive coverage, global network" },
+  { provider: "Allianz Care", type: "International", price: "€110-250", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€65-110", strengths: "Budget-friendly, nomad-focused" },
+  { provider: "Genki", type: "Nomad Insurance", price: "€55-95", strengths: "European-focused, good value" },
+  { provider: "World Nomads", type: "Travel/Nomad", price: "€70-140", strengths: "Adventure activities included" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Startup Visa + TRP", amount: "€300", notes: "Combined application fee" },
+  { item: "National D Visa", amount: "€60-120", notes: "Standard/expedited" },
+  { item: "Health Insurance", amount: "€100-280/month", notes: "International required" },
+  { item: "Rent (Vilnius)", amount: "€500-900/month", notes: "1-bedroom apartment" },
+  { item: "Utilities", amount: "€80-150/month", notes: "Electricity, heating, internet" },
+  { item: "Living Expenses", amount: "€400-700/month", notes: "Food, transport, leisure" },
+  { item: "Company Registration", amount: "€200-500", notes: "If forming startup" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Prepare startup concept & MVP", duration: "Varies", location: "Home country" },
+  { step: "Gather documents", duration: "2-3 weeks", location: "Home country" },
+  { step: "Apply for Startup Visa/TRP", duration: "1 day", location: "Migration Department online" },
+  { step: "Application processing", duration: "Up to 60 days", location: "Migration Department" },
+  { step: "Receive approval", duration: "After processing", location: "Email notification" },
+  { step: "Apply for D visa (if abroad)", duration: "1-2 weeks", location: "Lithuanian embassy" },
+  { step: "Arrive in Lithuania", duration: "After visa issued", location: "Lithuania" },
+  { step: "Register company", duration: "Within 120 days", location: "Registrų centras" },
+];
+---
+
+<PageShell
+  title="Lithuania Freelancer Visa 2026: Startup Visa Requirements, Insurance & Guide"
+  description="Complete guide to Lithuania's Startup Visa and freelancer options. No minimum income, path to permanent residency, Baltic tech hub, and step-by-step application process."
+  headline="Lithuania Freelancer Visa: Startup Visa Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Lithuania—Startup Visa for tech entrepreneurs, National D Visa for self-employment, no minimum income requirement, path to citizenship, and affordable Baltic living."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      No Minimum Income
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Path to Citizenship
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Lithuania doesn't offer a dedicated "digital nomad visa" like some EU neighbors. Instead, the country provides two main pathways for freelancers and entrepreneurs: the Startup Visa for innovative tech founders, and the National D Visa for traditional self-employment. Both can lead to permanent residency and eventually citizenship.
+    </p>
+
+    <p class="mb-4">
+      Vilnius has emerged as a fintech and startup hub, earning the nickname "G-Spot of Europe" (a play on its fintech ambitions). The city combines affordable living, fast internet, English-friendly business environment, and a growing international tech community.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Lithuania Freelancer Options</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Primary option:</strong> Startup Visa for tech entrepreneurs</li>
+        <li>• <strong>Alternative:</strong> National D Visa for self-employment</li>
+        <li>• <strong>Income requirement:</strong> No minimum (self-sufficiency required)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY for all visa types</li>
+        <li>• <strong>Duration:</strong> 1 year Startup Visa, renewable</li>
+        <li>• <strong>Business registration:</strong> Required within 120 days</li>
+        <li>• <strong>Path to PR:</strong> Yes—leads to permanent residence</li>
+        <li>• <strong>Path to citizenship:</strong> After 10 years (or 5 with integration)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Visa Options Comparison</h3>
+
+    <p class="mb-4">
+      Understanding the differences between Lithuania's visa options helps you choose the right pathway for your situation.
+    </p>
+
+    <ComparisonTable columns={visaOptionsColumns} rows={visaOptionsRows} />
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Startup Visa advantage:</strong> Unlike most EU freelancer visas, Lithuania's Startup Visa has no minimum income requirement. If you have an innovative business idea with a working prototype, you can qualify regardless of current earnings.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Lithuania is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're building a tech startup or innovative product</li>
+          <li>✓ You have an MVP or working prototype</li>
+          <li>✓ You want no minimum income requirement</li>
+          <li>✓ You value affordable Baltic living</li>
+          <li>✓ You want a path to EU permanent residency</li>
+          <li>✓ You appreciate emerging tech ecosystems</li>
+          <li>✓ You can handle cold winters</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You're a traditional freelancer (not startup founder)</li>
+          <li>• You don't have an innovative product/service</li>
+          <li>• You prefer warm Mediterranean climate</li>
+          <li>• You want to work without starting a company</li>
+          <li>• You need a dedicated DNV (try Latvia, Estonia)</li>
+          <li>• You prefer larger expat communities</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Startup Visa focus:</strong> The Startup Visa is Lithuania's best option for location-independent entrepreneurs. It requires an innovative idea with a working prototype, but offers no minimum income, path to PR, and eventually citizenship.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      The Startup Visa is Lithuania's flagship option for entrepreneurs. It requires demonstrating an innovative business concept with a working prototype, but notably has no minimum income or investment requirements.
+    </p>
+
+    <ComparisonTable columns={startupRequirementsColumns} rows={startupRequirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Qualifies as "Innovative"?</h3>
+
+    <p class="mb-4">
+      Lithuania's Startup Visa targets tech and innovation-focused ventures. The authorities evaluate whether your startup delivers a genuinely innovative solution in areas like:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Likely to Qualify:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ SaaS platforms and software products</li>
+          <li>✓ Fintech applications</li>
+          <li>✓ AI/ML-powered solutions</li>
+          <li>✓ Mobile apps with innovation</li>
+          <li>✓ Biotech or healthtech</li>
+          <li>✓ Cleantech and sustainability</li>
+          <li>✓ E-commerce with unique angle</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Unlikely to Qualify:</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Traditional consulting</li>
+          <li>△ Basic freelance services</li>
+          <li>△ Generic e-commerce stores</li>
+          <li>△ Content creation/blogging</li>
+          <li>△ Standard web development services</li>
+          <li>△ Dropshipping businesses</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Startup Visa</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Business plan describing innovation</li>
+          <li>• MVP or prototype documentation</li>
+          <li>• Proof of founder status</li>
+          <li>• Evidence of business traction</li>
+          <li>• Health insurance certificate</li>
+          <li>• Proof of sufficient funds</li>
+          <li>• Passport photos</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">After Arrival (Within 120 Days)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Register company in Lithuania</li>
+          <li>• Obtain company registration certificate</li>
+          <li>• Set up business bank account</li>
+          <li>• Register for taxes (VMI)</li>
+          <li>• Social security registration (Sodra)</li>
+          <li>• Notify Migration Department</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>120-day deadline:</strong> After receiving your Temporary Residence Permit, you must officially establish your business in Lithuania within 120 days. Missing this deadline can jeopardize your visa status.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Lithuania requires valid medical insurance for all visa applications. International health insurance is required for the Startup Visa and National D Visa applications. Coverage must be valid for your entire planned stay.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      For longer stays, comprehensive international health insurance is essential. Short-term travel insurance may work for Schengen visits but won't meet requirements for residence permits.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Travel vs. International Health Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance After Company Registration</h3>
+
+    <p class="mb-4">
+      Once you register your company and start paying Sodra (social security) contributions, you'll gain access to Lithuania's public healthcare system. Many entrepreneurs maintain international insurance as a supplement for faster access and English-speaking doctors.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Initial Phase (Before Sodra):</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ International insurance required</li>
+          <li>✓ Must cover visa application period</li>
+          <li>✓ Comprehensive coverage recommended</li>
+          <li>✓ Budget €100-280/month</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">After Sodra Registration:</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Public healthcare access</li>
+          <li>✓ Included in social contributions</li>
+          <li>✓ Keep international as supplement</li>
+          <li>✓ Or switch to local private insurance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Recommendation:</strong> Start with comprehensive international insurance for your application and first year. Once your company is established and paying Sodra, evaluate whether to continue international coverage or rely on the public system with local private supplements.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Lithuania Startup Visa?"
+    description="Compare international health insurance plans accepted for Lithuania visa applications."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Lithuania's Startup Visa and D Visa, you need international health insurance with comprehensive coverage. These providers offer plans well-suited for entrepreneurs in the Baltic region.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Startup Founder, First Year</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage for the initial period before your company is established. Budget €110-250/month for solid protection while building your startup.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Entrepreneur</h4>
+        <p class="text-neutral-600">SafetyWing or Genki offer nomad-focused coverage at €55-110/month. Suitable for bootstrapped founders who need to minimize costs while meeting visa requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Baltic/EU Traveler</h4>
+        <p class="text-neutral-600">International insurance with strong EU coverage. Lithuania's location makes Estonia, Latvia, Poland, and the Nordics easy trips—ensure coverage throughout.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">After Sodra Registration</h4>
+        <p class="text-neutral-600">Once paying social contributions, you have public healthcare access. Consider keeping international insurance for faster private access and English-speaking doctors, or switch to local private supplements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Lithuania offers excellent value—one of the most affordable EU countries with good quality of life. Vilnius combines startup ecosystem benefits with significantly lower costs than Western European tech hubs.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">No Income Requirement—But Plan Carefully</h3>
+
+    <p class="mb-4">
+      While Lithuania's Startup Visa has no minimum income requirement, you must demonstrate sufficient funds for self-sufficiency. The authorities want to see you won't become a burden on the state.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Financial Planning Guidance:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Savings:</strong> €10,000-20,000 recommended for first year</li>
+        <li>• <strong>Monthly costs:</strong> Budget €1,200-2,000/month minimum</li>
+        <li>• <strong>Company costs:</strong> €200-500 for registration, ongoing accounting</li>
+        <li>• <strong>Sodra:</strong> Social contributions once company operational</li>
+        <li>• <strong>Buffer:</strong> Plan for 6-12 months runway</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Bootstrap Mode</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,000-1,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Shared housing, minimal expenses</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable (Vilnius)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment, coworking</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Living</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,500-3,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Old Town, dining out</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Vilnius)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1BR apartment):</strong> €500-800/month (city center)</li>
+      <li><strong>Health insurance:</strong> €100-220/month</li>
+      <li><strong>Utilities:</strong> €80-150/month (heating higher in winter)</li>
+      <li><strong>Groceries:</strong> €200-300/month</li>
+      <li><strong>Dining out:</strong> €100-200/month</li>
+      <li><strong>Transport:</strong> €30-50/month (public transport)</li>
+      <li><strong>Coworking:</strong> €100-200/month (many free options too)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Euro zone:</strong> Lithuania uses the Euro, simplifying finances for European business. No currency exchange complications for EU transactions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Startup Visa application is submitted online to Lithuania's Migration Department. Processing takes up to 60 days. After approval, you apply for a D visa at a Lithuanian embassy if abroad, then register your company within 120 days of receiving the permit.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Develop Your Startup Concept</h4>
+          <p class="text-neutral-600">Build your MVP or functional prototype. Document the innovation, target market, and business model. Gather any evidence of traction (early users, revenue, partnerships).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Documentation</h4>
+          <p class="text-neutral-600">Create a detailed business plan, compile prototype documentation, and gather proof of founder status. Secure health insurance and proof of sufficient funds.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Online Application</h4>
+          <p class="text-neutral-600">Apply through the Migration Department's online system for the Startup Visa and Temporary Residence Permit. Pay the €300 combined fee. Upload all supporting documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing takes up to 60 days. The Migration Department may request additional documents or clarification about your startup concept. Be prepared for questions about innovation and business model.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for D Visa (If Abroad)</h4>
+          <p class="text-neutral-600">After approval, apply for a national D visa at the Lithuanian embassy in your country. This allows entry to Lithuania. Processing typically takes 1-2 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Register Company</h4>
+          <p class="text-neutral-600">Enter Lithuania and register your company with Registrų centras within 120 days. This is a critical deadline—missing it can invalidate your residence permit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Complete Tax and Social Registration</h4>
+          <p class="text-neutral-600">Register with VMI (tax authority) and Sodra (social security). Set up a business bank account. You're now officially operating your startup in Lithuania.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Join the Startup Ecosystem</h4>
+          <p class="text-neutral-600">Connect with Vilnius startup community through hubs like Vilnius Tech Park, Startup Lithuania, and numerous coworking spaces. Network with other founders and potential investors.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Startup Lithuania support:</strong> Lithuania actively supports startup founders through Startup Lithuania (government initiative), providing guidance, networking, and resources. The ecosystem is welcoming to international entrepreneurs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for entrepreneurs applying for Lithuania's Startup Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">SaaS Founder from US, Working MVP</h3>
+        <p class="text-neutral-600 mb-4">Built B2B SaaS product with 50 beta users and $2K MRR. Solo founder with $30K savings. 28 years old.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 45 days. Working MVP and early revenue demonstrated innovation and traction. Company registered within 60 days. Now part of Vilnius Tech Park community. Costs dramatically lower than Bay Area.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Fintech Developer from UK, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">Building crypto/DeFi tool. Prototype ready, no revenue yet. Experienced developer. 32 years old.</p>
+        <p class="text-green-700 font-medium">✓ Lithuania's fintech focus helped—strong regulatory environment for crypto. Prototype and technical background accepted. Joined local fintech community. Now building in EU-regulated environment.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">AI Startup Team from India, 3 Co-founders</h3>
+        <p class="text-neutral-600 mb-4">AI-powered analytics platform. Working prototype, some enterprise interest. Combined savings €50K.</p>
+        <p class="text-green-700 font-medium">✓ All three co-founders approved separately. Team approach strengthened the application. Shared office costs in Vilnius. Combined runway covers 18 months of development.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Traditional Freelance Developer</h3>
+        <p class="text-neutral-600 mb-4">Web developer earning €5,000/month from client work. No product, just services. 30 years old.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—client services aren't considered "innovative startup." Startup Visa requires innovative product/service, not consulting. Advised to consider Latvia's DNV or Poland's JDG system instead.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">E-commerce Founder, Generic Store</h3>
+        <p class="text-neutral-600 mb-4">Running dropshipping store. Revenue €3K/month. Looking for EU base.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—standard e-commerce/dropshipping doesn't qualify as innovative. Would need unique technology, proprietary product, or novel business model to demonstrate innovation.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Healthtech Founder from Canada, Pre-Revenue</h3>
+        <p class="text-neutral-600 mb-4">Building mental health app. Working prototype with 200 beta testers. €25K savings. 35 years old.</p>
+        <p class="text-green-700 font-medium">✓ Healthtech considered innovative. Beta user traction helped. No revenue wasn't a problem—innovation and prototype were sufficient. Now building towards launch from Vilnius.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Lithuania Startups"
+    description="Find the right coverage for your Startup Visa application—comprehensive international health insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Without Genuine Innovation</h3>
+        <p class="text-neutral-600">The Startup Visa requires an innovative product or service. Traditional freelancing, consulting, or generic businesses don't qualify. Be honest about whether your concept involves genuine innovation—if not, consider Latvia or Estonia's options instead.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">No MVP or Prototype</h3>
+        <p class="text-neutral-600">Just an idea isn't enough. You need a Minimum Viable Product or functional prototype. The authorities want to see that you've actually built something, not just have a business plan.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 120-Day Company Registration</h3>
+        <p class="text-neutral-600">After receiving your Temporary Residence Permit, you must register your company within 120 days. This is a strict deadline—missing it can invalidate your residence status. Start the registration process immediately upon arrival.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Runway</h3>
+        <p class="text-neutral-600">While there's no minimum income requirement, you need sufficient funds for self-sufficiency. Plan for at least 6-12 months of expenses. Authorities may question your application if your financial situation seems precarious.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Weak Innovation Documentation</h3>
+        <p class="text-neutral-600">The authorities review your business plan and prototype carefully. Vague descriptions or unclear innovation won't pass scrutiny. Be specific about what makes your solution innovative and different from existing alternatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Lithuania -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Lithuania</h2>
+
+    <p class="mb-4">
+      Lithuania has a public healthcare system funded through Sodra (social security). Once your company is registered and paying contributions, you gain access to public healthcare. Many entrepreneurs also maintain private insurance for faster access and English-speaking providers.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Good facilities in Vilnius</li>
+          <li>✓ English-speaking doctors available</li>
+          <li>✓ Short wait times</li>
+          <li>✓ GP visits: €40-70</li>
+          <li>✓ Specialist visits: €60-100</li>
+          <li>✓ Accepted by international insurers</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Public Healthcare (After Sodra)</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Included with social contributions</li>
+          <li>✓ Good quality in major hospitals</li>
+          <li>✓ Free or low-cost care</li>
+          <li>△ Lithuanian language often needed</li>
+          <li>△ Wait times for specialists</li>
+          <li>△ Not available until company registered</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Costs (Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP consultation:</strong> €40-70</li>
+      <li><strong>Specialist visit:</strong> €60-100</li>
+      <li><strong>Blood tests:</strong> €25-60</li>
+      <li><strong>X-ray or ultrasound:</strong> €40-80</li>
+      <li><strong>MRI scan:</strong> €150-300</li>
+      <li><strong>Dental cleaning:</strong> €40-70</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Vilnius healthcare:</strong> Leading private clinics include Northway Medical Centre, Baltic-American Medical & Surgical Clinic, and Kardiolita Hospital. These facilities cater to expats and have English-speaking staff.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does Lithuania have a digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          Not exactly. Lithuania doesn't have a dedicated DNV like some EU countries. The closest option is the Startup Visa for tech entrepreneurs with innovative products. Traditional freelancers may use the National D Visa for self-employment, though it's more complex.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What counts as "innovative" for the Startup Visa?</h3>
+        <p class="text-neutral-600">
+          Innovation typically means technology-based solutions, novel products, or new approaches to existing problems. SaaS, fintech, AI/ML, healthtech, and cleantech usually qualify. Traditional services, consulting, generic e-commerce, or dropshipping don't meet the innovation requirement.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is there a minimum income requirement?</h3>
+        <p class="text-neutral-600">
+          No. Lithuania's Startup Visa has no minimum income requirement—unique among EU options. However, you must demonstrate sufficient funds for self-sufficiency. Having 6-12 months of expenses saved is recommended.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I have to register a company?</h3>
+        <p class="text-neutral-600">
+          Yes. After receiving your Temporary Residence Permit, you must register your company in Lithuania within 120 days. This is a strict requirement—failure to register can invalidate your residence status.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can the Startup Visa lead to permanent residency?</h3>
+        <p class="text-neutral-600">
+          Yes. Continuous legal residence in Lithuania can lead to permanent residency application. The Startup Visa provides a pathway to long-term settlement, and eventually citizenship (typically after 10 years, or 5 with integration requirements).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How's the startup ecosystem in Vilnius?</h3>
+        <p class="text-neutral-600">
+          Vilnius has a growing startup ecosystem, particularly strong in fintech. Resources include Vilnius Tech Park, Startup Lithuania (government support), multiple coworking spaces, and regular tech events. The community is international and welcoming to foreign founders.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Lithuania's Startup Visa is a unique option for tech entrepreneurs who have an innovative product but may not meet income requirements of other EU visas. The lack of minimum income, combined with affordable living and a path to permanent residency, makes it attractive for bootstrapped founders.
+    </p>
+
+    <p class="mb-4">
+      The key limitation is clear: you need genuine innovation. Traditional freelancing, consulting, or generic business models won't qualify. If you have a working MVP and are building something innovative, Lithuania offers a welcoming ecosystem with lower barriers than many EU alternatives.
+    </p>
+
+    <p class="mb-6">
+      Vilnius's emerging tech scene, affordable costs, and Schengen access make it a practical choice for startup founders seeking an EU base. The 120-day company registration requirement ensures commitment, but the payoff is a genuine pathway to long-term EU residence.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Lithuania's Startup Visa is ideal for tech entrepreneurs with innovative products who need no minimum income requirement. Build your MVP, document your innovation, and join Vilnius's growing startup ecosystem. Budget €100-220/month for health insurance—mandatory for the visa and essential before company registration.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/latvia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Latvia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">DNV with path to PR, OECD requirement</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/estonia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Estonia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Baltic neighbor with e-Residency program</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/poland" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Poland Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">JDG self-employment for traditional freelancers</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

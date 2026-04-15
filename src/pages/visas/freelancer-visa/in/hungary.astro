@@ -1,0 +1,797 @@
+---
+/**
+ * Hungary Freelancer Visa - Long-form CRO-optimized page
+ * White Card (Digital Nomad Residence Permit) guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Hungary", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Slovenia Freelancer Visa", href: "/visas/freelancer-visa/in/slovenia" },
+  { title: "Czech Republic Freelancer Visa", href: "/visas/freelancer-visa/in/czech-republic" },
+  { title: "Austria Freelancer Visa", href: "/visas/freelancer-visa/in/austria" },
+];
+
+const applicantTypesColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "remoteEmployee", header: "Remote Employee" },
+  { key: "freelancer", header: "Freelancer/Contractor" },
+  { key: "businessOwner", header: "Business Owner" },
+];
+
+const applicantTypesRows = [
+  { feature: "Eligibility", remoteEmployee: "Non-Hungarian employer", freelancer: "Foreign clients only", businessOwner: "Foreign company shareholder" },
+  { feature: "Income Proof", remoteEmployee: "Employment contract + remote clause", freelancer: "Service contracts + self-employment registry", businessOwner: "Company registration + profit verification" },
+  { feature: "Work Location", remoteEmployee: "Work remotely from Hungary", freelancer: "Serve foreign clients from Hungary", businessOwner: "Manage foreign business remotely" },
+  { feature: "Documentation", remoteEmployee: "Contract stating remote work ability", freelancer: "Self-employment register extract", businessOwner: "Company extract showing ownership" },
+  { feature: "Best For", remoteEmployee: "Full-time remote workers", freelancer: "Independent contractors", businessOwner: "Startup founders, shareholders" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€3,000/month net", notes: "Increased from €2,000 in 2024" },
+  { requirement: "Bank Balance", details: "€10,000 minimum", notes: "Shown in bank statement" },
+  { requirement: "Income History", details: "6 months bank statements", notes: "Proving consistent income" },
+  { requirement: "Health Insurance", details: "Valid coverage in Hungary", notes: "International insurance accepted" },
+  { requirement: "Work Type", details: "Remote work for foreign entities", notes: "No Hungarian employment allowed" },
+  { requirement: "Criminal Record", details: "Not required", notes: "Simplified documentation" },
+  { requirement: "Accommodation", details: "Not required for application", notes: "Can arrange after arrival" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "travel", header: "Travel Insurance" },
+  { key: "international", header: "International Health Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Acceptance", travel: "May be accepted", international: "Fully accepted" },
+  { feature: "Coverage Duration", travel: "30-90 days", international: "Annual renewable" },
+  { feature: "Coverage Amount", travel: "€30,000 minimum", international: "€1M+ comprehensive" },
+  { feature: "Pre-existing Conditions", travel: "Excluded", international: "Varies by plan" },
+  { feature: "Routine Care", travel: "Not covered", international: "Usually included" },
+  { feature: "Monthly Cost", travel: "€30-80", international: "€100-280" },
+  { feature: "Recommendation", travel: "Short stays only", international: "Recommended for 1-2 years" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€140-300", strengths: "Comprehensive coverage, global network" },
+  { provider: "Allianz Care", type: "International", price: "€120-260", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€65-110", strengths: "Budget-friendly, nomad-focused" },
+  { provider: "Genki", type: "Nomad Insurance", price: "€55-95", strengths: "European-focused, good value" },
+  { provider: "World Nomads", type: "Travel/Nomad", price: "€70-140", strengths: "Adventure activities, flexible" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "D Visa Application", amount: "€60", notes: "Embassy fee" },
+  { item: "Residence Permit Fee", amount: "€60", notes: "White Card application" },
+  { item: "Health Insurance", amount: "€100-280/month", notes: "International coverage" },
+  { item: "Rent (Budapest)", amount: "€500-900/month", notes: "1-bedroom apartment" },
+  { item: "Utilities", amount: "€80-150/month", notes: "Electricity, gas, internet" },
+  { item: "Living Expenses", amount: "€500-800/month", notes: "Food, transport, leisure" },
+  { item: "Total Monthly (Single)", amount: "€1,300-2,200", notes: "Comfortable lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "1-2 weeks", location: "Home country" },
+  { step: "Apply for D visa at embassy", duration: "1 day", location: "Hungarian embassy/consulate" },
+  { step: "D visa processing", duration: "2-4 weeks", location: "Embassy processes" },
+  { step: "Receive D visa", duration: "After approval", location: "Embassy pickup" },
+  { step: "Travel to Hungary", duration: "Within 30 days of D visa", location: "Hungary" },
+  { step: "Apply for White Card", duration: "Within 30 days of arrival", location: "Immigration office" },
+  { step: "White Card processing", duration: "21 days (legally)", location: "Immigration processes" },
+  { step: "Receive White Card", duration: "After approval", location: "Immigration office" },
+];
+---
+
+<PageShell
+  title="Hungary Freelancer Visa 2026: White Card Requirements, Insurance & Guide"
+  description="Complete guide to Hungary's White Card (Digital Nomad Visa) for freelancers. €3,000/month income, simplified documentation, 15% tax rate, and step-by-step application process."
+  headline="Hungary Freelancer Visa: White Card Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Hungary—White Card residence permit, €3,000/month income requirement, simplified documentation, 15% flat tax, and affordable Central European living."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Simplified Documentation
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      No Apostille Required
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Hungary's White Card is one of Europe's most streamlined digital nomad visas. Unlike many EU countries, Hungary doesn't require apostilled documents, criminal record certificates, or proof of accommodation for the initial application. This simplified process makes it attractive for freelancers who want to start quickly without bureaucratic hurdles.
+    </p>
+
+    <p class="mb-4">
+      The White Card allows remote workers to live in Hungary for up to 2 years (1 year initial, renewable once), though it doesn't lead to permanent residency. Budapest has become a popular hub for digital nomads, offering affordable Central European living, excellent internet, and vibrant expat communities.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Hungary White Card</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> White Card (Digital Nomad Residence Permit)</li>
+        <li>• <strong>Income requirement:</strong> €3,000/month net + €10,000 bank balance</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—international coverage required</li>
+        <li>• <strong>Duration:</strong> 1 year, renewable once (2 years max)</li>
+        <li>• <strong>Tax rate:</strong> 15% flat tax (if tax resident 183+ days)</li>
+        <li>• <strong>Documentation:</strong> Simplified—no apostille, no criminal record, no accommodation proof</li>
+        <li>• <strong>Schengen access:</strong> Yes—travel freely in Schengen Zone</li>
+        <li>• <strong>Path to PR:</strong> No—White Card doesn't lead to permanent residency</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Can Apply?</h3>
+
+    <p class="mb-4">
+      Hungary's White Card targets three categories of remote workers: employees of foreign companies, freelancers with foreign clients, and shareholders in foreign businesses. All must work remotely using digital technology.
+    </p>
+
+    <ComparisonTable columns={applicantTypesColumns} rows={applicantTypesRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Critical restriction:</strong> White Card holders cannot pursue any gainful activity in Hungary or hold shares in Hungarian companies. Your income must come entirely from outside Hungary. This is a strict requirement—violating it can result in permit revocation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Hungary is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want minimal paperwork (no apostille needed)</li>
+          <li>✓ You earn €3,000+/month from foreign sources</li>
+          <li>✓ You want affordable Central European living</li>
+          <li>✓ You value fast processing times</li>
+          <li>✓ You want Schengen Zone travel access</li>
+          <li>✓ You appreciate vibrant city life (Budapest)</li>
+          <li>✓ You have €10,000+ in savings to show</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want a path to permanent residency</li>
+          <li>• You want to bring family (no family reunification)</li>
+          <li>• You need more than 2 years stay</li>
+          <li>• Your income is below €3,000/month</li>
+          <li>• You want Mediterranean climate (try Greece, Cyprus)</li>
+          <li>• You prefer English-speaking countries</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Key limitation:</strong> Hungary's White Card does NOT provide a path to permanent residency or citizenship. After 2 years, you must leave Hungary for at least 6 months before applying again. If long-term settlement is your goal, consider Portugal, Spain, or Germany instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Hungary's White Card has notably simplified requirements compared to other EU digital nomad visas. No documents need to be apostilled or notarized, and no criminal record certificate or rental agreement is required for the application.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Requirement Details</h3>
+
+    <p class="mb-4">
+      The income requirement increased to €3,000/month in 2024. You must demonstrate this income through 6 months of bank statements showing consistent deposits. Additionally, you need at least €10,000 in your bank account at the time of application.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">What Counts as Income:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Remote employees:</strong> Regular salary deposits from foreign employer</li>
+        <li>• <strong>Freelancers:</strong> Client payments, platform earnings (Upwork, etc.)</li>
+        <li>• <strong>Business owners:</strong> Dividends, profit distributions from foreign companies</li>
+        <li>• <strong>Combined income:</strong> Multiple income streams can be aggregated</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For D Visa (Embassy)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Completed visa application form</li>
+          <li>• Passport photos</li>
+          <li>• Employment contract OR service contracts</li>
+          <li>• 6 months bank statements</li>
+          <li>• Health insurance certificate</li>
+          <li>• Visa fee (€60)</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">NOT Required (Simplified)</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>✓ No apostille or notarization</li>
+          <li>✓ No criminal record certificate</li>
+          <li>✓ No rental agreement/accommodation proof</li>
+          <li>✓ No translations required (English accepted)</li>
+          <li>✓ No business plan</li>
+          <li>✓ No interview in most cases</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Documentation advantage:</strong> Hungary's simplified requirements mean you can prepare your application in 1-2 weeks rather than the months required for countries like Italy or Portugal. This makes Hungary ideal for freelancers who need to relocate quickly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Hungary requires valid health insurance covering your stay. International health insurance is accepted and recommended for digital nomads. The insurance must provide comprehensive coverage including hospitalization and emergency care.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      While Hungary doesn't specify exact coverage amounts, comprehensive international health insurance provides the smoothest visa approval and best protection during your stay.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Travel vs. International Health Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Recommendations</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose International Health Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're staying the full 1-2 years</li>
+          <li>✓ You want routine care coverage</li>
+          <li>✓ You have pre-existing conditions</li>
+          <li>✓ You travel frequently within Schengen</li>
+          <li>✓ You want hassle-free visa renewal</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Travel Insurance Considerations:</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ May be accepted for initial application</li>
+          <li>△ Need to renew every 3-6 months</li>
+          <li>△ No routine care or checkups</li>
+          <li>△ Pre-existing conditions excluded</li>
+          <li>△ May complicate renewal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Budget tip:</strong> Hungary's affordable living costs mean you can allocate more budget to comprehensive insurance. SafetyWing or Genki offer solid coverage at €55-110/month, while Cigna or Allianz provide premium coverage at €120-300/month.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Hungary White Card?"
+    description="Compare international health insurance plans accepted for Hungary's digital nomad visa."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Hungary's White Card, you need insurance that covers your full stay duration. These providers are well-suited for digital nomads in Hungary.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Full-Time Budapest Resident</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage with good Hungarian networks. Budget €120-260/month for solid protection including routine care and specialists.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Nomad</h4>
+        <p class="text-neutral-600">SafetyWing or Genki offer nomad-focused coverage at €55-110/month. Excellent value for healthy freelancers who primarily need emergency and hospitalization coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Schengen Traveler</h4>
+        <p class="text-neutral-600">Choose international insurance with strong EU-wide coverage. Your White Card grants Schengen access—ensure your insurance covers you throughout the zone for work trips and weekend getaways.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care may cover pre-existing conditions after waiting periods. Discuss your situation during the quote process and ensure full disclosure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Hungary offers excellent value for digital nomads—Budapest combines Western European amenities with Eastern European prices. The cost of living is significantly lower than Western Europe while maintaining high quality of life.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Hungary's 15% Flat Tax</h3>
+
+    <p class="mb-4">
+      If you become a tax resident (183+ days in Hungary), you pay 15% flat income tax on worldwide income. This is competitive within the EU, though not as low as Bulgaria's 10%. Social security contributions may also apply depending on your situation.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">Tax Considerations:</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>Income tax:</strong> 15% flat rate</li>
+        <li>• <strong>Tax residency:</strong> 183+ days in Hungary</li>
+        <li>• <strong>Digital nomad exemption:</strong> Some sources suggest DNV holders may be exempt, but consult a tax advisor</li>
+        <li>• <strong>Social security:</strong> May apply depending on status</li>
+        <li>• <strong>No wealth tax:</strong> Hungary doesn't tax net worth</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget (Shared/Studio)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,000-1,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Outside city center</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable (Own Apt)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Budapest center</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Living</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,200-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Luxury, frequent dining</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Budapest)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1BR apartment):</strong> €500-800/month (city center)</li>
+      <li><strong>Health insurance:</strong> €80-200/month</li>
+      <li><strong>Utilities:</strong> €80-120/month (electricity, gas, internet)</li>
+      <li><strong>Groceries:</strong> €200-300/month</li>
+      <li><strong>Dining out:</strong> €100-200/month</li>
+      <li><strong>Transport:</strong> €30-50/month (public transport pass)</li>
+      <li><strong>Coworking:</strong> €80-150/month (optional)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Currency note:</strong> Hungary uses the Hungarian Forint (HUF), not the Euro. While prices are quoted in EUR here for comparison, you'll deal in HUF daily. Exchange rates fluctuate, so consider a multi-currency account (Wise, Revolut) for best rates.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Hungary's White Card follows a two-step process: first apply for a D visa at a Hungarian embassy abroad, then apply for the White Card residence permit after arriving in Hungary. The process is notably faster than many EU alternatives.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Documents</h4>
+          <p class="text-neutral-600">Collect required documents: employment contract or service contracts with remote work clause, 6 months of bank statements showing €3,000+/month income, and health insurance certificate. No apostilles or translations needed—English documents are accepted.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for D Visa at Embassy</h4>
+          <p class="text-neutral-600">Schedule an appointment at the Hungarian embassy or consulate in your country of residence. Submit your application with documents and pay the €60 visa fee. Processing typically takes 2-4 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive D Visa</h4>
+          <p class="text-neutral-600">Once approved, collect your D visa from the embassy. The D visa is valid for 3 months and allows you to stay in Hungary for up to 30 days. You must enter Hungary and apply for the White Card within this period.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Hungary</h4>
+          <p class="text-neutral-600">Enter Hungary with your D visa. You now have 30 days to find accommodation and apply for the White Card residence permit. This is when you'll start exploring Budapest or your chosen city.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for White Card</h4>
+          <p class="text-neutral-600">Visit the National Directorate-General for Aliens Policing (OIF) office to submit your White Card application. Bring your documents, pay the €60 fee, and provide biometrics. You can now show Hungarian accommodation if required.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">White Card Processing</h4>
+          <p class="text-neutral-600">By law, the White Card should be processed within 21 days. In practice, processing times vary. You can stay legally in Hungary while your application is pending.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive White Card</h4>
+          <p class="text-neutral-600">Collect your White Card from the immigration office. This card is valid for 1 year and serves as your residence permit. Keep it with you as proof of legal residence in Hungary.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Set Up Local Life</h4>
+          <p class="text-neutral-600">Open a Hungarian bank account (OTP, Wise), register your address, and explore Budapest's coworking spaces and digital nomad community. Popular areas include Districts V, VI, VII, and XIII.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Speed advantage:</strong> Hungary's entire process—from document preparation to receiving the White Card—can be completed in 6-8 weeks. This is significantly faster than countries like Italy (6-12 months) or Portugal (3-6 months).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Hungary's White Card:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from US, Remote for Startup</h3>
+        <p class="text-neutral-600 mb-4">Works for Austin startup earning $7,500/month. Applied from Washington DC embassy. 28 years old.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 3 weeks—fastest EU visa he's gotten. No apostilles needed, just employment contract and bank statements. Living in District VII for €1,400/month total. Loves the ruin bars and tech community. Schengen travel makes weekend trips easy.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer from India, Freelance Clients</h3>
+        <p class="text-neutral-600 mb-4">Earning €4,000/month from US and UK clients via Upwork and direct contracts. 31 years old.</p>
+        <p class="text-green-700 font-medium">✓ Self-employment register extract from India plus client contracts accepted. D visa took 4 weeks from Mumbai embassy. SafetyWing insurance (€80/month) approved. Budapest costs let her save significantly more than living in Bangalore.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Writer from UK, Variable Income</h3>
+        <p class="text-neutral-600 mb-4">Freelance writer with income varying €2,500-4,500/month. Bank statements showed inconsistent pattern.</p>
+        <p class="text-amber-700 font-medium">△ Initial concern about months below €3,000. Provided additional context showing €3,800 average over 6 months plus €15,000 savings. Approved after brief clarification. Lesson: ensure 6-month average clearly exceeds threshold.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Startup Founder from Canada, Company Shareholder</h3>
+        <p class="text-neutral-600 mb-4">Co-founded Canadian SaaS, pays himself €5,000/month. 60% company ownership.</p>
+        <p class="text-green-700 font-medium">✓ Company registration and employment contract with own company accepted. Embassy familiar with startup founder applications. Using Hungary as EU base while growing the company. Tax advisor helping optimize structure.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple Wanting to Relocate Together</h3>
+        <p class="text-neutral-600 mb-4">Both work remotely, combined income €8,000/month. Hoping to both get White Cards.</p>
+        <p class="text-amber-700 font-medium">△ Hungary's White Card doesn't allow family reunification. Each person must apply independently with their own €3,000/month income. They each qualified separately and both received White Cards. Living together but on separate permits.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Digital Nomad Seeking Long-Term Home</h3>
+        <p class="text-neutral-600 mb-4">Looking to settle permanently in EU. Excellent income €6,000/month. 35 years old.</p>
+        <p class="text-red-700 font-medium">✗ Learned that White Card doesn't lead to permanent residency. After 2 years, must leave for 6 months. Decided Portugal D7 visa was better fit for long-term goals, despite longer application process. Hungary great for 1-2 year stays, not settlement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Hungary White Card"
+    description="Find the right coverage for your application—international health insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Expecting Permanent Residency Path</h3>
+        <p class="text-neutral-600">The White Card is explicitly designed as a temporary solution—it does NOT lead to permanent residency or citizenship in Hungary. After 2 years (maximum), you must leave for at least 6 months before reapplying. If long-term EU settlement is your goal, consider Portugal, Spain, or Germany.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Planning to Bring Family</h3>
+        <p class="text-neutral-600">Hungary's White Card doesn't allow family reunification. Spouses and children cannot join you on dependent visas (except children born in Hungary during permit validity). Each family member who wants to live in Hungary must independently qualify for their own White Card.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Inconsistent Income Documentation</h3>
+        <p class="text-neutral-600">You need 6 months of bank statements showing consistent €3,000+/month income. Months significantly below the threshold raise questions. If your income varies, ensure your 6-month average clearly exceeds €3,000 and prepare explanations for any dips.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the €10,000 Savings Requirement</h3>
+        <p class="text-neutral-600">Beyond monthly income, you must show €10,000 in your bank account. Some applicants focus only on income and forget this requirement. Ensure your balance shows at least €10,000 at the time of application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 30-Day White Card Deadline</h3>
+        <p class="text-neutral-600">After entering Hungary on your D visa, you have only 30 days to apply for the White Card. Don't get caught up exploring Budapest and miss this deadline. Schedule your immigration office appointment soon after arrival.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Hungary -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Hungary</h2>
+
+    <p class="mb-4">
+      Hungary has a dual healthcare system with public (funded through social insurance) and private options. White Card holders typically rely on private healthcare through international insurance, which provides access to modern facilities with English-speaking staff.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare (Recommended)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Modern facilities in Budapest</li>
+          <li>✓ English-speaking doctors common</li>
+          <li>✓ Short wait times</li>
+          <li>✓ GP visits: €40-70</li>
+          <li>✓ Specialist visits: €60-100</li>
+          <li>✓ Accepted by international insurers</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Public Healthcare (TAJ System)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Requires social security contributions</li>
+          <li>△ White Card holders usually not enrolled</li>
+          <li>△ Hungarian language needed</li>
+          <li>△ Variable quality by location</li>
+          <li>△ Longer wait times for specialists</li>
+          <li>△ Free/low-cost for enrolled residents</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Costs (Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP consultation:</strong> €40-70</li>
+      <li><strong>Specialist visit:</strong> €60-100</li>
+      <li><strong>Blood tests:</strong> €25-60</li>
+      <li><strong>X-ray or ultrasound:</strong> €35-70</li>
+      <li><strong>MRI scan:</strong> €150-300</li>
+      <li><strong>Dental cleaning:</strong> €40-70</li>
+      <li><strong>Emergency room visit:</strong> €80-200</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Budapest healthcare tip:</strong> Top private clinics include FirstMed, Rózsadomb Medical Center, and Dr. Rose Private Hospital. These facilities cater to expats, have English-speaking staff, and work with international insurers for direct billing.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Dental Tourism</h3>
+
+    <p class="mb-4">
+      Hungary, particularly Budapest, is famous for dental tourism. Dental care is 50-70% cheaper than Western Europe while maintaining high quality. Many digital nomads take advantage of this for major dental work not covered by insurance.
+    </p>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Hungary's White Card?</h3>
+        <p class="text-neutral-600">
+          The minimum income requirement is €3,000/month net, increased from €2,000 in 2024. You must show 6 months of bank statements demonstrating this income level, plus at least €10,000 in savings at the time of application.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does Hungary's White Card lead to permanent residency?</h3>
+        <p class="text-neutral-600">
+          No. The White Card is explicitly temporary—maximum 2 years (1 year + 1 renewal). After 2 years, you must leave Hungary for at least 6 months before reapplying. If you want a path to EU permanent residency, consider Portugal, Spain, or Germany instead.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family join me on the White Card?</h3>
+        <p class="text-neutral-600">
+          No family reunification is available with the White Card. Your spouse and children cannot join you on dependent visas. Each family member who wants to live in Hungary must independently qualify for their own White Card with €3,000/month income.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to apostille my documents?</h3>
+        <p class="text-neutral-600">
+          No. Hungary's White Card has simplified documentation requirements—no apostilles, no notarization, no translations required (English is accepted), and no criminal record certificate needed. This is one of the most streamlined EU digital nomad visa processes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What tax rate will I pay in Hungary?</h3>
+        <p class="text-neutral-600">
+          If you become a tax resident (183+ days in Hungary), you pay 15% flat income tax on worldwide income. Some sources suggest digital nomads may have exemptions—consult a Hungarian tax advisor to understand your specific situation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What currency does Hungary use?</h3>
+        <p class="text-neutral-600">
+          Hungary uses the Hungarian Forint (HUF), not the Euro. While businesses in tourist areas may accept Euros, daily transactions are in HUF. Use a multi-currency account (Wise, Revolut) for best exchange rates, and be aware that HUF fluctuates against EUR/USD.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Hungary's White Card is ideal for freelancers who want a fast, low-paperwork path to living in the EU. The simplified documentation (no apostilles, no criminal record, no accommodation proof) and quick processing make it one of the easiest EU digital nomad visas to obtain.
+    </p>
+
+    <p class="mb-4">
+      Budapest offers excellent value—affordable rent, vibrant nightlife, strong internet, and an established digital nomad community. The city's central location makes Schengen travel convenient for both business and pleasure.
+    </p>
+
+    <p class="mb-6">
+      The key limitation is clear: no path to permanent residency. Hungary's White Card is designed as a 1-2 year solution, not a settlement pathway. If you want EU residency long-term, apply to Portugal or Spain instead. But for 1-2 years of affordable European living with minimal bureaucracy, Hungary is hard to beat.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Hungary's White Card is perfect for freelancers seeking a quick, simple EU visa for 1-2 years. The €3,000/month income requirement is reasonable, the documentation is minimal, and Budapest offers excellent quality of life at affordable prices. Budget €80-200/month for health insurance—essential for the visa and access to quality private healthcare.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/slovenia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Slovenia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">New DNV launched Nov 2025, nature paradise</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/czech-republic" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Czech Republic Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Živnostenský list for self-employment</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/austria" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Austria Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">German-speaking Alpine option</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

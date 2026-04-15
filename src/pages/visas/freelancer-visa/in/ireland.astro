@@ -1,0 +1,803 @@
+---
+/**
+ * Ireland Freelancer Visa - Long-form CRO-optimized page
+ * Stamp 0 & STEP programme guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Ireland", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "UK Work Permit", href: "/visas/work-permit/in/uk" },
+  { title: "Netherlands Freelancer Visa", href: "/visas/freelancer-visa/in/netherlands" },
+  { title: "Germany Freelancer Visa", href: "/visas/freelancer-visa/in/germany" },
+];
+
+const pathwayColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "stamp0", header: "Stamp 0" },
+  { key: "step", header: "STEP (Start-up)" },
+];
+
+const pathwayRows = [
+  { feature: "Who It's For", stamp0: "Remote workers, retirees, self-sufficient", step: "Innovative entrepreneurs" },
+  { feature: "Work in Ireland", stamp0: "No (foreign clients only)", step: "Yes (your startup)" },
+  { feature: "Financial Requirement", stamp0: "Self-sufficient income proof", step: "€50,000 funding" },
+  { feature: "Irish Clients", stamp0: "Prohibited", step: "Allowed" },
+  { feature: "Duration", stamp0: "Typically 1-2 years", step: "2 years, renewable" },
+  { feature: "Path to Citizenship", stamp0: "Does NOT count", step: "Counts toward residency" },
+  { feature: "Best For", stamp0: "Digital nomads, passive income", step: "Tech founders, startups" },
+];
+
+const stamp0RequirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const stamp0RequirementsRows = [
+  { requirement: "Financial Self-Sufficiency", details: "Prove sustainable income", notes: "No access to Irish benefits" },
+  { requirement: "Income Source", details: "Non-Irish clients/employers", notes: "Cannot work for Irish entities" },
+  { requirement: "Private Health Insurance", details: "Mandatory", notes: "Comprehensive coverage required" },
+  { requirement: "No Public Funds", details: "Cannot claim benefits", notes: "Must be financially independent" },
+  { requirement: "Accommodation", details: "Proof required", notes: "Irish address for registration" },
+  { requirement: "Permission Letter", details: "Must explicitly allow remote work", notes: "Request this specifically" },
+  { requirement: "Registration", details: "ISD Burgh Quay (Dublin)", notes: "Or local immigration office" },
+];
+
+const stepRequirementsRows = [
+  { requirement: "Funding", details: "€50,000 minimum", notes: "Personal funds or investment" },
+  { requirement: "Business Proposal", details: "Innovative concept", notes: "Evaluated by expert panel" },
+  { requirement: "No Criminal Record", details: "Police clearance", notes: "From home country" },
+  { requirement: "Good Character", details: "References required", notes: "Professional/personal" },
+  { requirement: "Business Plan", details: "Detailed proposal", notes: "Innovation & job creation" },
+  { requirement: "Health Insurance", details: "Private coverage", notes: "For visa application" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private Insurance (Required)" },
+  { key: "public", header: "Irish Public (HSE)" },
+];
+
+const insuranceRows = [
+  { feature: "For Stamp 0", private: "Mandatory—no public access", public: "Not available" },
+  { feature: "For STEP", private: "Required for visa", public: "Limited access after time" },
+  { feature: "GP Visit", private: "Covered (varies by plan)", public: "€55-65 (if eligible)" },
+  { feature: "Hospital", private: "Covered", public: "€80/day (if eligible)" },
+  { feature: "Monthly Cost", private: "€100-300", public: "Tax-funded (limited access)" },
+  { feature: "Pre-existing Conditions", private: "Varies by plan", public: "Covered if eligible" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€130-280", strengths: "Comprehensive, global network" },
+  { provider: "Allianz Care", type: "International", price: "€120-260", strengths: "Strong European coverage" },
+  { provider: "VHI", type: "Irish Insurer", price: "€80-200", strengths: "Largest Irish health insurer" },
+  { provider: "Laya Healthcare", type: "Irish Insurer", price: "€70-180", strengths: "Good value Irish plans" },
+  { provider: "Irish Life Health", type: "Irish Insurer", price: "€75-190", strengths: "Part of Irish Life Group" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "IRP Card (Registration)", amount: "€300", notes: "Immigration Registration" },
+  { item: "STEP Application", amount: "€350", notes: "Startup programme fee" },
+  { item: "STEP Funding Requirement", amount: "€50,000", notes: "Must have available" },
+  { item: "Health Insurance", amount: "€100-300/month", notes: "Mandatory for Stamp 0" },
+  { item: "Rent (Dublin)", amount: "€1,800-2,800/month", notes: "1-bedroom apartment" },
+  { item: "Rent (Other Cities)", amount: "€1,200-1,800/month", notes: "Cork, Galway, Limerick" },
+  { item: "Living Expenses", amount: "€600-1,000/month", notes: "Food, transport, leisure" },
+  { item: "Total Monthly (Single)", amount: "€2,500-4,000", notes: "Dublin lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const stamp0TimelineRows = [
+  { step: "Gather financial documentation", duration: "2-4 weeks", location: "Home country" },
+  { step: "Obtain private health insurance", duration: "1 week", location: "Online" },
+  { step: "Apply to ISD Unit 2", duration: "1 day submission", location: "Online/Post" },
+  { step: "ISD processing", duration: "4-8 weeks", location: "Dublin" },
+  { step: "Receive permission letter", duration: "After approval", location: "Post/Email" },
+  { step: "Travel to Ireland", duration: "After approval", location: "Dublin/Cork/etc." },
+  { step: "Register at Burgh Quay/local office", duration: "Appointment required", location: "Ireland" },
+];
+---
+
+<PageShell
+  title="Ireland Freelancer Visa 2026: Stamp 0 & STEP Requirements, Insurance & Guide"
+  description="Complete guide to Ireland's Stamp 0 and STEP programme for freelancers and entrepreneurs. Remote work pathway, €50,000 startup funding, English-speaking EU country, tech hub access."
+  headline="Ireland Freelancer Visa: Stamp 0 & STEP Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Ireland—Stamp 0 for remote workers, STEP for entrepreneurs, English-speaking EU country, world-class tech scene, and practical pathways."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      English-Speaking EU
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Global Tech Hub
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Ireland doesn't have a dedicated digital nomad visa, but offers two pathways for non-EU freelancers and entrepreneurs: Stamp 0 (for financially self-sufficient remote workers who don't work for Irish clients) and STEP (Start-up Entrepreneur Programme for innovative founders with €50,000 funding).
+    </p>
+
+    <p class="mb-4">
+      As the only native English-speaking country in the EU (post-Brexit), Ireland attracts global talent—especially in tech. Dublin hosts European headquarters for Google, Facebook, Apple, and hundreds of startups. The trade-off is high living costs, particularly in Dublin's brutal rental market.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Ireland Freelancer Options</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Two pathways:</strong> Stamp 0 (remote workers) or STEP (entrepreneurs)</li>
+        <li>• <strong>Stamp 0:</strong> Cannot work for Irish clients—foreign income only</li>
+        <li>• <strong>STEP:</strong> €50,000 funding required, innovative business</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY private coverage for Stamp 0</li>
+        <li>• <strong>Language:</strong> English (native—no language barrier)</li>
+        <li>• <strong>EU membership:</strong> Yes—access to EU market</li>
+        <li>• <strong>Not Schengen:</strong> Ireland is NOT in Schengen Zone</li>
+        <li>• <strong>Citizenship note:</strong> Stamp 0 time does NOT count toward citizenship</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Two Pathways Compared</h3>
+
+    <p class="mb-4">
+      Choose based on your situation: Stamp 0 for remote workers serving foreign clients, STEP for entrepreneurs building businesses in Ireland.
+    </p>
+
+    <ComparisonTable columns={pathwayColumns} rows={pathwayRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Critical Stamp 0 limitation:</strong> Stamp 0 does NOT count toward Irish citizenship. You cannot build "reckonable residence" while on Stamp 0. If long-term settlement is your goal, STEP or employment-based permits are better options.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Ireland is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You need English-speaking EU country</li>
+          <li>✓ You work for non-Irish clients (Stamp 0)</li>
+          <li>✓ You have €50,000 for startup (STEP)</li>
+          <li>✓ You want access to EU tech ecosystem</li>
+          <li>✓ You appreciate green landscapes & culture</li>
+          <li>✓ You can afford high Dublin rents</li>
+          <li>✓ You enjoy pub culture & friendly locals</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want to work for Irish clients (Stamp 0 prohibits)</li>
+          <li>• You want time to count toward citizenship</li>
+          <li>• You need Schengen travel access</li>
+          <li>• Dublin housing costs are prohibitive</li>
+          <li>• You prefer warm/dry climate</li>
+          <li>• You don't have €50,000 for STEP</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>English advantage:</strong> Ireland is the only native English-speaking EU country. No language barrier for business, daily life, or government services. For many remote workers, this alone justifies the higher costs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Requirements differ significantly between Stamp 0 and STEP. Choose based on whether you're a remote worker (Stamp 0) or entrepreneur (STEP).
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Stamp 0 Requirements</h3>
+
+    <p class="mb-4">
+      Stamp 0 is for financially self-sufficient individuals who will NOT work in the Irish labor market. You can do remote work for foreign employers/clients only.
+    </p>
+
+    <ComparisonTable columns={stamp0RequirementsColumns} rows={stamp0RequirementsRows} />
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Stamp 0 Key Restrictions:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>No Irish work:</strong> Cannot work for Irish employers or Irish clients</li>
+        <li>• <strong>No public benefits:</strong> Cannot access social welfare, housing, etc.</li>
+        <li>• <strong>No reckonable residence:</strong> Time does NOT count toward citizenship</li>
+        <li>• <strong>Private insurance:</strong> MANDATORY—no public healthcare access</li>
+        <li>• <strong>Permission letter:</strong> Must explicitly state remote work is allowed</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">STEP (Start-up Entrepreneur Programme) Requirements</h3>
+
+    <ComparisonTable columns={stamp0RequirementsColumns} rows={stepRequirementsRows} />
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 my-6">
+      <h4 class="font-semibold text-primary-900 mb-3">STEP Business Criteria:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Innovation:</strong> New/innovative product, service, or business model</li>
+        <li>• <strong>High-growth potential:</strong> Capable of creating 10 jobs within 3-4 years</li>
+        <li>• <strong>€50,000 funding:</strong> Must have access to funding (personal or investment)</li>
+        <li>• <strong>Based in Ireland:</strong> Business HQ and operations in Ireland</li>
+        <li>• <strong>Excluded sectors:</strong> Retail, catering, personal services typically ineligible</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Tax Residency Considerations</h3>
+
+    <p class="mb-4">
+      Remote workers should understand Irish tax residency rules:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">You Become Irish Tax Resident If:</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• 183+ days in Ireland in one tax year</li>
+          <li>• 280+ days over two consecutive years (with 30+ in each)</li>
+        </ul>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Tax Implications:</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• If resident: Taxed on worldwide income</li>
+          <li>• If non-resident: Only Irish-source income taxed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Split-year treatment:</strong> Ireland allows split-year treatment in certain circumstances. Consult an Irish tax advisor for your specific situation, especially if you're earning significant foreign income.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-red-900 mb-2">Private Insurance is MANDATORY for Stamp 0</h3>
+      <p class="text-red-800">
+        Stamp 0 holders have NO access to Irish public healthcare (HSE). You MUST maintain private health insurance for your entire stay. This is non-negotiable—it's a visa condition.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Ireland's public healthcare system (HSE) is available to residents, but Stamp 0 holders are explicitly excluded. STEP holders may gain limited access over time but should start with private coverage.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Insurance Comparison</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Options in Ireland</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">International Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Accepted for visa applications</li>
+          <li>✓ Global coverage (travel flexibility)</li>
+          <li>✓ English-speaking support</li>
+          <li>✓ No waiting periods typically</li>
+          <li>✓ Good for short-medium stays</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h4 class="font-semibold text-blue-900 mb-3">Irish Private Insurers</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>• VHI, Laya, Irish Life Health</li>
+          <li>• Direct relationships with Irish hospitals</li>
+          <li>• Community rating (age doesn't increase cost)</li>
+          <li>• 2-year waiting periods for pre-existing</li>
+          <li>• Better for long-term residents</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Irish insurance community rating:</strong> Irish health insurers use community rating—everyone pays similar premiums regardless of age or health. This is great for older applicants but means younger, healthier people may find international insurance cheaper initially.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Ireland visa application?"
+    description="Compare international and Irish health insurance plans for Stamp 0 or STEP applications."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Stamp 0, private health insurance is mandatory. Choose between international insurers (better for travelers) or Irish insurers (better for long-term residents).
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Short-Term / Frequent Travelers</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive international coverage. Better if you travel frequently or plan to stay 1-2 years. Coverage works worldwide.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-Term Ireland Residents</h4>
+        <p class="text-neutral-600">VHI, Laya, or Irish Life Health offer Ireland-focused plans with direct hospital relationships. Better value for long-term stays. Community rating means age doesn't increase premiums.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Option</h4>
+        <p class="text-neutral-600">Laya's basic plans start around €70/month with reasonable hospital cover. Check that coverage meets visa requirements—some budget plans may be insufficient.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Irish insurers have 2-year waiting periods for pre-existing conditions. International insurers vary—some offer immediate coverage with higher premiums. Disclose everything to avoid claim denials.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Ireland is expensive—Dublin consistently ranks among the world's most costly cities for housing. The rental crisis is severe, with competition intense for decent apartments.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Dublin Housing Reality</h3>
+
+    <p class="mb-4">
+      Dublin's rental market is in crisis. Expect:
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-amber-900 mb-3">Dublin Rental Challenges:</h4>
+      <ul class="space-y-2 text-amber-800">
+        <li>• <strong>Viewing competition:</strong> 50+ people viewing same apartment</li>
+        <li>• <strong>Documentation:</strong> Employers references, bank statements, previous landlord</li>
+        <li>• <strong>1BR Dublin:</strong> €1,800-2,800/month (if you can find one)</li>
+        <li>• <strong>Deposits:</strong> 1-2 months rent upfront</li>
+        <li>• <strong>Daft.ie:</strong> Main rental platform, listings go fast</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost by City</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Dublin</p>
+        <p class="text-2xl font-bold text-neutral-900">€2,800-4,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Most expensive</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Cork / Galway</p>
+        <p class="text-2xl font-bold text-neutral-900">€2,000-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Still pricey</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Limerick / Smaller</p>
+        <p class="text-2xl font-bold text-neutral-900">€1,600-2,400</p>
+        <p class="text-sm text-neutral-500 mt-2">More affordable</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Irish Tax System</h3>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">If You Become Irish Tax Resident:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Income tax:</strong> 20% up to ~€42,000, 40% above</li>
+        <li>• <strong>USC (Universal Social Charge):</strong> 0.5-8% additional</li>
+        <li>• <strong>PRSI (Social Insurance):</strong> ~4% if employed/self-employed</li>
+        <li>• <strong>Effective rate:</strong> 40-52% on higher incomes</li>
+        <li>• <strong>Corporate tax:</strong> 12.5% (Ireland's famous low rate)</li>
+      </ul>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Remote work tax:</strong> If on Stamp 0 working for foreign clients and staying under 183 days, you may not be Irish tax resident. Consult a tax advisor—rules are complex and penalties for errors are significant.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Stamp 0 process involves applying to ISD (Immigration Service Delivery) Unit 2, then registering after arrival. STEP requires business proposal evaluation before residence permit.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Stamp 0 Timeline</h3>
+
+    <ComparisonTable columns={timelineColumns} rows={stamp0TimelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step: Stamp 0 Process</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Financial Documentation</h4>
+          <p class="text-neutral-600">Prepare evidence of sustainable foreign income: employment contract, freelance contracts, bank statements showing regular income, investment/pension statements. You must prove you won't need Irish social support.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Private Health Insurance</h4>
+          <p class="text-neutral-600">Get comprehensive private health insurance covering Ireland. This is MANDATORY for Stamp 0—no exceptions. Ensure the policy meets ISD requirements and covers your entire intended stay.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply to ISD Unit 2</h4>
+          <p class="text-neutral-600">Submit application to ISD Unit 2 (Domestic Residence and Permissions Division). Include financial proof, insurance certificate, passport copy, and letter explaining your situation. Request permission to do remote work for foreign clients.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for ISD Decision</h4>
+          <p class="text-neutral-600">Processing takes 4-8 weeks typically. ISD may request additional information. If approved, you receive a permission letter confirming Stamp 0 conditions.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Ireland</h4>
+          <p class="text-neutral-600">With your permission letter, travel to Ireland. Immigration at the airport/port will stamp your passport with entry permission. You then have limited time to register formally.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register at Burgh Quay / Local Office</h4>
+          <p class="text-neutral-600">Book appointment at Burgh Quay (Dublin) or your local immigration office. Bring passport, permission letter, proof of address, and insurance. Pay €300 for IRP (Immigration Registration Certificate). Receive Stamp 0 in passport.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Maintain Compliance</h4>
+          <p class="text-neutral-600">Keep health insurance active at all times. Do not work for Irish clients. Renew before your permission expires. Remember: Stamp 0 time does NOT count toward citizenship.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>STEP alternative:</strong> If you have €50,000 and an innovative business idea, STEP offers a better pathway—your time counts toward residency, and you can work for Irish clients. Evaluate both options based on your situation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying to Ireland:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">US Developer, Remote for SF Company</h3>
+        <p class="text-neutral-600 mb-4">Software developer working remotely for San Francisco startup. $120K salary. Wants English-speaking EU base.</p>
+        <p class="text-green-700 font-medium">✓ Stamp 0 approved—strong foreign income, no Irish work, clear financial self-sufficiency. Living in Dublin, maintaining US employment. Careful to stay under 183 days to avoid Irish tax residency. Happy with English-speaking environment.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelancer Wanting Irish Clients</h3>
+        <p class="text-neutral-600 mb-4">Marketing consultant wanting to serve both US and Irish companies. €5,000/month income.</p>
+        <p class="text-red-700 font-medium">✗ Stamp 0 not suitable—prohibits working for Irish clients. Explored STEP but no €50,000 or innovative concept. Advised to consider employment visa or different country. Ireland's restrictions too limiting for mixed client base.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Tech Entrepreneur from India</h3>
+        <p class="text-neutral-600 mb-4">Building AI-powered fintech product. Has €75,000 in funding from angel investors. Strong technical background.</p>
+        <p class="text-green-700 font-medium">✓ STEP approved—innovative concept, adequate funding, Ireland's fintech ecosystem relevant. Now based in Dublin, part of NDRC accelerator, accessing Irish and EU market. Time counting toward residency.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Restaurant Owner Seeking STEP</h3>
+        <p class="text-neutral-600 mb-4">10 years restaurant experience, wants to open upscale restaurant in Dublin. Has €60,000 funding.</p>
+        <p class="text-red-700 font-medium">✗ STEP rejected—catering/restaurant explicitly excluded from STEP as not innovative. Advised to explore different visa categories or consider countries with less restrictive entrepreneur visas.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Retiree with Investment Income</h3>
+        <p class="text-neutral-600 mb-4">Early retiree, 45, living off investments. €4,000/month passive income. Wants to live in Galway.</p>
+        <p class="text-green-700 font-medium">✓ Stamp 0 approved—clear financial self-sufficiency from passive income, no Irish work intended. Living in Galway (cheaper than Dublin), enjoying Irish culture. Understands time won't count toward citizenship but not planning permanent settlement anyway.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Low-Income Freelancer</h3>
+        <p class="text-neutral-600 mb-4">Freelance writer earning €1,500/month. Wants to try Ireland for a year.</p>
+        <p class="text-amber-700 font-medium">△ Stamp 0 uncertain—ISD may question financial self-sufficiency with €1,500/month given Dublin costs. Would need to demonstrate savings or choose cheaper location. Advised to increase income or consider Portugal/Spain with lower thresholds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Ireland"
+    description="Find comprehensive health insurance for your Stamp 0 or STEP application."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Working for Irish Clients on Stamp 0</h3>
+        <p class="text-neutral-600">Stamp 0 explicitly prohibits working for Irish employers or clients. This isn't a technicality—it's a core condition. Violating this can result in deportation and future immigration problems.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Stamp 0 Counts Toward Citizenship</h3>
+        <p class="text-neutral-600">Stamp 0 time is NOT reckonable residence. It does NOT count toward Irish citizenship or permanent residence. If long-term settlement is your goal, STEP or employment-based permits are necessary.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Letting Health Insurance Lapse</h3>
+        <p class="text-neutral-600">Private health insurance is a visa condition for Stamp 0. If your insurance lapses, you're technically in violation. Ensure continuous coverage and renew before expiration.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Dublin Housing</h3>
+        <p class="text-neutral-600">The Dublin rental crisis is real. Don't arrive expecting to quickly find an apartment. Budget for temporary accommodation (Airbnb, hotels) for potentially 4-8 weeks while searching. Consider Cork or Galway if Dublin costs are prohibitive.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Not Getting Explicit Remote Work Permission</h3>
+        <p class="text-neutral-600">When applying for Stamp 0, specifically request permission to do remote work for foreign clients. Your permission letter should explicitly state this. Generic Stamp 0 without this clarification creates ambiguity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Ireland -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Ireland</h2>
+
+    <p class="mb-4">
+      Ireland has a two-tier healthcare system: public (HSE) and private. Stamp 0 holders have NO access to public healthcare and MUST rely entirely on private insurance.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Access by Status</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-red-200 bg-red-50 rounded-lg p-6">
+        <h4 class="font-semibold text-red-900 mb-3">Stamp 0 Holders</h4>
+        <ul class="space-y-2 text-red-800">
+          <li>✗ NO access to public HSE services</li>
+          <li>✗ NO medical cards</li>
+          <li>✗ Must pay privately for everything</li>
+          <li>• Private insurance MANDATORY</li>
+          <li>• Emergency care available (billed)</li>
+          <li>• Prescriptions at full cost</li>
+        </ul>
+      </div>
+
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">With Private Insurance</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Private hospitals (Beacon, Blackrock)</li>
+          <li>✓ Faster consultations</li>
+          <li>✓ Choice of specialist</li>
+          <li>✓ Shorter wait times</li>
+          <li>✓ Private rooms</li>
+          <li>✓ Direct billing often available</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Costs Without Insurance</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP visit:</strong> €55-70</li>
+      <li><strong>Specialist consultation:</strong> €150-300</li>
+      <li><strong>Emergency room:</strong> €100+ (if not admitted)</li>
+      <li><strong>Hospital bed:</strong> €80/day (public) or €800+/day (private)</li>
+      <li><strong>MRI scan:</strong> €200-400</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Irish private hospitals:</strong> Dublin has several excellent private hospitals—Beacon Hospital, Blackrock Clinic, Mater Private. Quality is high, wait times short. Your insurance should cover these directly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work for Irish clients on Stamp 0?</h3>
+        <p class="text-neutral-600">
+          No—Stamp 0 explicitly prohibits working for Irish employers or clients. You can only do remote work for non-Irish companies/clients. This is a core condition. If you need Irish clients, consider STEP or employment-based permits.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does Stamp 0 count toward Irish citizenship?</h3>
+        <p class="text-neutral-600">
+          No—Stamp 0 is NOT reckonable residence. Time on Stamp 0 does not count toward the 5 years needed for citizenship. Stamp 0, Stamp 1A, Stamp 2, and Stamp 2A all don't count. STEP and employment permits do count.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Ireland in the Schengen Zone?</h3>
+        <p class="text-neutral-600">
+          No—Ireland opted out of Schengen. An Irish residence permit does NOT give Schengen travel rights. You'll need separate visas for Schengen countries depending on your nationality. Ireland maintains its own immigration system with the UK (Common Travel Area).
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How much does STEP cost?</h3>
+        <p class="text-neutral-600">
+          STEP requires €50,000 in available funding (personal funds or investment). The application fee is €350. You must have an innovative business proposal—retail, catering, and personal services are typically excluded.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How difficult is finding accommodation in Dublin?</h3>
+        <p class="text-neutral-600">
+          Very difficult—Dublin has a severe housing crisis. Expect €1,800-2,800/month for a 1BR apartment, competition from 50+ viewers, and extensive documentation requirements. Consider Cork or Galway for easier (though still competitive) housing markets.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why choose Ireland over other EU countries?</h3>
+        <p class="text-neutral-600">
+          Native English—no language barrier for business, daily life, or government services. Post-Brexit, Ireland is the only English-speaking EU country. Tech hub with Google, Facebook, Apple European HQs. Friendly culture. Trade-offs: high costs, not Schengen, Stamp 0 limitations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Ireland offers something no other EU country can: native English. For remote workers who need an English-speaking base without language barriers, this alone can justify the high costs and Stamp 0 limitations.
+    </p>
+
+    <p class="mb-4">
+      The trade-offs are significant. Stamp 0 prohibits Irish clients and doesn't count toward citizenship. STEP requires €50,000 and genuine innovation. Dublin's housing crisis means brutal rental competition. And Ireland isn't in Schengen—no automatic EU travel rights.
+    </p>
+
+    <p class="mb-6">
+      For the right person—remote worker serving foreign clients, comfortable with high costs, valuing English and Irish culture over Schengen access—Ireland works well. For entrepreneurs with €50,000 and innovative ideas, STEP provides a real pathway. For everyone else, Portugal or Germany may offer better overall packages.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Ireland's Stamp 0 works for financially self-sufficient remote workers who don't need Irish clients or citizenship pathway. STEP suits innovative entrepreneurs with €50,000. Budget €100-300/month for mandatory private health insurance—Stamp 0 holders have NO public healthcare access. The English advantage is real; evaluate whether it justifies the limitations and costs.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/work-permit/in/uk" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">UK Work Permit</h3>
+        <p class="text-neutral-600 text-sm">English-speaking, different visa system</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/netherlands" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">DAFT treaty, high English proficiency</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Freiberufler visa, EU access</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

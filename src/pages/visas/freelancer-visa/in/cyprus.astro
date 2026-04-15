@@ -1,0 +1,833 @@
+---
+/**
+ * Cyprus Freelancer Visa - Long-form CRO-optimized page
+ * Digital Nomad Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Cyprus", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Greece Freelancer Visa", href: "/visas/freelancer-visa/in/greece" },
+  { title: "Malta Freelancer Visa", href: "/visas/freelancer-visa/in/malta" },
+  { title: "Portugal Freelancer Visa", href: "/visas/freelancer-visa/in/portugal" },
+];
+
+const visaTypesColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "dnv", header: "Digital Nomad Visa" },
+  { key: "employment", header: "Standard Work Permit" },
+];
+
+const visaTypesRows = [
+  { feature: "Income Requirement", dnv: "€3,500/month net", employment: "Varies by position" },
+  { feature: "Employer Location", dnv: "Foreign only", employment: "Cypriot employer" },
+  { feature: "Duration", dnv: "1 year, renewable to 3", employment: "Tied to contract" },
+  { feature: "Work Restriction", dnv: "Cannot work for Cyprus companies", employment: "Must work for sponsoring employer" },
+  { feature: "Family Inclusion", dnv: "Yes (+20% spouse, +15% per child)", employment: "Yes, on dependent visa" },
+  { feature: "Quota System", dnv: "Yes (1,000 total permits)", employment: "No quota" },
+  { feature: "Best For", dnv: "Remote workers, freelancers", employment: "Traditional employment" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€3,500/month net", notes: "+20% for spouse, +15% per child" },
+  { requirement: "Work Type", details: "Remote work for foreign entities", requirements: "IT, consulting, freelance" },
+  { requirement: "Contract Duration", details: "1+ year employment or freelance", notes: "Must show ongoing work" },
+  { requirement: "Health Insurance", details: "Full coverage in Cyprus", notes: "Entire stay duration" },
+  { requirement: "Accommodation", details: "Rental or property proof", notes: "Cypriot address required" },
+  { requirement: "Criminal Record", details: "Clean background check", notes: "Apostilled, recent" },
+  { requirement: "No Cyprus Work", details: "Cannot serve Cypriot market", notes: "Foreign clients only" },
+];
+
+const familyColumns = [
+  { key: "member", header: "Family Member" },
+  { key: "incomeIncrease", header: "Income Requirement" },
+  { key: "notes", header: "Notes" },
+];
+
+const familyRows = [
+  { member: "Main Applicant", incomeIncrease: "€3,500/month", notes: "Base requirement" },
+  { member: "Spouse/Partner", incomeIncrease: "+€700/month (+20%)", notes: "Total: €4,200/month" },
+  { member: "First Child", incomeIncrease: "+€525/month (+15%)", notes: "Total: €4,725/month" },
+  { member: "Second Child", incomeIncrease: "+€525/month (+15%)", notes: "Total: €5,250/month" },
+  { member: "Family of 4", incomeIncrease: "€5,250/month minimum", notes: "All included" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "travel", header: "Travel Insurance" },
+  { key: "international", header: "International Health Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Acceptance", travel: "May not qualify", international: "Fully accepted" },
+  { feature: "Coverage Duration", travel: "30-90 days", international: "Annual renewable" },
+  { feature: "Inpatient Coverage", travel: "Limited", international: "Comprehensive" },
+  { feature: "Outpatient Care", travel: "Emergency only", international: "Full coverage" },
+  { feature: "Pre-existing Conditions", travel: "Never covered", international: "Varies by plan" },
+  { feature: "Monthly Cost", travel: "€30-80", international: "€120-350" },
+  { feature: "Recommendation", travel: "Not sufficient", international: "Required for DNV" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€180-380", strengths: "Comprehensive coverage, Cyprus network" },
+  { provider: "Allianz Care", type: "International", price: "€160-340", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "Bupa Global", type: "International", price: "€200-420", strengths: "Premium service, global network" },
+  { provider: "AXA Global", type: "International", price: "€150-320", strengths: "Good value, solid coverage" },
+  { provider: "Aetna International", type: "International", price: "€170-350", strengths: "US-friendly, comprehensive" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€70", notes: "Initial application" },
+  { item: "Alien Registration (ARC)", amount: "€70", notes: "Per person" },
+  { item: "Health Insurance", amount: "€150-350/month", notes: "International required" },
+  { item: "Rent (Limassol/Nicosia)", amount: "€800-1,500/month", notes: "1-2 bedroom apartment" },
+  { item: "Utilities", amount: "€100-200/month", notes: "Electricity, water, internet" },
+  { item: "Living Expenses", amount: "€600-1,000/month", notes: "Food, transport, leisure" },
+  { item: "Total Monthly (Single)", amount: "€1,800-3,000", notes: "Comfortable lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-3 weeks", location: "Home country" },
+  { step: "Apostille and translate", duration: "1-2 weeks", location: "Home country" },
+  { step: "Apply for visa (consulate or in-country)", duration: "1 day", location: "Cyprus consulate or Civil Registry" },
+  { step: "Visa processing", duration: "5-7 weeks", location: "Civil Registry processes" },
+  { step: "Receive approval notification", duration: "After processing", location: "Email/mail" },
+  { step: "Travel to Cyprus (if applied abroad)", duration: "Upon approval", location: "Cyprus" },
+  { step: "Apply for Alien Registration Certificate", duration: "Within 7 days of arrival", location: "Civil Registry" },
+  { step: "Receive ARC (residence card)", duration: "2-4 weeks", location: "Cyprus" },
+];
+---
+
+<PageShell
+  title="Cyprus Freelancer Visa 2026: Digital Nomad Visa Requirements, Insurance & Guide"
+  description="Complete guide to Cyprus Digital Nomad Visa for freelancers. €3,500/month income, up to 3 years, English-speaking, Mediterranean lifestyle, and step-by-step application process."
+  headline="Cyprus Freelancer Visa: Digital Nomad Visa Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Cyprus—€3,500/month income requirement, up to 3 years stay, English as official language, non-dom tax benefits, and Mediterranean island living."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      English Official Language
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Up to 3 Years Stay
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Cyprus offers one of the most appealing digital nomad visas in the EU—up to 3 years of stay, English as an official language, Mediterranean climate, and favorable tax treatment for non-domiciled residents. The island's strategic location between Europe, Middle East, and Africa makes it attractive for remote workers serving clients across multiple time zones.
+    </p>
+
+    <p class="mb-4">
+      Launched in early 2022 and refreshed with new quotas in 2025, the Cyprus Digital Nomad Visa targets IT professionals, digital consultants, freelancers, and entrepreneurs who work remotely for companies or clients located abroad. The program has proven popular, prompting Cyprus to increase the annual cap to 1,000 permits.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Cyprus Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Digital Nomad Residence Permit</li>
+        <li>• <strong>Income requirement:</strong> €3,500/month net (+20% spouse, +15% child)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—comprehensive coverage for entire stay</li>
+        <li>• <strong>Duration:</strong> 1 year, renewable up to 3 years total</li>
+        <li>• <strong>Language:</strong> English is official (along with Greek)</li>
+        <li>• <strong>Quota:</strong> 1,000 permits total (500 original + 500 added March 2025)</li>
+        <li>• <strong>Tax status:</strong> Non-dom benefits available (no SDC on passive income)</li>
+        <li>• <strong>Work restriction:</strong> Cannot work for Cypriot companies/clients</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Digital Nomad Visa vs. Standard Work Permit</h3>
+
+    <p class="mb-4">
+      Cyprus offers different pathways depending on whether you work remotely for foreign entities or seek local employment. The DNV is specifically designed for location-independent workers.
+    </p>
+
+    <ComparisonTable columns={visaTypesColumns} rows={visaTypesRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Critical restriction:</strong> Digital nomad visa holders cannot work for Cypriot employers or provide services to residents of Cyprus. Your clients and income must come entirely from abroad. Violating this rule can result in visa revocation and potential deportation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Cyprus is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want an English-speaking EU country</li>
+          <li>✓ You earn €3,500+/month from foreign clients</li>
+          <li>✓ You want up to 3 years of stay</li>
+          <li>✓ You prefer Mediterranean climate</li>
+          <li>✓ You value British-style legal/business systems</li>
+          <li>✓ You want non-dom tax benefits</li>
+          <li>✓ You work across EU, Middle East, or US time zones</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Your income is below €3,500/month</li>
+          <li>• You need Schengen Zone access (Cyprus is not Schengen)</li>
+          <li>• You want lower living costs (try Bulgaria, Romania)</li>
+          <li>• You prefer larger cities with nightlife</li>
+          <li>• You need to work with local clients</li>
+          <li>• You want guaranteed approval (quota system applies)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Schengen note:</strong> Cyprus is an EU member but not part of the Schengen Area. Your Cyprus DNV doesn't grant automatic travel access to Schengen countries—you'll need separate visas or rely on your passport's Schengen allowance (typically 90 days per 180 days for many nationalities).
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Cyprus's DNV has straightforward requirements centered on income, remote work proof, and comprehensive health insurance. The €3,500/month threshold is higher than some EU alternatives but reasonable for established professionals.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Family Income Requirements</h3>
+
+    <p class="mb-4">
+      Unlike some DNV programs, Cyprus allows family members to join you. Income requirements increase for each dependent—plan your finances accordingly.
+    </p>
+
+    <ComparisonTable columns={familyColumns} rows={familyRows} />
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mt-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Important Family Rules:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Spouse/Partner:</strong> Can accompany but cannot work in Cyprus</li>
+        <li>• <strong>Children:</strong> Underage children included, cannot work</li>
+        <li>• <strong>Income proof:</strong> Must show €3,500 base plus increases for each member</li>
+        <li>• <strong>Insurance:</strong> Each family member needs comprehensive coverage</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Application</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Completed application form</li>
+          <li>• Passport photos (biometric)</li>
+          <li>• Employment contract (1+ year) or freelance contracts</li>
+          <li>• Proof of income (bank statements)</li>
+          <li>• Health insurance certificate</li>
+          <li>• Criminal record certificate (apostilled)</li>
+          <li>• Proof of accommodation in Cyprus</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Document Specifications</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Documents apostilled or legalized</li>
+          <li>• Translations into Greek or English</li>
+          <li>• Employment contract from non-EU/EEA company</li>
+          <li>• Criminal record from country of citizenship AND residence</li>
+          <li>• Insurance covering Cyprus specifically</li>
+          <li>• Rental contract or property deed</li>
+          <li>• Recent bank statements (3-6 months)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Contract requirement:</strong> Your employment contract or freelance agreement must have a minimum duration of one year. If you're a freelancer with multiple shorter contracts, aggregate them to show ongoing work—include client recommendations to strengthen your application.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Cyprus requires valid health insurance covering your entire duration of stay. The insurance must provide comprehensive coverage including hospitalization, outpatient care, and repatriation. International health insurance is the standard choice for DNV applicants.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Basic travel insurance typically won't satisfy Cyprus's requirements. You need annual, renewable coverage that demonstrates you won't become a burden on the Cypriot healthcare system.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Travel vs. International Health Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance for Families</h3>
+
+    <p class="mb-4">
+      Each family member on your application needs their own health insurance coverage. International family plans from providers like Cigna Global or Allianz Care can cover the entire family under one policy, often with better rates than individual plans.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose International Health Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're staying 1-3 years</li>
+          <li>✓ You want routine care included</li>
+          <li>✓ You have family members on the visa</li>
+          <li>✓ You may have pre-existing conditions</li>
+          <li>✓ You value English-language support</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Travel Insurance Limitations:</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Unlikely to meet visa requirements</li>
+          <li>△ Coverage gaps for long stays</li>
+          <li>△ Emergency-only coverage</li>
+          <li>△ No pre-existing condition coverage</li>
+          <li>△ Renewal complications</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Recommendation:</strong> For Cyprus's 1-3 year DNV, proper international health insurance is essential. Budget €150-350/month for a single person, or explore family plans if bringing dependents. The investment ensures smooth visa processing and quality healthcare access.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Cyprus digital nomad visa?"
+    description="Compare international health insurance plans accepted for Cyprus DNV applications."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Cyprus's DNV, you need comprehensive international health insurance that covers the full visa duration. These providers are well-established in Cyprus and understood by immigration authorities.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Solo Professional, Full-Time in Cyprus</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage with good Cyprus networks. Budget €180-340/month for solid protection including routine care, specialists, and hospitalization in private facilities.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Family Relocating Together</h4>
+        <p class="text-neutral-600">Family plans from Cigna Global, Allianz Care, or Bupa Global cover everyone under one policy. This simplifies administration and often costs less than separate individual plans. Expect €400-700/month for a family of four.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">US-Based Remote Worker</h4>
+        <p class="text-neutral-600">Aetna International or Cigna Global are familiar to US applicants and provide strong global coverage. If you travel back to the US regularly, ensure your plan includes US coverage (may cost extra).</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Discuss your conditions during the quote process. Cigna Global and Allianz Care may cover pre-existing conditions after waiting periods. Full disclosure is essential—undisclosed conditions can void your policy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Cyprus has moderate living costs compared to Western Europe, though it's more expensive than Eastern European alternatives like Bulgaria or Romania. The main cities for digital nomads—Limassol, Nicosia, and Paphos—have different price points.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Non-Domicile (Non-Dom) Tax Benefits</h3>
+
+    <p class="mb-4">
+      Cyprus offers significant tax advantages for non-domiciled residents. If you qualify as a non-dom (most new arrivals do for their first 17 years), you're exempt from the Special Defence Contribution (SDC) on passive income like dividends, interest, and rental income.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">Non-Dom Tax Advantages:</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>SDC exemption:</strong> No Special Defence Contribution on dividends, interest, rental income</li>
+        <li>• <strong>Employment income:</strong> Progressive rates up to 35% (but first €19,500 tax-free)</li>
+        <li>• <strong>Non-dom period:</strong> First 17 years in Cyprus</li>
+        <li>• <strong>Tax residency:</strong> Triggered at 60 days under certain conditions (or standard 183 days)</li>
+        <li>• <strong>No wealth tax:</strong> Cyprus doesn't tax net worth</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget by City</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Paphos (Budget-Friendly)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,600-2,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Coastal resort town</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Nicosia (Capital)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,800-2,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Business center</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Limassol (Popular)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,200-3,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Expat hub, beach access</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Limassol)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1BR apartment):</strong> €800-1,200/month (city center)</li>
+      <li><strong>Health insurance:</strong> €150-300/month</li>
+      <li><strong>Utilities:</strong> €100-180/month (electricity can be high in summer)</li>
+      <li><strong>Groceries:</strong> €300-450/month</li>
+      <li><strong>Dining out:</strong> €150-300/month</li>
+      <li><strong>Transport:</strong> €100-200/month (car rental or taxi, limited public transport)</li>
+      <li><strong>Coworking:</strong> €100-200/month (optional)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Car consideration:</strong> Cyprus has limited public transportation outside city centers. Many digital nomads rent or buy a car for convenience. Budget €200-400/month for a rental, or consider purchasing for longer stays.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Cyprus offers flexibility in the application process—you can apply from a Cypriot consulate abroad or in-person in Cyprus after entering legally (e.g., on a tourist visa or visa-free entry). Processing typically takes 5-7 weeks.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather and Prepare Documents</h4>
+          <p class="text-neutral-600">Collect all required documents: employment contract or freelance contracts (1+ year duration), proof of income, criminal record certificates, and accommodation proof. Get apostilles and translations into English or Greek.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Health Insurance</h4>
+          <p class="text-neutral-600">Purchase comprehensive international health insurance covering your planned stay in Cyprus. Obtain an official certificate confirming coverage dates, amounts, and Cyprus as covered territory.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Choose Application Method</h4>
+          <p class="text-neutral-600">Decide whether to apply at a Cypriot consulate in your home country or travel to Cyprus first (visa-free or on tourist visa) and apply at the Civil Registry and Migration Department in person.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Submit your completed application with all supporting documents and pay the €70 application fee. If applying in Cyprus, you'll submit to the Civil Registry and Migration Department.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing typically takes 5-7 weeks. The authorities may request additional documents or clarification. Track your application status through the Civil Registry's system or your consulate.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Approval</h4>
+          <p class="text-neutral-600">Once approved, you'll receive notification. If you applied abroad, you can now travel to Cyprus. If you applied in-country, proceed to the next step.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Alien Registration Certificate</h4>
+          <p class="text-neutral-600">Within 7 days of arrival (or approval if already in Cyprus), apply for your ARC at the Civil Registry. Bring original documents, photos, and the €70 ARC fee. Biometrics will be collected.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Residence Card</h4>
+          <p class="text-neutral-600">After 2-4 weeks, collect your ARC. This card is valid for 1 year and can be renewed for up to 2 additional years (3 years total). Keep it with you as proof of legal residence.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>In-country application tip:</strong> Many applicants find it easier to visit Cyprus first (visa-free for many nationalities), find accommodation, then apply in person. This allows you to explore before committing and speeds up the process since you're already on-site.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Cyprus's Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Engineer from US, Remote for Tech Company</h3>
+        <p class="text-neutral-600 mb-4">Works for Boston startup earning $9,000/month. 5 years experience. Applied from Cyprus after tourist visit.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 5 weeks. Employment contract and bank statements made income proof easy. Living in Limassol, enjoying beach lifestyle while keeping US hours (afternoon-evening work). Non-dom status means dividend income is tax-free.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Digital Marketing Consultant, UK, Family of Three</h3>
+        <p class="text-neutral-600 mb-4">Freelancing for international clients. Income £6,000/month. Spouse and 5-year-old child accompanying.</p>
+        <p class="text-green-700 font-medium">✓ Met €5,250/month family threshold. Cigna Global family plan (€520/month) covered everyone. Son enrolled in international school. English everywhere made transition smooth. Living in Paphos—more affordable than Limassol.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Graphic Designer from Australia, Solo Freelancer</h3>
+        <p class="text-neutral-600 mb-4">Earns AUD $6,500/month (~€4,000). Working with Australian agencies remotely. 32 years old.</p>
+        <p class="text-green-700 font-medium">✓ Freelance contracts aggregated to show ongoing work. Applied at Cyprus embassy in Canberra—6 week processing. Now based in Nicosia, enjoying central location and lower costs than coastal cities. Time zone overlap with Asia works well.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Creator, Income €3,200/month</h3>
+        <p class="text-neutral-600 mb-4">YouTuber and blogger earning through AdSense and sponsorships. Variable monthly income.</p>
+        <p class="text-amber-700 font-medium">△ Initial application questioned due to income €300 below threshold. Provided 6 months of bank statements showing €4,000+ average. Approved on appeal with additional documentation. Lesson: ensure consistent proof even if some months dip.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">IT Consultant, Applied Late When Quota Nearly Full</h3>
+        <p class="text-neutral-600 mb-4">Strong application with €7,000/month income. Applied in November when quota running low.</p>
+        <p class="text-amber-700 font-medium">△ Application delayed as quota approached limit. Approved after 8 weeks (longer than usual) as authorities processed backlog. Made it in under the 1,000 cap. Tip: apply early in the year when quota resets.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Startup Founder from Canada, Company-Based Income</h3>
+        <p class="text-neutral-600 mb-4">Co-founded SaaS company, pays himself €5,500/month. Works remotely as CEO.</p>
+        <p class="text-green-700 font-medium">✓ Company registration and employment contract with own company accepted. Non-dom status means company dividends are SDC-exempt. Using Cyprus as base for EU expansion while keeping company registered in Canada.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Cyprus Digital Nomads"
+    description="Find the right coverage for your DNV application—comprehensive international health insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating the Income Threshold</h3>
+        <p class="text-neutral-600">The €3,500/month is net income, after taxes and deductions in your home country. Some applicants miscalculate and fall short. If you have family, remember to add +20% for spouse and +15% per child. A family of four needs €5,250/month minimum.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying When Quota is Nearly Full</h3>
+        <p class="text-neutral-600">Cyprus limits DNV permits to 1,000 total. While quotas can be expanded (as in March 2025), applying late in the year risks delays or rejection if the cap is reached. Apply early in the calendar year when quotas reset.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Short-Term Contracts</h3>
+        <p class="text-neutral-600">Your employment or freelance contract must show at least 1 year duration. Month-to-month arrangements or short-term projects may not satisfy requirements. Aggregate multiple contracts or get a longer-term agreement from your main client.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Assuming Schengen Access</h3>
+        <p class="text-neutral-600">Cyprus is an EU member but NOT in the Schengen Zone. Your Cyprus DNV doesn't grant Schengen travel rights. You'll still be limited by your passport's Schengen allowance (typically 90/180 days) or need separate visas for Schengen countries.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 7-Day ARC Deadline</h3>
+        <p class="text-neutral-600">After your DNV is approved and you're in Cyprus, you must apply for the Alien Registration Certificate within 7 days. Missing this deadline can complicate your stay and future renewals. Mark the date and have documents ready.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Cyprus -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Cyprus</h2>
+
+    <p class="mb-4">
+      Cyprus has a modern healthcare system with both public (GESY/GHS) and private options. As a DNV holder, you'll primarily rely on private healthcare through your international insurance, which provides access to excellent facilities throughout the island.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare (Recommended)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Modern facilities, especially in cities</li>
+          <li>✓ Short wait times</li>
+          <li>✓ English-speaking doctors standard</li>
+          <li>✓ GP visits: €40-70</li>
+          <li>✓ Specialist visits: €60-100</li>
+          <li>✓ Direct billing with international insurers</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Public Healthcare (GESY/GHS)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Universal system launched 2019</li>
+          <li>△ Requires contributions (not typical for DNV holders)</li>
+          <li>△ Free/low-cost care for enrolled residents</li>
+          <li>△ Greek may be needed in some settings</li>
+          <li>△ Wait times for specialists</li>
+          <li>△ DNV holders typically not enrolled</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Costs (Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP consultation:</strong> €40-70</li>
+      <li><strong>Specialist visit:</strong> €60-100</li>
+      <li><strong>Blood tests:</strong> €30-80</li>
+      <li><strong>X-ray or ultrasound:</strong> €40-80</li>
+      <li><strong>MRI scan:</strong> €200-350</li>
+      <li><strong>Dental cleaning:</strong> €50-80</li>
+      <li><strong>Emergency room visit:</strong> €80-200</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>English-friendly healthcare:</strong> One of Cyprus's major advantages is that most doctors and medical staff speak excellent English. Medical records, prescriptions, and communications are commonly available in English, making healthcare navigation straightforward.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Top Private Hospitals</h3>
+
+    <p class="mb-4">
+      Cyprus has several modern private hospitals that accept international insurance:
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Limassol:</strong> Mediterranean Hospital, Apollonion Private Hospital</li>
+      <li><strong>Nicosia:</strong> Aretaeio Hospital, American Medical Center</li>
+      <li><strong>Paphos:</strong> Paphos General Hospital (public but well-regarded)</li>
+      <li><strong>Larnaca:</strong> Larnaca General Hospital, various private clinics</li>
+    </ul>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Direct billing:</strong> Major international insurers like Cigna, Allianz, and Bupa have agreements with Cyprus's top private hospitals for direct billing. Check with your insurer for a list of network facilities to avoid out-of-pocket payments.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Cyprus's digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          The base requirement is €3,500/month net income from foreign sources. For families, add 20% for a spouse (€700) and 15% per child (€525). A family of four would need €5,250/month minimum. This must be stable, ongoing income—not just savings.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Cyprus part of the Schengen Zone?</h3>
+        <p class="text-neutral-600">
+          No. Cyprus is an EU member but not part of the Schengen Zone. Your Cyprus DNV doesn't automatically allow Schengen travel. You'll need to rely on your passport's Schengen allowance (typically 90 days per 180 days) or obtain separate Schengen visas for extended travel.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family come with me on the DNV?</h3>
+        <p class="text-neutral-600">
+          Yes. Spouses, partners, and underage children can accompany you. However, they cannot work in Cyprus—only the main applicant can work (remotely for foreign entities). Each family member needs their own health insurance, and income requirements increase accordingly.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What are the tax benefits for digital nomads in Cyprus?</h3>
+        <p class="text-neutral-600">
+          Most newcomers qualify as non-domiciled residents for their first 17 years. Non-doms are exempt from Special Defence Contribution (SDC) on passive income like dividends, interest, and rental income. Employment income is taxed at progressive rates, but the first €19,500 is tax-free.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long can I stay on Cyprus's digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          The initial permit is for 1 year and can be renewed for up to 2 additional years, giving a maximum of 3 years total on the DNV. After that, you'd need to explore other residence options or transition to a different visa category.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need a car in Cyprus?</h3>
+        <p class="text-neutral-600">
+          Public transportation in Cyprus is limited, especially outside city centers. Most digital nomads find having a car significantly improves quality of life—exploring beaches, mountain villages, and moving between cities is much easier. Budget €200-400/month for a rental, or consider buying for longer stays.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Cyprus's Digital Nomad Visa offers a compelling package for remote workers who value English-language accessibility, Mediterranean lifestyle, and favorable tax treatment. The up to 3 years duration is one of the longest among EU digital nomad visas, providing stability for building a life on the island.
+    </p>
+
+    <p class="mb-4">
+      The €3,500/month income requirement is higher than some alternatives, but Cyprus's non-dom tax benefits can more than offset the difference—especially for those with dividend or investment income. The English-speaking environment eliminates language barriers that complicate life in other EU countries.
+    </p>
+
+    <p class="mb-6">
+      The main considerations are Cyprus's position outside the Schengen Zone (limiting European travel convenience), the quota system (1,000 permits), and moderate living costs that are higher than Eastern Europe but lower than Western Europe. For established professionals earning in USD, GBP, or EUR, Cyprus offers an excellent quality of life.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Cyprus's DNV is ideal for English-speaking professionals who want Mediterranean living with EU membership, favorable tax treatment, and up to 3 years of stay. Budget €150-350/month for comprehensive health insurance—mandatory for the visa and essential for accessing Cyprus's quality private healthcare.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/allianz-care" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View All Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/greece" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Greece Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Mediterranean alternative with 50% tax reduction</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/malta" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Malta Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Another English-speaking EU island option</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/portugal" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Portugal Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Western Europe with NHR tax benefits</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

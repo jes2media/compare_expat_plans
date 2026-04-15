@@ -1,0 +1,806 @@
+---
+/**
+ * Bulgaria Freelancer Visa - Long-form CRO-optimized page
+ * Digital Nomad Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Bulgaria", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Romania Freelancer Visa", href: "/visas/freelancer-visa/in/romania" },
+  { title: "Greece Freelancer Visa", href: "/visas/freelancer-visa/in/greece" },
+  { title: "Croatia Freelancer Visa", href: "/visas/freelancer-visa/in/croatia" },
+];
+
+const applicantTypesColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "freelancer", header: "Freelancer" },
+  { key: "remoteEmployee", header: "Remote Employee" },
+  { key: "businessOwner", header: "Business Owner" },
+];
+
+const applicantTypesRows = [
+  { feature: "Eligibility", freelancer: "1+ year digital services", remoteEmployee: "Non-EU/EEA employer", businessOwner: "25%+ foreign company" },
+  { feature: "Income Proof", freelancer: "Contracts, invoices, platform earnings", remoteEmployee: "Employment contract", businessOwner: "Company registration + contract" },
+  { feature: "Client Location", freelancer: "Non-Bulgarian clients only", remoteEmployee: "Foreign employer only", businessOwner: "Non-Bulgarian clients" },
+  { feature: "Documentation", freelancer: "Client recommendations", remoteEmployee: "Company register extract", businessOwner: "Ownership proof + work contracts" },
+  { feature: "Best For", freelancer: "Upwork, Fiverr, direct clients", remoteEmployee: "US/UK company employees", businessOwner: "Startup founders" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€2,300-2,600/month (~€31,000/year)", notes: "50x Bulgarian minimum wage" },
+  { requirement: "Work History", details: "1+ year in digital services", notes: "Freelancers/contractors must show track record" },
+  { requirement: "Health Insurance", details: "Valid coverage in Bulgaria", notes: "Comprehensive international insurance" },
+  { requirement: "Accommodation", details: "Rental contract or property ownership", notes: "Bulgarian address required" },
+  { requirement: "Criminal Record", details: "Clean background check", notes: "Apostilled from home country" },
+  { requirement: "Client Location", details: "Non-Bulgarian clients only", notes: "Cannot serve Bulgarian market" },
+  { requirement: "Passport Validity", details: "6+ months beyond stay", notes: "With blank pages for visa" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "travel", header: "Travel Insurance" },
+  { key: "international", header: "International Health Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Acceptance", travel: "May not qualify", international: "Recommended for visa" },
+  { feature: "Coverage Duration", travel: "30-90 days typically", international: "Annual renewable" },
+  { feature: "Coverage Amount", travel: "€30,000-50,000", international: "€1M+ comprehensive" },
+  { feature: "Pre-existing Conditions", travel: "Never covered", international: "Varies by plan" },
+  { feature: "Routine Care", travel: "Not covered", international: "Usually included" },
+  { feature: "Monthly Cost", travel: "€30-80", international: "€100-300" },
+  { feature: "Recommendation", travel: "Not recommended", international: "Best choice for DNV" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€150-300", strengths: "Comprehensive coverage, global network" },
+  { provider: "Allianz Care", type: "International", price: "€130-280", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€70-120", strengths: "Budget-friendly, nomad-focused" },
+  { provider: "World Nomads", type: "Travel/Nomad", price: "€80-150", strengths: "Adventure activities, flexible" },
+  { provider: "Genki", type: "Nomad Insurance", price: "€60-100", strengths: "European-focused, good value" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Type D Visa Fee", amount: "€100", notes: "Long-stay visa application" },
+  { item: "Residence Permit Fee", amount: "€100-150", notes: "After arrival in Bulgaria" },
+  { item: "Health Insurance", amount: "€100-300/month", notes: "International recommended" },
+  { item: "Translation/Legalization", amount: "€100-300", notes: "Document apostilles and translations" },
+  { item: "Rent (Sofia)", amount: "€400-800/month", notes: "City center apartment" },
+  { item: "Living Expenses", amount: "€600-900/month", notes: "Food, transport, utilities" },
+  { item: "Coworking Space", amount: "€80-200/month", notes: "Optional, many cafes work well" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Apostille and translate documents", duration: "1-2 weeks", location: "Home country" },
+  { step: "Apply for Type D visa at embassy", duration: "1 day", location: "Bulgarian embassy/consulate" },
+  { step: "Visa processing", duration: "1-2 months", location: "Embassy processes" },
+  { step: "Receive Type D visa", duration: "After approval", location: "Embassy pickup" },
+  { step: "Enter Bulgaria", duration: "Within visa validity", location: "Bulgaria" },
+  { step: "Apply for residence permit", duration: "Within 14 days of arrival", location: "Migration Directorate" },
+  { step: "Residence permit processing", duration: "2-4 weeks", location: "Local migration office" },
+  { step: "Receive residence card", duration: "After approval", location: "Migration office pickup" },
+];
+---
+
+<PageShell
+  title="Bulgaria Freelancer Visa 2026: Digital Nomad Visa Requirements, Insurance & Guide"
+  description="Complete guide to Bulgaria's new Digital Nomad Visa for freelancers. €2,300/month income, 10% flat tax, Schengen access, Euro currency, and step-by-step application process."
+  headline="Bulgaria Freelancer Visa: Digital Nomad Visa Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Bulgaria—new DNV launched December 2025, 10% flat tax rate, Schengen Zone access, Euro currency, and affordable European living."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      New DNV Launched Dec 2025
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      10% Flat Tax Rate
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Bulgaria launched its Digital Nomad Visa on December 20, 2025, becoming one of the newest EU countries to offer a dedicated pathway for remote workers. The timing is significant—Bulgaria joined the Schengen Zone and adopted the Euro in 2025, making it a strategic base for freelancers who want EU access with Eastern European affordability.
+    </p>
+
+    <p class="mb-4">
+      The Bulgarian DNV allows freelancers, remote employees, and business owners to live and work in Bulgaria for up to two years, with income thresholds that are reasonable by EU standards (roughly €2,300-2,600/month). Combined with Bulgaria's 10% flat income tax—the lowest in the EU—this visa offers an attractive financial package for independent professionals.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Bulgaria Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Digital Nomad Residence Permit</li>
+        <li>• <strong>Income requirement:</strong> ~€31,000/year (50x minimum wage)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—comprehensive international coverage</li>
+        <li>• <strong>Duration:</strong> 1 year, renewable for a second year (2 years total)</li>
+        <li>• <strong>Tax rate:</strong> 10% flat tax (if tax resident 183+ days)</li>
+        <li>• <strong>Schengen access:</strong> Yes—travel freely in Schengen Zone</li>
+        <li>• <strong>Currency:</strong> Euro (adopted 2025)</li>
+        <li>• <strong>Work restriction:</strong> Cannot work for Bulgarian clients/employers</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Can Apply?</h3>
+
+    <p class="mb-4">
+      Bulgaria's DNV targets three categories of remote workers. All must demonstrate at least one year of relevant work history and earn income exclusively from outside Bulgaria.
+    </p>
+
+    <ComparisonTable columns={applicantTypesColumns} rows={applicantTypesRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important restriction:</strong> Digital nomad visa holders cannot work for Bulgarian employers or serve Bulgarian clients. Your income must come entirely from outside Bulgaria. Violating this rule can result in visa revocation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Bulgaria is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want EU's lowest flat tax rate (10%)</li>
+          <li>✓ You value affordable European living</li>
+          <li>✓ You want Schengen Zone travel access</li>
+          <li>✓ You earn €2,300+/month from foreign clients</li>
+          <li>✓ You prefer emerging tech/startup scenes</li>
+          <li>✓ You want Euro stability with low costs</li>
+          <li>✓ You have 1+ year of remote work history</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need to work with local clients</li>
+          <li>• You're new to freelancing (1-year requirement)</li>
+          <li>• You want Mediterranean weather (try Greece/Croatia)</li>
+          <li>• You prefer Western European infrastructure</li>
+          <li>• You don't speak any Slavic languages</li>
+          <li>• You want immediate permanent residency path</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>New program advantage:</strong> As a newly launched visa (December 2025), Bulgaria's DNV application process is less congested than established programs in Portugal or Spain. Early applicants report smoother processing and helpful embassy staff eager to make the program succeed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Bulgaria's Digital Nomad Visa requirements focus on proving stable remote income, a clean background, and comprehensive health coverage. The income threshold is based on Bulgaria's minimum wage, making it accessible for most established freelancers.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Requirement Explained</h3>
+
+    <p class="mb-4">
+      The minimum income is set at 50 times Bulgaria's monthly minimum wage. As of 2025-2026, this translates to approximately €31,000 annually or €2,300-2,600 monthly. You must demonstrate stable, recurring income—not just savings.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Acceptable Income Proof:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Freelancers:</strong> Contracts with clients, invoices, bank statements, platform earnings (Upwork, Fiverr)</li>
+        <li>• <strong>Remote employees:</strong> Employment contract (company must be outside EU/EEA/Switzerland)</li>
+        <li>• <strong>Business owners:</strong> Company registration (25%+ ownership), recent company extract, work contracts</li>
+        <li>• <strong>All applicants:</strong> Bank statements showing income over past 6-12 months</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Essential Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Type D Visa Application</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Completed visa application form</li>
+          <li>• Passport-sized photos (biometric)</li>
+          <li>• Proof of income (contracts, bank statements)</li>
+          <li>• Health insurance documentation</li>
+          <li>• Criminal record certificate (apostilled)</li>
+          <li>• Proof of accommodation in Bulgaria</li>
+          <li>• Employment contract or client recommendations</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Document Preparation</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• All documents apostilled</li>
+          <li>• Translations into Bulgarian required</li>
+          <li>• Company extracts no older than 6 months</li>
+          <li>• Criminal record recent (usually 3-6 months)</li>
+          <li>• Certified translations by sworn translator</li>
+          <li>• Insurance certificate showing Bulgaria coverage</li>
+          <li>• Rental contract or property deed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Translation requirement:</strong> All foreign documents must be legalized with an apostille and translated into Bulgarian by a certified translator. Plan for €100-300 in translation and legalization costs depending on your document count.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Bulgaria requires valid health insurance covering your entire stay. Unlike some countries that accept basic travel insurance, Bulgaria's DNV expects comprehensive coverage. International health insurance is strongly recommended over short-term travel policies.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The insurance must cover medical emergencies, hospitalization, and repatriation. While specific coverage minimums aren't rigidly defined, comprehensive international health insurance provides the best protection and smoothest visa approval.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Travel vs. International Health Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Recommended Insurance Approach</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose International Health Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're staying the full 1-2 years</li>
+          <li>✓ You want routine care coverage</li>
+          <li>✓ You have pre-existing conditions</li>
+          <li>✓ You travel frequently within Schengen</li>
+          <li>✓ You want hassle-free visa renewal</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Travel Insurance Limitations:</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ May not meet visa requirements</li>
+          <li>△ Coverage gaps for long stays</li>
+          <li>△ No routine care or checkups</li>
+          <li>△ Pre-existing conditions excluded</li>
+          <li>△ May need to renew frequently</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Recommendation:</strong> For a 1-2 year digital nomad visa, invest in proper international health insurance rather than patching together travel insurance policies. The peace of mind and visa compliance are worth the higher monthly cost.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Bulgarian digital nomad visa?"
+    description="Compare international health insurance plans accepted for Bulgaria's DNV application."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Bulgaria's DNV, you need insurance that provides comprehensive coverage for the full visa duration. Here are the top options for freelancers and remote workers.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Full-Time Bulgaria Resident</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage with global networks. Budget €150-280/month for solid protection including routine care, specialists, and hospitalization.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Nomad</h4>
+        <p class="text-neutral-600">SafetyWing or Genki offer nomad-focused coverage at €60-120/month. Good for healthy freelancers who primarily need emergency coverage. Check if policies meet Bulgaria's specific requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Schengen Traveler</h4>
+        <p class="text-neutral-600">Choose international insurance with strong EU-wide coverage. Your Bulgaria DNV grants Schengen access—make sure your insurance covers you throughout the zone.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care may cover pre-existing conditions after waiting periods or with specific plans. Discuss your situation during the quote process—disclosure is essential.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Bulgaria offers some of the lowest living costs in the EU while providing Schengen access and Euro stability. Combined with the 10% flat tax, it's financially attractive for freelancers earning in stronger currencies.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Bulgaria's 10% Flat Tax</h3>
+
+    <p class="mb-4">
+      Bulgaria has the lowest flat income tax rate in the EU—just 10% on personal income. If you become a tax resident (183+ days in Bulgaria), you'll pay this rate on worldwide income. For freelancers earning in USD, EUR, or GBP, this represents significant savings compared to Western European or North American rates.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-green-900 mb-3">Tax Advantages:</h4>
+      <ul class="space-y-2 text-green-800">
+        <li>• <strong>Income tax:</strong> 10% flat rate (EU's lowest)</li>
+        <li>• <strong>Tax residency:</strong> 183+ days in Bulgaria</li>
+        <li>• <strong>Social security:</strong> Freelancers may be exempt or pay reduced rates</li>
+        <li>• <strong>Dividend tax:</strong> 5% on dividends from Bulgarian companies</li>
+        <li>• <strong>No wealth tax:</strong> Bulgaria doesn't tax net worth</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget (Shared/Studio)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,000-1,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Sofia or smaller cities</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable (Own Apartment)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Sofia city center</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Living</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,000-2,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Luxury apartments, frequent dining out</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Sofia)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1BR apartment):</strong> €400-700/month (city center)</li>
+      <li><strong>Health insurance:</strong> €100-250/month</li>
+      <li><strong>Utilities:</strong> €80-120/month (electricity, heating, internet)</li>
+      <li><strong>Food & groceries:</strong> €200-350/month</li>
+      <li><strong>Transport:</strong> €30-50/month (public transport) or €0 (walking)</li>
+      <li><strong>Coworking:</strong> €80-150/month (optional, many cafes are work-friendly)</li>
+      <li><strong>Entertainment:</strong> €100-200/month</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Currency advantage:</strong> Bulgaria adopted the Euro in 2025, eliminating currency exchange concerns within the Eurozone. If you earn in USD or GBP, the current exchange rates make Bulgarian prices exceptionally affordable.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Bulgaria's DNV application follows a two-step process: first apply for a Type D long-stay visa at a Bulgarian embassy abroad, then apply for the residence permit after arriving in Bulgaria.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather and Prepare Documents</h4>
+          <p class="text-neutral-600">Collect all required documents: employment contract or freelance contracts, proof of income, criminal record certificate, and accommodation proof. Get apostilles from relevant authorities and certified translations into Bulgarian.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Secure Health Insurance</h4>
+          <p class="text-neutral-600">Purchase comprehensive international health insurance covering your planned stay in Bulgaria. Get an official certificate or letter confirming coverage dates and scope—you'll need this for the visa application.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Type D Visa</h4>
+          <p class="text-neutral-600">Schedule an appointment at the Bulgarian embassy or consulate in your country of residence. Submit your application with all supporting documents. Pay the visa fee (approximately €100).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Visa Approval</h4>
+          <p class="text-neutral-600">Processing typically takes 1-2 months. The embassy may request additional documents or schedule an interview. Track your application status through the embassy's system.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Travel to Bulgaria</h4>
+          <p class="text-neutral-600">Once your Type D visa is approved, travel to Bulgaria within the visa validity period. Your Type D visa allows entry and short-term stay while you apply for the residence permit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Residence Permit</h4>
+          <p class="text-neutral-600">Within 14 days of arrival, apply for your residence permit at the local Migration Directorate. Bring your Type D visa, all original documents, and proof of Bulgarian address.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Residence Card</h4>
+          <p class="text-neutral-600">After 2-4 weeks of processing, return to collect your residence card. This card is valid for 1 year and can be renewed for a second year, allowing up to 2 years total on the DNV.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">8</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Set Up Local Life</h4>
+          <p class="text-neutral-600">Open a Bulgarian bank account, register your address locally, and familiarize yourself with Sofia's coworking spaces and nomad community. Many expats connect through Sofia Nomads and similar groups.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>New program tip:</strong> As Bulgaria's DNV launched in late 2025, embassy staff are still adapting to the new requirements. Be patient, bring printed copies of the official regulations, and maintain clear communication with the embassy.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Bulgaria's new Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from US, Remote for Tech Startup</h3>
+        <p class="text-neutral-600 mb-4">Works for San Francisco startup earning $8,000/month. 4 years remote experience. Applied from Washington DC embassy.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 6 weeks. Employment contract and bank statements made income proof easy. Now paying 10% Bulgarian tax vs 35%+ US combined. Living in Sofia for €1,600/month total. Very happy with lifestyle upgrade and tax savings.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">UX Designer from UK, Freelance for European Clients</h3>
+        <p class="text-neutral-600 mb-4">Freelancing for 2 years with clients in Germany, Netherlands, UK. Earning £4,500/month. 29 years old.</p>
+        <p class="text-green-700 font-medium">✓ Smooth approval with strong portfolio of contracts. Embassy in London processed in 5 weeks. Living in Sofia's Lozenets neighborhood. Enjoying the emerging tech scene and affordable quality of life. Euro adoption made invoicing simpler.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Content Writer from India, Platform-Based Income</h3>
+        <p class="text-neutral-600 mb-4">Earns through Upwork and direct contracts. Income averages $3,200/month. Freelancing for 18 months.</p>
+        <p class="text-green-700 font-medium">✓ Upwork earnings history and client recommendations accepted. Cigna Global insurance (€180/month) met requirements. Processing took 7 weeks from Mumbai embassy. Sofia's low costs mean significant savings while still earning USD rates.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Consultant, Only 6 Months Freelance History</h3>
+        <p class="text-neutral-600 mb-4">Left agency job 6 months ago to freelance. Good income ($5,000/month) but short track record.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—Bulgaria requires 1+ year of freelance history. Embassy suggested reapplying after accumulating more independent work history. Now building track record and plans to apply in 6 months.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Startup Founder from Canada, 40% Company Ownership</h3>
+        <p class="text-neutral-600 mb-4">Co-founded a Canadian SaaS company. Works remotely as CTO. Company is profitable with good revenue.</p>
+        <p class="text-green-700 font-medium">✓ Ownership documentation and company registration accepted. Required company extract no older than 6 months—obtained from provincial registry. Approved in 8 weeks. Using Bulgaria as EU base while growing the company.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Graphic Designer from Australia, First EU Visa</h3>
+        <p class="text-neutral-600 mb-4">3 years freelance experience. Earning AUD $6,000/month. No prior EU residency.</p>
+        <p class="text-green-700 font-medium">✓ Embassy appointment in Canberra was efficient. Documents required apostilles through DFAT—took extra 2 weeks. Approved and now enjoying Sofia's creative scene and Schengen travel freedom. Planning trips to Greece and Croatia on weekends.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Bulgarian Digital Nomads"
+    description="Find the right coverage for your DNV application—comprehensive international health insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Freelance History</h3>
+        <p class="text-neutral-600">Bulgaria requires at least 1 year of digital services work history. New freelancers or those who recently transitioned from employment will be rejected. Build your track record before applying—keep contracts, invoices, and client communications as proof.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Using Basic Travel Insurance</h3>
+        <p class="text-neutral-600">Short-term travel insurance may not meet Bulgaria's requirements for a 1-2 year residence permit. Invest in proper international health insurance—the extra cost prevents visa complications and provides better protection during your stay.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Outdated Document Translations</h3>
+        <p class="text-neutral-600">Company extracts and some documents must be no older than 6 months. Criminal records typically need to be recent (3-6 months). Plan your document gathering timeline carefully—don't get apostilles too early or they may expire before your embassy appointment.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Missing the 14-Day Residence Deadline</h3>
+        <p class="text-neutral-600">After arriving in Bulgaria with your Type D visa, you must apply for the residence permit within 14 days. Missing this deadline can complicate your stay. Mark the date and gather required documents before arrival.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Working with Bulgarian Clients</h3>
+        <p class="text-neutral-600">The DNV explicitly prohibits working for Bulgarian employers or serving Bulgarian clients. Your income must come entirely from outside Bulgaria. Violating this can result in visa revocation—don't take Bulgarian projects "on the side."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Bulgaria -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Bulgaria</h2>
+
+    <p class="mb-4">
+      Bulgaria has a dual healthcare system with public and private options. While public healthcare is available, quality varies significantly and wait times can be long. Most expats and digital nomads rely on private healthcare, which is affordable by Western standards.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare (Recommended)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Modern facilities, especially in Sofia</li>
+          <li>✓ Short wait times</li>
+          <li>✓ English-speaking doctors available</li>
+          <li>✓ GP visits: €30-50</li>
+          <li>✓ Specialist visits: €40-80</li>
+          <li>✓ Accepted by international insurance</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Public Healthcare (NHIF)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Free or low-cost care</li>
+          <li>△ Quality varies by region</li>
+          <li>△ Long wait times common</li>
+          <li>△ Bulgarian language required</li>
+          <li>△ Older facilities in many areas</li>
+          <li>△ DNV holders typically not enrolled</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Costs (Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP consultation:</strong> €30-50</li>
+      <li><strong>Specialist visit:</strong> €40-80</li>
+      <li><strong>Blood tests:</strong> €20-50</li>
+      <li><strong>X-ray or ultrasound:</strong> €30-60</li>
+      <li><strong>MRI scan:</strong> €150-250</li>
+      <li><strong>Dental cleaning:</strong> €30-50</li>
+      <li><strong>Emergency room visit:</strong> €50-150</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p class="text-blue-800">
+        <strong>Sofia healthcare tip:</strong> The best private hospitals in Sofia include Acibadem City Clinic, Tokuda Hospital, and Pirogov Hospital (public but high quality for emergencies). Many doctors in these facilities speak English and accept international insurance for direct billing.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Pharmacies and Medications</h3>
+
+    <p class="mb-4">
+      Pharmacies (аптека) are widely available throughout Bulgaria. Many medications that require prescriptions in Western countries are available over-the-counter in Bulgaria. Prices are significantly lower than Western Europe or North America. Major chains include Remedium and Sopharmacy.
+    </p>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+      <p class="text-green-800">
+        <strong>Prescription medications:</strong> If you need regular medications, bring your prescription and a doctor's letter. Bulgarian pharmacists can often provide equivalents, but some specialized medications may need to be sourced from your home country initially.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Bulgaria's digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          The income requirement is 50 times Bulgaria's minimum wage, which translates to approximately €31,000/year or €2,300-2,600/month. You must demonstrate stable, recurring income from clients or employers outside Bulgaria—bank statements and contracts from the past 6-12 months typically satisfy this requirement.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I travel freely in Europe with Bulgaria's DNV?</h3>
+        <p class="text-neutral-600">
+          Yes. Bulgaria joined the Schengen Zone in 2025, so your residence permit allows visa-free travel throughout the Schengen Area. You can visit Portugal, Spain, Germany, France, Italy, and other Schengen countries without additional visas—perfect for weekend trips or client meetings.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What tax rate will I pay as a digital nomad in Bulgaria?</h3>
+        <p class="text-neutral-600">
+          If you become a tax resident (183+ days in Bulgaria), you pay 10% flat income tax—the lowest in the EU. Social security contributions may apply depending on your situation. Consult a Bulgarian tax advisor to optimize your setup, especially if you're coming from a higher-tax country.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long can I stay on Bulgaria's digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          The residence permit is issued for 1 year and can be renewed once, allowing up to 2 years total on the DNV. After that, you would need to explore other visa options (such as a standard work permit or business visa) or transition to a different country.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak Bulgarian for daily life?</h3>
+        <p class="text-neutral-600">
+          In Sofia and other major cities, English is widely spoken among young people and in business settings. However, Bulgarian helps with bureaucracy, healthcare, and daily interactions. The Cyrillic alphabet can be challenging initially—learning basic phrases and the alphabet makes life easier.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What currency does Bulgaria use?</h3>
+        <p class="text-neutral-600">
+          Bulgaria adopted the Euro in 2025, replacing the Bulgarian Lev. This simplifies finances if you earn in Euros or work with Eurozone clients. Prices remain low by EU standards—Sofia offers Western European amenities at Eastern European prices.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Bulgaria's new Digital Nomad Visa (launched December 2025) offers a compelling package: the EU's lowest flat tax rate (10%), affordable European living, Schengen Zone access, and Euro currency stability. For freelancers earning in USD, EUR, or GBP, the financial advantages are significant.
+    </p>
+
+    <p class="mb-4">
+      The main requirements—€2,300+/month income and 1+ year of freelance history—are reasonable by EU standards. The application process is straightforward, and early reports suggest efficient embassy processing as Bulgaria works to establish its DNV program.
+    </p>
+
+    <p class="mb-6">
+      Sofia has emerged as a hub for digital nomads and remote workers, with a growing tech scene, affordable coworking spaces, and a vibrant international community. If you value tax efficiency and European lifestyle without Western European prices, Bulgaria deserves serious consideration.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Bulgaria's DNV is ideal for established freelancers who want EU access with maximum tax efficiency. The 10% flat tax, Schengen membership, and Euro currency create a unique value proposition. Budget €100-250/month for comprehensive health insurance—mandatory for the visa and essential for quality healthcare access.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/romania" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Romania Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Fastest EU processing (10-14 days), 1% freelancer tax</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/greece" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Greece Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Mediterranean living with 50% tax reduction</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/croatia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Croatia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">No Croatian tax, Adriatic lifestyle</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

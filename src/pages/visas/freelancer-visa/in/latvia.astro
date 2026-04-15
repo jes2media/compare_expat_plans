@@ -1,0 +1,780 @@
+---
+/**
+ * Latvia Freelancer Visa - Long-form CRO-optimized page
+ * Digital Nomad Visa guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Latvia", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Estonia Freelancer Visa", href: "/visas/freelancer-visa/in/estonia" },
+  { title: "Lithuania Digital Nomad Visa", href: "/visas/digital-nomad-visa/in/lithuania" },
+  { title: "Poland Freelancer Visa", href: "/visas/freelancer-visa/in/poland" },
+];
+
+const applicantTypesColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "remoteEmployee", header: "Remote Employee" },
+  { key: "selfEmployed", header: "Self-Employed/Freelancer" },
+];
+
+const applicantTypesRows = [
+  { feature: "Eligibility", remoteEmployee: "Employed by OECD country company", selfEmployed: "Business in OECD country" },
+  { feature: "Income Proof", remoteEmployee: "Employment verification + 6 months payslips", selfEmployed: "6 months income from tax office" },
+  { feature: "Documentation", remoteEmployee: "Letter from employer, tax/social insurance docs", selfEmployed: "Business registration, tax verification" },
+  { feature: "Work Type", remoteEmployee: "Remote work for foreign employer", selfEmployed: "Freelance/business for foreign clients" },
+  { feature: "Best For", remoteEmployee: "Full-time remote workers", selfEmployed: "Freelancers, entrepreneurs" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€2,857-3,843/month", notes: "2.5x Latvian minimum wage (varies)" },
+  { requirement: "OECD Employment", details: "Employer in OECD country", notes: "38 OECD member countries qualify" },
+  { requirement: "Work History", details: "6 months employment proof", notes: "Bank statements or payslips" },
+  { requirement: "Health Insurance", details: "International coverage required", notes: "Must cover entire stay" },
+  { requirement: "Criminal Record", details: "Police clearance", notes: "From home country" },
+  { requirement: "Accommodation", details: "Proof not strictly required", notes: "But helpful for application" },
+  { requirement: "No Latvian Work", details: "Cannot work for Latvian employers", notes: "Foreign income only" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "travel", header: "Travel Insurance" },
+  { key: "international", header: "International Health Insurance" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Acceptance", travel: "May not meet requirements", international: "Fully accepted" },
+  { feature: "Coverage Duration", travel: "30-90 days", international: "Annual renewable" },
+  { feature: "Coverage Scope", travel: "Emergency only", international: "Comprehensive" },
+  { feature: "Pre-existing Conditions", travel: "Excluded", international: "Varies by plan" },
+  { feature: "Routine Care", travel: "Not covered", international: "Usually included" },
+  { feature: "Monthly Cost", travel: "€30-80", international: "€100-280" },
+  { feature: "Recommendation", travel: "Not sufficient for 1-2 years", international: "Required for DNV" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€130-280", strengths: "Comprehensive coverage, global network" },
+  { provider: "Allianz Care", type: "International", price: "€110-250", strengths: "Strong EU coverage, flexible plans" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€65-110", strengths: "Budget-friendly, nomad-focused" },
+  { provider: "Genki", type: "Nomad Insurance", price: "€55-95", strengths: "European-focused, good value" },
+  { provider: "World Nomads", type: "Travel/Nomad", price: "€70-140", strengths: "Adventure activities included" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Visa Application Fee", amount: "€60", notes: "Standard processing" },
+  { item: "Expedited Processing", amount: "€120", notes: "Optional faster processing" },
+  { item: "Health Insurance", amount: "€100-280/month", notes: "International required" },
+  { item: "Rent (Riga)", amount: "€450-800/month", notes: "1-bedroom apartment" },
+  { item: "Utilities", amount: "€80-150/month", notes: "Electricity, heating, internet" },
+  { item: "Living Expenses", amount: "€400-700/month", notes: "Food, transport, leisure" },
+  { item: "Total Monthly (Single)", amount: "€1,200-2,000", notes: "Comfortable lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Gather documents", duration: "2-3 weeks", location: "Home country" },
+  { step: "Get employer/tax verification", duration: "1-2 weeks", location: "OECD country office" },
+  { step: "Apply for visa", duration: "1 day", location: "Latvian embassy or PMLP" },
+  { step: "Visa processing", duration: "10-30 days", location: "Immigration processes" },
+  { step: "Receive long-stay visa", duration: "After approval", location: "Embassy pickup or entry" },
+  { step: "Register in Latvia (if needed)", duration: "Within 90 days", location: "PMLP office" },
+];
+---
+
+<PageShell
+  title="Latvia Freelancer Visa 2026: Digital Nomad Visa Requirements, Insurance & Guide"
+  description="Complete guide to Latvia's Digital Nomad Visa for freelancers. €2,857/month income, OECD employment, up to 2 years, path to permanent residency, and step-by-step application process."
+  headline="Latvia Freelancer Visa: Digital Nomad Visa Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Latvia—digital nomad visa since 2022, OECD employment requirement, up to 2 years stay, path to permanent residency, and affordable Baltic living."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Path to Permanent Residency
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Up to 2 Years Stay
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Latvia introduced its Digital Nomad Visa in early 2022, offering remote workers a pathway to live in the Baltic region for up to two years. Unlike many DNV programs, Latvia's visa can lead to permanent residency—two years of legal residence with a DNV qualifies you to apply for PR.
+    </p>
+
+    <p class="mb-4">
+      The program targets employees and self-employed professionals who work remotely for companies or clients in OECD countries. Riga, Latvia's capital, has grown into a tech and startup hub with excellent digital infrastructure, historic charm, and significantly lower costs than Western Europe.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Latvia Digital Nomad Visa</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Long-Stay Visa for Remote Work</li>
+        <li>• <strong>Income requirement:</strong> ~€2,857-3,843/month (2.5x minimum wage)</li>
+        <li>• <strong>Health insurance:</strong> MANDATORY—international coverage required</li>
+        <li>• <strong>Duration:</strong> 1 year, renewable for second year (2 years total)</li>
+        <li>• <strong>OECD requirement:</strong> Must work for employer/clients in OECD country</li>
+        <li>• <strong>Path to PR:</strong> Yes—2 years DNV residence qualifies for PR application</li>
+        <li>• <strong>Schengen access:</strong> Yes—travel freely in Schengen Zone</li>
+        <li>• <strong>Work restriction:</strong> Cannot work for Latvian employers</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Can Apply?</h3>
+
+    <p class="mb-4">
+      Latvia's DNV has a unique OECD requirement—your employer or business must be registered in an OECD member country. This includes most developed nations (US, UK, Canada, Australia, most of EU, Japan, Korea, etc.).
+    </p>
+
+    <ComparisonTable columns={applicantTypesColumns} rows={applicantTypesRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>OECD requirement:</strong> Your employer or business must be registered in one of the 38 OECD member countries. This excludes freelancers working primarily for clients in non-OECD countries (e.g., India, China, Brazil, Russia). Check OECD membership before applying.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Latvia is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You work for an OECD country employer/clients</li>
+          <li>✓ You earn €2,857+/month consistently</li>
+          <li>✓ You want a path to permanent residency</li>
+          <li>✓ You value affordable European living</li>
+          <li>✓ You appreciate Baltic/Northern European culture</li>
+          <li>✓ You want Schengen Zone access</li>
+          <li>✓ You enjoy four distinct seasons</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• Your clients are in non-OECD countries</li>
+          <li>• You prefer warm Mediterranean climate</li>
+          <li>• Your income is below the threshold</li>
+          <li>• You want to avoid cold winters</li>
+          <li>• You prefer larger expat communities</li>
+          <li>• You want English as primary language</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>PR pathway advantage:</strong> Unlike most EU digital nomad visas that don't lead to permanent residency, Latvia's DNV counts toward PR eligibility. After 2 years on the DNV, you can apply for permanent residence—a significant benefit for those seeking long-term EU settlement.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Latvia's DNV requires proof of OECD-country employment or business registration, consistent income above the threshold, and comprehensive health insurance. The application process involves verification documents from your home country's tax or social insurance authorities.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Income Requirement Details</h3>
+
+    <p class="mb-4">
+      The income threshold is 2.5 times Latvia's minimum wage. As of 2024-2026, this is approximately €2,857-3,843/month, depending on current minimum wage adjustments. You must demonstrate this income over at least 6 months.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Income Documentation:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Employees:</strong> Tax or social insurance verification from OECD country + 6 months payslips/bank statements</li>
+        <li>• <strong>Self-employed:</strong> Income verification from OECD country tax office + 6 months income proof</li>
+        <li>• <strong>Bank statements:</strong> Show consistent deposits meeting the threshold</li>
+        <li>• <strong>Employment letter:</strong> Confirm employment for past 6 months and remote work ability</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Remote Employees</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Employment verification from OECD tax/social office</li>
+          <li>• Letter from employer confirming remote work</li>
+          <li>• 6 months of payslips or bank statements</li>
+          <li>• International health insurance</li>
+          <li>• Police clearance certificate</li>
+          <li>• Passport photos</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">For Self-Employed/Freelancers</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (6+ months validity)</li>
+          <li>• Income verification from OECD tax office</li>
+          <li>• Business registration in OECD country</li>
+          <li>• 6 months income documentation</li>
+          <li>• Client contracts (if applicable)</li>
+          <li>• International health insurance</li>
+          <li>• Police clearance certificate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Verification documents:</strong> The key requirement is official verification from your OECD country's tax or social insurance authority confirming your employment/income status. Plan 1-2 weeks to obtain these documents before your visa application.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Health Insurance is Mandatory</h3>
+      <p class="text-green-800">
+        Latvia requires international health insurance covering your entire stay. The insurance must provide comprehensive coverage—basic travel insurance won't suffice for a 1-2 year residence permit.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Since Latvia's DNV allows up to 2 years of stay, you need annual renewable insurance that can cover the full duration without gaps.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Travel vs. International Health Insurance</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Recommendations</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Choose International Health Insurance If:</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You're staying 1-2 years</li>
+          <li>✓ You want routine care included</li>
+          <li>✓ You have pre-existing conditions</li>
+          <li>✓ You travel frequently in Schengen</li>
+          <li>✓ You want English-speaking support</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Travel Insurance Limitations:</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Unlikely to meet visa requirements</li>
+          <li>△ Multiple renewals needed</li>
+          <li>△ Emergency-only coverage</li>
+          <li>△ No pre-existing conditions</li>
+          <li>△ Coverage gaps risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Recommendation:</strong> For Latvia's 1-2 year DNV, invest in proper annual international health insurance. It simplifies the application, provides better coverage, and ensures smooth renewal for the second year.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Latvia digital nomad visa?"
+    description="Compare international health insurance plans accepted for Latvia's DNV application."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For Latvia's DNV, you need international health insurance with comprehensive coverage. These providers offer plans well-suited for digital nomads in the Baltic region.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Situation</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Full-Time Riga Resident</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage with good European networks. Budget €110-250/month for solid protection including routine care and specialists.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Nomad</h4>
+        <p class="text-neutral-600">SafetyWing or Genki offer nomad-focused coverage at €55-110/month. Good for healthy freelancers who primarily need emergency and hospitalization coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Frequent Baltic/Nordic Traveler</h4>
+        <p class="text-neutral-600">International insurance with strong Northern European coverage. Latvia's location makes Estonia, Lithuania, Finland, and Sweden easy weekend trips—ensure coverage throughout.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Pre-existing Conditions</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care may cover pre-existing conditions after waiting periods. Full disclosure during the quote process is essential.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Latvia offers excellent value—significantly more affordable than Western Europe while providing good quality of life. Riga combines historic architecture, modern amenities, and a growing tech scene.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Tax Considerations</h3>
+
+    <p class="mb-4">
+      Latvia has no special nomad tax regime. Your tax status depends on how long you stay:
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Latvian Tax Rules for DNV Holders:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>≤183 days/year:</strong> NOT a Latvian tax resident if you maintain tax residency elsewhere. Foreign income not taxed in Latvia.</li>
+        <li>• <strong>>183 days/year:</strong> Become Latvian tax resident. Subject to progressive income tax (up to 31% in 2025) on worldwide income.</li>
+        <li>• <strong>Tax planning:</strong> If staying long-term, consult a tax advisor about residency implications.</li>
+        <li>• <strong>Double taxation:</strong> Treaties may prevent double taxation, depending on your home country.</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget (Shared/Studio)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,000-1,400</p>
+        <p class="text-sm text-neutral-500 mt-2">Outside center, shared</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable (Riga Center)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,500-2,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Living</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,200-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Old Town, premium amenities</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Monthly Cost Breakdown (Riga)</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Rent (1BR apartment):</strong> €450-700/month (city center)</li>
+      <li><strong>Health insurance:</strong> €100-220/month</li>
+      <li><strong>Utilities:</strong> €80-150/month (heating higher in winter)</li>
+      <li><strong>Groceries:</strong> €200-300/month</li>
+      <li><strong>Dining out:</strong> €100-200/month</li>
+      <li><strong>Transport:</strong> €30-50/month (public transport)</li>
+      <li><strong>Coworking:</strong> €80-150/month (optional)</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Euro zone:</strong> Latvia uses the Euro, simplifying finances if you earn in EUR. No currency exchange needed for EU transactions, and prices are transparent.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Latvia's DNV application can be submitted at a Latvian embassy abroad or, if you're already legally in Latvia, directly to the Office of Citizenship and Migration Affairs (PMLP). Processing typically takes 10-30 days.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Obtain Employment/Income Verification</h4>
+          <p class="text-neutral-600">Request official verification from your OECD country's tax or social insurance authority confirming your employment status and income for the past 6 months. For employees, also get a letter from your employer confirming remote work ability.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Additional Documents</h4>
+          <p class="text-neutral-600">Collect bank statements (6 months showing income), police clearance certificate, passport photos, and international health insurance certificate covering your planned stay in Latvia.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Apply at a Latvian embassy in your country or at PMLP if already legally in Latvia. Pay the €60 standard fee (or €120 for expedited processing). Submit all documents and complete the application form.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Standard processing takes 10-30 days. Expedited processing (€120) is faster. The authorities may request additional documents or clarification.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Long-Stay Visa</h4>
+          <p class="text-neutral-600">Once approved, collect your long-stay visa (valid for 1 year). If you applied abroad, you can now travel to Latvia. The visa serves as your residence authorization.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register in Latvia</h4>
+          <p class="text-neutral-600">After arriving, register your address with PMLP if required for stays over 90 days. Find accommodation, open a bank account, and explore Riga's coworking spaces and digital nomad community.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Renew for Second Year (Optional)</h4>
+          <p class="text-neutral-600">Before your first year expires, apply for renewal. With two years on the DNV, you become eligible to apply for permanent residency—a unique advantage of Latvia's program.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>PR pathway:</strong> Two years of legal residence on Latvia's DNV qualifies you to apply for permanent residency. This makes Latvia one of the few EU countries where a digital nomad visa can lead to long-term settlement.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Latvia's Digital Nomad Visa:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from US, Working for NYC Startup</h3>
+        <p class="text-neutral-600 mb-4">Remote employee earning $7,500/month. Company registered in US (OECD country). 29 years old.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 3 weeks. US Social Security verification + employer letter made documentation straightforward. Living in Riga Old Town for €1,600/month. Loves the tech scene and easy Schengen travel. Planning to stay 2 years and apply for PR.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelance Consultant from UK, Post-Brexit</h3>
+        <p class="text-neutral-600 mb-4">Self-employed, earning £4,200/month from UK clients. UK is OECD member. 35 years old.</p>
+        <p class="text-green-700 font-medium">✓ HMRC income verification accepted. Business registration in UK satisfied OECD requirement. Latvia offered affordable EU base post-Brexit. Now exploring Baltic region while serving UK clients. PR pathway is major draw.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Designer from Canada, Working for Toronto Agency</h3>
+        <p class="text-neutral-600 mb-4">Remote employee at design agency. Earning CAD $6,000/month. 27 years old.</p>
+        <p class="text-green-700 font-medium">✓ CRA (Canadian Revenue Agency) verification straightforward. Employer letter confirming 6 months employment and remote work approved. Riga costs much lower than Toronto. Winter is cold but manageable—similar to Canadian winters.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelancer with Primarily Indian Clients</h3>
+        <p class="text-neutral-600 mb-4">Web developer earning $4,500/month but primarily from clients in India (non-OECD). 30 years old.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—India is not an OECD member country. Latvia requires employment/business in OECD countries. Advised to establish business registration in UK, Estonia, or another OECD country, or consider other EU DNV programs without OECD restriction.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Manager from Australia, Borderline Income</h3>
+        <p class="text-neutral-600 mb-4">Remote employee earning €2,700/month—slightly below the threshold. 32 years old.</p>
+        <p class="text-amber-700 font-medium">△ Initial concern about income threshold (€2,857 minimum). Negotiated raise with employer to €3,000/month, then reapplied. Approved after showing updated employment contract. Lesson: ensure income clearly exceeds threshold.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple from Germany, Both Remote Workers</h3>
+        <p class="text-neutral-600 mb-4">Both employed by German companies remotely. Combined €9,000/month. Looking for Baltic adventure.</p>
+        <p class="text-green-700 font-medium">✓ Both applied separately—each met requirements independently. Living together in Riga for €2,000/month combined. Enjoying Baltic coast in summer, cozy café culture in winter. Planning to apply for PR together after 2 years.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Latvia Digital Nomads"
+    description="Find the right coverage for your DNV application—comprehensive international health insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring the OECD Requirement</h3>
+        <p class="text-neutral-600">Your employer or business must be registered in an OECD member country. If your clients are primarily in non-OECD countries (India, China, Brazil, etc.), you won't qualify. Check OECD membership before investing time in the application.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Income Documentation</h3>
+        <p class="text-neutral-600">You need official verification from your OECD country's tax or social insurance authority—not just bank statements. Plan 1-2 weeks to obtain these documents. Generic employer letters aren't sufficient; you need governmental verification.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Income Below Threshold</h3>
+        <p class="text-neutral-600">The €2,857-3,843/month threshold is strictly enforced. Income just below the line will likely be rejected. Ensure your documented income clearly exceeds the requirement with buffer room for currency fluctuations.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Tax Implications</h3>
+        <p class="text-neutral-600">If you stay more than 183 days per year, you become a Latvian tax resident and owe tax on worldwide income (up to 31%). Plan your stay duration or consult a tax advisor if you want to avoid Latvian tax residency.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Working for Latvian Clients</h3>
+        <p class="text-neutral-600">DNV holders cannot work for Latvian employers or provide services to Latvian residents. Your income must come entirely from outside Latvia. Taking local work violates your visa conditions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Latvia -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Latvia</h2>
+
+    <p class="mb-4">
+      Latvia has a public healthcare system, but DNV holders typically rely on private healthcare through their international insurance. Private clinics in Riga offer good quality care with English-speaking staff.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Options</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Private Healthcare (Recommended)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Good facilities in Riga</li>
+          <li>✓ English-speaking doctors available</li>
+          <li>✓ Short wait times</li>
+          <li>✓ GP visits: €40-70</li>
+          <li>✓ Specialist visits: €60-100</li>
+          <li>✓ Accepted by international insurers</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Public Healthcare (Limited Access)</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Requires social insurance contributions</li>
+          <li>△ DNV holders usually not enrolled</li>
+          <li>△ Latvian language often needed</li>
+          <li>△ Wait times for specialists</li>
+          <li>△ Variable quality by facility</li>
+          <li>△ Emergency care available regardless</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private Healthcare Costs (Without Insurance)</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP consultation:</strong> €40-70</li>
+      <li><strong>Specialist visit:</strong> €60-100</li>
+      <li><strong>Blood tests:</strong> €25-60</li>
+      <li><strong>X-ray or ultrasound:</strong> €40-80</li>
+      <li><strong>MRI scan:</strong> €150-300</li>
+      <li><strong>Dental cleaning:</strong> €40-70</li>
+      <li><strong>Emergency care:</strong> Public hospitals treat emergencies</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Riga healthcare:</strong> Leading private clinics include Veselibas centrs 4, Capital Clinic Riga, and ARS Medical Centre. These facilities serve expats, have English-speaking staff, and work with international insurers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Latvia's digital nomad visa?</h3>
+        <p class="text-neutral-600">
+          The income requirement is 2.5 times Latvia's minimum wage, approximately €2,857-3,843/month depending on current rates. You must demonstrate this income consistently over 6 months through tax office verification and bank statements.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the OECD requirement?</h3>
+        <p class="text-neutral-600">
+          Your employer or business must be registered in an OECD member country (38 countries including US, UK, Canada, Australia, most EU countries, Japan, Korea, etc.). If you work primarily for clients in non-OECD countries, you won't qualify for Latvia's DNV.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I get permanent residency through Latvia's DNV?</h3>
+        <p class="text-neutral-600">
+          Yes—this is a unique advantage. Two years of legal residence on Latvia's DNV qualifies you to apply for permanent residence. This makes Latvia one of the few EU countries where a digital nomad visa provides a path to long-term settlement.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Will I pay Latvian taxes on my income?</h3>
+        <p class="text-neutral-600">
+          It depends on your stay duration. If you stay ≤183 days/year and maintain tax residency elsewhere, you're not a Latvian tax resident and foreign income isn't taxed. If you stay >183 days/year, you become a tax resident and owe progressive income tax (up to 31%) on worldwide income.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How cold are Latvian winters?</h3>
+        <p class="text-neutral-600">
+          Riga winters are cold—average January temperatures around -5°C (23°F), occasionally dropping below -20°C. If you're from a warm climate, this is a significant adjustment. However, Riga's cozy café culture, indoor activities, and hygge-style comfort make winter manageable.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is English widely spoken in Latvia?</h3>
+        <p class="text-neutral-600">
+          English is widely spoken in Riga, especially among younger people and in business settings. Latvian is the official language, and Russian is also common. You can navigate daily life in English, but learning basic Latvian phrases helps with integration.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Latvia's Digital Nomad Visa stands out for one key reason: it can lead to permanent residency. Two years on the DNV qualifies you to apply for PR—a rare pathway among EU digital nomad programs. For those seeking long-term EU settlement, this is a significant advantage.
+    </p>
+
+    <p class="mb-4">
+      The OECD requirement limits eligibility—you must work for employers or clients in OECD member countries. But if you qualify, Latvia offers affordable Baltic living, Schengen access, and a growing tech scene in Riga.
+    </p>
+
+    <p class="mb-6">
+      The income threshold (€2,857+/month) is moderate by EU standards. Cold winters are the main lifestyle consideration. For digital nomads who value the PR pathway and don't mind Northern European climate, Latvia offers genuine long-term potential.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Latvia's DNV is ideal for OECD-employed digital nomads seeking a path to EU permanent residency. The 2-year visa with PR eligibility sets it apart from most EU programs. Budget €100-220/month for comprehensive health insurance—mandatory for the visa and essential for quality healthcare access.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/estonia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Estonia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Baltic neighbor with e-Residency program</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/poland" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Poland Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">JDG registration, work with any clients</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/hungary" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Hungary Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">White Card with simplified documentation</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

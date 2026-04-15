@@ -1,0 +1,786 @@
+---
+/**
+ * Belgium Freelancer Visa - Long-form CRO-optimized page
+ * Professional Card guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Belgium", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Netherlands Freelancer Visa", href: "/visas/freelancer-visa/in/netherlands" },
+  { title: "France Freelancer Visa", href: "/visas/freelancer-visa/in/france" },
+  { title: "Germany Freelancer Visa", href: "/visas/freelancer-visa/in/germany" },
+];
+
+const regionColumns = [
+  { key: "feature", header: "Feature" },
+  { key: "flanders", header: "Flanders" },
+  { key: "wallonia", header: "Wallonia" },
+  { key: "brussels", header: "Brussels-Capital" },
+];
+
+const regionRows = [
+  { feature: "Authority", flanders: "VLAIO", wallonia: "SPW Économie", brussels: "Brussels Economy" },
+  { feature: "Language", flanders: "Dutch", wallonia: "French", brussels: "Dutch/French" },
+  { feature: "Processing Time", flanders: "60-90 days", wallonia: "90-120 days", brussels: "90-120 days" },
+  { feature: "Economic Focus", flanders: "Business viability", wallonia: "Economic benefit", brussels: "Value to region" },
+  { feature: "Fee", flanders: "€140", wallonia: "€140", brussels: "€140" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Minimum Income", details: "€2,131.28/month", notes: "Belgian social integration income threshold" },
+  { requirement: "Professional Card", details: "Required for non-EU/EEA", notes: "Apply before or after arrival" },
+  { requirement: "Business Plan", details: "Detailed economic proposal", notes: "Show viability and Belgian benefit" },
+  { requirement: "Qualifications", details: "Degrees or experience", notes: "Relevant to your profession" },
+  { requirement: "Health Insurance", details: "Private then mutuelle", notes: "Private initially, join system later" },
+  { requirement: "Criminal Record", details: "Police clearance", notes: "From home country" },
+  { requirement: "Accommodation", details: "Belgian address required", notes: "For registration" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private International" },
+  { key: "mutuelle", header: "Belgian Mutuelle" },
+];
+
+const insuranceRows = [
+  { feature: "Visa Application", private: "Required initially", mutuelle: "After registration" },
+  { feature: "Coverage Scope", private: "Comprehensive", mutuelle: "State + top-up" },
+  { feature: "Pre-existing Conditions", private: "Varies by plan", mutuelle: "Covered after enrollment" },
+  { feature: "Waiting Period", private: "Usually none", mutuelle: "6-12 months for some benefits" },
+  { feature: "Monthly Cost", private: "€120-300", mutuelle: "€10-15/month (top-up)" },
+  { feature: "When to Use", private: "First 6-12 months", mutuelle: "After social security enrollment" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€130-280", strengths: "Transition coverage, global network" },
+  { provider: "Allianz Care", type: "International", price: "€120-260", strengths: "Strong EU presence, flexible plans" },
+  { provider: "Foyer Global", type: "Expat Belgium", price: "€100-200", strengths: "Belgium-focused, local expertise" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€65-110", strengths: "Budget-friendly initial coverage" },
+  { provider: "Belgian Mutuelles", type: "Local System", price: "€10-15 top-up", strengths: "Long-term residents, full integration" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount (EUR)" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Professional Card Fee", amount: "€140", notes: "Standard processing" },
+  { item: "Visa Application Fee", amount: "€180-350", notes: "Type D visa at embassy" },
+  { item: "Commune Registration", amount: "€5-20", notes: "Varies by municipality" },
+  { item: "Health Insurance (Initial)", amount: "€120-280/month", notes: "Private international" },
+  { item: "Rent (Brussels)", amount: "€900-1,500/month", notes: "1-bedroom apartment" },
+  { item: "Utilities", amount: "€150-250/month", notes: "Electricity, gas, internet" },
+  { item: "Living Expenses", amount: "€500-800/month", notes: "Food, transport, leisure" },
+  { item: "Total Monthly (Single)", amount: "€1,800-3,000", notes: "Brussels lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Prepare business plan", duration: "2-4 weeks", location: "Home country" },
+  { step: "Apply for Professional Card", duration: "1 day submission", location: "Belgian embassy or region" },
+  { step: "Professional Card processing", duration: "60-120 days", location: "Regional authority" },
+  { step: "Apply for Type D visa (if abroad)", duration: "After card approval", location: "Belgian embassy" },
+  { step: "Visa processing", duration: "2-4 weeks", location: "Embassy" },
+  { step: "Arrive and register at commune", duration: "Within 8 days", location: "Local commune" },
+  { step: "Join Belgian social security", duration: "After residence permit", location: "INASTI/RSVZ" },
+];
+---
+
+<PageShell
+  title="Belgium Freelancer Visa 2026: Professional Card Requirements, Insurance & Guide"
+  description="Complete guide to Belgium's Professional Card for freelancers. €2,131/month income, regional variations, 2-5 year duration, path to permanent residency, and step-by-step application process."
+  headline="Belgium Freelancer Visa: Professional Card Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Belgium—Professional Card system, regional processing, EU capital location, Belgian mutuelle integration, and path to permanent residency."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      EU Capital Location
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Path to Permanent Residency
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Belgium doesn't have a dedicated "digital nomad visa"—instead, non-EU freelancers use the Professional Card (carte professionnelle/beroepskaart) to work as self-employed professionals. This system predates DNV programs but offers something many don't: a clear path to permanent residency and eventual citizenship.
+    </p>
+
+    <p class="mb-4">
+      Brussels, as the de facto EU capital, attracts international professionals with its multilingual environment, central European location, and access to EU institutions. The Professional Card allows you to operate as an independent freelancer, consultant, or business owner with full legal status.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Belgium Professional Card</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Professional Card + Type D Visa</li>
+        <li>• <strong>Income requirement:</strong> €2,131.28/month (social integration threshold)</li>
+        <li>• <strong>Health insurance:</strong> Private initially, then Belgian mutuelle system</li>
+        <li>• <strong>Duration:</strong> 2 years initial, renewable for 5 years</li>
+        <li>• <strong>Regional processing:</strong> Flanders, Wallonia, or Brussels-Capital</li>
+        <li>• <strong>Path to PR:</strong> Yes—5 years legal residence</li>
+        <li>• <strong>Schengen access:</strong> Yes—travel freely in Schengen Zone</li>
+        <li>• <strong>Work flexibility:</strong> Any self-employed activity allowed</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Regional Differences</h3>
+
+    <p class="mb-4">
+      Belgium's federal structure means Professional Card applications are processed by regional authorities. Your region depends on where you'll be based. Each region has slightly different processing times and economic evaluation criteria.
+    </p>
+
+    <ComparisonTable columns={regionColumns} rows={regionRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Choose your region wisely:</strong> If you're flexible on location, Flanders typically has faster processing (60-90 days vs. 90-120 days elsewhere). However, Brussels offers better international networking and multilingual services if that suits your business.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Belgium is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You work with EU institutions or clients</li>
+          <li>✓ You want a path to EU permanent residency</li>
+          <li>✓ You value central European location</li>
+          <li>✓ You speak or want to learn French/Dutch</li>
+          <li>✓ You prefer established systems over DNV programs</li>
+          <li>✓ You want access to Belgian social security</li>
+          <li>✓ You appreciate multilingual/multicultural cities</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You need fast processing (3-4 months is long)</li>
+          <li>• High living costs are a concern</li>
+          <li>• Complex bureaucracy frustrates you</li>
+          <li>• You prefer warm Mediterranean climate</li>
+          <li>• Your income is below €2,131/month</li>
+          <li>• You prefer English-only environments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Long-term advantage:</strong> Unlike most digital nomad visas that don't lead anywhere, Belgium's Professional Card system provides a genuine pathway: 2 years → 5-year renewal → permanent residence after 5 years total → citizenship eligibility after 5+ years. If long-term EU settlement matters, Belgium rewards patience.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Belgium's Professional Card evaluates your economic contribution—you need to demonstrate that your freelance activity benefits the Belgian economy. This requires a business plan, proof of qualifications, and evidence of sustainable income.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Business Plan Requirements</h3>
+
+    <p class="mb-4">
+      The business plan is the most critical document. Belgian authorities want to see that your freelance activity will contribute economically. This isn't about having Belgian clients specifically—it's about demonstrating viability.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Business Plan Must Include:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Activity description:</strong> What services you provide</li>
+        <li>• <strong>Target market:</strong> Who your clients are (existing contracts help)</li>
+        <li>• <strong>Financial projections:</strong> Expected income for 3 years</li>
+        <li>• <strong>Economic benefit:</strong> How Belgium benefits (taxes, employment potential)</li>
+        <li>• <strong>Qualifications:</strong> Why you're qualified for this work</li>
+        <li>• <strong>Existing clients:</strong> Letters or contracts from current clients</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Professional Card Application</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Professional Card application form</li>
+          <li>• Detailed business plan</li>
+          <li>• Copy of passport</li>
+          <li>• Diploma/qualification certificates</li>
+          <li>• CV/resume</li>
+          <li>• Client contracts or letters of intent</li>
+          <li>• Bank statements (6+ months)</li>
+          <li>• Police clearance certificate</li>
+          <li>• €140 application fee</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Type D Visa Application</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Approved Professional Card</li>
+          <li>• Visa application form</li>
+          <li>• Valid passport</li>
+          <li>• Passport photos</li>
+          <li>• Health insurance certificate</li>
+          <li>• Proof of accommodation</li>
+          <li>• Visa fee (€180-350)</li>
+          <li>• Medical certificate (if required)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Translation requirements:</strong> Documents not in Dutch, French, or German must be translated by a sworn translator. Factor in translation costs and time when preparing your application.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Two-Phase Insurance Approach</h3>
+      <p class="text-green-800">
+        Belgium requires health insurance for your visa application, but freelancers eventually join the Belgian social security system. Plan for private international insurance initially (6-12 months), then transition to a Belgian mutuelle (health fund) once registered with INASTI/RSVZ.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      The visa application requires proof of health insurance. Initially, use international private insurance. After establishing as a self-employed person and registering with Belgian social security, you'll pay social contributions and join a mutuelle.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private vs. Belgian Mutuelle System</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Insurance Timeline</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 1: Visa Application & Arrival (Month 0-3)</h4>
+        <p class="text-neutral-600">Private international health insurance required. This covers you during visa processing and initial months before social security enrollment.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 2: INASTI/RSVZ Registration (Month 3-6)</h4>
+        <p class="text-neutral-600">After receiving your residence permit, register as self-employed with INASTI (French) or RSVZ (Dutch). This triggers social security contributions (~20.5% of income).</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Phase 3: Mutuelle Enrollment (Month 6+)</h4>
+        <p class="text-neutral-600">Join a Belgian mutuelle (health fund). Choose from CM/MC, Solidaris, Partena, etc. The mutuelle provides reimbursements for healthcare costs and supplementary coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Ongoing: Supplementary Insurance</h4>
+        <p class="text-neutral-600">Most Belgians have hospitalization insurance (€10-30/month) on top of the mutuelle. Consider maintaining some international coverage if you travel frequently.</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Keep private insurance:</strong> Don't cancel your international insurance immediately upon arrival. Wait until you're fully registered with Belgian social security and have mutuelle coverage active—this typically takes 3-6 months.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Belgium Professional Card application?"
+    description="Compare international health insurance plans accepted for Belgium visa applications."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      For the visa application and initial months, you need international health insurance. These providers offer plans suitable for Belgium-bound freelancers during the transition period.
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations by Phase</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Visa Application Phase</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage acceptable for visa applications. Budget €120-280/month for 6-12 months until you join the Belgian system.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget-Conscious Initial Coverage</h4>
+        <p class="text-neutral-600">SafetyWing offers nomad-focused coverage at €65-110/month. Acceptable for visa applications but ensure it meets Belgian minimum requirements.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Belgium-Specific Option</h4>
+        <p class="text-neutral-600">Foyer Global offers expat insurance designed for Belgium, with local knowledge and easier coordination with Belgian healthcare providers.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Long-Term: Belgian Mutuelle</h4>
+        <p class="text-neutral-600">After registering with INASTI/RSVZ, join a mutuelle. Options include CM/MC, Solidaris, Partena, or Helan. The supplementary coverage costs only €10-15/month on top of social contributions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Belgium is expensive compared to most DNV destinations. Brussels costs rival other Western European capitals. However, you gain access to one of the world's most comprehensive social security systems and a central EU location.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Tax and Social Security Contributions</h3>
+
+    <p class="mb-4">
+      As a self-employed person in Belgium, you'll pay both income tax and social security contributions. Belgium has high taxation, but you receive extensive benefits in return.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Belgian Tax System for Freelancers:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Social security:</strong> ~20.5% of net income (covers healthcare, pension, family allowances)</li>
+        <li>• <strong>Income tax:</strong> Progressive 25-50% (after deductions)</li>
+        <li>• <strong>Municipal tax:</strong> 0-9% surcharge (varies by commune)</li>
+        <li>• <strong>VAT:</strong> 21% on services (if applicable)</li>
+        <li>• <strong>Quarterly payments:</strong> Estimated tax paid quarterly</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Realistic Monthly Budget</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Budget (Outside Center)</p>
+        <p class="text-3xl font-bold text-neutral-900">€1,600-2,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Smaller city, shared</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Comfortable (Brussels)</p>
+        <p class="text-3xl font-bold text-neutral-900">€2,200-3,000</p>
+        <p class="text-sm text-neutral-500 mt-2">Own apartment</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Premium Living</p>
+        <p class="text-3xl font-bold text-neutral-900">€3,500-4,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Central Brussels, premium</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">City Comparison</h3>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Brussels:</strong> Most expensive but best international networking. Rent €900-1,500 for 1BR.</li>
+      <li><strong>Antwerp:</strong> Slightly cheaper, strong creative/design scene. Rent €750-1,200.</li>
+      <li><strong>Ghent:</strong> University town, vibrant culture, more affordable. Rent €700-1,100.</li>
+      <li><strong>Leuven:</strong> Tech hub near Brussels, student-friendly prices. Rent €650-1,000.</li>
+      <li><strong>Liège:</strong> Most affordable major city, French-speaking. Rent €500-800.</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Euro zone:</strong> Belgium uses the Euro, simplifying finances if you earn in EUR. Banks like KBC, ING, or Belfius offer business accounts for freelancers once you have your Professional Card.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      The Belgian Professional Card application is a two-step process: first obtain the Professional Card from the regional authority, then apply for a Type D visa at the Belgian embassy. Total timeline is typically 3-5 months.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Your Business Plan</h4>
+          <p class="text-neutral-600">Write a detailed business plan in Dutch, French, or German (depending on your target region). Include financial projections, client information, and economic benefit to Belgium. This is the most critical document—take time to make it compelling.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Supporting Documents</h4>
+          <p class="text-neutral-600">Collect diplomas, CV, client contracts, bank statements, and police clearance. Have non-official language documents translated by a sworn translator. Apostille documents as required.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Professional Card Application</h4>
+          <p class="text-neutral-600">Apply at the Belgian embassy in your country (if abroad) or directly to the regional authority (if legally in Belgium). Pay the €140 fee. Choose your region: Flanders (VLAIO), Wallonia (SPW), or Brussels-Capital.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Professional Card Decision</h4>
+          <p class="text-neutral-600">Processing takes 60-120 days depending on the region. Flanders is typically faster. The authority evaluates your economic contribution to Belgium. They may request additional information.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Apply for Type D Visa</h4>
+          <p class="text-neutral-600">Once the Professional Card is approved, apply for a Type D (long-stay) visa at the Belgian embassy. Submit your approved Professional Card, health insurance proof, passport photos, and visa fee (€180-350).</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Arrive and Register</h4>
+          <p class="text-neutral-600">Upon arrival, register at your local commune (municipality) within 8 days. The commune will process your residence permit. Bring your passport, visa, proof of accommodation, and insurance certificate.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register as Self-Employed</h4>
+          <p class="text-neutral-600">Register with INASTI (French) or RSVZ (Dutch) as a self-employed person. Open a business bank account. Register with the Crossroads Bank for Enterprises (BCE/KBO). Join a mutuelle for healthcare.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Renewal:</strong> Your initial Professional Card is valid for 2 years. Renewal for 5 years requires showing continued economic activity. After 5 years total, you can apply for permanent residence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Belgium's Professional Card:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">EU Affairs Consultant from US</h3>
+        <p class="text-neutral-600 mb-4">Policy consultant with EU institution clients. Earning €8,000/month. 35 years old, speaks French.</p>
+        <p class="text-green-700 font-medium">✓ Approved in 75 days (Brussels region). Client contracts with EU-adjacent organizations strengthened the business plan. Now lives in European Quarter, attending policy events and building network. Planning to stay long-term for PR.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Software Developer from India</h3>
+        <p class="text-neutral-600 mb-4">Full-stack developer earning €4,500/month from US clients. Master's degree in CS. 28 years old.</p>
+        <p class="text-green-700 font-medium">✓ Approved after 95 days (Flanders). Strong business plan emphasizing tech skills shortage in Belgium. Existing client contracts helped. Living in Ghent for lower costs while serving international clients remotely.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Marketing Freelancer from Brazil</h3>
+        <p class="text-neutral-600 mb-4">Digital marketing specialist, €3,200/month income. Some EU clients interested. 31 years old.</p>
+        <p class="text-green-700 font-medium">✓ Approved after 110 days (Wallonia). Initial rejection concern due to weak business plan—rewrote with consultant help. Letter of intent from Belgian company helped show economic benefit. Now building local client base.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Designer with No Belgian Connection</h3>
+        <p class="text-neutral-600 mb-4">Graphic designer, €2,800/month, all clients in home country. No EU ties. 26 years old.</p>
+        <p class="text-amber-700 font-medium">△ Initial rejection—business plan didn't show economic benefit to Belgium. Revised application with plan to acquire EU clients and attend Belgian design conferences. Approved on second attempt after strengthening economic contribution argument.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Freelancer with Low Income</h3>
+        <p class="text-neutral-600 mb-4">Content writer earning €1,800/month—below the €2,131 threshold. 29 years old.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—income below minimum threshold. Advised to either increase client base or consider countries with lower income requirements (Portugal, Romania). Belgium's threshold is strict.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple, Both Freelancers from UK</h3>
+        <p class="text-neutral-600 mb-4">Post-Brexit, seeking EU base. Designer and developer, combined €9,000/month. 30s.</p>
+        <p class="text-green-700 font-medium">✓ Both approved separately with individual Professional Cards. Brussels offers good post-Brexit EU access. High living costs offset by combined income. Both now on path to Belgian PR.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Belgium Freelancers"
+    description="Find the right coverage for your Professional Card application—comprehensive international health insurance options."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Weak Business Plan</h3>
+        <p class="text-neutral-600">The business plan is everything. Generic plans without specific financial projections or economic benefit arguments get rejected. Show exactly how Belgium benefits from your presence—taxes, potential job creation, or filling skills gaps. Get professional help if needed.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Wrong Language</h3>
+        <p class="text-neutral-600">Submit documents in the correct language for your region: Dutch for Flanders, French for Wallonia, either for Brussels. Don't assume English is accepted—it's not. Budget for professional translation of all documents.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Timeline</h3>
+        <p class="text-neutral-600">The full process (Professional Card + visa) takes 3-5 months. Don't book one-way flights or give notice on your apartment before approval. Plan financially for this waiting period.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Ignoring Social Security Obligations</h3>
+        <p class="text-neutral-600">Once approved, you must register with INASTI/RSVZ and pay social contributions (~20.5% of income). This isn't optional. Budget for these contributions from day one—they're in addition to income tax.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Late Commune Registration</h3>
+        <p class="text-neutral-600">You must register at your commune within 8 days of arrival. Missing this deadline creates administrative problems. Find accommodation before arrival and register immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Belgium -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Belgium</h2>
+
+    <p class="mb-4">
+      Belgium has one of the world's best healthcare systems—high quality, accessible, and largely covered by social security once you're in the system. The transition from private insurance to the Belgian system is the main consideration for freelancers.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Structure</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">Belgian System (After Enrollment)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ ~75% of costs reimbursed by mutuelle</li>
+          <li>✓ GP visits: €25-35 (pay, then reimburse)</li>
+          <li>✓ Specialists: €35-60 (partial reimbursement)</li>
+          <li>✓ Medications: Heavily subsidized</li>
+          <li>✓ Hospital care: Mostly covered</li>
+          <li>✓ Excellent quality nationwide</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Before System Enrollment</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Private insurance required</li>
+          <li>△ Full costs upfront</li>
+          <li>△ Claim reimbursement from insurer</li>
+          <li>△ 3-6 months before system access</li>
+          <li>△ Emergency care always available</li>
+          <li>△ Quality same, just payment differs</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How the Belgian System Works</h3>
+
+    <p class="mb-4">
+      Belgium uses a reimbursement model. You pay for healthcare, then your mutuelle reimburses ~75% of the official tariff. Most Belgians also have hospitalization insurance for additional coverage.
+    </p>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>GP visit:</strong> Pay €25-35, reimburse ~€20</li>
+      <li><strong>Specialist:</strong> Pay €40-80, reimburse ~€25-40</li>
+      <li><strong>Medications:</strong> Pay 0-50% depending on category</li>
+      <li><strong>Hospital:</strong> Reimburse most costs, small daily charge remains</li>
+      <li><strong>Dental:</strong> Basic care reimbursed, cosmetic not covered</li>
+    </ul>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Hospitalization insurance:</strong> Most Belgians have additional hospitalization insurance (€10-30/month) through their employer or mutuelle. As a freelancer, consider adding this for single-room hospital stays and reduced out-of-pocket costs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What is the minimum income for Belgium's Professional Card?</h3>
+        <p class="text-neutral-600">
+          The effective minimum is €2,131.28/month—the Belgian "social integration income" threshold. Your business plan should show projected income above this level. Higher income strengthens your application.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Do I need to speak French or Dutch?</h3>
+        <p class="text-neutral-600">
+          Not legally required, but practically helpful. Brussels is multilingual (English widely spoken), but official documents must be in Dutch or French. For Flanders, Dutch helps; for Wallonia, French is essential for daily life.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work with Belgian clients?</h3>
+        <p class="text-neutral-600">
+          Yes—unlike most digital nomad visas, Belgium's Professional Card allows you to work with anyone, including Belgian clients. You're a legitimate self-employed professional with full work rights for your registered activity.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until I can get permanent residency?</h3>
+        <p class="text-neutral-600">
+          Five years of legal residence. Your initial Professional Card is 2 years, renewal is 5 years. After 5 total years with legal residence and integration (language, civic integration), you can apply for permanent residence or citizenship.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why is Belgium so expensive?</h3>
+        <p class="text-neutral-600">
+          High taxes fund comprehensive social benefits—healthcare, pensions, unemployment protection, family allowances. You're paying into a system that provides extensive support. The trade-off is high cost for high security.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Should I choose Flanders, Wallonia, or Brussels?</h3>
+        <p class="text-neutral-600">
+          Flanders has faster processing (60-90 days) and strong economy. Brussels offers international networking and multilingual environment. Wallonia is more affordable but slower processing and French-only. Choose based on your priorities and language abilities.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Belgium's Professional Card isn't a quick digital nomad visa—it's an established system for serious freelancers who want genuine EU integration. The application takes 3-5 months, the bureaucracy is complex, and the costs are high. But you gain something most DNV programs don't offer: a clear path to permanent residency and citizenship.
+    </p>
+
+    <p class="mb-4">
+      Brussels' location at the heart of the EU makes it ideal for consultants, policy professionals, and anyone working with European institutions or multinational clients. The multilingual environment, excellent transport links, and high quality of life justify the premium.
+    </p>
+
+    <p class="mb-6">
+      If you're looking for a cheap, fast visa to work remotely for a year, Belgium isn't it. But if you're building a long-term European life with full social security benefits, Belgian PR/citizenship potential, and access to one of the world's best healthcare systems—Belgium rewards the investment.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Belgium's Professional Card is for freelancers committed to EU integration, not short-term nomads. Budget €120-280/month for private health insurance during the 3-6 month transition period before joining the Belgian mutuelle system. The complexity pays off with genuine long-term benefits.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/netherlands" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Netherlands Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">DAFT treaty and ZZP freelancer permits</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/france" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">France Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Auto-entrepreneur and profession libérale</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Freiberufler visa for liberal professions</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

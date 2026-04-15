@@ -1,0 +1,777 @@
+---
+/**
+ * Sweden Freelancer Visa - Long-form CRO-optimized page
+ * Self-Employment Residence Permit guide with insurance requirements
+ */
+
+import PageShell from '../../../../components/PageShell.astro';
+import CTABox from '../../../../components/CTABox.astro';
+import ComparisonTable from '../../../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: "overview", text: "Overview", level: 2 },
+  { id: "quick-decision", text: "Quick Decision Guide", level: 2 },
+  { id: "requirements", text: "Visa Requirements", level: 2 },
+  { id: "insurance-requirements", text: "Insurance Requirements", level: 2 },
+  { id: "recommended-providers", text: "Recommended Providers", level: 2 },
+  { id: "costs", text: "Costs Breakdown", level: 2 },
+  { id: "application", text: "Application Process", level: 2 },
+  { id: "scenarios", text: "Real-World Scenarios", level: 2 },
+  { id: "mistakes", text: "Common Mistakes", level: 2 },
+  { id: "healthcare", text: "Healthcare in Sweden", level: 2 },
+  { id: "faq", text: "FAQ", level: 2 },
+  { id: "verdict", text: "Final Verdict", level: 2 },
+];
+
+const relatedLinks = [
+  { title: "Best Expat Health Insurance", href: "/best/expat-health-insurance" },
+  { title: "Finland Freelancer Visa", href: "/visas/freelancer-visa/in/finland" },
+  { title: "Denmark Work Permit", href: "/visas/work-permit/in/denmark" },
+  { title: "Germany Freelancer Visa", href: "/visas/freelancer-visa/in/germany" },
+];
+
+const requirementsColumns = [
+  { key: "requirement", header: "Requirement" },
+  { key: "details", header: "Details" },
+  { key: "notes", header: "Notes" },
+];
+
+const requirementsRows = [
+  { requirement: "Business Ownership", details: "51%+ ownership required", notes: "Majority stake in Swedish company" },
+  { requirement: "Financial Resources", details: "SEK 200,000 (~€17,500)", notes: "Must support yourself for 2 years" },
+  { requirement: "Spouse Support", details: "+SEK 100,000 (~€8,750)", notes: "Additional per spouse" },
+  { requirement: "Child Support", details: "+SEK 50,000 (~€4,375)", notes: "Additional per child" },
+  { requirement: "Business Experience", details: "Proven track record", notes: "Industry experience required" },
+  { requirement: "Business Plan", details: "Detailed viability plan", notes: "Show profitability potential" },
+  { requirement: "Health Insurance", details: "Required during application", notes: "Until registered in Swedish system" },
+  { requirement: "Language", details: "Swedish or English", notes: "Proficiency required" },
+];
+
+const insuranceColumns = [
+  { key: "feature", header: "Coverage Feature" },
+  { key: "private", header: "Private International" },
+  { key: "swedish", header: "Swedish Public System" },
+];
+
+const insuranceRows = [
+  { feature: "When Required", private: "Visa application + first months", swedish: "After folkbokföring (registration)" },
+  { feature: "Coverage Scope", private: "Comprehensive", swedish: "Universal, heavily subsidized" },
+  { feature: "Pre-existing Conditions", private: "Varies by plan", swedish: "Fully covered" },
+  { feature: "Out-of-Pocket Maximum", private: "Per plan limits", swedish: "SEK 1,300/year (~€115)" },
+  { feature: "Monthly Cost", private: "€120-300", swedish: "Tax-funded" },
+  { feature: "GP Visit", private: "Covered after deductible", swedish: "SEK 100-300 (~€9-26)" },
+];
+
+const providerColumns = [
+  { key: "provider", header: "Provider" },
+  { key: "type", header: "Type" },
+  { key: "price", header: "Monthly Cost" },
+  { key: "strengths", header: "Best For" },
+];
+
+const providerRows = [
+  { provider: "Cigna Global", type: "International", price: "€140-300", strengths: "Transition coverage, global network" },
+  { provider: "Allianz Care", type: "International", price: "€130-280", strengths: "Strong Nordic coverage" },
+  { provider: "Europeiska ERV", type: "Swedish Expat", price: "€100-200", strengths: "Local Swedish insurer" },
+  { provider: "SafetyWing", type: "Nomad Insurance", price: "€65-120", strengths: "Budget-friendly initial coverage" },
+  { provider: "Swedish Public", type: "Försäkringskassan", price: "Tax-funded", strengths: "After registration, universal" },
+];
+
+const costColumns = [
+  { key: "item", header: "Cost Item" },
+  { key: "amount", header: "Amount" },
+  { key: "notes", header: "Notes" },
+];
+
+const costRows = [
+  { item: "Residence Permit Fee", amount: "SEK 2,000 (~€175)", notes: "Application fee" },
+  { item: "Financial Requirement", amount: "SEK 200,000 (~€17,500)", notes: "Savings for 2 years" },
+  { item: "Health Insurance (Initial)", amount: "€120-300/month", notes: "Until system registration" },
+  { item: "Rent (Stockholm)", amount: "SEK 12,000-18,000/month", notes: "€1,050-1,575/month, 1BR" },
+  { item: "Rent (Other Cities)", amount: "SEK 8,000-12,000/month", notes: "€700-1,050/month" },
+  { item: "Living Expenses", amount: "SEK 8,000-12,000/month", notes: "€700-1,050, food/transport" },
+  { item: "Total Monthly (Single)", amount: "€2,000-3,000", notes: "Stockholm lifestyle" },
+];
+
+const timelineColumns = [
+  { key: "step", header: "Step" },
+  { key: "duration", header: "Timeline" },
+  { key: "location", header: "Where" },
+];
+
+const timelineRows = [
+  { step: "Establish Swedish company", duration: "2-4 weeks", location: "Bolagsverket (online possible)" },
+  { step: "Prepare business plan & documents", duration: "2-4 weeks", location: "Home country" },
+  { step: "Submit residence permit application", duration: "1 day", location: "Swedish embassy or online" },
+  { step: "Processing time", duration: "12-20 months", location: "Migrationsverket" },
+  { step: "Receive residence permit", duration: "After approval", location: "Embassy or Sweden" },
+  { step: "Register at Skatteverket", duration: "Within weeks of arrival", location: "Swedish Tax Agency" },
+  { step: "Obtain personnummer", duration: "After registration", location: "Skatteverket" },
+];
+---
+
+<PageShell
+  title="Sweden Freelancer Visa 2026: Self-Employment Permit Requirements, Insurance & Guide"
+  description="Complete guide to Sweden's Self-Employment Residence Permit for freelancers. SEK 200,000 financial requirement, 51% ownership, 12-20 month processing, path to permanent residency and citizenship."
+  headline="Sweden Freelancer Visa: Self-Employment Permit Insurance & Requirements Guide"
+  subheadline="Everything you need to know about freelancing in Sweden—self-employment residence permit, significant financial requirements, long processing times, world-class social benefits, and path to citizenship."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Compare Freelancer Insurance"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/visas/digital-nomad-visa-hero-bg.png"
+>
+
+  <!-- Trust Signals -->
+  <div class="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Updated April 2026
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      World-Class Social System
+    </span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      Path to Citizenship
+    </span>
+  </div>
+
+  <!-- Section: Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Sweden doesn't have a digital nomad visa—non-EU freelancers must apply for a Self-Employment Residence Permit through the Swedish Migration Agency (Migrationsverket). This is a serious business immigration route, not a lightweight nomad program. You need majority ownership of a Swedish company, substantial financial resources, and proven business experience.
+    </p>
+
+    <p class="mb-4">
+      The trade-off for Sweden's demanding requirements is access to one of the world's best social systems. Once registered, you get universal healthcare, generous parental leave, excellent infrastructure, and a path to permanent residency (4 years) and citizenship (5 years). Sweden rewards those who commit fully.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Key Facts: Sweden Self-Employment Permit</h3>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Visa type:</strong> Self-Employment Residence Permit</li>
+        <li>• <strong>Business ownership:</strong> 51%+ of Swedish company required</li>
+        <li>• <strong>Financial requirement:</strong> SEK 200,000 (~€17,500) for 2 years</li>
+        <li>• <strong>Health insurance:</strong> Required initially, then Swedish public system</li>
+        <li>• <strong>Duration:</strong> 2 years initial, renewable</li>
+        <li>• <strong>Processing time:</strong> 12-20 months (very long)</li>
+        <li>• <strong>Path to PR:</strong> Yes—after 4 years continuous residence</li>
+        <li>• <strong>Path to citizenship:</strong> Yes—after 5 years</li>
+        <li>• <strong>Schengen access:</strong> Yes—travel freely in Schengen Zone</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Who Is This For?</h3>
+
+    <p class="mb-4">
+      Sweden's self-employment permit is designed for serious entrepreneurs who want to build a business in Sweden, not remote workers serving foreign clients. You need to demonstrate that your business will operate in Sweden and contribute to the Swedish economy.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Not a digital nomad visa:</strong> If you want to work remotely for foreign clients without establishing a Swedish business, Sweden is not the right choice. Consider Estonia's e-Residency, Portugal's DNV, or Germany's freelancer visa instead. Sweden requires genuine Swedish business establishment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Quick Decision Guide -->
+  <section id="quick-decision" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Decision Guide</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-3">Sweden is Right For You If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ You want to build a business IN Sweden</li>
+          <li>✓ You have SEK 200,000+ in savings</li>
+          <li>✓ You have proven business experience</li>
+          <li>✓ You can wait 12-20 months for processing</li>
+          <li>✓ You value world-class social benefits</li>
+          <li>✓ You want a path to EU citizenship</li>
+          <li>✓ You appreciate Scandinavian quality of life</li>
+          <li>✓ You're ready for high taxes, high services</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+        <h3 class="font-semibold text-amber-900 mb-3">Consider Other Options If:</h3>
+        <ul class="space-y-2 text-amber-800">
+          <li>• You want quick processing (12-20 months is long)</li>
+          <li>• You primarily serve foreign clients remotely</li>
+          <li>• You lack business experience</li>
+          <li>• You don't have substantial savings</li>
+          <li>• High cost of living is a concern</li>
+          <li>• You prefer warm climate</li>
+          <li>• You want to start immediately</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>The Swedish trade-off:</strong> Long processing, strict requirements, high costs—but once established, you access one of the world's most comprehensive welfare states. Universal healthcare, 480 days parental leave, excellent schools, safe cities. Sweden rewards commitment with security.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Visa Requirements -->
+  <section id="requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Visa Requirements</h2>
+
+    <p class="mb-4">
+      Sweden evaluates self-employment applications strictly. You need to establish a Swedish company (typically an AB—aktiebolag), own at least 51%, demonstrate business viability, and prove you can support yourself financially for two years without Swedish income.
+    </p>
+
+    <ComparisonTable columns={requirementsColumns} rows={requirementsRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Business Requirements</h3>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">What Migrationsverket Evaluates:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Business ownership:</strong> You must own at least 51% of a Swedish company</li>
+        <li>• <strong>Industry experience:</strong> Proven track record in your business field</li>
+        <li>• <strong>Previous entrepreneurship:</strong> Prior experience running your own business</li>
+        <li>• <strong>Business plan:</strong> Detailed plan showing Swedish market viability</li>
+        <li>• <strong>Financial sustainability:</strong> Business must be able to support you</li>
+        <li>• <strong>Swedish relevance:</strong> Business must operate in/for Sweden</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Financial Requirements</h3>
+
+    <p class="mb-4">
+      You must prove you can support yourself and family for 2 years without relying on Swedish public funds. This requires substantial savings in a bank account:
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Main Applicant</p>
+        <p class="text-2xl font-bold text-neutral-900">SEK 200,000</p>
+        <p class="text-sm text-neutral-500 mt-2">~€17,500</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Per Spouse</p>
+        <p class="text-2xl font-bold text-neutral-900">+SEK 100,000</p>
+        <p class="text-sm text-neutral-500 mt-2">~€8,750</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Per Child</p>
+        <p class="text-2xl font-bold text-neutral-900">+SEK 50,000</p>
+        <p class="text-sm text-neutral-500 mt-2">~€4,375</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Required Documents</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Business Documentation</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Swedish company registration (Bolagsverket)</li>
+          <li>• Proof of 51%+ ownership</li>
+          <li>• Detailed business plan in Swedish/English</li>
+          <li>• CV showing relevant experience</li>
+          <li>• Previous business ownership proof</li>
+          <li>• Industry qualifications/certifications</li>
+          <li>• Market analysis for Sweden</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h4 class="font-semibold text-neutral-900 mb-3">Personal Documentation</h4>
+        <ul class="space-y-2 text-neutral-700">
+          <li>• Valid passport (no stamps/stickers post-Oct 2025)</li>
+          <li>• Bank statements showing required funds</li>
+          <li>• Health insurance certificate</li>
+          <li>• Passport photos</li>
+          <li>• Police clearance (if requested)</li>
+          <li>• Family documents (if applicable)</li>
+          <li>• Residence permit application fee</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>New passport requirement (Oct 2025):</strong> Your passport cannot have been extended with stamps or stickers. If your passport was extended after October 1, 2025, you need a new passport before applying.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Insurance Requirements -->
+  <section id="insurance-requirements" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Insurance Requirements</h2>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+      <h3 class="font-semibold text-green-900 mb-2">Two-Phase Approach</h3>
+      <p class="text-green-800">
+        Health insurance is required for your visa application. Once you arrive and register with Skatteverket (Tax Agency), you get a personnummer and access to Sweden's public healthcare system. Plan for 3-6 months of private coverage during the transition.
+      </p>
+    </div>
+
+    <p class="mb-4">
+      Sweden has universal healthcare funded through taxes. Once registered in the population register (folkbokföring), you access the same healthcare as Swedish citizens. Until then, you need private international insurance.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Private vs. Swedish Public System</h3>
+
+    <ComparisonTable columns={insuranceColumns} rows={insuranceRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Swedish Healthcare System (Once Registered)</h3>
+
+    <p class="mb-4">
+      Sweden's healthcare is excellent and heavily subsidized. After registration, you pay minimal fees:
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Swedish Healthcare Costs:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>GP visit:</strong> SEK 100-300 (~€9-26)</li>
+        <li>• <strong>Specialist:</strong> SEK 200-400 (~€18-35)</li>
+        <li>• <strong>Annual cap:</strong> SEK 1,300 (~€115) for outpatient care</li>
+        <li>• <strong>Hospital:</strong> SEK 120/day (~€10) max</li>
+        <li>• <strong>Prescriptions:</strong> Capped at SEK 2,600/year (~€230)</li>
+        <li>• <strong>Emergency:</strong> Covered</li>
+      </ul>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Personnummer is key:</strong> Your Swedish personal identity number (personnummer) unlocks access to the healthcare system. Apply for folkbokföring registration at Skatteverket immediately upon arrival with your residence permit.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    variant="highlight"
+    title="Need insurance for your Sweden self-employment permit?"
+    description="Compare international health insurance plans for the visa application and transition period."
+    buttonText="Compare Freelancer Insurance"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Section: Recommended Providers -->
+  <section id="recommended-providers" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Recommended Insurance Providers</h2>
+
+    <p class="mb-4">
+      You need international health insurance for the visa application and transition period (3-6 months until you get personnummer and register with the Swedish system).
+    </p>
+
+    <ComparisonTable columns={providerColumns} rows={providerRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Provider Recommendations</h3>
+
+    <div class="space-y-4">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Visa Application Phase</h4>
+        <p class="text-neutral-600">Cigna Global or Allianz Care provide comprehensive coverage accepted for visa applications. Budget €130-300/month for the application and first 3-6 months.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Swedish Insurer Option</h4>
+        <p class="text-neutral-600">Europeiska ERV is a Swedish insurer offering expat coverage. Good for local coordination and understanding of Swedish healthcare norms.</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">Budget Option</h4>
+        <p class="text-neutral-600">SafetyWing offers nomad coverage at €65-120/month. Ensure it meets Swedish visa requirements for minimum coverage.</p>
+      </div>
+
+      <div class="border-l-4 border-amber-500 pl-4">
+        <h4 class="font-semibold text-neutral-900">After Registration</h4>
+        <p class="text-neutral-600">Once you have your personnummer, you're covered by the Swedish system (Försäkringskassan). Private insurance becomes optional—some expats keep supplementary coverage for dental, private rooms, or English-speaking doctors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Costs Breakdown -->
+  <section id="costs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Costs Breakdown</h2>
+
+    <p class="mb-4">
+      Sweden is one of the world's most expensive countries. High costs are offset by high quality of life, excellent public services, and comprehensive social benefits. Budget realistically.
+    </p>
+
+    <ComparisonTable columns={costColumns} rows={costRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Tax System</h3>
+
+    <p class="mb-4">
+      Swedish taxes are high but fund extensive benefits. As a self-employed person, you'll pay:
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6">
+      <h4 class="font-semibold text-primary-900 mb-3">Swedish Taxes for Self-Employed:</h4>
+      <ul class="space-y-2 text-primary-800">
+        <li>• <strong>Income tax:</strong> ~30-35% municipal + state tax on higher incomes</li>
+        <li>• <strong>Social contributions:</strong> ~28% (egenavgifter) on profits</li>
+        <li>• <strong>VAT:</strong> 25% on most goods/services</li>
+        <li>• <strong>Corporate tax:</strong> 20.6% if using AB structure</li>
+        <li>• <strong>Effective rate:</strong> 50-60% total tax burden typical</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">What You Get for High Taxes</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Healthcare:</strong> Universal, capped costs</li>
+      <li><strong>Parental leave:</strong> 480 days per child</li>
+      <li><strong>Education:</strong> Free through university</li>
+      <li><strong>Unemployment:</strong> Generous benefits if qualified</li>
+      <li><strong>Pension:</strong> State pension system</li>
+      <li><strong>Infrastructure:</strong> Excellent public transport, roads</li>
+      <li><strong>Safety:</strong> Very low crime, stable society</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Cost by City</h3>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Stockholm</p>
+        <p class="text-2xl font-bold text-neutral-900">€2,500-3,500</p>
+        <p class="text-sm text-neutral-500 mt-2">Most expensive</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Gothenburg/Malmö</p>
+        <p class="text-2xl font-bold text-neutral-900">€2,000-2,800</p>
+        <p class="text-sm text-neutral-500 mt-2">Major cities</p>
+      </div>
+      <div class="bg-neutral-50 rounded-lg p-6 text-center">
+        <p class="text-sm text-neutral-600 mb-2">Smaller Cities</p>
+        <p class="text-2xl font-bold text-neutral-900">€1,600-2,200</p>
+        <p class="text-sm text-neutral-500 mt-2">Uppsala, Linköping</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <p class="text-amber-800">
+        <strong>Housing challenge:</strong> Finding rental apartments in Stockholm is notoriously difficult. The official queue (Bostadsförmedlingen) takes years. Most newcomers use second-hand rentals (andrahandskontrakt) or buy. Budget time and higher costs for housing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Application Process -->
+  <section id="application" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Application Process</h2>
+
+    <p class="mb-4">
+      Sweden's self-employment permit has one of the longest processing times in Europe—12 to 20 months. Plan your timeline accordingly and don't make irreversible decisions until approved.
+    </p>
+
+    <ComparisonTable columns={timelineColumns} rows={timelineRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Step-by-Step Guide</h3>
+
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Establish Swedish Company</h4>
+          <p class="text-neutral-600">Register an aktiebolag (AB) with Bolagsverket. This requires SEK 25,000 share capital. You must own 51%+ of shares. Can be done remotely before applying for the permit.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Prepare Business Plan</h4>
+          <p class="text-neutral-600">Write a detailed business plan demonstrating Swedish market viability, your relevant experience, and financial projections. This is critically important—weak business plans get rejected.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Gather Documents</h4>
+          <p class="text-neutral-600">Collect bank statements (showing SEK 200,000+), company registration, CV, industry experience proof, health insurance, and passport. Translate non-English documents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Submit Application</h4>
+          <p class="text-neutral-600">Apply online through Migrationsverket or at a Swedish embassy. Pay the SEK 2,000 fee. You may need to provide biometrics at an embassy.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Wait for Processing</h4>
+          <p class="text-neutral-600">Processing takes 12-20 months. You can check status online. Migrationsverket may request additional information. Don't quit your job or book one-way flights during this period.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">6</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Receive Permit & Move</h4>
+          <p class="text-neutral-600">Once approved, collect your residence permit card. Move to Sweden. The initial permit is valid for 2 years with renewal options.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">7</div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Register in Sweden</h4>
+          <p class="text-neutral-600">Register with Skatteverket for folkbokföring (population registration). Get your personnummer. This unlocks healthcare, banking, phone contracts, and full participation in Swedish society.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mt-6">
+      <p class="text-red-800">
+        <strong>Critical timeline warning:</strong> 12-20 months processing means you cannot plan to start work in Sweden soon. If you need to relocate quickly, Sweden is not the right option. Consider Germany (3-6 months) or Portugal (2-4 months) instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: Real-World Scenarios -->
+  <section id="scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how different situations typically play out for freelancers applying for Sweden's Self-Employment Permit:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Tech Entrepreneur from US</h3>
+        <p class="text-neutral-600 mb-4">Former startup founder, 5 years business experience. Wants to launch SaaS company serving Nordic market. SEK 350,000 savings.</p>
+        <p class="text-green-700 font-medium">✓ Approved after 14 months. Strong business plan targeting Swedish enterprise clients impressed reviewers. Now running AB in Stockholm, building local team. Planning PR application after 4 years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Remote Developer from India</h3>
+        <p class="text-neutral-600 mb-4">Freelance developer, 4 years experience. Works for US clients remotely. Wants to live in Sweden. SEK 200,000 savings.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—business plan showed remote work for foreign clients, not Swedish business activity. Migrationsverket requires genuine Swedish business operations. Advised to consider Portugal DNV or Estonia e-Residency instead.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Management Consultant from UK</h3>
+        <p class="text-neutral-600 mb-4">Post-Brexit, seeking EU base. 10 years consulting experience, some Nordic clients already. Strong business case. SEK 400,000 available.</p>
+        <p class="text-green-700 font-medium">✓ Approved after 16 months. Existing Nordic client relationships and clear Swedish market focus helped. Now based in Gothenburg, serving Scandinavian clients. Family joined with dependent permits.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Graphic Designer, First Business</h3>
+        <p class="text-neutral-600 mb-4">Employed designer, never run own business. Wants to start freelance career in Sweden. SEK 200,000 savings but no business track record.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—no prior entrepreneurial experience. Sweden requires proven business ownership history. Advised to build business experience elsewhere first, or consider employee routes (work permit) instead.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Restaurant Owner from Lebanon</h3>
+        <p class="text-neutral-600 mb-4">15 years running restaurants in Middle East. Wants to open Middle Eastern restaurant in Malmö. Strong financials, business experience.</p>
+        <p class="text-green-700 font-medium">✓ Approved after 18 months. Detailed business plan with market analysis for Malmö food scene. Prior restaurant ownership was decisive. Restaurant opened successfully, now employing Swedish staff.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Insufficient Funds Applicant</h3>
+        <p class="text-neutral-600 mb-4">Experienced business owner, great track record. Only SEK 120,000 savings available. Business plan is solid.</p>
+        <p class="text-red-700 font-medium">✗ Rejected—below SEK 200,000 minimum. Financial requirements are strictly enforced. Must save additional funds and reapply. No exceptions for strong business plans with insufficient capital.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Box -->
+  <CTABox
+    title="Compare Insurance for Sweden Self-Employment"
+    description="Find coverage for your visa application and transition period before joining Sweden's public system."
+    buttonText="Get Insurance Quotes"
+    buttonHref="/go/allianz-care"
+  />
+
+  <!-- Section: Common Mistakes -->
+  <section id="mistakes" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Common Mistakes to Avoid</h2>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Applying Without Business Experience</h3>
+        <p class="text-neutral-600">Sweden requires proven entrepreneurial track record. First-time business owners without prior self-employment are routinely rejected. You need documented history of running your own business.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Remote Work for Foreign Clients Only</h3>
+        <p class="text-neutral-600">Sweden's permit is for business IN Sweden, not remote work FROM Sweden. If your business plan shows only foreign clients with no Swedish market activity, expect rejection. This isn't a digital nomad visa.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Underestimating Processing Time</h3>
+        <p class="text-neutral-600">12-20 months is real. Don't quit your job, sell your house, or make irreversible plans until you have the approved permit. Many applicants underestimate this and face serious life disruption.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Insufficient Financial Proof</h3>
+        <p class="text-neutral-600">SEK 200,000+ must be demonstrated in bank statements. Loans, credit lines, or projected income don't count. You need liquid savings available now.</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Weak Business Plan</h3>
+        <p class="text-neutral-600">Generic business plans fail. Show specific Swedish market analysis, realistic financial projections, and clear explanation of why Sweden (not just "I want to live there"). Migrationsverket evaluates economic contribution seriously.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Healthcare in Sweden -->
+  <section id="healthcare" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Healthcare in Sweden</h2>
+
+    <p class="mb-4">
+      Sweden has universal healthcare funded through taxes. Once you have a personnummer and are registered in the population register (folkbokföring), you access the same system as Swedish citizens with minimal costs.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Healthcare Access</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-6">
+        <h4 class="font-semibold text-green-900 mb-3">After Registration (personnummer)</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ GP visit: SEK 100-300 (~€9-26)</li>
+          <li>✓ Annual cap: SEK 1,300 (~€115)</li>
+          <li>✓ Specialist: SEK 200-400 (~€18-35)</li>
+          <li>✓ Hospital: SEK 120/day max</li>
+          <li>✓ Prescriptions: Capped SEK 2,600/year</li>
+          <li>✓ Excellent quality nationwide</li>
+        </ul>
+      </div>
+
+      <div class="border border-amber-200 bg-amber-50 rounded-lg p-6">
+        <h4 class="font-semibold text-amber-900 mb-3">Before Registration</h4>
+        <ul class="space-y-2 text-amber-800">
+          <li>△ Private insurance required</li>
+          <li>△ Full costs upfront</li>
+          <li>△ Emergency care always available</li>
+          <li>△ 3-6 months until registration</li>
+          <li>△ Budget €120-300/month insurance</li>
+          <li>△ Same quality, different payment</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">How Swedish Healthcare Works</h3>
+
+    <p class="mb-4">
+      Healthcare is managed by regions (regioner). You choose a vårdcentral (health center) as your primary care provider. Referrals needed for specialists. Wait times can be longer than private systems but care quality is high.
+    </p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800">
+        <strong>Private option:</strong> Some expats supplement with private insurance (€50-150/month) for faster access, English-speaking doctors, or private rooms. Companies like Skandia and Trygg-Hansa offer supplementary plans.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why is processing 12-20 months?</h3>
+        <p class="text-neutral-600">
+          Migrationsverket has significant backlogs and thoroughly evaluates business viability. They assess whether your business genuinely contributes to the Swedish economy. There's no way to expedite this—plan accordingly.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I work remotely for foreign clients?</h3>
+        <p class="text-neutral-600">
+          The self-employment permit requires a Swedish business serving the Swedish market. Pure remote work for foreign clients doesn't qualify. Your business must have genuine Swedish economic activity. Consider Portugal or Estonia if you only want to serve foreign clients.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What type of company should I establish?</h3>
+        <p class="text-neutral-600">
+          Most applicants use an aktiebolag (AB)—Swedish limited company. Requires SEK 25,000 share capital. You need 51%+ ownership. Enskild firma (sole proprietorship) is possible but AB is more common for immigration purposes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can my family join me?</h3>
+        <p class="text-neutral-600">
+          Yes—spouse and children can apply for family residence permits. You need additional financial resources (SEK 100,000 per spouse, SEK 50,000 per child). Spouses get work rights in Sweden.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How long until permanent residency?</h3>
+        <p class="text-neutral-600">
+          4 years of continuous residence with self-employment permit. You must maintain your business and meet the original requirements throughout. After 5 years total residence, you can apply for Swedish citizenship.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Sweden worth the wait and cost?</h3>
+        <p class="text-neutral-600">
+          For the right person, yes. Sweden offers unmatched quality of life, world-class social benefits, safety, and a path to EU citizenship. But the 12-20 month wait, high costs, and strict requirements mean it's not for everyone. Be honest about whether you're truly committed to building a business in Sweden.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Sweden's Self-Employment Permit is not a digital nomad visa—it's a serious business immigration route for entrepreneurs committed to building in Sweden. The 12-20 month processing time, SEK 200,000+ financial requirement, and strict business experience criteria filter for genuinely committed applicants.
+    </p>
+
+    <p class="mb-4">
+      What you get in return is access to one of the world's best societies: universal healthcare, generous parental leave, excellent education, safe cities, and a path to EU citizenship. Sweden doesn't do shortcuts—but it rewards those who commit fully.
+    </p>
+
+    <p class="mb-6">
+      If you're looking for a quick, cheap way to work remotely in Europe, look elsewhere. But if you're ready to invest years building a genuine Swedish business and integrating into Swedish society, the payoff is substantial.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Sweden's self-employment permit is for serious entrepreneurs, not nomads. Budget €130-300/month for health insurance during the 3-6 month transition before joining Sweden's excellent public system. The long processing time and strict requirements mean this is a multi-year commitment—make sure Sweden is truly where you want to build your future.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Compare International Insurance →
+        </a>
+        <a href="/go/safetywing" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          View Budget Options →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Related Guides</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/visas/freelancer-visa/in/finland" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Finland Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Startup visa with Business Finland pathway</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/germany" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Germany Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Freiberufler visa, faster processing</p>
+      </a>
+      <a href="/visas/freelancer-visa/in/estonia" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Estonia Freelancer Visa</h3>
+        <p class="text-neutral-600 text-sm">Digital nomad visa + e-Residency</p>
+      </a>
+      <a href="/best/expat-health-insurance" class="block p-4 border border-neutral-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors">
+        <h3 class="font-semibold text-neutral-900">Best Expat Health Insurance</h3>
+        <p class="text-neutral-600 text-sm">Top-rated international health insurance plans compared</p>
+      </a>
+    </div>
+  </section>
+
+</PageShell>

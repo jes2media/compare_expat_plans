@@ -78,7 +78,10 @@ export const visaCountryAvailability: Record<string, string[]> = {
   ],
   'freelancer-visa': [
     'germany', 'netherlands', 'czech-republic', 'spain', 'portugal',
-    'france', 'austria', 'uae', 'estonia'
+    'france', 'austria', 'uae', 'estonia', 'italy', 'croatia', 'malta',
+    'greece', 'romania', 'bulgaria', 'cyprus', 'hungary', 'slovenia',
+    'poland', 'latvia', 'lithuania', 'belgium', 'sweden', 'finland',
+    'denmark', 'ireland'
   ],
   'investor-visa': [
     'spain', 'portugal', 'uk', 'ireland', 'germany', 'france', 'netherlands',
