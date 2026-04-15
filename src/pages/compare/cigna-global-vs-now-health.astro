@@ -1,0 +1,703 @@
+---
+/**
+ * Cigna Global vs Now Health International - Provider Comparison
+ * High-conversion CRO-optimized comparison for Asia/Middle East expats
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Direct Billing', level: 2 },
+  { id: 'regional-strengths', text: 'Regional Strengths', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'real-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Cigna Global Review', href: '/providers/cigna-global' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'UAE Insurance Guide', href: '/countries/uae/insurance' },
+  { title: 'Thailand Insurance Guide', href: '/countries/thailand/insurance' },
+  { title: 'Singapore Insurance Guide', href: '/countries/singapore/insurance' },
+];
+
+const coverageColumns = [
+  { key: 'feature', header: 'Coverage Feature' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const coverageRows = [
+  { feature: 'Inpatient Hospital', cigna: 'Unlimited (Platinum)', nowhealth: 'Up to $2.6M' },
+  { feature: 'Outpatient Care', cigna: 'Full coverage', nowhealth: 'Full coverage' },
+  { feature: 'Mental Health', cigna: 'Included (limits apply)', nowhealth: 'Included (enhanced)' },
+  { feature: 'Maternity', cigna: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Dental', cigna: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Vision', cigna: 'Optional add-on', nowhealth: 'Included in some plans' },
+  { feature: 'Wellness/Preventive', cigna: 'Included', nowhealth: 'Included' },
+  { feature: 'Medical Evacuation', cigna: 'Unlimited', nowhealth: 'Up to $1M' },
+  { feature: 'Alternative Medicine', cigna: 'Limited', nowhealth: 'Traditional Chinese Medicine included' },
+  { feature: 'Chronic Conditions', cigna: 'Covered after waiting period', nowhealth: 'Covered after waiting period' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30 (Asia excl. US)', cigna: '$150-200/mo', nowhealth: '$120-170/mo' },
+  { profile: 'Single, Age 40 (Asia excl. US)', cigna: '$220-300/mo', nowhealth: '$180-250/mo' },
+  { profile: 'Single, Age 50 (Asia excl. US)', cigna: '$350-450/mo', nowhealth: '$280-380/mo' },
+  { profile: 'Couple, Age 35 (Asia excl. US)', cigna: '$300-400/mo', nowhealth: '$250-350/mo' },
+  { profile: 'Family of 4 (Asia excl. US)', cigna: '$500-700/mo', nowhealth: '$420-600/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const networkRows = [
+  { region: 'Global Network Size', cigna: '1.5M+ providers', nowhealth: '900K+ providers' },
+  { region: 'Hong Kong', cigna: 'Strong', nowhealth: 'Excellent (HQ)' },
+  { region: 'Singapore', cigna: 'Excellent', nowhealth: 'Excellent' },
+  { region: 'UAE/Dubai', cigna: 'Strong', nowhealth: 'Excellent' },
+  { region: 'Thailand', cigna: 'Good', nowhealth: 'Strong' },
+  { region: 'China (Mainland)', cigna: 'Good', nowhealth: 'Excellent' },
+  { region: 'Europe', cigna: 'Excellent', nowhealth: 'Good' },
+  { region: 'USA', cigna: 'Excellent (add-on)', nowhealth: 'Limited (add-on)' },
+  { region: 'Direct Billing', cigna: 'Extensive', nowhealth: 'Strong in Asia' },
+];
+
+const plansColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const plansRows = [
+  { tier: 'Entry Level', cigna: 'Silver', nowhealth: 'WorldCare Lite' },
+  { tier: 'Mid-Range', cigna: 'Gold', nowhealth: 'WorldCare Classic' },
+  { tier: 'Comprehensive', cigna: 'Platinum', nowhealth: 'WorldCare Prestige' },
+  { tier: 'Deductible Range', cigna: '$0 - $10,000', nowhealth: '$0 - $5,000' },
+  { tier: 'Annual Maximum', cigna: 'Unlimited (Platinum)', nowhealth: '$2.6M (Prestige)' },
+  { tier: 'Lifetime Maximum', cigna: 'Unlimited', nowhealth: 'Unlimited' },
+];
+---
+
+<PageShell
+  title="Cigna Global vs Now Health 2026: Complete Comparison for Asia & Middle East Expats"
+  description="In-depth comparison of Cigna Global and Now Health International for expats in Asia and Middle East. Coverage, pricing, networks, claims experience, and which is best for your situation."
+  headline="Cigna Global vs Now Health: Which Is Better for You?"
+  subheadline="Two leading international health insurers compared. Cigna's global network meets Now Health's Asia-Pacific expertise. Everything you need to decide."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref="/go/cigna-global"
+  heroBackgroundImage="/images/pages/provider-card-generic.png"
+>
+
+  <!-- Quick Verdict Box -->
+  <section id="quick-verdict" class="scroll-mt-24 mb-12">
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-xl p-6">
+      <h2 class="text-2xl font-bold text-primary-900 mb-4">Quick Verdict</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Cigna Global If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need US coverage (even occasionally)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You move between regions frequently</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want the largest global network</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You prefer unlimited coverage maximums</span>
+            </li>
+          </ul>
+          <a href="/go/cigna-global" class="mt-4 inline-block bg-primary-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get Cigna Quote →
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Now Health If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Asia or Middle East long-term</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want 15-20% lower premiums</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value Traditional Chinese Medicine coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You don't need US coverage</span>
+            </li>
+          </ul>
+          <a href="/go/now-health" class="mt-4 inline-block bg-white text-primary-700 font-semibold px-5 py-2 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+            Get Now Health Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Cigna Global and Now Health International represent two different philosophies in international health insurance. Cigna, backed by the American healthcare giant, emphasizes global reach and network size. Now Health, headquartered in Hong Kong, focuses on deep expertise in the Asia-Pacific and Middle East markets where most of their members live.
+    </p>
+
+    <p class="mb-4">
+      For expats based in Asia or the Middle East, this comparison matters. Cigna offers unmatched global flexibility—useful if you travel frequently or might relocate to Europe or the Americas. Now Health offers competitive pricing and local expertise that translates to smoother claims and better hospital relationships in the region.
+    </p>
+
+    <p class="mb-6">
+      Both are legitimate, financially stable insurers with decades of experience. The right choice depends on your location, travel patterns, budget, and whether you need US coverage.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Cigna Global at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Cigna Corporation (US)</li>
+          <li><strong>Founded:</strong> 1792 (Cigna); Global division 1990s</li>
+          <li><strong>Network:</strong> 1.5M+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Bloomfield, CT, USA</li>
+          <li><strong>Best For:</strong> Global mobility, US coverage needs</li>
+          <li><strong>Pricing:</strong> Premium tier</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Now Health at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Now Health International</li>
+          <li><strong>Founded:</strong> 2012 (by Cigna/Aetna veterans)</li>
+          <li><strong>Network:</strong> 900K+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Hong Kong</li>
+          <li><strong>Best For:</strong> Asia/Middle East expats, value seekers</li>
+          <li><strong>Pricing:</strong> 15-20% below Cigna typically</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Comparison -->
+  <section id="coverage-comparison" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison</h2>
+
+    <p class="mb-4">
+      Both insurers offer comprehensive coverage for inpatient and outpatient care. The differences emerge in specific benefits, coverage limits, and add-on options.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Plan Tiers Compared</h3>
+
+    <ComparisonTable columns={plansColumns} rows={plansRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Key difference:</strong> Cigna Platinum offers unlimited annual maximums. Now Health caps at $2.6M annually (WorldCare Prestige). For most people, $2.6M is more than sufficient, but if unlimited coverage matters to you, Cigna is the only choice.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Coverage Highlights</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-5">
+        <h4 class="font-semibold text-green-900 mb-3">Cigna Global Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Unlimited annual/lifetime maximums (Platinum)</li>
+          <li>✓ Unlimited medical evacuation</li>
+          <li>✓ Stronger US coverage options</li>
+          <li>✓ Larger global network (1.5M+)</li>
+          <li>✓ Industry-leading mobile app</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-5">
+        <h4 class="font-semibold text-blue-900 mb-3">Now Health Strengths</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Traditional Chinese Medicine coverage</li>
+          <li>✓ Enhanced mental health benefits</li>
+          <li>✓ Vision included in some plans</li>
+          <li>✓ Stronger Asia hospital relationships</li>
+          <li>✓ More competitive pricing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- First CTA -->
+  <CTABox
+    variant="highlight"
+    title="Ready to compare quotes?"
+    description="Get personalized pricing from both Cigna Global and Now Health based on your specific situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Pricing -->
+  <section id="pricing" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing Breakdown</h2>
+
+    <p class="mb-4">
+      Now Health typically prices 15-20% below Cigna for comparable coverage in Asia and Middle East. The gap narrows for more comprehensive plans and older applicants. Here are representative monthly premiums for Asia (excluding US coverage):
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Pricing note:</strong> These are indicative ranges for comprehensive plans excluding US coverage. Actual premiums vary by exact plan, deductible, age, and health history. Adding US coverage increases Cigna premiums by 40-60%; Now Health's US add-on is more limited.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Drives the Price Difference?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Network size:</strong> Cigna's larger global network costs more to maintain</li>
+      <li><strong>US coverage:</strong> Cigna has stronger US infrastructure, priced accordingly</li>
+      <li><strong>Brand premium:</strong> Cigna's name recognition commands higher prices</li>
+      <li><strong>Regional focus:</strong> Now Health's Asia focus allows operational efficiency</li>
+      <li><strong>Coverage maximums:</strong> Unlimited maximums cost more to underwrite</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Deductible Impact</h3>
+
+    <p class="mb-4">
+      Both insurers offer significant discounts for higher deductibles. A $2,500 annual deductible typically reduces premiums by 20-30% compared to $0 deductible plans.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Cigna Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$250 — ~10% discount</li>
+          <li>$1,000 — ~20% discount</li>
+          <li>$5,000 — ~35% discount</li>
+          <li>$10,000 — ~45% discount</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~15% discount</li>
+          <li>$1,500 — ~25% discount</li>
+          <li>$3,000 — ~35% discount</li>
+          <li>$5,000 — ~40% discount</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Network & Direct Billing -->
+  <section id="network-access" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network & Direct Billing</h2>
+
+    <p class="mb-4">
+      Network quality determines your day-to-day experience. Both insurers offer extensive networks, but their strengths differ by region.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Direct Billing Experience</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Cigna Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Cigna's network is extensive—most major hospitals in Asia, Middle East, and Europe offer direct billing. Their guarantee of payment (GOP) system is well-established, meaning hospitals trust Cigna to pay without requiring you to pay upfront.
+        </p>
+        <p class="text-neutral-600">
+          The mobile app shows nearby in-network facilities with real-time GOP availability. Customer service can arrange direct billing at most hospitals within 24 hours if pre-authorization is needed.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Now Health has strong direct billing relationships in Asia and Middle East, particularly Hong Kong, Singapore, UAE, and Thailand. Their regional focus means deeper relationships with key hospitals in their core markets.
+        </p>
+        <p class="text-neutral-600">
+          Some members report smoother direct billing experiences in Asia with Now Health due to their Hong Kong headquarters and established local operations. However, direct billing outside Asia can be less consistent.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Strengths -->
+  <section id="regional-strengths" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Regional Strengths</h2>
+
+    <p class="mb-6">
+      Where you live matters. Here's how each insurer performs in key expat destinations:
+    </p>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Hong Kong & Singapore</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health (slight edge)</strong> — Now Health is headquartered in Hong Kong with strong Singapore operations. Their hospital relationships are deep, and claims processing is fast. Cigna is also excellent here, but Now Health's local expertise shows.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">UAE & Middle East</h3>
+        <p class="text-neutral-600"><strong>Winner: Tie</strong> — Both have strong UAE presence. Now Health has grown aggressively in Dubai and Abu Dhabi. Cigna has long-established relationships. Either works well for Middle East expats.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thailand & Southeast Asia</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health (edge)</strong> — Now Health's Traditional Chinese Medicine coverage appeals to expats using integrated medicine. Their network in Bangkok's international hospitals is strong. Cigna is solid but less specialized.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">China (Mainland)</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's Hong Kong base gives them advantages navigating mainland China healthcare. Better hospital relationships in Shanghai, Beijing, and Guangzhou. Cigna works but Now Health is more established.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Europe</h3>
+        <p class="text-neutral-600"><strong>Winner: Cigna Global</strong> — Cigna's larger global network shows in Europe. Better direct billing availability across the continent. Now Health works but isn't their focus market.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">United States</h3>
+        <p class="text-neutral-600"><strong>Winner: Cigna Global (clearly)</strong> — Cigna is a US healthcare giant. Their US coverage add-on is comprehensive with extensive direct billing. Now Health offers US coverage but it's more limited and expensive. If you need US coverage, Cigna is the clear choice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claims Experience -->
+  <section id="claims-experience" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+
+    <p class="mb-4">
+      Claims processing is where insurers prove their value. Both Cigna and Now Health have good reputations, but their approaches differ.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Cigna Global Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email, or mail</li>
+          <li><strong>Processing time:</strong> 5-10 business days (typical)</li>
+          <li><strong>Reimbursement:</strong> Direct deposit or check</li>
+          <li><strong>Languages:</strong> 15+ languages supported</li>
+          <li><strong>24/7 support:</strong> Yes, global service centers</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Cigna's mobile app makes claims submission easy—snap a photo of receipts and submit directly. Their global service centers provide round-the-clock support in multiple languages.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, or email</li>
+          <li><strong>Processing time:</strong> 5-7 business days (typical)</li>
+          <li><strong>Reimbursement:</strong> Direct deposit preferred</li>
+          <li><strong>Languages:</strong> English, Chinese, Arabic</li>
+          <li><strong>Support hours:</strong> Extended hours, not 24/7</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Now Health members often report faster claims processing within Asia. Their Hong Kong operations team is responsive and familiar with regional healthcare systems. Support isn't 24/7 but covers most business hours across Asia.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Both perform well:</strong> Neither insurer has significant claims complaints. For routine claims, expect 5-10 day processing with either. Complex claims (surgeries, hospitalizations) are handled professionally by both.
+      </p>
+    </div>
+  </section>
+
+  <!-- Second CTA -->
+  <CTABox
+    title="Get personalized quotes from both providers"
+    description="Compare actual pricing for your specific situation—age, location, coverage needs, and family size."
+    buttonText="Compare Quotes Now"
+    buttonHref="/go/cigna-global"
+  />
+
+  <!-- Pre-existing Conditions -->
+  <section id="pre-existing-conditions" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pre-existing Conditions</h2>
+
+    <p class="mb-4">
+      Both insurers can cover pre-existing conditions, but with limitations. Understanding these is crucial if you have ongoing health issues.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Cigna Global Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Full medical underwriting at application</li>
+          <li>• Case-by-case evaluation of pre-existing conditions</li>
+          <li>• May exclude, load premium, or apply waiting periods</li>
+          <li>• Moratorium option available in some markets</li>
+          <li>• Typically 24-month wait for pre-existing coverage</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Medical underwriting required</li>
+          <li>• Individual assessment of conditions</li>
+          <li>• Exclusions or premium loading possible</li>
+          <li>• Generally 24-month wait for pre-existing</li>
+          <li>• Some group schemes have more flexibility</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Always disclose pre-existing conditions fully. Non-disclosure can void your policy entirely. Both insurers will investigate claims related to pre-existing conditions, and denied claims due to non-disclosure are common industry-wide.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="real-scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how each insurer typically performs in common expat situations:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Hong Kong Finance Professional</h3>
+        <p class="text-neutral-600 mb-3">35-year-old, single, wants comprehensive coverage including mental health. Occasional US travel for conferences.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Better value for Asia-based coverage. Mental health benefits are strong. Can add limited US coverage for occasional trips. Saves ~$400/year vs comparable Cigna.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Family in Singapore</h3>
+        <p class="text-neutral-600 mb-3">Family of 4, parents age 40. Need coverage for annual US visits to family. Kids' routine care important.</p>
+        <p class="text-green-700 font-medium">→ <strong>Cigna Global Gold with US add-on</strong> — The US coverage is essential. Cigna's US network is unmatched. Higher premium but necessary for their needs. Mobile app excellent for managing family claims.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Retiree in Thailand</h3>
+        <p class="text-neutral-600 mb-3">62-year-old, controlled hypertension, uses traditional and Western medicine. Budget-conscious but wants quality coverage.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — TCM coverage is valuable. Thailand network is strong. Hypertension covered after waiting period (disclose fully). 15-20% savings vs Cigna at this age matters.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Digital Nomad Across Asia</h3>
+        <p class="text-neutral-600 mb-3">28-year-old moving between Thailand, Vietnam, and Indonesia. Healthy, wants flexibility and good value.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Lite</strong> — Lower premium for healthy young person. Good coverage across Southeast Asia. No US needed. Can upgrade later if circumstances change.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Executive Relocating Globally</h3>
+        <p class="text-neutral-600 mb-3">45-year-old moving from Dubai to possibly London or NYC next year. Needs flexibility and premium coverage.</p>
+        <p class="text-green-700 font-medium">→ <strong>Cigna Global Platinum</strong> — Global flexibility is key. Unlimited coverage for executive peace of mind. US option ready when needed. Direct billing works everywhere they might go.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Couple in UAE with Pre-existing</h3>
+        <p class="text-neutral-600 mb-3">Both 50, one has Type 2 diabetes (controlled). Want comprehensive coverage in Dubai long-term.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Either works—get quotes from both</strong> — Underwriting will determine pricing. Now Health may be more competitive. Cigna's diabetes management programs are strong. Compare actual quotes with full disclosure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Choose Which -->
+  <section id="who-should-choose" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose Which</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">Choose Cigna Global If You:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need US coverage (even occasionally)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Move between regions frequently</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want the largest possible network</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer unlimited coverage maximums</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value 24/7 multilingual support</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want the best mobile app experience</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are American or have US healthcare expectations</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Choose Now Health If You:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Asia/Middle East long-term</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want 15-20% lower premiums</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Don't need US coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value Traditional Chinese Medicine</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer regional expertise over global scale</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are in Hong Kong, Singapore, or mainland China</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want enhanced mental health coverage</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Both Cigna Global and Now Health International are legitimate, well-established insurers that will take care of you when you need healthcare abroad. The choice comes down to your specific situation:
+    </p>
+
+    <p class="mb-4">
+      <strong>Cigna Global</strong> is the better choice if you need US coverage, travel globally, or want the peace of mind of unlimited coverage maximums and the largest network. You pay more, but you get more flexibility.
+    </p>
+
+    <p class="mb-4">
+      <strong>Now Health</strong> is the smarter choice if you're settled in Asia or the Middle East, don't need US coverage, and want to save 15-20% without sacrificing quality. Their regional expertise translates to smoother experiences in their core markets.
+    </p>
+
+    <p class="mb-6">
+      If you're genuinely unsure, get quotes from both. The actual pricing for your specific situation—age, location, health history, family size—may make the decision clearer than any comparison article can.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Cigna Global for global flexibility and US coverage. Now Health for Asia/Middle East value. Both are excellent insurers—you won't go wrong with either if they match your needs.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get Cigna Global Quote →
+        </a>
+        <a href="/go/now-health" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Now Health Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Now Health a legitimate insurer?</h3>
+        <p class="text-neutral-600">
+          Yes. Now Health International was founded in 2012 by executives from Cigna and Aetna. They're regulated in Hong Kong and have grown to serve expats across Asia and the Middle East. They're smaller than Cigna but well-established and financially stable.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch from Cigna to Now Health (or vice versa)?</h3>
+        <p class="text-neutral-600">
+          Yes, but you'll go through underwriting again. Pre-existing conditions may be treated as new. Some insurers offer "continuous coverage" benefits if you switch within certain timeframes. Ask specifically about your situation when getting quotes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which is better for families?</h3>
+        <p class="text-neutral-600">
+          Both offer family plans. Cigna is generally better if you have US ties or travel globally. Now Health can save a family $1,000-2,000/year if you're Asia-based without US coverage needs. Children's coverage is comprehensive with both.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do claims compare?</h3>
+        <p class="text-neutral-600">
+          Both have good claims reputations. Cigna has more 24/7 support options and a better mobile app. Now Health members often report faster processing within Asia. For routine claims, expect similar experiences with 5-10 day processing.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about dental and vision coverage?</h3>
+        <p class="text-neutral-600">
+          Both offer dental as an optional add-on. Cigna's dental add-on is comprehensive but expensive. Now Health includes basic vision in some plans; Cigna requires an add-on. If dental is important, compare the specific add-on costs.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Should I get quotes from both?</h3>
+        <p class="text-neutral-600">
+          Yes—if you're genuinely considering both. The actual premium for your specific situation may differ significantly from published ranges. Both offer free quotes, and comparing actual numbers makes the decision easier than any comparison article.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</PageShell>

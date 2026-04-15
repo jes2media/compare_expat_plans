@@ -1,0 +1,714 @@
+---
+/**
+ * Bupa Global vs Now Health - Provider Comparison
+ * High-conversion comparison for premium expat coverage choices
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Direct Billing', level: 2 },
+  { id: 'regional-strengths', text: 'Regional Strengths', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'real-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Bupa Global Review', href: '/providers/bupa-global' },
+  { title: 'Cigna vs Now Health', href: '/compare/cigna-global-vs-now-health' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'UAE Insurance Guide', href: '/countries/uae/insurance' },
+  { title: 'Hong Kong Insurance Guide', href: '/countries/hong-kong/insurance' },
+];
+
+const coverageColumns = [
+  { key: 'feature', header: 'Coverage Feature' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const coverageRows = [
+  { feature: 'Inpatient Hospital', bupa: 'Unlimited (Lifetime Health)', nowhealth: 'Up to $2.6M' },
+  { feature: 'Outpatient Care', bupa: 'Full coverage', nowhealth: 'Full coverage' },
+  { feature: 'Mental Health', bupa: 'Included (varies by plan)', nowhealth: 'Included (enhanced)' },
+  { feature: 'Maternity', bupa: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Dental', bupa: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Vision', bupa: 'Optional add-on', nowhealth: 'Included in some plans' },
+  { feature: 'Wellness/Preventive', bupa: 'Included', nowhealth: 'Included' },
+  { feature: 'Medical Evacuation', bupa: 'Unlimited', nowhealth: 'Up to $1M' },
+  { feature: 'Alternative Medicine', bupa: 'Limited coverage', nowhealth: 'Traditional Chinese Medicine included' },
+  { feature: 'Cancer Care', bupa: 'Comprehensive (including trials)', nowhealth: 'Comprehensive' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30 (Asia excl. US)', bupa: '$160-220/mo', nowhealth: '$120-170/mo' },
+  { profile: 'Single, Age 40 (Asia excl. US)', bupa: '$240-320/mo', nowhealth: '$180-250/mo' },
+  { profile: 'Single, Age 50 (Asia excl. US)', bupa: '$380-500/mo', nowhealth: '$280-380/mo' },
+  { profile: 'Couple, Age 35 (Asia excl. US)', bupa: '$320-440/mo', nowhealth: '$250-350/mo' },
+  { profile: 'Family of 4 (Asia excl. US)', bupa: '$550-750/mo', nowhealth: '$420-600/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const networkRows = [
+  { region: 'Global Network Size', bupa: '1.2M+ providers', nowhealth: '900K+ providers' },
+  { region: 'Hong Kong', bupa: 'Excellent', nowhealth: 'Excellent (HQ)' },
+  { region: 'Singapore', bupa: 'Excellent', nowhealth: 'Excellent' },
+  { region: 'UAE/Dubai', bupa: 'Excellent', nowhealth: 'Excellent' },
+  { region: 'Thailand', bupa: 'Strong', nowhealth: 'Strong' },
+  { region: 'China (Mainland)', bupa: 'Good', nowhealth: 'Excellent' },
+  { region: 'Europe', bupa: 'Excellent (UK heritage)', nowhealth: 'Good' },
+  { region: 'USA', bupa: 'Good (add-on)', nowhealth: 'Limited (add-on)' },
+  { region: 'Direct Billing', bupa: 'Extensive globally', nowhealth: 'Strong in Asia' },
+];
+
+const plansColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const plansRows = [
+  { tier: 'Entry Level', bupa: 'Essential Health', nowhealth: 'WorldCare Lite' },
+  { tier: 'Mid-Range', bupa: 'Total Health', nowhealth: 'WorldCare Classic' },
+  { tier: 'Comprehensive', bupa: 'Lifetime Health', nowhealth: 'WorldCare Prestige' },
+  { tier: 'Deductible Range', bupa: '$0 - $15,000', nowhealth: '$0 - $5,000' },
+  { tier: 'Annual Maximum', bupa: 'Unlimited (Lifetime)', nowhealth: '$2.6M (Prestige)' },
+  { tier: 'Lifetime Maximum', bupa: 'Unlimited', nowhealth: 'Unlimited' },
+];
+---
+
+<PageShell
+  title="Bupa Global vs Now Health 2026: Premium vs Value Comparison"
+  description="Compare Bupa Global and Now Health for expats. Coverage limits, pricing, networks, claims, and which insurer fits your situation best."
+  headline="Bupa Global vs Now Health: Which Is Better for You?"
+  subheadline="British healthcare heritage meets Asia-Pacific expertise. A complete comparison for expats choosing between these international health insurers."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref="/go/bupa-global"
+  heroBackgroundImage="/images/pages/provider-card-generic.png"
+>
+
+  <!-- Quick Verdict Box -->
+  <section id="quick-verdict" class="scroll-mt-24 mb-12">
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-xl p-6">
+      <h2 class="text-2xl font-bold text-primary-900 mb-4">Quick Verdict</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Bupa Global If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want unlimited coverage maximums</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need strong UK/Europe coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value established brand reputation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You travel globally and need flexibility</span>
+            </li>
+          </ul>
+          <a href="/go/bupa-global" class="mt-4 inline-block bg-primary-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get Bupa Quote →
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Now Health If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Asia or Middle East long-term</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want 20-25% lower premiums</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value TCM and alternative medicine</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>$2.6M annual coverage is sufficient</span>
+            </li>
+          </ul>
+          <a href="/go/now-health" class="mt-4 inline-block bg-white text-primary-700 font-semibold px-5 py-2 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+            Get Now Health Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Bupa Global and Now Health represent different approaches to international health insurance. Bupa, founded in Britain in 1947, brings decades of healthcare heritage and a global network. Now Health, founded in Hong Kong in 2012 by Cigna and Aetna veterans, offers focused expertise in Asia and the Middle East.
+    </p>
+
+    <p class="mb-4">
+      The fundamental trade-off is familiar: Bupa offers unlimited coverage, global reach, and brand recognition at premium prices. Now Health offers competitive coverage focused on Asia at significantly lower premiums. Both are legitimate insurers that will pay claims—the question is which matches your situation.
+    </p>
+
+    <p class="mb-6">
+      For expats in Asia considering their options, this comparison addresses the key question: Is Bupa's premium worth paying, or does Now Health deliver equivalent value where it matters?
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Bupa Global at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Bupa (UK mutual)</li>
+          <li><strong>Founded:</strong> 1947 (Global division 1970s)</li>
+          <li><strong>Network:</strong> 1.2M+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> London, UK</li>
+          <li><strong>Best For:</strong> Global expats, UK/Europe connections</li>
+          <li><strong>Pricing:</strong> Premium tier</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Now Health at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Now Health International</li>
+          <li><strong>Founded:</strong> 2012 (by Cigna/Aetna veterans)</li>
+          <li><strong>Network:</strong> 900K+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Hong Kong</li>
+          <li><strong>Best For:</strong> Asia/Middle East expats, value seekers</li>
+          <li><strong>Pricing:</strong> 20-25% below Bupa typically</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Comparison -->
+  <section id="coverage-comparison" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison</h2>
+
+    <p class="mb-4">
+      Both insurers offer comprehensive coverage. Bupa differentiates with unlimited maximums and broader global coverage; Now Health differentiates with TCM coverage and competitive pricing.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Plan Tiers Compared</h3>
+
+    <ComparisonTable columns={plansColumns} rows={plansRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Key difference:</strong> Bupa Lifetime Health offers unlimited annual and lifetime coverage. Now Health caps at $2.6M annually. Most expats will never need more than $2.6M—but Bupa's unlimited ceiling provides peace of mind for those who want it.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Coverage Highlights</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-5">
+        <h4 class="font-semibold text-green-900 mb-3">Bupa Global Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Unlimited annual and lifetime coverage</li>
+          <li>✓ Unlimited medical evacuation</li>
+          <li>✓ Strong cancer care (including clinical trials)</li>
+          <li>✓ Higher deductible options (up to $15K)</li>
+          <li>✓ Established global network</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-5">
+        <h4 class="font-semibold text-blue-900 mb-3">Now Health Strengths</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Traditional Chinese Medicine included</li>
+          <li>✓ Enhanced mental health coverage</li>
+          <li>✓ Vision included in some plans</li>
+          <li>✓ Deeper China/Hong Kong relationships</li>
+          <li>✓ Significantly lower premiums</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- First CTA -->
+  <CTABox
+    variant="highlight"
+    title="Ready to compare quotes?"
+    description="Get personalized pricing from both Bupa Global and Now Health based on your specific situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Pricing -->
+  <section id="pricing" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing Breakdown</h2>
+
+    <p class="mb-4">
+      Now Health typically prices 20-25% below Bupa for comparable coverage in Asia. This is the largest price gap among major insurer comparisons—a significant factor for cost-conscious expats.
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Pricing note:</strong> A 40-year-old could save $720-840/year choosing Now Health over Bupa for similar Asia coverage. Over a decade, that's $7,000-8,400 in savings—meaningful money, assuming comparable experiences.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Drives the Price Difference?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>Coverage limits:</strong> Unlimited coverage costs more to underwrite</li>
+      <li><strong>Global infrastructure:</strong> Bupa's worldwide network has higher fixed costs</li>
+      <li><strong>Brand premium:</strong> Bupa's 75+ year reputation commands higher prices</li>
+      <li><strong>Regional focus:</strong> Now Health's Asia focus enables efficiency</li>
+      <li><strong>UK/Europe network:</strong> Bupa's European strength adds cost for Asia-only users</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Deductible Impact</h3>
+
+    <p class="mb-4">
+      Bupa offers higher deductible options (up to $15,000) for those who want catastrophic coverage at lower premiums. Now Health maxes at $5,000 but offers similar percentage discounts.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Bupa Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~12% discount</li>
+          <li>$2,500 — ~25% discount</li>
+          <li>$7,500 — ~40% discount</li>
+          <li>$15,000 — ~50% discount</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~15% discount</li>
+          <li>$1,500 — ~25% discount</li>
+          <li>$3,000 — ~35% discount</li>
+          <li>$5,000 — ~40% discount</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Strategy:</strong> Bupa's $7,500 deductible reduces their premium significantly—potentially matching Now Health's $0 deductible price. If you have savings to cover a $7,500 deductible, you could get Bupa's unlimited coverage at Now Health prices.
+      </p>
+    </div>
+  </section>
+
+  <!-- Network & Direct Billing -->
+  <section id="network-access" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network & Direct Billing</h2>
+
+    <p class="mb-4">
+      Both insurers have strong networks in Asia. The difference emerges globally and in specific local relationships.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Direct Billing Experience</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Bupa Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Bupa's global guarantee of payment system works smoothly worldwide. Their UK heritage means particularly strong European relationships. Hospitals recognize and trust the Bupa name.
+        </p>
+        <p class="text-neutral-600">
+          In Asia, Bupa has invested heavily and offers extensive direct billing at international hospitals. Their established reputation means fewer pre-authorization delays.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Now Health excels in Asia direct billing, particularly Hong Kong, Singapore, and UAE. Their smaller scale means closer hospital relationships in their core markets.
+        </p>
+        <p class="text-neutral-600">
+          Members often report smoother experiences at top Asian hospitals where Now Health has invested in relationships. Outside Asia, direct billing is available but less extensive.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Strengths -->
+  <section id="regional-strengths" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Regional Strengths</h2>
+
+    <p class="mb-6">
+      Location matters significantly in this comparison. Here's where each excels:
+    </p>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Hong Kong</h3>
+        <p class="text-neutral-600"><strong>Winner: Tie</strong> — Both are excellent in Hong Kong. Now Health is headquartered there; Bupa has long-established operations. Either serves Hong Kong expats well.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Singapore</h3>
+        <p class="text-neutral-600"><strong>Winner: Tie</strong> — Both have strong Singapore presence. Quality hospitals work with both insurers. Choose based on price and other factors.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">UAE & Middle East</h3>
+        <p class="text-neutral-600"><strong>Winner: Bupa (slight edge)</strong> — Bupa has longer Middle East history and broader relationships. Now Health has grown rapidly but Bupa's network depth shows in complex cases.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thailand & Southeast Asia</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health (slight edge)</strong> — Now Health's TCM coverage appeals in Thailand. Their regional focus translates to better local understanding. Bupa works fine but Now Health is more specialized.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">China (Mainland)</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's Hong Kong headquarters and Chinese language capability give them a clear advantage in mainland China. Better hospital relationships in major cities.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">UK & Europe</h3>
+        <p class="text-neutral-600"><strong>Winner: Bupa Global (clearly)</strong> — Bupa is a British institution. Their UK and European network is unmatched. If you have UK connections or may relocate to Europe, Bupa is significantly better.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">United States</h3>
+        <p class="text-neutral-600"><strong>Winner: Neither excels</strong> — Neither specializes in US coverage. Bupa's US add-on is adequate; Now Health's is limited. For serious US needs, consider Cigna or Aetna instead.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claims Experience -->
+  <section id="claims-experience" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+
+    <p class="mb-4">
+      Both insurers have solid claims reputations. Bupa benefits from decades of experience; Now Health benefits from modern systems built from scratch.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Bupa Global Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email, or mail</li>
+          <li><strong>Processing time:</strong> 5-10 business days</li>
+          <li><strong>Reimbursement:</strong> Direct deposit or check</li>
+          <li><strong>Languages:</strong> 15+ languages supported</li>
+          <li><strong>24/7 support:</strong> Yes, global service centers</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Bupa's claims process is professional and reliable. Their size means consistent processing but occasionally less personalized service. Multi-language support is excellent.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, or email</li>
+          <li><strong>Processing time:</strong> 5-7 business days</li>
+          <li><strong>Reimbursement:</strong> Direct deposit preferred</li>
+          <li><strong>Languages:</strong> English, Chinese, Arabic</li>
+          <li><strong>Support hours:</strong> Extended hours, not 24/7</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Now Health members frequently report faster processing and more personalized attention. Their smaller scale means claims handlers know the Asian healthcare landscape well.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Both perform well:</strong> Neither has significant claims complaints. Bupa's 24/7 support helps for emergencies worldwide; Now Health's regional focus means faster Asia processing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Second CTA -->
+  <CTABox
+    title="Get personalized quotes from both providers"
+    description="Compare actual pricing for your specific situation—age, location, coverage needs, and family size."
+    buttonText="Compare Quotes Now"
+    buttonHref="/go/bupa-global"
+  />
+
+  <!-- Pre-existing Conditions -->
+  <section id="pre-existing-conditions" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pre-existing Conditions</h2>
+
+    <p class="mb-4">
+      Both insurers take pre-existing conditions seriously. Full disclosure is essential—and both will investigate claims related to non-disclosed conditions.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Bupa Global Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Full medical underwriting required</li>
+          <li>• Case-by-case condition assessment</li>
+          <li>• Options: exclusion, loading, or waiting period</li>
+          <li>• Moratorium underwriting available</li>
+          <li>• Typically 24-month wait for pre-existing</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Medical underwriting required</li>
+          <li>• Individual condition evaluation</li>
+          <li>• Exclusions or premium loading possible</li>
+          <li>• Generally 24-month wait for pre-existing</li>
+          <li>• Group schemes may have more flexibility</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Disclose everything. Both insurers will access medical records during claims. Non-disclosure can void your policy entirely—honest disclosure protects you even if it increases premiums initially.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="real-scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how each insurer fits common expat situations:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Banker in Hong Kong</h3>
+        <p class="text-neutral-600 mb-3">38-year-old, may return to London eventually. Wants premium coverage without US needs. Company will reimburse insurance.</p>
+        <p class="text-green-700 font-medium">→ <strong>Bupa Global Lifetime Health</strong> — UK heritage matters for eventual return. Unlimited coverage fits executive profile. Company reimbursement means price is less sensitive. Seamless UK transition later.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Teacher in Thailand</h3>
+        <p class="text-neutral-600 mb-3">34-year-old, teaching English, limited budget. Uses both Western and Thai traditional medicine. Long-term Thailand resident.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Budget matters on teacher salary. TCM coverage is valuable in Thailand. No UK/Europe needs. 20-25% savings significant over years.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">European Couple Retiring in Malaysia</h3>
+        <p class="text-neutral-600 mb-3">Both 60, healthy, want comprehensive coverage. May return to Europe for specialist care if needed. Price-conscious but want quality.</p>
+        <p class="text-green-700 font-medium">→ <strong>Bupa Global Total Health</strong> — Age makes coverage limits more important. European coverage valuable for specialist access. Bupa's reputation reassures at this life stage. Mid-tier balances cost and coverage.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Entrepreneur in Shanghai</h3>
+        <p class="text-neutral-600 mb-3">42-year-old, building business in China. Needs coverage that works seamlessly in mainland China. Budget-conscious while scaling business.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Superior China expertise and relationships. Hong Kong headquarters helps with mainland navigation. Significant savings while building business. TCM coverage valuable in China.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">High-Net-Worth Family in Dubai</h3>
+        <p class="text-neutral-600 mb-3">Family of 4, parents age 45. Want best possible coverage, travel globally frequently. Budget is not a constraint.</p>
+        <p class="text-green-700 font-medium">→ <strong>Bupa Global Lifetime Health</strong> — Unlimited coverage for family security. Global network supports frequent travel. Premium brand matches lifestyle expectations. Peace of mind worth the premium.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Digital Nomad Across Southeast Asia</h3>
+        <p class="text-neutral-600 mb-3">29-year-old, moves between Thailand, Vietnam, Indonesia. Healthy, wants solid coverage at reasonable cost. No home country ties.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Now Health WorldCare Lite</strong> — Best value for young, healthy nomad. Strong Southeast Asia network. Can upgrade later if circumstances change. Significant savings vs Bupa at this stage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Choose Which -->
+  <section id="who-should-choose" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose Which</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">Choose Bupa Global If You:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want unlimited coverage maximums</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Have UK or European connections</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>May relocate to UK/Europe later</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Travel globally frequently</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value established brand reputation</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need 24/7 multilingual support</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are over 55 (higher limits matter more)</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Choose Now Health If You:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Asia long-term</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want 20-25% lower premiums</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>$2.6M annual coverage is sufficient</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value Traditional Chinese Medicine</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in mainland China</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer regional expertise over global scale</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are younger (unlimited limits less critical)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Both Bupa Global and Now Health are legitimate insurers that will deliver on their promises. The choice comes down to your priorities and situation:
+    </p>
+
+    <p class="mb-4">
+      <strong>Bupa Global</strong> is worth the premium if you need unlimited coverage, have UK/Europe ties, travel globally, or simply want the reassurance of a 75-year-old brand. Their infrastructure and reputation command higher prices—justified for those who need what they offer.
+    </p>
+
+    <p class="mb-4">
+      <strong>Now Health</strong> is the smarter choice for Asia-based expats who don't need UK/Europe access or unlimited coverage. The 20-25% savings are substantial over time, and their Asia expertise means equivalent or better experiences in their core markets.
+    </p>
+
+    <p class="mb-6">
+      Consider Bupa with a higher deductible if you want their unlimited coverage but are price-sensitive. A $7,500 Bupa deductible may price similarly to Now Health's $0 deductible—giving you Bupa's ceiling at competitive prices if you can self-fund the deductible.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Bupa Global for global flexibility, unlimited coverage, and UK/Europe ties. Now Health for Asia-focused value without unnecessary global premiums. Both are excellent—your situation determines the fit.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/bupa-global" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get Bupa Quote →
+        </a>
+        <a href="/go/now-health" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Now Health Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Bupa Global worth the extra cost?</h3>
+        <p class="text-neutral-600">
+          Depends on your needs. If you value unlimited coverage, UK/Europe access, or global flexibility—yes. If you're Asia-based without those needs, Now Health delivers comparable value at 20-25% less. Calculate your 5-10 year cost difference and decide if Bupa's extras justify it.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Now Health financially stable?</h3>
+        <p class="text-neutral-600">
+          Yes. Now Health was founded by senior executives from Cigna and Aetna and is regulated in Hong Kong. They've grown steadily since 2012 and have no significant financial concerns. They're smaller than Bupa but well-capitalized for their market.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which is better for families?</h3>
+        <p class="text-neutral-600">
+          Both offer comprehensive family coverage. Bupa is better for globally mobile families or those with UK ties. Now Health offers better value for Asia-settled families. The savings on a family plan (potentially $1,500-2,000/year) compound significantly with Now Health.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between them later?</h3>
+        <p class="text-neutral-600">
+          Yes, but you'll undergo new underwriting. Conditions developed during previous coverage may be treated as pre-existing. If you're healthy, switching is straightforward. With conditions, the transition is more complex—factor this into long-term planning.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Does Bupa's unlimited coverage really matter?</h3>
+        <p class="text-neutral-600">
+          For most people, $2.6M is more than sufficient—even serious conditions rarely exceed this. Unlimited coverage provides psychological security and eliminates any concern about catastrophic scenarios. If that peace of mind matters to you, it's worth the premium.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What about maternity coverage?</h3>
+        <p class="text-neutral-600">
+          Both offer maternity as an optional add-on with waiting periods (typically 10-12 months). Bupa's maternity add-on is generally more expensive but may have higher limits. Compare specific maternity riders if this is important—and plan ahead due to waiting periods.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</PageShell>

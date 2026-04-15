@@ -1,0 +1,703 @@
+---
+/**
+ * Aetna International vs Now Health - Provider Comparison
+ * High-conversion comparison for US expats considering Asia-focused alternatives
+ */
+
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'quick-verdict', text: 'Quick Verdict', level: 2 },
+  { id: 'overview', text: 'Overview', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing Breakdown', level: 2 },
+  { id: 'network-access', text: 'Network & Direct Billing', level: 2 },
+  { id: 'regional-strengths', text: 'Regional Strengths', level: 2 },
+  { id: 'claims-experience', text: 'Claims Experience', level: 2 },
+  { id: 'pre-existing-conditions', text: 'Pre-existing Conditions', level: 2 },
+  { id: 'real-scenarios', text: 'Real-World Scenarios', level: 2 },
+  { id: 'who-should-choose', text: 'Who Should Choose Which', level: 2 },
+  { id: 'verdict', text: 'Final Verdict', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { title: 'Aetna International Review', href: '/providers/aetna-international' },
+  { title: 'Cigna vs Now Health', href: '/compare/cigna-global-vs-now-health' },
+  { title: 'Best Expat Insurance', href: '/best/expat-health-insurance' },
+  { title: 'Singapore Insurance Guide', href: '/countries/singapore/insurance' },
+  { title: 'Hong Kong Insurance Guide', href: '/countries/hong-kong/insurance' },
+];
+
+const coverageColumns = [
+  { key: 'feature', header: 'Coverage Feature' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const coverageRows = [
+  { feature: 'Inpatient Hospital', aetna: 'Up to $10M (Core)', nowhealth: 'Up to $2.6M' },
+  { feature: 'Outpatient Care', aetna: 'Full coverage', nowhealth: 'Full coverage' },
+  { feature: 'Mental Health', aetna: 'Included (30-day inpatient)', nowhealth: 'Included (enhanced)' },
+  { feature: 'Maternity', aetna: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Dental', aetna: 'Optional add-on', nowhealth: 'Optional add-on' },
+  { feature: 'Vision', aetna: 'Optional add-on', nowhealth: 'Included in some plans' },
+  { feature: 'Wellness/Preventive', aetna: 'Included', nowhealth: 'Included' },
+  { feature: 'Medical Evacuation', aetna: 'Up to $1M', nowhealth: 'Up to $1M' },
+  { feature: 'Alternative Medicine', aetna: 'Limited', nowhealth: 'Traditional Chinese Medicine included' },
+  { feature: 'Prescription Drugs', aetna: 'Included', nowhealth: 'Included' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const pricingRows = [
+  { profile: 'Single, Age 30 (Asia excl. US)', aetna: '$140-190/mo', nowhealth: '$120-170/mo' },
+  { profile: 'Single, Age 40 (Asia excl. US)', aetna: '$200-280/mo', nowhealth: '$180-250/mo' },
+  { profile: 'Single, Age 50 (Asia excl. US)', aetna: '$320-420/mo', nowhealth: '$280-380/mo' },
+  { profile: 'Couple, Age 35 (Asia excl. US)', aetna: '$280-380/mo', nowhealth: '$250-350/mo' },
+  { profile: 'Family of 4 (Asia excl. US)', aetna: '$480-650/mo', nowhealth: '$420-600/mo' },
+];
+
+const networkColumns = [
+  { key: 'region', header: 'Region' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const networkRows = [
+  { region: 'Global Network Size', aetna: '1.2M+ providers', nowhealth: '900K+ providers' },
+  { region: 'Hong Kong', aetna: 'Strong', nowhealth: 'Excellent (HQ)' },
+  { region: 'Singapore', aetna: 'Excellent', nowhealth: 'Excellent' },
+  { region: 'UAE/Dubai', aetna: 'Strong', nowhealth: 'Excellent' },
+  { region: 'Thailand', aetna: 'Good', nowhealth: 'Strong' },
+  { region: 'China (Mainland)', aetna: 'Good', nowhealth: 'Excellent' },
+  { region: 'Europe', aetna: 'Strong', nowhealth: 'Good' },
+  { region: 'USA', aetna: 'Excellent (CVS Health)', nowhealth: 'Limited (add-on)' },
+  { region: 'Direct Billing', aetna: 'Extensive globally', nowhealth: 'Strong in Asia' },
+];
+
+const plansColumns = [
+  { key: 'tier', header: 'Plan Tier' },
+  { key: 'aetna', header: 'Aetna International' },
+  { key: 'nowhealth', header: 'Now Health' },
+];
+
+const plansRows = [
+  { tier: 'Entry Level', aetna: 'Pioneer', nowhealth: 'WorldCare Lite' },
+  { tier: 'Mid-Range', aetna: 'Core', nowhealth: 'WorldCare Classic' },
+  { tier: 'Comprehensive', aetna: 'Elite', nowhealth: 'WorldCare Prestige' },
+  { tier: 'Deductible Range', aetna: '$0 - $10,000', nowhealth: '$0 - $5,000' },
+  { tier: 'Annual Maximum', aetna: '$10M (Core)', nowhealth: '$2.6M (Prestige)' },
+  { tier: 'Lifetime Maximum', aetna: 'Unlimited', nowhealth: 'Unlimited' },
+];
+---
+
+<PageShell
+  title="Aetna International vs Now Health 2026: US Expats in Asia Comparison"
+  description="Compare Aetna International and Now Health for expats in Asia. Coverage, pricing, US access, claims, and which is best for American expats abroad."
+  headline="Aetna International vs Now Health: Which Is Better for You?"
+  subheadline="US healthcare giant versus Asia specialist. Everything you need to choose between these two international health insurers."
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+  ctaButtonText="Get Quotes from Both"
+  ctaButtonHref="/go/aetna-international"
+  heroBackgroundImage="/images/pages/provider-card-generic.png"
+>
+
+  <!-- Quick Verdict Box -->
+  <section id="quick-verdict" class="scroll-mt-24 mb-12">
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-xl p-6">
+      <h2 class="text-2xl font-bold text-primary-900 mb-4">Quick Verdict</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Aetna International If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're American and want US-style coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You need strong US coverage (CVS Health network)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want higher coverage limits ($10M)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value US-based customer service</span>
+            </li>
+          </ul>
+          <a href="/go/aetna-international" class="mt-4 inline-block bg-primary-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+            Get Aetna Quote →
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 border border-primary-100">
+          <h3 class="font-bold text-lg text-neutral-900 mb-2">Choose Now Health If:</h3>
+          <ul class="space-y-2 text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You're based in Asia long-term without US needs</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You want 10-15% lower premiums</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You value Traditional Chinese Medicine coverage</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span>You prefer Asia-focused expertise</span>
+            </li>
+          </ul>
+          <a href="/go/now-health" class="mt-4 inline-block bg-white text-primary-700 font-semibold px-5 py-2 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+            Get Now Health Quote →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
+
+    <p class="mb-4">
+      Aetna International and Now Health serve different segments of the expat market. Aetna, part of CVS Health, brings American healthcare expertise and strong US connectivity. Now Health, founded by industry veterans in Hong Kong, focuses specifically on expats living in Asia and the Middle East.
+    </p>
+
+    <p class="mb-4">
+      For Americans moving to Asia, this comparison is particularly relevant. Aetna maintains your connection to the US healthcare system—useful for home visits or eventual repatriation. Now Health offers better value and deeper Asia expertise if you're committed to the region long-term.
+    </p>
+
+    <p class="mb-6">
+      Both are financially stable insurers with established track records. The choice depends on your nationality, US coverage needs, budget sensitivity, and how long you plan to stay in Asia.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Aetna International at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> CVS Health Corporation</li>
+          <li><strong>Founded:</strong> 1853; International division 1957</li>
+          <li><strong>Network:</strong> 1.2M+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Hartford, CT, USA</li>
+          <li><strong>Best For:</strong> Americans abroad, US coverage needs</li>
+          <li><strong>Pricing:</strong> Premium tier</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-3">Now Health at a Glance</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Parent Company:</strong> Now Health International</li>
+          <li><strong>Founded:</strong> 2012 (by Cigna/Aetna veterans)</li>
+          <li><strong>Network:</strong> 900K+ healthcare providers</li>
+          <li><strong>Headquarters:</strong> Hong Kong</li>
+          <li><strong>Best For:</strong> Asia/Middle East expats, value seekers</li>
+          <li><strong>Pricing:</strong> 10-15% below Aetna typically</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Comparison -->
+  <section id="coverage-comparison" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison</h2>
+
+    <p class="mb-4">
+      Both offer comprehensive international coverage. Aetna's strength is higher coverage limits and US integration. Now Health differentiates with TCM coverage and enhanced mental health benefits.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Plan Tiers Compared</h3>
+
+    <ComparisonTable columns={plansColumns} rows={plansRows} />
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <p class="text-blue-800">
+        <strong>Key difference:</strong> Aetna Core offers $10M annual maximum vs Now Health's $2.6M. For most expats, $2.6M is more than adequate—but if higher limits give you peace of mind, Aetna delivers.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Coverage Highlights</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div class="border border-green-200 bg-green-50 rounded-lg p-5">
+        <h4 class="font-semibold text-green-900 mb-3">Aetna International Strengths</h4>
+        <ul class="space-y-2 text-green-800">
+          <li>✓ Higher coverage limits ($10M vs $2.6M)</li>
+          <li>✓ CVS Health US network integration</li>
+          <li>✓ Strong prescription drug coverage</li>
+          <li>✓ Established US-based support</li>
+          <li>✓ Familiar for American expats</li>
+        </ul>
+      </div>
+
+      <div class="border border-blue-200 bg-blue-50 rounded-lg p-5">
+        <h4 class="font-semibold text-blue-900 mb-3">Now Health Strengths</h4>
+        <ul class="space-y-2 text-blue-800">
+          <li>✓ Traditional Chinese Medicine coverage</li>
+          <li>✓ Enhanced mental health benefits</li>
+          <li>✓ Vision included in some plans</li>
+          <li>✓ Deeper Asia hospital relationships</li>
+          <li>✓ More competitive pricing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- First CTA -->
+  <CTABox
+    variant="highlight"
+    title="Ready to compare quotes?"
+    description="Get personalized pricing from both Aetna International and Now Health based on your specific situation."
+    buttonText="Get Free Quotes"
+    buttonHref="/go/aetna-international"
+  />
+
+  <!-- Pricing -->
+  <section id="pricing" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing Breakdown</h2>
+
+    <p class="mb-4">
+      Now Health typically prices 10-15% below Aetna for comparable coverage in Asia excluding US coverage. The difference is smaller than vs Cigna, making Aetna more competitive when you factor in coverage limits.
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Pricing note:</strong> These are indicative ranges for comprehensive plans excluding US coverage. Adding US coverage increases Aetna premiums significantly (40-60%). Now Health's US add-on is limited and expensive.
+      </p>
+    </div>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">What Drives the Price Difference?</h3>
+
+    <ul class="list-disc pl-6 space-y-2 mb-6">
+      <li><strong>US infrastructure:</strong> Aetna's CVS Health backing means higher US capability costs</li>
+      <li><strong>Coverage limits:</strong> Aetna's $10M maximum costs more to underwrite</li>
+      <li><strong>Regional focus:</strong> Now Health's Asia focus enables operational efficiency</li>
+      <li><strong>Brand positioning:</strong> Aetna positions as premium, priced accordingly</li>
+      <li><strong>Network size:</strong> Aetna's larger global network has higher costs</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-neutral-900 mb-3">Deductible Impact</h3>
+
+    <p class="mb-4">
+      Both offer significant discounts for higher deductibles. Consider a $1,500-$2,500 deductible to balance premium savings with manageable out-of-pocket exposure.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Aetna Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~12% discount</li>
+          <li>$1,500 — ~22% discount</li>
+          <li>$5,000 — ~35% discount</li>
+          <li>$10,000 — ~45% discount</li>
+        </ul>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Deductible Options</h4>
+        <ul class="space-y-1 text-neutral-700">
+          <li>$0 — Full premium</li>
+          <li>$500 — ~15% discount</li>
+          <li>$1,500 — ~25% discount</li>
+          <li>$3,000 — ~35% discount</li>
+          <li>$5,000 — ~40% discount</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Network & Direct Billing -->
+  <section id="network-access" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Network & Direct Billing</h2>
+
+    <p class="mb-4">
+      Network access determines your everyday healthcare experience. Aetna has broader global coverage; Now Health has deeper relationships in Asia.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-3">Direct Billing Experience</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Aetna Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Aetna's guarantee of payment system works smoothly at major international hospitals across Asia. Their US backing gives hospitals confidence—direct billing rarely requires extensive pre-approval for standard procedures.
+        </p>
+        <p class="text-neutral-600">
+          The main advantage is US direct billing through CVS Health. If you visit the US, Aetna's network is extensive and familiar. This matters for Americans who return home regularly.
+        </p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-5">
+        <h4 class="font-semibold text-neutral-900 mb-3">Now Health Direct Billing</h4>
+        <p class="text-neutral-600 mb-3">
+          Now Health excels in their core markets—Hong Kong, Singapore, UAE, and major cities throughout Asia. Their Hong Kong headquarters means strong relationships with the best Asian hospitals.
+        </p>
+        <p class="text-neutral-600">
+          Members report smoother experiences at top Asian hospitals where Now Health has direct relationships. Outside Asia, direct billing is available but less extensive.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Strengths -->
+  <section id="regional-strengths" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Regional Strengths</h2>
+
+    <p class="mb-6">
+      Your location should drive your choice. Here's where each insurer excels:
+    </p>
+
+    <div class="space-y-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Hong Kong & Singapore</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health (slight edge)</strong> — Now Health is headquartered in Hong Kong with strong Singapore operations. Aetna is solid but Now Health's local relationships run deeper in these markets.</p>
+      </div>
+
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">UAE & Middle East</h3>
+        <p class="text-neutral-600"><strong>Winner: Tie</strong> — Both have substantial Middle East operations. Aetna has long-established corporate relationships; Now Health has grown aggressively. Either works well.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Thailand & Southeast Asia</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's TCM coverage and Thai hospital relationships give them an edge. Their understanding of Southeast Asian healthcare systems is deeper.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">China (Mainland)</h3>
+        <p class="text-neutral-600"><strong>Winner: Now Health</strong> — Now Health's Hong Kong base provides natural advantages in mainland China. Better hospital relationships in Shanghai, Beijing, Shenzhen, and Guangzhou.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">Europe</h3>
+        <p class="text-neutral-600"><strong>Winner: Aetna International</strong> — Aetna's larger global network shows in Europe. Better direct billing availability and established relationships across the continent.</p>
+      </div>
+
+      <div class="border-l-4 border-primary-500 pl-4">
+        <h3 class="font-semibold text-neutral-900">United States</h3>
+        <p class="text-neutral-600"><strong>Winner: Aetna International (clearly)</strong> — Aetna is part of CVS Health, America's largest healthcare company. Unmatched US network. If you need US coverage, Aetna is the obvious choice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claims Experience -->
+  <section id="claims-experience" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Claims Experience</h2>
+
+    <p class="mb-4">
+      Claims processing reveals an insurer's true quality. Both perform well, with different strengths.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Aetna International Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, email, or fax</li>
+          <li><strong>Processing time:</strong> 5-10 business days</li>
+          <li><strong>Reimbursement:</strong> Direct deposit or check</li>
+          <li><strong>Languages:</strong> 10+ languages supported</li>
+          <li><strong>24/7 support:</strong> Yes, global service centers</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Aetna's claims process is straightforward if sometimes slower than newer entrants. Their US-based support is helpful for American expats familiar with US healthcare systems.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Claims</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li><strong>Submission:</strong> App, portal, or email</li>
+          <li><strong>Processing time:</strong> 5-7 business days</li>
+          <li><strong>Reimbursement:</strong> Direct deposit preferred</li>
+          <li><strong>Languages:</strong> English, Chinese, Arabic</li>
+          <li><strong>Support hours:</strong> Extended hours, not 24/7</li>
+        </ul>
+        <p class="mt-3 text-neutral-600 text-sm">
+          Now Health members often report faster claims processing in Asia. Their smaller size means more personalized attention. Hong Kong operations team is knowledgeable about regional healthcare.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+      <p class="text-green-800">
+        <strong>Both perform well:</strong> Neither has significant claims complaints. Aetna's 24/7 support helps for urgent situations; Now Health's Asia focus means faster local processing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Second CTA -->
+  <CTABox
+    title="Get personalized quotes from both providers"
+    description="Compare actual pricing for your specific situation—age, location, coverage needs, and family size."
+    buttonText="Compare Quotes Now"
+    buttonHref="/go/aetna-international"
+  />
+
+  <!-- Pre-existing Conditions -->
+  <section id="pre-existing-conditions" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pre-existing Conditions</h2>
+
+    <p class="mb-4">
+      Both insurers underwrite pre-existing conditions carefully. Full disclosure is essential with either.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Aetna International Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Full medical underwriting at application</li>
+          <li>• Individual assessment of each condition</li>
+          <li>• Options: exclusion, loading, or waiting period</li>
+          <li>• Typically 24-month wait for pre-existing coverage</li>
+          <li>• Some conditions permanently excluded</li>
+        </ul>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-3">Now Health Approach</h3>
+        <ul class="space-y-2 text-neutral-600">
+          <li>• Medical underwriting required</li>
+          <li>• Case-by-case condition evaluation</li>
+          <li>• Exclusions or premium loading possible</li>
+          <li>• Generally 24-month wait for pre-existing</li>
+          <li>• Group schemes may offer more flexibility</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6">
+      <p class="text-amber-800">
+        <strong>Important:</strong> Always disclose pre-existing conditions completely. Non-disclosure can void your entire policy. Both insurers investigate claims related to pre-existing conditions—honesty at application protects you later.
+      </p>
+    </div>
+  </section>
+
+  <!-- Real-World Scenarios -->
+  <section id="real-scenarios" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Real-World Scenarios</h2>
+
+    <p class="mb-6">
+      Here's how each insurer performs in common expat situations:
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Tech Worker in Singapore</h3>
+        <p class="text-neutral-600 mb-3">32-year-old, healthy, wants comprehensive coverage. Returns to US twice yearly to visit family.</p>
+        <p class="text-green-700 font-medium">→ <strong>Aetna International Core</strong> — US coverage is essential. CVS Health network makes US visits seamless. Familiar for an American. Higher limits provide peace of mind.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">British Expat in Hong Kong</h3>
+        <p class="text-neutral-600 mb-3">45-year-old, married, no US ties. Uses both Western and traditional Chinese medicine.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — TCM coverage is valuable. No US needs, so why pay for it? Hong Kong expertise and better local hospital relationships. Save $500+/year.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Family in UAE</h3>
+        <p class="text-neutral-600 mb-3">Family of 4, parents age 38. Company provides basic coverage; want to supplement. Occasional US visits.</p>
+        <p class="text-green-700 font-medium">→ <strong>Aetna International</strong> — Supplements existing coverage well. US coverage when visiting. Family pricing competitive. CVS MinuteClinic access during US trips is convenient.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Australian Entrepreneur in Bangkok</h3>
+        <p class="text-neutral-600 mb-3">40-year-old, runs online business. Budget-conscious but wants quality coverage. No US needs.</p>
+        <p class="text-green-700 font-medium">→ <strong>Now Health WorldCare Lite</strong> — Best value for Thailand-based expats. Strong Bangkok hospital network. TCM coverage appeals. Save significantly vs Aetna for comparable Thailand coverage.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">American Retiree in Malaysia</h3>
+        <p class="text-neutral-600 mb-3">58-year-old, managed Type 2 diabetes, wants comprehensive coverage. Will return to US for specialist care if needed.</p>
+        <p class="text-green-700 font-medium">→ <strong>Aetna International Elite</strong> — US coverage critical for specialist access. Higher limits important at this age. Diabetes management programs strong. Familiar American approach to healthcare.</p>
+      </div>
+
+      <div class="border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">European Couple in Mainland China</h3>
+        <p class="text-neutral-600 mb-3">Both 50, healthy, living in Shanghai long-term. Want quality care without premium prices.</p>
+        <p class="text-amber-700 font-medium">→ <strong>Now Health WorldCare Classic</strong> — Better China expertise. Stronger Shanghai hospital relationships. 10-15% savings. No US coverage needed. TCM coverage valuable in China.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Choose Which -->
+  <section id="who-should-choose" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Who Should Choose Which</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 class="font-semibold text-green-900 mb-4">Choose Aetna International If You:</h3>
+        <ul class="space-y-3 text-green-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are American or have strong US ties</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Need US healthcare coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want higher coverage limits ($10M)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer US-style service and communication</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value 24/7 US-based support</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>May relocate to Europe or Americas</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want CVS Health pharmacy network access</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="font-semibold text-blue-900 mb-4">Choose Now Health If You:</h3>
+        <ul class="space-y-3 text-blue-800">
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are based in Asia/Middle East long-term</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Don't need US coverage</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want 10-15% lower premiums</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Value Traditional Chinese Medicine</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Prefer regional expertise over global scale</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Are in Hong Kong, Singapore, or China</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1">✓</span>
+            <span>Want enhanced mental health coverage</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Verdict -->
+  <section id="verdict" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Final Verdict</h2>
+
+    <p class="mb-4">
+      Both Aetna International and Now Health are reputable insurers that will take care of you abroad. The choice comes down to your US connection and where you're based:
+    </p>
+
+    <p class="mb-4">
+      <strong>Aetna International</strong> is the better choice for Americans or anyone needing US coverage. The CVS Health integration is unmatched, higher limits provide security, and US-style service feels familiar. You pay more, but get strong US connectivity.
+    </p>
+
+    <p class="mb-4">
+      <strong>Now Health</strong> is the smarter choice for non-Americans settled in Asia without US needs. Their regional expertise translates to smoother experiences in Asia, 10-15% savings add up over years, and TCM coverage appeals to many in the region.
+    </p>
+
+    <p class="mb-6">
+      If you're American in Asia—the core overlap audience—get quotes from both. The actual pricing may help decide. If US coverage isn't critical for you, Now Health likely offers better value.
+    </p>
+
+    <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+      <h3 class="font-semibold text-primary-900 mb-3">Bottom Line</h3>
+      <p class="text-primary-800 mb-4">
+        Aetna International for Americans and those needing US coverage. Now Health for Asia-based expats without US needs. Both are excellent—your situation determines the right fit.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/go/aetna-international" class="inline-block bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" style="color: white !important;">
+          Get Aetna Quote →
+        </a>
+        <a href="/go/now-health" class="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg border border-primary-300 hover:bg-primary-50 transition-colors">
+          Get Now Health Quote →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="scroll-mt-24 mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Is Aetna International the same as Aetna in the US?</h3>
+        <p class="text-neutral-600">
+          They're part of the same company (CVS Health) but operate separately. Aetna International serves expats and global citizens; domestic Aetna serves US residents. The benefit: Aetna International can leverage the US network when you visit home.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Why would I choose Now Health over a bigger name?</h3>
+        <p class="text-neutral-600">
+          Now Health was founded by senior executives from Cigna and Aetna who saw an opportunity to serve Asia better. They offer competitive pricing and deep regional expertise. If you're Asia-based long-term without US needs, their specialization is an advantage, not a limitation.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which has better customer service?</h3>
+        <p class="text-neutral-600">
+          Aetna offers 24/7 support in more languages and is more familiar to Americans. Now Health's smaller team provides more personalized attention in their core markets. Americans often prefer Aetna's style; others may appreciate Now Health's regional focus.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch between them?</h3>
+        <p class="text-neutral-600">
+          Yes, but you'll undergo new underwriting. Pre-existing conditions accumulated during your previous coverage may not transfer. Some insurers offer "continuous coverage" credits—ask specifically when getting quotes.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which is better for families?</h3>
+        <p class="text-neutral-600">
+          Both offer solid family coverage. Aetna is better for American families who visit the US regularly. Now Health offers better value for families settled in Asia without US needs. Children's coverage is comprehensive with both.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if I'm not sure about US coverage needs?</h3>
+        <p class="text-neutral-600">
+          If there's any chance you'll need US care—family visits, possible relocation, specialized treatment—lean toward Aetna. The premium difference isn't worth gambling if US access matters. If you're certain you won't need US coverage, Now Health saves money.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</PageShell>
