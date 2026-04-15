@@ -24,41 +24,73 @@ Last updated: April 15, 2026
 - `/visas/[visaType]/in/[country]` - Visa × Country matrix
 
 ### Next Priority
-Analyze GA data to identify highest-converting page types and content gaps
+Seniors/retirees content expansion (highest engagement audience per GA data)
 
 ---
 
-## Google Analytics Insights (Jan 1 - Apr 13, 2026)
+## Google Analytics Insights (Jan 1 - Apr 15, 2026)
+
+### Affiliate Conversion Leaders
+| Provider | Clicks | Share |
+|----------|--------|-------|
+| Cigna Global | 268 | 64% |
+| Allianz Care | 47 | 11% |
+| IMG Global | 43 | 10% |
+| Bupa Global | 24 | 6% |
+| AXA Global | 17 | 4% |
+| SafetyWing | 12 | 3% |
+
+**Cigna dominates** - 5-6x more affiliate clicks than #2
 
 ### Top Traffic Pages
-| Page | Views | Users | Avg Engagement |
-|------|-------|-------|----------------|
-| Homepage | 356 | 291 | 4s |
-| /go/cigna-global/ | 266 | 210 | 1.5s |
-| /best/expat-health-insurance/ | 227 | 174 | 33s |
-| /research-reports/... | 194 | 157 | 34s |
-| /providers/cigna-global/ | 86 | 72 | 57s |
+| Page | Views | Users | Engagement |
+|------|-------|-------|------------|
+| Homepage | 357 | 292 | 4s |
+| /go/cigna-global/ | 268 | 212 | 1.5s |
+| /best/expat-health-insurance/ | 229 | 176 | 33s |
+| /research-reports/... | 196 | 159 | 34s |
+| /providers/cigna-global/ | 89 | 75 | 55s |
+| /best/budget-expat-insurance/ | 83 | 62 | 16s |
 | /compare/ | 83 | 55 | 31s |
-| /best/budget-expat-insurance/ | 80 | 60 | 16s |
-| /providers/allianz-care/ | 72 | 64 | 17s |
-| /compare/cigna-global-vs-allianz-care/ | 69 | 50 | 45s |
+| /providers/allianz-care/ | 73 | 65 | 19s |
+| /compare/cigna-global-vs-allianz-care/ | 70 | 51 | 44s |
+
+### Highest Engagement Pages (time on page)
+| Page | Engagement | Views |
+|------|------------|-------|
+| /visas/work-permit-visa/in/switzerland | 240s | 14 |
+| /insurance-for/seniors/in/greece/ | 214s | 5 |
+| /insurance-for/retirees/in/vietnam/ | 197s | 3 |
+| /compare/cigna-vs-bupa-vs-aetna-executives | 178s | 14 |
+| /guides/language-barriers-healthcare | 175s | 10 |
+| /guides/sick-abroad-without-insurance/ | 167s | 3 |
+| /visas/student-visa/in/denmark/ | 160s | 10 |
+| /best/remote-worker-insurance/ | 150s | 27 |
+| /guides/pre-existing-conditions-abroad/ | 142s | 10 |
+| /visas/digital-nomad-visa/in/uae/ | 139s | 6 |
+| /visas/student-visa/in/france/ | 132s | 34 |
+| /insurance-for/seniors/in/colombia/ | 121s | 5 |
 
 ### Key Insights
-1. **Cigna Global is #1 affiliate click** (266 views on /go/cigna-global/)
-2. **"Best" pages drive traffic** - /best/expat-health-insurance/ = 227 views
-3. **Provider comparisons have high engagement** - 45-55s average
-4. **Student visas outperform freelancer visas** - 2-4x traffic
-5. **High engagement pages worth noting:**
-   - /visas/work-permit-visa/in/switzerland = 240s
-   - /visas/student-visa/in/denmark/ = 160s
-   - /compare/cigna-vs-bupa-vs-aetna-executives = 178s
-   - /guides/pre-existing-conditions-abroad/ = 157s
 
-### Conversion Priority (based on data)
-1. **Provider vs Provider comparisons** - High engagement, close to purchase decision
-2. **"Best" pages** - High traffic, top of funnel
-3. **Student visa pages** - More traffic than freelancer pages
-4. **Freelancer visa pages** - Lower traffic but good for SEO long-term
+1. **Seniors/retirees = hidden gold** - Low traffic (3-12 views) but exceptional engagement (2-4 minutes). These are highly motivated buyers researching thoroughly before purchase.
+
+2. **Student visa pages outperform** - Australia (40 views), France (34), Spain (33). More traffic than DNV or freelancer visas. France/Denmark have 130-160s engagement.
+
+3. **Comparison pages convert** - /cigna-global-vs-allianz-care/ has 70 views with 44s engagement. High-intent, close to purchase decision.
+
+4. **Pre-existing conditions = pain point** - Multiple guides getting 140-170s engagement. Clear user need not fully addressed.
+
+5. **Work permit visas under-served** - Switzerland has 240s engagement but only 14 views. High intent, low competition.
+
+6. **Country pages vary widely** - Philippines (87s), Dominican Republic (260s), Austria (59s) have exceptional engagement vs others at 5-20s.
+
+### Content Priorities (based on GA data)
+1. **Seniors/retirees content** - Exceptional engagement, motivated buyers, under-served
+2. **Student visa expansion** - Australia, France, Spain, Denmark performing well
+3. **Cigna-focused comparisons** - They convert best (64% of affiliate clicks)
+4. **Pre-existing conditions** - Deep dives on specific conditions
+5. **Work permit visa expansion** - High engagement, low competition
 
 ---
 

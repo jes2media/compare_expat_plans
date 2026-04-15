@@ -164,17 +164,35 @@ Note: GA tracking uses `window.gtag` for cross-script accessibility in Astro's i
 See `docs/PROGRESS.md` for:
 - Current project status and page counts
 - Completed milestones by date
-- Country refinement progress
+- Google Analytics insights
 - Next steps and priorities
 
-**Current Stats (April 2026):**
-- Static .astro files: 1,089
+**Current Stats (April 15, 2026):**
+- Static .astro files: ~1,125
 - Problem/Solution guides: 652 (588 profession + 64 topic)
-- Visa × Country pages: 152 (33 DNV + 17 Retirement + 34 Student + 9 Freelancer + 40 Investor + 18 Work Permit)
-- "Best" comparison pages: 7
+- Visa × Country pages: 181 (33 DNV + 17 Retirement + 34 Student + 38 Freelancer + 40 Investor + 18 Work Permit)
+- "Best" comparison pages: 51
 - Provider pages: 9 (long-form reviews)
 - Country pages: 22 (core landing pages)
-- Compare pages: 29 (country vs country)
+- Compare pages: 29 (country vs country) + 183 provider comparisons
 - Dynamic routes generate additional pages from data files (personas × countries, conditions × countries, providers × countries)
 
-**Next Priority:** "Best" comparison pages and Provider vs Provider comparisons (high conversion potential)
+## GA Insights (Jan 1 - Apr 15, 2026)
+
+**Top Converting Provider (affiliate clicks):**
+- Cigna Global: 268 clicks (64% of all affiliate clicks)
+- Allianz Care: 47 clicks (11%)
+- IMG Global: 43 clicks (10%)
+
+**Highest Engagement Content:**
+- Seniors/retirees pages: 100-214s average engagement (highly motivated buyers)
+- Pre-existing conditions guides: 140-170s engagement
+- Work permit visa pages: 240s engagement (Switzerland)
+- Student visa pages: 130-160s engagement (France, Denmark)
+
+**Content Priorities (based on GA data):**
+1. Seniors/retirees content - Low traffic but exceptional engagement (2-4 min)
+2. Student visa pages - Outperform other visa types in traffic
+3. Cigna-focused comparisons - Highest conversion rate
+4. Pre-existing conditions - Clear user pain point
+5. Work permit visas - High engagement, low competition
