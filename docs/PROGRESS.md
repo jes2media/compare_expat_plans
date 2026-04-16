@@ -13,7 +13,7 @@ Last updated: April 15, 2026
 - **Visa × Country pages:** 181 (33 DNV + 17 Retirement + 34 Student + 38 Freelancer + 40 Investor + 18 Work Permit)
 - **Country pages:** 22 (core landing pages)
 - **Compare pages:** 29 (country vs country) + 183 provider comparisons
-- **Insurance-for (Personas):** 31 audience-specific pages (25 base + 6 seniors country pages)
+- **Insurance-for (Personas):** 37 audience-specific pages (25 base + 12 seniors country pages)
 - **Provider pages:** 9 (long-form reviews)
 - **"Best" comparison pages:** 51
 
@@ -95,6 +95,17 @@ Seniors/retirees content expansion (highest engagement audience per GA data)
 ---
 
 ## Completed Milestones
+
+### April 15, 2026 - Seniors Country Pages Batch 2
+Added 6 more seniors insurance guides:
+- `/insurance-for/seniors/in/costa-rica` - CAJA system, Pura Vida lifestyle
+- `/insurance-for/seniors/in/panama` - Pensionado discounts, USD economy
+- `/insurance-for/seniors/in/ecuador` - IESS, ultra-low costs
+- `/insurance-for/seniors/in/vietnam` - Visa challenges, affordable care
+- `/insurance-for/seniors/in/france` - PUMA access, world-class healthcare
+- `/insurance-for/seniors/in/italy` - SSN enrollment, regional variations
+
+Total seniors country pages: 12
 
 ### April 15, 2026 - Seniors Country Pages Expansion
 Created 6 static seniors insurance guides for top retirement destinations:
