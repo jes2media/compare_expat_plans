@@ -13,7 +13,7 @@ Last updated: April 15, 2026
 - **Visa × Country pages:** 181 (33 DNV + 17 Retirement + 34 Student + 38 Freelancer + 40 Investor + 18 Work Permit)
 - **Country pages:** 22 (core landing pages)
 - **Compare pages:** 29 (country vs country) + 183 provider comparisons
-- **Insurance-for (Personas):** 39 audience-specific pages (25 base + 14 seniors country pages)
+- **Insurance-for (Personas):** 43 audience-specific pages (25 base + 18 seniors country pages)
 - **Provider pages:** 9 (long-form reviews)
 - **"Best" comparison pages:** 51
 
@@ -95,6 +95,15 @@ Seniors/retirees content expansion (highest engagement audience per GA data)
 ---
 
 ## Completed Milestones
+
+### April 15, 2026 - Seniors Country Pages Batch 4
+Added 4 more seniors insurance guides:
+- `/insurance-for/seniors/in/indonesia` - Bali retirement, medical evacuation essential
+- `/insurance-for/seniors/in/cambodia` - Easy visa access, Bangkok evacuation
+- `/insurance-for/seniors/in/morocco` - French healthcare standards, Europe backup
+- `/insurance-for/seniors/in/dominican-republic` - Miami corridor, US expat favorite
+
+Total seniors country pages: 18
 
 ### April 15, 2026 - Seniors Country Pages Batch 3
 Added 2 more seniors insurance guides:
