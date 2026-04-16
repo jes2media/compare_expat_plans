@@ -1,0 +1,615 @@
+---
+import PageShell from '../../components/PageShell.astro';
+import CTABox from '../../components/CTABox.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+const tocItems = [
+  { id: 'overview', text: 'D7 Visa Insurance Requirements', level: 2 },
+  { id: 'quick-comparison', text: 'Quick Comparison', level: 2 },
+  { id: 'cigna-global', text: 'Cigna Global', level: 2 },
+  { id: 'bupa-global', text: 'Bupa Global', level: 2 },
+  { id: 'allianz-care', text: 'Allianz Care', level: 2 },
+  { id: 'coverage-comparison', text: 'Coverage Comparison', level: 2 },
+  { id: 'pricing', text: 'Pricing for D7 Applicants', level: 2 },
+  { id: 'portugal-network', text: 'Portugal Network Access', level: 2 },
+  { id: 'scenarios', text: 'D7 Holder Scenarios', level: 2 },
+  { id: 'verdict', text: 'Our Recommendation', level: 2 },
+  { id: 'faqs', text: 'FAQs', level: 2 },
+];
+
+const relatedLinks = [
+  { text: 'Portugal D7 Visa Guide', href: '/visas/retirement-visa/in/portugal' },
+  { text: 'Portugal Seniors Insurance', href: '/insurance-for/seniors/in/portugal' },
+  { text: 'Cigna Global Review', href: '/providers/cigna-global' },
+  { text: 'Bupa Global Review', href: '/providers/bupa-global' },
+  { text: 'Allianz Care Review', href: '/providers/allianz-care' },
+];
+
+const quickCompareColumns = [
+  { key: 'feature', header: 'Feature' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
+const quickCompareRows = [
+  { feature: 'D7 Visa Accepted', cigna: '✓ Yes', bupa: '✓ Yes', allianz: '✓ Yes' },
+  { feature: 'Portugal Network', cigna: 'Excellent', bupa: 'Excellent', allianz: 'Very Good' },
+  { feature: 'SNS Integration', cigna: 'Complementary', bupa: 'Complementary', allianz: 'Complementary' },
+  { feature: 'Max Entry Age', cigna: '74', bupa: '74', allianz: '74' },
+  { feature: 'Monthly Cost (65yo)', cigna: '€380-480', bupa: '€420-520', allianz: '€340-420' },
+  { feature: 'Direct Billing', cigna: 'Extensive', bupa: 'Extensive', allianz: 'Good' },
+  { feature: 'Pre-existing Options', cigna: 'Moratorium/Full', bupa: 'Full underwriting', allianz: 'Flexible' },
+  { feature: 'Best For', cigna: 'Network access', bupa: 'Premium service', allianz: 'Value seekers' },
+];
+
+const coverageColumns = [
+  { key: 'benefit', header: 'Benefit' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
+const coverageRows = [
+  { benefit: 'Inpatient/Hospital', cigna: 'Unlimited', bupa: '€2.5M+', allianz: '€3M' },
+  { benefit: 'Outpatient Care', cigna: 'Full coverage', bupa: 'Full coverage', allianz: 'Full coverage' },
+  { benefit: 'Emergency Evacuation', cigna: '€1M', bupa: 'Unlimited', allianz: '€500K' },
+  { benefit: 'Mental Health', cigna: 'Standard', bupa: 'Good', allianz: 'Enhanced' },
+  { benefit: 'Chronic Conditions', cigna: 'Covered', bupa: 'Covered', allianz: 'Covered' },
+  { benefit: 'Home Country Cover', cigna: 'Add-on', bupa: '30-45 days', allianz: 'Add-on' },
+  { benefit: 'Dental/Vision', cigna: 'Optional', bupa: 'Optional', allianz: 'Optional' },
+  { benefit: 'Repatriation', cigna: 'Included', bupa: 'Included', allianz: 'Included' },
+];
+
+const pricingColumns = [
+  { key: 'profile', header: 'Profile' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
+const pricingRows = [
+  { profile: 'Individual, Age 55', cigna: '€280-350/mo', bupa: '€320-400/mo', allianz: '€250-310/mo' },
+  { profile: 'Individual, Age 65', cigna: '€380-480/mo', bupa: '€420-520/mo', allianz: '€340-420/mo' },
+  { profile: 'Individual, Age 70', cigna: '€480-600/mo', bupa: '€520-650/mo', allianz: '€420-520/mo' },
+  { profile: 'Couple, Age 60', cigna: '€620-780/mo', bupa: '€700-880/mo', allianz: '€560-700/mo' },
+  { profile: 'Couple, Age 65', cigna: '€760-960/mo', bupa: '€840-1040/mo', allianz: '€680-840/mo' },
+];
+
+const networkColumns = [
+  { key: 'city', header: 'City/Region' },
+  { key: 'cigna', header: 'Cigna Global' },
+  { key: 'bupa', header: 'Bupa Global' },
+  { key: 'allianz', header: 'Allianz Care' },
+];
+
+const networkRows = [
+  { city: 'Lisbon', cigna: 'Hospital da Luz, CUF Descobertas, British Hospital', bupa: 'Hospital da Luz, CUF, Lusíadas', allianz: 'CUF, Hospital da Luz' },
+  { city: 'Porto', cigna: 'Hospital da Luz Arrábida, CUF Porto', bupa: 'CUF Porto, Lusíadas Porto', allianz: 'CUF Porto' },
+  { city: 'Algarve', cigna: 'Hospital Particular do Algarve, HPA Gambelas', bupa: 'HPA network, Hospital de Loulé', allianz: 'HPA network' },
+  { city: 'Madeira', cigna: 'Limited - evacuation available', bupa: 'Limited - evacuation available', allianz: 'Limited - evacuation available' },
+  { city: 'Direct Billing', cigna: 'Yes, extensive', bupa: 'Yes, extensive', allianz: 'Yes, good coverage' },
+];
+---
+
+<PageShell
+  title="Best Health Insurance for Portugal D7 Visa: Cigna vs Bupa vs Allianz | 2025"
+  description="Compare the best health insurance for Portugal D7 visa applicants. Cigna Global vs Bupa Global vs Allianz Care - coverage, pricing, Portugal networks, and which to choose."
+  headline="Best Health Insurance for Portugal D7 Visa"
+  subheadline="Cigna Global vs Bupa Global vs Allianz Care: Which insurer should you choose for your D7 visa application and retirement in Portugal?"
+  heroImage="/images/countries/portugal-hero-bg.png"
+  tocItems={tocItems}
+  relatedLinks={relatedLinks}
+>
+  <section id="overview" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">D7 Visa Insurance Requirements</h2>
+    <p class="mb-4">
+      You've decided on Portugal's D7 visa. Now you need health insurance that satisfies SEF requirements and actually protects you during retirement. This isn't optional—Portugal mandates comprehensive health coverage for D7 visa applicants, and your policy must meet specific criteria.
+    </p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 my-6">
+      <h3 class="font-semibold text-amber-900 mb-2">D7 Visa Insurance Requirements</h3>
+      <ul class="space-y-2 text-amber-800">
+        <li><strong>Coverage territory:</strong> Must cover Portugal (EU coverage acceptable)</li>
+        <li><strong>Duration:</strong> Valid for at least the visa application period</li>
+        <li><strong>Scope:</strong> Comprehensive medical including hospitalization</li>
+        <li><strong>Emergency:</strong> Must include emergency treatment and repatriation</li>
+        <li><strong>Format:</strong> Official letter from insurer confirming coverage (in English or Portuguese)</li>
+      </ul>
+    </div>
+
+    <p class="mb-4">
+      All three providers compared here—Cigna Global, Bupa Global, and Allianz Care—meet D7 visa requirements and are routinely accepted by Portuguese immigration. The question isn't whether they qualify, but which one serves your retirement best over the 5, 10, or 20+ years you'll be in Portugal.
+    </p>
+    <p>
+      After 5 years of legal residency, you'll be eligible for Portugal's public healthcare system (SNS) through citizenship or permanent residency. Until then—and potentially alongside SNS afterward—private international insurance provides faster access, English-speaking care, and coverage during travel. Choose a provider you can maintain long-term.
+    </p>
+  </section>
+
+  <section id="quick-comparison" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Quick Comparison</h2>
+    <p class="mb-4">
+      Here's how Cigna Global, Bupa Global, and Allianz Care compare for D7 visa holders. All three are excellent choices—the right one depends on your priorities.
+    </p>
+
+    <ComparisonTable columns={quickCompareColumns} rows={quickCompareRows} />
+
+    <div class="grid md:grid-cols-3 gap-4 mt-6">
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+        <p class="font-semibold text-blue-900">Best Network Access</p>
+        <p class="text-2xl font-bold text-blue-700">Cigna Global</p>
+      </div>
+      <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
+        <p class="font-semibold text-purple-900">Best Premium Service</p>
+        <p class="text-2xl font-bold text-purple-700">Bupa Global</p>
+      </div>
+      <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+        <p class="font-semibold text-green-900">Best Value</p>
+        <p class="text-2xl font-bold text-green-700">Allianz Care</p>
+      </div>
+    </div>
+  </section>
+
+  <CTABox
+    title="Get D7 Visa Insurance Quotes"
+    description="Compare personalized quotes from all three providers. Takes 5 minutes, no commitment required."
+    buttonText="Compare Quotes Now"
+    buttonHref="/get-quotes"
+    variant="highlight"
+  />
+
+  <section id="cigna-global" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Cigna Global for D7 Visa</h2>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Strengths</h3>
+          <ul class="space-y-1 text-neutral-600">
+            <li>✓ Largest direct billing network in Portugal</li>
+            <li>✓ Best-in-class mobile app and digital tools</li>
+            <li>✓ 24/7 English-speaking support</li>
+            <li>✓ Strong relationships with Hospital da Luz, CUF</li>
+            <li>✓ US coverage add-on for American expats</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Considerations</h3>
+          <ul class="space-y-1 text-neutral-600">
+            <li>• Higher premiums than Allianz (10-15%)</li>
+            <li>• Mental health coverage has session limits</li>
+            <li>• Premium increases can be significant with age</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="mb-4">
+      Cigna Global is the network king. If you want to walk into Hospital da Luz Lisbon, show your card, and receive care without paying upfront, Cigna makes this seamless. Their Portugal network includes all major private hospital groups—CUF, Luz Saúde, Lusíadas—with direct billing relationships that minimize paperwork.
+    </p>
+    <p class="mb-4">
+      For American D7 applicants, Cigna offers a significant advantage: their US heritage means strong American healthcare ties and optional US coverage that actually works. If you maintain a US address, visit family regularly, or want the security of Miami or New York access, Cigna handles this better than European-based competitors.
+    </p>
+    <p class="mb-4">
+      The digital experience is excellent. Cigna's app lets you find nearby providers, access your insurance card digitally, submit claims with photo uploads, and track reimbursements. When you're navigating Portuguese healthcare in your first months, these tools reduce stress significantly.
+    </p>
+    <p>
+      <strong>Best for:</strong> D7 applicants who prioritize convenience, want extensive direct billing in Portugal, value digital tools, or need reliable US coverage. American retirees often find Cigna the natural choice.
+    </p>
+
+    <div class="mt-4">
+      <a href="/go/cigna-global" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition" style="color: white !important;">Get Cigna Quote →</a>
+    </div>
+  </section>
+
+  <section id="bupa-global" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Bupa Global for D7 Visa</h2>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Strengths</h3>
+          <ul class="space-y-1 text-neutral-600">
+            <li>✓ Premium service and white-glove support</li>
+            <li>✓ Excellent Portugal hospital network</li>
+            <li>✓ Strong British expat understanding</li>
+            <li>✓ Lifetime coverage guarantee once enrolled</li>
+            <li>✓ Global recognition and trust</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Considerations</h3>
+          <ul class="space-y-1 text-neutral-600">
+            <li>• Highest premiums of the three</li>
+            <li>• Full medical underwriting required</li>
+            <li>• May be overkill for healthy retirees</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="mb-4">
+      Bupa Global is the premium choice. If budget isn't your primary concern and you want the highest service levels, Bupa delivers. Their customer service reputation is built on decades of serving internationally mobile clients who expect excellence.
+    </p>
+    <p class="mb-4">
+      For British D7 applicants, Bupa feels familiar. The brand is deeply trusted in the UK, and their international division understands British healthcare expectations. Post-Brexit, many UK retirees moving to Portugal choose Bupa for continuity with a trusted name.
+    </p>
+    <p class="mb-4">
+      Bupa's Portugal network rivals Cigna's, with direct billing at Hospital da Luz, CUF, Lusíadas, and the HPA Algarve network. Their case management for complex conditions is particularly strong—if you develop a serious illness, Bupa's team coordinates care effectively across providers and borders.
+    </p>
+    <p class="mb-4">
+      The lifetime coverage guarantee matters for D7 applicants planning long-term residency. Once enrolled, Bupa won't drop you regardless of claims history or health changes. This security has real value when you're 65+ and planning to age in Portugal.
+    </p>
+    <p>
+      <strong>Best for:</strong> D7 applicants who want premium service, are less price-sensitive, value brand trust and stability, or have complex health needs requiring care coordination. British retirees often gravitate to Bupa.
+    </p>
+
+    <div class="mt-4">
+      <a href="/go/bupa-global" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition" style="color: white !important;">Get Bupa Quote →</a>
+    </div>
+  </section>
+
+  <section id="allianz-care" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Allianz Care for D7 Visa</h2>
+
+    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Strengths</h3>
+          <ul class="space-y-1 text-neutral-600">
+            <li>✓ 10-15% lower premiums than competitors</li>
+            <li>✓ Enhanced mental health coverage</li>
+            <li>✓ Flexible plan customization</li>
+            <li>✓ Strong European presence and understanding</li>
+            <li>✓ Good pre-existing condition options</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Considerations</h3>
+          <ul class="space-y-1 text-neutral-600">
+            <li>• Smaller direct billing network than Cigna/Bupa</li>
+            <li>• More reimbursement claims likely</li>
+            <li>• Digital tools less polished</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="mb-4">
+      Allianz Care is the value champion. If you want comprehensive coverage without paying Cigna or Bupa premiums, Allianz delivers 10-15% savings with minimal trade-offs. Over a 10-year retirement, those savings compound to thousands of euros.
+    </p>
+    <p class="mb-4">
+      Their European heritage means deep familiarity with Portuguese healthcare and EU regulations. Allianz understands how SNS integration works, what Portuguese providers expect, and how to navigate the European healthcare landscape. This shows in their plan design and claims handling.
+    </p>
+    <p class="mb-4">
+      Mental health coverage is a genuine differentiator. Allianz includes enhanced mental health benefits that cover more therapy sessions and ongoing treatment than Cigna or Bupa standard plans. For retirees dealing with relocation stress, isolation, or existing mental health needs, this matters.
+    </p>
+    <p class="mb-4">
+      The trade-off is a smaller direct billing network. You'll have excellent coverage at major Portuguese hospitals, but may need to pay upfront and file for reimbursement at smaller clinics or specialist practices. If you're comfortable with this model—common in European healthcare—the savings are worthwhile.
+    </p>
+    <p>
+      <strong>Best for:</strong> D7 applicants who prioritize value, want strong mental health coverage, are comfortable with occasional reimbursement claims, or are European expats familiar with that healthcare model.
+    </p>
+
+    <div class="mt-4">
+      <a href="/go/allianz-care" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition" style="color: white !important;">Get Allianz Quote →</a>
+    </div>
+  </section>
+
+  <section id="coverage-comparison" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Coverage Comparison for D7 Holders</h2>
+    <p class="mb-4">
+      All three providers offer comprehensive coverage that exceeds D7 visa requirements. Here's how specific benefits compare at their mid-tier/comprehensive plan levels.
+    </p>
+
+    <ComparisonTable columns={coverageColumns} rows={coverageRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-800 mt-6 mb-3">Key Coverage Notes for D7 Holders</h3>
+
+    <p class="mb-4">
+      <strong>Chronic Condition Management:</strong> All three cover ongoing treatment for chronic conditions like diabetes, hypertension, and heart disease—crucial for the 55+ demographic typically applying for D7 visas. How pre-existing conditions are underwritten varies (see FAQs), but once covered, management is comprehensive.
+    </p>
+    <p class="mb-4">
+      <strong>SNS Complementary Coverage:</strong> These policies complement rather than replace SNS access once you're eligible. Use private insurance for faster access, English-speaking care, and complex procedures. Use SNS for routine care, prescriptions, and as a backup. Many D7 holders maintain international insurance indefinitely for this flexibility.
+    </p>
+    <p>
+      <strong>Home Country Coverage:</strong> If you'll visit family in the US, UK, or elsewhere regularly, check home country coverage limits. Cigna and Allianz offer add-ons; Bupa includes 30-45 days depending on plan. US coverage specifically adds significant cost but is essential for American expats.
+    </p>
+  </section>
+
+  <section id="pricing" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Pricing for D7 Applicants</h2>
+    <p class="mb-4">
+      D7 visa applicants are typically 55-75 years old—the age range where international health insurance costs most but matters most. Here's realistic pricing for comprehensive plans covering Portugal/Europe, excluding US coverage.
+    </p>
+
+    <ComparisonTable columns={pricingColumns} rows={pricingRows} />
+
+    <p class="mt-4 text-sm text-neutral-600">
+      *Prices are estimates for comprehensive plans with moderate deductibles (€1,000-2,500), covering Europe excluding US. Actual quotes vary based on health history, specific plan selection, and current rates. Get personalized quotes for accurate pricing.
+    </p>
+
+    <h3 class="text-xl font-semibold text-neutral-800 mt-6 mb-3">Reducing Your Premium</h3>
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Higher deductible:</strong> Moving from €1,000 to €5,000 deductible can reduce premiums 20-30%. Consider if you can cover routine care out-of-pocket.</li>
+      <li><strong>Exclude US:</strong> If you won't visit the US, exclude it from coverage for significant savings (30-40% for Americans).</li>
+      <li><strong>Essential vs. Premium tiers:</strong> Entry-level plans cost 30-40% less but have tighter limits. Evaluate whether you need comprehensive outpatient coverage.</li>
+      <li><strong>Pay annually:</strong> Most providers offer 5-10% discount for annual vs. monthly payment.</li>
+    </ul>
+  </section>
+
+  <CTABox
+    title="Get Your Exact Price"
+    description="These estimates give you a starting point. Get personalized quotes based on your age, health, and specific needs."
+    buttonText="Compare All Three"
+    buttonHref="/get-quotes"
+  />
+
+  <section id="portugal-network" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Portugal Network Access</h2>
+    <p class="mb-4">
+      Your insurance is only as good as the hospitals you can access. Here's how each provider's network covers the main D7 destination regions.
+    </p>
+
+    <ComparisonTable columns={networkColumns} rows={networkRows} />
+
+    <h3 class="text-xl font-semibold text-neutral-800 mt-6 mb-3">Understanding Portugal's Private Hospital Landscape</h3>
+    <p class="mb-4">
+      <strong>Grupo Luz Saúde:</strong> Portugal's largest private hospital group. Hospital da Luz Lisbon is the flagship, with facilities in Porto, Algarve, and other regions. All three insurers have strong relationships here.
+    </p>
+    <p class="mb-4">
+      <strong>CUF (José de Mello Saúde):</strong> Second major network with hospitals and clinics nationwide. CUF Descobertas in Lisbon and CUF Porto are particularly well-regarded. All three insurers cover CUF facilities.
+    </p>
+    <p class="mb-4">
+      <strong>Lusíadas:</strong> Growing network with strong presence in Lisbon, Porto, and Algarve. Quality is excellent; coverage varies slightly by insurer.
+    </p>
+    <p class="mb-4">
+      <strong>HPA Algarve:</strong> Essential for Algarve-based retirees. Hospital Particular do Algarve operates multiple facilities across the region. All three insurers cover HPA.
+    </p>
+    <p>
+      <strong>Madeira/Azores:</strong> Limited private options on the islands. All insurers provide emergency evacuation to mainland Portugal for serious conditions. If you're retiring to the islands specifically, discuss coverage with your insurer before enrolling.
+    </p>
+  </section>
+
+  <section id="scenarios" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">D7 Holder Scenarios</h2>
+    <p class="mb-4">
+      How do these insurers perform in situations D7 visa holders actually encounter?
+    </p>
+
+    <div class="space-y-6">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Scenario 1: Routine Care in Lisbon</h3>
+        <p class="text-neutral-700 mb-3">
+          You need a dermatologist appointment for a suspicious mole, plus follow-up if biopsy is needed.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-blue-50 p-3 rounded">
+            <p class="font-semibold text-blue-900">Cigna:</p>
+            <p class="text-blue-800">Book at CUF via app, show card, pay nothing upfront. Biopsy and follow-up same process.</p>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <p class="font-semibold text-purple-900">Bupa:</p>
+            <p class="text-purple-800">Similar direct billing experience at Luz or CUF. Case manager assigned if cancer diagnosed.</p>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <p class="font-semibold text-green-900">Allianz:</p>
+            <p class="text-green-800">Direct billing at major hospitals. Smaller clinic might require reimbursement (€80-120, repaid in 5-10 days).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Scenario 2: Cardiac Emergency in Algarve</h3>
+        <p class="text-neutral-700 mb-3">
+          You experience chest pain at your Algarve home. Ambulance takes you to HPA Gambelas. Emergency catheterization reveals blocked arteries requiring stents.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-blue-50 p-3 rounded">
+            <p class="font-semibold text-blue-900">Cigna:</p>
+            <p class="text-blue-800">Direct billing at HPA. Procedure (€25,000+) covered. Follow-up cardiology arranged locally or in Lisbon.</p>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <p class="font-semibold text-purple-900">Bupa:</p>
+            <p class="text-purple-800">Same coverage. Case manager coordinates follow-up. Option to transfer to Lisbon hospital if complex intervention needed.</p>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <p class="font-semibold text-green-900">Allianz:</p>
+            <p class="text-green-800">HPA covered via direct billing. Full cardiac intervention covered. Same quality outcome at lower premium.</p>
+          </div>
+        </div>
+        <p class="text-green-700 font-medium mt-3">All three handle this emergency identically well. This is what premium insurance is for.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Scenario 3: Managing Pre-Existing Diabetes</h3>
+        <p class="text-neutral-700 mb-3">
+          You have well-controlled Type 2 diabetes requiring quarterly endocrinologist visits, regular bloodwork, and ongoing medication.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-blue-50 p-3 rounded">
+            <p class="font-semibold text-blue-900">Cigna:</p>
+            <p class="text-blue-800">If enrolled with moratorium: 2-year wait for diabetes coverage. Full underwriting may approve with premium loading. Routine management covered after qualifying period.</p>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <p class="font-semibold text-purple-900">Bupa:</p>
+            <p class="text-purple-800">Full underwriting required. Well-controlled diabetes typically approved with loading. Coverage comprehensive once approved.</p>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <p class="font-semibold text-green-900">Allianz:</p>
+            <p class="text-green-800">Flexible approach—may offer coverage with loading rather than exclusion. Often most accommodating for pre-existing conditions.</p>
+          </div>
+        </div>
+        <p class="text-amber-700 font-medium mt-3">Apply to all three and compare specific terms offered for your diabetes.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Scenario 4: Visiting Family in the US (American Expat)</h3>
+        <p class="text-neutral-700 mb-3">
+          You're American with family in Florida. During a 3-week visit, you break your hip and need surgery.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-blue-50 p-3 rounded">
+            <p class="font-semibold text-blue-900">Cigna + US coverage:</p>
+            <p class="text-blue-800">Full coverage at US hospital. Hip surgery ($50,000+) covered. Strong US network means good facility access. This is Cigna's strength.</p>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <p class="font-semibold text-purple-900">Bupa + US coverage:</p>
+            <p class="text-purple-800">US coverage available as add-on. Surgery covered but may involve more coordination than Cigna's seamless US experience.</p>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <p class="font-semibold text-green-900">Allianz + US coverage:</p>
+            <p class="text-green-800">US coverage available. Works through reimbursement more often. Covered but more paperwork than Cigna.</p>
+          </div>
+        </div>
+        <p class="text-blue-700 font-medium mt-3">For American expats with US ties, Cigna's US coverage is the clear winner.</p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Scenario 5: Mental Health Support During Adjustment</h3>
+        <p class="text-neutral-700 mb-3">
+          First year in Portugal is harder than expected. You develop anxiety and need ongoing therapy—weekly sessions with a psychologist.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-blue-50 p-3 rounded">
+            <p class="font-semibold text-blue-900">Cigna:</p>
+            <p class="text-blue-800">Mental health covered but with session limits (often 20-30/year). May hit cap if weekly therapy continues. Pre-authorization may be required.</p>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <p class="font-semibold text-purple-900">Bupa:</p>
+            <p class="text-purple-800">Good mental health coverage with reasonable limits. Better than Cigna but not unlimited.</p>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <p class="font-semibold text-green-900">Allianz:</p>
+            <p class="text-green-800">Enhanced mental health benefits with more generous session allowances. Designed for ongoing treatment, not just crisis intervention.</p>
+          </div>
+        </div>
+        <p class="text-green-700 font-medium mt-3">If mental health is a priority, Allianz's enhanced coverage makes a real difference.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="verdict" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">Our Recommendation</h2>
+
+    <p class="mb-6">
+      All three providers will satisfy D7 visa requirements and serve you well in Portugal. The right choice depends on your priorities:
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-blue-900 mb-2">Choose Cigna Global If:</h3>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Network convenience is your priority</li>
+          <li>• You're American or need US coverage</li>
+          <li>• You value best-in-class digital tools</li>
+          <li>• You want minimal paperwork</li>
+        </ul>
+        <div class="mt-4">
+          <a href="/go/cigna-global" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition" style="color: white !important;">Get Cigna Quote</a>
+        </div>
+      </div>
+
+      <div class="bg-purple-50 border-2 border-purple-300 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-purple-900 mb-2">Choose Bupa Global If:</h3>
+        <ul class="space-y-2 text-purple-800">
+          <li>• Premium service matters most</li>
+          <li>• You're British or value UK brand trust</li>
+          <li>• You have complex health needs</li>
+          <li>• Budget is secondary to quality</li>
+        </ul>
+        <div class="mt-4">
+          <a href="/go/bupa-global" class="inline-block bg-purple-600 text-white px-4 py-2 rounded font-semibold hover:bg-purple-700 transition" style="color: white !important;">Get Bupa Quote</a>
+        </div>
+      </div>
+
+      <div class="bg-green-50 border-2 border-green-300 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-green-900 mb-2">Choose Allianz Care If:</h3>
+        <ul class="space-y-2 text-green-800">
+          <li>• Value is your priority</li>
+          <li>• Mental health coverage matters</li>
+          <li>• You're comfortable with reimbursement</li>
+          <li>• You're European or value EU expertise</li>
+        </ul>
+        <div class="mt-4">
+          <a href="/go/allianz-care" class="inline-block bg-green-600 text-white px-4 py-2 rounded font-semibold hover:bg-green-700 transition" style="color: white !important;">Get Allianz Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-neutral-100 rounded-lg p-6">
+      <h3 class="font-semibold text-neutral-900 mb-2">Our Overall Pick: Allianz Care</h3>
+      <p class="text-neutral-700">
+        For most D7 visa applicants, <strong>Allianz Care</strong> offers the best balance of comprehensive coverage and value. The 10-15% premium savings compound significantly over a long retirement, and their coverage is genuinely comprehensive. The mental health benefits are a real differentiator for retirees adjusting to life abroad.
+      </p>
+      <p class="text-neutral-700 mt-3">
+        That said, <strong>Cigna Global</strong> is worth the premium if network convenience or US coverage is essential to you. And <strong>Bupa Global</strong> is the right choice if you want maximum service quality and have the budget for it.
+      </p>
+      <p class="text-neutral-700 mt-3">
+        <strong>Our strong advice:</strong> Get quotes from all three. Compare actual pricing for your specific age and health situation. The right choice will become clear when you see real numbers.
+      </p>
+    </div>
+  </section>
+
+  <CTABox
+    title="Ready to Choose?"
+    description="Get personalized quotes from all three providers in one request. Compare real pricing for your D7 visa insurance."
+    buttonText="Compare All Three Now"
+    buttonHref="/get-quotes"
+    variant="highlight"
+  />
+
+  <section id="faqs" class="mb-12">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-4">FAQs: D7 Visa Insurance</h2>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Which insurance do Portuguese consulates actually accept for D7 visas?</h3>
+        <p class="text-neutral-700">
+          Cigna Global, Bupa Global, and Allianz Care are all routinely accepted. Portuguese consulates require proof of comprehensive health coverage valid in Portugal—these three providers meet that requirement. Request a coverage letter in English or Portuguese from your insurer for your application. Travel insurance or short-term policies are typically NOT accepted; you need annual comprehensive health insurance.
+        </p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">How do pre-existing conditions affect my application?</h3>
+        <p class="text-neutral-700">
+          All three providers conduct medical underwriting. Well-controlled conditions (managed diabetes, hypertension, high cholesterol) typically result in either premium loadings or waiting periods rather than outright rejection. Apply to all three and compare the specific terms offered. Allianz is often most flexible with loadings vs. exclusions. Be completely honest in your application—non-disclosure can void your policy when you need it most.
+        </p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Should I keep international insurance after qualifying for SNS?</h3>
+        <p class="text-neutral-700">
+          Most D7 holders maintain international insurance alongside SNS eligibility. SNS provides free public healthcare but has wait times for non-urgent care and limited English availability. Private insurance gives you faster access, English-speaking doctors, private rooms, and coverage during travel. Many retirees use SNS for prescriptions and routine care while keeping international insurance for serious illness and convenience.
+        </p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What if I already have travel insurance?</h3>
+        <p class="text-neutral-700">
+          Travel insurance doesn't satisfy D7 visa requirements. Portuguese immigration requires comprehensive annual health insurance, not travel insurance with limited coverage periods and exclusions for ongoing conditions. Travel insurance is designed for short trips, not residence. You'll need proper international health insurance for your D7 application.
+        </p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Can I switch providers after getting my visa?</h3>
+        <p class="text-neutral-700">
+          Yes, you can switch at any renewal period. However, switching triggers new medical underwriting with the new provider. Any conditions that developed while on your previous policy may be treated as pre-existing by the new insurer. If you've developed health issues, staying with your current provider (who must continue covering you) is often wiser than switching and risking exclusions.
+        </p>
+      </div>
+
+      <div class="bg-white border border-neutral-200 rounded-lg p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">What happens when I turn 75 or 80?</h3>
+        <p class="text-neutral-700">
+          All three providers offer lifetime coverage once you're enrolled—they won't drop you due to age. However, premiums increase significantly with age, and by 75-80, annual costs may exceed €10,000-15,000. Many retirees reduce coverage at advanced ages, increase deductibles, or rely more on SNS. The important thing is enrolling while you're younger; qualifying for new coverage becomes much harder after 74.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6 mt-8">
+    <p class="text-sm text-neutral-600">
+      <strong>Disclaimer:</strong> This comparison is for informational purposes only. Prices, coverage details, and plan features change frequently. We receive compensation from some insurers when you purchase through our links, which helps support this site but doesn't affect our analysis. Always verify current information directly with insurers before purchasing. Individual circumstances vary—get personalized quotes for accurate pricing.
+    </p>
+  </div>
+</PageShell>
