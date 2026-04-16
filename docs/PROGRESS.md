@@ -13,7 +13,7 @@ Last updated: April 15, 2026
 - **Visa × Country pages:** 181 (33 DNV + 17 Retirement + 34 Student + 38 Freelancer + 40 Investor + 18 Work Permit)
 - **Country pages:** 22 (core landing pages)
 - **Compare pages:** 29 (country vs country) + 183 provider comparisons
-- **Insurance-for (Personas):** 43 audience-specific pages (25 base + 18 seniors country pages)
+- **Insurance-for (Personas):** 47 audience-specific pages (25 base + 22 seniors country pages)
 - **Provider pages:** 9 (long-form reviews)
 - **"Best" comparison pages:** 51
 
@@ -95,6 +95,15 @@ Seniors/retirees content expansion (highest engagement audience per GA data)
 ---
 
 ## Completed Milestones
+
+### April 15, 2026 - Seniors Country Pages Batch 5
+Added 4 more seniors insurance guides:
+- `/insurance-for/seniors/in/turkey` - Medical tourism hub, affordable quality
+- `/insurance-for/seniors/in/brazil` - Latin America's best hospitals, expat communities
+- `/insurance-for/seniors/in/south-africa` - World-class private care, favorable exchange
+- `/insurance-for/seniors/in/cyprus` - EU member, English-speaking, GESY system
+
+Total seniors country pages: 22
 
 ### April 15, 2026 - Seniors Country Pages Batch 4
 Added 4 more seniors insurance guides:
