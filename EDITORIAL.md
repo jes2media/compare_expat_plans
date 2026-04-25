@@ -2,6 +2,10 @@
 
 This document defines the writing style, tone, and content standards for Compare Expat Plans.
 
+**Related documents:**
+- `CONTENT-STRATEGY.md` — What content to produce and why (tiers, affiliate priorities, intent matching)
+- `docs/NEXT-STEPS.md` — Operational queue and production targets
+
 ## Voice & Tone
 
 ### Be Direct

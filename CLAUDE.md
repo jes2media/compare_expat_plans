@@ -91,6 +91,28 @@ Key principles:
 
 Read `EDITORIAL.md` before writing or editing any content.
 
+## Content Strategy
+
+**All content production must follow `CONTENT-STRATEGY.md`** — our data-driven content priorities.
+
+**Content Tiers (by conversion performance):**
+
+| Tier | Patterns | Status |
+|------|----------|--------|
+| **Tier 1** | `/best/` roundups, Senior/retiree pages | Produce aggressively |
+| **Tier 2** | Visa + country, Provider reviews | Scale with monitoring |
+| **Tier 3** | Base country, Provider-country, `/compare/{A}-vs-{B}/` | **PAUSED** |
+
+**Affiliate Partner Priority:**
+1. Cigna Global (~55% of clicks)
+2. IMG Global (~17%)
+3. Aetna International, SafetyWing (~10% each)
+4. Allianz Care, Bupa Global — feature only when clearly superior fit
+
+**Key rule:** Before producing any page, verify intent match. If users searching the target query want a specific provider directly (not a comparison), do not produce the page.
+
+See `CONTENT-STRATEGY.md` for full rationale and `docs/NEXT-STEPS.md` for operational queue.
+
 ## Templates
 
 **`templates/longform-comparison.astro`** - CRO-optimized template for provider comparison articles (~4,000 words). Includes:
@@ -165,17 +187,22 @@ See `docs/PROGRESS.md` for:
 - Current project status and page counts
 - Completed milestones by date
 - Google Analytics insights
-- Next steps and priorities
 
-**Current Stats (April 15, 2026):**
+See `docs/NEXT-STEPS.md` for:
+- Blocking items before scaling
+- Priority investigations
+- Content production queue (by tier)
+- Infrastructure tasks
+
+**Current Stats (April 24, 2026):**
 - Static .astro files: ~1,125
 - Problem/Solution guides: 652 (588 profession + 64 topic)
 - Visa × Country pages: 181 (33 DNV + 17 Retirement + 34 Student + 38 Freelancer + 40 Investor + 18 Work Permit)
-- "Best" comparison pages: 51
+- "Best" comparison pages: 51+
 - Provider pages: 9 (long-form reviews)
 - Country pages: 22 (core landing pages)
-- Compare pages: 29 (country vs country) + 183 provider comparisons
-- Dynamic routes generate additional pages from data files (personas × countries, conditions × countries, providers × countries)
+- Compare pages: 29 (country vs country) + 183 provider comparisons (Tier 3 — paused)
+- Dynamic routes generate additional pages from data files
 
 ## GA Insights (Jan 1 - Apr 15, 2026)
 
@@ -191,8 +218,10 @@ See `docs/PROGRESS.md` for:
 - Student visa pages: 130-160s engagement (France, Denmark)
 
 **Content Priorities (based on GA data):**
-1. Seniors/retirees content - Low traffic but exceptional engagement (2-4 min)
-2. Student visa pages - Outperform other visa types in traffic
-3. Cigna-focused comparisons - Highest conversion rate
-4. Pre-existing conditions - Clear user pain point
-5. Work permit visas - High engagement, low competition
+1. `/best/` editorial roundups - 10.6% outbound click rate (Tier 1)
+2. Senior/retiree demographic pages - 50-67% conversion on small samples (Tier 1)
+3. Visa + country pages - 16.2% outbound click rate (Tier 2)
+4. Provider reviews and sub-pages - 7.4% conversion (Tier 2)
+5. Pre-existing conditions guides - Clear user pain point
+
+**Next Priority:** Tier 1 content — `/best/` roundups (30-50 new) and senior demographic pages (50-80 new). See `docs/NEXT-STEPS.md` for full queue.
