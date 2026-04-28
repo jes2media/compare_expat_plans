@@ -9,6 +9,7 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   canonicalUrl?: string;
+  noindex?: boolean;
 }
 
 const siteName = "Compare Expat Plans";
@@ -22,6 +23,7 @@ const {
   ogImage = defaultOgImage,
   ogType = 'website',
   canonicalUrl,
+  noindex = false,
 } = Astro.props;
 
 const fullTitle = `${title} | ${siteName}`;
@@ -50,6 +52,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
